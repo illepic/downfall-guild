@@ -95,14 +95,13 @@ class DownfallVocabularyMigration extends DownfallMigration {
     //maps to destination with modification to source, see function below
     $this->addFieldMapping('machine_name', 'name')
          ->callbacks(array($this, 'vocabMachineName'));
+    //map unused source, usually do this for primary keys
     $this->addFieldMapping(NULL, 'vid')
          ->issueGroup(t('DNM'));
     $this->addUnmigratedDestinations(array('vid'));
   }
 
   public function vocabMachineName($args){
-    dpm($args);
-    //$machine_readable = strtolower($args);
     return preg_replace('@[^a-z0-9_]+@','_',strtolower($args));
   }
 
@@ -178,9 +177,9 @@ class DownfallTermWowMigration extends DownfallMigration {
            ->select('term_data', 'td')
            ->fields('td', array('tid', 'vid', 'name', 'description', 'weight'));
     //$query->condition('vid', 5, '=');
-    $query->join('term_hierarchy', 'th', 'th.tid = td.tid');
-    $query->addField('th', 'parent'); // need to get actual parent name, use sourceMigration to get mappings properly
-    $query->orderBy('th.parent');
+    //$query->join('term_hierarchy', 'th', 'th.tid = td.tid');
+    //$query->addField('th', 'parent'); // need to get actual parent name, use sourceMigration to get mappings properly
+    //$query->orderBy('th.parent');
 
     // Create a MigrateSource object, which manages retrieving the input data.
     $this->source = new MigrateSourceSQL($query, array(), NULL, array('map_joinable' => FALSE));
@@ -194,10 +193,14 @@ class DownfallTermWowMigration extends DownfallMigration {
     // drush migrate-fields-source BeerTerm
     //$this->addFieldMapping('tid', 'tid');
     //$this->addFieldMapping('vid', 'vid');
+    $this
     $this->addFieldMapping('name', 'name');
     $this->addFieldMapping('description', 'description');
     $this->addFieldMapping('weight', 'weight');
     $this->addFieldMapping('parent', 'parent');
+
+    //from example, need to do lookup to get vocab name from vid
+    //$this->addFieldMapping('vocabulary_machine_name', 'vname');
 
     // Documenting your mappings makes it easier for the whole team to see
     // exactly what the status is when developing a migration process.
