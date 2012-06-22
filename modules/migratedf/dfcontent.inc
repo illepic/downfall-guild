@@ -101,6 +101,7 @@ class DownfallVocabularyMigration extends DownfallMigration {
     $this->addUnmigratedDestinations(array('vid'));
   }
 
+  //try this as method of parent class and call that way
   public function vocabMachineName($args){
     return preg_replace('@[^a-z0-9_]+@','_',strtolower($args));
   }
@@ -176,28 +177,31 @@ class DownfallTermWowMigration extends DownfallMigration {
     $query = Database::getConnection('migrate', 'df6import')
            ->select('term_data', 'td')
            ->fields('td', array('tid', 'vid', 'name', 'description', 'weight'));
-    //$query->condition('vid', 5, '=');
-    //$query->join('term_hierarchy', 'th', 'th.tid = td.tid');
-    //$query->addField('th', 'parent'); // need to get actual parent name, use sourceMigration to get mappings properly
-    //$query->orderBy('th.parent');
+    $query->join('term_hierarchy', 'th', 'th.tid = td.tid');
+    $query->addField('th', 'parent'); // need to get actual parent name, use sourceMigration to get mappings properly
+    //$query->groupBy('td.vid');
+    $query->orderBy('td.vid, th.parent');
 
     // Create a MigrateSource object, which manages retrieving the input data.
     $this->source = new MigrateSourceSQL($query, array(), NULL, array('map_joinable' => FALSE));
 
     // Set up our destination - terms in the migrate_example_beer_styles vocabulary
-    $this->destination = new MigrateDestinationTerm('wow');
+    $this->destination = new MigrateDestinationTerm('wow'); // this doesn't really matter below
 
     // Assign mappings TO destination fields FROM source fields. To discover
     // the names used in these calls, use the drush commands
     // drush migrate-fields-destination BeerTerm
     // drush migrate-fields-source BeerTerm
-    //$this->addFieldMapping('tid', 'tid');
-    //$this->addFieldMapping('vid', 'vid');
-    $this
-    $this->addFieldMapping('name', 'name');
-    $this->addFieldMapping('description', 'description');
-    $this->addFieldMapping('weight', 'weight');
-    $this->addFieldMapping('parent', 'parent');
+
+    // this ensures that vids from d6 line up with their new vids in new d7
+    $this->addFieldMapping('vid', 'vid')
+         ->sourceMigration('DownfallVocabulary');
+
+    // 'parent' is something built into Migrate
+    $this->addFieldMapping('parent', 'parent')
+         ->sourceMigration($this->machineName);
+
+    $this->addSimpleMappings(array('name', 'description', 'weight'));
 
     //from example, need to do lookup to get vocab name from vid
     //$this->addFieldMapping('vocabulary_machine_name', 'vname');
