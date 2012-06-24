@@ -2,7 +2,7 @@
 
 
 /**
- * BasicExampleMigration = DownfallMigration
+ * DownfallMigration
  */
 
 abstract class DownfallMigration extends Migration {
@@ -10,18 +10,14 @@ abstract class DownfallMigration extends Migration {
     // Always call the parent constructor first for basic setup
     parent::__construct(MigrateGroup::getInstance('downfall', array('default')));
 
-    // With migrate_ui enabled, migration pages will indicate people involved in
-    // the particular migration, with their role and contact info. We default the
-    // list in the shared class; it can be overridden for specific migrations.
     $this->team = array(
       new MigrateTeamMember('Chris Bloom', 'bloomcb@gmail.com', t('Guild Site Runner')),
     );
+  }
 
-    // Individual mappings in a migration can be linked to a ticket or issue
-    // in an external tracking system. Define the URL pattern here in the shared
-    // class with ':id:' representing the position of the issue number, then add
-    // ->issueNumber(1234) to a mapping.
-    $this->issuePattern = 'http://drupal.org/node/:id:';
+  // make lowercase, space removed machine names
+  public function vocabMachineName($args){
+    return preg_replace('@[^a-z0-9_]+@','_',strtolower($args));
   }
 }
 
@@ -31,10 +27,11 @@ abstract class DownfallMigration extends Migration {
 class DownfallVocabularyMigration extends DownfallMigration {
   public function __construct() {
     parent::__construct();
-    // Human-friendly description of your migration process. Be as detailed as you
-    // like.
+
     $this->description = t('Migrate taxonomies from d6 to d7.');
-    $table_name = 'taxonomy_vocabulary';
+
+    $table_name = 'taxonomy_vocabulary'; //gets used a few times
+
     $this->map = new MigrateSQLMap(
       $this->machineName,
       array(
@@ -56,7 +53,7 @@ class DownfallVocabularyMigration extends DownfallMigration {
     // Create a MigrateSource object, which manages retrieving the input data.
     $this->source = new MigrateSourceSQL($query, array(), NULL, array('map_joinable' => FALSE));
 
-    // Set up our destination - terms in the migrate_example_beer_styles vocabulary
+    // Set up our destination using a generic table since there is none prebuilt for full vocabs
     $this->destination = new MigrateDestinationTable($table_name);
 
     $this->addSimpleMappings(array('name', 'description', 'module', 'weight'));
@@ -64,16 +61,11 @@ class DownfallVocabularyMigration extends DownfallMigration {
          ->defaultValue(0);
     //maps to destination with modification to source, see function below
     $this->addFieldMapping('machine_name', 'name')
-         ->callbacks(array($this, 'vocabMachineName'));
+         ->callbacks(array($this, 'vocabMachineName')); // part of parent class
     //map unused source, usually do this for primary keys
     $this->addFieldMapping(NULL, 'vid')
          ->issueGroup(t('DNM'));
     $this->addUnmigratedDestinations(array('vid'));
-  }
-
-  //try this as method of parent class and call that way
-  public function vocabMachineName($args){
-    return preg_replace('@[^a-z0-9_]+@','_',strtolower($args));
   }
 
 }
@@ -84,9 +76,10 @@ class DownfallVocabularyMigration extends DownfallMigration {
 class DownfallTermWowMigration extends DownfallMigration {
   public function __construct() {
     parent::__construct();
-    // Human-friendly description of your migration process. Be as detailed as you like.
+
     $this->description = t('Migrate terms from d6 to d7.');
-    $this->softDependencies = array('DownfallVocabulary');
+
+    $this->dependencies = array('DownfallVocabulary');
 
     $this->map = new MigrateSQLMap($this->machineName,
       array(
@@ -105,7 +98,7 @@ class DownfallTermWowMigration extends DownfallMigration {
            ->select('term_data', 'td')
            ->fields('td', array('tid', 'vid', 'name', 'description', 'weight'));
     $query->join('term_hierarchy', 'th', 'th.tid = td.tid');
-    $query->addField('th', 'parent'); // need to get actual parent name, use sourceMigration to get mappings properly
+    $query->addField('th', 'parent');
     //$query->groupBy('td.vid');
     $query->orderBy('td.vid, th.parent');
 
@@ -143,9 +136,8 @@ class DownfallTermWowMigration extends DownfallMigration {
              ->issueGroup(t('DNM'));
       }
     }
-    //dpm(taxonomy_vocabulary_get_names());
-    //dvm($this->destination);
-  } //construc
+
+  } //construct
 
   // found at http://drupal.org/node/1516244#comment-6011854
   /*
@@ -180,15 +172,13 @@ class DownfallTermWowMigration extends DownfallMigration {
 class DownfallTermHierarchyMigration extends DownfallMigration {
   public function __construct() {
     parent::__construct();
-    // Human-friendly description of your migration process. Be as detailed as you
-    // like.
+
     $this->description = t('Migrate term hierarchy from d6 to d7.');
-    $this->softDependencies = array('DownfallTermWow');
 
-    //Database::getConnection('default', 'default');
-    //db_truncate('taxonomy_term_hierarchy');
+    $this->dependencies = array('DownfallTermWow');
 
-    $table_name = 'taxonomy_term_hierarchy';
+    $table_name = 'taxonomy_term_hierarchy'; //used a few times below
+
     $this->map = new MigrateSQLMap(
       $this->machineName,
       array(
@@ -215,33 +205,20 @@ class DownfallTermHierarchyMigration extends DownfallMigration {
     // Set up our destination - terms in the migrate_example_beer_styles vocabulary
     $this->destination = new MigrateDestinationTable($table_name);
 
-
     // this ensures that vids from d6 line up with their new vids in new d7
     $this->addFieldMapping('tid', 'tid')
          ->sourceMigration('DownfallTermWoW');
 
+    // important to note what's going on here. We're taking parent from source, mapping it to
+    // parent in destination, but saying the DownfallTermWow migration will convert the ids
     $this->addFieldMapping('parent', 'parent')
-         ->sourceMigration('DownfallTermWoW')
+         ->sourceMigration('DownfallTermWow')
          ->defaultValue(0);
 
   }
   // prepare should go here and truncate d7 table
    public function preImport() {
     $result = db_truncate('taxonomy_term_hierarchy')->execute();
-  }
-
-  // lookup parent
-  /*
-  public function prepareRow($row){
-    dpm($row);
-    $oldparent = $row->parent;
-    $result = db_select('')
-  }
-  */
-
-  //try this as method of parent class and call that way
-  public function vocabMachineName($args){
-    return preg_replace('@[^a-z0-9_]+@','_',strtolower($args));
   }
 
 }
