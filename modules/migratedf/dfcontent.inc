@@ -169,6 +169,7 @@ class DownfallTermWowMigration extends DownfallMigration {
   }
 }
 
+// Term hierarchies
 class DownfallTermHierarchyMigration extends DownfallMigration {
   public function __construct() {
     parent::__construct();
@@ -221,4 +222,66 @@ class DownfallTermHierarchyMigration extends DownfallMigration {
     $result = db_truncate('taxonomy_term_hierarchy')->execute();
   }
 
+}
+
+// user role migration
+class DownfallRoleMigration extends DownfallMigration {
+
+  /* change all this */
+  public function __construct() {
+    parent::__construct();
+    $this->description = t('user role migration');
+
+    $this->map = new MigrateSQLMap(
+      $this->machineName,
+      array(
+        'rid' => array(
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        )
+      ),
+      MigrateDestinationRole::getKeySchema()
+    );
+
+    $query = Database::getConnection('migrate', 'df6import')
+           ->select('role', 'role')
+           ->fields('role', array('rid', 'name'));
+
+    // Create a MigrateSource object, which manages retrieving the input data.
+    $this->source = new MigrateSourceSQL($query, array(), NULL, array('map_joinable' => FALSE));
+
+    $this->destination = new MigrateDestinationRole();
+
+    // $this->addSimpleMappings(array('rid', 'name'));
+    $this->addFieldMapping('name', 'name');
+    $this->addFieldMapping('weight')->defaultValue(0);
+  }
+}
+
+// user migrate
+// notes 10/13: fill out mappings
+class DownfallusersMigration extends DownfallMigration {
+  public function __construct(){
+    parent::__construct();
+    $this->description = t('User migrate');
+    $this->map = new MigrateSQLMap(
+      $this->machineName,
+        array('accountid' => array(
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'description' => 'Account ID.'
+                )
+             ),
+        MigrateDestinationUser::getKeySchema()
+    );
+    $query = Database::getConnection('migrate', 'df6import')
+      ->select('users', 'users')
+      ->fields('users', array('uid', 'name'));
+
+    // Create a MigrateSource object, which manages retrieving the input data.
+    $this->source = new MigrateSourceSQL($query, array(), NULL, array('map_joinable' => FALSE));
+    $this->destination = new MigrateDestinationUser();
+  }
 }
