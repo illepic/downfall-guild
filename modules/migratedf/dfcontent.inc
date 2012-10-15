@@ -230,19 +230,10 @@ class DownfallRoleMigration extends DownfallMigration {
   /* change all this */
   public function __construct() {
     parent::__construct();
-    $this->description = t('user role migration');
 
-    $this->map = new MigrateSQLMap(
-      $this->machineName,
-      array(
-        'rid' => array(
-          'type' => 'int',
-          'unsigned' => TRUE,
-          'not null' => TRUE,
-        )
-      ),
-      MigrateDestinationRole::getKeySchema()
-    );
+    dpm($this->machineName);
+
+    $this->description = t('user role migration');
 
     $query = Database::getConnection('migrate', 'df6import')
            ->select('role', 'role')
@@ -253,10 +244,31 @@ class DownfallRoleMigration extends DownfallMigration {
 
     $this->destination = new MigrateDestinationRole();
 
+    $this->map = new MigrateSQLMap( $this->machineName,
+      array(
+        'rid' => array(
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        )
+      ),
+      MigrateDestinationRole::getKeySchema()
+    );
+
     // $this->addSimpleMappings(array('rid', 'name'));
+    // $this->addFieldMapping('rid', 'rid');
     $this->addFieldMapping('name', 'name');
     $this->addFieldMapping('weight')->defaultValue(0);
+    // $this->addFieldMapping('is_new')
+    //   ->defaultValue(TRUE);
   }
+
+  public function preImport() {
+     parent::preImport();
+     // really just want the original rids
+     //ALTER TABLE theTableInQuestion AUTO_INCREMENT=1234
+     $result = db_query('ALTER TABLE role AUTO_INCREMENT=1');
+   }
 }
 
 // user migrate
@@ -276,10 +288,10 @@ class DownfallusersMigration extends DownfallMigration {
     $query = Database::getConnection('migrate', 'df6import')
       ->select('users', 'u')
       ->fields('u', array('uid', 'name', 'pass', 'mail', 'created', 'access', 'login', 'status', 'init'))
-      ->condition('u.status', 1, '=')
+      // ->condition('u.status', 1, '=')
       ->condition('u.uid', 1, '>')
       ->orderBy('u.uid', 'ASC');
-    $this->source = new MigrateSourceSQL($query, $source_fields);
+    $this->source = new MigrateSourceSQL($query, $source_fields, NULL, array('map_joinable' => FALSE));
     $this->destination = new MigrateDestinationUser(array('md5_passwords' => TRUE));
     $this->map = new MigrateSQLMap($this->machineName,
       array(
@@ -311,7 +323,24 @@ class DownfallusersMigration extends DownfallMigration {
     $this->addFieldMapping('init', 'init');
     $this->addFieldMapping('timezone')->defaultValue(NULL);
     $this->addFieldMapping('path')->issueGroup(t('DNM')); // DNM = Do Not Map
-    $this->addFieldMapping('roles', 'roles');
+    $this->addFieldMapping('pathauto_perform_alias')->defaultValue('1');
+    $this->addFieldMapping('roles', 'roles'); //this neesd to be an array of roles, build below
+  }
+
+  // FIX THIS
+  public function prepareRow($current_row) {
+    $source_id = $current_row->uid;
+    $query = db_select(REDCAT_MIGRATION_DATABASE_NAME .'.users_roles', 'r')
+      ->fields('r', array('uid', 'rid'))
+      ->condition('r.uid', $source_id, '=');
+    $results = $query->execute();
+    $roles = array('2' => '2');
+    foreach ($results as $row) {
+      $roles[$row->rid] = $row->rid;
+    }
+    $current_row->roles = $roles;
+    return TRUE;
+    // return FALSE if you wish to skip a particular row
   }
 
 }
