@@ -265,23 +265,53 @@ class DownfallusersMigration extends DownfallMigration {
   public function __construct(){
     parent::__construct();
     $this->description = t('User migrate');
-    $this->map = new MigrateSQLMap(
-      $this->machineName,
-        array('accountid' => array(
-                'type' => 'int',
-                'unsigned' => TRUE,
-                'not null' => TRUE,
-                'description' => 'Account ID.'
-                )
-             ),
-        MigrateDestinationUser::getKeySchema()
-    );
-    $query = Database::getConnection('migrate', 'df6import')
-      ->select('users', 'users')
-      ->fields('users', array('uid', 'name'));
 
-    // Create a MigrateSource object, which manages retrieving the input data.
-    $this->source = new MigrateSourceSQL($query, array(), NULL, array('map_joinable' => FALSE));
-    $this->destination = new MigrateDestinationUser();
+    // some field definitions; roles will be added later in prepareRow()
+    $source_fields = array(
+      'uid' => t('User ID'),
+      'roles' => t('The set of roles assigned to a user.'),
+    );
+
+    // only import active users from the old db
+    $query = Database::getConnection('migrate', 'df6import')
+      ->select('users', 'u')
+      ->fields('u', array('uid', 'name', 'pass', 'mail', 'created', 'access', 'login', 'status', 'init'))
+      ->condition('u.status', 1, '=')
+      ->condition('u.uid', 1, '>')
+      ->orderBy('u.uid', 'ASC');
+    $this->source = new MigrateSourceSQL($query, $source_fields);
+    $this->destination = new MigrateDestinationUser(array('md5_passwords' => TRUE));
+    $this->map = new MigrateSQLMap($this->machineName,
+      array(
+        'uid' => array(
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'description' => 'D6 Unique User ID',
+          'alias' => 'u',
+        )
+      ),
+      MigrateDestinationUser::getKeySchema()
+    );
+
+    $this->addFieldMapping('is_new')->defaultValue(TRUE);
+    $this->addFieldMapping('uid', 'uid');
+    $this->addFieldMapping('name', 'name')->dedupe('users', 'name');
+    $this->addFieldMapping('pass', 'pass');
+    $this->addFieldMapping('mail', 'mail')->dedupe('users', 'mail');
+    $this->addFieldMapping('language')->defaultValue('');
+    $this->addFieldMapping('theme')->defaultValue('');
+    $this->addFieldMapping('signature')->defaultValue('');
+    $this->addFieldMapping('signature_format')->defaultValue('filtered_html');
+    $this->addFieldMapping('created', 'created');
+    $this->addFieldMapping('access', 'access');
+    $this->addFieldMapping('login', 'login');
+    $this->addFieldMapping('status', 'status');
+    $this->addFieldMapping('picture')->defaultValue(0);
+    $this->addFieldMapping('init', 'init');
+    $this->addFieldMapping('timezone')->defaultValue(NULL);
+    $this->addFieldMapping('path')->issueGroup(t('DNM')); // DNM = Do Not Map
+    $this->addFieldMapping('roles', 'roles');
   }
+
 }
