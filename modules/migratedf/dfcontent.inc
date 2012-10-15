@@ -231,8 +231,6 @@ class DownfallRoleMigration extends DownfallMigration {
   public function __construct() {
     parent::__construct();
 
-    dpm($this->machineName);
-
     $this->description = t('user role migration');
 
     $query = Database::getConnection('migrate', 'df6import')
@@ -277,6 +275,7 @@ class DownfallusersMigration extends DownfallMigration {
   public function __construct(){
     parent::__construct();
     $this->description = t('User migrate');
+    $this->dependencies = array('DownfallRole');
 
     // some field definitions; roles will be added later in prepareRow()
     $source_fields = array(
@@ -330,7 +329,11 @@ class DownfallusersMigration extends DownfallMigration {
   // FIX THIS
   public function prepareRow($current_row) {
     $source_id = $current_row->uid;
-    $query = db_select(REDCAT_MIGRATION_DATABASE_NAME .'.users_roles', 'r')
+    // $query = db_select(REDCAT_MIGRATION_DATABASE_NAME .'.users_roles', 'r')
+    //   ->fields('r', array('uid', 'rid'))
+    //   ->condition('r.uid', $source_id, '=');
+    $query = Database::getConnection('migrate', 'df6import')
+      ->select('users_roles', 'r')
       ->fields('r', array('uid', 'rid'))
       ->condition('r.uid', $source_id, '=');
     $results = $query->execute();
@@ -340,6 +343,7 @@ class DownfallusersMigration extends DownfallMigration {
     }
     $current_row->roles = $roles;
     return TRUE;
+    // return FALSE;
     // return FALSE if you wish to skip a particular row
   }
 
