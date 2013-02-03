@@ -132,6 +132,32 @@ function migratedf_register_migrations(){
     $gallery_term_arguments['machine_name'], $gallery_term_arguments);
 
   /**
+   * DownfallD2DMigration - Menus
+   */
+
+  $menu_arguments = $common_arguments + array(
+    'machine_name' => 'DownfallD2DMenus',
+    'description' => t('Import Drupal 6 menus'),
+  );
+  Migration::registerMigration('DrupalMenu6Migration',
+    $menu_arguments['machine_name'], $menu_arguments);
+
+  /**
+   * DownfallD2DMigration - Menu Links
+   */
+
+  $menu_link_arguments = $common_arguments + array(
+    'machine_name' => 'DownfallD2DMenuLinks',
+    'description' => t('Import Drupal 6 menu links'),
+    'menu_migration' => 'DownfallD2DMenus',
+    'node_migrations' => array('DownfallD2DNodeBook'),
+    // 'term_migrations' => array('ExamplePhotoTerm', 'ExampleVideoTerm'),
+  );
+
+  Migration::registerMigration('DrupalMenuLinks6Migration',
+    $menu_link_arguments['machine_name'], $menu_link_arguments);
+
+  /**
    * DownfallD2DMigration - NODES
    */
 
@@ -156,6 +182,22 @@ function migratedf_register_migrations(){
   // other fields - see "Extending migrate_d2d classes" below.
   Migration::registerMigration('DownfallBookMigration',
     $book_node_arguments['machine_name'], $book_node_arguments);
+
+  /**
+   * DownfallD2DMigration - NODES / Blog
+   */
+
+  $blog_node_arguments = $node_arguments + array(
+    'machine_name' => 'DownfallD2DNodeBlog',
+    'description' => t('Import Drupal 6 blog nodes'),
+    'source_type' => 'blog',
+    'destination_type' => 'blog',
+    'dependencies' => array('DownfallD2DTermWoW'),
+  );
+  // Note we use a custom class here so we can map the term references and
+  // other fields - see "Extending migrate_d2d classes" below.
+  Migration::registerMigration('DownfallBlogMigration',
+    $blog_node_arguments['machine_name'], $blog_node_arguments);
 
 }
 
