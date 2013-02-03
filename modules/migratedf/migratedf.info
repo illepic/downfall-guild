@@ -6,12 +6,13 @@ dependencies[] = taxonomy
 dependencies[] = image
 dependencies[] = comment
 dependencies[] = migrate
+dependencies[] = migrate_d2d
 dependencies[] = list
 dependencies[] = number
+
 
 ;node_reference is useful but not required
 ;dependencies[] = node_reference
 
-files[] = migratedf.module
 files[] = dfcontent.inc
 ;files[] = wine.inc

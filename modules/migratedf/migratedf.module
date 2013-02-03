@@ -118,6 +118,45 @@ function migratedf_register_migrations(){
   Migration::registerMigration('DrupalTerm6Migration',
     $wow_term_arguments['machine_name'], $wow_term_arguments);
 
+  /**
+   * DownfallD2DMigration - VOCABULARY / Image Galleries
+   */
+
+  $gallery_term_arguments = $common_arguments + array(
+    'machine_name' => 'DownfallD2DTermGallery',
+    'description' => t('Import Drupal 6 gallery terms into gallery terms'),
+    'source_vocabulary' => '8',  // "forums category" vocabulary
+    'destination_vocabulary' => 'gallery',
+  );
+  Migration::registerMigration('DrupalTerm6Migration',
+    $gallery_term_arguments['machine_name'], $gallery_term_arguments);
+
+  /**
+   * DownfallD2DMigration - NODES
+   */
+
+  // Use another layer of common arguments to reduce duplication
+  $node_arguments = $common_arguments + array(
+    'user_migration' => 'DownfallD2DUser',
+    'default_uid' => 1,
+  );
+
+  /**
+   * DownfallD2DMigration - NODES / Book
+   */
+
+  $book_node_arguments = $node_arguments + array(
+    'machine_name' => 'DownfallD2DNodeBook',
+    'description' => t('Import Drupal 6 book nodes'),
+    'source_type' => 'book',
+    'destination_type' => 'book',
+    'dependencies' => array('DownfallD2DTermWoW'),
+  );
+  // Note we use a custom class here so we can map the term references and
+  // other fields - see "Extending migrate_d2d classes" below.
+  Migration::registerMigration('DownfallBookMigration',
+    $book_node_arguments['machine_name'], $book_node_arguments);
+
 }
 
 /*

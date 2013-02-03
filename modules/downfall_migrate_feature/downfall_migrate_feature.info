@@ -9,5 +9,6 @@ dependencies[] = features
 dependencies[] = forum
 dependencies[] = taxonomy
 features[features_api][] = api:1
+features[filter][] = raw_input
 features[taxonomy][] = forums
 features[taxonomy][] = wow
