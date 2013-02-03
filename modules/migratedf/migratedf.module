@@ -65,8 +65,6 @@ function migratedf_register_migrations(){
    * DownfallD2DMigration - USERS
    */
 
-  // The description and the migration machine name are also required arguments,
-  // which will be unique for each migration you register.
   $user_arguments = $common_arguments + array(
     'machine_name' => 'DownfallD2DUser',
     'description' => t('Migration of users from Drupal 6'),
@@ -93,6 +91,19 @@ function migratedf_register_migrations(){
   );
   Migration::registerMigration('DrupalFile6Migration',
     $file_arguments['machine_name'], $file_arguments);
+
+  /**
+   * DownfallD2DMigration - VOCABULARY / WoW
+   */
+
+  $forums_term_arguments = $common_arguments + array(
+    'machine_name' => 'DownfallD2DTermForums',
+    'description' => t('Import Drupal 6 forums terms into forums terms'),
+    'source_vocabulary' => '3',  // "forums category" vocabulary
+    'destination_vocabulary' => 'forums',
+  );
+  Migration::registerMigration('DrupalTerm6Migration',
+    $forums_term_arguments['machine_name'], $forums_term_arguments);
 
 }
 
