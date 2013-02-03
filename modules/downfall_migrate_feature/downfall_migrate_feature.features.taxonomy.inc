@@ -32,5 +32,28 @@ function downfall_migrate_feature_taxonomy_default_vocabularies() {
         ),
       ),
     ),
+    'wow' => array(
+      'name' => 'WoW',
+      'machine_name' => 'wow',
+      'description' => 'All the WoW-related tags.',
+      'hierarchy' => '0',
+      'module' => 'taxonomy',
+      'weight' => '0',
+      'rdf_mapping' => array(
+        'rdftype' => array(
+          0 => 'skos:ConceptScheme',
+        ),
+        'name' => array(
+          'predicates' => array(
+            0 => 'dc:title',
+          ),
+        ),
+        'description' => array(
+          'predicates' => array(
+            0 => 'rdfs:comment',
+          ),
+        ),
+      ),
+    ),
   );
 }

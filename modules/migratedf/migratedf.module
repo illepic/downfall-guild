@@ -93,7 +93,7 @@ function migratedf_register_migrations(){
     $file_arguments['machine_name'], $file_arguments);
 
   /**
-   * DownfallD2DMigration - VOCABULARY / WoW
+   * DownfallD2DMigration - VOCABULARY / Forums
    */
 
   $forums_term_arguments = $common_arguments + array(
@@ -104,6 +104,19 @@ function migratedf_register_migrations(){
   );
   Migration::registerMigration('DrupalTerm6Migration',
     $forums_term_arguments['machine_name'], $forums_term_arguments);
+
+  /**
+   * DownfallD2DMigration - VOCABULARY / WoW
+   */
+
+  $wow_term_arguments = $common_arguments + array(
+    'machine_name' => 'DownfallD2DTermWoW',
+    'description' => t('Import Drupal 6 wow terms into wow terms'),
+    'source_vocabulary' => '5',  // "forums category" vocabulary
+    'destination_vocabulary' => 'wow',
+  );
+  Migration::registerMigration('DrupalTerm6Migration',
+    $wow_term_arguments['machine_name'], $wow_term_arguments);
 
 }
 
