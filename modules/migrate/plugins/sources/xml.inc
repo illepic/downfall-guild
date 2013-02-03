@@ -57,7 +57,7 @@ class MigrateListXML extends MigrateList {
     migrate_instrument_start("Retrieve $this->listUrl");
     $xml = simplexml_load_file($this->listUrl);
     migrate_instrument_stop("Retrieve $this->listUrl");
-    if ($xml) {
+    if ($xml !== FALSE) {
       return $this->getIDsFromXML($xml);
     }
     else {
@@ -143,7 +143,7 @@ class MigrateItemXML extends MigrateItem {
     }
     // Get the XML object at the specified URL;
     $xml = $this->loadXmlUrl($item_url);
-    if ($xml) {
+    if ($xml !== FALSE) {
       $return = new stdclass;
       $return->xml = $xml;
       return $return;
@@ -220,10 +220,14 @@ abstract class XMLMigration extends Migration {
    *  Name of the destination field.
    * @param string $sourceField
    *  Name of the source field (optional).
+   * @param boolean $warn_on_override
+   *  Set to FALSE to prevent warnings when there's an existing mapping
+   *  for this destination field.
    */
-  public function addFieldMapping($destination_field, $source_field = NULL) {
+  public function addFieldMapping($destination_field, $source_field = NULL,
+                                  $warn_on_override = TRUE) {
     // Warn of duplicate mappings
-    if (!is_null($destination_field) && isset($this->fieldMappings[$destination_field])) {
+    if ($warn_on_override && !is_null($destination_field) && isset($this->fieldMappings[$destination_field])) {
       self::displayMessage(
         t('!name addFieldMapping: !dest was previously mapped, overridden',
           array('!name' => $this->machineName, '!dest' => $destination_field)),
@@ -409,7 +413,7 @@ class MigrateItemsXML extends MigrateItems {
     migrate_instrument_start("Retrieve $this->xmlUrl");
     $xml = $this->xml();
     migrate_instrument_stop("Retrieve $this->xmlUrl");
-    if ($xml) {
+    if ($xml !== FALSE) {
       return $this->getIDsFromXML($xml);
     }
     return NULL;
@@ -457,7 +461,7 @@ class MigrateItemsXML extends MigrateItems {
   public function computeCount() {
     $count = 0;
     $xml = $this->xml();
-    if ($xml) {
+    if ($xml !== FALSE) {
       $ids = $this->getIDsFromXML($xml, TRUE);
       $count = count($ids);
     }
@@ -472,7 +476,7 @@ class MigrateItemsXML extends MigrateItems {
    */
   public function getAllItems() {
     $xml = $this->xml();
-    if ($xml) {
+    if ($xml !== FALSE) {
       return $this->getItemsFromXML($xml);
     }
     return NULL;

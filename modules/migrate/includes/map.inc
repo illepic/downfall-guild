@@ -19,6 +19,13 @@ abstract class MigrateMap implements Iterator {
   const STATUS_FAILED = 3;
 
   /**
+   * Codes reflecting how to handle the destination item on rollback.
+   *
+   */
+  const ROLLBACK_DELETE = 0;
+  const ROLLBACK_PRESERVE = 1;
+
+  /**
    * Arrays of key fields for the source and destination. Array keys are the
    * field names - array values are specific to the concrete map class.
    *
@@ -50,9 +57,10 @@ abstract class MigrateMap implements Iterator {
    * @param $source_row
    * @param $dest_ids
    * @param $status
+   * @param $rollback_action
    */
   abstract public function saveIDMapping(stdClass $source_row, array $dest_ids,
-    $status = MigrateMap::STATUS_IMPORTED);
+    $status = MigrateMap::STATUS_IMPORTED, $rollback_action = MigrateMap::ROLLBACK_DELETE);
 
   /**
    * Record a message related to a source record

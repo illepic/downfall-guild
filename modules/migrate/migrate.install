@@ -361,3 +361,24 @@ function migrate_update_7201() {
     <a href="@doc">Handling files in Drupal 7</a> for more information',
     array('@doc' => 'http://drupal.org/node/1540106'));
 }
+
+/**
+ * Add rollback_action field to all map tables
+ */
+function migrate_update_7202() {
+  $ret = array();
+  foreach (db_find_tables('migrate_map_%') as $tablename) {
+    if (!db_field_exists($tablename, 'rollback_action')) {
+      db_add_field($tablename, 'rollback_action', array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Flag indicating what to do for this item on rollback',
+      ));
+    }
+  }
+  $ret[] = t('Added rollback_action column to all map tables');
+  return $ret;
+}

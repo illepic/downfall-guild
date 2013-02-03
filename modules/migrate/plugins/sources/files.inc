@@ -6,6 +6,52 @@
  */
 
 /**
+ * When we migrate HTML files, the IDs of each item is the filename. If however
+ * we are splitting up each HTML file into chunks that become separate nodes,
+ * we create IDs that contain both the filename and the chunk ID, for example:
+ *
+ * /var/html/01.html-?MIGRATECHUNK?-5
+ *
+ * This would be chunk 5 of the file 01.html. Obviously this separator can
+ * never legitimately be part of an HTML filename.
+ */
+define('MIGRATE_CHUNK_SEPARATOR', '-?MIGRATECHUNK?-');
+
+/**
+ * MigrateContentParser provides abstract methods that must be supported by an
+ * implementing class. We need to be able to get a list of the chunk IDs, a
+ * count, and then retrieve each chunk by it's ID.
+ */
+abstract class MigrateContentParser {
+  protected $content;
+
+  public function setContent($content) {
+    $this->content = $content;
+  }
+
+  abstract public function getChunkIDs();
+  abstract public function getChunk($id);
+  abstract public function getChunkCount();
+}
+
+/**
+ * Simple parser that doesn't actually parse anything - it just returns the
+ * whole file as a single chunk. This is the default parser used and is
+ * primarily for when your HTML files map one-to-one to nodes.
+ */
+class MigrateSimpleContentParser extends MigrateContentParser {
+  public function getChunkIDs() {
+    return array('1');
+  }
+  public function getChunk($id) {
+    return $this->content;
+  }
+  public function getChunkCount() {
+    return 1;
+  }
+}
+
+/**
  * Implementation of MigrateList, for retrieving a list of IDs to be migrated
  * from a directory listing. Each item is a file, it's ID is the path.
  */
@@ -15,6 +61,7 @@ class MigrateListFiles extends MigrateList {
   protected $baseDir;
   protected $fileMask;
   protected $directoryOptions;
+  protected $parser;
 
   /**
    * Constructor.
@@ -40,12 +87,16 @@ class MigrateListFiles extends MigrateList {
    *   Options that will be passed on to file_scan_directory(). See docs of that
    *   core Drupal function for more information.
    */
-  public function __construct($list_dirs, $base_dir, $file_mask = NULL, $options = array()) {
+  public function __construct($list_dirs, $base_dir, $file_mask = NULL, $options = array(), MigrateContentParser $parser = NULL) {
+    if (!$parser) {
+      $parser = new MigrateSimpleContentParser();
+    }
     parent::__construct();
     $this->listDirs = $list_dirs;
     $this->baseDir = $base_dir;
     $this->fileMask = $file_mask;
     $this->directoryOptions = $options;
+    $this->parser = $parser;
   }
 
   /**
@@ -85,7 +136,17 @@ class MigrateListFiles extends MigrateList {
   protected function getIDsFromFiles(array $files) {
     $ids = array();
     foreach ($files as $file) {
-      $ids[] = str_replace($this->baseDir, '', (string) $file->uri);
+      $contents = file_get_contents($file->uri);
+      $this->parser->setContent($contents);
+      if ($this->parser->getChunkCount() > 1) {
+        foreach ($this->parser->getChunkIDs() as $chunk_id) {
+          $ids[] = str_replace($this->baseDir, '', (string) $file->uri) . MIGRATE_CHUNK_SEPARATOR . $chunk_id;
+        }
+      }
+      else {
+        $ids[] = str_replace($this->baseDir, '', (string) $file->uri);
+      }
+
     }
     return array_unique($ids);
   }
@@ -112,6 +173,7 @@ class MigrateItemFile extends MigrateItem {
 
   protected $baseDir;
   protected $getContents;
+  protected $parser;
 
   /**
    * Constructor.
@@ -122,14 +184,18 @@ class MigrateItemFile extends MigrateItem {
    *   TRUE if we should try load the contents of each file (in the case
    *   of a text file), or FALSE if we just want to confirm it exists (binary).
    */
-  public function __construct($base_dir, $get_contents = TRUE) {
+  public function __construct($base_dir, $get_contents = TRUE, MigrateContentParser $parser = NULL) {
     parent::__construct();
+    if (!$parser) {
+      $parser = new MigrateSimpleContentParser();
+    }
     $this->baseDir = $base_dir;
     $this->getContents = $get_contents;
+    $this->parser = $parser;
   }
 
   /**
-   * Return an object representing a file.
+   * Return an object representing a file or piece thereof.
    *
    * @param $id
    *   The file id, which is the file URI.
@@ -138,15 +204,19 @@ class MigrateItemFile extends MigrateItem {
    *   The item object for migration.
    */
   public function getItem($id) {
-    $item_uri = $this->baseDir . $id;
+    $pieces = explode(MIGRATE_CHUNK_SEPARATOR ,$id);
+    $item_uri = $this->baseDir . $pieces[0];
+    $chunk = $pieces[1];
+
     // Get the file data at the specified URI
     $data = $this->loadFile($item_uri);
     if (is_string($data)) {
+      $this->parser->setContent($data);
       $return = new stdClass;
-      $return->filedata = $data;
+      $return->filedata = $this->parser->getChunk($chunk);
       return $return;
     }
-    elseif ($data === TRUE) {
+    else if ($data === TRUE) {
       $return = new stdClass;
       return $return;
     }

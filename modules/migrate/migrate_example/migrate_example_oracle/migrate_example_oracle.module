@@ -2,16 +2,6 @@
 
 include_once('migrate_example_oracle.features.inc');
 
-/*
- * Implementation of hook_migrate_api().
- */
-function migrate_example_oracle_migrate_api() {
-  $api = array(
-    'api' => 2,
-  );
-  return $api;
-}
-
 /**
  * Generate a text string of reproducible contents for a given length.
  *

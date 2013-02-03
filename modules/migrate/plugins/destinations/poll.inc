@@ -21,7 +21,7 @@
  * public function prepareRow($row);
  *   $choices =  Database::getConnection('default', 'legacy')
  *               ->select('src_poll_choice', 'c')
- *               ->fields('c', array('choice_label', 'choice_order', 'choice_total))
+ *               ->fields('c', array('choice_label', 'choice_order', 'choice_total'))
  *               ->condition('c.choiceid', $row->src_contentid);
  *               ->execute();
  *   $row->src_choices = array();
@@ -36,7 +36,7 @@
  *   // choice, so it's best to tie the votes to choices by text.
  *   $query =  Database::getConnection('default', 'legacy')
  *             ->select('src_poll_vote', 'v')
- *             ->fields('v', array('choice_uid', 'hostname', 'timestamp))
+ *             ->fields('v', array('choice_uid', 'hostname', 'timestamp'))
  *             ->condition('v.choiceid', $row->src_contentid);
  *   $votes = $query->innerJoin('src_poll_choice', 'c', 'v.choice_id=c.choice_id')
  *            ->fields('c', array('choice_label'))

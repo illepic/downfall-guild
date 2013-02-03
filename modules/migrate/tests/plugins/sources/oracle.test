@@ -29,6 +29,9 @@ class MigrateOracleUnitTest extends DrupalWebTestCase {
     else {
       parent::setUp('features', 'migrate', 'migrate_example_oracle');
     }
+
+    // Make sure the migrations are registered.
+    migrate_get_module_apis();
   }
 
   function testOracleImport() {

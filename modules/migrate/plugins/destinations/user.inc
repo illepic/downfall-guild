@@ -109,6 +109,8 @@ class MigrateDestinationUser extends MigrateDestinationEntity {
                 array('@doc' => 'http://drupal.org/node/1349632#theme'));
     $fields['init'] = t('User: <a href="@doc">Init</a>',
                 array('@doc' => 'http://drupal.org/node/1349632#init'));
+    $fields['data'] = t('User: <a href="@doc">Data</a>',
+                array('@doc' => 'http://drupal.org/node/1349632#init'));
     $fields['is_new'] = t('Option: <a href="@doc">Indicates a new user with the specified uid should be created</a>',
                 array('@doc' => 'http://drupal.org/node/1349632#is_new'));
 
@@ -208,7 +210,7 @@ class MigrateDestinationUser extends MigrateDestinationEntity {
 
     // While user_save is happy to see a fid in $account->picture on insert,
     // when updating an existing account it wants a file object.
-    if ($updating && ($fid = $account->picture)) {
+    if ($updating && isset($account->picture) && ($fid = $account->picture)) {
       $account->picture = file_load($fid);
     }
 
@@ -241,6 +243,19 @@ class MigrateDestinationUser extends MigrateDestinationEntity {
           ->fields(array('pass' => $password))
           ->condition('uid', $newaccount->uid)
           ->execute();
+      }
+      // Unlike nodes and taxonomy terms, core does not automatically save an
+      // alias in a user entity, we must do it ourselves.
+      if (module_exists('path')) {
+        if (!empty($account->path['alias'])) {
+          $path = array(
+            'source' => 'user/' . $account->uid,
+            'alias' => $account->path['alias'],
+          );
+          migrate_instrument_start('path_save');
+          path_save($path);
+          migrate_instrument_stop('path_save');
+        }
       }
       if ($updating) {
         $this->numUpdated++;
@@ -300,8 +315,10 @@ class MigrateDestinationRole extends MigrateDestinationTable {
    */
   public function import(stdClass $entity, stdClass $row) {
     $migration = Migration::currentMigration();
+    $updating = FALSE;
     // Updating previously-migrated content?
     if (isset($row->migrate_map_destid1)) {
+      $updating = TRUE;
       if (isset($entity->rid)) {
         if ($entity->rid != $row->migrate_map_destid1) {
           throw new MigrateException(t("Incoming id !id and map destination id !destid don't match",
@@ -314,6 +331,7 @@ class MigrateDestinationRole extends MigrateDestinationTable {
     }
 
     if ($migration->getSystemOfRecord() == Migration::DESTINATION) {
+      $updating = TRUE;
       if (!isset($entity->rid)) {
         throw new MigrateException(t('System-of-record is DESTINATION, but no destination id provided'));
       }
@@ -332,6 +350,12 @@ class MigrateDestinationRole extends MigrateDestinationTable {
 
     if (!empty($entity->rid)) {
       $id = array($entity->rid);
+      if ($updating) {
+        $this->numUpdated++;
+      }
+      else {
+        $this->numCreated++;
+      }
     }
     else {
       $id = FALSE;

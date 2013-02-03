@@ -33,7 +33,7 @@
  * define an abstract intermediate class derived from Migration, then derive your
  * individual migrations from that, to share settings, utility functions, etc.
  */
-abstract class BasicExampleMigration extends Migration {
+abstract class BasicExampleMigration extends DynamicMigration {
   public function __construct() {
     // Always call the parent constructor first for basic setup
     parent::__construct();
@@ -256,7 +256,8 @@ class BeerUserMigration extends BasicExampleMigration {
     // This is a shortcut you can use to mark several destination fields as DNM
     // at once
     $this->addUnmigratedDestinations(array('theme', 'signature', 'access', 'login',
-      'timezone', 'language', 'picture', 'is_new', 'signature_format', 'role_names'));
+      'timezone', 'language', 'picture', 'is_new', 'signature_format', 'role_names',
+      'init', 'data'));
 
     // Oops, we made a typo - this should have been 'init'! If you have
     // migrate_ui enabled, look at the BeerUser info page - you'll see that it
@@ -391,8 +392,7 @@ class BeerNodeMigration extends BasicExampleMigration {
       'body:format', 'body:language', 'migrate_example_beer_styles:source_type',
       'migrate_example_beer_styles:create_term', 'field_migrate_example_image:destination_dir',
       'field_migrate_example_image:language', 'field_migrate_example_image:file_replace',
-      'field_migrate_example_image:preserve_files', 'field_migrate_example_country:format',
-      'field_migrate_example_country:language', 'comment',
+      'field_migrate_example_image:preserve_files', 'field_migrate_example_country:language', 'comment',
       'field_migrate_example_image:file_class', 'field_migrate_example_image:destination_file'));
 
     if (module_exists('path')) {
@@ -455,10 +455,5 @@ class BeerCommentMigration extends BasicExampleMigration {
     // Unmapped destination fields
     $this->addUnmigratedDestinations(array('hostname', 'created', 'changed',
       'thread', 'homepage', 'language', 'comment_body:format', 'comment_body:language'));
-
-    if (module_exists('path')) {
-      $this->addFieldMapping('path')
-           ->issueGroup(t('DNM'));
-    }
   }
 }

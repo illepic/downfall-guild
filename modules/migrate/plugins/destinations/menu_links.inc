@@ -85,6 +85,23 @@ class MigrateDestinationMenuLinks extends MigrateDestination {
       $menu_link->mlid = $row->migrate_map_destid1;
     }
 
+    // Load old values if necessary.
+    $migration = Migration::currentMigration();
+    if ($migration->getSystemOfRecord() == Migration::DESTINATION) {
+      if (!isset($menu_link->mlid)) {
+        throw new MigrateException(t('System-of-record is DESTINATION, but no destination mlid provided'));
+      }
+      if (!$old_menu_link = menu_link_load($menu_link->mlid)) {
+        throw new MigrateException(t('System-of-record is DESTINATION, and the provided mlid could not be found'));
+      }
+      $menu_link_to_update = (object) $old_menu_link;
+      foreach($old_menu_link as $key => $value) {
+        if (!isset($menu_link->$key)) {
+          $menu_link->$key = $old_menu_link[$key];
+        }
+      }
+    }
+
     // Invoke migration prepare handlers
     // @todo derive existing mlids?
     $this->prepare($menu_link, $row);

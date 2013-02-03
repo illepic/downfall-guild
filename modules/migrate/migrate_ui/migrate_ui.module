@@ -23,7 +23,7 @@ function migrate_ui_permission() {
 /**
  * Implementation of hook_menu().
  */
-function migrate_menu() {
+function migrate_ui_menu() {
   $items = array();
 
   $items['admin/content/migrate'] = array(
@@ -32,44 +32,48 @@ function migrate_menu() {
     'description' => 'Monitor the creation of Drupal content from source data',
     'page callback' => 'migrate_ui_dashboard',
     'access arguments' => array(MIGRATE_ACCESS_BASIC),
-    'file' => 'migrate_ui/migrate_ui.pages.inc',
+    'file' => 'migrate_ui.pages.inc',
   );
   $items['admin/content/migrate/dashboard'] = array(
     'title' => 'Migrate',
     'type' => MENU_DEFAULT_LOCAL_TASK,
     'weight' => -10,
   );
-  $items['admin/content/migrate/configure'] = array(
-    'title' => 'Configure',
+  $items['admin/content/migrate/registration'] = array(
+    'title' => 'Registration',
+    'type' => MENU_LOCAL_TASK,
+    'description' => 'Configure class registration',
+    'page callback' => 'migrate_ui_registration',
+    'access arguments' => array(MIGRATE_ACCESS_BASIC),
+    'file' => 'migrate_ui.pages.inc',
+    'weight' => 5,
+  );
+  $items['admin/content/migrate/handlers'] = array(
+    'title' => 'Handlers',
     'type' => MENU_LOCAL_TASK,
     'description' => 'Configure migration handlers',
-    'page callback' => 'migrate_ui_configure',
+    'page callback' => 'migrate_ui_handlers',
     'access arguments' => array(MIGRATE_ACCESS_BASIC),
-    'file' => 'migrate_ui/migrate_ui.pages.inc',
+    'file' => 'migrate_ui.pages.inc',
     'weight' => 10,
   );
   $items['admin/content/migrate/messages/%migration'] = array(
-    'title callback' => 'migration_title',
+    'title callback' => '_migrate_ui_title',
     'title arguments' => array(4),
     'description' => 'View messages from a migration',
     'page callback' => 'migrate_ui_messages',
     'page arguments' => array(4),
     'access arguments' => array(MIGRATE_ACCESS_BASIC),
-    'file' => 'migrate_ui/migrate_ui.pages.inc',
+    'file' => 'migrate_ui.pages.inc',
   );
   $items['admin/content/migrate/%migration'] = array(
-    'title callback' => 'migration_title',
+    'title callback' => '_migrate_ui_title',
     'title arguments' => array(3),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('migrate_migration_info', 3),
     'access arguments' => array(MIGRATE_ACCESS_BASIC),
-    'file' => 'migrate_ui/migrate_ui.pages.inc',
+    'file' => 'migrate_ui.pages.inc',
   );
-
-  if (FALSE) {
-    // Not working yet
-    migrate_ui_menu_add($items);
-  }
 
   return $items;
 }
@@ -81,7 +85,7 @@ function migration_load($machine_name) {
   }
 }
 
-function migration_title($migration) {
+function _migrate_ui_title($migration) {
   if (is_string($migration)) {
     $migration = migration_load($migration);
   }

@@ -34,12 +34,9 @@ interface MigrateFileInterface {
   public function processFile($value, $owner);
 }
 
-/**
- * Handle the degenerate case where we already have a file ID.
- */
-class MigrateFileFid implements MigrateFileInterface {
+abstract class MigrateFileBase implements MigrateFileInterface {
   /**
-   * Implementation of MigrateFileInterface::fields().
+   * Default implementation of MigrateFileInterface::fields().
    *
    * @return array
    */
@@ -47,6 +44,34 @@ class MigrateFileFid implements MigrateFileInterface {
     return array();
   }
 
+  /**
+   * If asked to preserve files from deletion on rollback, add a file_usage
+   * entry.
+   *
+   * @param $fid
+   */
+  protected function markForPreservation($fid) {
+    if (!empty($this->preserveFiles)) {
+      // We do this directly instead of calling file_usage_add, to force the
+      // count to 1 - otherwise, updates will increment the counter and the file
+      // will never be deletable
+      db_merge('file_usage')
+        ->key(array(
+          'fid' => $fid,
+          'module' => 'migrate',
+          'type' => 'file',
+          'id' => $fid,
+        ))
+        ->fields(array('count' => 1))
+        ->execute();
+    }
+  }
+}
+
+/**
+ * Handle the degenerate case where we already have a file ID.
+ */
+class MigrateFileFid extends MigrateFileBase {
   /**
    * Implementation of MigrateFileInterface::processFile().
    *
@@ -58,6 +83,7 @@ class MigrateFileFid implements MigrateFileInterface {
    *  The file entity corresponding to the fid that was passed in.
    */
   public function processFile($value, $owner) {
+    $this->markForPreservation($value);
     return file_load($value);
   }
 }
@@ -65,7 +91,7 @@ class MigrateFileFid implements MigrateFileInterface {
 /**
  * Base class for creating core file entities.
  */
-abstract class MigrateFile implements MigrateFileInterface {
+abstract class MigrateFile extends MigrateFileBase {
   /**
    * Extension of the core FILE_EXISTS_* constants, offering an alternative to
    * reuse the existing file if present as-is (core only offers the options of
@@ -171,8 +197,10 @@ abstract class MigrateFile implements MigrateFileInterface {
     if (!isset($file->status)) {
       $file->status = FILE_STATUS_PERMANENT;
     }
-    // If we are replacing an existing file re-use its database record.
-    if ($this->fileReplace == FILE_EXISTS_REPLACE) {
+    // If we are replacing or reusing an existing filesystem entry,
+    // also re-use its database record.
+    if ($this->fileReplace == FILE_EXISTS_REPLACE ||
+        $this->fileReplace == self::FILE_EXISTS_REUSE) {
       $existing_files = file_load_multiple(array(), array('uri' => $destination));
       if (count($existing_files)) {
         $existing = reset($existing_files);
@@ -221,6 +249,7 @@ abstract class MigrateFile implements MigrateFileInterface {
         if (empty($file->fid)) {
           $file = file_save($file);
         }
+        $this->markForPreservation($file->fid);
         return $file;
       }
       // No existing one to reuse, reset to REPLACE
@@ -260,20 +289,7 @@ abstract class MigrateFile implements MigrateFileInterface {
 
     // Prevent deletion of the file on rollback if requested.
     if (is_object($file)) {
-      if (!empty($this->preserveFiles)) {
-        // We do this directly instead of calling file_usage_add, to force the
-        // count to 1 - otherwise, updates will increment the counter and the file
-        // will never be deletable
-        db_merge('file_usage')
-          ->key(array(
-            'fid' => $file->fid,
-            'module' => 'migrate',
-            'type' => 'file',
-            'id' => $file->fid,
-          ))
-          ->fields(array('count' => 1))
-          ->execute();
-      }
+      $this->markForPreservation($file->fid);
       return $file;
     }
     else {
@@ -332,15 +348,39 @@ class MigrateFileUri extends MigrateFile {
    *  TRUE if the copy succeeded, FALSE otherwise.
    */
   protected function copyFile($destination) {
-    // Perform the copy operation.
+    // Perform the copy operation, with a cleaned-up path.
+    $this->sourcePath = self::urlencode($this->sourcePath);
     if (!@copy($this->sourcePath, $destination)) {
-      throw new MigrateException(t('The specified file %file could not be copied to ' .
-        '%destination.',
-        array('%file' => $this->sourcePath, '%destination' => $destination)));
+      $migration = Migration::currentMigration();
+      $migration->saveMessage(t('The specified file %file could not be copied to ' .
+              '%destination.',
+              array('%file' => $this->sourcePath, '%destination' => $destination)));
+      return FALSE;
     }
     else {
       return TRUE;
     }
+  }
+
+  /**
+   * Urlencode all the components of a remote filename.
+   *
+   * @param $filename
+   *
+   * @return string
+   */
+  static public function urlencode($filename) {
+    // Only apply to a full URL
+    if (strpos($filename, '://')) {
+      $components = explode('/', $filename);
+      foreach ($components as $key => $component) {
+        $components[$key] = rawurlencode($component);
+      }
+      $filename = implode('/', $components);
+      // Actually, we don't want colons encoded
+      $filename = str_replace('%3A', ':', $filename);
+    }
+    return $filename;
   }
 
   /**
@@ -435,6 +475,14 @@ class MigrateDestinationFile extends MigrateDestinationEntity {
   protected $fileClass;
 
   /**
+   * Boolean indicating whether we should avoid deleting the actual file on
+   * rollback.
+   *
+   * @var bool
+   */
+  protected $preserveFiles = FALSE;
+
+  /**
    * Implementation of MigrateDestination::getKeySchema().
    *
    * @return array
@@ -499,11 +547,39 @@ class MigrateDestinationFile extends MigrateDestinationEntity {
     $file = file_load(reset($fid));
     migrate_instrument_stop('file_load');
     if ($file) {
-      // If we're not preserving the file, make sure we do the job completely.
       migrate_instrument_start('file_delete');
-      file_delete($file, TRUE);
+      // If we're preserving files, roll our own version of file_delete() to make
+      // sure we don't delete them. If we're not, make sure we do the job completely.
+      $migration = Migration::currentMigration();
+      $mappings = $migration->getFieldMappings();
+      if (isset($mappings['preserve_files'])) {
+        // Assumes it's set using defaultValue
+        $preserve_files = $mappings['preserve_files']->getDefaultValue();
+      }
+      else {
+        $preserve_files = FALSE;
+      }
+      if ($preserve_files) {
+        $this->fileDelete($file);
+      }
+      else {
+        file_delete($file, TRUE);
+      }
       migrate_instrument_stop('file_delete');
     }
+  }
+
+  /**
+   * Delete database references to a file without deleting the file itself.
+   *
+   * @param $file
+   */
+  protected function fileDelete($file) {
+    // Let other modules clean up any references to the deleted file.
+    module_invoke_all('file_delete', $file);
+    module_invoke_all('entity_delete', $file, 'file');
+    db_delete('file_managed')->condition('fid', $file->fid)->execute();
+    db_delete('file_usage')->condition('fid', $file->fid)->execute();
   }
 
   /**
@@ -536,6 +612,7 @@ class MigrateDestinationFile extends MigrateDestinationEntity {
       if (!isset($file->fid)) {
         throw new MigrateException(t('System-of-record is DESTINATION, but no destination fid provided'));
       }
+      // @todo: Support DESTINATION case
       $old_file = file_load($file->fid);
     }
 
@@ -558,6 +635,10 @@ class MigrateDestinationFile extends MigrateDestinationEntity {
     if (isset($file->timestamp)) {
       $timestamp = MigrationBase::timestamp($file->timestamp);
     }
+
+    // Don't pass preserve_files through to the file class, which will add
+    // file_usage - we will handle it ourselves in rollback().
+    $file->preserve_files = FALSE;
 
     $file_class = $this->fileClass;
     $source = new $file_class((array)$file, $file);

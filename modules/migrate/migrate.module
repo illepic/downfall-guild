@@ -28,6 +28,10 @@ function migrate_migrations() {
     return $migrations;
   }
 
+  // Get list of modules implementing Migrate API - mainly, we're looking to
+  // make sure any dynamic migrations defined in hook_migrate_api() get registered.
+  migrate_get_module_apis(TRUE);
+
   $dependent_migrations = array();
   $required_migrations = array();
 
@@ -120,10 +124,14 @@ function migrate_migrations() {
 }
 
 /**
- * On cache clear, scan the Drupal code registry for any new migration classes
+ * On request, scan the Drupal code registry for any new migration classes
  * for us to register in migrate_status.
  */
-function migrate_flush_caches() {
+function migrate_autoregister() {
+  // Make sure the registry is up-to-date on all available classes.
+  require_once 'includes/registry.inc';
+  _registry_update();
+
   // Get list of modules implementing Migrate API
   $modules = array_keys(migrate_get_module_apis(TRUE));
 
@@ -255,21 +263,38 @@ function migrate_field_handler_invoke_all($entity, array $field_info, array $ins
  *
  * @param $parent_class
  *  Name of a class from which results will be derived.
- * @param $existing
- *  Instances already known, which don't need to be instantiated.
  * @return
  *  Array of objects, keyed by the class name.
  */
-function _migrate_class_list($parent_class, array $existing = array()) {
-  // Get list of modules implementing Migrate API
-  static $modules;
+function _migrate_class_list($parent_class) {
+  // Get info on modules implementing Migrate API
+  static $module_info;
   if (!isset($modules)) {
-    $modules = array_keys(migrate_get_module_apis());
+    $module_info = migrate_get_module_apis();
   }
+  $modules = array_keys($module_info);
 
   static $class_lists = array();
   if (!isset($class_lists[$parent_class])) {
     $class_lists[$parent_class] = array();
+    if ($parent_class == 'MigrateDestinationHandler') {
+      $handler_key = 'destination handlers';
+    }
+    else {
+      $handler_key = 'field handlers';
+    }
+    // Add explicitly-registered handler classes
+    foreach ($module_info as $info) {
+      if (isset($info[$handler_key]) && is_array($info[$handler_key])) {
+        foreach ($info[$handler_key] as $handler_class) {
+          $class_lists[$parent_class][$handler_class] = new $handler_class();
+        }
+      }
+    }
+    // Avoid scrounging the registry for handler classes if possible.
+    if (variable_get('migrate_disable_autoregistration', FALSE)) {
+      return $class_lists[$parent_class];
+    }
     $dependent_classes = array();
     $required_classes = array();
     // Discover class names registered with Drupal by modules implementing our API
@@ -358,20 +383,11 @@ function _migrate_class_list($parent_class, array $existing = array()) {
  * Implements hook_hook_info().
  */
 function migrate_hook_info() {
+  // Look for hook_migrate_api() in example.migrate.inc.
   $hooks['migrate_api'] = array(
     'group' => 'migrate',
   );
   return $hooks;
-}
-
-/*
- * Implements hook_migrate_api().
- */
-function migrate_migrate_api() {
-  $api = array(
-    'api' => MIGRATE_API_VERSION,
-  );
-  return $api;
 }
 
 /**
@@ -389,6 +405,13 @@ function migrate_get_module_apis($reset = FALSE) {
       $info = $function();
       if (isset($info['api']) && $info['api'] == MIGRATE_API_VERSION) {
         $cache[$module] = $info;
+        // Register any migrations defined via the hook.
+        if (isset($info['migrations']) && is_array($info['migrations'])) {
+          foreach ($info['migrations'] as $machine_name => $arguments) {
+            MigrationBase::registerMigration($arguments['class_name'],
+              $machine_name, $arguments);
+          }
+        }
       }
       else {
         drupal_set_message(t('%function supports Migrate API version %modversion,

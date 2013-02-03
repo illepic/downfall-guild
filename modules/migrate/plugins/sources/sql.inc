@@ -17,6 +17,17 @@ class MigrateSourceSQL extends MigrateSource {
   protected $originalQuery, $query, $countQuery;
 
   /**
+   * Return a reference to the base query, in particular so Migration classes
+   * can add conditions/joins/etc to the query for a source defined in a
+   * base class.
+   *
+   * @return SelectQueryInterface
+   */
+  public function &query() {
+    return $this->originalQuery();
+  }
+
+  /**
    * The result object from executing the query - traversed to process the
    * incoming data.
    *
@@ -166,9 +177,7 @@ class MigrateSourceSQL extends MigrateSource {
     if ($queryFields) {
       // Not much we can do in terms of describing the fields without manual intervention
       foreach ($queryFields as $field_name => $field_info) {
-        // Lower case, because Drupal forces lowercase on fetch
-        $fields[drupal_strtolower($field_name)] = drupal_strtolower(
-          $field_info['table'] . '.' . $field_info['field']);
+        $fields[$field_name] = $field_info['table'] . '.' . $field_info['field'];
       }
     }
     else {
@@ -178,9 +187,7 @@ class MigrateSourceSQL extends MigrateSource {
       $row = $result->fetchAssoc();
       if (is_array($row)) {
         foreach ($row as $field_name => $field_value) {
-          // Lower case, because Drupal forces lowercase on fetch
-          $fields[drupal_strtolower($field_name)] = t('Example Content: !value',
-            array('!value' => $field_value));
+          $fields[$field_name] = t('Example Content: !value', array('!value' => $field_value));
         }
       }
     }
@@ -201,15 +208,13 @@ class MigrateSourceSQL extends MigrateSource {
                 ORDER BY ordinal_position';
         $result = dbtng_query($sql, array(':database' => $database, ':table' => $table));
         foreach ($result as $row) {
-          $fields[drupal_strtolower($row->column_name)] = drupal_strtolower(
-            $table . '.' . $row->column_name);
+          $fields[$row->column_name] = $table . '.' . $row->column_name;
         }
       }
     }*/
     $expressionFields = $this->query->getExpressions();
     foreach ($expressionFields as $field_name => $field_info) {
-      // Lower case, because Drupal forces lowercase on fetch
-      $fields[drupal_strtolower($field_name)] = drupal_strtolower($field_info['alias']);
+      $fields[$field_name] = $field_info['alias'];
     }
 
     // Any caller-specified fields with the same names as extracted fields will
@@ -306,7 +311,8 @@ class MigrateSourceSQL extends MigrateSource {
         $this->query->addField($alias, 'needs_update', 'migrate_map_needs_update');
       }
       // 3. If we are using highwater marks, also include rows above the mark.
-      if (isset($this->highwaterField['name'])) {
+      //    But, include all rows if the highwater mark is not set.
+      if (isset($this->highwaterField['name']) && $this->activeMigration->getHighwater() !== '') {
         if (isset($this->highwaterField['alias'])) {
           $highwater = $this->highwaterField['alias'] . '.' . $this->highwaterField['name'];
         }

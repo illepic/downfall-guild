@@ -1,4 +1,81 @@
 
+Migrate 2.5
+===========
+
+IMPORTANT: Automatic registration of new migration classes is no longer done on
+a cache clear. Depending on automatic registration is now deprecated, and you
+are encouraged to implement your migrations as DynamicMigration and explicitly
+register them via hook_migrate_api() or MigrationBase::registerMigration().
+If your migrations are not explicitly registered, you must request auto-registration
+with a "drush mar" (drush migrate-auto-register) command, or by clicking the
+"Register" button at admin/content/migrate/registration.
+
+Bug fixes
+- #1827052 - Properly check for bad XML.
+
+Migrate 2.5 Release Candidate 2
+===============================
+
+Features and enhancements
+- #1824024 - Destination and field handlers may now be registered through
+             hook_migrate_api(). Automatic registration of all migration and
+             handler classes may be disabled at admin/content/migrate/registration.
+             The handler configuration formerly at admin/content/migrate/configure
+             is now at admin/content/migrate/handlers.
+- #1778952 - Update examples to emphasize explicit registration via
+             hook_migrate_api().
+- #1819730 - Make migration of files in a field context non-fatal.
+- #1816652 - Provide useful warning when file subfield arrays don't line up.
+
+Bug fixes
+- #1824118 - Make --force work for rollbacks.
+
+Migrate 2.5 Release Candidate 1
+===============================
+
+Features and enhancements
+- #1778952 - Enable registration of dynamic migrations via hook_migrate_api().
+             Add explicit auto-registration of non-dynamic migrations, remove
+             performing registration on cache clear.
+- #1421974 - Add queueMessage(), so messages can be generated in prepareRow().
+- #1626374 - Allow creation of duplicate terms.
+- #1810306 - Allow multi-value keys in MigrteItemJSON.
+- #1799964 - Add reference query getter to MigrateSourceSQL.
+- #1670410 - Sanity-check migration machine names.
+- #1637458 - Pass field instance rather than just field name to field() methods.
+- #1688312 - Allow any file field argument to have per-instance values.
+- #1701764 - Add prepareKey() method to customize source keys.
+- #1703050 - Add track_last_imported option for maps.
+- #1690092 - Protect migrations, or specific rows, from rollback.
+- #1672572 - Stifle mapping override messages.
+- #1621608 - Support for splitting files on import.
+- #1637292 - Support case-sensitive matching on term reference fields.
+- #1647594 - Add information message on unmatched terms.
+- #1621906 - Support DESTINATION system-of-records for menu links.
+
+Bug fixes
+- #1659150 - Change 'ok' message types to 'status'.
+- #1690080 - Deal with self-references in handleSourceMigration().
+- #1797644 - Remove bogus assignment on term update.
+- #1807522 - Handle ignored map rows in handleSourceMigration().
+- #1803648, #1805184 - Handle empty values in handleSourceMigration().
+- #1780850 - By default, urlencode all path components in MigrateFileUri;
+- #1763932 - Empty path aliases generated for users.
+- #1717284 - Make sure nodes with unspecified languages end up language-neutral.
+- #1712434 - Highwater fails when highwater field values == 0.
+- #1708296 - Handle timestamps before 1902.
+- #1637444 - Don't offer format subfield for plain text fields.
+- #1700678 - Only show path as a destination where applicable.
+- #1693304 - Role import results not reported.
+- #1676652 - Fix preserve_files issues with file destination, MigrateFilFid,
+             FILE_EXISTS_REUSE cases.
+- #1679798 - Remove remote file import, for reliability of simpletests.
+- #1619822 - Cleanup drush subprocess handling.
+- #1635184 - Properly NULL csvHandle when closing.
+- #1630544 - Fix FILE_EXISTS_REUSE to actually reuse existing file entities.
+- #1618466 - Fix picture notice when updating users.
+- #1615682 - Fix to CSV record counting.
+
 Migrate 2.4
 ===========
 
@@ -9,35 +86,15 @@ to properly use the new implementation. See http://drupal.org/node/1540106 for
 details on how to use the new handlers and destination.
 
 Features and enhancements
+- #1685122 - Add previous source field name to notice.
+- #1692912 - Add vocabulary name to notice.
 - #1606586 - Add activeUrl public method to MigrateSourceXML.
-
-Bug fixes
-- #1614318 - MigrateFileUri failed to pass file object through.
-- #1601974 - Remove percent sign fix-up, leave to particular application.
-- #1600912 - Base constructor was undermining UI override of displayFunction.
-- #1595056 - Handle empty arguments from migrate_status table.
-- #1595166 - Support multiple source keys in MigrateList.
-
-Migrate 2.4 Release Candidate 1
-===============================
-
-Features and enhancements
 - #1587842 - Remove sample CSV files from migrate project.
 - #1152878 - drush migrate-analyze command, for source data analysis.
 - #1587566 - Support escape option for CSV sources on PHP 5.3.
 - #1189328 - UI option to ignore dependencies.
 - #1016452 - Support migrating user role assignments by name.
 - #653636 - Add migrate-messages command to dump message table.
-
-Bug fixes
-- #919108 - Cleaner error-handling when updating destinations that don't exist.
-- #1574502 - Coder review, remove dead code.
-- #1570536 - Undefined property in term.inc.
-
-Migrate 2.4 Beta 1
-==================
-
-Features and enhancements
 - #1428166 - Make message columns sortable.
 - #1459888 - Removed deprecated source count(), showMessage(), setOutputFunction().
 - #1528916 - Link field descriptions to drupal.org documentation.
@@ -51,6 +108,16 @@ Features and enhancements
 - #1350284 - Visually group migrations by group in drush.
 
 Bug fixes
+- #1680878 - Fix rollback through UI.
+- #1693492 - Map table query not using right connection.
+- #1614318 - MigrateFileUri failed to pass file object through.
+- #1601974 - Remove percent sign fix-up, leave to particular application.
+- #1600912 - Base constructor was undermining UI override of displayFunction.
+- #1595056 - Handle empty arguments from migrate_status table.
+- #1595166 - Support multiple source keys in MigrateList.
+- #919108 - Cleaner error-handling when updating destinations that don't exist.
+- #1574502 - Coder review, remove dead code.
+- #1570536 - Undefined property in term.inc.
 - #1569612 - skip_empty should only skip NULL values.
 - #1561448 - Proper handling of is_new for users.
 - #1205278 - Don't multiply-increment usage counts when preserving files; remove
@@ -79,18 +146,6 @@ Migrate 2.3
 
 Features and enhancements
 - #1315910 - Added migrate-deregister drush command.
-
-Bug fixes
-- #1378114 - Handle case-sensitive term name variations properly.
-- #1450950 - Convert user datetimes values to timestamps.
-- #1437208 - Handle malformed CSV files quietly.
-- #1413350 - Support invoking subprocesses under Drush 5.
-- #1404732 - Properly call taxonomy_term handler fields() method.
-
-Migrate 2.3 RC1
-===============
-
-Features and enhancements
 - #1437076 - Make Migration class field mapping methods public.
 - #1430528 - Document importance of migrating term parents first.
 - #1418126 - Use node_delete_multiple on migrate-wipe.
@@ -124,6 +179,11 @@ Features and enhancements
 - #1254398 - Prevent accidental emailing during migration.
 
 Bug fixes
+- #1378114 - Handle case-sensitive term name variations properly.
+- #1450950 - Convert user datetimes values to timestamps.
+- #1437208 - Handle malformed CSV files quietly.
+- #1413350 - Support invoking subprocesses under Drush 5.
+- #1404732 - Properly call taxonomy_term handler fields() method.
 - #1447368 - Handle purely numeric PHP memory_limit.
 - #1432802 - Default $options to prevent PHP 5.4 error.
 - #1333656 - Remove content type/fields when uninstalling migrate_example_baseball.
@@ -154,35 +214,11 @@ Bug fixes
 Migrate 2.2
 ===========
 
-Bug fixes
-- #1265514 - Fixed error message for failed XML load in MigrateItemsXML.
-
-Migrate 2.2 RC2
-===============
-
 Features and enhancements
 - #1240928 - Generalize file handlers, to ease media module support.
 - #1226768 - Improved exception handling.
 - #1230294 - Get correct count of CSV with embedded newlines.
 - #1185632 - Handle (potentially multiple) headers in CSV source plugin.
-
-Bug fixes
-- #1231398 - Add map data to row in Oracle source plugin.
-- #1225636 - File field: fixed warnings, added docs.
-- #1227130 - On import, clear messages before applyMappings().
-- #1195802 - Fixed SQL Server problem handling end of batch; brought Oracle/SQL
-  Server implementations in line with each other.
-- #1205278 - Fixed file entity rollback to preserve files when requested.
-- #1223468 - Make sure getIDsFromXML always returns an array.
-- #1223734 - Fixed bogus assignment of uid to file fields.
-- #1223756 - Fix warnings with file_blob when file exists in file_managed.
-- #1216796 - Make sure file_replace argument exists.
-- #1195802 - Fixed prepareRow() support for MSSQL plugin.
-
-Migrate 2.2 RC1
-===============
-
-Features and enhancements
 - #1210152 - Improved error messages on file field migration.
 - #1212818 - migrate_ui support for one-step rollback-and-import.
 - #1218244 - Support for is_new for users.
@@ -206,6 +242,18 @@ Features and enhancements
 - #1169724 - Implemented source plugin for Oracle.
 
 Bug fixes
+- #1265514 - Fixed error message for failed XML load in MigrateItemsXML.
+- #1231398 - Add map data to row in Oracle source plugin.
+- #1225636 - File field: fixed warnings, added docs.
+- #1227130 - On import, clear messages before applyMappings().
+- #1195802 - Fixed SQL Server problem handling end of batch; brought Oracle/SQL
+  Server implementations in line with each other.
+- #1205278 - Fixed file entity rollback to preserve files when requested.
+- #1223468 - Make sure getIDsFromXML always returns an array.
+- #1223734 - Fixed bogus assignment of uid to file fields.
+- #1223756 - Fix warnings with file_blob when file exists in file_managed.
+- #1216796 - Make sure file_replace argument exists.
+- #1195802 - Fixed prepareRow() support for MSSQL plugin.
 - #1210076 - Filled out parameter docs for MigrateFileFieldHandler::buildFileArray().
 - #1185046 - Wine example mistakenly said GROUP_CONCAT could only be used once.
 - #1202234 - Fix translatable field language handling.
@@ -218,23 +266,6 @@ Bug fixes
 Migrate 2.1
 ===========
 
-Features and enhancements
-- #1025754 - Added support for multi-value source keys to handleSourceMigration().
-- #1161584 - Added lookupSourceID() and lookupDestinationID() to MigrateMap.
-
-Bug fixes
-- #1161612 - Handle integer highwater marks properly.
-- #1159274 - Handle spaces in URLs for MigrateDestinationFile.
-- #1161812 - Added handling for NULL watchdog variables.
-- #1009708 - Fixed E_STRICT notice on MigrateDestinationRole::getKeySchema().
-- #1161590 - Made $migration optional for handleSourceMigration(), createStubWrapper(),
-  lookupDestinationID().
-- #1161482 - Handle NULL source_field mappings.
-- #1156972 - Do not include message table in source queries.
-
-Migrate 2.1 Beta 1
-==================
-
 API change:
 
 Any field handler prepare() or complete() methods you have defined must be changed
@@ -242,6 +273,8 @@ to remove stdClass for the $entity argument. I.e., prepare(stdClass $entity, std
 should now be prepare($entity, stdClass $row).
 
 Features and enhancements
+- #1025754 - Added support for multi-value source keys to handleSourceMigration().
+- #1161584 - Added lookupSourceID() and lookupDestinationID() to MigrateMap.
 - #1017246 - Added support for running migrations from the dashboard.
 - #1004812 - Added schema-driven table destination plugin.
 - #1009708 - Added role destination plugin.
@@ -255,6 +288,14 @@ Features and enhancements
 - #1139080 - Added example and test for importing profile pictures over http.
 
 Bug fixes
+- #1161612 - Handle integer highwater marks properly.
+- #1159274 - Handle spaces in URLs for MigrateDestinationFile.
+- #1161812 - Added handling for NULL watchdog variables.
+- #1009708 - Fixed E_STRICT notice on MigrateDestinationRole::getKeySchema().
+- #1161590 - Made $migration optional for handleSourceMigration(), createStubWrapper(),
+  lookupDestinationID().
+- #1161482 - Handle NULL source_field mappings.
+- #1156972 - Do not include message table in source queries.
 - #1155740 - Make remote file fetch HTTP version independent
 - #1037872 - Deal with updates with idlists when mapping nids directly.
 - #943546 - Make sure both slashes and backslashes are trimmed where necessary.
@@ -282,13 +323,32 @@ Bug fixes
 
 Migrate 2.0
 ===========
-No changes since RC3.
 
-Migrate 2.0 Release Candidate 3
-===============================
-
-Features and enhancements
+Features and enhancements (since first 2.0-dev)
   Added JSON source plugin.
+- #919108 - Add deleteDestination() for maps; cache migration list.
+- #1005090 - Support multiple values for file fields.
+- #996086 - Add prepareRollback and completeRollback methods for entities.
+- #1039882 - Pass client migration to stub creation. Note that $migration->values
+  (the destination object being built) is now $migration->destinationValues - any
+  migrations referencing this member will need to change.
+- #946350 - Accept arrays in sourceMigration();
+Let a node migration set node_revisions.uid. That's the 'last edited by' user
+- #989200 - Support "dynamic" migrations. Changes to be aware of:
+  All modules implementing migration classes must now implement hook_migrate_api()
+    (see migrate_migrate_api() for an example).
+  Dependencies and sourceMigrations must now be expressed in terms of
+    machine name rather than class name.
+  MigrationBase::getInstance now takes a machine name rather than a class name.
+  Migration class names are no longer required to end in 'Migration'.
+- #992898 - Pass options to source and destination constructors as arrays.
+File destinations (i.e., migrating directly to the file_managed table, with
+  optional copying of the files themselves) are now supported.
+Allow migration of comment enable/disable.
+Check max_execution_time as well as memory_limit, for graceful exit when
+  max_execution_time is in play.
+Add dedupe() method for a field mapping.
+Apply MigrateBase::timestamp() to comment created/changed
 
 Bug fixes
 - #867940 - Prevent overwriting of migrated files with common basenames.
@@ -301,28 +361,8 @@ Bug fixes
 - #1063926 - prepareRow() call missing from MigrateSourceList.
 - #1062200 - Validate arguments for getFieldLanguage().
 - #1061284 - Appropriately translate watchdog severities to migrate severities.
-
-Migrate 2.0 Release Candidate 2
-===============================
-
-Bug fixes
 - migrate_example error when auto_nodetitle module not present.
 - #1053798 - Missing 'debug' on showMessage.
-
-Migrate 2.0 Release Candidate 1
-===============================
-
-Features and enhancements
-- #919108 - Add deleteDestination() for maps; cache migration list.
-- #1005090 - Support multiple values for file fields.
-- #996086 - Add prepareRollback and completeRollback methods for entities.
-- #1039882 - Pass client migration to stub creation. Note that $migration->values
-  (the destination object being built) is now $migration->destinationValues - any
-  migrations referencing this member will need to change.
-- #946350 - Accept arrays in sourceMigration();
-Let a node migration set node_revisions.uid. That's the 'last edited by' user
-
-Bug fixes
 - #1053798 - Consistent use of error codes.
 - #1053526 - Machine names in drush commands now case-insensitive.
 - #914440 - Enhance multilingual support.
@@ -341,30 +381,6 @@ Fix highwater handling to deal with duplicate values.
 - #1017256 - Document case-sensitivity in beer.inc.
 - #1013844 - Better error handling in getInstance().
 - #1008228 - migrate_example broken by list changes in D7 RC3.
-
-Migrate 2.0 Beta 3
-==================
-
-Features and enhancements
-
-- #989200 - Support "dynamic" migrations. Changes to be aware of:
-  All modules implementing migration classes must now implement hook_migrate_api()
-    (see migrate_migrate_api() for an example).
-  Dependencies and sourceMigrations must now be expressed in terms of
-    machine name rather than class name.
-  MigrationBase::getInstance now takes a machine name rather than a class name.
-  Migration class names are no longer required to end in 'Migration'.
-- #992898 - Pass options to source and destination constructors as arrays.
-File destinations (i.e., migrating directly to the file_managed table, with
-  optional copying of the files themselves) are now supported.
-Allow migration of comment enable/disable.
-Check max_execution_time as well as memory_limit, for graceful exit when
-  max_execution_time is in play.
-Add dedupe() method for a field mapping.
-Apply MigrateBase::timestamp() to comment created/changed
-
-Bug fixes
-
 - #1006272 - Remove lengths on int fields in schema (breaks Postgres)
 - #1005030 - Replace eval() with proper call_user_func().
 - #1005360 - Skip .test files in registry scan
@@ -378,13 +394,4 @@ needs_update => needs-update to match drush conventions.
 - #990960 - Initialize fields array for profiles
 - #993684 - hook_requirements should always return array.
 - #983968 - Bogus settings of ->uid
-
-Migrate 2.0 Beta 2
-==================
-Bug fixes
 - #984294 - Migration info pages are blank
-
-Migrate 2.0 Beta 1
-==================
-Version 2 of the Migrate module is an entirely new implementation - it is
-pointless to list changes since Migrate 1.
