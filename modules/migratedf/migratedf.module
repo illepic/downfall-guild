@@ -1,5 +1,101 @@
 <?php
 
+
+/**
+ * Implements hook_flush_caches().
+ */
+function migratedf_flush_caches() {
+  migratedf_register_migrations();
+}
+
+/**
+ * DownfallD2DMigration - USING migrate_d2d TO VASTLY SIMPLIFY
+ */
+
+function migratedf_register_migrations(){
+  $common_arguments = array(
+    'source_version' => 6,
+    'group' => 'DownfallD2DMigration',
+    'source_connection' => 'df6import',
+    'source_database' => array(
+      'driver' => 'mysql',
+      'database' => 'downfall_d6_pristine',
+    'username' => 'root', // Ideally this user has readonly access
+    // Best practice: use a variable (defined by setting $conf in settings.php, or
+    // with drush vset) for the password rather than exposing it in the code.
+    // 'password' => variable_get('example_migrate_password', ''),
+    'password' => 'root',
+    'host' => 'localhost',
+    'prefix' => 'demo_',
+    ),
+  // come back to format mappings
+  // 'format_mappings' => array(
+  //   '5' => 'markdown',
+  // ),
+    );
+
+  /**
+   * DownfallD2DMigration - ROLES
+   */
+
+  $role_arguments = $common_arguments + array(
+    'machine_name' => 'DownfallD2DRoles',
+    'description' => t('Import Drupal 6 roles'),
+    // 'role_mappings' => array(
+    //   'Fan Club' => 'fan club member',
+    // ),
+  );
+  Migration::registerMigration('DrupalRole6Migration',
+    $role_arguments['machine_name'], $role_arguments);
+
+  /**
+   * DownfallD2DPictures - USER PICTURES
+   */
+  $picture_arguments = $common_arguments + array(
+    'machine_name' => 'DownfallD2DPictures',
+    'description' => t('Import Drupal 6 picture files'),
+    'default_uid' => 1,
+    'source_dir' => 'sites/www.downfallguild.org/files/',
+    'destination_dir' => 'public://pictures',
+  );
+  Migration::registerMigration('DrupalPicture6Migration',
+    $picture_arguments['machine_name'], $picture_arguments);
+
+  /**
+   * DownfallD2DMigration - USERS
+   */
+
+  // The description and the migration machine name are also required arguments,
+  // which will be unique for each migration you register.
+  $user_arguments = $common_arguments + array(
+    'machine_name' => 'DownfallD2DUser',
+    'description' => t('Migration of users from Drupal 6'),
+    'role_migration' => 'DownfallD2DRoles',
+    'picture_migration' => 'DownfallD2DPictures',
+    'soft_dependencies' => array('DownfallD2DPictures'),
+  );
+
+  // We just use the migrate_d2d D6 migration class as-is.
+  Migration::registerMigration('DrupalUser6Migration',
+    $user_arguments['machine_name'], $user_arguments);
+
+  /**
+   * DownfallD2DMigration - FILES
+   */
+
+  $file_arguments = $common_arguments + array(
+    'machine_name' => 'DownfallD2DFiles',
+    'description' => t('Import Drupal 6 files'),
+    'user_migration' => 'DownfallD2DUser',
+    'default_uid' => 1,
+    'source_dir' => 'sites/www.downfallguild.org/files/',
+    'destination_dir' => 'public://',
+  );
+  Migration::registerMigration('DrupalFile6Migration',
+    $file_arguments['machine_name'], $file_arguments);
+
+}
+
 /*
  * You must implement hook_migrate_api(), setting the API level to 2, for
  * your migration classes to be recognized by the Migrate module.
