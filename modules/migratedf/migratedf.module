@@ -199,6 +199,22 @@ function migratedf_register_migrations(){
   Migration::registerMigration('DownfallBlogMigration',
     $blog_node_arguments['machine_name'], $blog_node_arguments);
 
+  /**
+   * DownfallD2DMigration - NODES / Forums
+   */
+
+  $forum_node_arguments = $node_arguments + array(
+    'machine_name' => 'DownfallD2DNodeForum',
+    'description' => t('Import Drupal 6 forum nodes'),
+    'source_type' => 'forum',
+    'destination_type' => 'forum',
+    'dependencies' => array('DownfallD2DTermForums'),
+  );
+  // Note we use a custom class here so we can map the term references and
+  // other fields - see "Extending migrate_d2d classes" below.
+  Migration::registerMigration('DownfallForumMigration',
+    $forum_node_arguments['machine_name'], $forum_node_arguments);
+
 }
 
 /*
