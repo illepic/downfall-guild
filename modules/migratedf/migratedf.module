@@ -20,13 +20,13 @@ function migratedf_register_migrations(){
     'source_database' => array(
       'driver' => 'mysql',
       'database' => 'downfall_d6_pristine',
-    'username' => 'root', // Ideally this user has readonly access
-    // Best practice: use a variable (defined by setting $conf in settings.php, or
-    // with drush vset) for the password rather than exposing it in the code.
-    // 'password' => variable_get('example_migrate_password', ''),
-    'password' => 'root',
-    'host' => 'localhost',
-    'prefix' => 'demo_',
+      'username' => 'root', // Ideally this user has readonly access
+      // Best practice: use a variable (defined by setting $conf in settings.php, or
+      // with drush vset) for the password rather than exposing it in the code.
+      // 'password' => variable_get('example_migrate_password', ''),
+      'password' => 'root',
+      'host' => 'localhost',
+      'prefix' => 'demo_',
     ),
   // come back to format mappings
   // 'format_mappings' => array(
@@ -196,7 +196,7 @@ function migratedf_register_migrations(){
   );
   // Note we use a custom class here so we can map the term references and
   // other fields - see "Extending migrate_d2d classes" below.
-  Migration::registerMigration('DownfallBlogMigration',
+  Migration::registerMigration('DownfallGenericWowTermNodeMigration',
     $blog_node_arguments['machine_name'], $blog_node_arguments);
 
   /**
@@ -214,6 +214,53 @@ function migratedf_register_migrations(){
   // other fields - see "Extending migrate_d2d classes" below.
   Migration::registerMigration('DownfallForumMigration',
     $forum_node_arguments['machine_name'], $forum_node_arguments);
+
+  /**
+   * DownfallD2DMigration - NODES / Pages
+   */
+
+  $page_node_arguments = $node_arguments + array(
+    'machine_name' => 'DownfallD2DNodePage',
+    'description' => t('Import Drupal 6 page nodes'),
+    'source_type' => 'page',
+    'destination_type' => 'article',
+    'dependencies' => array('DownfallD2DTermWoW'),
+  );
+  // Note we use a custom class here so we can map the term references and
+  // other fields - see "Extending migrate_d2d classes" below.
+  Migration::registerMigration('DownfallGenericWowTermNodeMigration',
+    $page_node_arguments['machine_name'], $page_node_arguments);
+
+  /**
+   * DownfallD2DMigration - NODES / Stories
+   */
+
+  $story_node_arguments = $node_arguments + array(
+    'machine_name' => 'DownfallD2DNodeStory',
+    'description' => t('Import Drupal 6 story nodes'),
+    'source_type' => 'story',
+    'destination_type' => 'article',
+    'dependencies' => array('DownfallD2DTermWoW'),
+  );
+  // Note we use a custom class here so we can map the term references and
+  // other fields - see "Extending migrate_d2d classes" below.
+  Migration::registerMigration('DownfallGenericWowTermNodeMigration',
+    $story_node_arguments['machine_name'], $story_node_arguments);
+
+  /**
+   * DownfallD2DMigration - NODES / Date
+   */
+
+  $date_node_arguments = $node_arguments + array(
+    'machine_name' => 'DownfallD2DNodeDate',
+    'description' => t('Import Drupal 6 date nodes'),
+    'source_type' => 'raidevent',
+    'destination_type' => 'event',
+  );
+  // Note we use a custom class here so we can map the term references and
+  // other fields - see "Extending migrate_d2d classes" below.
+  Migration::registerMigration('DownfallDateNodeMigration',
+    $date_node_arguments['machine_name'], $date_node_arguments);
 
 }
 

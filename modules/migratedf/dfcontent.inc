@@ -2,6 +2,7 @@
 
 /**
  * Common mappings for the Drupal 6 node migrations.
+ * This is just a demo, we're not actually using
  */
 abstract class DownfallNodeMigration extends DrupalNode6Migration {
   public function __construct(array $arguments) {
@@ -13,13 +14,50 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
 }
 
 /**
+ * Dates
+ */
+
+class DownfallDateNodeMigration extends DrupalNode6Migration {
+  public function __construct(array $arguments) {
+
+    parent::__construct($arguments);
+
+    $this->addFieldMapping('field_event_date', 'field_startdate');
+  }
+
+  public function prepareRow($row){
+    if (parent::prepareRow($row) === FALSE) {
+      return FALSE;
+    }
+
+    // leaving this around because it's a good dbcommenction example
+    // $d6_date_row = Database::getConnection('downfall_d6_pristine', $this->sourceConnection)
+    //   ->select('content_field_startdate', i)
+    //   ->fields('i', array('field_startdate_value2'))
+    //   ->condition('vid', $row->vid)
+    //   ->execute()
+    //   ->fetchObject();
+
+    $date_data = array(
+      'from' => (string)$row->field_startdate[0],
+      'to' => $row->{'field_startdate:value2'}[0],
+    );
+
+    // Here we're replacing the value of (d6) field_startdate with some json that indicates
+    // beginning and end dates. We could have mapped a dummy field and then filled this in
+    // with a lookup, but this is super clean.
+    $row->field_startdate = drupal_json_encode($date_data);
+  }
+
+
+}
+
+/**
  * Blogs
  */
 
-class DownfallBlogMigration extends DrupalNode6Migration {
+class DownfallGenericWowTermNodeMigration extends DrupalNode6Migration {
   public function __construct(array $arguments) {
-    // $this->sourceFields['lead_graphic'] = 'Lead graphic string from D6';
-    // $this->sourceFields['summary'] = 'Summary string from D6';
 
     parent::__construct($arguments);
 
@@ -35,22 +73,7 @@ class DownfallBlogMigration extends DrupalNode6Migration {
  */
 class DownfallBookMigration extends DrupalNode6Migration {
   public function __construct(array $arguments) {
-    // Add any other data we're pulling into the source row, before the parent
-    // constructor.
-    // $this->sourceFields['lead_graphic'] = 'Lead graphic string from D6';
-    // $this->sourceFields['summary'] = 'Summary string from D6';
-
     parent::__construct($arguments);
-
-    // $this->addFieldMapping('field_image', 'field_lead_graphic')
-    //      ->sourceMigration('Image');
-    // // Note that we map migrated terms by the vocabulary ID.
-    // $this->addFieldMapping('field_countries', '1')
-    //      ->sourceMigration('Countries')
-    //      ->arguments(array('source_type' => 'tid'));
-    // $this->addFieldMapping('field_topics', '2')
-    //      ->sourceMigration('Topics')
-    //      ->arguments(array('source_type' => 'tid'));
   }
 
   /**
@@ -103,13 +126,11 @@ class DownfallBookMigration extends DrupalNode6Migration {
 }
 
 /**
- * Blogs
+ * Forums
  */
 
 class DownfallForumMigration extends DrupalNode6Migration {
   public function __construct(array $arguments) {
-    // $this->sourceFields['lead_graphic'] = 'Lead graphic string from D6';
-    // $this->sourceFields['summary'] = 'Summary string from D6';
 
     parent::__construct($arguments);
 
