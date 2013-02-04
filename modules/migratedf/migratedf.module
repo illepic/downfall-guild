@@ -232,7 +232,7 @@ function migratedf_register_migrations(){
     $page_node_arguments['machine_name'], $page_node_arguments);
 
   /**
-   * DownfallD2DMigration - NODES / Stories
+   * DownfallD2DMigration - NODES / story -> article
    */
 
   $story_node_arguments = $node_arguments + array(
@@ -248,7 +248,7 @@ function migratedf_register_migrations(){
     $story_node_arguments['machine_name'], $story_node_arguments);
 
   /**
-   * DownfallD2DMigration - NODES / Date
+   * DownfallD2DMigration - NODES / raidevent -> event
    */
 
   $date_node_arguments = $node_arguments + array(
@@ -261,6 +261,21 @@ function migratedf_register_migrations(){
   // other fields - see "Extending migrate_d2d classes" below.
   Migration::registerMigration('DownfallDateNodeMigration',
     $date_node_arguments['machine_name'], $date_node_arguments);
+
+  /**
+   * DownfallD2DMigration - NODES / event -> event
+   */
+
+  $olddate_node_arguments = $node_arguments + array(
+    'machine_name' => 'DownfallD2DNodeDateOld',
+    'description' => t('Import Drupal 6 old event nodes'),
+    'source_type' => 'event',
+    'destination_type' => 'event',
+  );
+  // Note we use a custom class here so we can map the term references and
+  // other fields - see "Extending migrate_d2d classes" below.
+  Migration::registerMigration('DownfallOldEventNodeMigration',
+    $olddate_node_arguments['machine_name'], $olddate_node_arguments);
 
 }
 

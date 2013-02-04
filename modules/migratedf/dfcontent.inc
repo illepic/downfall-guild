@@ -14,7 +14,7 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
 }
 
 /**
- * Dates
+ * Dates - raid_event
  */
 
 class DownfallDateNodeMigration extends DrupalNode6Migration {
@@ -48,8 +48,51 @@ class DownfallDateNodeMigration extends DrupalNode6Migration {
     // with a lookup, but this is super clean.
     $row->field_startdate = drupal_json_encode($date_data);
   }
+}
 
+/**
+ * Dates - old "event" type
+ * Most of the magic here will be in the prepareRow stuff. This is the old "event" module.
+ * It stored start/end times in it's own table. We're calling that below.
+ */
 
+class DownfallOldEventNodeMigration extends DrupalNode6Migration {
+  public function __construct(array $arguments) {
+
+    parent::__construct($arguments);
+
+    $this->addFieldMapping('field_event_date', 'placeholder_date');
+  }
+
+  // public function query() {
+  //   $query = parent::query();
+  //   $query->range(0,10);
+  //   return $query;
+  // }
+
+  public function prepareRow($row){
+    if (parent::prepareRow($row) === FALSE) {
+      return FALSE;
+    }
+
+    // dpm($row);
+
+    $d6_date_row = Database::getConnection('downfall_d6_pristine', $this->sourceConnection)
+      ->select('event', e)
+      ->fields('e', array('event_start', 'event_end'))
+      ->condition('nid', $row->nid)
+      ->execute()
+      ->fetchObject();
+
+    // dpm($d6_date_row);
+
+    $date_data = array(
+      'from' => (string)$d6_date_row->event_start,
+      'to' => (string)$d6_date_row->event_end,
+    );
+
+    $row->placeholder_date = drupal_json_encode($date_data);
+  }
 }
 
 /**
