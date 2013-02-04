@@ -8,8 +8,14 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
   public function __construct(array $arguments) {
     parent::__construct($arguments);
 
-    $this->addFieldMapping('nid', 'nid')
-         ->description('We have a common field to save the D6 nid');
+    // we don't really need this kind of mapping
+    // $this->addFieldMapping('nid', 'nid')
+    //      ->description('We have a common field to save the D6 nid');
+
+    // however, we really do need our own "do something with [img_assist]" function
+    public function imgAssistRemove($content){
+      // stuff here that magically transforms img_assist
+    }
   }
 }
 
