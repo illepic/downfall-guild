@@ -11,11 +11,9 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
     // we don't really need this kind of mapping
     // $this->addFieldMapping('nid', 'nid')
     //      ->description('We have a common field to save the D6 nid');
-
-    // however, we really do need our own "do something with [img_assist]" function
-    public function imgAssistRemove($content){
-      // stuff here that magically transforms img_assist
-    }
+  }
+  public function imgClean($content){
+    dpm('just testing parent methods: ' . $content);
   }
 }
 
@@ -105,7 +103,7 @@ class DownfallOldEventNodeMigration extends DrupalNode6Migration {
  * Blogs
  */
 
-class DownfallGenericWowTermNodeMigration extends DrupalNode6Migration {
+class DownfallGenericWowTermNodeMigration extends DownfallNodeMigration {
   public function __construct(array $arguments) {
 
     parent::__construct($arguments);
@@ -114,6 +112,8 @@ class DownfallGenericWowTermNodeMigration extends DrupalNode6Migration {
     $this->addFieldMapping('field_wow_category', '5')
          ->sourceMigration('DownfallD2DTermWoW')
          ->arguments(array('source_type' => 'tid'));
+
+         parent::imgClean('stuff!');
   }
 }
 
