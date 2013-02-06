@@ -12,9 +12,12 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
     // $this->addFieldMapping('nid', 'nid')
     //      ->description('We have a common field to save the D6 nid');
   }
+
+  // used to clean up all our content that contains old img_assist tags
   public function imgClean($content){
     dpm('just testing parent methods: ' . $content);
   }
+
 }
 
 /**
@@ -112,8 +115,6 @@ class DownfallGenericWowTermNodeMigration extends DownfallNodeMigration {
     $this->addFieldMapping('field_wow_category', '5')
          ->sourceMigration('DownfallD2DTermWoW')
          ->arguments(array('source_type' => 'tid'));
-
-         parent::imgClean('stuff!');
   }
 }
 
@@ -187,5 +188,100 @@ class DownfallForumMigration extends DrupalNode6Migration {
     $this->addFieldMapping('taxonomy_forums', '3')
          ->sourceMigration('DownfallD2DTermForums')
          ->arguments(array('source_type' => 'tid'));
+  }
+}
+
+/**
+ * Guild apps
+ */
+
+class DownfallGuildAppsMigration extends DownfallNodeMigration {
+
+  // used for roles translation
+  public $rolemap = array(
+    0 => 'Healing',
+    1 => 'Tanking',
+    2 => 'DPS',
+  );
+
+  // used for raiding nights
+  public $nightsmap = array(
+    0 => 'Monday',
+    1 => 'Tuesday',
+    2 => 'Wednesday',
+    3 => 'Thursday',
+    4 => 'Friday',
+    5 => 'Saturday',
+    6 => 'Sunday',
+  );
+
+  public function __construct(array $arguments) {
+
+    parent::__construct($arguments);
+
+    // character info
+    $this->addFieldMapping('field_app_char_name', 'field_toon_name');
+    $this->addFieldMapping('field_app_race', 'field_race');
+    $this->addFieldMapping('field_app_class', 'field_toon_class');
+    $this->addFieldMapping('field_app_level', 'field_toon_level');
+    $this->addFieldMapping('field_app_max_time', 'field_70_playtime');
+    $this->addFieldMapping('field_app_current_server', 'field_server');
+    $this->addFieldMapping('field_app_current_server_time', 'field_time_on_server');
+    // raiding
+    $this->addFieldMapping('field_app_talents', 'field_talent_build');
+    $this->addFieldMapping('field_app_role_comfortable', 'field_role')
+      ->callbacks(array($this, 'roleLookup'));
+    $this->addFieldMapping('field_app_class_contributes', 'field_class_contribution');
+    $this->addFieldMapping('field_app_instances_experience', 'field_raid_experience');
+    $this->addFieldMapping('field_app_boss_favorite', 'field_favorite_encounter');
+    $this->addFieldMapping('field_app_boss_least_favorite', 'field_least_favorite_encounter');
+    $this->addFieldMapping('field_app_raid_nights', 'field_nights_available')
+      ->callbacks(array($this, 'nightsLookup'));
+    $this->addFieldMapping('field_app_pvp_interest', 'field_interested_pvp');
+    // general questions
+    // $this->addFieldMapping('field_app_boss_favorite', 'field_toon_name');
+    // $this->addFieldMapping('field_app_boss_favorite', 'field_toon_name');
+
+    // Note that we map migrated terms by the vocabulary ID.
+    // $this->addFieldMapping('field_wow_category', '5')
+    //      ->sourceMigration('DownfallD2DTermWoW')
+    //      ->arguments(array('source_type' => 'tid'));
+  }
+
+  // roles need to be converted
+  protected function roleLookup($value){
+    return $this->rolemap[$value];
+  }
+
+  // nights need to be converted
+  protected function nightsLookup($value){
+    $nights = array();
+    foreach ($value as $night){
+      $nights[] = $this->nightsmap[$night];
+    }
+    return $nights;
+  }
+
+  // just here to limit results while testing
+  public function query() {
+    $query = parent::query();
+    $query->range(0,10);
+    return $query;
+  }
+
+  public function prepareRow($row){
+    if (parent::prepareRow($row) === FALSE) {
+      return FALSE;
+    }
+
+    // dpm($row);
+
+    // $d6_date_row = Database::getConnection('downfall_d6_pristine', $this->sourceConnection)
+    //   ->select('event', e)
+    //   ->fields('e', array('event_start', 'event_end'))
+    //   ->condition('nid', $row->nid)
+    //   ->execute()
+    //   ->fetchObject();
+
   }
 }

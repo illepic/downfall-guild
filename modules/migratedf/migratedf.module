@@ -277,6 +277,21 @@ function migratedf_register_migrations(){
   Migration::registerMigration('DownfallOldEventNodeMigration',
     $olddate_node_arguments['machine_name'], $olddate_node_arguments);
 
+  /**
+   * DownfallD2DMigration - NODES / guild_app
+   */
+
+  $guildapp_node_arguments = $node_arguments + array(
+    'machine_name' => 'DownfallD2DNodeGuildApp',
+    'description' => t('Import Drupal 6 guild apps'),
+    'source_type' => 'guild_app',
+    'destination_type' => 'guild_app',
+  );
+  // Note we use a custom class here so we can map the term references and
+  // other fields - see "Extending migrate_d2d classes" below.
+  Migration::registerMigration('DownfallGuildAppsMigration',
+    $guildapp_node_arguments['machine_name'], $guildapp_node_arguments);
+
 }
 
 /*
