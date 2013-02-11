@@ -24,7 +24,7 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
  * Dates - raid_event
  */
 
-class DownfallDateNodeMigration extends DrupalNode6Migration {
+class DownfallDateNodeMigration extends DownfallNodeMigration {
   public function __construct(array $arguments) {
 
     parent::__construct($arguments);
@@ -63,7 +63,7 @@ class DownfallDateNodeMigration extends DrupalNode6Migration {
  * It stored start/end times in it's own table. We're calling that below.
  */
 
-class DownfallOldEventNodeMigration extends DrupalNode6Migration {
+class DownfallOldEventNodeMigration extends DownfallNodeMigration {
   public function __construct(array $arguments) {
 
     parent::__construct($arguments);
@@ -104,6 +104,8 @@ class DownfallOldEventNodeMigration extends DrupalNode6Migration {
 
 /**
  * Blogs
+ *
+ * For any node that really only has this taxonomy field
  */
 
 class DownfallGenericWowTermNodeMigration extends DownfallNodeMigration {
@@ -121,7 +123,7 @@ class DownfallGenericWowTermNodeMigration extends DownfallNodeMigration {
 /**
  * Books
  */
-class DownfallBookMigration extends DrupalNode6Migration {
+class DownfallBookMigration extends DownfallNodeMigration {
   public function __construct(array $arguments) {
     parent::__construct($arguments);
   }
@@ -179,7 +181,7 @@ class DownfallBookMigration extends DrupalNode6Migration {
  * Forums
  */
 
-class DownfallForumMigration extends DrupalNode6Migration {
+class DownfallForumMigration extends DownfallNodeMigration {
   public function __construct(array $arguments) {
 
     parent::__construct($arguments);
@@ -239,13 +241,36 @@ class DownfallGuildAppsMigration extends DownfallNodeMigration {
       ->callbacks(array($this, 'nightsLookup'));
     $this->addFieldMapping('field_app_pvp_interest', 'field_interested_pvp');
     // general questions
-    // $this->addFieldMapping('field_app_boss_favorite', 'field_toon_name');
-    // $this->addFieldMapping('field_app_boss_favorite', 'field_toon_name');
+    $this->addFieldMapping('field_app_why_recruit', 'field_why');
+    $this->addFieldMapping('field_app_why_apply', 'field_why_downfall');
+    $this->addFieldMapping('field_app_get_out_of_membership', 'field_what_getting_out');
+    $this->addFieldMapping('field_app_contribute_community', 'field_contribute');
+    $this->addFieldMapping('field_app_references', 'field_references');
+    $this->addFieldMapping('field_app_duration_of_stay', 'field_sticking_around');
+    $this->addFieldMapping('field_app_cause_leave', 'field_leaving');
+    $this->addFieldMapping('field_app_timezone', 'field_timezone');
+    $this->addFieldMapping('field_app_anything_else', 'field_additional');
+    // ui
+    $this->addFieldMapping('field_app_ui', 'field_ui_ss_2')
+      ->sourceMigration('DownfallD2DFiles');
+    $this->addFieldMapping('field_app_ui:file_class')
+             ->defaultValue('MigrateFileFid');
+    $this->addFieldMapping('field_app_ui:preserve_files')
+             ->defaultValue(TRUE);
+    $this->addFieldMapping('field_app_ui:title', 'image_title_placeholder')
+             ->defaultValue(t('Guild application UI screenshot'));
+    $this->addFieldMapping('field_app_ui:language')
+             ->defaultValue(LANGUAGE_NONE);
+    // personal
+    $this->addFieldMapping('field_app_how_long_wow', 'field_how_long_playing');
+    $this->addFieldMapping('field_app_how_old', 'field_age');
+    $this->addFieldMapping('field_app_yourself', 'field_about_you');
+    $this->addFieldMapping('field_app_school_or_work', 'field_school_or_working');
+    $this->addFieldMapping('field_app_hobbies', 'field_hobbies');
+    $this->addFieldMapping('field_app_country_state', 'field_location');
 
-    // Note that we map migrated terms by the vocabulary ID.
-    // $this->addFieldMapping('field_wow_category', '5')
-    //      ->sourceMigration('DownfallD2DTermWoW')
-    //      ->arguments(array('source_type' => 'tid'));
+    $this->addFieldMapping('field_app_open_closed', 'field_closed');
+
   }
 
   // roles need to be converted
@@ -263,11 +288,11 @@ class DownfallGuildAppsMigration extends DownfallNodeMigration {
   }
 
   // just here to limit results while testing
-  public function query() {
-    $query = parent::query();
-    $query->range(0,10);
-    return $query;
-  }
+  // public function query() {
+  //   $query = parent::query();
+  //   $query->range(0,10);
+  //   return $query;
+  // }
 
   public function prepareRow($row){
     if (parent::prepareRow($row) === FALSE) {

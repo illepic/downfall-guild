@@ -49,6 +49,21 @@ function migratedf_register_migrations(){
     $role_arguments['machine_name'], $role_arguments);
 
   /**
+   * DownfallD2DMigration - FILES
+   */
+
+  $file_arguments = $common_arguments + array(
+    'machine_name' => 'DownfallD2DFiles',
+    'description' => t('Import Drupal 6 files'),
+    'user_migration' => 'DownfallD2DUser',
+    'default_uid' => 1,
+    'source_dir' => 'sites/www.downfallguild.org/files/',
+    'destination_dir' => 'public://',
+  );
+  Migration::registerMigration('DrupalFile6Migration',
+    $file_arguments['machine_name'], $file_arguments);
+
+  /**
    * DownfallD2DPictures - USER PICTURES
    */
   $picture_arguments = $common_arguments + array(
@@ -57,6 +72,7 @@ function migratedf_register_migrations(){
     'default_uid' => 1,
     'source_dir' => 'sites/www.downfallguild.org/files/',
     'destination_dir' => 'public://pictures',
+    // 'dependencies' => array('DownfallD2DFiles'),
   );
   Migration::registerMigration('DrupalPicture6Migration',
     $picture_arguments['machine_name'], $picture_arguments);
@@ -77,20 +93,6 @@ function migratedf_register_migrations(){
   Migration::registerMigration('DrupalUser6Migration',
     $user_arguments['machine_name'], $user_arguments);
 
-  /**
-   * DownfallD2DMigration - FILES
-   */
-
-  $file_arguments = $common_arguments + array(
-    'machine_name' => 'DownfallD2DFiles',
-    'description' => t('Import Drupal 6 files'),
-    'user_migration' => 'DownfallD2DUser',
-    'default_uid' => 1,
-    'source_dir' => 'sites/www.downfallguild.org/files/',
-    'destination_dir' => 'public://',
-  );
-  Migration::registerMigration('DrupalFile6Migration',
-    $file_arguments['machine_name'], $file_arguments);
 
   /**
    * DownfallD2DMigration - VOCABULARY / Forums
@@ -286,6 +288,7 @@ function migratedf_register_migrations(){
     'description' => t('Import Drupal 6 guild apps'),
     'source_type' => 'guild_app',
     'destination_type' => 'guild_app',
+    'dependencies' => array('DownfallD2DFiles'),
   );
   // Note we use a custom class here so we can map the term references and
   // other fields - see "Extending migrate_d2d classes" below.
