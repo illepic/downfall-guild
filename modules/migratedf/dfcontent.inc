@@ -310,3 +310,10 @@ class DownfallGuildAppsMigration extends DownfallNodeMigration {
 
   }
 }
+
+/**
+ * Image to Media migration
+ *
+ * Notes: Look at beer.inc for a regular DynamicMigration. See app_ui image mapped above
+ * Then check migrate_extras_media.migrate.inc: field_media_image mapping.
+ */
