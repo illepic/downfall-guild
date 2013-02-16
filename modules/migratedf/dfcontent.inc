@@ -317,3 +317,52 @@ class DownfallGuildAppsMigration extends DownfallNodeMigration {
  * Notes: Look at beer.inc for a regular DynamicMigration. See app_ui image mapped above
  * Then check migrate_extras_media.migrate.inc: field_media_image mapping.
  */
+
+class DownfallImageMigration extends DownfallNodeMigration {
+
+
+  public function __construct(array $arguments) {
+
+    parent::__construct($arguments);
+
+    //testing with static fid
+    $this->addFieldMapping('field_df_image', 'image_lookup_placeholder')
+      ->sourceMigration('DownfallD2DFiles');
+    $this->addFieldMapping('field_df_image:file_class')
+             ->defaultValue('MigrateFileFid');
+    $this->addFieldMapping('field_df_image:preserve_files')
+             ->defaultValue(TRUE);
+    $this->addFieldMapping('field_df_image:title', 'image_title_placeholder')
+             ->defaultValue(t('Downfall image'));
+    $this->addFieldMapping('field_app_ui:language')
+             ->defaultValue(LANGUAGE_NONE);
+  }
+
+  // just here to limit results while testing
+  // public function query() {
+  //   $query = parent::query();
+  //   $query->range(0,100);
+  //   return $query;
+  // }
+
+  public function prepareRow($row){
+    if (parent::prepareRow($row) === FALSE) {
+      return FALSE;
+    }
+
+    $d6_file = Database::getConnection('downfall_d6_pristine', $this->sourceConnection)
+      ->select('image', i)
+      ->fields('i', array('fid'))
+      ->condition('nid', $row->nid)
+      // ->condition('image_size', '_original')
+      ->execute()
+      ->fetchObject();
+
+    // dpm($row);
+    dpm($d6_file);
+
+    // do a lookup on the d6 image table for the _original file
+    $row->image_lookup_placeholder = $d6_file->fid;
+
+  }
+}
