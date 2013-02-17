@@ -225,12 +225,15 @@ class DownfallGenericWowTermNodeMigration extends DownfallNodeMigration {
 
 /**
  * Books
- *
- * Might just say fuck this and import these all flat-out
  */
 class DownfallBookMigration extends DownfallNodeMigration {
   public function __construct(array $arguments) {
     parent::__construct($arguments);
+
+    // Note that we map migrated terms by the vocabulary ID.
+    $this->addFieldMapping('field_wow_category', '5')
+         ->sourceMigration('DownfallD2DTermWoW')
+         ->arguments(array('source_type' => 'tid'));
   }
 
   /**
