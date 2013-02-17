@@ -456,7 +456,7 @@ class DownfallImageMigration extends DownfallNodeMigration {
   // just here to limit results while testing
   // public function query() {
   //   $query = parent::query();
-  //   $query->range(0,100);
+  //   $query->range(0,50);
   //   return $query;
   // }
 
@@ -465,18 +465,24 @@ class DownfallImageMigration extends DownfallNodeMigration {
       return FALSE;
     }
 
+    // do a lookup on the d6 image table for the _original file
     $d6_file = Database::getConnection('downfall_d6_pristine', $this->sourceConnection)
       ->select('image', i)
       ->fields('i', array('fid'))
       ->condition('nid', $row->nid)
-      // ->condition('image_size', '_original')
+      ->condition('image_size', '_original')
       ->execute()
       ->fetchObject();
+      // ->fetchAllKeyed();
 
     // dpm($row);
-    // dpm($d6_file);
+    // 1989 distinct nid in d6 image table
+    // 1861 if looking for just _original and distinct
 
-    // do a lookup on the d6 image table for the _original file
+    if ($row->nid == 7737){
+      dpm($d6_file);
+    }
+
     $row->image_lookup_placeholder = $d6_file->fid;
 
   }
