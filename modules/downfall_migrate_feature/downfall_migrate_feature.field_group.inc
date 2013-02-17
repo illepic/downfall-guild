@@ -161,7 +161,7 @@ function downfall_migrate_feature_field_group_info() {
     'label' => 'UI',
     'weight' => '4',
     'children' => array(
-      0 => 'field_app_ui',
+      0 => 'field_app_ui_media',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

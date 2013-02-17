@@ -956,7 +956,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 23,
+          'weight' => '23',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1023,7 +1023,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 11,
+          'weight' => '11',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1090,7 +1090,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 12,
+          'weight' => '12',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1157,7 +1157,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 21,
+          'weight' => '21',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1226,7 +1226,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1301,7 +1301,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 2,
+          'weight' => '2',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1365,7 +1365,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 9,
+          'weight' => '9',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1432,7 +1432,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 18,
+          'weight' => '18',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1501,7 +1501,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 30,
+          'weight' => '30',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1570,7 +1570,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 5,
+          'weight' => '5',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1639,7 +1639,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 6,
+          'weight' => '6',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1708,7 +1708,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 20,
+          'weight' => '20',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1775,7 +1775,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 17,
+          'weight' => '17',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1844,7 +1844,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 29,
+          'weight' => '29',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1911,7 +1911,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 25,
+          'weight' => '25',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1980,7 +1980,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 26,
+          'weight' => '26',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2047,7 +2047,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 10,
+          'weight' => '10',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2108,7 +2108,7 @@ function downfall_migrate_feature_field_default_fields() {
             'thousand_separator' => ' ',
           ),
           'type' => 'number_integer',
-          'weight' => 3,
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2178,7 +2178,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 4,
+          'weight' => '4',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2248,7 +2248,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 31,
+          'weight' => '31',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2311,7 +2311,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 14,
+          'weight' => '14',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2385,7 +2385,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 1,
+          'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2453,7 +2453,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 13,
+          'weight' => '13',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2519,7 +2519,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 19,
+          'weight' => '19',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2586,7 +2586,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 8,
+          'weight' => '8',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2652,7 +2652,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 28,
+          'weight' => '28',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2719,7 +2719,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 7,
+          'weight' => '7',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2788,7 +2788,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 22,
+          'weight' => '22',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2817,14 +2817,14 @@ function downfall_migrate_feature_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-guild_app-field_app_ui'.
-  $fields['node-guild_app-field_app_ui'] = array(
+  // Exported field: 'node-guild_app-field_app_ui_media'.
+  $fields['node-guild_app-field_app_ui_media'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_app_ui',
+      'field_name' => 'field_app_ui_media',
       'foreign keys' => array(
         'fid' => array(
           'columns' => array(
@@ -2839,28 +2839,28 @@ function downfall_migrate_feature_field_default_fields() {
         ),
       ),
       'locked' => '0',
-      'module' => 'image',
+      'module' => 'file',
       'settings' => array(
-        'default_image' => 0,
+        'display_default' => 0,
+        'display_field' => 0,
         'uri_scheme' => 'public',
       ),
       'translatable' => '0',
-      'type' => 'image',
+      'type' => 'file',
     ),
     'field_instance' => array(
       'bundle' => 'guild_app',
       'deleted' => '0',
-      'description' => 'Please upload a screenshot of your UI.  Make sure it is a jpg, png or gif first.',
+      'description' => 'Please attach a screenshot of your UI.',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'image',
+          'module' => 'file_entity',
           'settings' => array(
-            'image_link' => '',
-            'image_style' => '',
+            'file_view_mode' => 'default',
           ),
-          'type' => 'image',
-          'weight' => 24,
+          'type' => 'file_rendered',
+          'weight' => '32',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2870,29 +2870,39 @@ function downfall_migrate_feature_field_default_fields() {
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_app_ui',
-      'label' => 'Attach a pic of your UI',
+      'field_name' => 'field_app_ui_media',
+      'label' => 'UI',
       'required' => 0,
       'settings' => array(
-        'alt_field' => 0,
-        'default_image' => 0,
+        'description_field' => 0,
         'file_directory' => 'appimages',
-        'file_extensions' => 'png gif jpg jpeg',
-        'max_filesize' => '25 MB',
-        'max_resolution' => '',
-        'min_resolution' => '',
-        'title_field' => 0,
+        'file_extensions' => 'png jpg gif jpeg',
+        'max_filesize' => '',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'image',
+        'module' => 'media',
         'settings' => array(
-          'preview_image_style' => 'thumbnail',
+          'allowed_schemes' => array(
+            'public' => 'public',
+          ),
+          'allowed_types' => array(
+            'audio' => 0,
+            'document' => 0,
+            'image' => 'image',
+            'video' => 0,
+          ),
+          'browser_plugins' => array(
+            'media_default--media_browser_1' => 0,
+            'media_default--media_browser_my_files' => 0,
+            'media_internet' => 'media_internet',
+            'upload' => 'upload',
+          ),
           'progress_indicator' => 'throbber',
         ),
-        'type' => 'image_image',
-        'weight' => '16',
+        'type' => 'media_generic',
+        'weight' => '24',
       ),
     ),
   );
@@ -2935,7 +2945,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 16,
+          'weight' => '16',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3002,7 +3012,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 15,
+          'weight' => '15',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3069,7 +3079,7 @@ function downfall_migrate_feature_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 27,
+          'weight' => '27',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3105,7 +3115,6 @@ function downfall_migrate_feature_field_default_fields() {
   t('Anything else you would like to add?');
   t('Are you in school or working?');
   t('Are you interested in PvP?:');
-  t('Attach a pic of your UI');
   t('Body');
   t('Caption');
   t('Character Name');
@@ -3128,9 +3137,9 @@ function downfall_migrate_feature_field_default_fields() {
   t('Level');
   t('List the instances you have experience in, and the farthest you have been in that instance.');
   t('Open/Closed');
+  t('Please attach a screenshot of your UI.');
   t('Please include a link to this build from WowHead (http://wowhead.com/talent).  Please also include your major glyphs. What are the strengths of this build? Do you change talents and glyphs depending on the fight?');
   t('Please link a World of Logs report or screenshots of damage/healing meters to demonstrate your performance in a raid setting, if possible.');
-  t('Please upload a screenshot of your UI.  Make sure it is a jpg, png or gif first.');
   t('Race');
   t('Same as above, just the one you absolutely hate!');
   t('Select all nights that you are available to raid.');
@@ -3141,6 +3150,7 @@ function downfall_migrate_feature_field_default_fields() {
   t('The level of the toon you are applying to guild.');
   t('The race of the toon applying to guild.  Downfall does not discriminate based on race, gender or affinity of pie vs cake.');
   t('Total play time at max level');
+  t('UI');
   t('What WoW server are you currently playing on?  Downfall is located on the American Pacific Time Zone PvP server (GMT -8) Gorgonnash.');
   t('What country/state do you live in?');
   t('What do you expect to get out of Downfall membership?');
