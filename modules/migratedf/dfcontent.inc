@@ -237,6 +237,14 @@ class DownfallBookMigration extends DownfallNodeMigration {
   }
 
   /**
+   * Implementation of Migration::prepare().
+   */
+  public function prepare($node, $row) {
+    // This will replace any [img_assist] tags in the body with the media module's JSON reference
+    parent::rewriteImgAssistTags($node);
+  }
+
+  /**
      * Overrides parent::nodeQuery to add more data to the source, in our case,
      * book hierarchy stuff.
      */
@@ -276,7 +284,7 @@ class DownfallBookMigration extends DownfallNodeMigration {
       // Book id - effectively, parent nid.
       $node->book['bid'] = $book_id;
       $node->book['nid'] = $node->nid;
-      $node->book['weight'] = $row->book_weight;
+      $node->book['weight'] = $row->book_weight == '' ? 0 : $row->book_weight;
       _book_update_outline($node);
       node_save($node);
     }
@@ -296,13 +304,6 @@ class DownfallBookMigration extends DownfallNodeMigration {
       return $dest_book_nid;
     }
 
-    /**
-     * Implementation of Migration::prepare().
-     */
-    public function prepare($node, $row) {
-      // This will replace any [img_assist] tags in the body with the media module's JSON reference
-      parent::rewriteImgAssistTags($node);
-    }
 }
 
 /**
