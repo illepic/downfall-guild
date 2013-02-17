@@ -18,6 +18,86 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
     dpm('just testing parent methods: ' . $content);
   }
 
+  /**
+   * Call this from the prepare() method of a migration that contains media
+   * image files, if you want to rewrite the IMG tags into media references.
+   *
+   * @param $entity
+   *  Entity object being built.
+   * @param $field
+   *  Name of the text field within the entity to be modified. Defaults to 'body'.
+   */
+  static public function rewriteImgTags($entity, $field = 'body') {
+    if (is_array($entity->$field)) {
+      migrate_instrument_start('MigrateDestinationMedia rewriteImgTags');
+      dpm('inside rewriteImgTags');
+      foreach ($entity->$field as $language => $values) {
+        $body = $values[0]['value'];
+        break;
+      }
+      // Quickly skip any non-candidates
+      if (!stristr($body, '<img')) {
+        migrate_instrument_stop('MigrateDestinationMedia rewriteImgTags');
+        return;
+      }
+      // Pass full img tags into the callback
+      $new_body = preg_replace_callback('|<img [^>]*>|i', array(self, 'replaceCallback'),
+        $body);
+      $entity->{$field}[$language][0]['value'] = $new_body;
+      migrate_instrument_stop('MigrateDestinationMedia rewriteImgTags');
+    }
+  }
+
+  /**
+   * If a referenced image can be found in the files table, replace the <img> tag
+   * with a media JSON reference.
+   *
+   * @param array $matches
+   */
+  static protected function replaceCallback(array $matches) {
+    $src_matches = array();
+    // Default to the original <img> tag
+    $result = $matches[0];
+    // Extract the src parameter
+    if (preg_match('|src=[\'"]([^\'"]+)[\'"]|i', $matches[0], $src_matches)) {
+      // Replace the scheme and host portions of the referenced URI with the
+      // Drupal scheme as it's saved in the file_unmanaged table
+      $src = $src_matches[1];
+      $fid = db_select('file_managed', 'f')
+             ->fields('f', array('fid'))
+             ->condition('filename', basename($src))
+             ->execute()
+             ->fetchField();
+      if ($fid) {
+        $image_info = array(
+          'type' => 'media',
+          'view_mode' => 'media_large',
+          'fid' => $fid,
+          'attributes' => array(
+            'alt' => '',
+            'title' => '',
+            'class' => 'media-image',
+            'typeof' => 'foaf:Image',
+            'wysiwyg' => 1,
+          ),
+        );
+        // Get the height and width parameters if present
+        preg_match('|width=[\'"]([^\'"]+)[\'"]|i', $matches[0], $width);
+        preg_match('|height=[\'"]([^\'"]+)[\'"]|i', $matches[0], $height);
+        // image width
+        if ($width) {
+          $image_info['attributes']['width'] = $width[1];
+        }
+        // image height
+        if ($height) {
+          $image_info['attributes']['height'] = $height[1];
+        }
+
+        $result = '[[' . drupal_json_encode($image_info) . ']]';
+      }
+    }
+    return $result;
+  }
 }
 
 /**
@@ -117,6 +197,17 @@ class DownfallGenericWowTermNodeMigration extends DownfallNodeMigration {
     $this->addFieldMapping('field_wow_category', '5')
          ->sourceMigration('DownfallD2DTermWoW')
          ->arguments(array('source_type' => 'tid'));
+  }
+
+  /**
+   * Implementation of Migration::prepare().
+   */
+  public function prepare($node, $row) {
+    // // This will replace any <img> tags in the body with the media module's
+    // // JSON references.
+    // MigrateDestinationMedia::rewriteImgTags($node);
+    dpm('hi diddly o neighbor');
+    parent::rewriteImgTags($node);
   }
 }
 
@@ -251,15 +342,26 @@ class DownfallGuildAppsMigration extends DownfallNodeMigration {
     $this->addFieldMapping('field_app_timezone', 'field_timezone');
     $this->addFieldMapping('field_app_anything_else', 'field_additional');
     // ui
-    $this->addFieldMapping('field_app_ui', 'field_ui_ss_2')
+    // $this->addFieldMapping('field_app_ui', 'field_ui_ss_2')
+    //   ->sourceMigration('DownfallD2DFiles');
+    // $this->addFieldMapping('field_app_ui:file_class')
+    //          ->defaultValue('MigrateFileFid');
+    // $this->addFieldMapping('field_app_ui:preserve_files')
+    //          ->defaultValue(TRUE);
+    // $this->addFieldMapping('field_app_ui:title', 'image_title_placeholder')
+    //          ->defaultValue(t('Guild application UI screenshot'));
+    // $this->addFieldMapping('field_app_ui:language')
+    //          ->defaultValue(LANGUAGE_NONE);
+    // ui -> media field
+    $this->addFieldMapping('field_app_ui_media', 'field_ui_ss_2')
       ->sourceMigration('DownfallD2DFiles');
-    $this->addFieldMapping('field_app_ui:file_class')
+    $this->addFieldMapping('field_app_ui_media:file_class')
              ->defaultValue('MigrateFileFid');
-    $this->addFieldMapping('field_app_ui:preserve_files')
+    $this->addFieldMapping('field_app_ui_media:preserve_files')
              ->defaultValue(TRUE);
-    $this->addFieldMapping('field_app_ui:title', 'image_title_placeholder')
+    $this->addFieldMapping('field_app_ui_media:title', 'image_title_placeholder')
              ->defaultValue(t('Guild application UI screenshot'));
-    $this->addFieldMapping('field_app_ui:language')
+    $this->addFieldMapping('field_app_ui_media:language')
              ->defaultValue(LANGUAGE_NONE);
     // personal
     $this->addFieldMapping('field_app_how_long_wow', 'field_how_long_playing');
@@ -290,7 +392,7 @@ class DownfallGuildAppsMigration extends DownfallNodeMigration {
   // just here to limit results while testing
   // public function query() {
   //   $query = parent::query();
-  //   $query->range(0,10);
+  //   $query->range(0,50);
   //   return $query;
   // }
 
