@@ -27,7 +27,7 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
    * @param $field
    *  Name of the text field within the entity to be modified. Defaults to 'body'.
    */
-  static public function rewriteImgTags($entity, $field = 'body') {
+  static public function rewriteImgAssistTags($entity, $field = 'body') {
     if (is_array($entity->$field)) {
       migrate_instrument_start('MigrateDestinationMedia rewriteImgTags');
       dpm('inside rewriteImgTags');
@@ -36,15 +36,15 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
         break;
       }
       // Quickly skip any non-candidates
-      if (!stristr($body, '<img')) {
+      if (!stristr($body, '[img_assist')) {
         migrate_instrument_stop('MigrateDestinationMedia rewriteImgTags');
         return;
       }
       // Pass full img tags into the callback
-      $new_body = preg_replace_callback('|<img [^>]*>|i', array(self, 'replaceCallback'),
+      $new_body = preg_replace_callback('|\[img_assist[^\]]*\]|i', array(self, 'replaceCallback'),
         $body);
-      $entity->{$field}[$language][0]['value'] = $new_body;
-      migrate_instrument_stop('MigrateDestinationMedia rewriteImgTags');
+      // $entity->{$field}[$language][0]['value'] = $new_body;
+      // migrate_instrument_stop('MigrateDestinationMedia rewriteImgTags');
     }
   }
 
@@ -58,45 +58,47 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
     $src_matches = array();
     // Default to the original <img> tag
     $result = $matches[0];
+    dpm($matches);
     // Extract the src parameter
-    if (preg_match('|src=[\'"]([^\'"]+)[\'"]|i', $matches[0], $src_matches)) {
+    if (preg_match('|\|nid=(\d+)\||i', $matches[0], $src_matches)) {
+      dpm($src_matches[1]);
       // Replace the scheme and host portions of the referenced URI with the
       // Drupal scheme as it's saved in the file_unmanaged table
-      $src = $src_matches[1];
-      $fid = db_select('file_managed', 'f')
-             ->fields('f', array('fid'))
-             ->condition('filename', basename($src))
-             ->execute()
-             ->fetchField();
-      if ($fid) {
-        $image_info = array(
-          'type' => 'media',
-          'view_mode' => 'media_large',
-          'fid' => $fid,
-          'attributes' => array(
-            'alt' => '',
-            'title' => '',
-            'class' => 'media-image',
-            'typeof' => 'foaf:Image',
-            'wysiwyg' => 1,
-          ),
-        );
-        // Get the height and width parameters if present
-        preg_match('|width=[\'"]([^\'"]+)[\'"]|i', $matches[0], $width);
-        preg_match('|height=[\'"]([^\'"]+)[\'"]|i', $matches[0], $height);
-        // image width
-        if ($width) {
-          $image_info['attributes']['width'] = $width[1];
-        }
-        // image height
-        if ($height) {
-          $image_info['attributes']['height'] = $height[1];
-        }
+      // $src = $src_matches[1];
+      // $fid = db_select('file_managed', 'f')
+      //        ->fields('f', array('fid'))
+      //        ->condition('filename', basename($src))
+      //        ->execute()
+      //        ->fetchField();
+      // if ($fid) {
+      //   $image_info = array(
+      //     'type' => 'media',
+      //     'view_mode' => 'media_large',
+      //     'fid' => $fid,
+      //     'attributes' => array(
+      //       'alt' => '',
+      //       'title' => '',
+      //       'class' => 'media-image',
+      //       'typeof' => 'foaf:Image',
+      //       'wysiwyg' => 1,
+      //     ),
+      //   );
+      //   // Get the height and width parameters if present
+      //   preg_match('|width=[\'"]([^\'"]+)[\'"]|i', $matches[0], $width);
+      //   preg_match('|height=[\'"]([^\'"]+)[\'"]|i', $matches[0], $height);
+      //   // image width
+      //   if ($width) {
+      //     $image_info['attributes']['width'] = $width[1];
+      //   }
+      //   // image height
+      //   if ($height) {
+      //     $image_info['attributes']['height'] = $height[1];
+      //   }
 
-        $result = '[[' . drupal_json_encode($image_info) . ']]';
-      }
+      //   $result = '[[' . drupal_json_encode($image_info) . ']]';
+      // }
     }
-    return $result;
+    // return $result;
   }
 }
 
@@ -203,11 +205,10 @@ class DownfallGenericWowTermNodeMigration extends DownfallNodeMigration {
    * Implementation of Migration::prepare().
    */
   public function prepare($node, $row) {
-    // // This will replace any <img> tags in the body with the media module's
+    // // This will replace any [img_assist] tags in the body with the media module's
     // // JSON references.
-    // MigrateDestinationMedia::rewriteImgTags($node);
     dpm('hi diddly o neighbor');
-    parent::rewriteImgTags($node);
+    parent::rewriteImgAssistTags($node);
   }
 }
 
