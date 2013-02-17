@@ -2,7 +2,6 @@
 
 /**
  * Common mappings for the Drupal 6 node migrations.
- * This is just a demo, we're not actually using
  */
 abstract class DownfallNodeMigration extends DrupalNode6Migration {
   public function __construct(array $arguments) {
@@ -226,6 +225,8 @@ class DownfallGenericWowTermNodeMigration extends DownfallNodeMigration {
 
 /**
  * Books
+ *
+ * Might just say fuck this and import these all flat-out
  */
 class DownfallBookMigration extends DownfallNodeMigration {
   public function __construct(array $arguments) {
@@ -238,22 +239,24 @@ class DownfallBookMigration extends DownfallNodeMigration {
      */
     public function query() {
 
+      // original
+      // $query = parent::query();
+      // // Add in book parent child relationships.
+      // $query->join('book', 'b', 'n.nid = b.nid');
+      // $query->addField('b', 'bid', 'book_id');
+      // $query->join('menu_links', 'ml', 'b.mlid = ml.mlid');
+      // $query->addField('ml', 'weight', 'book_weight');
+
+      // new, more inclusive
       $query = parent::query();
       // Add in book parent child relationships.
-      $query->join('book', 'b', 'n.nid = b.nid');
+      $query->leftJoin('book', 'b', 'n.nid = b.nid');
       $query->addField('b', 'bid', 'book_id');
-      $query->join('menu_links', 'ml', 'b.mlid = ml.mlid');
+      $query->leftJoin('menu_links', 'ml', 'b.mlid = ml.mlid');
       $query->addField('ml', 'weight', 'book_weight');
 
+      // dpq($query);
       return $query;
-    }
-
-    /**
-     * Implementation of Migration::prepare().
-     */
-    public function prepare($node, $row) {
-      // This will replace any [img_assist] tags in the body with the media module's JSON reference
-      parent::rewriteImgAssistTags($node);
     }
 
      /**
@@ -282,8 +285,20 @@ class DownfallBookMigration extends DownfallNodeMigration {
      *   Nid of book in source database to lookup.
      */
     protected function lookupMigratedBook($source_book_nid) {
-      $dest_book_nid = parent::handleSourceMigration('DownfallD2DNodeBook', $source_book_nid);
+      // $dest_book_nid = parent::handleSourceMigration('DownfallD2DNodeBook', $source_book_nid);
+
+      // 182 is the main handbook from the old sitem if source id is empty, set to 182, else lookup
+      $dest_book_nid = $source_book_nid == '' ? '182' : parent::handleSourceMigration('DownfallD2DNodeBook', $source_book_nid);
+
       return $dest_book_nid;
+    }
+
+    /**
+     * Implementation of Migration::prepare().
+     */
+    public function prepare($node, $row) {
+      // This will replace any [img_assist] tags in the body with the media module's JSON reference
+      parent::rewriteImgAssistTags($node);
     }
 }
 
@@ -483,4 +498,30 @@ class DownfallImageMigration extends DownfallNodeMigration {
     $row->image_lookup_placeholder = $d6_file->fid;
 
   }
+}
+
+/**
+ * Common mappings for the Drupal 6 comments
+ */
+class DownfallCommentMigration extends DrupalComment6Migration {
+  public function __construct(array $arguments) {
+    parent::__construct($arguments);
+
+  }
+
+  // public function query() {
+  //   $query = parent::query();
+  //   $query->range(0,50);
+  //   return $query;
+  // }
+
+  /**
+   * Implementation of Migration::prepare().
+   */
+  public function prepare($row) {
+    dpm($row);
+    // This will replace any [img_assist] tags in the body with the media module's JSON reference
+    // parent::rewriteImgAssistTags($node);
+  }
+
 }

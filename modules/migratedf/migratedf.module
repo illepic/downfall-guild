@@ -34,6 +34,11 @@ function migratedf_register_migrations(){
   // ),
     );
 
+  $comment_arguments = $common_arguments + array(
+    'user_migration' => 'DownfallD2DUser',
+    'default_uid' => 1,
+  );
+
   /**
    * DownfallD2DMigration - ROLES
    */
@@ -185,6 +190,21 @@ function migratedf_register_migrations(){
   // other fields - see "Extending migrate_d2d classes" below.
   Migration::registerMigration('DownfallBookMigration',
     $book_node_arguments['machine_name'], $book_node_arguments);
+
+  /**
+   * DownfallD2DMigration - Comments / Book
+   */
+
+  $book_comment_arguments = $comment_arguments + array(
+    'machine_name' => 'DownfallD2DCommentBook',
+    'description' => t('Import book comments'),
+    'source_type' => 'book',
+    'destination_type' => 'book',
+    'node_migration' => 'DownfallD2DNodeBook',
+  );
+
+  Migration::registerMigration('DownfallCommentMigration',
+    $book_comment_arguments['machine_name'], $book_comment_arguments);
 
   /**
    * DownfallD2DMigration - NODES / Blog
