@@ -13,11 +13,6 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
     //      ->description('We have a common field to save the D6 nid');
   }
 
-  // used to clean up all our content that contains old img_assist tags
-  public function imgClean($content){
-    dpm('just testing parent methods: ' . $content);
-  }
-
   /**
    * Call this from the prepare() method of a migration that contains media
    * image files, if you want to rewrite the IMG tags into media references.
@@ -79,7 +74,7 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
       if ($fid) {
         $image_info = array(
           'type' => 'media',
-          'view_mode' => 'media_large',
+          'view_mode' => 'media_preview',
           'fid' => $fid,
           'attributes' => array(
             'alt' => '',
@@ -476,8 +471,6 @@ class DownfallImageMigration extends DownfallNodeMigration {
       // ->fetchAllKeyed();
 
     // dpm($row);
-    // 1989 distinct nid in d6 image table
-    // 1861 if looking for just _original and distinct
 
     if ($row->nid == 7737){
       dpm($d6_file);
