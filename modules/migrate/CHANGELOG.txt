@@ -1,3 +1,19 @@
+Next release
+============
+
+Features and enhancements
+- #1792894 - Remove empty field values, permitting proper defaulting.
+- #1894344 - Support warn_on_override for bulk unmigrated methods.
+- #1886404 - Allow subfields to be mapped before primary fields.
+
+Bug fixes
+- #1676652 - Make MigrateFileFid respect preserve_files.
+- #1885362 - Make access callback explicit, to avoid conflict with admin_views.
+- #1880512 - Strip tags from descriptions on drush migrate-mappings.
+- #1872446 - Properly handle updates on role migration.
+- #1871764 - Pass zero values through handleSourceMigration.
+- #1839534 - Handle missing chunk separator in MigrateItemFile.
+- #1854382 - Prevent duplicate terms due to leading/trailing spaces.
 
 Migrate 2.5
 ===========

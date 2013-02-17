@@ -149,6 +149,12 @@ class MigrateDestinationTerm extends MigrateDestinationEntity {
         $term->tid = $row->migrate_map_destid1;
       }
     }
+
+    // Default to bundle if no vocabulary machine name provided
+    if (!isset($term->vocabulary_machine_name)) {
+      $term->vocabulary_machine_name = $this->bundle;
+    }
+
     if ($migration->getSystemOfRecord() == Migration::DESTINATION) {
       if (!isset($term->tid)) {
         throw new MigrateException(t('System-of-record is DESTINATION, but no destination tid provided'));
@@ -166,10 +172,6 @@ class MigrateDestinationTerm extends MigrateDestinationEntity {
       $term = $old_term;
     }
     else {
-      // Default to bundle if no vocabulary machine name provided
-      if (!isset($term->vocabulary_machine_name)) {
-        $term->vocabulary_machine_name = $this->bundle;
-      }
       // vid is required
       if (empty($term->vid)) {
         static $vocab_map = array();

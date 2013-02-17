@@ -402,6 +402,7 @@ class MigrateTaxonomyTermReferenceFieldHandler extends MigrateFieldHandler {
         $values = array_map('strtolower', $values);
       }
       foreach ($values as $value) {
+        $value = trim($value);
         if (isset($existing_terms[$value])) {
           $tids[] = $existing_terms[$value];
         }

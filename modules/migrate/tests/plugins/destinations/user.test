@@ -46,6 +46,14 @@ class MigrateUserUnitTest extends DrupalWebTestCase {
       $roles[$row->name] = $row->rid;
     }
     $this->assertEqual(count($roles), 2, t('Both roles imported'));
+
+    // Make sure update does not fail (regression test of
+    // http://drupal.org/node/1872446)
+    $migration->prepareUpdate();
+    $migration->processImport();
+    $num_messages = $migration->getMap()->messageCount();
+    $this->assertEqual($num_messages, 0, t('No messages generated'));
+
     $migration = Migration::getInstance('WineUser');
     $result = $migration->processImport();
     $this->assertEqual($result, Migration::RESULT_COMPLETED,

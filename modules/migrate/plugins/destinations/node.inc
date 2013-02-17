@@ -177,7 +177,8 @@ class MigrateDestinationNode extends MigrateDestinationEntity {
         $node->uid = $old_node->uid;
       }
     }
-    elseif (!isset($node->type)) {
+
+    if (!isset($node->type)) {
       // Default the type to our designated destination bundle (by doing this
       // conditionally, we permit some flexibility in terms of implementing
       // migrations which can affect more than one type).

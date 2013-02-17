@@ -32,6 +32,7 @@ function migrate_ui_menu() {
     'description' => 'Monitor the creation of Drupal content from source data',
     'page callback' => 'migrate_ui_dashboard',
     'access arguments' => array(MIGRATE_ACCESS_BASIC),
+    'access callback' => 'user_access',
     'file' => 'migrate_ui.pages.inc',
   );
   $items['admin/content/migrate/dashboard'] = array(

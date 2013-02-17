@@ -438,14 +438,20 @@ function drush_migrate_mappings($args = NULL) {
         $dest_descriptions = array();
         if (method_exists($destination, 'fields')) {
           foreach ($destination->fields($migration) as $machine_name => $description) {
-            $dest_descriptions[$machine_name] = $description;
+            if (is_array($description)) {
+              $description = reset($description);
+            }
+            $dest_descriptions[$machine_name] = strip_tags($description);
           }
         }
         $source = $migration->getSource();
         $src_descriptions = array();
         if (method_exists($source, 'fields')) {
           foreach ($source->fields() as $machine_name => $description) {
-            $src_descriptions[$machine_name] = $description;
+            if (is_array($description)) {
+              $description = reset($description);
+            }
+            $src_descriptions[$machine_name] = strip_tags($description);
           }
         }
       }

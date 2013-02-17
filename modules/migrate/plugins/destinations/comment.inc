@@ -149,6 +149,10 @@ class MigrateDestinationComment extends MigrateDestinationEntity {
       $comment->changed = MigrationBase::timestamp($comment->changed);
     }
 
+    if (!isset($comment->node_type)) {
+      $comment->node_type = $this->bundle;
+    }
+
     if ($migration->getSystemOfRecord() == Migration::DESTINATION) {
       if (!isset($comment->cid)) {
         throw new MigrateException(t('System-of-record is DESTINATION, but no destination cid provided'));

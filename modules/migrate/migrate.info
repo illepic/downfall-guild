@@ -46,9 +46,9 @@ files[] = tests/plugins/destinations/term.test
 files[] = tests/plugins/destinations/user.test
 files[] = tests/plugins/sources/xml.test
 
-; Information added by drupal.org packaging script on 2012-11-07
-version = "7.x-2.5"
+; Information added by drupal.org packaging script on 2013-01-22
+version = "7.x-2.5+32-dev"
 core = "7.x"
 project = "migrate"
-datestamp = "1352299007"
+datestamp = "1358817310"
 

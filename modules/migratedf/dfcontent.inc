@@ -35,7 +35,7 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
         return;
       }
       // Pass full img tags into the callback
-      $new_body = preg_replace_callback('|\[img_assist[^\]]*\]|i', array(self, 'replaceCallback'),
+      $new_body = preg_replace_callback('|\[img_assist[^\]]*\]|i', "self::replaceCallback",
         $body);
       $entity->{$field}[$language][0]['value'] = $new_body;
       migrate_instrument_stop('MigrateDestinationMedia rewriteImgTags');
@@ -52,14 +52,14 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
     $src_matches = array();
     // Default to the original <img> tag
     $result = $matches[0];
-    dpm($matches);
+    // the embed code
+    $image_info = '';
     // Extract the src parameter
     if (preg_match('|\|nid=(\d+)\||i', $matches[0], $src_matches)) {
 
       // my work
       $src = $src_matches[1];
-      $dest_image_nid = Migration::handleSourceMigration('DownfallD2DNodeDfImage', $src);
-      dpm('Destination nid is: ' . $dest_image_nid);
+      $dest_image_nid = parent::handleSourceMigration('DownfallD2DNodeDfImage', $src);
       // end my work
 
       // Replace the scheme and host portions of the referenced URI with the
@@ -70,7 +70,6 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
              ->condition('id', basename($dest_image_nid))
              ->execute()
              ->fetchField();
-      dpm('file id of the image used in image node is: ' . $fid);
       if ($fid) {
         $image_info = array(
           'type' => 'media',
@@ -88,16 +87,15 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
         // preg_match('|width=[\'"]([^\'"]+)[\'"]|i', $matches[0], $width);
         // preg_match('|height=[\'"]([^\'"]+)[\'"]|i', $matches[0], $height);
         // image width
-        if ($width) {
-          $image_info['attributes']['width'] = $width[1];
-        }
-        // image height
-        if ($height) {
-          $image_info['attributes']['height'] = $height[1];
-        }
+        // if ($width) {
+        //   $image_info['attributes']['width'] = $width[1];
+        // }
+        // // image height
+        // if ($height) {
+        //   $image_info['attributes']['height'] = $height[1];
+        // }
 
         $result = '[[' . drupal_json_encode($image_info) . ']]';
-        dpm($result);
       }
     }
     return $result;
@@ -139,6 +137,14 @@ class DownfallDateNodeMigration extends DownfallNodeMigration {
     // with a lookup, but this is super clean.
     $row->field_startdate = drupal_json_encode($date_data);
   }
+
+  /**
+   * Implementation of Migration::prepare().
+   */
+  public function prepare($node, $row) {
+    // This will replace any [img_assist] tags in the body with the media module's JSON reference
+    parent::rewriteImgAssistTags($node);
+  }
 }
 
 /**
@@ -166,8 +172,6 @@ class DownfallOldEventNodeMigration extends DownfallNodeMigration {
       return FALSE;
     }
 
-    // dpm($row);
-
     $d6_date_row = Database::getConnection('downfall_d6_pristine', $this->sourceConnection)
       ->select('event', e)
       ->fields('e', array('event_start', 'event_end'))
@@ -184,10 +188,18 @@ class DownfallOldEventNodeMigration extends DownfallNodeMigration {
 
     $row->placeholder_date = drupal_json_encode($date_data);
   }
+
+  /**
+   * Implementation of Migration::prepare().
+   */
+  public function prepare($node, $row) {
+    // This will replace any [img_assist] tags in the body with the media module's JSON reference
+    parent::rewriteImgAssistTags($node);
+  }
 }
 
 /**
- * Blogs
+ * Blogs / generic nodes (story, page, blog)
  *
  * For any node that really only has this taxonomy field
  */
@@ -207,8 +219,7 @@ class DownfallGenericWowTermNodeMigration extends DownfallNodeMigration {
    * Implementation of Migration::prepare().
    */
   public function prepare($node, $row) {
-    // // This will replace any [img_assist] tags in the body with the media module's
-    // // JSON references.
+    // This will replace any [img_assist] tags in the body with the media module's JSON reference
     parent::rewriteImgAssistTags($node);
   }
 }
@@ -226,7 +237,6 @@ class DownfallBookMigration extends DownfallNodeMigration {
      * book hierarchy stuff.
      */
     public function query() {
-      // dpm('did this query get called?');
 
       $query = parent::query();
       // Add in book parent child relationships.
@@ -236,6 +246,14 @@ class DownfallBookMigration extends DownfallNodeMigration {
       $query->addField('ml', 'weight', 'book_weight');
 
       return $query;
+    }
+
+    /**
+     * Implementation of Migration::prepare().
+     */
+    public function prepare($node, $row) {
+      // This will replace any [img_assist] tags in the body with the media module's JSON reference
+      parent::rewriteImgAssistTags($node);
     }
 
      /**
@@ -264,9 +282,7 @@ class DownfallBookMigration extends DownfallNodeMigration {
      *   Nid of book in source database to lookup.
      */
     protected function lookupMigratedBook($source_book_nid) {
-      // dpm('in lookupMigratedBook');
       $dest_book_nid = parent::handleSourceMigration('DownfallD2DNodeBook', $source_book_nid);
-      dpm('destination book is ' . $dest_book_nid);
       return $dest_book_nid;
     }
 }
@@ -284,6 +300,14 @@ class DownfallForumMigration extends DownfallNodeMigration {
     $this->addFieldMapping('taxonomy_forums', '3')
          ->sourceMigration('DownfallD2DTermForums')
          ->arguments(array('source_type' => 'tid'));
+  }
+
+  /**
+   * Implementation of Migration::prepare().
+   */
+  public function prepare($node, $row) {
+    // This will replace any [img_assist] tags in the body with the media module's JSON reference
+    parent::rewriteImgAssistTags($node);
   }
 }
 
@@ -344,17 +368,6 @@ class DownfallGuildAppsMigration extends DownfallNodeMigration {
     $this->addFieldMapping('field_app_cause_leave', 'field_leaving');
     $this->addFieldMapping('field_app_timezone', 'field_timezone');
     $this->addFieldMapping('field_app_anything_else', 'field_additional');
-    // ui
-    // $this->addFieldMapping('field_app_ui', 'field_ui_ss_2')
-    //   ->sourceMigration('DownfallD2DFiles');
-    // $this->addFieldMapping('field_app_ui:file_class')
-    //          ->defaultValue('MigrateFileFid');
-    // $this->addFieldMapping('field_app_ui:preserve_files')
-    //          ->defaultValue(TRUE);
-    // $this->addFieldMapping('field_app_ui:title', 'image_title_placeholder')
-    //          ->defaultValue(t('Guild application UI screenshot'));
-    // $this->addFieldMapping('field_app_ui:language')
-    //          ->defaultValue(LANGUAGE_NONE);
     // ui -> media field
     $this->addFieldMapping('field_app_ui_media', 'field_ui_ss_2')
       ->sourceMigration('DownfallD2DFiles');
@@ -403,8 +416,6 @@ class DownfallGuildAppsMigration extends DownfallNodeMigration {
     if (parent::prepareRow($row) === FALSE) {
       return FALSE;
     }
-
-    // dpm($row);
 
     // $d6_date_row = Database::getConnection('downfall_d6_pristine', $this->sourceConnection)
     //   ->select('event', e)
@@ -468,13 +479,6 @@ class DownfallImageMigration extends DownfallNodeMigration {
       ->condition('image_size', '_original')
       ->execute()
       ->fetchObject();
-      // ->fetchAllKeyed();
-
-    // dpm($row);
-
-    if ($row->nid == 7737){
-      dpm($d6_file);
-    }
 
     $row->image_lookup_placeholder = $d6_file->fid;
 

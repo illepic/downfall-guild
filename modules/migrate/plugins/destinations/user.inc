@@ -324,9 +324,9 @@ class MigrateDestinationRole extends MigrateDestinationTable {
           throw new MigrateException(t("Incoming id !id and map destination id !destid don't match",
             array('!id' => $entity->rid, '!destid' => $row->migrate_map_destid1)));
         }
-        else {
-          $entity->rid = $row->migrate_map_destid1;
-        }
+      }
+      else {
+        $entity->rid = $row->migrate_map_destid1;
       }
     }
 
