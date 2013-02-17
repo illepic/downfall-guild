@@ -103,6 +103,7 @@ function migratedf_register_migrations(){
     'description' => t('Import Drupal 6 forums terms into forums terms'),
     'source_vocabulary' => '3',  // "forums category" vocabulary
     'destination_vocabulary' => 'forums',
+    'dependencies' => array('DownfallImageMigration'),
   );
   Migration::registerMigration('DrupalTerm6Migration',
     $forums_term_arguments['machine_name'], $forums_term_arguments);
@@ -137,27 +138,27 @@ function migratedf_register_migrations(){
    * DownfallD2DMigration - Menus
    */
 
-  $menu_arguments = $common_arguments + array(
-    'machine_name' => 'DownfallD2DMenus',
-    'description' => t('Import Drupal 6 menus'),
-  );
-  Migration::registerMigration('DrupalMenu6Migration',
-    $menu_arguments['machine_name'], $menu_arguments);
+  // $menu_arguments = $common_arguments + array(
+  //   'machine_name' => 'DownfallD2DMenus',
+  //   'description' => t('Import Drupal 6 menus'),
+  // );
+  // Migration::registerMigration('DrupalMenu6Migration',
+  //   $menu_arguments['machine_name'], $menu_arguments);
 
   /**
    * DownfallD2DMigration - Menu Links
    */
 
-  $menu_link_arguments = $common_arguments + array(
-    'machine_name' => 'DownfallD2DMenuLinks',
-    'description' => t('Import Drupal 6 menu links'),
-    'menu_migration' => 'DownfallD2DMenus',
-    'node_migrations' => array('DownfallD2DNodeBook'),
-    // 'term_migrations' => array('ExamplePhotoTerm', 'ExampleVideoTerm'),
-  );
+  // $menu_link_arguments = $common_arguments + array(
+  //   'machine_name' => 'DownfallD2DMenuLinks',
+  //   'description' => t('Import Drupal 6 menu links'),
+  //   'menu_migration' => 'DownfallD2DMenus',
+  //   'node_migrations' => array('DownfallD2DNodeBook'),
+  //   // 'term_migrations' => array('ExamplePhotoTerm', 'ExampleVideoTerm'),
+  // );
 
-  Migration::registerMigration('DrupalMenuLinks6Migration',
-    $menu_link_arguments['machine_name'], $menu_link_arguments);
+  // Migration::registerMigration('DrupalMenuLinks6Migration',
+  //   $menu_link_arguments['machine_name'], $menu_link_arguments);
 
   /**
    * DownfallD2DMigration - NODES
@@ -178,7 +179,7 @@ function migratedf_register_migrations(){
     'description' => t('Import Drupal 6 book nodes'),
     'source_type' => 'book',
     'destination_type' => 'book',
-    'dependencies' => array('DownfallD2DTermWoW'),
+    'dependencies' => array('DownfallD2DTermWoW', 'DownfallD2DNodeDfImage'),
   );
   // Note we use a custom class here so we can map the term references and
   // other fields - see "Extending migrate_d2d classes" below.
@@ -194,7 +195,7 @@ function migratedf_register_migrations(){
     'description' => t('Import Drupal 6 blog nodes'),
     'source_type' => 'blog',
     'destination_type' => 'blog',
-    'dependencies' => array('DownfallD2DTermWoW'),
+    'dependencies' => array('DownfallD2DTermWoW', 'DownfallD2DNodeDfImage'),
   );
   // Note we use a custom class here so we can map the term references and
   // other fields - see "Extending migrate_d2d classes" below.
@@ -210,7 +211,7 @@ function migratedf_register_migrations(){
     'description' => t('Import Drupal 6 forum nodes'),
     'source_type' => 'forum',
     'destination_type' => 'forum',
-    'dependencies' => array('DownfallD2DTermForums'),
+    'dependencies' => array('DownfallD2DTermForums', 'DownfallD2DNodeDfImage'),
   );
   // Note we use a custom class here so we can map the term references and
   // other fields - see "Extending migrate_d2d classes" below.
@@ -226,7 +227,7 @@ function migratedf_register_migrations(){
     'description' => t('Import Drupal 6 page nodes'),
     'source_type' => 'page',
     'destination_type' => 'article',
-    'dependencies' => array('DownfallD2DTermWoW'),
+    'dependencies' => array('DownfallD2DTermWoW', 'DownfallD2DNodeDfImage'),
   );
   // Note we use a custom class here so we can map the term references and
   // other fields - see "Extending migrate_d2d classes" below.
@@ -242,7 +243,7 @@ function migratedf_register_migrations(){
     'description' => t('Import Drupal 6 story nodes'),
     'source_type' => 'story',
     'destination_type' => 'article',
-    'dependencies' => array('DownfallD2DTermWoW'),
+    'dependencies' => array('DownfallD2DTermWoW', 'DownfallD2DNodeDfImage'),
   );
   // Note we use a custom class here so we can map the term references and
   // other fields - see "Extending migrate_d2d classes" below.
@@ -304,7 +305,7 @@ function migratedf_register_migrations(){
     'description' => t('Import Drupal 6 Images module nodes'),
     'source_type' => 'image',
     'destination_type' => 'df_image',
-    'dependencies' => array('DownfallD2DFiles'),
+    'dependencies' => array('DownfallD2DFiles', 'DownfallD2DTermGallery'),
   );
   // Note we use a custom class here so we can map the term references and
   // other fields - see "Extending migrate_d2d classes" below.
