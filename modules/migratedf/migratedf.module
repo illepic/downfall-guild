@@ -127,7 +127,7 @@ function migratedf_register_migrations(){
   $gallery_term_arguments = $common_arguments + array(
     'machine_name' => 'DownfallD2DTermGallery',
     'description' => t('Import Drupal 6 gallery terms into gallery terms'),
-    'source_vocabulary' => '8',  // "forums category" vocabulary
+    'source_vocabulary' => '8',  // "gallery category" vocabulary
     'destination_vocabulary' => 'gallery',
   );
   Migration::registerMigration('DrupalTerm6Migration',

@@ -371,6 +371,249 @@ function downfall_migrate_feature_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-df_image-body'.
+  $fields['node-df_image-body'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(
+        0 => 'node',
+      ),
+      'field_name' => 'body',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(),
+      'translatable' => '1',
+      'type' => 'text_with_summary',
+    ),
+    'field_instance' => array(
+      'bundle' => 'df_image',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '0',
+        ),
+        'teaser' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'trim_length' => 600,
+          ),
+          'type' => 'text_summary_or_trimmed',
+          'weight' => '0',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'body',
+      'label' => 'Caption',
+      'required' => 0,
+      'settings' => array(
+        'display_summary' => 1,
+        'text_processing' => '1',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '5',
+          'summary_rows' => 5,
+        ),
+        'type' => 'text_textarea_with_summary',
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-df_image-field_df_image'.
+  $fields['node-df_image-field_df_image'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_df_image',
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'file',
+      'settings' => array(
+        'display_default' => 0,
+        'display_field' => 0,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'file',
+    ),
+    'field_instance' => array(
+      'bundle' => 'df_image',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'file_entity',
+          'settings' => array(
+            'file_view_mode' => 'default',
+          ),
+          'type' => 'file_rendered',
+          'weight' => '1',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'file_entity',
+          'settings' => array(
+            'file_view_mode' => 'teaser',
+          ),
+          'type' => 'file_rendered',
+          'weight' => '1',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_df_image',
+      'label' => 'Image',
+      'required' => 0,
+      'settings' => array(
+        'description_field' => 0,
+        'file_directory' => 'images',
+        'file_extensions' => 'png jpg jpeg tif gif',
+        'max_filesize' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'media',
+        'settings' => array(
+          'allowed_schemes' => array(
+            'public' => 'public',
+          ),
+          'allowed_types' => array(
+            'audio' => 0,
+            'document' => 0,
+            'image' => 'image',
+            'video' => 0,
+          ),
+          'browser_plugins' => array(
+            'media_default--media_browser_1' => 'media_default--media_browser_1',
+            'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
+            'media_internet' => 'media_internet',
+            'upload' => 'upload',
+          ),
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'media_generic',
+        'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-df_image-field_gallery'.
+  $fields['node-df_image-field_gallery'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_gallery',
+      'foreign keys' => array(
+        'tid' => array(
+          'columns' => array(
+            'tid' => 'tid',
+          ),
+          'table' => 'taxonomy_term_data',
+        ),
+      ),
+      'indexes' => array(
+        'tid' => array(
+          0 => 'tid',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'taxonomy',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => array(
+            'vocabulary' => 'gallery',
+            'parent' => '0',
+          ),
+        ),
+      ),
+      'translatable' => '0',
+      'type' => 'taxonomy_term_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'df_image',
+      'default_value' => array(
+        0 => array(
+          'tid' => '2152',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => 2,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => '2',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_gallery',
+      'label' => 'Gallery',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '4',
+      ),
+    ),
+  );
+
   // Exported field: 'node-event-body'.
   $fields['node-event-body'] = array(
     'field_config' => array(
@@ -1815,7 +2058,7 @@ function downfall_migrate_feature_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_app_instances_experience',
-      'label' => 'Tell us a little about how your class contributes to a raid',
+      'label' => 'List the instances you have experience in, and the farthest you have been in that instance.',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -2864,6 +3107,7 @@ function downfall_migrate_feature_field_default_fields() {
   t('Are you interested in PvP?:');
   t('Attach a pic of your UI');
   t('Body');
+  t('Caption');
   t('Character Name');
   t('Class');
   t('Current server');
@@ -2872,14 +3116,17 @@ function downfall_migrate_feature_field_default_fields() {
   t('Downfall is made up of "older" people. If you have a curfew or "bedtime", we won\'t be a good fit.');
   t('Even if it\'s only LFR, let us know!');
   t('Forums');
+  t('Gallery');
   t('How do you feel you will contribute to the downfall community?');
   t('How long do you intend to stay in Downfall?');
   t('How long have you been on the above server?');
   t('How long have you been playing on your old server?');
   t('How old are you?');
   t('If you are applying to raid, which nights can you raid?');
+  t('Image');
   t('Leave your app Open if you wish it to be viewable by Downfall.  Close it and it will disappear.');
   t('Level');
+  t('List the instances you have experience in, and the farthest you have been in that instance.');
   t('Open/Closed');
   t('Please include a link to this build from WowHead (http://wowhead.com/talent).  Please also include your major glyphs. What are the strengths of this build? Do you change talents and glyphs depending on the fight?');
   t('Please link a World of Logs report or screenshots of damage/healing meters to demonstrate your performance in a raid setting, if possible.');

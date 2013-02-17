@@ -329,13 +329,18 @@ class DownfallImageMigration extends DownfallNodeMigration {
     $this->addFieldMapping('field_df_image', 'image_lookup_placeholder')
       ->sourceMigration('DownfallD2DFiles');
     $this->addFieldMapping('field_df_image:file_class')
-             ->defaultValue('MigrateFileFid');
+      ->defaultValue('MigrateFileFid');
     $this->addFieldMapping('field_df_image:preserve_files')
-             ->defaultValue(TRUE);
+      ->defaultValue(TRUE);
     $this->addFieldMapping('field_df_image:title', 'image_title_placeholder')
-             ->defaultValue(t('Downfall image'));
+      ->defaultValue(t('Downfall image'));
     $this->addFieldMapping('field_app_ui:language')
-             ->defaultValue(LANGUAGE_NONE);
+      ->defaultValue(LANGUAGE_NONE);
+
+   // Note that we map migrated terms by the vocabulary ID.
+   $this->addFieldMapping('field_gallery', '8')
+      ->sourceMigration('DownfallD2DTermGallery')
+      ->arguments(array('source_type' => 'tid'));
   }
 
   // just here to limit results while testing
@@ -359,7 +364,7 @@ class DownfallImageMigration extends DownfallNodeMigration {
       ->fetchObject();
 
     // dpm($row);
-    dpm($d6_file);
+    // dpm($d6_file);
 
     // do a lookup on the d6 image table for the _original file
     $row->image_lookup_placeholder = $d6_file->fid;

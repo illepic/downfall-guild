@@ -19,6 +19,14 @@ function downfall_migrate_feature_ctools_plugin_api() {
  */
 function downfall_migrate_feature_node_info() {
   $items = array(
+    'df_image' => array(
+      'name' => t('Image'),
+      'base' => 'node_content',
+      'description' => t('Pictures, screenshots, etc.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
     'event' => array(
       'name' => t('event'),
       'base' => 'node_content',
