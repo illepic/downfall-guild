@@ -7,6 +7,9 @@
  * @TODO: Rename this file?
  */
 
+define('MEDIA_TOKEN_REGEX', '/\[\[.*?\]\]/s');
+define('MEDIA_TOKEN_REGEX_ALT', '/%7B.*?%7D/s');
+
 /**
  * Implements hook_wysiwyg_include_directory().
  */
@@ -14,114 +17,207 @@ function media_wysiwyg_include_directory($type) {
   switch ($type) {
     case 'plugins':
       return 'wysiwyg_plugins';
-        break;
+
+    break;
+  }
+}
+
+/**
+ * Implements hook_field_attach_insert().
+ *
+ * Track file usage for media files included in formatted text. Note that this
+ * is heavy-handed, and should be replaced when Drupal's filter system is
+ * context-aware.
+ */
+function media_field_attach_insert($entity_type, $entity) {
+  _media_filter_add_file_usage_from_fields($entity_type, $entity);
+}
+
+/**
+ * Implements hook_field_attach_update().
+ *
+ * @see media_field_attach_insert().
+ */
+function media_field_attach_update($entity_type, $entity) {
+  _media_filter_add_file_usage_from_fields($entity_type, $entity);
+}
+
+/**
+ * Add file usage from file references in an entity's text fields.
+ */
+function _media_filter_add_file_usage_from_fields($entity_type, $entity) {
+  // Track the total usage for files from all fields combined.
+  $entity_files = media_entity_field_count_files($entity_type, $entity);
+
+  list($entity_id, $entity_vid, $entity_bundle) = entity_extract_ids($entity_type, $entity);
+
+  // When an entity has revisions and then is saved again NOT as new version the
+  // previous revision of the entity has be loaded to get the last known good
+  // count of files. The saved data is compared against the last version
+  // so that a correct file count can be created for that (the current) version
+  // id. This code may assume some things about entities that are only true for
+  // node objects. This should be reviewed.
+  // @TODO this conditional can probably be condensed
+  if (empty($entity->revision) && empty($entity->old_vid) && empty($entity->is_new) && ! empty($entity->original)) {
+    $old_files = media_entity_field_count_files($entity_type, $entity->original);
+    foreach ($old_files as $fid => $old_file_count) {
+      // Were there more files on the node just prior to saving?
+      if (empty($entity_files[$fid])) {
+        $entity_files[$fid] = 0;
+      }
+      if ($old_file_count > $entity_files[$fid]) {
+        $deprecate = $old_file_count - $entity_files[$fid];
+        // Now deprecate this usage
+        $file = file_load($fid);
+        file_usage_delete($file, 'media', $entity_type, $entity_id, $deprecate);
+        // Usage is deleted, nothing more to do with this file
+        unset($entity_files[$fid]);
+      }
+      // There are the same number of files, nothing to do
+      elseif ($entity_files[$fid] ==  $old_file_count) {
+        unset($entity_files[$fid]);
+      }
+      // There are more files now, adjust the difference for the greater number.
+      // file_usage incrementing will happen below.
+      else {
+        // We just need to adjust what the file count will account for the new
+        // images that have been added since the increment process below will
+        // just add these additional ones in
+        $entity_files[$fid] = $entity_files[$fid] - $old_file_count;
+      }
     }
+  }
+
+  // Each entity revision counts for file usage. If versions are not enabled
+  // the file_usage table will have no entries for this because of the delete
+  // query above.
+  foreach ($entity_files as $fid => $entity_count) {
+    $file = file_load($fid);
+    file_usage_add($file, 'media', $entity_type, $entity_id, $entity_count);
+  }
+
+}
+
+/**
+ * Parse file references from an entity's text fields and return them as an array.
+ */
+function media_filter_parse_from_fields($entity_type, $entity) {
+  $file_references = array();
+
+  foreach (_media_filter_fields_with_text_filtering($entity_type, $entity) as $field_name) {
+    if ($field_items = field_get_items($entity_type, $entity, $field_name)) {
+      foreach ($field_items as $field_item) {
+        preg_match_all(MEDIA_TOKEN_REGEX, $field_item['value'], $matches);
+        foreach ($matches[0] as $tag) {
+          $tag = str_replace(array('[[', ']]'), '', $tag);
+          $tag_info = drupal_json_decode($tag);
+          if (isset($tag_info['fid']) && $tag_info['type'] == 'media') {
+            $file_references[] = $tag_info;
+          }
+        }
+
+        preg_match_all(MEDIA_TOKEN_REGEX_ALT, $field_item['value'], $matches_alt);
+        foreach ($matches_alt[0] as $tag) {
+          $tag = urldecode($tag);
+          $tag_info = drupal_json_decode($tag);
+          if (isset($tag_info['fid']) && $tag_info['type'] == 'media') {
+            $file_references[] = $tag_info;
+          }
+        }
+      }
+    }
+  }
+
+  return $file_references;
+}
+
+/**
+ * Returns an array containing the names of all fields that perform text filtering.
+ */
+function _media_filter_fields_with_text_filtering($entity_type, $entity) {
+  list($entity_id, $revision_id, $bundle) = entity_extract_ids($entity_type, $entity);
+  $fields = field_info_instances($entity_type, $bundle);
+
+  // Get all of the fields on this entity that allow text filtering.
+  $fields_with_text_filtering = array();
+  foreach ($fields as $field_name => $field) {
+    if (!empty($field['settings']['text_processing'])) {
+      $fields_with_text_filtering[] = $field_name;
+    }
+  }
+
+  return $fields_with_text_filtering;
+}
+
+/**
+ * Utility function to get the file count in this entity
+ *
+ * @param type $entity
+ * @param type $entity_type
+ * @return int
+ */
+function media_entity_field_count_files($entity_type, $entity) {
+  $entity_files = array();
+  foreach (media_filter_parse_from_fields($entity_type, $entity) as $file_reference) {
+    if (empty($entity_files[$file_reference['fid']])) {
+      $entity_files[$file_reference['fid']] = 1;
+    }
+    else {
+      $entity_files[$file_reference['fid']]++;
+    }
+  }
+  return $entity_files;
+}
+
+/**
+ * Implements hook_entity_delete().
+ */
+function media_entity_delete($entity, $type) {
+  list($entity_id) = entity_extract_ids($type, $entity);
+
+  db_delete('file_usage')
+    ->condition('module', 'media')
+    ->condition('type', $type)
+    ->condition('id', $entity_id)
+    ->execute();
+}
+
+/**
+ * Implements hook_field_attach_delete_revision().
+ *
+ * @param type $entity_type
+ * @param type $entity
+ */
+function media_field_attach_delete_revision($entity_type, $entity) {
+  list($entity_id) = entity_extract_ids($entity_type, $entity);
+  $files = media_entity_field_count_files($entity_type, $entity);
+  foreach ($files as $fid => $count) {
+    if ($file = file_load($fid)) {
+      file_usage_delete($file, 'media', $entity_type , $entity_id, $count);
+    }
+  }
 }
 
 /**
  * Filter callback for media markup filter.
  *
  * @TODO check for security probably pass text through filter_xss
- * @return unknown_type
  */
 function media_filter($text) {
-  $text = ' ' . $text . ' ';
-  $text = preg_replace_callback("/\[\[.*?\]\]/s", 'media_token_to_markup', $text);
-
+  $text = preg_replace_callback(MEDIA_TOKEN_REGEX, 'media_token_to_markup', $text);
   return $text;
 }
 
 /**
- * Filter callback for media url filter.
- * @TODO: There are currently problems with this. For instance, if a file is
- * to be loaded from a remote location here, it will be recreated multiple
- * times, each time this filter is called. If we want to continue supporting
- * this feature, we would need to probably create a new stream or other way
- * to lookup a remote file w/ its local version. Probably best as a contributed
- * module because of this difficulty. ~ aaron.
+ * Parses the contents of a CSS declaration block.
  *
- * @deprecated
- */
-function media_url_filter($text, $filter) {
-  $text = ' ' . $text . ' ';
-
-  // Need to attach the variables to the callback after the regex.
-  $callback = _media_url_curry('_media_url_parse_full_links', 1);
-
-  // Match absolute URLs.
-  $text = preg_replace_callback("`(<p>|<li>|<br\s*/?>|[ \n\r\t\(])((http://|https://)([a-zA-Z0-9@:%_+*~#?&=.,/;-]*[a-zA-Z0-9@:%_+*~#&=/;-]))([.,?!]*?)(?=(</p>|</li>|<br\s*/?>|[ \n\r\t\)]))`i", $callback, $text);
-
-  return $text;
-}
-
-/**
- * If one of our allowed providers knows what to do with the url,
- * then let it embed the video.
- *
- * @param int $filter
- *  The filter id.
- * @param array $match
- *  The matched text from our regex.
- *
- * @return string
- *  The replacement text for the url.
- *
- * @deprecated
- */
-function _media_url_parse_full_links($match) {
-  // Get just the URL.
-  $match[2] = check_url(decode_entities($match[2]));
-  try {
-    $file = media_parse_to_file($match[2]);
-  }
-  catch (Exception $e) {
-    // Ignore errors; pass the original text for other filters to deal with.
-    return $match[0];
-  }
-
-  if ($file->fid) {
-    $file = file_load($file->fid);
-
-    // Generate a preview of the file
-    // @TODO: Allow user to change the formatter in the filter settings.
-    $preview = file_view_file($file, 'media_large');
-    $preview['#show_names'] = TRUE;
-
-    return drupal_render($preview);
-  }
-
-  // Nothing was parsed; return the original text.
-  return $match[0];
-}
-
-/**
- * @deprecated
- */
-function _media_url_curry($func, $arity) {
-  return create_function('', "
-    \$args = func_get_args();
-    if(count(\$args) >= $arity)
-        return call_user_func_array('$func', \$args);
-    \$args = var_export(\$args, 1);
-    return create_function('','
-        \$a = func_get_args();
-        \$z = ' . \$args . ';
-        \$a = array_merge(\$z,\$a);
-        return call_user_func_array(\'$func\', \$a);
-    ');
-  ");
-}
-
-/**
- * Parses the contents of a CSS declaration block and returns a keyed array of property names and values.
- *
- * @param $declarations
+ * @param string $declarations
  *   One or more CSS declarations delimited by a semicolon. The same as a CSS
  *   declaration block (see http://www.w3.org/TR/CSS21/syndata.html#rule-sets),
  *   but without the opening and closing curly braces. Also the same as the
  *   value of an inline HTML style attribute.
  *
- * @return
+ * @return array
  *   A keyed array. The keys are CSS property names, and the values are CSS
  *   property values.
  */
@@ -141,9 +237,10 @@ function media_parse_css_declarations($declarations) {
  *
  * @param string $match
  *   Takes a match of tag code
- * @param boolean $wysiwyg
+ * @param bool $wysiwyg
  *   Set to TRUE if called from within the WYSIWYG text area editor.
- * @return
+ *
+ * @return string
  *   The HTML markup representation of the tag, or an empty string on failure.
  *
  * @see media_get_file_without_label()
@@ -165,10 +262,31 @@ function media_token_to_markup($match, $wysiwyg = FALSE) {
     if (!isset($tag_info['fid'])) {
       throw new Exception('No file Id');
     }
+
+    // Ensure a valid view mode is being requested.
     if (!isset($tag_info['view_mode'])) {
-      // Should we log or throw an exception here instead?
-      // Do we need to validate the view mode for fields API?
       $tag_info['view_mode'] = media_variable_get('wysiwyg_default_view_mode');
+    }
+    elseif ($tag_info['view_mode'] != 'default') {
+      $file_entity_info = entity_get_info('file');
+      if (!in_array($tag_info['view_mode'], array_keys($file_entity_info['view modes']))) {
+        // Media 1.x defined some old view modes that have been superseded by
+        // more semantically named ones in File Entity. The media_update_7203()
+        // function updates field settings that reference the old view modes,
+        // but it's impractical to update all text content, so adjust
+        // accordingly here.
+        static $view_mode_updates = array(
+          'media_preview' => 'preview',
+          'media_small' => 'teaser',
+          'media_large' => 'full',
+        );
+        if (isset($view_mode_updates[$tag_info['view_mode']])) {
+          $tag_info['view_mode'] = $view_mode_updates[$tag_info['view_mode']];
+        }
+        else {
+          throw new Exception('Invalid view mode');
+        }
+      }
     }
 
     $file = file_load($tag_info['fid']);
@@ -177,6 +295,12 @@ function media_token_to_markup($match, $wysiwyg = FALSE) {
     }
     $tag_info['file'] = $file;
 
+    // The class attributes is a string, but drupal requires it to be
+    // an array, so we fix it here.
+    if (!empty($tag_info['attributes']['class'])) {
+      $tag_info['attributes']['class'] = explode(" ", $tag_info['attributes']['class']);
+    }
+
     // Track the fid of this file in the {media_filter_usage} table.
     media_filter_track_usage($file->fid);
 
@@ -184,27 +308,28 @@ function media_token_to_markup($match, $wysiwyg = FALSE) {
     $attribute_whitelist = media_variable_get('wysiwyg_allowed_attributes');
     $settings['attributes'] = array_intersect_key($attributes, array_flip($attribute_whitelist));
 
-    // Many media formatters will want to apply width and height independently
-    // of the style attribute or the corresponding HTML attributes, so pull
-    // these two out into top-level settings. Different WYSIWYG editors have
-    // different behavior with respect to whether they store user-specified
-    // dimensions in the HTML attributes or the style attribute, so check both.
-    // Per http://www.w3.org/TR/html5/the-map-element.html#attr-dim-width, the
-    // HTML attributes are merely hints: CSS takes precedence.
-    if (isset($settings['attributes']['style'])) {
-      $css_properties = media_parse_css_declarations($settings['attributes']['style']);
-      foreach (array('width', 'height') as $dimension) {
-        if (isset($css_properties[$dimension]) && substr($css_properties[$dimension], -2) == 'px') {
-          $settings[$dimension] = substr($css_properties[$dimension], 0, -2);
-        }
-        elseif (isset($settings['attributes'][$dimension])) {
-          $settings[$dimension] = $settings['attributes'][$dimension];
+    if (!empty($tag_info['attributes']) && is_array($tag_info['attributes'])) {
+      $attribute_whitelist = media_variable_get('wysiwyg_allowed_attributes');
+      $settings['attributes'] = array_intersect_key($tag_info['attributes'], array_flip($attribute_whitelist));
+
+      // Many media formatters will want to apply width and height independently
+      // of the style attribute or the corresponding HTML attributes, so pull
+      // these two out into top-level settings. Different WYSIWYG editors have
+      // different behavior with respect to whether they store user-specified
+      // dimensions in the HTML attributes or the style attribute - check both.
+      // Per http://www.w3.org/TR/html5/the-map-element.html#attr-dim-width, the
+      // HTML attributes are merely hints: CSS takes precedence.
+      if (isset($settings['attributes']['style'])) {
+        $css_properties = media_parse_css_declarations($settings['attributes']['style']);
+        foreach (array('width', 'height') as $dimension) {
+          if (isset($css_properties[$dimension]) && substr($css_properties[$dimension], -2) == 'px') {
+            $settings[$dimension] = substr($css_properties[$dimension], 0, -2);
+          }
+          elseif (isset($settings['attributes'][$dimension])) {
+            $settings[$dimension] = $settings['attributes'][$dimension];
+          }
         }
       }
-    }
-
-    if ($wysiwyg) {
-      $settings['wysiwyg'] = $wysiwyg;
     }
   }
   catch (Exception $e) {
@@ -212,17 +337,61 @@ function media_token_to_markup($match, $wysiwyg = FALSE) {
     return '';
   }
 
-  $element = media_get_file_without_label($file, $tag_info['view_mode'], $settings);
+  if ($wysiwyg) {
+    $settings['wysiwyg'] = $wysiwyg;
+    // If sending markup to a WYSIWYG, we need to pass the file infomation so
+    // that a inline macro can be generated when the WYSIWYG is detached.
+    // The WYSIWYG plugin is expecting this information in the format of a
+    // urlencoded JSON string stored in the data-file_info attribute of the
+    // element.
+    $element = media_get_file_without_label($file, $tag_info['view_mode'], $settings);
+    $data = drupal_json_encode(array(
+      'type' => 'media',
+      'fid' => $file->fid,
+      'view_mode' => $tag_info['view_mode'],
+    ));
+    $element['#attributes']['data-file_info'] = urlencode($data);
+    $element['#attributes']['class'][] = 'media-element';
+  }
+  else {
+    // Display the field elements.
+    $element = array();
+    $element['content']['file'] = media_get_file_without_label($file, $tag_info['view_mode'], $settings);
+    // Overwrite or set the file #alt attribute if it has been set in this
+    // instance.
+    if (!empty($element['content']['file']['#attributes']['alt'])) {
+      $element['content']['file']['#alt'] = $element['content']['file']['#attributes']['alt'];
+    }
+    // Overwrite or set the file #title attribute if it has been set in this
+    // instance.
+    if (!empty($element['content']['file']['#attributes']['title'])) {
+      $element['content']['file']['#title'] = $element['content']['file']['#attributes']['title'];
+    }
+    field_attach_prepare_view('file', array($file->fid => $file), $tag_info['view_mode']);
+    entity_prepare_view('file', array($file->fid => $file));
+    $element['content'] += field_attach_view('file', $file, $tag_info['view_mode']);
+    if (count(element_children($element['content'])) > 1) {
+      // Add surrounding divs to group them together.
+      // We dont want divs when there are no additional fields to allow files
+      // to display inline with text, without breaking p tags.
+      $element['content']['#type'] = 'container';
+      $element['content']['#attributes']['class'] = array(
+        'media',
+        'media-element-container',
+        'media-' . $element['content']['file']['#view_mode']
+      );
+    }
+  }
   drupal_alter('media_token_to_markup', $element, $tag_info, $settings);
   return drupal_render($element);
 }
 
 /**
- * Builds a map of media tags in the element being rendered to their rendered HTML.
+ * Builds a map of media tags in the element.
  *
- * The map is stored in JS, so we can transform them when the editor is being displayed.
- *
- * @param array $element
+ * Builds a map of the media tags in an element that are being rendered to their
+ * rendered HTML. The map is stored in JS, so we can transform them when the
+ * editor is being displayed.
  */
 function media_pre_render_text_format($element) {
   // filter_process_format() copies properties to the expanded 'value' child
@@ -245,12 +414,16 @@ function media_pre_render_text_format($element) {
 }
 
 /**
+ * Creates map of inline media tags.
+ *
  * Generates an array of [inline tags] => <html> to be used in filter
  * replacement and to add the mapping to JS.
- * @param
- * The String containing text and html markup of textarea
- * @return
- * An associative array with tag code as key and html markup as the value.
+ *
+ * @param string $text
+ *   The String containing text and html markup of textarea
+ *
+ * @return array
+ *   An associative array with tag code as key and html markup as the value.
  *
  * @see media_process_form()
  * @see media_token_to_markup()
@@ -343,7 +516,8 @@ function media_format_form($form, $form_state, $file) {
   $view_modes = media_get_wysiwyg_allowed_view_modes($file);
   $formats = $options = array();
   foreach ($view_modes as $view_mode => $view_mode_info) {
-    //@TODO: Display more verbose information about which formatter and what it does.
+    // @TODO: Display more verbose information about which formatter and what it
+    // does.
     $options[$view_mode] = $view_mode_info['label'];
     $element = media_get_file_without_label($file, $view_mode, array('wysiwyg' => TRUE));
 
@@ -373,7 +547,6 @@ function media_format_form($form, $form_state, $file) {
   $form['#attached']['library'][] = array('media', 'media_base');
   $form['#attached']['library'][] = array('system', 'form');
   $form['#attached']['js'][] = drupal_get_path('module', 'media') . '/js/media.format_form.js';
-  $form['#attached']['css'][] = drupal_get_path('module', 'media') . '/css/media-format-form.css';
 
   $form['heading'] = array(
     '#type' => 'markup',
@@ -390,7 +563,7 @@ function media_format_form($form, $form_state, $file) {
     '#markup' => drupal_render($preview),
   );
 
-  // These will get passed on to WYSIWYG
+  // These will get passed on to WYSIWYG.
   $form['options'] = array(
     '#type' => 'fieldset',
     '#title' => t('options'),
@@ -400,14 +573,30 @@ function media_format_form($form, $form_state, $file) {
     '#type' => 'select',
     '#title' => t('Current format is'),
     '#options' => $options,
-    '#default_value' => $default_view_mode
+    '#default_value' => $default_view_mode,
   );
 
-  // Similar to a form_alter, but we want this to run first so that media.types.inc
-  // can add the fields specific to a given type (like alt tags on media).
-  // If implemented as an alter, this might not happen, making other alters not
-  // be able to work on those fields.
-  // @TODO: We need to pass in existing values for those attributes.
+  if ($file->type === 'image') {
+    $form['options']['alt'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Alternate text'),
+      '#description' => t('This text will be used by screen readers, search engines, or when the image cannot be loaded.'),
+      '#default_value' => isset($file->field_file_image_alt_text['und'][0]['safe_value']) ? $file->field_file_image_alt_text['und'][0]['safe_value'] : '',
+    );
+
+    $form['options']['title'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Title'),
+      '#description' => t('The title is used as a tool tip when the user hovers the mouse over the image.'),
+      '#default_value' => isset($file->field_file_image_title_text['und'][0]['safe_value']) ? $file->field_file_image_title_text['und'][0]['safe_value'] : '',
+    );
+  }
+
+  // Similar to a form_alter, but we want this to run first so that
+  // media.types.inc can add the fields specific to a given type (like alt tags
+  // on media). If implemented as an alter, this might not happen, making other
+  // alters not be able to work on those fields.
+  // @todo: We need to pass in existing values for those attributes.
   drupal_alter('media_format_form_prepare', $form, $form_state, $file);
 
   if (!element_children($form['options'])) {
@@ -424,12 +613,6 @@ function media_format_form($form, $form_state, $file) {
  */
 function media_get_file_without_label($file, $view_mode, $settings = array()) {
   $file->override = $settings;
-
-  // Legacy support for Styles module plugins that expect overridden HTML
-  // attributes in $file->override rather than $file->override['attributes'].
-  if (isset($settings['attributes'])) {
-    $file->override += $settings['attributes'];
-  }
 
   $element = file_view_file($file, $view_mode);
 
@@ -478,7 +661,7 @@ function media_get_file_without_label($file, $view_mode, $settings = array()) {
  *    carefully to avoid scalability issues with large result sets, and may
  *    not be worth the effort.
  *
- * @param $fid
+ * @param int $fid
  *   Optional media fid being updated. If not given, the cache will be cleared
  *   as long as any file is referenced.
  */
@@ -497,13 +680,13 @@ function media_filter_invalidate_caches($fid = FALSE) {
  * Determines if the {media_filter_usage} table has any entries.
  */
 function media_filter_usage_has_records() {
-  return  (bool) db_query_range('SELECT 1 FROM {media_filter_usage} WHERE fid > :fid', 0, 1, array(':fid' => 0))->fetchField();
+  return (bool) db_query_range('SELECT 1 FROM {media_filter_usage} WHERE fid > :fid', 0, 1, array(':fid' => 0))->fetchField();
 }
 
 /**
  * Tracks usage of media fids by the media filter.
  *
- * @param $fid
+ * @param int $fid
  *   The media fid.
  */
 function media_filter_track_usage($fid) {
