@@ -1,7 +1,0 @@
-name = "Migrate UI"
-description = "UI for managing migration processes"
-package = "Development"
-;configure = admin/config/development/migrate
-core = 7.x
-dependencies[] = migrate
-files[] = migrate_ui.module
