@@ -32,6 +32,7 @@ class DrupalFile7Migration extends DrupalFileMigration {
     $this->addFieldMapping('destination_file', 'uri')
       ->callbacks(array($this, 'fixUri'));
     $this->addFieldMapping('timestamp', 'timestamp');
+    $this->addFieldMapping('type', 'type');
 
     $this->addUnmigratedSources(array('status'));
   }
@@ -79,6 +80,8 @@ class DrupalPicture7Migration extends DrupalFile7Migration {
   public function __construct(array $arguments) {
     parent::__construct($arguments);
     // Clear references to normal file source fields
+    dpm('yes we ar ein DrupalPicture7Migration');
+
     $this->removeFieldMapping(NULL, 'filename');
     $this->removeFieldMapping(NULL, 'filemime');
     $this->removeFieldMapping(NULL, 'filesize');

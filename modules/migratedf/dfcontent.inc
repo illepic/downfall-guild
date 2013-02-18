@@ -250,14 +250,6 @@ class DownfallBookMigration extends DownfallNodeMigration {
      */
     public function query() {
 
-      // original
-      // $query = parent::query();
-      // // Add in book parent child relationships.
-      // $query->join('book', 'b', 'n.nid = b.nid');
-      // $query->addField('b', 'bid', 'book_id');
-      // $query->join('menu_links', 'ml', 'b.mlid = ml.mlid');
-      // $query->addField('ml', 'weight', 'book_weight');
-
       // new, more inclusive
       $query = parent::query();
       // Add in book parent child relationships.
@@ -265,6 +257,9 @@ class DownfallBookMigration extends DownfallNodeMigration {
       $query->addField('b', 'bid', 'book_id');
       $query->leftJoin('menu_links', 'ml', 'b.mlid = ml.mlid');
       $query->addField('ml', 'weight', 'book_weight');
+      $query->addField('ml', 'mlid', 'mlid');
+      $query->addField('ml', 'plid', 'plid');
+      $query->orderBy('mlid');
 
       // dpq($query);
       return $query;
@@ -285,6 +280,8 @@ class DownfallBookMigration extends DownfallNodeMigration {
       $node->book['bid'] = $book_id;
       $node->book['nid'] = $node->nid;
       $node->book['weight'] = $row->book_weight == '' ? 0 : $row->book_weight;
+      // find new parent for *most* book pages
+      $node->book['plid'] = $this->findNewPlid($row->plid);
       _book_update_outline($node);
       node_save($node);
     }
@@ -296,12 +293,40 @@ class DownfallBookMigration extends DownfallNodeMigration {
      *   Nid of book in source database to lookup.
      */
     protected function lookupMigratedBook($source_book_nid) {
-      // $dest_book_nid = parent::handleSourceMigration('DownfallD2DNodeBook', $source_book_nid);
 
       // 182 is the main handbook from the old sitem if source id is empty, set to 182, else lookup
       $dest_book_nid = $source_book_nid == '' ? '182' : parent::handleSourceMigration('DownfallD2DNodeBook', $source_book_nid);
 
       return $dest_book_nid;
+    }
+
+    /**
+     * Returns the new parent mlid for a book node
+     *
+     * @param int $oldplid
+     *   The parent id of the original d6 book node
+     */
+    protected function findNewPlid($oldplid){
+
+      // we have the old plid, find corresponding nid
+      $oldnid = Database::getConnection('downfall_d6_pristine', $this->sourceConnection)
+        ->select('book', 'b')
+        ->fields('b', array('nid'))
+        ->condition('mlid', $oldplid)
+        ->execute()
+        ->fetchObject();
+
+      if ($oldnid){
+        // looukup new nid from old nid
+        $newnid = parent::handleSourceMigration('DownfallD2DNodeBook', $oldnid->nid);
+        // load the node to get at book data
+        $parentnode = node_load($newnid);
+        // if the node was created, it's part of a book menu hierarchy now
+        $newplid = $parentnode->book['mlid'];
+      } else{
+        $newplid = 0;
+      }
+      return $newplid;
     }
 
 }
@@ -525,7 +550,30 @@ class DownfallCommentMigration extends DrupalComment6Migration {
   public function prepare($row) {
     dpm($row);
     // This will replace any [img_assist] tags in the body with the media module's JSON reference
-    // parent::rewriteImgAssistTags($node);
+    parent::rewriteImgAssistTags($node);
   }
 
+}
+
+/**
+ * A new files migration that handles media filetypes better
+ */
+class DownfallFile6Migraton extends DrupalFile6Migration{
+  public function __construct(array $arguments) {
+    parent::__construct($arguments);
+
+    dpm('yes, in DrupalFile6Migration');
+    $this->addFieldMapping('type', 'placeholder_temp')
+      ->defaultValue('image');
+  }
+}
+
+/**
+ * A new picture migration that handles the whole media-filetypes issue better
+ */
+class DownfallPicture6Migration extends DownfallFile6Migraton{
+  public function __construct(array $arguments) {
+    parent::__construct($arguments);
+
+  }
 }

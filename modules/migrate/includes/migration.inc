@@ -1231,22 +1231,22 @@ abstract class Migration extends MigrationBase {
       }
       // If no destination ID was found, give each source migration a chance to
       // create a stub.
-      // if (!$destids) {
-      //   foreach ($source_migrations as $source_migration) {
-      //     // Is this a self reference?
-      //     if ($source_migration->machineName == $this->machineName) {
-      //       if (!array_diff($source_key, $this->currentSourceKey())) {
-      //         $destids = array();
-      //         $this->needsUpdate = MigrateMap::STATUS_NEEDS_UPDATE;
-      //         break;
-      //       }
-      //     }
-      //     // Break out of the loop if a stub was successfully created.
-      //     if ($destids = $source_migration->createStubWrapper($source_key, $migration)) {
-      //       break;
-      //     }
-      //   }
-      // }
+      if (!$destids) {
+        foreach ($source_migrations as $source_migration) {
+          // Is this a self reference?
+          if ($source_migration->machineName == $this->machineName) {
+            if (!array_diff($source_key, $this->currentSourceKey())) {
+              $destids = array();
+              $this->needsUpdate = MigrateMap::STATUS_NEEDS_UPDATE;
+              break;
+            }
+          }
+          // Break out of the loop if a stub was successfully created.
+          if ($destids = $source_migration->createStubWrapper($source_key, $migration)) {
+            break;
+          }
+        }
+      }
       if ($destids) {
         // Assume that if the destination key is a single value, it
         // should be passed as such

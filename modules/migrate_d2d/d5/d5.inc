@@ -252,6 +252,7 @@ class DrupalVersion5 extends DrupalVersion {
           // The main column for the field should be rendered with
           // the field name, not the column name (e.g., field_foo rather
           // than field_foo_value).
+          $field_found = FALSE;
           foreach ($this->sourceFieldInfo as $field_name => $info) {
             if (isset($info['columns']) && !$info['multiple'] && $info['db_storage']) {
               $i = 0;
@@ -262,12 +263,15 @@ class DrupalVersion5 extends DrupalVersion {
                 else {
                   $query->addField('f', $column_name, $display_name);
                 }
+                $field_found = TRUE;
               }
             }
           }
-          $data_row = $query->execute()->fetchObject();
-          foreach ($data_row as $name => $value) {
-            $row->$name = $value;
+          if ($field_found) {
+            $data_row = $query->execute()->fetchObject();
+            foreach ($data_row as $name => $value) {
+              $row->$name = $value;
+            }
           }
         }
       }

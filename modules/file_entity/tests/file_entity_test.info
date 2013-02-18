@@ -4,10 +4,3 @@ package = Testing
 core = 7.x
 dependencies[] = file_entity
 hidden = TRUE
-
-; Information added by drupal.org packaging script on 2012-11-18
-version = "7.x-2.0-unstable7"
-core = "7.x"
-project = "file_entity"
-datestamp = "1353226911"
-

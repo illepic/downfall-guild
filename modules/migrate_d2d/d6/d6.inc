@@ -219,6 +219,7 @@ class DrupalVersion6 extends DrupalVersion {
             // the field name, not the column name (e.g., field_foo rather
             // than field_foo_value).
             $fix_field_names = array();
+            $field_found = FALSE;
             foreach ($this->sourceFieldInfo as $field_name => $info) {
               if (isset($info['columns']) && !$info['multiple'] && $info['db_storage']) {
                 $i = 0;
@@ -234,16 +235,19 @@ class DrupalVersion6 extends DrupalVersion {
                     $fix_field_names[$clean_name] = $display_name;
                     $query->addField('f', $column_name);
                   }
+                  $field_found = TRUE;
                 }
               }
             }
-            $data_row = $query->execute()->fetchObject();
-            if (is_object($data_row)) {
-              foreach ($data_row as $name => $value) {
-                if (isset($fix_field_names[$name])) {
-                  $name = $fix_field_names[$name];
+            if ($field_found) {
+              $data_row = $query->execute()->fetchObject();
+              if (is_object($data_row)) {
+                foreach ($data_row as $name => $value) {
+                  if (isset($fix_field_names[$name])) {
+                    $name = $fix_field_names[$name];
+                  }
+                  $row->$name = $value;
                 }
-                $row->$name = $value;
               }
             }
           }

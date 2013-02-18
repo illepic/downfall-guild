@@ -1,0 +1,12 @@
+diff --git a/d7/file.inc b/d7/file.inc
+index 1e4f448..277c53e 100644
+--- a/d7/file.inc
++++ b/d7/file.inc
+@@ -32,6 +32,7 @@ class DrupalFile7Migration extends DrupalFileMigration {
+     $this->addFieldMapping('destination_file', 'uri')
+       ->callbacks(array($this, 'fixUri'));
+     $this->addFieldMapping('timestamp', 'timestamp');
++    $this->addFieldMapping('type', 'type');
+ 
+     $this->addUnmigratedSources(array('status'));
+   }

@@ -79,7 +79,7 @@ function migratedf_register_migrations(){
     'destination_dir' => 'public://',
     // 'dependencies' => array('DownfallD2DFiles'),
   );
-  Migration::registerMigration('DrupalPicture6Migration',
+  Migration::registerMigration('DownfallPicture6Migration',
     $picture_arguments['machine_name'], $picture_arguments);
 
   /**
