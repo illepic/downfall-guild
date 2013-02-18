@@ -62,6 +62,14 @@ function downfall_migrate_feature_node_info() {
 
 <p><strong>IMPORTANT: If you don\'t check on your application at least once every couple of days, and post a response to the discussion on your application, it will be declined and closed in a very short period of time.</strong> We are looking for ACTIVE players who know how to use the tools provided them. If you demonstrate little activity on your app, it will be closed quickly.</p>'),
     ),
+    'raid' => array(
+      'name' => t('Raid Group'),
+      'base' => 'node_content',
+      'description' => t('Create a raid that gets its own section on the site. Members can subscribe to it and you, as the creator of the raid, can automatically or manually add members to it. Forum posts, images, events, videos, boss kills, news, etc can all be posted to this raid.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
   );
   return $items;
 }

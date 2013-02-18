@@ -462,6 +462,23 @@ function migratedf_register_migrations(){
   Migration::registerMigration('DownfallCommentMigration',
     $dfimage_comment_arguments['machine_name'], $dfimage_comment_arguments);
 
+
+
+  /**
+   * DownfallD2DMigration - NODES / Raid
+   */
+
+  $raid_node_arguments = $node_arguments + array(
+    'machine_name' => 'DownfallD2DNodeRaid',
+    'description' => t('Import Drupal 6 og nodes'),
+    'source_type' => 'raid',
+    'destination_type' => 'raid',
+    'dependencies' => array('DownfallD2DUser'),
+  );
+  // Note we use a custom class here so we can map the term references and
+  // other fields - see "Extending migrate_d2d classes" below.
+  Migration::registerMigration('DownfallRaidMigration',
+    $raid_node_arguments['machine_name'], $raid_node_arguments);
 }
 
 /*

@@ -3179,9 +3179,676 @@ function downfall_migrate_feature_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-raid-body'.
+  $fields['node-raid-body'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(
+        0 => 'node',
+      ),
+      'field_name' => 'body',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(),
+      'translatable' => '1',
+      'type' => 'text_with_summary',
+    ),
+    'field_instance' => array(
+      'bundle' => 'raid',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'A quick description of this raid gorup.',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '1',
+        ),
+        'teaser' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'trim_length' => 600,
+          ),
+          'type' => 'text_summary_or_trimmed',
+          'weight' => 1,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'body',
+      'label' => 'Description',
+      'required' => 0,
+      'settings' => array(
+        'display_summary' => 1,
+        'text_processing' => '1',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '20',
+          'summary_rows' => 5,
+        ),
+        'type' => 'text_textarea_with_summary',
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-raid-field_raid_days'.
+  $fields['node-raid-field_raid_days'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_raid_days',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'Mon' => 'Mon',
+          'Tue' => 'Tue',
+          'Wed' => 'Wed',
+          'Thu' => 'Thu',
+          'Fri' => 'Fri',
+          'Sat' => 'Sat',
+          'Sun' => 'Sun',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'raid',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'What days does this raid run consistently?',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '4',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_raid_days',
+      'label' => 'Raid Days',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => '4',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-raid-field_raid_end_time'.
+  $fields['node-raid-field_raid_end_time'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_raid_end_time',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          '0100' => '0100',
+          '0130' => '0130',
+          '0200' => '0200',
+          '0230' => '0230',
+          '0300' => '0300',
+          '0330' => '0330',
+          '0400' => '0400',
+          '0430' => '0430',
+          '0500' => '0500',
+          '0530' => '0530',
+          '0600' => '0600',
+          '0630' => '0630',
+          '0700' => '0700',
+          '0730' => '0730',
+          '0800' => '0800',
+          '0830' => '0830',
+          '0900' => '0900',
+          '0930' => '0930',
+          1000 => '1000',
+          1030 => '1030',
+          1100 => '1100',
+          1130 => '1130',
+          1200 => '1200',
+          1230 => '1230',
+          1300 => '1300',
+          1330 => '1330',
+          1400 => '1400',
+          1430 => '1430',
+          1500 => '1500',
+          1530 => '1530',
+          1600 => '1600',
+          1630 => '1630',
+          1700 => '1700',
+          1730 => '1730',
+          1800 => '1800',
+          1830 => '1830',
+          1900 => '1900',
+          1930 => '1930',
+          2000 => '2000',
+          2030 => '2030',
+          2100 => '2100',
+          2200 => '2200',
+          2230 => '2230',
+          2300 => '2300',
+          2330 => '2330',
+          2400 => '2400',
+          2430 => '2430',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'raid',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '6',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_raid_end_time',
+      'label' => 'Raid End Time',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '6',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-raid-field_raid_mascot_image'.
+  $fields['node-raid-field_raid_mascot_image'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_raid_mascot_image',
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'file',
+      'settings' => array(
+        'display_default' => 0,
+        'display_field' => 0,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'file',
+    ),
+    'field_instance' => array(
+      'bundle' => 'raid',
+      'deleted' => '0',
+      'description' => 'All raids need a mascot. You know what to do.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'file_entity',
+          'settings' => array(
+            'file_view_mode' => 'default',
+          ),
+          'type' => 'file_rendered',
+          'weight' => '2',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_raid_mascot_image',
+      'label' => 'Mascot Image',
+      'required' => 0,
+      'settings' => array(
+        'description_field' => 0,
+        'file_directory' => 'images',
+        'file_extensions' => 'jpg png gif jpeg',
+        'max_filesize' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'media',
+        'settings' => array(
+          'allowed_schemes' => array(
+            'public' => 'public',
+          ),
+          'allowed_types' => array(
+            'audio' => 0,
+            'document' => 0,
+            'image' => 'image',
+            'video' => 0,
+          ),
+          'browser_plugins' => array(
+            'media_default--media_browser_1' => 0,
+            'media_default--media_browser_my_files' => 0,
+            'media_internet' => 'media_internet',
+            'upload' => 'upload',
+          ),
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'media_generic',
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-raid-field_raid_size'.
+  $fields['node-raid-field_raid_size'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_raid_size',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          '10-man' => '10-man',
+          '15-man' => '15-man',
+          '25-man' => '25-man',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'raid',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '3',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_raid_size',
+      'label' => 'Raid Size',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-raid-field_raid_start_time'.
+  $fields['node-raid-field_raid_start_time'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_raid_start_time',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          '0100' => '0100',
+          '0130' => '0130',
+          '0200' => '0200',
+          '0230' => '0230',
+          '0300' => '0300',
+          '0330' => '0330',
+          '0400' => '0400',
+          '0430' => '0430',
+          '0500' => '0500',
+          '0530' => '0530',
+          '0600' => '0600',
+          '0630' => '0630',
+          '0700' => '0700',
+          '0730' => '0730',
+          '0800' => '0800',
+          '0830' => '0830',
+          '0900' => '0900',
+          '0930' => '0930',
+          1000 => '1000',
+          1030 => '1030',
+          1100 => '1100',
+          1130 => '1130',
+          1200 => '1200',
+          1230 => '1230',
+          1300 => '1300',
+          1330 => '1330',
+          1400 => '1400',
+          1430 => '1430',
+          1500 => '1500',
+          1530 => '1530',
+          1600 => '1600',
+          1630 => '1630',
+          1700 => '1700',
+          1730 => '1730',
+          1800 => '1800',
+          1830 => '1830',
+          1900 => '1900',
+          1930 => '1930',
+          2000 => '2000',
+          2030 => '2030',
+          2100 => '2100',
+          2200 => '2200',
+          2230 => '2230',
+          2300 => '2300',
+          2330 => '2330',
+          2400 => '2400',
+          2430 => '2430',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'raid',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '5',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_raid_start_time',
+      'label' => 'Raid Start Time',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '5',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-raid-field_raid_status'.
+  $fields['node-raid-field_raid_status'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_raid_status',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => 'Not Active',
+          1 => 'Active',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'raid',
+      'default_value' => array(
+        0 => array(
+          'value' => 1,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'Is this raid active anymore?',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '7',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_raid_status',
+      'label' => 'Raid Status',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 0,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '7',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-raid-group_group'.
+  $fields['node-raid-group_group'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'group_group',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => 'Not a group',
+          1 => 'Group',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'raid',
+      'default_value' => array(
+        0 => array(
+          'value' => 1,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'Determine if this is an OG group.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'og_ui',
+          'settings' => array(
+            'field_name' => FALSE,
+          ),
+          'type' => 'og_group_subscribe',
+          'weight' => '0',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'display_label' => 1,
+      'entity_type' => 'node',
+      'field_name' => 'group_group',
+      'label' => 'Group',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'view modes' => array(
+        'full' => array(
+          'custom settings' => FALSE,
+          'label' => 'Full',
+          'type' => 'og_group_subscribe',
+        ),
+        'teaser' => array(
+          'custom settings' => FALSE,
+          'label' => 'Teaser',
+          'type' => 'og_group_subscribe',
+        ),
+      ),
+      'widget' => array(
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 0,
+          'og_hide' => TRUE,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '0',
+      ),
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('/played will tell you.');
+  t('A quick description of this raid gorup.');
+  t('All raids need a mascot. You know what to do.');
   t('Any other significant hobbies?');
   t('Anything else you would like to add?');
   t('Are you in school or working?');
@@ -3192,11 +3859,14 @@ function downfall_migrate_feature_field_default_fields() {
   t('Class');
   t('Current server');
   t('Date');
+  t('Description');
+  t('Determine if this is an OG group.');
   t('Do you have any references in Downfall?');
   t('Downfall is made up of "older" people. If you have a curfew or "bedtime", we won\'t be a good fit.');
   t('Even if it\'s only LFR, let us know!');
   t('Forums');
   t('Gallery');
+  t('Group');
   t('How do you feel you will contribute to the downfall community?');
   t('How long do you intend to stay in Downfall?');
   t('How long have you been on the above server?');
@@ -3204,14 +3874,21 @@ function downfall_migrate_feature_field_default_fields() {
   t('How old are you?');
   t('If you are applying to raid, which nights can you raid?');
   t('Image');
+  t('Is this raid active anymore?');
   t('Leave your app Open if you wish it to be viewable by Downfall.  Close it and it will disappear.');
   t('Level');
   t('List the instances you have experience in, and the farthest you have been in that instance.');
+  t('Mascot Image');
   t('Open/Closed');
   t('Please attach a screenshot of your UI.');
   t('Please include a link to this build from WowHead (http://wowhead.com/talent).  Please also include your major glyphs. What are the strengths of this build? Do you change talents and glyphs depending on the fight?');
   t('Please link a World of Logs report or screenshots of damage/healing meters to demonstrate your performance in a raid setting, if possible.');
   t('Race');
+  t('Raid Days');
+  t('Raid End Time');
+  t('Raid Size');
+  t('Raid Start Time');
+  t('Raid Status');
   t('Same as above, just the one you absolutely hate!');
   t('Select all nights that you are available to raid.');
   t('Tell us a little about how your class contributes to a raid');
@@ -3224,6 +3901,7 @@ function downfall_migrate_feature_field_default_fields() {
   t('UI');
   t('What WoW server are you currently playing on?  Downfall is located on the American Pacific Time Zone PvP server (GMT -8) Gorgonnash.');
   t('What country/state do you live in?');
+  t('What days does this raid run consistently?');
   t('What do you expect to get out of Downfall membership?');
   t('What is your favorite Raid Boss encounter, and why?');
   t('What is your least favorite Raid Boss encounter, and why?');

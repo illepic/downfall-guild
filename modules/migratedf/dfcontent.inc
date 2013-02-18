@@ -687,3 +687,48 @@ class DownfallCommentMigration extends DrupalComment6Migration {
   }
 
 }
+
+/**
+ * Guild apps
+ */
+
+class DownfallRaidMigration extends DownfallNodeMigration {
+
+  public function __construct(array $arguments) {
+
+    parent::__construct($arguments);
+
+    // ui -> media field
+    $this->addFieldMapping('field_raid_mascot_image', 'field_mascot')
+      ->sourceMigration('DownfallD2DFiles');
+    $this->addFieldMapping('field_raid_mascot_image:file_class')
+             ->defaultValue('MigrateFileFid');
+    $this->addFieldMapping('field_raid_mascot_image:preserve_files')
+             ->defaultValue(TRUE);
+    $this->addFieldMapping('field_raid_mascot_image:title', 'image_title_placeholder')
+             ->defaultValue(t('Raid mascot screenshot'));
+    $this->addFieldMapping('field_raid_mascot_image:language')
+             ->defaultValue(LANGUAGE_NONE);
+  }
+
+  // just here to limit results while testing
+  // public function query() {
+  //   $query = parent::query();
+  //   $query->range(0,50);
+  //   return $query;
+  // }
+
+  public function prepareRow($row){
+    if (parent::prepareRow($row) === FALSE) {
+      return FALSE;
+    }
+
+    // $d6_date_row = Database::getConnection('downfall_d6_pristine', $this->sourceConnection)
+    //   ->select('event', e)
+    //   ->fields('e', array('event_start', 'event_end'))
+    //   ->condition('nid', $row->nid)
+    //   ->execute()
+    //   ->fetchObject();
+
+  }
+}
