@@ -118,13 +118,6 @@ class DownfallDateNodeMigration extends DownfallNodeMigration {
       return FALSE;
     }
 
-    // leaving this around because it's a good dbcommenction example
-    // $d6_date_row = Database::getConnection('downfall_d6_pristine', $this->sourceConnection)
-    //   ->select('content_field_startdate', i)
-    //   ->fields('i', array('field_startdate_value2'))
-    //   ->condition('vid', $row->vid)
-    //   ->execute()
-    //   ->fetchObject();
 
     $date_data = array(
       'from' => (string)$row->field_startdate[0],
@@ -548,7 +541,6 @@ class DownfallCommentMigration extends DrupalComment6Migration {
    * Implementation of Migration::prepare().
    */
   public function prepare($row) {
-    dpm($row);
     // This will replace any [img_assist] tags in the body with the media module's JSON reference
     parent::rewriteImgAssistTags($node);
   }
@@ -562,18 +554,46 @@ class DownfallFile6Migraton extends DrupalFile6Migration{
   public function __construct(array $arguments) {
     parent::__construct($arguments);
 
-    dpm('yes, in DrupalFile6Migration');
-    $this->addFieldMapping('type', 'placeholder_temp')
-      ->defaultValue('image');
+    $this->addFieldMapping('type', 'filemime')
+      ->callbacks(array($this, 'fileTypes'));
+  }
+
+  // public function query() {
+  //   $query = parent::query();
+  //   $query->range(0,10);
+  //   return $query;
+  // }
+
+  // quick file types based on Media's defaults of image, video, audio, document
+  protected function fileTypes($mime){
+    $mimestring = explode("/", $mime);
+    switch($mimestring[0]){
+      case 'application':
+      case 'text':
+        $type = 'document';
+        break;
+      case 'video':
+        $type = 'video';
+        break;
+      case 'audio':
+        $type = 'audio';
+        break;
+      default:
+        $type = 'image';
+    }
+    return $type;
   }
 }
 
 /**
  * A new picture migration that handles the whole media-filetypes issue better
  */
-class DownfallPicture6Migration extends DownfallFile6Migraton{
+class DownfallPicture6Migration extends DrupalPicture6Migration{
   public function __construct(array $arguments) {
     parent::__construct($arguments);
 
+    // $this->addFieldMapping(NULL, 'filemime');
+    $this->addFieldMapping('type', 'type')
+      ->defaultValue('image');
   }
 }
