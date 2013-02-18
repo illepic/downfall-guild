@@ -446,6 +446,22 @@ function migratedf_register_migrations(){
   Migration::registerMigration('DownfallImageMigration',
     $dfimage_node_arguments['machine_name'], $dfimage_node_arguments);
 
+  /**
+   * DownfallD2DMigration - Comments / Images
+   */
+
+  $dfimage_comment_arguments = $comment_arguments + array(
+    'machine_name' => 'DownfallD2DCommentDfImage',
+    'description' => t('Import Drupal 6 images comments'),
+    'source_type' => 'image',
+    'destination_type' => 'df_image',
+    'node_migration' => 'DownfallD2DNodeDfImage',
+    'dependencies' => array('DownfallD2DNodeDfImage'),
+  );
+
+  Migration::registerMigration('DownfallCommentMigration',
+    $dfimage_comment_arguments['machine_name'], $dfimage_comment_arguments);
+
 }
 
 /*
