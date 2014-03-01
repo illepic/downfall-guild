@@ -118,8 +118,34 @@ So feel free to use any of these approaches. Or don't. It's totally up to you.
 // @import "scss/objects/comments";
 
 
-// @import ../foundation/scss/app";
+///
+/// START HERE WITH REVAMP
+///
 
-@import "settings";
-@import "foundation";
-body {background: green;}
+@import "scss/settings";
+@import "foundation"; // import wholesale for now
+
+///
+/// Global
+///
+
+@import "scss/global/variables";
+@import "scss/global/mixins";
+
+///
+/// Base
+///
+
+@import "scss/base/generic";
+
+///
+/// Layout
+///
+
+@import "scss/layout/layout";
+
+///
+/// Components
+///
+
+@import "scss/components/article"; // dummy test

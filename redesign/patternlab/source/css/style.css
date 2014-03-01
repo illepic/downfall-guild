@@ -7772,7 +7772,48 @@ th.hide-for-touch {
   display: table-cell !important;
 }
 
-/* line 125, style.scss */
-body {
-  background: green;
+/*------------------------------------*\
+    $VARIABLES
+\*------------------------------------*/
+/*------------------------------------*\
+    $MIXINS
+\*------------------------------------*/
+/* CSS Transition
+	Usage: @include transition(width,0.3s,ease-out);
+ */
+/* Rem Unit font sizes with relative fallback http:/seesparkbox.com/foundry/scss_rem_mixin_now_with_a_better_fallback  
+	Usage: @include font-size(1, large);
+*/
+/* line 3, scss/components/_article.scss */
+.article-header h1 {
+  font-size: 2.5em;
+}
+
+/* line 8, scss/components/_article.scss */
+.byline {
+  font-size: 0.875em;
+  font-style: italic;
+  margin-bottom: 0.5em;
+}
+
+/* line 15, scss/components/_article.scss */
+.social-share {
+  overflow: hidden;
+  margin-bottom: 1em;
+}
+/* line 19, scss/components/_article.scss */
+.social-share li {
+  float: left;
+  margin-right: 0.5em;
+}
+/* line 24, scss/components/_article.scss */
+.social-share a {
+  background: #333333;
+  color: white;
+  display: block;
+  padding: 0.5em;
+}
+/* line 30, scss/components/_article.scss */
+.social-share a:hover {
+  background: gray;
 }
