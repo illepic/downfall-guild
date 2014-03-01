@@ -65,7 +65,7 @@ So feel free to use any of these approaches. Or don't. It's totally up to you.
 //
 // /*------------------------------------*\
 //     $GLOBAL ELEMENTS
-// \*------------------------------------*/
+// // \*------------------------------------*/
 // @import "scss/base/global-classes";
 // @import "scss/base/main";
 // @import "scss/base/links";
@@ -76,7 +76,7 @@ So feel free to use any of these approaches. Or don't. It's totally up to you.
 // @import "scss/base/forms";
 // @import "scss/base/tables";
 // @import "scss/base/animation";
-//
+// //
 //
 //
 //
@@ -119,7 +119,11 @@ So feel free to use any of these approaches. Or don't. It's totally up to you.
 
 
 ///
-/// START HERE WITH REVAMP
+/// SMACSS
+///
+
+///
+/// Foundation
 ///
 
 @import "scss/settings";
