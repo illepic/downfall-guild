@@ -7773,9 +7773,6 @@ th.hide-for-touch {
 }
 
 /*------------------------------------*\
-    $VARIABLES
-\*------------------------------------*/
-/*------------------------------------*\
     $MIXINS
 \*------------------------------------*/
 /* CSS Transition
@@ -7784,36 +7781,164 @@ th.hide-for-touch {
 /* Rem Unit font sizes with relative fallback http:/seesparkbox.com/foundry/scss_rem_mixin_now_with_a_better_fallback  
 	Usage: @include font-size(1, large);
 */
-/* line 3, scss/components/_article.scss */
-.article-header h1 {
-  font-size: 2.5em;
+/* line 37, scss/base/_colors.scss */
+.body-bg {
+  background: white;
 }
 
-/* line 8, scss/components/_article.scss */
-.byline {
-  font-size: 0.875em;
-  font-style: italic;
-  margin-bottom: 0.5em;
+/* line 37, scss/base/_colors.scss */
+.body-font-color {
+  background: #222222;
 }
 
-/* line 15, scss/components/_article.scss */
-.social-share {
-  overflow: hidden;
-  margin-bottom: 1em;
+/* line 37, scss/base/_colors.scss */
+.primary-color {
+  background: #008cba;
 }
-/* line 19, scss/components/_article.scss */
-.social-share li {
-  float: left;
-  margin-right: 0.5em;
+
+/* line 37, scss/base/_colors.scss */
+.secondary-color {
+  background: #e7e7e7;
 }
-/* line 24, scss/components/_article.scss */
-.social-share a {
-  background: #333333;
-  color: white;
-  display: block;
-  padding: 0.5em;
+
+/* line 37, scss/base/_colors.scss */
+.alert-color {
+  background: #f04124;
 }
-/* line 30, scss/components/_article.scss */
-.social-share a:hover {
-  background: gray;
+
+/* line 37, scss/base/_colors.scss */
+.success-color {
+  background: #43ac6a;
+}
+
+/* line 37, scss/base/_colors.scss */
+.warning-color {
+  background: #f08a24;
+}
+
+/* line 37, scss/base/_colors.scss */
+.info-color {
+  background: #a0d3e8;
+}
+
+/* line 37, scss/base/_colors.scss */
+.shiny-edge-color {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* line 37, scss/base/_colors.scss */
+.shiny-edge-active-color {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* line 37, scss/base/_colors.scss */
+.header-font-color {
+  background: #222222;
+}
+
+/* line 37, scss/base/_colors.scss */
+.small-font-color {
+  background: #6f6f6f;
+}
+
+/* line 37, scss/base/_colors.scss */
+.code-color {
+  background: #bd260d;
+}
+
+/* line 37, scss/base/_colors.scss */
+.anchor-font-color {
+  background: #008cba;
+}
+
+/* line 37, scss/base/_colors.scss */
+.anchor-font-color-hover {
+  background: #0078a0;
+}
+
+/* line 37, scss/base/_colors.scss */
+.hr-border-color {
+  background: #dddddd;
+}
+
+/* line 37, scss/base/_colors.scss */
+.blockquote-font-color {
+  background: #6f6f6f;
+}
+
+/* line 37, scss/base/_colors.scss */
+.blockquote-cite-font-color {
+  background: #555555;
+}
+
+/* line 37, scss/base/_colors.scss */
+.blockquote-cite-link-color {
+  background: #555555;
+}
+
+/* line 37, scss/base/_colors.scss */
+.microformat-border-color {
+  background: #dddddd;
+}
+
+/* line 37, scss/base/_colors.scss */
+.accordion-navigation-bg-color {
+  background: #efefef;
+}
+
+/* line 37, scss/base/_colors.scss */
+.accordion-navigation-hover-bg-color {
+  background: #e3e3e3;
+}
+
+/* line 37, scss/base/_colors.scss */
+.accordion-navigation-active-bg-color {
+  background: #e8e8e8;
+}
+
+/* line 37, scss/base/_colors.scss */
+.accordion-navigation-font-color {
+  background: #222222;
+}
+
+/* line 37, scss/base/_colors.scss */
+.accordion-content-active-bg-color {
+  background: white;
+}
+
+/* line 37, scss/base/_colors.scss */
+.alert-font-color {
+  background: white;
+}
+
+/* line 37, scss/base/_colors.scss */
+.alert-font-color-alt {
+  background: #4f4f4f;
+}
+
+/* line 28, scss/base/_text.scss */
+.font-secondary {
+  font-family: Georgia, Times, "Times New Roman", serif;
+}
+
+/* line 1, scss/base/_animation.scss */
+.animate-fade {
+  -webkit-transition: opacity 0.3s ease-out;
+  -moz-transition: opacity 0.3s ease-out;
+  -ms-transition: opacity 0.3s ease-out;
+  -o-transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s ease-out;
+}
+/* line 4, scss/base/_animation.scss */
+.animate-fade:hover {
+  opacity: 0;
+}
+
+/* line 10, scss/base/_animation.scss */
+.animate-move > .demo-shape {
+  -webkit-transition: all 0.8s ease-in-out;
+  -moz-transition: all 0.8s ease-in-out;
+  -ms-transition: all 0.8s ease-in-out;
+  -o-transition: all 0.8s ease-in-out;
+  transition: all 0.8s ease-in-out;
 }

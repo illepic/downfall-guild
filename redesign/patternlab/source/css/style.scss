@@ -141,6 +141,9 @@ So feel free to use any of these approaches. Or don't. It's totally up to you.
 ///
 
 @import "scss/base/generic";
+@import "scss/base/colors";
+@import "scss/base/text";
+@import "scss/base/animation";
 
 ///
 /// Layout
@@ -152,4 +155,4 @@ So feel free to use any of these approaches. Or don't. It's totally up to you.
 /// Components
 ///
 
-@import "scss/components/article"; // dummy test
+// @import "scss/components/article"; // dummy test

@@ -29,6 +29,11 @@ var comments = {
 		"el": ".block-hero",
 		"title" : "Hero",
 		"comment": "<p>The hero area highlights one major story using a large image and a captivating headline.</p>"
+	},
+	{
+		"el": ".color-swatches",
+		"title" : "Color swatches",
+		"comment": "<p>A quick run through of all the colors used.</p>"
 	}
 ]
 };

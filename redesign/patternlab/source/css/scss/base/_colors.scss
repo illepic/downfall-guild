@@ -1,0 +1,40 @@
+///
+/// Colors, used in swatches
+///
+
+// Loop through the Foundation (and other) color variables, give us clases
+$colors: (
+  body-bg: $body-bg,
+  body-font-color: $body-font-color,
+  primary-color: $primary-color,
+  secondary-color: $secondary-color,
+  alert-color: $alert-color,
+  success-color: $success-color,
+  warning-color: $warning-color,
+  info-color: $info-color,
+  shiny-edge-color: $shiny-edge-color,
+  shiny-edge-active-color: $shiny-edge-active-color,
+  header-font-color: $header-font-color,
+  small-font-color: $small-font-color,
+  code-color: $code-color,
+  anchor-font-color: $anchor-font-color,
+  anchor-font-color-hover: $anchor-font-color-hover,
+  hr-border-color: $hr-border-color,
+  blockquote-font-color: $blockquote-font-color,
+  blockquote-cite-font-color: $blockquote-cite-font-color,
+  blockquote-cite-link-color: $blockquote-cite-link-color,
+  microformat-border-color: $microformat-border-color,
+  accordion-navigation-bg-color: $accordion-navigation-bg-color,
+  accordion-navigation-hover-bg-color: $accordion-navigation-hover-bg-color,
+  accordion-navigation-active-bg-color: $accordion-navigation-active-bg-color,
+  accordion-navigation-font-color: $accordion-navigation-font-color,
+  accordion-content-active-bg-color: $accordion-content-active-bg-color,
+  alert-font-color: $alert-font-color,
+  alert-font-color-alt: $alert-font-color-alt
+);
+
+@each $colorvar, $colorvalue in $colors {
+  .#{$colorvar} {
+    background: $colorvalue;
+  }
+}
