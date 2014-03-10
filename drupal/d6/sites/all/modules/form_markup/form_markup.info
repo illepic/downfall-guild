@@ -1,0 +1,15 @@
+; $Id: form_markup.info,v 1.1.2.1.2.1 2008/07/31 11:55:42 mh86 Exp $
+
+name = Form Markup
+description = Allows to add prefix/suffix values to cck fields
+dependencies[] = content
+package = CCK
+core = 6.x
+
+
+; Information added by drupal.org packaging script on 2008-10-11
+version = "6.x-1.1"
+core = "6.x"
+project = "form_markup"
+datestamp = "1223715312"
+

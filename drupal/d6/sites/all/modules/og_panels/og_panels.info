@@ -1,0 +1,14 @@
+; $Id: og_panels.info,v 1.1.2.3 2010/04/09 07:52:38 jimthunderbird Exp $
+name = Organic groups panels.
+description = "Enable group admins to create panel pages."
+package = "Organic groups"
+dependencies[] = og
+dependencies[] = panels
+dependencies[] = page_manager
+core = 6.x
+; Information added by drupal.org packaging script on 2010-04-09
+version = "6.x-2.0"
+core = "6.x"
+project = "og_panels"
+datestamp = "1270800608"
+

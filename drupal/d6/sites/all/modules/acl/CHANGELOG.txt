@@ -1,0 +1,78 @@
+
+CHANGELOG for ACL for Drupal 6
+
+
+acl 6.x-1.x-dev:
+
+
+acl 6.x-1.4 (2011-07-26):
+  Enhancements:
+    - Provide compatibility warning about Authcache contrib module.
+
+
+acl 6.x-1.3 (2011-01-06):
+  Bugs fixed:
+    - Remove the premature acl_views_api() hook implementation (we're not ready for Views yet).
+    - #836822: Don't anonymize 'deny' grant records.
+    - #793380: Remove t() calls from hook_schema according to #332123.
+  Enhancements:
+    - #968382: Install better indexes.
+    - Remove translation files in favor of localize.drupal.org.
+    - #936682: Add a 'number' column and some indexes to the {acl} table.
+    - Create new hook_acl_explain() to allow the client to explain its grant records.
+    - #759882: Add acl_remove_all_users($acl_id) API function.
+    - Add acl_has_user($acl_id, $uid) API function.
+
+acl 6.x-1.2 (2010-01-25):
+  Bugs fixed:
+    - #694236: Suppress a harmless but irritating warning from acl_update_6001().
+
+acl 6.x-1.1 (2010-01-24):
+  Bugs fixed:
+    - #680324: Add missing index if upgraded from D5.
+  Enhancements:
+    - Clean up some minor coder issues (no functional changes).
+
+acl 6.x-1.0 (2009-06-03):
+  Enhancements:
+    - #243073: Update Swedish translation and add .pot file.
+
+acl 6.x-1.x-RC1 (2009-04-29):
+  Enhancements:
+    - #369918: Add German translation.
+  Bugs fixed:
+    - #371446: Use priority for the 'deny' grant, too.
+
+acl 6.x-1.x-BETA4 (2009-01-29):
+  Enhancements:
+    - Factor out form code into .inc file.
+    - Enable grant priority.
+    - Add new acl_get_uids() function.
+
+acl 6.x-1.x-BETA3 (2009-01-03):
+  Bugs fixed:
+    - Fix upgrade path from D5 (change acl_id column to auto_increment).
+
+acl 6.x-1.x-BETA2 (2008-10-14):
+  Bugs fixed:
+    - #205012, by fago: Fixed the acl form to work correctly when integrated more than once into a form.
+
+acl 6.x-1.x-BETA1 (2008-10-14):
+  Porting to D6:
+    - Fix cosmetic coder issues (no functional change).
+    - #243073: Add Swedish translation.
+    - Improve hook_node_access_explain().
+    - #135687: Implement grant priority.
+    - #229451: Allow acl_edit_form() without pre-created acl_id.    
+    - Implement hook_user('delete') and remove orphaned {acl_user} records.
+    - #232413: Fix error message when removing the last moderator.
+    - #231096: Implement hook_nodeapi('delete') and remove orphaned {acl_node} records.
+    - Improve acl_node_access_explain().
+    - Avoid generating E_NOTICEs.
+    - Make [Delete] button work.
+    - Fix index conflict.
+    - Make the embeddable form work.
+    - It's really hook_node_access_explain().
+    - Ported to D6 (and inadvertently committed hook_node_access_interpret()).
+    - Copied from 5.x-1.5.
+

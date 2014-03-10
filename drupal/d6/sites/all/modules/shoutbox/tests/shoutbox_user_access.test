@@ -1,0 +1,343 @@
+<?php
+
+// $Id: shoutbox_user_access.test,v 1.1.4.4 2008/07/29 09:05:21 disterics Exp $
+
+/**
+ * @file
+ * shoutbox unit test for shoutbox_user_access
+ * and shoutbox_is_user_owned
+ *
+ */
+
+class ShoutboxUserAccessTest extends DrupalTestCase {
+
+  /**
+   * A global basic user who is subject to moderation.
+   */
+  var $basic_user;
+
+  /**
+   * A global basic user who is not subject to moderation.
+   */
+  var $unmoderated_user;
+
+  /**
+   * A global administrative user who may bypass all restrictions.
+   */
+  var $admin_user;
+
+  /**
+   * A global administrative user who may bypass all restrictions.
+   */
+  var $moderator;
+
+
+
+  function get_info() {
+    return array(
+      'name' => t('User access'),
+      'desc' => t('Test the user permissions of the shoutbox module.'),
+      'group' => t('Shoutbox Tests'),
+    );
+  }
+
+  function setUp() {
+    // TODO: Put your code here.
+    // enable module
+    $this->drupalModuleEnable('shoutbox');
+    // enable nickname field
+    $this->drupalVariableSet('shoutbox_shownamefield', 1);
+    $permissions = array('post shouts',
+                         'delete own shouts',
+                         'edit own shouts',
+    );
+    $basic_user = $this->drupalCreateUserRolePerm($permissions);
+    // unmoderated permission
+    $permissions[] = 'post shouts without approval';
+    $unmoderated_user = $this->drupalCreateUserRolePerm($permissions);
+
+    $permissions = array(
+      'administer shoutbox',
+    );
+    $admin_user = $this->drupalCreateUserRolePerm($permissions);
+
+    $permissions = array(
+      'moderate shoutbox',
+    );
+    $moderator = $this->drupalCreateUserRolePerm($permissions);
+
+    // Assign users to their test suite-wide properties.
+    $this->basic_user = $basic_user;
+    $this->unmoderated_user = $unmoderated_user;
+    $this->admin_user = $admin_user;
+    $this->moderator = $moderator;
+
+    // Always call the setUp() function from the parent class.
+    parent::setUp();
+  }
+
+
+  /**
+   * Helper function to get the shout id
+   *
+   */
+  function _get_shout_id($shout) {
+    $shout_id = db_result(db_query("SELECT shout_id FROM {shoutbox} WHERE nick = '%s' AND shout = '%s' ", $shout['nick'], $shout['message']));
+    return $shout_id;
+  }
+
+
+  function testUnmoderatedUserAccess() {
+
+    // test add, edit and delete for a regular unmoderated user
+
+    // Login as basic user to perform initial content creation.
+    $this->drupalLoginUser($this->unmoderated_user);
+     // Create an  unmoderated piece of content.
+    $shout = array();
+    $shout['nick'] = $this->randomName(2, 'shout');
+    $shout['message']  = $this->randomName(10, 'shout');
+    $shout['url'] = 'http://slashdot.org';
+    $this->drupalPost('node', $shout, 'Shout');
+    $this->assertWantedRaw(t('Your shout has been submitted.'));
+    $this->assertWantedRaw(t($shout['message']));
+
+    // get the shout id
+    $sid = $this->_get_shout_id($shout);
+
+    // edit the shout
+    $edited_shout = array();
+    $edited_shout['shout']  = $this->randomName(10, 'shout');
+    $url = 'shoutbox/'. $sid .'/edit';
+    $this->drupalPost($url, $edited_shout, 'Update');
+    $this->assertWantedRaw(t('Your shout has been saved.'));
+    $this->assertWantedRaw(t($edited_shout['shout']));
+
+    // delete the shout
+    $url = 'shoutbox/'. $sid .'/delete';
+    $this->drupalPost($url, NULL, 'Confirm');
+    $this->assertWantedRaw(t('Your shout was deleted.'));
+    $this->assertNoText(t($edited_shout['shout']));
+
+    $url = url('logout', array('absolute' => TRUE));
+    $this->get($url);
+  }
+
+  function testModeratedUserAccess() {
+    // test add, edit and delete for a regular moderated user
+    $this->drupalLoginUser($this->basic_user);
+     // Create a moderated piece of content.
+    $shout = array();
+    $shout['nick'] = $this->randomName(2, 'shout');
+    $shout['message']  = $this->randomName(10, 'shout');
+    $shout['url'] = 'http://slashdot.org';
+    $this->drupalPost('node', $shout, 'Shout');
+    $this->assertWantedRaw(t('Your shout has been submitted for approval by a moderator. Others will not see this shout until it is approved.'));
+
+    // get the shout id
+    $sid = $this->_get_shout_id($shout);
+
+    // edit the shout
+    $edited_shout = array();
+    $edited_shout['shout']  = $this->randomName(10, 'shout');
+    $url = 'shoutbox/'. $sid .'/edit';
+    $this->drupalPost($url, $edited_shout, 'Update');
+    $this->assertWantedRaw(t('Your shout has been saved.'));
+    $this->assertWantedRaw(t($edited_shout['shout']));
+
+    // delete the shout
+    $url = 'shoutbox/'. $sid .'/delete';
+    $this->drupalPost($url, NULL, 'Confirm');
+    $this->assertWantedRaw(t('Your shout was deleted.'));
+    $this->assertNoText(t($edited_shout['shout']));
+
+    $url = url('logout', array('absolute' => TRUE));
+    $this->get($url);
+
+  }
+
+  function testModerationUserAccess() {
+    // now test moderation
+    // create a moderated shout
+
+    $this->drupalLoginUser($this->basic_user);
+
+    // Create an  unmoderated piece of content.
+    $shout = array();
+    $shout['nick'] = $this->randomName(2, 'shout');
+    $shout['message']  = $this->randomName(10, 'shout');
+    $shout['url'] = 'http://slashdot.org';
+    $this->drupalPost('node', $shout, 'Shout');
+    $this->assertWantedRaw(t('Your shout has been submitted for approval by a moderator. Others will not see this shout until it is approved.'));
+
+    // get the shout id
+    $sid = $this->_get_shout_id($shout);
+    // Try to moderate  it
+    $path = 'shoutbox/'. $sid .'/publish';
+    $url = url($path, array('absolute' => TRUE));
+    $this->get($url);
+    $this->assertResponse(403);
+    // logout
+    $url = url('logout', array('absolute' => TRUE));
+    $this->get($url);
+
+    // login as moderator
+    $this->drupalLoginUser($this->moderator);
+    // moderate content
+    $path = 'shoutbox/'. $sid .'/publish';
+    $url = url($path, array('absolute' => TRUE));
+    // verify confirmation page
+    $this->get($url);
+    $this->assertText(t('Are you sure you want to publish this shout?'));
+    $this->drupalPost($path, NULL, 'Confirm');
+    $this->assertText(t('The shout was published.'));
+
+    // now unpublish it
+    $path = 'shoutbox/'. $sid .'/unpublish';
+    $url = url($path, array('absolute' => TRUE));
+    // verify confirmation page
+    $this->get($url);
+    $this->assertText(t('Are you sure you want to unpublish this shout?'));
+    $this->drupalPost($path, NULL, 'Confirm');
+    $this->assertText(t('The shout was unpublished.'));
+
+    // try and edit it
+    $path = 'shoutbox/'. $sid .'/edit';
+    $url = url($path, array('absolute' => TRUE));
+    $this->get($url);
+    $this->assertResponse(403);
+
+    // try and delete it
+    $path = 'shoutbox/'. $sid .'/delete';
+    $url = url($path, array('absolute' => TRUE));
+    $this->get($url);
+    $this->assertResponse(403);
+
+    // delete shout
+    $this->cleanup($sid);
+
+
+  }
+
+  function testAdminUserAccess() {
+    // test admin access
+    $this->drupalLoginUser($this->admin_user);
+
+    // Create an unmoderated piece of content.
+    $shout = array();
+    $shout['nick'] = $this->randomName(2, 'shout');
+    $shout['message']  = $this->randomName(10, 'shout');
+    $shout['url'] = 'http://ghanaweb.com';
+    $this->drupalPost('node', $shout, 'Shout');
+    $this->assertWantedRaw(t('Your shout has been submitted.'));
+    $this->assertWantedRaw(t($shout['message']));
+
+    // get the shout id
+    $sid = $this->_get_shout_id($shout);
+
+    // moderate content
+    $path = 'shoutbox/'. $sid .'/unpublish';
+    // verify confirmation page
+    $this->drupalGet($path);
+    $this->assertWantedRaw(t('Are you sure you want to unpublish this shout?'));
+    $this->drupalPost($path, NULL, 'Confirm');
+    $this->assertText(t('The shout was unpublished.'));
+
+    // un moderate it
+    $path = 'shoutbox/'. $sid .'/publish';
+    // verify confirmation page
+    $this->drupalGet($path);
+    $this->assertText(t('Are you sure you want to publish this shout?'));
+    $this->drupalPost($path, NULL, 'Confirm');
+    $this->assertText(t('The shout was published.'));
+
+    // try and edit it
+    // edit the shout
+    $edited_shout = array();
+    $edited_shout['shout']  = $this->randomName(10, 'shout');
+    $url = 'shoutbox/'. $sid .'/edit';
+    $this->drupalPost($url, $edited_shout, 'Update');
+    $this->assertWantedRaw(t('The shout has been saved.'));
+    $this->assertWantedRaw(t($edited_shout['shout']));
+
+    //delete it
+    // delete the shout
+    $url = 'shoutbox/'. $sid .'/delete';
+    $this->drupalPost($url, NULL, 'Confirm');
+    $this->assertWantedRaw(t('Your shout was deleted.'));
+    $this->assertNoText(t($edited_shout['shout']));
+
+    // logout
+
+    $this->drupalGet('logout');
+
+    $this->cleanup($sid);
+
+    // create a regular user content
+    // Login as basic user to perform initial content creation.
+    $this->drupalLoginUser($this->unmoderated_user);
+     // Create an  unmoderated piece of content.
+    $shout = array();
+    $shout['nick'] = $this->randomName(2, 'shout');
+    $shout['message']  = $this->randomName(10, 'shout');
+    $shout['url'] = 'http://slashdot.org';
+    $this->drupalPost('node', $shout, 'Shout');
+    $this->assertWantedRaw(t('Your shout has been submitted.'));
+    $this->assertWantedRaw(t($shout['message']));
+
+    // get the shout id
+    $sid = $this->_get_shout_id($shout);
+
+    // logout
+    $url = url('logout', array('absolute' => TRUE));
+    $this->get($url);
+
+    // login as admin
+    $this->drupalLoginUser($this->admin_user);
+
+    // moderate content
+    $path = 'shoutbox/'. $sid .'/unpublish';
+    // verify confirmation page
+    $this->drupalGet($path);
+    $this->assertText(t('Are you sure you want to unpublish this shout?'));
+    $this->drupalPost($path, NULL, 'Confirm');
+    $this->assertText(t('The shout was unpublished.'));
+
+    // un moderate it
+    $path = 'shoutbox/'. $sid .'/publish';
+    // verify confirmation page
+    $this->drupalGet($path);
+    $this->assertText(t('Are you sure you want to publish this shout?'));
+    $this->drupalPost($path, NULL, 'Confirm');
+    $this->assertText(t('The shout was published.'));
+
+    // try and edit it
+    // edit the shout
+    $edited_shout = array();
+    $edited_shout['shout']  = $this->randomName(10, 'shout');
+    $url = 'shoutbox/'. $sid .'/edit';
+    $this->drupalPost($url, $edited_shout, 'Update');
+    $this->assertWantedRaw(t('The shout has been saved.'));
+    $this->assertWantedRaw(t($edited_shout['shout']));
+
+    //delete it
+    // delete the shout
+    $url = 'shoutbox/'. $sid .'/delete';
+    $this->drupalPost($url, NULL, 'Confirm');
+    $this->assertWantedRaw(t('Your shout was deleted.'));
+    $this->assertNoText(t($edited_shout['shout']));
+
+
+    // delete shout
+    $this->cleanup($sid);
+
+
+  }
+
+
+  function cleanup($shout_id) {
+    db_query("DELETE FROM {shoutbox} WHERE shout_id = %d", $shout_id);
+  }
+
+
+}

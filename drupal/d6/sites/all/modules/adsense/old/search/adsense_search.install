@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Install file of the adsense_search module
+ */
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function adsense_search_uninstall() {
+  variable_del('adsense_search_button');
+  variable_del('adsense_search_color_bg');
+  variable_del('adsense_search_color_border');
+  variable_del('adsense_search_color_box_background');
+  variable_del('adsense_search_color_box_text');
+  variable_del('adsense_search_color_light_url');
+  variable_del('adsense_search_color_logo_bg');
+  variable_del('adsense_search_color_text');
+  variable_del('adsense_search_color_title');
+  variable_del('adsense_search_color_url');
+  variable_del('adsense_search_color_visited_url');
+  variable_del('adsense_search_country');
+  variable_del('adsense_search_domain_0');
+  variable_del('adsense_search_domain_1');
+  variable_del('adsense_search_domain_2');
+  variable_del('adsense_search_encoding');
+  variable_del('adsense_search_frame_width');
+  variable_del('adsense_search_language');
+  variable_del('adsense_search_logo');
+  variable_del('adsense_search_number_blocks');
+  variable_del('adsense_search_safe_mode');
+  variable_del('adsense_search_textbox_length');
+
+  $settings = db_query("SELECT name FROM {variable} WHERE name LIKE 'adsense\_search\_ad\_block\_%'");
+  while ($variable = db_fetch_object($settings)) {
+    variable_del($variable->name);
+  }
+}

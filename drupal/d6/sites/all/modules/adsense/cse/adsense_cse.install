@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Install file of the adsense_cse module
+ */
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function adsense_cse_uninstall() {
+  variable_del('adsense_cse_ad_location');
+  variable_del('adsense_cse_color_box_background');
+  variable_del('adsense_cse_country');
+  variable_del('adsense_cse_encoding');
+  variable_del('adsense_cse_frame_width');
+  variable_del('adsense_cse_logo');
+  variable_del('adsense_cse_number_blocks');
+  variable_del('adsense_cse_textbox_length');
+  variable_del('adsense_cse_language');
+  $settings = db_query("SELECT name FROM {variable} WHERE name LIKE 'adsense\_cse\_ad\_block\_%'");
+  while ($variable = db_fetch_object($settings)) {
+    variable_del($variable->name);
+  }
+}

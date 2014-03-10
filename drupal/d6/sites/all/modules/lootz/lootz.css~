@@ -1,0 +1,43 @@
+/* $Id */
+
+a.lootz { 
+  font-weight: bold;
+}
+a.lootz:hover { 
+  text-decoration: underline;
+}
+
+a span.lootz, a span.lootz:hover { 
+  color: #9d9d9d;
+}
+
+a span.lootz-common, a span.lootz-common:hover { 
+  color: #ffffff;
+  background-color:#EEECE7;
+}
+
+a span.lootz-uncommon, a span.lootz-uncommon:hover {
+  color: #00ca00;
+}
+
+a span.lootz-rare, a span.lootz-rare:hover {
+  color:  #0070dd;
+}
+
+a span.lootz-epic, a span.lootz-epic:hover { 
+  color: #a335ee;
+}
+
+a span.lootz-legendary, a span.lootz-legendary:hover { 
+  color: #ff8000;
+}
+
+a span.lootz-artifact, a span.lootz-artifact:hover { 
+  color: #e5cc80;
+}
+
+a span.lootz-bind_to_account, a span.lootz-bind_to_account:hover { 
+  color: #e5cc80;
+}
+
+

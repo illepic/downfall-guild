@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * @file
+ * Install file of the adsense_oldcode module
+ */
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function adsense_oldcode_uninstall() {
+  variable_del('adsense_oldcode_number_blocks');
+
+  $settings = db_query("SELECT name FROM {variable} WHERE name LIKE 'adsense\_oldcode\_ad\_block\_%'");
+  while ($variable = db_fetch_object($settings)) {
+    variable_del($variable->name);
+  }
+  $settings = db_query("SELECT name FROM {variable} WHERE name LIKE 'adsense\_ad\_type\_%'");
+  while ($variable = db_fetch_object($settings)) {
+    variable_del($variable->name);
+  }
+  $settings = db_query("SELECT name FROM {variable} WHERE name LIKE 'adsense\_alt\_%'");
+  while ($variable = db_fetch_object($settings)) {
+    variable_del($variable->name);
+  }
+  $settings = db_query("SELECT name FROM {variable} WHERE name LIKE 'adsense\_alt\_info\_%'");
+  while ($variable = db_fetch_object($settings)) {
+    variable_del($variable->name);
+  }
+  $settings = db_query("SELECT name FROM {variable} WHERE name LIKE 'adsense\_color\_bg\_%'");
+  while ($variable = db_fetch_object($settings)) {
+    variable_del($variable->name);
+  }
+  $settings = db_query("SELECT name FROM {variable} WHERE name LIKE 'adsense\_color\_border\_%'");
+  while ($variable = db_fetch_object($settings)) {
+    variable_del($variable->name);
+  }
+  $settings = db_query("SELECT name FROM {variable} WHERE name LIKE 'adsense\_color\_link\_%'");
+  while ($variable = db_fetch_object($settings)) {
+    variable_del($variable->name);
+  }
+  $settings = db_query("SELECT name FROM {variable} WHERE name LIKE 'adsense\_color\_text\_%'");
+  while ($variable = db_fetch_object($settings)) {
+    variable_del($variable->name);
+  }
+  $settings = db_query("SELECT name FROM {variable} WHERE name LIKE 'adsense\_color\_url\_%'");
+  while ($variable = db_fetch_object($settings)) {
+    variable_del($variable->name);
+  }
+  $settings = db_query("SELECT name FROM {variable} WHERE name LIKE 'adsense\_group\_title\_%'");
+  while ($variable = db_fetch_object($settings)) {
+    variable_del($variable->name);
+  }
+}

@@ -1,0 +1,84 @@
+<?php
+// $Id: css_gzip.install,v 1.3.2.1 2009/09/02 23:41:55 mikeytown2 Exp $
+
+/**
+ * Implementation of hook_install().
+ */
+function css_gzip_install() {
+  $htaccess = file_directory_path() .'/css/.htaccess';
+  if (!file_exists($htaccess)) {
+    $csspath = file_create_path('css');
+    file_check_directory($csspath, FILE_CREATE_DIRECTORY);
+    file_save_data('', $htaccess, FILE_EXISTS_REPLACE);
+  }
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function css_gzip_uninstall() {
+  // Del htaccess file
+  $htaccess = file_directory_path() .'/css/.htaccess';
+  if (file_exists($htaccess)) {
+    file_delete($htaccess);
+  }
+
+  // Del Variables
+  db_query("DELETE FROM {variable} WHERE name LIKE '%s_%%'", 'css_gzip');
+  cache_clear_all('variables', 'cache');
+}
+
+/**
+ * Implementation of hook_disable().
+ */
+function css_gzip_disable() {
+  // Del htaccess file when module is disabled:
+  $htaccess = file_directory_path() .'/css/.htaccess';
+  if (file_exists($htaccess)) {
+    file_delete($htaccess);
+  }
+}
+
+/**
+ * Implementation of hook_requirements().
+ *
+ * @param $phase
+ *   The phase in which hook_requirements is run
+ */
+function css_gzip_requirements($phase) {
+  $requirements = array();
+  $t = get_t();
+  $directory = file_directory_path();
+  $is_writable = is_dir($directory) && is_writable($directory) && (variable_get('file_downloads', FILE_DOWNLOADS_PUBLIC) == FILE_DOWNLOADS_PUBLIC);
+  switch ($phase) {
+    case 'runtime':
+      if (!$is_writable) {
+        $requirements['css_gzip'] = array(
+          'title' => $t('CSS Gzip'),
+          'description' => $t('Files directory is not writable AND/OR public download method is disabled'),
+          'severity' => $phase == 'install' ? REQUIREMENT_WARNING : REQUIREMENT_ERROR,
+          'value' => $t('Server Configuration Error'),
+        );
+      }
+      else {
+        $requirements['css_gzip'] = array(
+          'title' => $t('CSS Gzip'),
+          'severity' => REQUIREMENT_OK,
+          'value' => $t('Files directory is writable and server is using public downloads'),
+        );
+      }
+    break;
+  }
+  return $requirements;
+}
+
+/**
+ * Update 6100 - Change Variable Names
+ */
+function css_gzip_update_6100() {
+  $ret = array();
+  $ret[] = update_sql("UPDATE {variable} SET name = 'css_gzip_htaccess_size' WHERE name = 'css_aggregator_gzip_htaccess_size'");
+  $ret[] = update_sql("UPDATE {variable} SET name = 'css_gzip' WHERE name = 'css_aggregator_gzip'");
+  $ret[] = update_sql("UPDATE {variable} SET name = 'css_gzip_no_htaccess' WHERE name = 'css_aggregator_gzip_no_htaccess'");
+  return $ret;
+}

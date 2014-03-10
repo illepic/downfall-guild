@@ -1,0 +1,228 @@
+<?php
+
+/**
+ * @file
+ * Main file of the revenue_sharing_basic module
+ */
+
+define('REVENUE_SHARING_BASIC_CLIENT_ID_PROFILE_FIELD_DEFAULT', 0);
+define('REVENUE_SHARING_BASIC_PERCENTAGE_AUTHOR_DEFAULT', 0);
+define('REVENUE_SHARING_BASIC_PERCENTAGE_ROLE_DEFAULT', 0);
+define('REVENUE_SHARING_BASIC_PERCENTAGE_REFER_DEFAULT', 0);
+define('REVENUE_SHARING_BASIC_NODE_TYPE_DEFAULT', 1);
+
+/**
+ * Implementation of hook_menu().
+ */
+function revenue_sharing_basic_menu() {
+  $items = array();
+
+  $items['admin/settings/adsense/publisher/revenue_sharing_basic'] = array(
+    'title' => 'Revenue Sharing',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('revenue_sharing_basic_settings'),
+    'access arguments' => array('administer adsense'),
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'revenue_sharing_basic.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implementation of hook_theme().
+ */
+function revenue_sharing_basic_theme() {
+  return array(
+    'revenue_sharing_basic_author_percentage_role' => array(
+      'arguments' => array('form'),
+      'file' => 'revenue_sharing_basic.admin.inc',
+    ),
+  );
+}
+
+/**
+ * Implementation of hook_requirements().
+ */
+function revenue_sharing_basic_requirements($phase) {
+  $requirements = array();
+  $t = get_t();
+  switch ($phase) {
+    // At runtime, make sure that we have a publisher ID
+    case 'runtime':
+      if (variable_get('cache', 0) && (variable_get('adsense_id_module', ADSENSE_ID_MODULE_DEFAULT) == 'revenue_sharing_basic_adsense')) {
+        $requirements['revenue_sharing_nocache'] = array(
+          'title' => $t('Revenue Sharing'),
+          'value' => $t('Drupal page cache is enabled.'),
+          'description' => $t('This causes conflicts with revenue sharing, since the pages are stored in the cache and are not dynamically generated. If you experience issues with revenue sharing, then disable the page cache.'),
+          'severity' => REQUIREMENT_WARNING,
+        );
+      }
+      break;
+  }
+  return $requirements;
+}
+
+/**
+ * Interface of the Publisher ID modules
+ *
+ * This is the function that handles the calls by the adsense core to the
+ * Publisher ID modules
+ *
+ * @param $op
+ *   Operation being performed, can be one of the following:
+ *   'settings' : access to this module's settings form
+ *   'client_id': fetch the user's Publisher ID
+ * @param $args
+ *   For the 'client_id' operation, this can be the format of the ad being
+ *   generated, in case there is a need to return a user-configured Slot ID
+ * @return
+ *   This depends on the operation being performed:
+ *   'settings':   return array with two fields, the name field contains the
+ *                 name of this module, and the desc field a description.
+ *   'client_id' : this can be a string with the publisher ID, when the
+ *                 $args parameter wasn't defined, or an array with two
+ *                 fields, the 'slot' field for the Slot ID and the 'client'
+ *                 field for the Publisher ID
+ */
+function revenue_sharing_basic_adsense($op, $args = array()) {
+  static $client_id = NULL;
+
+  switch ($op) {
+    case 'settings':
+        return array(
+          'name' => 'Revenue sharing',
+          'desc' => 'DOES NOT WORK with new code ad units, such as "Managed Ads" or "Custom Search".',
+        );
+      break;
+    case 'client_id':
+      if (!$client_id) {
+        // We cache the client ID on this page load, to make sure all of the
+        // client IDs on one page are the same
+        $client_id = revenue_sharing_basic_choose_client($args);
+      }
+
+      return $client_id;
+  }
+}
+
+/**
+ * Provide the applicable Publisher ID, based on the configured probabilities
+ *
+ * @param $format
+ *   Format of the ad
+ * @return
+ *   If format is set, returns NULL. Otherwise, based on the configured 
+ *   percentage, returns either the Publisher ID of the current page's author
+ *   or of the owner of the site. When configured, it may also return the
+ *   Publisher ID of the user who referred the page author.
+ */
+function revenue_sharing_basic_choose_client($format) {
+  global $user;
+
+  if (isset($format)) {
+    // This module can't handle the selection of an appropriate Slot ID
+    // Give up!
+    return NULL;
+  }
+
+  $site_client = variable_get('adsense_basic_id', ADSENSE_BASIC_ID_DEFAULT);
+
+  $info = revenue_sharing_basic_get_node_info();
+  if (empty($info) || !variable_get('revenue_sharing_basic_node_type_'. $info['type'], REVENUE_SHARING_BASIC_NODE_TYPE_DEFAULT)) {
+    return $site_client;
+  }
+
+  $percents[0] = variable_get('revenue_sharing_basic_percentage_author', REVENUE_SHARING_BASIC_PERCENTAGE_AUTHOR_DEFAULT);
+
+  $author_user = user_load(array('uid' => $info['uid']));
+  foreach ($author_user->roles as $role => $role_desc) {
+    $percents[$role] = variable_get('revenue_sharing_basic_percentage_role_'. $role, REVENUE_SHARING_BASIC_PERCENTAGE_ROLE_DEFAULT);
+  }
+  arsort($percents);
+  $percent_author = array_shift($percents);
+
+  $percent_referral = variable_get('revenue_sharing_basic_percentage_refer', REVENUE_SHARING_BASIC_PERCENTAGE_REFER_DEFAULT);
+
+  // Toss the dice and see who gets their ad displayed
+  $random = mt_rand(1, 100);
+  if ($random <= $percent_author) {
+    $client = revenue_sharing_basic_get_profile_client_id($info['uid']);
+  }
+  elseif ($random <= ($percent_author + $percent_referral)) {
+    $client = revenue_sharing_basic_get_referral_client_id($info['uid']);
+  }
+  else {
+    $client = $site_client;
+  }
+
+  // Last check to see that we have a valid client
+  // Check that the current user doesn't view ads with it's own Publisher ID
+  if ((!$client) || ($client == revenue_sharing_basic_get_profile_client_id($user->uid))) {
+    $client = $site_client;
+  }
+
+  return $client;
+}
+
+/**
+ * Provide the Publisher ID of the the specified user
+ *
+ * @param $uid
+ *   User ID
+ * @return
+ *   Publisher ID of the specified user in case it applies, otherwise NULL
+ */
+function revenue_sharing_basic_get_profile_client_id($uid) {
+  $client_id = NULL;
+
+  if ($uid) {
+    // Get the profile field for a certain user
+    $profile_field = variable_get('revenue_sharing_basic_client_id_profile_field', REVENUE_SHARING_BASIC_CLIENT_ID_PROFILE_FIELD_DEFAULT);
+    $client_id = db_result(db_query('SELECT value FROM {profile_values} WHERE fid = %d AND uid = %d', $profile_field, $uid));
+  }
+
+  return $client_id;
+}
+
+/**
+ * Provide the node type and the User ID of the author of the current page
+ *
+ * @return
+ *   User ID of author, or NULL if it wasn't possible to discover one
+ */
+function revenue_sharing_basic_get_node_info() {
+  static $info = array();
+
+  if ((!$info) && (arg(0) == 'node') && is_numeric(arg(1))) {
+    $node = node_load(arg(1));
+
+    // Cache the results
+    $info = array(
+      'uid' => $node->uid,
+      'type' => $node->type,
+    );
+  }
+
+  return $info;
+}
+
+/**
+ * Provide the Publisher ID of the user of referred the specified user
+ *
+ * @param $uid
+ *   User ID
+ * @return
+ *   Publisher ID of the referrer of the specified user in case it applies,
+ *   otherwise NULL
+ */
+function revenue_sharing_basic_get_referral_client_id($uid) {
+  if (module_exists('referral')) {
+    $referral_uid = referral_get_user($uid);
+    if ($referral_uid) {
+      return revenue_sharing_basic_get_profile_client_id($referral_uid);
+    }
+  }
+  // User was not referred by an existing user
+  return NULL;
+}

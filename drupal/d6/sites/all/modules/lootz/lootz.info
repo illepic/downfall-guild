@@ -1,0 +1,13 @@
+; $Id: lootz.info,v 1.1.2.1 2009/05/22 20:25:29 professorbikeybike Exp $
+name = Lootz
+description = Allow the use of [item][/item] tags in your posts. The item is automatically looked up on the installed item db (WoWHead and WoWDB are packaged, and others are easy to create).
+core = 6.x
+package = MMORPG
+
+
+; Information added by drupal.org packaging script on 2009-10-04
+version = "6.x-1.1"
+core = "6.x"
+project = "lootz"
+datestamp = "1254687341"
+

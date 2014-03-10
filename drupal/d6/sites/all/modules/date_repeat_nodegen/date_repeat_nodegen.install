@@ -1,0 +1,22 @@
+<?php
+// $Id: date_repeat_nodegen.install,v 1.1 2009/04/04 11:19:26 shaisachs Exp $
+
+function date_repeat_nodegen_install() {
+  switch ($GLOBALS['db_type']) {
+    case 'mysql':
+    case 'mysqli':
+      db_query("CREATE TABLE {date_repeat_nodegen_sequence} (seqid int unsigned not null auto_increment, rrule text, primary key(seqid))");
+      db_query("CREATE TABLE {date_repeat_nodegen_sequence_member} (seqid int unsigned not null, nid int unsigned not null, primary key(seqid, nid))");
+      break;
+  }
+}
+
+function date_repeat_nodegen_uninstall() {
+  switch ($GLOBALS['db_type']) {
+    case 'mysql':
+    case 'mysqli':
+      db_query("DROP TABLE {date_repeat_nodegen_sequence}");
+      db_query("DROP TABLE {date_repeat_nodegen_sequence_member}");
+      break;
+  }
+}

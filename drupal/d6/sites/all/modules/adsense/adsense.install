@@ -1,0 +1,78 @@
+<?php
+
+/**
+ * @file
+ * Install file of the adsense module
+ */
+
+/**
+ * Implementation of hook_install().
+ */
+function adsense_install() {
+  drupal_set_message(st("AdSense settings are available under !link",
+    array( '!link' => l(st('Administer > Site configuration > AdSense'),  'admin/settings/adsense' ) )
+  ));
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function adsense_uninstall() {
+  variable_del('adsense_access_pages');
+  variable_del('adsense_basic_id');
+  variable_del('adsense_disable');
+  variable_del('adsense_id_module');
+  variable_del('adsense_placeholder');
+  variable_del('adsense_placeholder_text');
+  variable_del('adsense_section_targeting');
+  variable_del('adsense_test_mode');
+  variable_del('adsense_visibility');
+
+  $settings = db_query("SELECT name FROM {variable} WHERE name LIKE 'adsense\_ad\_channel\_%'");
+  while ($variable = db_fetch_object($settings)) {
+    variable_del($variable->name);
+  }
+}
+
+/**
+ * Drupal 5.x to 6.x update.
+ */
+function adsense_update_6000() {
+  // Convert old ad blocks to the new per-ad-gen blocks
+  // New block will have the original number as the name, so that the block input tag works
+  $oldsearch = 0;
+  $managed = 0;
+  $oldcode = 0;
+  $pos = drupal_strlen('adsense_ad_block_');
+  $settings = db_query("SELECT name FROM {variable} WHERE name LIKE 'adsense\_ad\_block\_%'");
+  while ($variable = db_fetch_object($settings)) {
+    $data = explode(':', variable_get($variable->name, ''));
+    if ($data[0] == 'Search Box') {
+      // Block is an old search block
+      // Store the name and the channel in the new block
+      $newdata = implode(':', array(drupal_substr($variable->name, $pos), $data[2]));
+      variable_set('adsense_search_ad_block_'. $oldsearch++, $newdata);
+    }
+    elseif (!empty($data[3])) {
+      // Slot is defined, so it is a managed ad
+      // Store the name, format and slot in the new block
+      $newdata = implode(':', array(drupal_substr($variable->name, $pos), $data[0], $data[3]));
+      variable_set('adsense_managed_ad_block_'. $managed++, $newdata);
+    }
+    else {
+      // Slot is an old code ad
+      // Store the name, format, group and channel in the new block
+      $newdata = implode(':', array(drupal_substr($variable->name, $pos), $data[0], $data[1], $data[2]));
+      variable_set('adsense_oldcode_ad_block_'. $oldcode++, $newdata);
+    }
+    // Raise the number of blocks in a type, if necessary
+    variable_set('adsense_search_number_blocks', max(variable_get('adsense_search_number_blocks', 2), $oldsearch));
+    variable_set('adsense_managed_number_blocks', max(variable_get('adsense_managed_number_blocks', 3), $managed));
+    variable_set('adsense_oldcode_number_blocks', max(variable_get('adsense_oldcode_number_blocks', 3), $oldcode));
+
+    variable_del($variable->name);
+  }
+
+  $ret = array();
+  return $ret;
+}

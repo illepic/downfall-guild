@@ -1,0 +1,11 @@
+/* $Id: wowdb.css,v 1.1.2.2 2009/05/22 20:25:29 professorbikeybike Exp $ */
+
+/**
+ * @file
+ * Provide overrides of default Drupal styles that cause tooltip
+ *problems 
+ */
+
+.wowdb-tooltip tbody, .wowdb-tooltip tbody th { 
+  border-width: 0px;
+}

@@ -1,0 +1,33 @@
+// $Id: CHANGELOG.txt,v 1.9 2009/06/10 14:09:36 smk Exp $
+
+PHPMailer 6.x-2.x, xxxx-xx-xx
+-----------------------------
+
+
+PHPMailer 6.x-2.1, 2009-06-10
+-----------------------------
+by smk-ka: Updated external PHPMailer message strings.
+by smk-ka: Don't set FromName to an empty string.
+by smk-ka: Added public method SmtpSend for compatibility with PHPMailer 5.x.
+
+
+PHPMailer 6.x-2.0, 2009-05-17
+-----------------------------
+by sun: Fixed wrong link to ex. watchdog page.
+by sun: Added HTML mail preview when Mime Mail module is installed.
+by sun: Simplified settings form (UX).
+by smk-ka: Fixed improper RFC 822 formatted date (by Mime Mail).
+by smk-ka: Fixed empty mail body with Mime Mail.
+by smk-ka: Fixed inconsistent linefeeds with Mime Mail.
+by smk-ka: Fixed phpmailer_debug_mail not always rerouting.
+#375422 by recidive: Fixed mails are sent to multiple recipients.
+by sun: Fixed missing system_settings_form() due to clean-up commit.
+by sun: Code clean-up and sync between 5.x-2.x and 6.x-2.x.
+by smk-ka: Complete rewrite for PHPMailer 2.x.
+
+
+PHPMailer 5.x-1.0, 2009-01-15
+-----------------------------
+Initial release of PHPMailer integration module for Drupal.
+
+

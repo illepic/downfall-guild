@@ -1,0 +1,139 @@
+<?php
+// $Id: date_repeat_nodegen.module,v 1.1 2009/04/04 11:19:26 shaisachs Exp $
+
+/**
+ * @file
+ * Allows users to generate each of the nodes specified by a repeating rule.
+ */
+
+/**
+ * Implementation of hook_help
+ */
+function date_repeat_nodegen_help($path, $arg) {
+  $output = '';
+  switch ($path) {
+    case "admin/help#date_repeat_nodegen":
+      $output = '<p>'.  t('Allows users to generate each of the nodes specified by a repeating rule.') .'</p>';
+      break;
+  }
+  return $output;
+} // function date_repeat_nodegen_help
+
+function date_repeat_nodegen_form_alter(&$form, $form_state, $form_id) {
+  if ($form['#id'] == 'node-form') {
+    _date_repeat_nodegen_rrule_process_override($form);
+  }
+}
+
+function _date_repeat_nodegen_rrule_process_override(&$element) {
+  if ($element['#type'] == 'date_repeat_rrule') {
+    if (is_array($element['#process'])) {
+      $element['#process'][] = 'date_repeat_nodegen_rrule_process';
+    }
+    else {
+      $element['#process'] = array('date_repeat_rrule_process', 'date_repeat_nodegen_rrule_process');
+    }
+    
+    if (is_array($element['#element_validate'])) {
+      array_unshift($element['#element_validate'], 'date_repeat_nodegen_rrule_validate');
+    }
+    else {
+      $element['#element_validate'] = array('date_repeat_nodegen_rrule_validate', 'date_repeat_rrule_validate');
+    }
+  }
+
+  $children = element_children($element);
+
+  foreach ($children as $child) {
+    _date_repeat_nodegen_rrule_process_override($element[$child]);
+  }
+}
+
+function date_repeat_nodegen_rrule_process($element, $form_state) {
+  $element['generate_nodes'] = array(
+    '#type' => 'radios',
+    '#title' => t('Generate each date as a single node'),
+    '#options' => array(0 => t('No'), 1 => t('Yes')),
+    '#default_value' => 0,
+    '#weight' => 1,
+    '#description' => t('If you choose yes, you will note be able to edit the nodes as a series once they are generated.'),
+    '#prefix' => '<div class="date-clear"></div><div class="date-repeat-generate-nodes">',
+    '#suffix' => '</div>',
+  );
+  
+  $element['UNTIL']['#weight'] = 2;
+  $element['advanced']['#weight'] = 3;
+  $element['exceptions']['#weight'] = 4;
+  $element['help']['#weight'] = 5;
+
+  return $element;
+}
+
+function date_repeat_nodegen_rrule_validate($element, &$form_state) {
+  $field_name = $element['#parents'][0];
+  $generate = $form_state['values'][$field_name]['rrule']['generate_nodes'];
+  
+  if ($generate) {
+    $el_g = array();
+    $el_g['#parents'] = array('date_repeat_nodegen'); // date_repeat clobbers the element, so we need to save the generate flag somewhere
+    form_set_value($el_g, array('field_name' => $field_name, 'generate' => 1), $form_state);
+  }
+}
+
+function date_repeat_nodegen_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
+  if ($op == 'presave') {
+    if ($node->date_repeat_nodegen['generate']) {
+      $field_name = $node->date_repeat_nodegen['field_name'];
+      if (!isset($node->$field_name)) { return ; }
+      
+      $dates = $node->$field_name;
+      $rrule_date_filter = create_function('$a', 'return is_array($a) && isset($a["rrule"]);');
+      
+      // check that we actually have multiple dates to work with, and that each one is attached to an rrule
+      if (is_array($dates) && (count(array_filter($dates, $rrule_date_filter)) == count($dates))) {
+        $rrule = $dates[0]['rrule'];
+        $dates = array_map(create_function('$d', 'unset($d["rrule"]); return $d;'), $dates);
+        
+        // convert this node to a single-date node with no repetition
+        $first_date = array_shift($dates);
+        $node->$field_name = array($first_date);
+          
+        // save the remaining dates in date_repeat_nodegen so that we can create more nodes after insertion
+        // after saving these dates to new nodes, we will erase date_repeat_nodegen
+        // also save the rrule so that we can create a sequence for it later
+        $node->date_repeat_nodegen['dates'] = $dates;
+        $node->date_repeat_nodegen['rrule'] = $rrule;
+      }
+
+    }
+  }
+  
+  if ($op == 'insert') {
+    if (isset($node->date_repeat_nodegen) && $node->date_repeat_nodegen['generate'] && is_array($node->date_repeat_nodegen['dates'])) {
+      $repeat_info = $node->date_repeat_nodegen;
+      unset($node->date_repeat_nodegen); // prevents infinite recursion when we save below...
+      $field_name = $repeat_info['field_name'];
+      
+      $seqid = _date_repeat_nodegen_new_sequence($node, $repeat_info['rrule']);
+      _date_repeat_nodegen_add_node_to_sequence($seqid, $node); // we've already saved the first node within this sequence, so add it to the sequence
+      
+      foreach ($repeat_info['dates'] as $date) {
+        unset($node->nid);
+        unset($date['rrule']);
+        $node->$field_name = array($date);
+        $node = node_submit($node);
+        node_save($node);
+        _date_repeat_nodegen_add_node_to_sequence($seqid, $node);
+      }
+    }
+  }
+}
+
+function _date_repeat_nodegen_new_sequence($node, $rrule) {
+  db_query("INSERT INTO {date_repeat_nodegen_sequence} (rrule) VALUES ('%s')", $rrule);
+  return db_last_insert_id("date_repeat_nodegen_sequence", "seqid");
+}
+
+function _date_repeat_nodegen_add_node_to_sequence($seqid, $node) {
+  db_query("INSERT INTO {date_repeat_nodegen_sequence_member} (seqid, nid) VALUES (%d, %d)", $seqid, $node->nid);
+}

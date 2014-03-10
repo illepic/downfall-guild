@@ -1,0 +1,234 @@
+<?php
+
+// $Id: lootz.module,v 1.1.2.2 2009/05/22 20:25:29 professorbikeybike Exp $
+
+/**
+ * @file
+ *   Allow the use of [item] filters. The item databases are configured in the
+ *   item_dbs directory. See item_dbs/wowdb.inc or item_dbs/wowhead.inc for an
+ *   example.
+ *
+ * @todo
+ *   Add more (eg, thottbot, etc)
+ */
+
+/**
+ * Implementation of hook_filter().
+ */
+function lootz_filter($op, $delta = 0, $format = -1, $text = '') {
+  switch ($op) {
+    case 'list':
+      return array(0 => t('Lootz item filter'));
+
+    case 'description':
+      return _lootz_invoke_hook('filter_description');
+
+    case 'prepare' :
+      return $text;
+
+    case 'process':
+      return _lootz_filter_process($text, $format);
+
+    case 'settings' :
+      return _lootz_filter_settings($format);
+  }
+}
+
+/**
+ * Implementation of hook_filter_tips().
+ */
+function lootz_filter_tips($delta, $format, $long) {
+  return _lootz_invoke_hook('filter_tips', $delta, $format, $long);
+}
+
+/**
+ * Implementation of hook_theme().
+ */
+function lootz_theme() {
+  $hooks['lootz_link_item'] = array(
+    'arguments' => array('url' => NULL, 'name' => NULL, 'id' => NULL),
+  );
+  return $hooks;
+}
+
+
+/**
+ * Replace [item] tags with corresponding values, if found.
+ */
+function _lootz_filter_process($text, $format) {
+  // Find all links.
+  if (preg_match_all('#\[item\]([0-9a-zA-Z-\'-\- ]+)\[/item\]#',$text, $links, PREG_SET_ORDER)) {
+    foreach ($links as $match) {
+      if ($new_link = _lootz_link_item($match[1])) {
+        $text = str_replace($match[0], $new_link, $text);
+      }
+    }
+  }
+  return $text;
+}
+
+/**
+ * Implementation of hook_init().
+ */
+function lootz_init() {
+  _lootz_invoke_hook('init');
+  $vendor = variable_get('lootz_item_database', 'wowhead');
+  $css = drupal_get_path('module', 'lootz') . '/item_dbs/' . $vendor . '.css';
+  if (is_readable($css)) {
+    drupal_add_css($css);
+  }
+  drupal_add_css(drupal_get_path('module', 'lootz') . '/lootz.css');
+}
+
+/**
+ * @param string $id
+ *   Item ID or Name.
+ * @return string
+ *   Link to item in configured item DB.
+ */
+function _lootz_link_item($id) {
+  if (is_numeric($id)) {
+    // Find the name.
+    $name = _lootz_name_lookup($id);
+  }
+  else {
+    // Find id.
+    $name = $id;
+    $id = _lootz_id_lookup($id);
+  }
+  return _lootz_invoke_hook('link_item', $name, $id);
+}
+
+/**
+ * Find an item name based on ID.
+ * @param int $id
+ *   Item ID
+ * @return string
+ *   Item name
+ */
+function _lootz_name_lookup($id) {
+  static $names = array();
+  if (empty($names)) {
+    $names = _lootz_cache_get('names');
+  }
+
+  if (!isset($names[$id])) {
+    $names[$id] = _lootz_invoke_hook('name_lookup', $id);
+    _lootz_cache_set('names', $names);
+  }
+
+  return $names[$id];
+}
+
+/**
+ * Find an item id based on name
+ * @param name string   Item Name
+ * @return int          Item ID
+ */
+function _lootz_id_lookup($name) {
+  static $ids = array();
+  if (empty($ids)) {
+    $ids = _lootz_cache_get('ids');
+  }
+
+  if (!isset($ids[$name])) {
+    if ($id = _lootz_invoke_hook('id_lookup', $name)) {
+      $ids[$name] = $id;
+      _lootz_cache_set('ids', $ids);
+    }
+  }
+
+  return $ids[$name];
+}
+
+/**
+ * Invoke lootz hooks
+ */
+function _lootz_invoke_hook() {
+  $args = func_get_args();
+  $hook = array_shift($args);
+
+  // Determine which vendor to use (default is wowhead).
+  $vendor = variable_get('lootz_item_database', 'wowhead');
+  require_once 'item_dbs/' . $vendor .'.inc';
+
+  $function = 'lootz_' . $vendor . '_' . $hook;
+
+  if (function_exists($function)) {
+    return call_user_func_array($function, $args);
+  }
+}
+
+/**
+ * Load lootz cache.
+ */
+function _lootz_cache_get($cid) {
+  $cache = cache_get('lootz_' . $cid);
+  if ($cache) {
+    return $cache->data;
+  }
+  return array();
+}
+
+/**
+ * Store lootz cache.
+ */
+function _lootz_cache_set($cid, $value) {
+  cache_set('lootz_' . $cid, $value, 'cache', CACHE_PERMANENT);
+}
+
+/**
+ * Return settings form.
+ */
+function _lootz_filter_settings($format) {
+  $form['lootz'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Lootz Settings'),
+    '#collapsible' => TRUE,
+  );
+  $form['lootz']['lootz_item_database'] = array(
+    '#type' => 'radios',
+    '#title' => t('Item Database'),
+    '#options' => _lootz_get_available_item_dbs(),
+    '#default_value' => variable_get('lootz_item_database', 'wowhead'),
+    '#description' => t('The item lookup database to use'),
+  );
+  return $form;
+}
+
+/**
+ * Get all available item dbs (as configured in item_dbs directory).
+ */
+function _lootz_get_available_item_dbs() {
+  // Include all files.
+  $dir = drupal_get_path('module', 'lootz') . '/item_dbs';
+  $available_item_dbs = file_scan_directory($dir, '\.inc$');
+ 
+  $item_dbs = array();
+  foreach (array_keys($available_item_dbs) as $file) {
+    if (preg_match('#/([a-z]*)\.inc$#', $file, $m)) {
+      // This is the name, eg wowhead, wowdb.
+      $item_db = $m[1];
+
+      include_once $file;
+
+      $function = 'lootz_' . $item_db . '_item_db_info';
+      if (function_exists($function)) {
+        $details = call_user_func_array($function, array());
+        $item_dbs = array_merge($item_dbs, $details);
+      }
+    }
+  }
+
+  return $item_dbs;
+}
+
+function theme_lootz_link_item($url, $name, $id) {
+  $class = 'lootz';
+  if ($quality = _lootz_invoke_hook('quality_lookup', $id, $name)) {
+    $class .= ' lootz-' . $quality;
+  }
+  $name = '<span' . drupal_attributes(array('class' => $class)) .'>[' . $name . ']</span>';
+  $link = l($name, $url, array('html' => true, 'attributes' => array('id' => 'item_' .$id, 'class' => $class)));
+  return $link;
+}

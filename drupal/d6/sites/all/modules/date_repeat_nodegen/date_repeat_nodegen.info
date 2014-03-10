@@ -1,0 +1,12 @@
+; $Id: date_repeat_nodegen.info,v 1.1 2009/04/04 11:19:26 shaisachs Exp $
+name = Date Repeat Node Generator
+description = Allows users to generate each of the nodes specified by a repeating rule.
+core = 6.x
+dependencies[] = date_repeat
+package = Date/Time
+; Information added by drupal.org packaging script on 2009-04-04
+version = "6.x-1.x-dev"
+core = "6.x"
+project = "date_repeat_nodegen"
+datestamp = "1238846731"
+

@@ -1,0 +1,5 @@
+; $Id$
+name = Menu Fun
+description = Learning about the menu system
+package = Pro Drupal Development
+core = 6.x

@@ -1,0 +1,99 @@
+<?php
+// $Id: wowarmory.install,v 1.2 2009/07/25 18:45:19 nhdriver4 Exp $
+
+/**
+ * @file
+ * Installation file for the wowarmory module.
+ */
+
+/**
+ * Implementation of hook_schema().
+ */
+function wowarmory_schema() {
+  $schema['wowarmory_roster'] = array(
+    'description' => t('TODO: please describe this table!'),
+    'fields' => array(
+      'id' => array(
+        'description' => t('TODO: please describe this field!'),
+        'type' => 'serial',
+        'not null' => TRUE,
+      ),
+      'achPoints' => array(
+        'description' => t('TODO: please describe this field!'),
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'classId' => array(
+        'description' => t('TODO: please describe this field!'),
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'genderId' => array(
+        'description' => t('TODO: please describe this field!'),
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'level' => array(
+        'description' => t('TODO: please describe this field!'),
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'name' => array(
+        'description' => t('TODO: please describe this field!'),
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'raceId' => array(
+        'description' => t('TODO: please describe this field!'),
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'rank' => array(
+        'description' => t('TODO: please describe this field!'),
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+  return $schema;
+}
+
+/**
+ * Implementation of hook_install().
+ */
+function wowarmory_install() {
+  // Create tables.
+  drupal_install_schema('wowarmory');
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function wowarmory_uninstall() {
+  // Remove tables
+  drupal_uninstall_schema('wowarmory');
+/*
+  variable_del('wowarmory_realm');
+  variable_del('wowarmory_guild');
+  variable_del('wowarmory_rostermax');
+  variable_del('wowarmory_rank_0');
+  variable_del('wowarmory_rank_1');
+  variable_del('wowarmory_rank_2');
+  variable_del('wowarmory_rank_3');
+  variable_del('wowarmory_rank_4');
+  variable_del('wowarmory_rank_5');
+  variable_del('wowarmory_rank_6');
+  variable_del('wowarmory_rank_7');
+  variable_del('wowarmory_rank_8');
+  variable_del('wowarmory_rank_9');
+*/
+}

@@ -1,0 +1,27 @@
+<?php
+// $Id: phpmailer.install,v 1.1 2009/05/07 04:33:19 sun Exp $
+
+/**
+ * @file
+ * PHPMailer installation functions.
+ */
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function phpmailer_uninstall() {
+  if (strpos(variable_get('smtp_library', ''), 'phpmailer')) {
+    variable_del('smtp_library');
+  }
+  variable_del('smtp_on');
+  variable_del('smtp_host');
+  variable_del('smtp_hostbackup');
+  variable_del('smtp_port');
+  variable_del('smtp_protocol');
+  variable_del('smtp_fromname');
+  variable_del('smtp_username');
+  variable_del('smtp_password');
+  variable_del('smtp_keepalive');
+  variable_del('smtp_debug');
+}
+

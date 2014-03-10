@@ -1,0 +1,114 @@
+/*
+	Supplementary stylesheet for site colour
+*/
+
+body {
+	color: #FFFFFF;
+	background-color: #000000;
+}
+
+a,
+a:link,
+a:visited {
+	color: #FFFF00;
+}
+
+a:hover, 
+a:hover div,
+ul.primary li a:hover {
+	color: #000099;
+	background-color: #FFFF00;
+}
+
+#content h2, #content h3 {
+	background-color: #000099;
+}
+
+ul.primary {
+	border-bottom: solid 1px #FFFF00;
+}
+
+ul.primary li.active a {
+	color: #000099;
+	background-color: #FFFF00;
+}
+
+ul.primary li a {
+	color: #FFFF00;
+	background-color: #000000;
+	border: solid 1px #FFFF00;
+}
+
+li a.active {
+	color: #FFFF00;
+}
+
+#content table td {
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+.sidebar, #footer, #accesssettings, #access {
+	border: solid 1px #AAAA00;
+}
+
+td#sidebar-left .t,
+td#sidebar-right .t,
+td#footer .t,
+td#accesssettings .t {
+	background-image: none;
+}
+td#sidebar-left .b,
+td#sidebar-right .b,
+td#footer .b,
+td#accesssettings .b {
+	background-image: none;
+}
+td#sidebar-left .l,
+td#sidebar-right .l,
+td#footer .l,
+td#accesssettings .l {
+	background-image: none;
+}
+td#sidebar-left .r,
+td#sidebar-right .r,
+td#footer .r,
+td#accesssettings .r {
+	background-image: none;
+}
+td#sidebar-left .tl,
+td#sidebar-right .tl,
+td#footer .tl,
+td#accesssettings .tl {
+	background-image: none;
+}
+td#sidebar-left .tr,
+td#sidebar-right .tr,
+td#footer .tr,
+td#accesssettings .tr {
+	background-image: none;
+}
+td#sidebar-left .bl,
+td#sidebar-right .bl,
+td#footer .bl,
+td#accesssettings .bl {
+	background-image: none;
+}
+td#sidebar-left .br,
+td#sidebar-right .br,
+td#footer .br,
+td#accesssettings .br {
+	background-image: none;
+}
+
+#content h1,
+#content h2,
+#content h3 {
+	background-image: none;
+}
+
+div.popup {
+	background-color: #000066;
+	color: #FFFFFF;
+	font-size: inherit;
+}

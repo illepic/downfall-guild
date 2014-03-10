@@ -1,0 +1,50 @@
+<?php
+// $Id: views_tabs.module,v 1.3.2.2 2010/01/25 17:43:11 jdwfly Exp $
+
+/**
+ * @file
+ * Enable the presentation of views in tabs.
+ */
+
+/**
+ * Implementation of hook_menu()
+ */
+function views_tabs_menu() {
+  $items = array();
+  $items['admin/settings/viewstabs'] = array(
+    'title' => 'Views Tabs',
+    'description' => t('Configure settings for Views Tabs'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('views_tabs_admin_settings'),
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+/**
+ * Administration settings form.
+ */
+function views_tabs_admin_settings() {
+  $form = array();
+
+  $options = array('0' => t('none')) + drupal_map_assoc(array(10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 120, 140, 160, 180, 200));
+
+  $form['views_tabs_truncate_length'] = array(
+    '#type' => 'select',
+    '#title' => t('Maximum length of tab titles'),
+    '#default_value' => variable_get('views_tabs_truncate_length', 0),
+    '#options' => $options,
+    '#description' => t('Views presented on tabs use content titles for the tab titles. You can limit the length of these tab titles by selecting a maximum length here. Titles will be cut (truncated) to the nearest word. Choose "none" to display full titles.'),
+  );
+
+  return system_settings_form($form);
+}
+
+function views_tabs_views_api() {
+  return array(
+    'api' => 2,
+    'path' => drupal_get_path('module', 'views_tabs') .'/includes',
+  );
+}

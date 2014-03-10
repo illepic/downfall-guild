@@ -1,0 +1,105 @@
+/* $Id: shoutbox.css,v 1.5.2.4 2008/07/11 10:16:59 disterics Exp $ */
+
+#shoutbox-body {
+    font-size : xx-small;
+    margin: 0px;
+    padding: 2px;
+    border: 1px solid #bbb;
+    overflow: auto;
+}
+
+/* override drupal.css values */
+.shoutbox-add-form .form-item {
+    margin-top: 0em;
+    margin-bottom: 0em;
+}
+
+.shoutbox-view-form .form-submit {
+    visibility: hidden;
+    display:none;
+}
+
+/* 
+shoutbox block: main divs 
+*/
+div#shoutbox-posts {
+    text-align: left;
+}
+
+div.shoutbox-msg {
+    color: #000000;
+    font-size : xx-small;
+    padding: 5px 0px 5px 0px;
+}
+
+div.shoutbox-add-form {	
+    text-align: center;
+    margin: 3px 0 0 0;
+}
+
+div.shoutbox-archive a, div.shoutbox-archive a:visited {
+    text-align: center;
+    color: #fff;
+    background-color: #999;
+    display: block;
+}
+
+div.shoutbox-archive a:hover {
+    color: #fff;
+    background-color: #aaa;
+    text-decoration: none;
+}
+
+/* 
+shoutbox box: nested elements 
+*/
+div.shoutbox-even {
+    color : #000000;
+    background-color : #eee;
+    width: 100%;
+}
+
+div.shoutbox-odd {
+    color : #000000;
+    background-color : #fff;
+    width: 100%;
+}
+
+.shoutbox-addinput {
+    width: 100%;
+}
+
+.shoutbox-imglink {
+    padding: 0px 2px 0px 2px;
+    float: right;
+}
+
+.shoutbox-queue-title {
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #999;
+    text-align: center;
+}
+
+/*
+other shoutbox pages
+*/
+.shoutbox-add-form input.form-text {
+    width: 95%;
+}
+
+.shoutbox-add-form input.textarea {
+    width: 95%;
+}
+
+.shoutbox-unpublished {
+    background-color: #f00;
+}
+
+#shoutbox-throbber {
+    width: 16px;
+    height: 16px;
+    margin: 2px;
+    margin-left: 40%; 
+    background: transparent url(throbber.gif) no-repeat;
+}

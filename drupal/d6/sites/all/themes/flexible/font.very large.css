@@ -1,0 +1,86 @@
+/*
+	Define all fonts and sizes
+	Large fonts
+*/
+body {
+	font-family: verdana, arial, sans-serif;
+	font-size: x-large;
+}
+
+/* 
+	header
+*/
+#header h1,
+#site_name,
+#site_slogan {
+	font-size: x-large;
+}
+
+/*
+	sidebar layout
+*/
+.sidebar,
+.sidebar h2 {
+	font-size: large;
+}
+
+/*
+	content layout
+*/
+#content,
+#content h1,
+#content h2,
+#content h3,
+#content h4 {
+	font-size: x-large;
+}
+
+
+/*
+	footer layout
+*/
+#footer, #footer h2  {
+	font-size: x-large;
+}
+
+/*
+	links
+*/
+a {
+	font-weight: normal;
+}
+a:link, a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+/*
+	other
+*/
+.comment_add,
+.comment_delete,
+.comment_edit,
+.comment_reply
+ {
+	font-size: large;
+}
+
+.comment {
+	font-size: large;
+}
+
+input,
+textarea,
+td {
+	font-size: x-large;
+}
+select {
+	font-size: x-large;
+	max-width: 450px;
+}
+
+ul.primary li {
+	display: block;
+}

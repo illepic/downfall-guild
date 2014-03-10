@@ -1,0 +1,127 @@
+<?php
+
+/**
+ * @file
+ * Install file of the adsense_click module
+ */
+
+function adsense_click_install() {
+  // Create tables.
+  drupal_install_schema('adsense_click');
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function adsense_click_uninstall() {
+  // Remove tables.
+  drupal_uninstall_schema('adsense_click');
+}
+
+/**
+ * Implementation of hook_schema().
+ */
+function adsense_click_schema() {
+  $schema['adsense_clicks'] = array(
+    'fields' => array(
+      'aid' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'disp-width' => '10',
+      ),
+      'ip' => array(
+        'type' => 'varchar',
+        'length' => '15',
+        'not null' => FALSE,
+        'default' => '0',
+      ),
+      'timestamp' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'disp-width' => '11',
+      ),
+      'path' => array(
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => FALSE,
+        'default' => '',
+      ),
+      'title' => array(
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => FALSE,
+        'default' => '',
+      ),
+      'referrer' => array(
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => FALSE,
+        'default' => '',
+      ),
+    ),
+    'primary key' => array('aid'),
+    'indexes' => array(
+      'path' => array('path'),
+      'timestamp' => array('timestamp'),
+    ),
+  );
+
+  return $schema;
+}
+
+function adsense_click_update_1() {
+  $schema['adsense_clicks'] = array(
+    'fields' => array(
+      'aid' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'disp-width' => '10',
+      ),
+      'ip' => array(
+        'type' => 'varchar',
+        'length' => '15',
+        'not null' => FALSE,
+        'default' => '0',
+      ),
+      'timestamp' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'disp-width' => '11',
+      ),
+      'path' => array(
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'primary key' => array('aid'),
+    'indexes' => array(
+      'timestamp' => array('timestamp'),
+    ),
+  );
+
+  $ret = array();
+  db_create_table($ret, 'adsense_clicks', $schema['adsense_clicks']);
+  return $ret;
+}
+
+function adsense_click_update_2() {
+  $ret = array();
+  db_add_field($ret, 'adsense_clicks', 'title', array('type' => 'varchar', 'length' => '255', 'not null' => TRUE, 'default' => ''));
+  db_add_field($ret, 'adsense_clicks', 'referrer', array('type' => 'varchar', 'length' => '255', 'not null' => TRUE, 'default' => ''));
+  return $ret;
+}
+
+function adsense_click_update_3() {
+  $ret = array();
+  db_change_field($ret, 'adsense_clicks', 'path', 'path', array('type' => 'varchar', 'length' => '255', 'not null' => FALSE, 'default' => ''));
+  db_change_field($ret, 'adsense_clicks', 'title', 'title', array('type' => 'varchar', 'length' => '255', 'not null' => FALSE, 'default' => ''));
+  db_change_field($ret, 'adsense_clicks', 'referrer', 'referrer', array('type' => 'varchar', 'length' => '255', 'not null' => FALSE, 'default' => ''));
+  db_add_index($ret, 'adsense_clicks', 'path', array('path'));
+  return $ret;
+}

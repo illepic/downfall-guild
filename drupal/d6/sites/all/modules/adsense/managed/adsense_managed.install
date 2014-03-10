@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Install file of the adsense_managed module
+ */
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function adsense_managed_uninstall() {
+  variable_del('adsense_managed_number_blocks');
+  $settings = db_query("SELECT name FROM {variable} WHERE name LIKE 'adsense\_managed\_ad\_block\_%'");
+  while ($variable = db_fetch_object($settings)) {
+    variable_del($variable->name);
+  }
+}

@@ -1,0 +1,9 @@
+/* $Id: COPYHERE.txt,v 1.1 2009/01/15 20:30:37 sun Exp $ */
+
+Copy the downloaded files
+
+  class.phpmailer.php
+  class.smtp.php
+
+into this directory.
+

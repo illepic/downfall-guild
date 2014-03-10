@@ -1,0 +1,91 @@
+<?php
+// $Id: form_markup.module,v 1.5.2.3.2.4 2008/10/11 08:50:10 mh86 Exp $
+
+/**
+ *@file 
+ * Adds prefix/suffix values for cck widgets
+ */
+
+
+/**
+ * Implementation of hook_form_alter().
+ */
+function form_markup_form_alter(&$form, $form_state, $form_id) {
+  if (isset($form['type']) && $form['type']['#value'] .'_node_form' == $form_id) {
+    form_markup_add_markup($form);
+  }
+  else if ($form_id == 'content_field_edit_form') {
+    form_markup_admin_form($form);
+  }
+}
+
+/**  
+ * adds prefix/suffix values to the form (in form_alter)
+ */
+function form_markup_add_markup(&$form) {
+  $fields = content_fields(NULL, $form['type']['#value']);
+  if (is_array($fields)) {
+    foreach ($fields as $field_name => $field) {
+      if (is_array($form[$field_name])) {
+        $form[$field_name]['#prefix'] =  $field['widget']['prefix'] . $form[$field_name]['#prefix'];
+        $form[$field_name]['#suffix'] .= $field['widget']['suffix'];
+      }
+    } 
+  }     
+}
+
+/** 
+ * Additional form fields for the content_admin_field form to set prefix/suffix values
+ */
+function form_markup_admin_form(&$form) {
+  $form['widget']['form_markup'] = array(
+    '#type' => 'fieldset',
+    '#tree' => TRUE,
+    '#title' => t('Form Markup'),
+    '#collapsible' => TRUE,
+    '#description' => t('The values will surround your field on the content add/edit form. HTML is allowed'),
+  );
+  $form['widget']['form_markup']['prefix'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Prefix'),
+    '#rows' => 1,
+    '#cols' => 60,
+    '#default_value' => _form_markup_get_default_value($form['type_name']['#value'], $form['field_name']['#value'], 'prefix'),
+   );
+   $form['widget']['form_markup']['suffix'] = array(
+     '#type' => 'textarea',
+     '#title' => t('Suffix'),
+     '#rows' => 1,
+     '#cols' => 60,
+     '#default_value' => _form_markup_get_default_value($form['type_name']['#value'], $form['field_name']['#value'], 'suffix'),
+   );
+   $form['#submit'][] = 'form_markup_submit';
+}
+
+/** 
+ * Additional submit handler on content_admin_field form
+ *
+ * writes prefix/suffix values to the widget settings and clears again the cache
+ */
+function form_markup_submit($form_id, &$form_state) {
+  $field = content_fields($form_state['values']['field_name'], $form_state['values']['type_name']);
+  $widget_settings = $field['widget'];
+  $widget_settings['prefix'] = $form_state['values']['form_markup']['prefix'];
+  $widget_settings['suffix'] = $form_state['values']['form_markup']['suffix'];
+
+  db_query("UPDATE {". content_instance_tablename() ."} SET widget_settings = '%s'
+    WHERE type_name = '%s' AND field_name = '%s'", serialize($widget_settings), $form_state['values']['type_name'], $form_state['values']['field_name']); 
+  content_clear_type_cache();
+}
+
+/** 
+ * Helper function, that returns the values of the widget settings
+ *
+ * @param $type_name name of content_type
+ * @param $field_name name of the field
+ * @param $value name of the setting (prefix/suffix)
+ */
+function _form_markup_get_default_value($type_name, $field_name, $value) {
+  $field = content_fields($field_name, $type_name);
+  return $field['widget'][$value];
+}

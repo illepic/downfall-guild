@@ -1,0 +1,13 @@
+name = Image assist
+description = This module allows users to upload and insert inline images into posts. It automatically generates an Add image link under the textarea fields of your choice.
+dependencies[] = image
+dependencies[] = views
+package = Image
+core = 6.x
+
+; Information added by drupal.org packaging script on 2011-02-25
+version = "6.x-3.x-dev"
+core = "6.x"
+project = "img_assist"
+datestamp = "1298619437"
+

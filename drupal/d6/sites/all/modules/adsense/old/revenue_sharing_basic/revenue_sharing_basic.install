@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Install file of the revenue_sharing_basic module
+ */
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function revenue_sharing_basic_uninstall() {
+  variable_del('revenue_sharing_basic_client_id_profile_field');
+  variable_del('revenue_sharing_basic_percentage_author');
+  variable_del('revenue_sharing_basic_percentage_refer');
+  variable_del('revenue_sharing_basic_revenue_enable');
+  $settings = db_query("SELECT name FROM {variable} WHERE name LIKE 'revenue\_sharing\_basic\_percentage\_role\_%'");
+  while ($variable = db_fetch_object($settings)) {
+    variable_del($variable->name);
+  }
+  $settings = db_query("SELECT name FROM {variable} WHERE name LIKE 'revenue\_sharing\_basic\_node\_type\_%'");
+  while ($variable = db_fetch_object($settings)) {
+    variable_del($variable->name);
+  }
+}

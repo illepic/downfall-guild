@@ -1,0 +1,82 @@
+<?php
+
+/**
+ * @file
+ * Enables Drupal to track and log the clicks on AdSense ads.
+ *
+ * This is a sub-module of the AdSense package, with the Drupal hooks
+ * and other administrative functions.
+ */
+
+define('ADSENSE_CLICK_TRACKING_DEFAULT', TRUE);
+define('ADSENSE_CLICK_TRACKING_NAME_RESOLVE_DEFAULT', 0);
+
+/**
+ * Implementation of hook_menu().
+ */
+function adsense_click_menu() {
+  $items = array();
+
+  $items['admin/settings/adsense/click'] = array(
+    'title'            => 'Clicks',
+    'description'      => 'Track the clicks on Adsense ads.',
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('adsense_click_admin_settings'),
+    'type'             => MENU_LOCAL_TASK,
+    'access arguments' => array('administer site configuration'),
+    'file'             => 'adsense_click.admin.inc',
+    'weight'           => 9,
+  );
+  $items['admin/reports/adsense'] = array(
+    'title'            => 'AdSense clicks',
+    'description'      => 'Track AdSense clicks.',
+    'page callback'    => 'adsense_click_log',
+    'type'             => MENU_NORMAL_ITEM,
+    'access arguments' => array('view clicks'),
+    'file'             => 'adsense_click.logs.inc',
+  );
+  $items['admin/reports/adsense/top_pages'] = array(
+    'title'            => 'Top pages',
+    'page callback'    => 'adsense_click_top_pages',
+    'type'             => MENU_NORMAL_ITEM,
+    'access arguments' => array('view clicks'),
+    'file'             => 'adsense_click.logs.inc',
+  );
+  $items['admin/reports/adsense/by_day'] = array(
+    'title'            => 'By day',
+    'page callback'    => 'adsense_click_by_day',
+    'type'             => MENU_NORMAL_ITEM,
+    'access arguments' => array('view clicks'),
+    'file'             => 'adsense_click.logs.inc',
+  );
+  $items['adsense_click'] = array(
+    'page callback'    => 'adsense_click_register',
+    'type'             => MENU_CALLBACK,
+    'access callback'  => TRUE,
+  );
+
+  return $items;
+}
+
+/**
+ * Implementation of hook_perm().
+ */
+function adsense_click_perm() {
+  return array('view clicks');
+}
+
+/**
+ * Implementation of hook_init().
+ */
+function adsense_click_init() {
+  if (variable_get('adsense_click_tracking', ADSENSE_CLICK_TRACKING_DEFAULT)) {
+    drupal_add_js(drupal_get_path('module', 'adsense_click') .'/adsense_click.js');
+  }
+}
+
+function adsense_click_register() {
+  if (variable_get('adsense_click_tracking', ADSENSE_CLICK_TRACKING_DEFAULT)) {
+    db_query("INSERT INTO {adsense_clicks} (ip, timestamp, path, title, referrer) values('%s', %d, '%s', '%s', '%s')",
+      ip_address(), time(), $_GET['u'], $_GET['t'], $_GET['r']);
+  }
+}

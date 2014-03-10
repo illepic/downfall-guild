@@ -1,0 +1,160 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * This is a system to upload a FuriousRaid.lua SavedVariables file and then display it on your site
+ */
+
+/**
+ * implementation of hook_perm().
+ */
+function frpoints_perm(){
+	return array('list points', 'upload points');
+}
+
+/**
+ * Implementation of hook_menu().
+ */
+function frpoints_menu(){
+	$items['frpoints'] = array(
+		'title' => 'FuriousRaid Points',
+		'page callback' => 'frpoints_intro',
+		'access arguments' => array('list points'),
+		'type' => MENU_NORMAL_ITEM,
+	);
+	$items['frpoints/list'] = array(
+		'title' => 'List Points',
+		'access arguments' => array('list points'),
+		'type' => MENU_DEFAULT_LOCAL_TASK,
+		'weight' => 0,
+	);
+	$items['frpoints/list/raid1'] = array(
+		'title' => 'Raid1 Points',
+		'access arguments' => array('list points'),
+		'page callback' => 'frpoints_hello',
+		'page arguments' => array(2),
+		'type' => MENU_LOCAL_TASK,
+	);
+	$items['frpoints/list/raid2'] = array(
+		'title' => 'Raid2 Points',
+		'access arguments' => array('list points'),
+		'page callback' => 'frpoints_hello',
+		'page arguments' => array(2),
+		'type' => MENU_LOCAL_TASK,
+	);
+	$items['frpoints/upload'] = array(
+		'title' => 'Upload FuriousRaid.lua',
+		'access arguments' => array('upload points'),
+		'page callback' => 'frpoints_upload',
+		'type' => MENU_LOCAL_TASK,
+		'weight' => 1,
+	);
+	$items['admin/settings/frpoints'] = array(
+		'title' => 'FuriousRaid Points Settings',
+		'description' => 'Adjust settings for the FuriousRaid display',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('frpoints_admin_settings'),
+		'access arguments' => array('administer site configuration'),
+		'type' => MENU_NORMAL_ITEM,
+		'file' => 'frpoints.admin.inc',
+	);
+	return $items;
+}
+
+/**
+ * Page callback, uploading points
+ */
+function frpoints_upload(){
+	$output = t('Upload the FuriousRaid.lua file from:<br/> "World of Warcraft/WTF/Account/YOUR_ACCOUNT_NAME/SavedVariables/FuriousRaid.lua"');
+	$output .= drupal_get_form('frpoints_fruploadform');
+	return $output;
+}
+
+/**
+ *Define form
+*/
+function frpoints_fruploadform(){
+	$form['#attributes']['enctype'] = 'multipart/form-data';
+	$form['frfile'] = array(
+		'#title' => t('FuriousRaid.lua file'),
+		'#type' => 'file',
+		'#description' => t('Please attach the file here'),
+		'#size' => 30,
+	);
+	$raids = array();
+	$raids = array(split("\n", variable_get('frpoints_named_raids', array())));
+	$form['frraid'] = array(
+		'#title' => t('Choose the raid that this upload is for.'),
+		'#type' => 'select',
+		'#options' => $raids,
+		'#description' => t('Select your raid here.  Raids are defined <a href="@raidadmin">here.</a>)', array('@raidadmin' => url('admin/settings/frpoints'))),
+	);
+	$form['submit'] = array(
+		'#type' => 'submit',
+		'#value' => t('Submit'),
+	);
+	return $form;
+}
+
+/**
+ * handle post validation form submission
+ */
+function frpoints_fruploadform_submit($form, &$form_state){
+	$file = file_save_upload('frfile', $validators = array(), $dest = file_directory_path(), $replace = FILE_EXISTS_REPLACE);
+	$error = file_set_status(&$file, $status = FILE_STATUS_PERMANENT);
+	drupal_set_message(t('File uploaded successfully.'));	
+	frpoints_phparray2table(frpoints_lua2phparray($file));
+}
+
+/** 
+ * import the lua2phparray file and convert our lua file to a php array
+ */
+function frpoints_lua2phparray($fileobject){
+	include 'lua2phparray.php';
+	$frArray = array();
+	$frArray = makePhpArray($fileobject->filepath);
+	return $frArray;
+}
+
+/**
+ * convert the expected array to an html table
+ */
+function frpoints_phparray2table($frArray){
+	$subset = array();
+	$subset = $frArray['FuriousRaidDB']['account']['Karma'];
+	$table = '<table>';
+	$today = getdate();
+	$table .= '<caption>Last updated: '.$today['weekday'].' '.$today['month'].' '.$today['mday'].' '.$today['year'].'</caption>';
+	foreach ($subset as $toon) {
+		$table .= '<tr>';
+		$table .= '<td>'.$toon['name'].'</td>';
+		$table .= '<td>'.$toon['class'].'</td>';
+		//break it down to just the karma array		
+		$karma = $toon['karma'];
+		foreach ($karma as $key => $value) {
+			$table .= '<td>'.$key.': '.$value.'</td>';
+		}
+		$table .= '</tr>';
+	}
+	$table .= '</table>';
+	file_save_data($table, file_directory_path().'/'.'frpoints.inc', $replace = FILE_EXISTS_REPLACE);
+}
+/**
+ * Page callback, listing points.
+ */
+function frpoints_hello($arg){
+	$filename = 'frpoints.inc';
+	$filename = file_directory_path().'/'.$filename;
+	$output = $arg;
+	$output .= file_get_contents($filename);
+	return $output;
+}
+/**
+ * Page callback for the generic fr points page
+ */
+function frpoints_intro(){
+	$output = t('Hello world!');
+	return $output;
+}
+

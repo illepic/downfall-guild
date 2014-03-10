@@ -1,0 +1,16 @@
+; Copyright 2005-2008 Khalid Baheyeldin http://2bits.com
+; Copyright 2008      Joao Ventura      http://www.venturas.org
+
+name = Revenue sharing basic (old)
+description = Revenue sharing for the Google Adsense module
+dependencies[] = adsense
+dependencies[] = profile
+package = Adsense
+core = 6.x
+
+; Information added by drupal.org packaging script on 2012-03-31
+version = "6.x-1.4"
+core = "6.x"
+project = "adsense"
+datestamp = "1333236939"
+
