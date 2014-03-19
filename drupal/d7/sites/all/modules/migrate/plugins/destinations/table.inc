@@ -165,7 +165,7 @@ class MigrateDestinationTable extends MigrateDestination {
   public function fields($migration = NULL) {
     $fields = array();
     foreach ($this->schema['fields'] as $column => $schema) {
-      $fields[$column] = t('Type: !type', array('!type' => $schema['type']));
+      $fields[$column] = t('!type', array('!type' => $schema['type']));
     }
     return $fields;
   }

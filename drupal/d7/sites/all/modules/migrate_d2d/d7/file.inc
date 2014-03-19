@@ -21,11 +21,13 @@ class DrupalFile7Migration extends DrupalFileMigration {
     }
     parent::__construct($arguments);
 
-    $this->highwaterField = array(
-      'name' => 'timestamp',
-      'alias' => 'f',
-      'type' => 'int',
-    );
+    if (!$this->newOnly) {
+      $this->highwaterField = array(
+        'name' => 'timestamp',
+        'alias' => 'f',
+        'type' => 'int',
+      );
+    }
 
     $this->addFieldMapping('value', 'uri')
          ->callbacks(array($this, 'fixUri'));

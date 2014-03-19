@@ -13,9 +13,9 @@ function downfall_migrate_feature_taxonomy_default_vocabularies() {
       'name' => 'Forums',
       'machine_name' => 'forums',
       'description' => 'Forum navigation vocabulary',
-      'hierarchy' => '1',
+      'hierarchy' => 1,
       'module' => 'forum',
-      'weight' => '-10',
+      'weight' => -10,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
@@ -36,9 +36,9 @@ function downfall_migrate_feature_taxonomy_default_vocabularies() {
       'name' => 'Gallery',
       'machine_name' => 'gallery',
       'description' => 'gallery',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
@@ -59,9 +59,9 @@ function downfall_migrate_feature_taxonomy_default_vocabularies() {
       'name' => 'WoW',
       'machine_name' => 'wow',
       'description' => 'All the WoW-related tags.',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',

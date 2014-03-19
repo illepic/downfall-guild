@@ -31,9 +31,15 @@ class DrupalNode5Migration extends DrupalNodeMigration {
     $this->source = new MigrateDrupal5SourceSQL($query, $this->sourceFields, NULL,
       $this->sourceOptions);
 
-    $this->addFieldMapping('body:summary', 'teaser');
-    $this->addFieldMapping('body:format', 'format')
-         ->callbacks(array($this, 'mapFormat'));
+    if (field_info_instance('node', 'body', $this->destinationType)) {
+      $this->addFieldMapping('body:summary', 'teaser');
+      $this->addFieldMapping('body:format', 'format')
+           ->callbacks(array($this, 'mapFormat'));
+    }
+    else {
+      $this->addUnmigratedSources(array('teaser', 'format'));
+    }
+
     $this->addFieldMapping(NULL, 'moderate');
   }
 
@@ -48,8 +54,8 @@ class DrupalNode5Migration extends DrupalNodeMigration {
              ->fields('n', array('nid', 'vid', 'title',
                  'uid', 'status', 'created', 'changed', 'comment', 'promote',
                  'moderate', 'sticky'))
-             ->condition('type', $this->sourceType)
-             ->orderBy('changed');
+             ->condition('n.type', $this->sourceType)
+             ->orderBy('n.changed');
     $query->innerJoin('node_revisions', 'nr', 'n.vid=nr.vid');
     $query->fields('nr', array('body', 'teaser', 'format'));
     // Pick up simple CCK fields

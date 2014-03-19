@@ -72,8 +72,9 @@ class DrupalVersion5 extends DrupalVersion {
    *
    * @param $entity_type
    * @param $bundle
+   * @param $include_body
    */
-  protected function populateSourceFieldInfo($entity_type, $bundle) {
+  protected function populateSourceFieldInfo($entity_type, $bundle, $include_body = FALSE) {
     if ($entity_type == 'user') {
       // Get core profile fields.
       $this->profileFields();
@@ -234,6 +235,9 @@ class DrupalVersion5 extends DrupalVersion {
                 else {
                   $index = $display_name;
                 }
+                if (isset($row->$index) && !is_array($row->$index)) {
+                  $row->$index = array($row->$index);
+                }
                 $row->{$index}[] = $field_row->$column_name;
               }
             }
@@ -252,6 +256,7 @@ class DrupalVersion5 extends DrupalVersion {
           // The main column for the field should be rendered with
           // the field name, not the column name (e.g., field_foo rather
           // than field_foo_value).
+          $field_found = FALSE;
           foreach ($this->sourceFieldInfo as $field_name => $info) {
             if (isset($info['columns']) && !$info['multiple'] && $info['db_storage']) {
               $i = 0;
@@ -262,12 +267,15 @@ class DrupalVersion5 extends DrupalVersion {
                 else {
                   $query->addField('f', $column_name, $display_name);
                 }
+                $field_found = TRUE;
               }
             }
           }
-          $data_row = $query->execute()->fetchObject();
-          foreach ($data_row as $name => $value) {
-            $row->$name = $value;
+          if ($field_found) {
+            $data_row = $query->execute()->fetchObject();
+            foreach ($data_row as $name => $value) {
+              $row->$name = $value;
+            }
           }
         }
       }
@@ -331,8 +339,9 @@ class DrupalVersion5 extends DrupalVersion {
    *
    * @param $row
    * @param $entity_id
+   * @param $include_body
    */
-  public function getProfileValues($row, $entity_id) {
+  public function getProfileValues($row, $entity_id, $include_body = FALSE) {
     if (Database::getConnection('default', $this->arguments['source_connection'])
           ->schema()->tableExists('profile_values')) {
       migrate_instrument_start('DrupalVersion5::getProfileValues');

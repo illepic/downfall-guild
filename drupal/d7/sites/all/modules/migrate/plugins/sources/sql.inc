@@ -24,7 +24,7 @@ class MigrateSourceSQL extends MigrateSource {
    * @return SelectQueryInterface
    */
   public function &query() {
-    return $this->originalQuery();
+    return $this->originalQuery;
   }
 
   /**
@@ -116,6 +116,12 @@ class MigrateSourceSQL extends MigrateSource {
     }
     else {
       $this->countQuery = $count_query;
+    }
+
+    // If we're tracking changes, then we need to fetch all rows to see if
+    // they've changed, we can't make that determination through a direct join.
+    if (!empty($options['track_changes'])) {
+      $options['map_joinable'] = FALSE;
     }
 
     if (isset($options['map_joinable'])) {

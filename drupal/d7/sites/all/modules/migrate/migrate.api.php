@@ -11,8 +11,23 @@
 function hook_migrate_api() {
   $api = array(
     'api' => 2,
+    'migrations' => array(
+      'HookExample' => array('class_name' => 'HookExampleMigration'),
+    ),
   );
   return $api;
+}
+
+/**
+ * Alter information from all implementations of hook_migrate_api().
+ *
+ * @param array $info
+ *   An array of results from hook_migrate_api(), keyed by module name.
+ */
+function hook_migrate_api_alter(array &$info) {
+  if (isset($info['MODULE_NAME']['migrations']['HookExample'])) {
+    $info['MODULE_NAME']['migrations']['HookExample']['class_name'] = 'MyBetterHookMigration';
+  }
 }
 
 /**

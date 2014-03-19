@@ -21,11 +21,13 @@ function migrate_d2d_example_register_migrations() {
    * Each migration being registered takes an array of arguments, some required
    * and some optional. Start with the common arguments required by all - the
    * source_connection (connection key, set up in settings.php, pointing to
-   * the Drupal 6 database) and source_version (major version of Drupal).
+   * the Drupal 6 database), source_version (major version of Drupal), and
+   * group_name (a.k.a. import job).
    */
   $common_arguments = array(
     'source_connection' => 'legacy',
     'source_version' => 6,
+    'group_name' => 'example_group',
   );
 
   // The description and the migration machine name are also required arguments,

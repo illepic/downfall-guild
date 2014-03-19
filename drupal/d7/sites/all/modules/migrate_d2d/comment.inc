@@ -84,7 +84,7 @@ abstract class DrupalCommentMigration extends DrupalMigration {
       $default_uid = $arguments['default_uid'];
     }
     else {
-      $default_uid = 1;
+      $default_uid = 0;
     }
     if (isset($user_migration)) {
       $this->addFieldMapping('uid', 'uid')

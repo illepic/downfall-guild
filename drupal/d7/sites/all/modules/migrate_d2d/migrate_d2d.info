@@ -1,6 +1,6 @@
 name = "Drupal-to-Drupal migration"
 description = "Migration from one Drupal site to another, using migration mappings provided by CSV files"
-package = "Development"
+package = "Migration"
 core = 7.x
 
 dependencies[] = migrate
@@ -9,6 +9,7 @@ files[] = migrate_d2d.migrate.inc
 
 ; Base classes
 files[] = comment.inc
+files[] = entity.inc
 files[] = file.inc
 files[] = menu.inc
 files[] = menu_links.inc
@@ -29,6 +30,7 @@ files[] = d5/user.inc
 ; D6 implementations
 files[] = d6/d6.inc
 files[] = d6/comment.inc
+files[] = d6/entity.inc
 files[] = d6/file.inc
 files[] = d6/menu.inc
 files[] = d6/menu_links.inc
@@ -48,9 +50,9 @@ files[] = d7/role.inc
 files[] = d7/taxonomy.inc
 files[] = d7/user.inc
 
-; Information added by drupal.org packaging script on 2012-11-26
-version = "7.x-2.0"
+; Information added by drupal.org packaging script on 2013-05-23
+version = "7.x-2.1-beta1"
 core = "7.x"
 project = "migrate_d2d"
-datestamp = "1353952687"
+datestamp = "1369317827"
 

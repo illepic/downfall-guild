@@ -1,5 +1,7 @@
 <?php
 /**
  * @file
- * Drupal needs this blank file.
+ * Code for the downfall_migrate_feature feature.
  */
+
+include_once 'downfall_migrate_feature.features.inc';

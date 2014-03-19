@@ -15,11 +15,13 @@ class DrupalComment7Migration extends DrupalCommentMigration {
   public function __construct(array $arguments) {
     parent::__construct($arguments);
 
-    $this->highwaterField = array(
-      'name' => 'changed',
-      'alias' => 'c',
-      'type' => 'int',
-    );
+    if (!$this->newOnly) {
+      $this->highwaterField = array(
+        'name' => 'changed',
+        'alias' => 'c',
+        'type' => 'int',
+      );
+    }
 
     // Version-specific field mappings
     $this->addSimpleMappings(array('comment_body', 'created', 'changed',

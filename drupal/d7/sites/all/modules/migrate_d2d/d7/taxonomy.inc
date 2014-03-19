@@ -16,7 +16,7 @@ class DrupalTerm7Migration extends DrupalTermMigration {
     $query = Database::getConnection('default', $this->sourceConnection)
              ->select('taxonomy_term_data', 'td')
              ->fields('td', array('tid', 'name', 'description', 'weight', 'format'))
-             ->orderBy('parent')
+             ->orderBy('th.parent')
              ->distinct();
     $query->leftJoin('taxonomy_term_hierarchy', 'th', 'td.tid=th.tid');
     $query->fields('th', array('parent'));

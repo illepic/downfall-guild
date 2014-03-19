@@ -206,7 +206,7 @@ class MigrateItemFile extends MigrateItem {
   public function getItem($id) {
     $pieces = explode(MIGRATE_CHUNK_SEPARATOR ,$id);
     $item_uri = $this->baseDir . $pieces[0];
-    $chunk = $pieces[1];
+    $chunk = !empty($pieces[1]) ? $pieces[1] : '';
 
     // Get the file data at the specified URI
     $data = $this->loadFile($item_uri);

@@ -17,12 +17,14 @@ function migrate_drush_command() {
     'instrument' => 'Capture performance information (timer, memory, or all)',
     'force' => 'Force an operation to run, even if all dependencies are not satisfied',
     'group' => 'Name of the migration group to run',
+    'notify' => 'Send email notification upon completion of operation',
   );
   $items['migrate-status'] = array(
     'description' => 'List all migrations with current status.',
     'options' => array(
       'refresh' => 'Recognize new migrations and update counts',
       'group' => 'Name of the migration group to list',
+      'names-only' => 'Only return names, not all the details (faster)',
     ),
     'arguments' => array(
       'migration' => 'Restrict to a single migration. Optional',
@@ -144,7 +146,7 @@ function migrate_drush_command() {
     'drupal dependencies' => array('migrate'),
     'aliases' => array('mr'),
   );
-  $migration_options['update'] = 'In addition to processing unimported items from the source, update previously-imported items with new data';
+  $migration_options['update'] = 'In addition to processing unprocessed items from the source, update previously-imported items with new data';
   $migration_options['needs-update'] =
     'Reimport up to 10K records where needs_update=1. This option is only needed when your Drupal DB is on a different DB server from your source data. Otherwise, these records get migrated with just migrate-import.';
   $migration_options['stop'] = 'Stop specified migration(s) if applicable.';
@@ -198,13 +200,17 @@ function migrate_drush_command() {
   );
   $items['migrate-deregister'] = array(
     'description' => 'Remove all tracking of a migration',
-    'options' => array('orphans' => 'Remove tracking for any migrations whose implementing class no longer exists'),
+    'options' => array(
+      'orphans' => 'Remove tracking for any migrations whose implementing class no longer exists',
+      'group' => 'Remove tracking of a migration group, and any migrations assigned to it',
+    ),
     'arguments' => array(
       'migration' => 'Name of migration to deregister',
     ),
     'examples' => array(
       'migrate-deregister Article' => 'Deregister the Article migration',
       'migrate-deregister --orphans' => 'Deregister any no-longer-implemented migrations',
+      'migrate-deregister --group=myblog' => 'Deregister the myblog group and all migrations within it',
     ),
     'drupal dependencies' => array('migrate'),
   );
@@ -212,6 +218,11 @@ function migrate_drush_command() {
     'description' => 'Register any newly-defined migration classes',
     'drupal dependencies' => array('migrate'),
     'aliases' => array('mar'),
+  );
+  $items['migrate-register'] = array(
+    'description' => 'Register or reregister any statically-defined migrations',
+    'drupal dependencies' => array('migrate'),
+    'aliases' => array('mreg'),
   );
   $items['migrate-wipe'] = array(
     'description' => 'Delete all nodes from specified content types.',
@@ -281,6 +292,7 @@ function drush_migrate_status($name = NULL) {
   try {
     $refresh = drush_get_option('refresh');
     $group_option = drupal_strtolower(drush_get_option('group'));
+    $names_only = drush_get_option('names-only');
 
     // Validate input and load Migration(s).
     if ($name) {
@@ -311,56 +323,69 @@ function drush_migrate_status($name = NULL) {
         if ($group_members_count == 1) {
           // An empty line and the headers.
           $table[] = array('');
-          $table[] = array(dt('Group: !name', array('!name' => $group->getName())), dt('Total'), dt('Imported'), dt('Unimported'), dt('Status'), dt('Last imported'));
+          if ($names_only) {
+            $table[] = array(dt('Group: !name',
+              array('!name' => $group->getName())));
+          }
+          else {
+            $table[] = array(dt('Group: !name',
+              array('!name' => $group->getName())), dt('Total'), dt('Imported'),
+                    dt('Unprocessed'), dt('Status'), dt('Last imported'));
+          }
         }
-        $has_counts = TRUE;
-        if (method_exists($migration, 'sourceCount')) {
-          $total = $migration->sourceCount($refresh);
-          if ($total < 0) {
+        if (!$names_only) {
+          $has_counts = TRUE;
+          if (method_exists($migration, 'sourceCount')) {
+            $total = $migration->sourceCount($refresh);
+            if ($total < 0) {
+              $has_counts = FALSE;
+              $total = dt('N/A');
+            }
+          }
+          else {
             $has_counts = FALSE;
             $total = dt('N/A');
           }
+          if (method_exists($migration, 'importedCount')) {
+            $imported = $migration->importedCount();
+            $processed = $migration->processedCount();
+          }
+          else {
+            $has_counts = FALSE;
+            $imported = dt('N/A');
+          }
+          if ($has_counts) {
+            $unimported = $total - $processed;
+          }
+          else {
+            $unimported = dt('N/A');
+          }
+          $status = $migration->getStatus();
+          switch ($status) {
+            case MigrationBase::STATUS_IDLE:
+              $status = dt('Idle');
+              break;
+            case MigrationBase::STATUS_IMPORTING:
+              $status = dt('Importing');
+              break;
+            case MigrationBase::STATUS_ROLLING_BACK:
+              $status = dt('Rolling back');
+              break;
+            case MigrationBase::STATUS_STOPPING:
+              $status = dt('Stopping');
+              break;
+            case MigrationBase::STATUS_DISABLED:
+              $status = dt('Disabled');
+              break;
+            default:
+              $status = dt('Unknown');
+              break;
+          }
+          $table[] = array($migration->getMachineName(), $total, $imported, $unimported, $status, $migration->getLastImported());
         }
         else {
-          $has_counts = FALSE;
-          $total = dt('N/A');
+          $table[] = array($migration->getMachineName());
         }
-        if (method_exists($migration, 'importedCount')) {
-          $imported = $migration->importedCount();
-          $processed = $migration->processedCount();
-        }
-        else {
-          $has_counts = FALSE;
-          $imported = dt('N/A');
-        }
-        if ($has_counts) {
-          $unimported = $total - $processed;
-        }
-        else {
-          $unimported = dt('N/A');
-        }
-        $status = $migration->getStatus();
-        switch ($status) {
-          case MigrationBase::STATUS_IDLE:
-            $status = dt('Idle');
-            break;
-          case MigrationBase::STATUS_IMPORTING:
-            $status = dt('Importing');
-            break;
-          case MigrationBase::STATUS_ROLLING_BACK:
-            $status = dt('Rolling back');
-            break;
-          case MigrationBase::STATUS_STOPPING:
-            $status = dt('Stopping');
-            break;
-          case MigrationBase::STATUS_DISABLED:
-            $status = dt('Disabled');
-            break;
-          default:
-            $status = dt('Unknown');
-            break;
-        }
-        $table[] = array($migration->getMachineName(), $total, $imported, $unimported, $status, $migration->getLastImported());
       }
     }
     drush_print_table($table);
@@ -382,7 +407,7 @@ function drush_migrate_fields_destination($args = NULL) {
       if (method_exists($destination, 'fields')) {
         $table = array();
         foreach ($destination->fields($migration) as $machine_name => $description) {
-          $table[] = array($description, $machine_name);
+          $table[] = array(strip_tags($description), $machine_name);
         }
         drush_print_table($table);
       }
@@ -407,7 +432,7 @@ function drush_migrate_fields_source($args = NULL) {
       if (method_exists($source, 'fields')) {
         $table = array();
         foreach ($source->fields() as $machine_name => $description) {
-          $table[] = array($description, $machine_name);
+          $table[] = array(strip_tags($description), $machine_name);
         }
         drush_print_table($table);
       }
@@ -438,14 +463,20 @@ function drush_migrate_mappings($args = NULL) {
         $dest_descriptions = array();
         if (method_exists($destination, 'fields')) {
           foreach ($destination->fields($migration) as $machine_name => $description) {
-            $dest_descriptions[$machine_name] = $description;
+            if (is_array($description)) {
+              $description = reset($description);
+            }
+            $dest_descriptions[$machine_name] = strip_tags($description);
           }
         }
         $source = $migration->getSource();
         $src_descriptions = array();
         if (method_exists($source, 'fields')) {
           foreach ($source->fields() as $machine_name => $description) {
-            $src_descriptions[$machine_name] = $description;
+            if (is_array($description)) {
+              $description = reset($description);
+            }
+            $src_descriptions[$machine_name] = strip_tags($description);
           }
         }
       }
@@ -783,6 +814,21 @@ function drush_migrate_audit($args = NULL) {
  */
 function drush_migrate_rollback($args = NULL) {
   try {
+    if (drush_get_option('notify', FALSE)) {
+      // Capture non-informational output for mailing
+      ob_start();
+      ob_implicit_flush(FALSE);
+      // Save original mail setup, which Migrate will disable, so we can
+      // restore it later.
+      global $conf;
+      if (!empty($conf['mail_system'])) {
+        $mail_system = $conf['mail_system'];
+      }
+      else {
+        $mail_system = NULL;
+      }
+    }
+
     $migrations = drush_migrate_get_migrations($args);
 
     // Rollback in reverse order
@@ -873,6 +919,37 @@ function drush_migrate_rollback($args = NULL) {
   if ($_migrate_track_timer && !drush_get_context('DRUSH_DEBUG')) {
     drush_print_timers();
   }
+
+  // Notify user
+  if (drush_get_option('notify')) {
+    if (is_null($mail_system)) {
+      unset($conf['mail_system']);
+    }
+    else {
+      $conf['mail_system'] = $mail_system;
+    }
+    _drush_migrate_notify();
+  }
+}
+
+/**
+ * Send email notification to the user running the operation.
+ */
+function _drush_migrate_notify() {
+  global $user;
+  if ($user->uid) {
+    $uid = $user->uid;
+  }
+  else {
+    $uid = 1;
+  }
+  $account = user_load($uid);
+  $params['account'] = $account;
+  $params['output'] = ob_get_contents();
+  drush_print_r(ob_get_status());
+  ob_end_flush();
+  drupal_mail('migrate_ui', 'import_complete', $account->mail,
+    user_preferred_language($account), $params);
 }
 
 function drush_migrate_get_migrations($args) {
@@ -1040,6 +1117,20 @@ function drush_migrate_pre_migrate_import($args = NULL) {
  */
 function drush_migrate_import($args = NULL) {
   try {
+    if (drush_get_option('notify', FALSE)) {
+      // Capture non-informational output for mailing
+      ob_start();
+      ob_implicit_flush(FALSE);
+      // Save original mail setup, which Migrate will disable, so we can
+      // restore it later.
+      global $conf;
+      if (!empty($conf['mail_system'])) {
+        $mail_system = $conf['mail_system'];
+      }
+      else {
+        $mail_system = NULL;
+      }
+    }
     $migrations = drush_migrate_get_migrations($args);
     $options = array();
     if ($idlist = drush_get_option('idlist', FALSE)) {
@@ -1101,7 +1192,7 @@ function drush_migrate_import($args = NULL) {
     foreach ($migrations as $machine_name => $migration) {
       drush_log(dt("Importing '!description' migration",
         array('!description' => $machine_name)));
-      if (drush_get_option('update')) {
+      if (drush_get_option('update') && !$idlist) {
         $migration->prepareUpdate();
       }
       if (drush_get_option('needs-update')) {
@@ -1190,14 +1281,25 @@ function drush_migrate_import($args = NULL) {
   if ($_migrate_track_timer && !drush_get_context('DRUSH_DEBUG')) {
     drush_print_timers();
   }
+
+  // Notify user
+  if (drush_get_option('notify')) {
+    if (is_null($mail_system)) {
+      unset($conf['mail_system']);
+    }
+    else {
+      $conf['mail_system'] = $mail_system;
+    }
+    _drush_migrate_notify();
+  }
 }
 
-//**
-// * Stop clearing or importing a given content set.
-// *
-// * @param $content_set
-// *  The name of the Migration
-// */
+/**
+ * Stop clearing or importing a given content set.
+ *
+ * @param $content_set
+ *  The name of the Migration
+ */
 function drush_migrate_stop($args = NULL) {
   try {
     $migrations = drush_migrate_get_migrations($args);
@@ -1231,31 +1333,40 @@ function drush_migrate_reset_status($args = NULL) {
 }
 
 /**
- * Deregister a given migration, or all orphaned migrations. Note that the
- * migration might no longer "exist" (the class implementation might be gone),
- * so we can't count on being able to instantiate it, or use migrate_migrations().
+ * Deregister a given migration, migration group, or all orphaned migrations.
+ * Note that the migration might no longer "exist" (the class implementation
+ * might be gone), so we can't count on being able to instantiate it, or use
+ * migrate_migrations().
  */
 function drush_migrate_deregister($args = NULL) {
   try {
     $orphans = drush_get_option('orphans');
-    if ($orphans) {
-      $migrations = array();
-      $result = db_select('migrate_status', 'ms')
-                    ->fields('ms', array('class_name', 'machine_name'))
-                    ->execute();
-      foreach ($result as $row) {
-        if (!class_exists($row->class_name)) {
-          $migrations[] = $row->machine_name;
-        }
-      }
+    $group = drush_get_option('group');
+    if ($group) {
+      MigrateGroup::deregister($group);
+      drush_log(dt("Deregistered group '!description' and all its migrations",
+        array('!description' => $group)), 'success');
     }
     else {
-      $migrations = explode(',', $args);
-    }
-    foreach ($migrations as $machine_name) {
-      drush_migrate_deregister_migration($machine_name);
-      drush_log(dt("Deregistered '!description' migration",
-        array('!description' => $machine_name)), 'success');
+      if ($orphans) {
+        $migrations = array();
+        $result = db_select('migrate_status', 'ms')
+                      ->fields('ms', array('class_name', 'machine_name'))
+                      ->execute();
+        foreach ($result as $row) {
+          if (!class_exists($row->class_name)) {
+            $migrations[] = $row->machine_name;
+          }
+        }
+      }
+      else {
+        $migrations = explode(',', $args);
+      }
+      foreach ($migrations as $machine_name) {
+        drush_migrate_deregister_migration(drupal_strtolower($machine_name));
+        drush_log(dt("Deregistered '!description' migration",
+          array('!description' => $machine_name)), 'success');
+      }
     }
   }
   catch (MigrateException $e) {
@@ -1277,13 +1388,28 @@ function drush_migrate_deregister_migration($machine_name) {
   db_delete('migrate_status')
     ->condition('machine_name', $machine_name)
     ->execute();
+  db_delete('migrate_field_mapping')
+    ->condition('machine_name', $machine_name)
+    ->execute();
 }
 
 /**
- * Register any previously-unrecognized non-dynamic migrations.
+ * Auto-registration is no longer supported. This command should be removed
+ * entirely in a future point release.
+ *
+ * @deprecated
  */
 function drush_migrate_auto_register($args = NULL) {
-  migrate_autoregister();
+  drush_log(dt('The auto-registration feature has been removed. Migrations '
+    . 'must now be explicitly registered.'), 'error');
+}
+
+/**
+ * Register any migrations defined in hook_migrate_api().
+ */
+function drush_migrate_register($args = NULL) {
+  migrate_static_registration();
+  drush_log(dt('All statically defined migrations have been (re)registered.'), 'success');
 }
 
 /**

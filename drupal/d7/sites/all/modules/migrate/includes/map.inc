@@ -58,9 +58,11 @@ abstract class MigrateMap implements Iterator {
    * @param $dest_ids
    * @param $status
    * @param $rollback_action
+   * @param $hash
    */
   abstract public function saveIDMapping(stdClass $source_row, array $dest_ids,
-    $status = MigrateMap::STATUS_IMPORTED, $rollback_action = MigrateMap::ROLLBACK_DELETE);
+    $status = MigrateMap::STATUS_IMPORTED,
+    $rollback_action = MigrateMap::ROLLBACK_DELETE, $hash = NULL);
 
   /**
    * Record a message related to a source record

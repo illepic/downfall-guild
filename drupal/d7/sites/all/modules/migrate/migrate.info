@@ -1,6 +1,6 @@
 name = "Migrate"
 description = "Import content from external sources"
-package = "Development"
+package = "Migration"
 core = 7.x
 
 files[] = includes/base.inc
@@ -46,9 +46,9 @@ files[] = tests/plugins/destinations/term.test
 files[] = tests/plugins/destinations/user.test
 files[] = tests/plugins/sources/xml.test
 
-; Information added by drupal.org packaging script on 2012-11-07
-version = "7.x-2.5"
+; Information added by drupal.org packaging script on 2013-06-26
+version = "7.x-2.6-rc1"
 core = "7.x"
 project = "migrate"
-datestamp = "1352299007"
+datestamp = "1372276551"
 

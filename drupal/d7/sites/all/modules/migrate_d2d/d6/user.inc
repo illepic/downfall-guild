@@ -12,6 +12,13 @@ class DrupalUser6Migration extends DrupalUserMigration {
    * @param array $arguments
    */
   public function __construct(array $arguments) {
+    // Document D6-specific fields
+    $this->sourceFields += array(
+      'mode' => t('Per-user comment display mode'),
+      'sort' => t('Per-user comment sort order'),
+      'threshold' => t('Obsolete comment configuration'),
+    );
+
     parent::__construct($arguments);
 
     // Indicate that our incoming MD5 passwords should be rehashed for Drupal 7.

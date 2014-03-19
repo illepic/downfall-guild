@@ -28,7 +28,7 @@ class DrupalTerm5Migration extends DrupalTermMigration {
              ->select('term_data', 'td')
              ->fields('td', array('tid', 'name', 'description', 'weight'))
              ->condition('vid', explode(',', $this->sourceVocabulary), 'IN')
-             ->orderBy('parent')
+             ->orderBy('th.parent')
              ->distinct();
     // Join to the hierarchy so we can sort on parent, but we'll pull the
     // actual parent values in separately in case there are multiples.
