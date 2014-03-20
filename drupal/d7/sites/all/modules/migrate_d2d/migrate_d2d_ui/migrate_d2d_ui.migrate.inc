@@ -929,20 +929,27 @@ class MigrateD2DWizard extends MigrateUIWizard {
 
     if ($this->fileMigration) {
       $arguments = array(
-        'user_migration' => $this->groupName . 'User',
         'source_dir' => $this->sourceDirectory,
         'description' => t('Migration of files from Drupal @version',
                  array('@version' => $this->sourceVersion)),
       );
+      if ($this->userMigration) {
+        $arguments['user_migration'] = $this->groupName . 'User';
+      }
       $this->addMigration('File', "DrupalFile{$this->sourceVersion}Migration",
                           $arguments);
     }
 
-    if ($this->connection()->schema()->tableExists('comments')) {
-      $comment_table = 'comments';
-    }
-    elseif ($this->connection()->schema()->tableExists('comment')) {
-      $comment_table = 'comment';
+    if (module_exists('comment')) {
+      if ($this->connection()->schema()->tableExists('comments')) {
+        $comment_table = 'comments';
+      }
+      elseif ($this->connection()->schema()->tableExists('comment')) {
+        $comment_table = 'comment';
+      }
+      else {
+        $comment_table = '';
+      }
     }
     else {
       $comment_table = '';

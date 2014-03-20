@@ -105,7 +105,13 @@ abstract class DrupalMigration extends Migration {
   public function __construct($arguments) {
     parent::__construct($arguments);
 
-    $this->sourceVersion = $this->arguments['source_version'];
+    if (empty($this->arguments['source_version'])) {
+      throw new MigrateException(
+        t('No source_version provided in migrate_d2d migration arguments.'));
+    }
+    else {
+      $this->sourceVersion = $this->arguments['source_version'];
+    }
     if (isset($this->arguments['version_class'])) {
       $version_class = $this->arguments['version_class'];
     }

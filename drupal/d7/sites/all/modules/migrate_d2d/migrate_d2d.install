@@ -5,36 +5,6 @@
  */
 
 /**
- * Implements hook_requirements().
- *
- * @param $phase
- *
- * @return array
- */
-function migrate_d2d_requirements($phase) {
-  $requirements = array();
-  if ($phase == 'install') {
-    $t = get_t();
-    // We need to make sure we've got at least the Migrate 2.6 beta - identify
-    // it by the new MigrateDefaultFieldHandler class.
-    if (class_exists('MigrateDefaultFieldHandler')) {
-      $severity = REQUIREMENT_OK;
-      $description = '';
-    }
-    else {
-      $severity = REQUIREMENT_ERROR;
-      $description = $t('Migrate 2.6 or greater is required.');
-    }
-    $requirements['migrate_d2d'] = array(
-      'title' => $t('Drupal-to-Drupal data migration'),
-      'description' => $description,
-      'severity' => $severity,
-    );
-  }
-  return $requirements;
-}
-
-/**
  * Make sure any previously-encrypted source_database arguments are appropriately
  * marked as encrypted going forward.
  */

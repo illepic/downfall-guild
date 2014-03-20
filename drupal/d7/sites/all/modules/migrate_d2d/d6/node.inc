@@ -19,6 +19,14 @@ class DrupalNode6Migration extends DrupalNodeMigration {
   protected $fixFieldNames = array();
 
   /**
+   * Keep track of any file field data columns we'll need to unpack in
+   * prepareRow().
+   *
+   * @var array
+   */
+  protected $fileDataFields = array();
+
+  /**
    * @param array $arguments
    */
   public function __construct(array $arguments) {
@@ -81,6 +89,7 @@ class DrupalNode6Migration extends DrupalNodeMigration {
       foreach ($field_info as $field_name => $info) {
         if (isset($info['columns']) && !$info['multiple'] && $info['db_storage']) {
           $i = 0;
+          $data = FALSE;
           foreach ($info['columns'] as $display_name => $column_name) {
             if ($i++ == 0) {
               $query->addField('f', $column_name, $field_name);
@@ -91,7 +100,17 @@ class DrupalNode6Migration extends DrupalNodeMigration {
               // Remember how to translate the field names.
               $clean_name = str_replace(':', '_', $display_name);
               $this->fixFieldNames[$clean_name] = $display_name;
-              $query->addField('f', $column_name);
+              if ($info['type'] == 'filefield' &&
+                  (strpos($display_name, ':list') || strpos($display_name, ':description'))) {
+                if (!$data) {
+                  $this->fileDataFields[] = $field_name . '_data';
+                  $query->addField('f', $field_name . '_data');
+                  $data = TRUE;
+                }
+              }
+              else {
+                $query->addField('f', $column_name);
+              }
             }
           }
         }
@@ -104,6 +123,17 @@ class DrupalNode6Migration extends DrupalNodeMigration {
     if (parent::prepareRow($row) === FALSE) {
       return FALSE;
     }
+    foreach ($this->fileDataFields as $data_field) {
+      if (isset($row->$data_field)) {
+        $data = unserialize($row->$data_field);
+        $base_field = substr($data_field, 0, strpos($data_field, '_data'));
+        foreach ($data as $key => $value) {
+          $field_name = $base_field . '_' . $key;
+          $row->$field_name = $value;
+        }
+        unset($row->$data_field);
+      }
+    }
     // Convert the default field names to the nice-looking ones.
     foreach ($this->fixFieldNames as $clean => $display) {
       if (isset($row->$clean)) {
@@ -111,6 +141,7 @@ class DrupalNode6Migration extends DrupalNodeMigration {
         unset($row->$clean);
       }
     }
+
     // Don't populate summary if the teaser matches the generated summary.
     if (empty($row->teaser) || $row->teaser != text_summary($row->body)) {
       $row->teaser = '';
