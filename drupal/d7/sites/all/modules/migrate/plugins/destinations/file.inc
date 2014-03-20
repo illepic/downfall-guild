@@ -116,11 +116,16 @@ abstract class MigrateFileBase implements MigrateFileInterface {
     if (!isset($file->status)) {
       $file->status = FILE_STATUS_PERMANENT;
     }
-    if ($slash_pos = strpos($file->filemime, '/')) {
-      $file->type = substr($file->filemime, 0, $slash_pos);
-    }
-    if (empty($file->type)) {
-      $file->type = 'file';
+
+    if (empty($file->type) || $file->type == 'file') {
+      // Try to determine the file type.
+      if (module_exists('file_entity')) {
+        $type = file_get_type($file);
+      }
+      elseif ($slash_pos = strpos($file->filemime, '/')) {
+        $type = substr($file->filemime, 0, $slash_pos);
+      }
+      $file->type = isset($type) ? $type : 'file';
     }
 
     // If we are replacing or reusing an existing filesystem entry,
@@ -666,7 +671,13 @@ class MigrateDestinationFile extends MigrateDestinationEntity {
     // the sake of the prepare handlers, although it may be overridden later
     // based on the detected mime type.
     if (empty($file->type)) {
-      $file->type = $this->bundle;
+      // If a bundle was specified in the constructor we use it for filetype.
+      if ($this->bundle != 'file') {
+        $file->type = $this->bundle;
+      }
+      else {
+        $file->type = 'file';
+      }
     }
 
     // Invoke migration prepare handlers

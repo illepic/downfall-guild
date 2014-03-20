@@ -262,6 +262,12 @@ class MigrateDestinationUser extends MigrateDestinationEntity {
       }
       else {
         $this->numCreated++;
+        // user_save() doesn't update file_usage on account creation, we have
+        // to do it ourselves.
+        if (!empty($newaccount->picture)) {
+          $file = file_load($newaccount->picture);
+          file_usage_add($file, 'user', 'user', $newaccount->uid);
+        }
       }
       $this->complete($newaccount, $row);
       $return = array($newaccount->uid);

@@ -421,7 +421,8 @@ abstract class MigrateSource implements Iterator {
             unset($unhashed_row->$field);
           }
         }
-        $row->migrate_map_original_hash = $row->migrate_map_hash;
+        $row->migrate_map_original_hash = isset($row->migrate_map_hash) ?
+          $row->migrate_map_hash : '';
         $row->migrate_map_hash = $this->hash($unhashed_row);
       }
       else {

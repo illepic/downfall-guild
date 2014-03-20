@@ -290,6 +290,18 @@ abstract class MigrationBase {
   }
 
   /**
+   * Any module hooks which should be disabled during migration processes.
+   *
+   * @var array
+   *  Key: Hook name (e.g., 'node_insert')
+   *  Value: Array of modules for which to disable this hook (e.g., array('pathauto')).
+   */
+  protected $disableHooks = array();
+  public function getDisableHooks() {
+    return $this->disableHooks;
+  }
+
+  /**
    * Have we already warned about obsolete constructor argumentss on this request?
    *
    * @var bool
@@ -389,7 +401,7 @@ abstract class MigrationBase {
     else {
       // Deprecated - this supports old code which does not pass the arguments
       // array through to the base constructor. Remove in the next version.
-      $this->machineName = $this->machineFromClass(get_class());
+      $this->machineName = $this->machineFromClass(get_class($this));
     }
     // Make any group arguments directly accessible to the specific migration.
     $group_arguments = $this->group->getArguments();
@@ -435,6 +447,12 @@ abstract class MigrationBase {
 
     // Make sure we clear our semaphores in case of abrupt exit
     register_shutdown_function(array($this, 'endProcess'));
+
+    // Save any hook disablement information.
+    if (isset($this->arguments['disable_hooks']) &&
+        is_array($this->arguments['disable_hooks'])) {
+      $this->disableHooks = $this->arguments['disable_hooks'];
+    }
   }
 
   /**
@@ -904,6 +922,17 @@ abstract class MigrationBase {
                        'initialHighwater' => $this->getHighwater(),
                        ))
                      ->execute();
+    }
+
+    // If we're disabling any hooks, reset the static module_implements cache so
+    // it is rebuilt with the specified hooks removed by our
+    // hook_module_implements_alter(). By setting #write_cache to FALSE, we
+    // ensure that our munged version of the hooks array does not get written
+    // to the persistent cache and interfere with other Drupal processes.
+    if (!empty($this->disableHooks)) {
+      $implementations = &drupal_static('module_implements');
+      $implementations = array();
+      $implementations['#write_cache'] = FALSE;
     }
   }
 

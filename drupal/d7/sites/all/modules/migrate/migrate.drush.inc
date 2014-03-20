@@ -174,7 +174,8 @@ function migrate_drush_command() {
   );
   $items['migrate-stop'] = array(
     'description' => 'Stop an active migration operation',
-    'options' => array('all' => 'Stop all active migration operations'),
+    'options' => array('all' => 'Stop all active migration operations',
+      'group' => 'Name of a specific migration group to stop'),
     'arguments' => array(
       'migration' => 'Name of migration to stop',
     ),
@@ -247,7 +248,7 @@ function migrate_drush_command() {
  */
 function drush_migrate_get_options() {
   $options = array();
-  $blacklist = array('stop', 'rollback', 'update', 'all');
+  $blacklist = array('stop', 'rollback', 'update', 'all', 'group');
   $command = drush_parse_command();
   foreach ($command['options'] as $key => $value) {
     // Strip leading --

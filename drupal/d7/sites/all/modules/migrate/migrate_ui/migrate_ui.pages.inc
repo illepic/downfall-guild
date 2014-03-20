@@ -3,7 +3,7 @@
  * @file
  * Pages for managing migration processes.
  */
- 
+
 /**
  * Form for managing migration groups.
  */
@@ -122,7 +122,6 @@ function migrate_ui_migrate_dashboard($form, &$form_state) {
  */
 function migrate_ui_migrate_group($form, &$form_state, $group_name) {
   $group = MigrateGroup::getInstance($group_name);
-  drupal_set_title($group->getTitle());
   $build = array();
 
   $header = array(
@@ -199,8 +198,10 @@ function migrate_ui_migrate_group($form, &$form_state, $group_name) {
 
     $row['status'] = $status;
     $machine_name = $migration->getMachineName();
+    $name_length = strlen($machine_name);
     $group_length = strlen($group_name);
-    if (!strncasecmp($group_name, $machine_name, $group_length)) {
+    if ($name_length != $group_length &&
+        !strncasecmp($group_name, $machine_name, $group_length)) {
       $display_name = substr($machine_name, $group_length);
     }
     else {
@@ -659,7 +660,6 @@ function migrate_ui_capture_message($message, $level) {
  * Menu callback function for migration view page.
  */
 function migrate_migration_info($form, $form_state, $group_name, $migration_name) {
-  drupal_set_title($migration_name);
   $migration = Migration::getInstance($migration_name);
 
   $has_mappings = method_exists($migration, 'getFieldMappings');
@@ -977,7 +977,9 @@ function migrate_ui_edit_mappings($form, $form_state, $group_name,
         'value to be applied to the destination when there is no source field, ' .
         'or the source field is empty in a given source item. Check the DNM ' .
         '(Do Not Migrate) box for destination fields you do not want populated ' .
-        'by migration.'),
+        'by migration. Note that any changes you make here override any ' .
+        'field mappings defined by the underlying migration module. Clicking ' .
+        'the Revert button will remove all such overrides.'),
       '#theme' => array('migrate_ui_field_mapping_form'),
       '#prefix' => '<div id="field-mappings">',
       '#suffix' => '</div>',
@@ -1165,11 +1167,14 @@ function migrate_ui_edit_mappings($form, $form_state, $group_name,
     }
   }
 
+  unset($source_migration_options[-1]);
+  unset($source_migration_options[$migration_name]);
+
   $form['dependencies'] = array(
     '#type' => 'fieldset',
     '#title' => t('Dependencies'),
     '#collapsible' => TRUE,
-    '#collapsed' => is_a($migration, 'Migration') ? TRUE : FALSE,
+    '#collapsed' => is_a($migration, 'Migration'),
     '#theme' => 'migrate_ui_field_mapping_dependencies',
     '#description' => t('Set any dependencies on other migrations here. A ' .
       '<em>hard dependency</em> means that this migration is not allowed ' .
@@ -1181,8 +1186,7 @@ function migrate_ui_edit_mappings($form, $form_state, $group_name,
 
   // Get the list of possible dependencies - it's the same as the list of
   // possible source migrations, minus the empty choice and ourselves.
-  unset($source_migration_options[-1]);
-  unset($source_migration_options[$migration_name]);
+
   $dependency_options = array(
     0 => t('None'),
     1 => t('Hard'),
@@ -1195,7 +1199,6 @@ function migrate_ui_edit_mappings($form, $form_state, $group_name,
                                                         $all_dependencies);
   $source_migration_options = array_diff_key($source_migration_options,
     $descendent_migrations);
-
   foreach ($source_migration_options as $machine_name) {
     if (in_array($machine_name, $migration->getHardDependencies())) {
       $default_value = 1;
@@ -1218,6 +1221,13 @@ function migrate_ui_edit_mappings($form, $form_state, $group_name,
     '#type' => 'submit',
     '#value' => t('Apply changes'),
   );
+
+  $form['revert'] = array(
+    '#type' => 'submit',
+    '#value' => t('Revert'),
+    '#submit' => array('migrate_ui_edit_mappings_revert'),
+  );
+
   return $form;
 }
 
@@ -1387,12 +1397,14 @@ function migrate_ui_edit_mappings_submit(&$form, &$form_state) {
   }
 
   $arguments['dependencies'] = $arguments['soft_dependencies'] = array();
-  foreach ($form_state['values']['dependencies'] as $dependency => $value) {
-    if ($value == 1) {
-      $arguments['dependencies'][] = $dependency;
-    }
-    elseif ($value == 2) {
-      $arguments['soft_dependencies'][] = $dependency;
+  if (isset($form_state['values']['dependencies'])) {
+    foreach ($form_state['values']['dependencies'] as $dependency => $value) {
+      if ($value == 1) {
+        $arguments['dependencies'][] = $dependency;
+      }
+      elseif ($value == 2) {
+        $arguments['soft_dependencies'][] = $dependency;
+      }
     }
   }
 
@@ -1401,6 +1413,24 @@ function migrate_ui_edit_mappings_submit(&$form, &$form_state) {
   drupal_set_message(t('Migration changes applied.'));
   $form_state['redirect'] =
     "admin/content/migrate/groups/$group_name/$machine_name";
+}
+
+/**
+ * Revert callback for the edit mappings form. Remove any field mappings that
+ * were defined through the UI.
+ *
+ * @param $form
+ * @param $form_state
+ */
+function migrate_ui_edit_mappings_revert(&$form, &$form_state) {
+  $machine_name = $form_state['values']['machine_name'];
+  db_delete('migrate_field_mapping')
+    ->condition('machine_name', $machine_name)
+    ->execute();
+  // Note that not all field mappings in the database came from the UI - they
+  // may also have been passed through a hook_migrate_api registration, so
+  // reregister the migration to restore those mappings.
+  migrate_static_registration(array($machine_name));
 }
 
 /**
@@ -1447,19 +1477,19 @@ function theme_migrate_ui_field_mapping_form($variables) {
 function theme_migrate_ui_field_mapping_dependencies($variables) {
   $output = '';
   $form = $variables['dependencies'];
+  $header = array(t('Migration'), t('Dependency'));
+  $rows = array();
   $elements = element_children($form);
-  if (!empty($elements)) {
-    $rows = array();
-    foreach ($elements as $mapping_key) {
-      $row = array();
-      $title = $form[$mapping_key]['#title'];
-      unset($form[$mapping_key]['#title']);
-      $row[] = $title;
-      $row[] = drupal_render($form[$mapping_key]);
-      $rows[] = $row;
-    }
-    $output .= theme('table', array('rows' => $rows));
+  foreach ($elements as $mapping_key) {
+    $row = array();
+    $title = $form[$mapping_key]['#title'];
+    unset($form[$mapping_key]['#title']);
+    $row[] = $title;
+    $row[] = drupal_render($form[$mapping_key]);
+    $rows[] = $row;
   }
+  $output .= theme('table', array('rows' => $rows, 'header' => $header, 'empty' => t('No other migrations were found.')));
+
   $output .= drupal_render_children($form);
   return $output;
 }

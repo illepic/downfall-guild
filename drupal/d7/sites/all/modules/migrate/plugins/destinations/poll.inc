@@ -97,14 +97,16 @@ class MigratePollEntityHandler extends MigrateDestinationHandler {
 
       // Insert actual votes.
       foreach ($row->votes as $vote) {
-        $chid = $vote['chid'];
-        if (!isset($chid)) {
+        if (!isset($vote['chid'])) {
           $result = db_select('poll_choice', 'pc')
                   ->fields('pc', array('chid'))
                   ->condition('pc.nid', $entity->nid)
                   ->condition('pc.chtext', $vote['chtext'])
                   ->execute();
           $chid = $result->fetchField();
+        }
+        else {
+          $chid = $vote['chid'];
         }
         db_insert('poll_vote')
           ->fields(array(

@@ -1,6 +1,5 @@
-
-Migrate 2.6 Release Candidate 1
-===============================
+Next release
+============
 
 Migration developers will need to add the "advanced migration information"
 permission to their roles to continue seeing all the info in the UI they're
@@ -14,8 +13,37 @@ UI to register them.
 
 Migration class constructors should now always accept a $arguments array as
 the first parameter and pass it to its parent. This version does support legacy
-migrations which pass a group object, or nothing, but that support will be
+migrations which pass a group object, or nothing, but that support may be
 removed in a future version.
+
+Features and enhancements
+- #2065295 - Add ability to disable other module's hooks during migration.
+- #2051547 - Add ability to revert UI-defined field mappings.
+
+Bug fixes
+- #2120205 - Fix bug when upgrading lastimported from D6 to D7.
+- #2109821 - Handle multi-value subfields in the default field handler.
+- #2039649 - Smarter setting of file 'type' field.
+- #2106925 - Fix machine_name generation for legacy migrations.
+- #2102087 - Don't pass --group to drush subprocess.
+- #2099585 - Enable group option on drush migrate-stop.
+- #2088255 - Eliminate notices on migrate_map_hash with track_changes.
+- #2014849 - Make sure (again) statistics properly default to 0.
+- #2042535 - Properly set file_usage for user pictures.
+- #2060631 - Fix notices on poll vote import.
+- #2049689 - Empty values for node is_new caused SQL errors.
+- #2042399 - Node import did not respect revision flag.
+- #2034885 - For XML sources, don't override values populated in prepareRow().
+- #2041267 - Handle lack of potential dependencies on edit page.
+- #2040101 - Breadcrumbs in migration UI missing sections
+- #2033947 - Empty migration display names when matching group names.
+- #2037265 - Static migrations were not registered on module enable.
+- #2021457 - Coding standard improvements for xml.inc.
+- #2030559 - Add deprecation messages for arguments().
+- #1854382 - Fix handling of terms with leading spaces.
+
+Migrate 2.6 Release Candidate 1
+===============================
 
 Features and enhancements
 - #1998632 - Extend MigrateItemsXML to handle an array of XML files.

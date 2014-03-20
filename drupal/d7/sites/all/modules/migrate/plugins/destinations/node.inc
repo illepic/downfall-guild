@@ -208,13 +208,21 @@ class MigrateDestinationNode extends MigrateDestinationEntity {
       if (isset($node->uid)) {
         $uid = $node->uid;
       }
+      if (isset($node->revision)) {
+        $revision = $node->revision;
+      }
+
       node_object_prepare($node);
+
       if (isset($created)) {
         $node->created = $created;
       }
       // No point to resetting $node->changed here, node_save() will overwrite it
       if (isset($uid)) {
         $node->uid = $uid;
+      }
+      if (isset($revision)) {
+        $node->revision = $revision;
       }
     }
 
@@ -245,6 +253,11 @@ class MigrateDestinationNode extends MigrateDestinationEntity {
     }
     else {
       $updating = FALSE;
+    }
+
+    // Make sure that if is_new is not TRUE, it is not present.
+    if (isset($node->is_new) && empty($node->is_new)) {
+      unset($node->is_new);
     }
 
     migrate_instrument_start('node_save');

@@ -290,7 +290,7 @@ function migrate_update_7004() {
       )
     );
 
-    if (!db_field_exists('migrate_status', 'lastimported')) {
+    if (db_field_exists('migrate_status', 'lastimported')) {
       $result = db_select('migrate_status', 'ms')
                 ->fields('ms', array('machine_name', 'lastimported'))
                 ->execute();

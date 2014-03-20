@@ -203,8 +203,18 @@ class MigrateDefaultFieldHandler extends MigrateFieldHandler {
     // Setup the standard Field API array for saving.
     $delta = 0;
     foreach ($values as $value) {
+      // Handle multivalue arguments (especially for subfields).
+      $delta_arguments = array();
+      foreach ($arguments as $name => $argument) {
+        if (is_array($argument) && isset($argument[$delta])) {
+          $delta_arguments[$name] = $argument[$delta];
+        }
+        else {
+          $delta_arguments[$name] = $argument;
+        }
+      }
       $return[$language][$delta] = array($primary_column => $value) +
-        array_intersect_key($arguments, $field_info['columns']);
+        array_intersect_key($delta_arguments, $field_info['columns']);
       $delta++;
     }
 
@@ -495,6 +505,9 @@ class MigrateTaxonomyTermReferenceFieldHandler extends MigrateFieldHandler {
         $vid = $names[$vocab_name]->vid;
       }
 
+      // Remove leading and trailing spaces in term names
+      $values = array_map('trim', $values);
+
       // Cannot use taxonomy_term_load_multiple() since we have an array of names.
       // It wants a singular value. This query may return case-insensitive
       // matches.
@@ -511,7 +524,6 @@ class MigrateTaxonomyTermReferenceFieldHandler extends MigrateFieldHandler {
         $values = array_map('strtolower', $values);
       }
       foreach ($values as $value) {
-        $value = trim($value);
         if (isset($existing_terms[$value])) {
           $tids[] = $existing_terms[$value];
         }
