@@ -21,7 +21,8 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
    * @param $field
    *  Name of the text field within the entity to be modified. Defaults to 'body'.
    */
-  static public function rewriteImgAssistTags($entity, $field = 'body') {
+  public function rewriteImgAssistTags($entity, $field = 'body') {
+    dpm('made it into rewriteimageassisttags');
     if (is_array($entity->$field)) {
       migrate_instrument_start('MigrateDestinationMedia rewriteImgTags');
       foreach ($entity->$field as $language => $values) {
@@ -47,7 +48,8 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
    *
    * @param array $matches
    */
-  static protected function replaceCallback(array $matches) {
+  protected function replaceCallback(array $matches) {
+    dpm('made it into replacecallback');
     $src_matches = array();
     // Default to the original <img> tag
     $result = $matches[0];
@@ -58,7 +60,9 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
 
       // my work
       $src = $src_matches[1];
+      dpm('nid', $src);
       $dest_image_nid = parent::handleSourceMigration('DownfallD2DNodeDfImage', $src);
+      dpm('dest_image_nide', $dest_image_nid);
       // end my work
 
       // Replace the scheme and host portions of the referenced URI with the
@@ -197,12 +201,14 @@ class DownfallOldEventNodeMigration extends DownfallNodeMigration {
 class DownfallGenericWowTermNodeMigration extends DownfallNodeMigration {
   public function __construct(array $arguments) {
 
-    parent::__construct($arguments);
+  parent::__construct($arguments);
 
-    // Note that we map migrated terms by the vocabulary ID.
-    $this->addFieldMapping('field_wow_category', '5')
-         ->sourceMigration('DownfallD2DTermWoW');
-         // ->arguments(array('source_type' => 'tid'));
+  // Note that we map migrated terms by the vocabulary ID.
+  $this->addFieldMapping('field_wow_category', '5')
+    ->sourceMigration('DownfallD2DTermWoW');
+    // ->arguments(array('source_type' => 'tid'));
+  $this->addFieldMapping('field_wow_category:source_type')
+    ->defaultValue('tid');
   }
 
   /**
@@ -221,10 +227,12 @@ class DownfallBookMigration extends DownfallNodeMigration {
   public function __construct(array $arguments) {
     parent::__construct($arguments);
 
-    // Note that we map migrated terms by the vocabulary ID.
-    $this->addFieldMapping('field_wow_category', '5')
-         ->sourceMigration('DownfallD2DTermWoW');
-         // ->arguments(array('source_type' => 'tid'));
+  // Note that we map migrated terms by the vocabulary ID.
+  $this->addFieldMapping('field_wow_category', '5')
+    ->sourceMigration('DownfallD2DTermWoW');
+    // ->arguments(array('source_type' => 'tid'));
+  $this->addFieldMapping('field_wow_category:source_type')
+    ->defaultValue('tid');
   }
 
   /**
@@ -333,8 +341,10 @@ class DownfallForumMigration extends DownfallNodeMigration {
 
     // Note that we map migrated terms by the vocabulary ID.
     $this->addFieldMapping('taxonomy_forums', '3')
-         ->sourceMigration('DownfallD2DTermForums');
-         // ->arguments(array('source_type' => 'tid'));
+      ->sourceMigration('DownfallD2DTermForums');
+      // ->arguments(array('source_type' => 'tid'));
+    $this->addFieldMapping('taxonomy_forums:source_type')
+      ->defaultValue('tid');
   }
 
   /**
@@ -485,13 +495,15 @@ class DownfallImageMigration extends DownfallNodeMigration {
       ->defaultValue(TRUE);
     $this->addFieldMapping('field_df_image:title', 'image_title_placeholder')
       ->defaultValue(t('Downfall image'));
-    $this->addFieldMapping('field_app_ui:language')
+    $this->addFieldMapping('field_df_image:language')
       ->defaultValue(LANGUAGE_NONE);
 
-   // Note that we map migrated terms by the vocabulary ID.
-   $this->addFieldMapping('field_gallery', '8')
+  // Note that we map migrated terms by the vocabulary ID.
+  $this->addFieldMapping('field_gallery', '8')
       ->sourceMigration('DownfallD2DTermGallery');
       // ->arguments(array('source_type' => 'tid'));
+  $this->addFieldMapping('field_gallery:source_type')
+    ->defaultValue('tid');
   }
 
   // just here to limit results while testing
