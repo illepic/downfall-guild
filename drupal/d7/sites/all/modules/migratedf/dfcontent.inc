@@ -527,8 +527,8 @@ class DownfallFile6Migraton extends DrupalFile6Migration{
   public function __construct(array $arguments) {
     parent::__construct($arguments);
 
-    $this->addFieldMapping('type', 'filemime')
-      ->callbacks(array($this, 'fileTypes'));
+    // $this->addFieldMapping('type', 'filemime')
+    //   ->callbacks(array($this, 'fileTypes'));
   }
 
   // public function query() {
@@ -566,8 +566,8 @@ class DownfallPicture6Migration extends DrupalPicture6Migration{
     parent::__construct($arguments);
 
     // $this->addFieldMapping(NULL, 'filemime');
-    $this->addFieldMapping('type', 'type')
-      ->defaultValue('image');
+    // $this->addFieldMapping('type', 'type')
+    //   ->defaultValue('image');
   }
 }
 
