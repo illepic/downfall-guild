@@ -1048,6 +1048,7 @@ class MigrateD2DWizard extends MigrateUIWizard {
     static $connection;
     if (!isset($connection)) {
       $connection_key = $this->groupName . '_legacy';
+      $this->database['prefix'] = $this->database['db_prefix'];
       Database::addConnectionInfo($connection_key, 'default', $this->database);
       $connection = Database::getConnection('default', $connection_key);
     }

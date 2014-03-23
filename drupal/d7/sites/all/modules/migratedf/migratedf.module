@@ -14,20 +14,20 @@ function migratedf_flush_caches() {
 
 function migratedf_register_migrations(){
   $common_arguments = array(
-    'source_version' => 6,
-    'group' => 'DownfallD2DMigration',
     'source_connection' => 'df6import',
-    'source_database' => array(
-      'driver' => 'mysql',
-      'database' => 'downfall_d6_pristine',
-      'username' => 'root', // Ideally this user has readonly access
-      // Best practice: use a variable (defined by setting $conf in settings.php, or
-      // with drush vset) for the password rather than exposing it in the code.
-      // 'password' => variable_get('example_migrate_password', ''),
-      'password' => 'root',
-      'host' => 'localhost',
-      'prefix' => 'demo_',
-    ),
+    'source_version' => 6,
+    'group_name' => 'DownfallD2DMigration',
+    // 'source_database' => array(
+    //   'driver' => 'mysql',
+    //   'database' => 'downfall_d6',
+    //   'username' => 'root', // Ideally this user has readonly access
+    //   // Best practice: use a variable (defined by setting $conf in settings.php, or
+    //   // with drush vset) for the password rather than exposing it in the code.
+    //   // 'password' => variable_get('example_migrate_password', ''),
+    //   'password' => 'root',
+    //   'host' => 'localhost',
+    //   'prefix' => 'demo_',
+    // ),
   // come back to format mappings
   // 'format_mappings' => array(
   //   '5' => 'markdown',

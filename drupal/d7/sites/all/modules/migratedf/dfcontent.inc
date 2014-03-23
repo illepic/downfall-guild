@@ -164,7 +164,7 @@ class DownfallOldEventNodeMigration extends DownfallNodeMigration {
       return FALSE;
     }
 
-    $d6_date_row = Database::getConnection('downfall_d6_pristine', $this->sourceConnection)
+    $d6_date_row = Database::getConnection('default', $this->sourceConnection)
       ->select('event', e)
       ->fields('e', array('event_start', 'event_end'))
       ->condition('nid', $row->nid)
@@ -300,7 +300,7 @@ class DownfallBookMigration extends DownfallNodeMigration {
     protected function findNewPlid($oldplid){
 
       // we have the old plid, find corresponding nid
-      $oldnid = Database::getConnection('downfall_d6_pristine', $this->sourceConnection)
+      $oldnid = Database::getConnection('default', $this->sourceConnection)
         ->select('book', 'b')
         ->fields('b', array('nid'))
         ->condition('mlid', $oldplid)
@@ -452,7 +452,7 @@ class DownfallGuildAppsMigration extends DownfallNodeMigration {
       return FALSE;
     }
 
-    // $d6_date_row = Database::getConnection('downfall_d6_pristine', $this->sourceConnection)
+    // $d6_date_row = Database::getConnection('default', $this->sourceConnection)
     //   ->select('event', e)
     //   ->fields('e', array('event_start', 'event_end'))
     //   ->condition('nid', $row->nid)
@@ -507,7 +507,7 @@ class DownfallImageMigration extends DownfallNodeMigration {
     }
 
     // do a lookup on the d6 image table for the _original file
-    $d6_file = Database::getConnection('downfall_d6_pristine', $this->sourceConnection)
+    $d6_file = Database::getConnection('default', $this->sourceConnection)
       ->select('image', i)
       ->fields('i', array('fid'))
       ->condition('nid', $row->nid)
@@ -729,7 +729,7 @@ class DownfallRaidMigration extends DownfallNodeMigration {
       return FALSE;
     }
 
-    // $d6_date_row = Database::getConnection('downfall_d6_pristine', $this->sourceConnection)
+    // $d6_date_row = Database::getConnection('default', $this->sourceConnection)
     //   ->select('event', e)
     //   ->fields('e', array('event_start', 'event_end'))
     //   ->condition('nid', $row->nid)
