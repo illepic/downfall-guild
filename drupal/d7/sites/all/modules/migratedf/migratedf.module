@@ -101,7 +101,6 @@ function migratedf_register_migrations(){
     'description' => t('Import Drupal 6 forums terms into forums terms'),
     'source_vocabulary' => '3',  // "forums category" vocabulary
     'destination_vocabulary' => 'forums',
-    'dependencies' => array('DownfallImageMigration'),
   );
   Migration::registerMigration('DrupalTerm6Migration',
     $forums_term_arguments['machine_name'], $forums_term_arguments);
