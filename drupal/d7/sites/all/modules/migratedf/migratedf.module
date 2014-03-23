@@ -13,6 +13,9 @@ function migratedf_flush_caches() {
  */
 
 function migratedf_register_migrations(){
+  /**
+   * Common shared across nodes and comments and roles, etc
+   */
   $common_arguments = array(
     'source_connection' => 'df6import',
     'source_version' => 6,
@@ -20,6 +23,16 @@ function migratedf_register_migrations(){
     // 'user_migration' => 'DownfallD2DUser',
     // 'default_uid' => 1,
     );
+
+  /**
+   * COMMENTS (not "common", Bloom) shared arguments
+   */
+  $comment_arguments = $common_arguments + array(
+    'user_migration' => 'DownfallD2DUser',
+    'default_uid' => 1,
+  );
+
+  dpm($common_arguments);
 
   /**
    * DownfallD2DMigration - ROLES
