@@ -201,8 +201,8 @@ class DownfallGenericWowTermNodeMigration extends DownfallNodeMigration {
 
     // Note that we map migrated terms by the vocabulary ID.
     $this->addFieldMapping('field_wow_category', '5')
-         ->sourceMigration('DownfallD2DTermWoW')
-         ->arguments(array('source_type' => 'tid'));
+         ->sourceMigration('DownfallD2DTermWoW');
+         // ->arguments(array('source_type' => 'tid'));
   }
 
   /**
@@ -223,8 +223,8 @@ class DownfallBookMigration extends DownfallNodeMigration {
 
     // Note that we map migrated terms by the vocabulary ID.
     $this->addFieldMapping('field_wow_category', '5')
-         ->sourceMigration('DownfallD2DTermWoW')
-         ->arguments(array('source_type' => 'tid'));
+         ->sourceMigration('DownfallD2DTermWoW');
+         // ->arguments(array('source_type' => 'tid'));
   }
 
   /**
@@ -333,8 +333,8 @@ class DownfallForumMigration extends DownfallNodeMigration {
 
     // Note that we map migrated terms by the vocabulary ID.
     $this->addFieldMapping('taxonomy_forums', '3')
-         ->sourceMigration('DownfallD2DTermForums')
-         ->arguments(array('source_type' => 'tid'));
+         ->sourceMigration('DownfallD2DTermForums');
+         // ->arguments(array('source_type' => 'tid'));
   }
 
   /**
@@ -490,8 +490,8 @@ class DownfallImageMigration extends DownfallNodeMigration {
 
    // Note that we map migrated terms by the vocabulary ID.
    $this->addFieldMapping('field_gallery', '8')
-      ->sourceMigration('DownfallD2DTermGallery')
-      ->arguments(array('source_type' => 'tid'));
+      ->sourceMigration('DownfallD2DTermGallery');
+      // ->arguments(array('source_type' => 'tid'));
   }
 
   // just here to limit results while testing

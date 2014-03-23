@@ -27,7 +27,6 @@ dependencies[] = migrate_d2d_ui
 dependencies[] = migrate_example
 dependencies[] = migrate_extras
 dependencies[] = migrate_ui
-dependencies[] = migratedf
 dependencies[] = module_filter
 dependencies[] = number
 dependencies[] = og

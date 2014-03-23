@@ -17,27 +17,9 @@ function migratedf_register_migrations(){
     'source_connection' => 'df6import',
     'source_version' => 6,
     'group_name' => 'DownfallD2DMigration',
-    // 'source_database' => array(
-    //   'driver' => 'mysql',
-    //   'database' => 'downfall_d6',
-    //   'username' => 'root', // Ideally this user has readonly access
-    //   // Best practice: use a variable (defined by setting $conf in settings.php, or
-    //   // with drush vset) for the password rather than exposing it in the code.
-    //   // 'password' => variable_get('example_migrate_password', ''),
-    //   'password' => 'root',
-    //   'host' => 'localhost',
-    //   'prefix' => 'demo_',
-    // ),
-  // come back to format mappings
-  // 'format_mappings' => array(
-  //   '5' => 'markdown',
-  // ),
+    // 'user_migration' => 'DownfallD2DUser',
+    // 'default_uid' => 1,
     );
-
-  $comment_arguments = $common_arguments + array(
-    'user_migration' => 'DownfallD2DUser',
-    'default_uid' => 1,
-  );
 
   /**
    * DownfallD2DMigration - ROLES
@@ -76,8 +58,8 @@ function migratedf_register_migrations(){
     'description' => t('Migration of users from Drupal 6'),
     'role_migration' => 'DownfallD2DRoles',
     'picture_migration' => 'DownfallD2DPictures',
-    'soft_dependencies' => array('DownfallD2DPictures'),
-    'dependencies' => array('DownfallD2DRoles'),
+    // 'soft_dependencies' => array('DownfallD2DPictures'),
+    // 'dependencies' => array('DownfallD2DRoles'),
   );
 
   // We just use the migrate_d2d D6 migration class as-is.
@@ -162,7 +144,7 @@ function migratedf_register_migrations(){
     'description' => t('Import Drupal 6 book nodes'),
     'source_type' => 'book',
     'destination_type' => 'book',
-    'dependencies' => array('DownfallD2DTermWoW', 'DownfallD2DNodeDfImage'),
+    // 'dependencies' => array('DownfallD2DTermWoW', 'DownfallD2DNodeDfImage'),
   );
   // Note we use a custom class here so we can map the term references and
   // other fields - see "Extending migrate_d2d classes" below.
@@ -179,7 +161,7 @@ function migratedf_register_migrations(){
     'source_type' => 'book',
     'destination_type' => 'book',
     'node_migration' => 'DownfallD2DNodeBook',
-    'dependencies' => array('DownfallD2DNodeBook'),
+    // 'dependencies' => array('DownfallD2DNodeBook'),
   );
 
   Migration::registerMigration('DownfallCommentMigration',
@@ -194,7 +176,7 @@ function migratedf_register_migrations(){
     'description' => t('Import Drupal 6 blog nodes'),
     'source_type' => 'blog',
     'destination_type' => 'blog',
-    'dependencies' => array('DownfallD2DTermWoW', 'DownfallD2DNodeDfImage'),
+    // 'dependencies' => array('DownfallD2DTermWoW', 'DownfallD2DNodeDfImage'),
   );
 
   Migration::registerMigration('DownfallGenericWowTermNodeMigration',
@@ -210,7 +192,7 @@ function migratedf_register_migrations(){
     'source_type' => 'blog',
     'destination_type' => 'blog',
     'node_migration' => 'DownfallD2DNodeBlog',
-    'dependencies' => array('DownfallD2DNodeBlog'),
+    // 'dependencies' => array('DownfallD2DNodeBlog'),
   );
 
   Migration::registerMigration('DownfallCommentMigration',
@@ -225,7 +207,7 @@ function migratedf_register_migrations(){
     'description' => t('Import Drupal 6 forum nodes'),
     'source_type' => 'forum',
     'destination_type' => 'forum',
-    'dependencies' => array('DownfallD2DTermForums', 'DownfallD2DNodeDfImage'),
+    // 'dependencies' => array('DownfallD2DTermForums', 'DownfallD2DNodeDfImage'),
   );
   // Note we use a custom class here so we can map the term references and
   // other fields - see "Extending migrate_d2d classes" below.
@@ -242,7 +224,7 @@ function migratedf_register_migrations(){
     'source_type' => 'forum',
     'destination_type' => 'forum',
     'node_migration' => 'DownfallD2DNodeForum',
-    'dependencies' => array('DownfallD2DNodeForum'),
+    // 'dependencies' => array('DownfallD2DNodeForum'),
   );
 
   Migration::registerMigration('DownfallCommentMigration',
@@ -257,7 +239,7 @@ function migratedf_register_migrations(){
     'description' => t('Import Drupal 6 page nodes'),
     'source_type' => 'page',
     'destination_type' => 'article',
-    'dependencies' => array('DownfallD2DTermWoW', 'DownfallD2DNodeDfImage'),
+    // 'dependencies' => array('DownfallD2DTermWoW', 'DownfallD2DNodeDfImage'),
   );
   // Note we use a custom class here so we can map the term references and
   // other fields - see "Extending migrate_d2d classes" below.
@@ -274,7 +256,7 @@ function migratedf_register_migrations(){
     'source_type' => 'page',
     'destination_type' => 'article',
     'node_migration' => 'DownfallD2DNodePage',
-    'dependencies' => array('DownfallD2DNodePage'),
+    // 'dependencies' => array('DownfallD2DNodePage'),
   );
 
   Migration::registerMigration('DownfallCommentMigration',
@@ -289,7 +271,7 @@ function migratedf_register_migrations(){
     'description' => t('Import Drupal 6 story nodes'),
     'source_type' => 'story',
     'destination_type' => 'article',
-    'dependencies' => array('DownfallD2DTermWoW', 'DownfallD2DNodeDfImage'),
+    // 'dependencies' => array('DownfallD2DTermWoW', 'DownfallD2DNodeDfImage'),
   );
   // Note we use a custom class here so we can map the term references and
   // other fields - see "Extending migrate_d2d classes" below.
@@ -306,7 +288,7 @@ function migratedf_register_migrations(){
     'source_type' => 'story',
     'destination_type' => 'article',
     'node_migration' => 'DownfallD2DNodeStory',
-    'dependencies' => array('DownfallD2DNodeStory'),
+    // 'dependencies' => array('DownfallD2DNodeStory'),
   );
 
   Migration::registerMigration('DownfallCommentMigration',
@@ -321,7 +303,7 @@ function migratedf_register_migrations(){
     'description' => t('Import Drupal 6 date nodes'),
     'source_type' => 'raidevent',
     'destination_type' => 'event',
-    'dependencies' => array('DownfallD2DNodeDfImage'),
+    // 'dependencies' => array('DownfallD2DNodeDfImage'),
   );
   // Note we use a custom class here so we can map the term references and
   // other fields - see "Extending migrate_d2d classes" below.
@@ -338,7 +320,7 @@ function migratedf_register_migrations(){
     'source_type' => 'raidevent',
     'destination_type' => 'event',
     'node_migration' => 'DownfallD2DNodeDate',
-    'dependencies' => array('DownfallD2DNodeDate'),
+    // 'dependencies' => array('DownfallD2DNodeDate'),
   );
 
   Migration::registerMigration('DownfallCommentMigration',
@@ -353,7 +335,7 @@ function migratedf_register_migrations(){
     'description' => t('Import Drupal 6 old event nodes'),
     'source_type' => 'event',
     'destination_type' => 'event',
-    'dependencies' => array('DownfallD2DNodeDfImage'),
+    // 'dependencies' => array('DownfallD2DNodeDfImage'),
   );
   // Note we use a custom class here so we can map the term references and
   // other fields - see "Extending migrate_d2d classes" below.
@@ -370,7 +352,7 @@ function migratedf_register_migrations(){
     'source_type' => 'event',
     'destination_type' => 'event',
     'node_migration' => 'DownfallD2DNodeDateOld',
-    'dependencies' => array('DownfallD2DNodeDateOld'),
+    // 'dependencies' => array('DownfallD2DNodeDateOld'),
   );
 
   Migration::registerMigration('DownfallCommentMigration',
@@ -385,7 +367,7 @@ function migratedf_register_migrations(){
     'description' => t('Import Drupal 6 guild apps'),
     'source_type' => 'guild_app',
     'destination_type' => 'guild_app',
-    'dependencies' => array('DownfallD2DFiles'),
+    // 'dependencies' => array('DownfallD2DFiles'),
   );
   // Note we use a custom class here so we can map the term references and
   // other fields - see "Extending migrate_d2d classes" below.
@@ -402,7 +384,7 @@ function migratedf_register_migrations(){
     'source_type' => 'guild_app',
     'destination_type' => 'guild_app',
     'node_migration' => 'DownfallD2DNodeGuildApp',
-    'dependencies' => array('DownfallD2DNodeGuildApp'),
+    // 'dependencies' => array('DownfallD2DNodeGuildApp'),
   );
 
   Migration::registerMigration('DownfallCommentMigration',
@@ -417,7 +399,7 @@ function migratedf_register_migrations(){
     'description' => t('Import Drupal 6 Images module nodes'),
     'source_type' => 'image',
     'destination_type' => 'df_image',
-    'dependencies' => array('DownfallD2DFiles', 'DownfallD2DTermGallery'),
+    // 'dependencies' => array('DownfallD2DFiles', 'DownfallD2DTermGallery'),
   );
   // Note we use a custom class here so we can map the term references and
   // other fields - see "Extending migrate_d2d classes" below.
@@ -434,7 +416,7 @@ function migratedf_register_migrations(){
     'source_type' => 'image',
     'destination_type' => 'df_image',
     'node_migration' => 'DownfallD2DNodeDfImage',
-    'dependencies' => array('DownfallD2DNodeDfImage'),
+    // 'dependencies' => array('DownfallD2DNodeDfImage'),
   );
 
   Migration::registerMigration('DownfallCommentMigration',
@@ -451,7 +433,7 @@ function migratedf_register_migrations(){
     'description' => t('Import Drupal 6 og nodes'),
     'source_type' => 'raid',
     'destination_type' => 'raid',
-    'dependencies' => array('DownfallD2DUser'),
+    // 'dependencies' => array('DownfallD2DUser'),
   );
   // Note we use a custom class here so we can map the term references and
   // other fields - see "Extending migrate_d2d classes" below.
