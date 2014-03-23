@@ -22,7 +22,6 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
    *  Name of the text field within the entity to be modified. Defaults to 'body'.
    */
   public function rewriteImgAssistTags($entity, $field = 'body') {
-    dpm('made it into rewriteimageassisttags');
     if (is_array($entity->$field)) {
       migrate_instrument_start('MigrateDestinationMedia rewriteImgTags');
       foreach ($entity->$field as $language => $values) {
@@ -49,7 +48,6 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
    * @param array $matches
    */
   protected function replaceCallback(array $matches) {
-    dpm('made it into replacecallback');
     $src_matches = array();
     // Default to the original <img> tag
     $result = $matches[0];
@@ -60,9 +58,7 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
 
       // my work
       $src = $src_matches[1];
-      dpm('nid', $src);
       $dest_image_nid = parent::handleSourceMigration('DownfallD2DNodeDfImage', $src);
-      dpm('dest_image_nide', $dest_image_nid);
       // end my work
 
       // Replace the scheme and host portions of the referenced URI with the
