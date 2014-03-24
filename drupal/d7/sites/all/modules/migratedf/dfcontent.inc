@@ -614,7 +614,7 @@ class DownfallCommentMigration extends DrupalComment6Migration {
    * @param $field
    *  Name of the text field within the entity to be modified. Defaults to 'body'.
    */
-  static public function rewriteImgAssistTags($entity, $field = 'comment_body') {
+  public function rewriteImgAssistTags($entity, $field = 'comment_body') {
     if (is_array($entity->$field)) {
       migrate_instrument_start('MigrateDestinationMedia rewriteImgTags');
       foreach ($entity->$field as $language => $values) {
@@ -640,7 +640,7 @@ class DownfallCommentMigration extends DrupalComment6Migration {
    *
    * @param array $matches
    */
-  static protected function replaceCallback(array $matches) {
+  protected function replaceCallback(array $matches) {
 
     $src_matches = array();
     // Default to the original <img> tag
