@@ -700,10 +700,7 @@ class DownfallCommentMigration extends DrupalComment6Migration {
  * Raid migrations
  *
  * Approach:
- * 1) Migrate straight nodes across
- * 2) Migrate users into the proper OG table to line up with just created raids
- * 3) A method on the main class that injects imported content from other nodes into the OG table
- * indicating the node is part of the group
+ * https://drupal.org/node/2023273
  */
 
 class DownfallRaidMigration extends DownfallNodeMigration {
@@ -713,16 +710,33 @@ class DownfallRaidMigration extends DownfallNodeMigration {
     parent::__construct($arguments);
 
     // ui -> media field
-    // $this->addFieldMapping('field_raid_mascot_image', 'field_mascot')
-    //   ->sourceMigration('DownfallD2DFiles');
-    // $this->addFieldMapping('field_raid_mascot_image:file_class')
-    //          ->defaultValue('MigrateFileFid');
-    // $this->addFieldMapping('field_raid_mascot_image:preserve_files')
-    //          ->defaultValue(TRUE);
-    // $this->addFieldMapping('field_raid_mascot_image:title', 'image_title_placeholder')
-    //          ->defaultValue(t('Raid mascot screenshot'));
-    // $this->addFieldMapping('field_raid_mascot_image:language')
-    //          ->defaultValue(LANGUAGE_NONE);
+    $this->addFieldMapping('field_raid_mascot_image', 'field_mascot')
+      ->sourceMigration('DownfallD2DFiles');
+    $this->addFieldMapping('field_raid_mascot_image:file_class')
+             ->defaultValue('MigrateFileFid');
+    $this->addFieldMapping('field_raid_mascot_image:preserve_files')
+             ->defaultValue(TRUE);
+    $this->addFieldMapping('field_raid_mascot_image:description')
+             ->defaultValue(t('Raid mascot screenshot'));
+    $this->addFieldMapping('field_raid_mascot_image:language')
+             ->defaultValue(LANGUAGE_NONE);
+    $this->addFieldMapping('field_raid_mascot_image:display')
+             ->defaultValue(1);
+
+
+    $this->addFieldMapping('field_raid_status')
+      ->defaultValue(1);
+    $this->addFieldMapping('field_raid_size', 'field_raidsize');
+    $this->addFieldMapping('field_raid_days', 'field_raiddays');
+    $this->addFieldMapping('field_raid_start_time', 'field_raidstart');
+    $this->addFieldMapping('field_raid_end_time', 'field_raidend');
+
+    $this->addFieldMapping('group_group')->defaultValue(1);
+
+    $this->addUnmigratedSources(array(
+      'revision', 'log', 'revision_uid', 'field_mascot:list', 'field_raidroster',
+      'field_mascot_data'
+    ));
   }
 
   // just here to limit results while testing
@@ -744,5 +758,88 @@ class DownfallRaidMigration extends DownfallNodeMigration {
     //   ->execute()
     //   ->fetchObject();
 
+  }
+}
+
+/**
+ * @file
+ * Migrate D2D extension for OGMebership migration.
+ */
+/**
+ * Base migration class for the two group types.
+ */
+class DownfallOGMembershipMigration extends DrupalMigration {
+  /**
+   * Construct a migration.
+   *
+   * @param array $args
+   *   Constructor arguments passed at migration-registration time.
+   */
+  public function __construct($args) {
+    parent::__construct($args);
+    // Set the fields we want; document in the UI.
+    $this->sourceFields += array(
+      'nid' => t('Group node ID.'),
+      'is_active' => t('User status in the group.'),
+      'is_admin' => t('Group admin or not.'),
+      'uid' => t('User ID.'),
+    );
+    $this->sourceOptions['map_joinable'] = FALSE;
+    // Set the query as the migration source.
+    $this->source = new MigrateSourceSQL(
+      $this->query(), $this->sourceFields, NULL, $this->sourceOptions
+    );
+    // Map source rows to destination rows with uid+gid.
+    $this->map = new MigrateSQLMap($this->machineName,
+      array(
+        'nid' => array(
+          'type' => 'int',
+          'not null' => TRUE,
+          'description' => 'ID of the group.',
+        ),
+        'uid' => array(
+          'type' => 'int',
+          'not null' => TRUE,
+          'description' => 'ID of the user.',
+        ),
+      ),
+      MigrateDestinationOGMembership::getKeySchema()
+    );
+    // Destination is group membership.
+    $this->destination = new MigrateDestinationOGMembership();
+    // Field mappings.
+    $this->addFieldMapping('group_type')
+      ->defaultValue('node');
+    $this->addFieldMapping('entity_type')
+      ->defaultValue('user');
+    // Let the user migration map the uids.
+    $this->addFieldMapping('etid', 'uid')
+      ->sourceMigration('MyUser');
+    $this->addFieldMapping('state', 'is_active');
+    $this->addFieldMapping('is_admin', 'is_admin');
+    // Group migration maps the gid via the OG Node migration.
+    $this->addFieldMapping('gid', 'nid')
+      ->sourceMigration('MyGroupNode');
+    // Minimal source config means we just set a default
+    // instead of looking for roles to map.
+    $this->addFieldMapping('group_roles')
+      ->defaultValue(array(OG_ADMINISTRATOR_ROLE));
+    // Accept defaults for these destination fields.
+    $no_input = array(
+      'created',
+    );
+    $this->addUnmigratedDestinations($no_input, t('Do Not Migrate'));
+  }
+  /**
+   * Query for the source group data.
+   *
+   * @return QueryConditionInterface
+   *   Provides a connection and query for getting OGMembership records.
+   */
+  protected function query() {
+    $query = Database::getConnection('default', $this->sourceConnection)
+      ->select('og_uid', 'ogu')
+      ->fields('ogu', array('nid', 'is_active', 'is_admin', 'uid'));
+    return $query;
   }
 }
