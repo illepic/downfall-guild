@@ -1,6 +1,23 @@
 <?php
 
 /**
+ * Users
+ */
+
+class DownfallUserMigration extends DrupalUser6Migration {
+  public function __construct(array $arguments) {
+    parent::__construct($arguments);
+
+    // $this->addFieldMapping('field_migrate_example_gender')
+    //   ->defaultValue('test123');
+
+    // $this->addFieldMapping('og_user_node')
+    //         ->sourceMigration('DownfallRaidMigration')
+    //         ->defaultValue('10886');
+  }
+}
+
+/**
  * Common mappings for the Drupal 6 node migrations.
  */
 abstract class DownfallNodeMigration extends DrupalNode6Migration {
@@ -731,7 +748,8 @@ class DownfallRaidMigration extends DownfallNodeMigration {
     $this->addFieldMapping('field_raid_start_time', 'field_raidstart');
     $this->addFieldMapping('field_raid_end_time', 'field_raidend');
 
-    $this->addFieldMapping('group_group')->defaultValue(1);
+    // Ignore this for now, OG Membership in a seprate node
+    // $this->addFieldMapping('group_group')->defaultValue(1);
 
     $this->addUnmigratedSources(array(
       'revision', 'log', 'revision_uid', 'field_mascot:list', 'field_raidroster',
@@ -814,12 +832,12 @@ class DownfallOGMembershipMigration extends DrupalMigration {
       ->defaultValue('user');
     // Let the user migration map the uids.
     $this->addFieldMapping('etid', 'uid')
-      ->sourceMigration('MyUser');
+      ->sourceMigration('DownfallD2DUser');
     $this->addFieldMapping('state', 'is_active');
     $this->addFieldMapping('is_admin', 'is_admin');
     // Group migration maps the gid via the OG Node migration.
     $this->addFieldMapping('gid', 'nid')
-      ->sourceMigration('MyGroupNode');
+      ->sourceMigration('DownfallD2DNodeRaid');
     // Minimal source config means we just set a default
     // instead of looking for roles to map.
     $this->addFieldMapping('group_roles')
