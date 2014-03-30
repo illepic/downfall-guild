@@ -860,6 +860,8 @@ class DownfallOGMembershipMigration extends DrupalMigration {
   protected function query() {
     $query = Database::getConnection('default', $this->sourceConnection)
       ->select('og_uid', 'ogu')
+      // we have a user 0 here for some stupid reason
+      ->condition('uid', 0, '>')
       ->fields('ogu', array('nid', 'is_active', 'is_admin', 'uid'));
     return $query;
   }
