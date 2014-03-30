@@ -69,10 +69,7 @@ function migratedf_register_migrations(){
     'role_migration' => 'DownfallD2DRoles',
     'picture_migration' => 'DownfallD2DPictures',
     'soft_dependencies' => array('DownfallD2DPictures'),
-    'dependencies' => array(
-      'DownfallD2DRoles',
-      // 'DownfallD2DNodeRaid'
-    ),
+    'dependencies' => array('DownfallD2DRoles'),
   );
 
   // We just use the migrate_d2d D6 migration class as-is.
