@@ -838,10 +838,13 @@ class DownfallOGMembershipMigration extends DrupalMigration {
     // Group migration maps the gid via the OG Node migration.
     $this->addFieldMapping('gid', 'nid')
       ->sourceMigration('DownfallD2DNodeRaid');
+
     // Minimal source config means we just set a default
     // instead of looking for roles to map.
-    $this->addFieldMapping('group_roles')
-      ->defaultValue(array(OG_ADMINISTRATOR_ROLE));
+    // $this->addFieldMapping('group_roles')
+    //   ->defaultValue(array('member'));
+
+
     // Accept defaults for these destination fields.
     $no_input = array(
       'created',
