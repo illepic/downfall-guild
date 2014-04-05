@@ -317,7 +317,6 @@ function migratedf_register_migrations() {
   /**
    * DownfallD2DMigration - NODES / Page -> Article
    */
-
   $page_node_arguments = $node_arguments + array(
     'machine_name' => 'DownfallD2DNodePage',
     'description' => t('Import Drupal 6 page nodes'),
@@ -331,7 +330,6 @@ function migratedf_register_migrations() {
   /**
    * DownfallD2DMigration - Comments / Page -> Article
    */
-
   $page_comment_arguments = $comment_arguments + array(
     'machine_name' => 'DownfallD2DCommentPage',
     'description' => t('Import page comments'),
@@ -344,9 +342,25 @@ function migratedf_register_migrations() {
     $page_comment_arguments['machine_name'], $page_comment_arguments);
 
   /**
+   * DownfallD2DMigration - Group membership / Page -> Article
+   */
+  $page_og_membership_arguments = $common_arguments + array(
+    'machine_name' => 'DownfallOGNodeMembershipPage',
+    'description' => t('Page OG content membership to raid nodes'),
+    'content_migration' => 'DownfallD2DNodePage',
+    'source_type' => $page_node_arguments['source_type'],
+    'dependencies' => array(
+      'DownfallD2DUser',
+      'DownfallD2DNodeRaid',
+      'DownfallD2DNodePage'
+      ),
+  );
+  Migration::registerMigration('DownfallOGNodeMembershipMigration',
+    $page_og_membership_arguments['machine_name'], $page_og_membership_arguments);
+
+  /**
    * DownfallD2DMigration - NODES / story -> article
    */
-
   $story_node_arguments = $node_arguments + array(
     'machine_name' => 'DownfallD2DNodeStory',
     'description' => t('Import Drupal 6 story nodes'),
@@ -360,7 +374,6 @@ function migratedf_register_migrations() {
   /**
    * DownfallD2DMigration - Comments / story -> Article
    */
-
   $story_comment_arguments = $comment_arguments + array(
     'machine_name' => 'DownfallD2DCommentStory',
     'description' => t('Import story comments'),
@@ -371,6 +384,23 @@ function migratedf_register_migrations() {
   );
   Migration::registerMigration('DownfallCommentMigration',
     $story_comment_arguments['machine_name'], $story_comment_arguments);
+
+  /**
+   * DownfallD2DMigration - Group membership / Story -> Article
+   */
+  $story_og_membership_arguments = $common_arguments + array(
+    'machine_name' => 'DownfallOGNodeMembershipStory',
+    'description' => t('Story OG content membership to raid nodes'),
+    'content_migration' => 'DownfallD2DNodeStory',
+    'source_type' => $story_node_arguments['source_type'],
+    'dependencies' => array(
+      'DownfallD2DUser',
+      'DownfallD2DNodeRaid',
+      'DownfallD2DNodeStory'
+      ),
+  );
+  Migration::registerMigration('DownfallOGNodeMembershipMigration',
+    $story_og_membership_arguments['machine_name'], $story_og_membership_arguments);
 
   /**
    * DownfallD2DMigration - NODES / raidevent -> event
