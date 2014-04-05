@@ -358,6 +358,10 @@ class DownfallForumMigration extends DownfallNodeMigration {
       // ->arguments(array('source_type' => 'tid'));
     $this->addFieldMapping('taxonomy_forums:source_type')
       ->defaultValue('tid');
+
+    // OG Audience field
+    // $this->addFieldMapping('og_group_ref', 'remote_group_id')
+    //   ->sourceMigration('DownfallD2DNodeRaid');
   }
 
   /**
@@ -749,7 +753,7 @@ class DownfallRaidMigration extends DownfallNodeMigration {
     $this->addFieldMapping('field_raid_end_time', 'field_raidend');
 
     // Ignore this for now, OG Membership in a seprate node
-    // $this->addFieldMapping('group_group')->defaultValue(1);
+    $this->addFieldMapping('group_group')->defaultValue(1);
 
     $this->addUnmigratedSources(array(
       'revision', 'log', 'revision_uid', 'field_mascot:list', 'field_raidroster',
@@ -757,25 +761,10 @@ class DownfallRaidMigration extends DownfallNodeMigration {
     ));
   }
 
-  // just here to limit results while testing
-  // public function query() {
-  //   $query = parent::query();
-  //   $query->range(0,50);
-  //   return $query;
-  // }
-
   public function prepareRow($row){
     if (parent::prepareRow($row) === FALSE) {
       return FALSE;
     }
-
-    // $d6_date_row = Database::getConnection('default', $this->sourceConnection)
-    //   ->select('event', e)
-    //   ->fields('e', array('event_start', 'event_end'))
-    //   ->condition('nid', $row->nid)
-    //   ->execute()
-    //   ->fetchObject();
-
   }
 }
 
@@ -824,7 +813,7 @@ class DownfallOGMembershipMigration extends DrupalMigration {
       MigrateDestinationOGMembership::getKeySchema()
     );
     // Destination is group membership.
-    $this->destination = new MigrateDestinationOGMembership();
+    $this->destination = new MigrateDestinationOGMembership(); // THIS WORKS FOR USERS AND CONTENT
     // Field mappings.
     $this->addFieldMapping('group_type')
       ->defaultValue('node');

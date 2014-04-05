@@ -181,11 +181,11 @@ function migratedf_register_migrations() {
     $raid_node_arguments['machine_name'], $raid_node_arguments);
 
   /**
-   * Custom og membership migration
+   * DownfallD2DMigration - USERS/ Custom OG USERS membership migration
    */
   $og_membership_arguments = $common_arguments + array(
     'machine_name' => 'DownfallOGMembership',
-    'description' => t('OG membership to raid nodes'),
+    'description' => t('OG user membership to raid nodes'),
     'dependencies' => array('DownfallD2DUser', 'DownfallD2DNodeRaid'),
   );
   Migration::registerMigration('DownfallOGMembershipMigration',
@@ -258,7 +258,10 @@ function migratedf_register_migrations() {
     'description' => t('Import Drupal 6 forum nodes'),
     'source_type' => 'forum',
     'destination_type' => 'forum',
-    'dependencies' => array('DownfallD2DTermForums', 'DownfallD2DNodeDfImage', 'DownfallD2DNodeRaid'),
+    'dependencies' => array(
+      'DownfallD2DTermForums',
+      'DownfallD2DNodeDfImage',
+      'DownfallD2DNodeRaid'),
   );
   Migration::registerMigration('DownfallForumMigration',
     $forum_node_arguments['machine_name'], $forum_node_arguments);
