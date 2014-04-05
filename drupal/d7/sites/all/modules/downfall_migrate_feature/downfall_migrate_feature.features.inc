@@ -33,7 +33,7 @@ function downfall_migrate_feature_node_info() {
       'help' => '',
     ),
     'event' => array(
-      'name' => t('event'),
+      'name' => t('Event'),
       'base' => 'node_content',
       'description' => t('An event - raid, real life, or otherwise - can be made using this.'),
       'has_title' => '1',
