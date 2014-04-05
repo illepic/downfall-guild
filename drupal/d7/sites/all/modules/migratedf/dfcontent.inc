@@ -769,13 +769,9 @@ class DownfallRaidMigration extends DownfallNodeMigration {
 }
 
 /**
- * @file
- * Migrate D2D extension for OGMebership migration.
+ * OG Group USER membership migration
  */
-/**
- * Base migration class for the two group types.
- */
-class DownfallOGMembershipMigration extends DrupalMigration {
+class DownfallOGUserMembershipMigration extends DrupalMigration {
   /**
    * Construct a migration.
    *
@@ -796,14 +792,17 @@ class DownfallOGMembershipMigration extends DrupalMigration {
     $this->source = new MigrateSourceSQL(
       $this->query(), $this->sourceFields, NULL, $this->sourceOptions
     );
-    // Map source rows to destination rows with uid+gid.
+    // Map source rows to destination rows with uid+gid. COMPOSITE KEYS,
+    // This table (d6: og_ui) has no unique PK
     $this->map = new MigrateSQLMap($this->machineName,
       array(
+        // source nid
         'nid' => array(
           'type' => 'int',
           'not null' => TRUE,
           'description' => 'ID of the group.',
         ),
+        // source uid
         'uid' => array(
           'type' => 'int',
           'not null' => TRUE,
@@ -852,6 +851,94 @@ class DownfallOGMembershipMigration extends DrupalMigration {
       // we have a user 0 here for some stupid reason
       ->condition('uid', 0, '>')
       ->fields('ogu', array('nid', 'is_active', 'is_admin', 'uid'));
+    return $query;
+  }
+}
+
+/**
+ * OG Group NODE membership migration
+ */
+class DownfallOGNodeMembershipMigration extends DrupalMigration {
+  /**
+   * Construct a migration.
+   *
+   * @param array $args
+   *   Constructor arguments passed at migration-registration time.
+   */
+  public function __construct($args) {
+    parent::__construct($args);
+
+    // The actual content comes from here
+    $this->contentSourceMigration = $args['content_migration'];
+    $this->groupSourceMigration = 'DownfallD2DNodeRaid';
+    $this->sourceType = $args['source_type'];
+
+    // dpm($args);
+    // dpm($this->contentSourceMigration);
+
+    // Set the fields we want; document in the UI.
+    $this->sourceFields += array(
+      'nid' => t('Content node ID.'),
+      'group_nid' => t('Group node ID')
+    );
+    $this->sourceOptions['map_joinable'] = FALSE;
+    // Set the query as the migration source.
+    $this->source = new MigrateSourceSQL(
+      $this->query(), $this->sourceFields, NULL, $this->sourceOptions
+    );
+    // Map source rows to destination rows. COMPOSITE KEYS BELOW,
+    // there is no unique PK for this table (og_ancestry)
+    $this->map = new MigrateSQLMap($this->machineName,
+      array(
+        'nid' => array(
+          'type' => 'int',
+          'not null' => TRUE,
+          'description' => 'ID of the content.',
+        ),
+        'group_nid' => array(
+          'type' => 'int',
+          'not null' => TRUE,
+          'description' => 'ID of the group.',
+        ),
+      ),
+      MigrateDestinationOGMembership::getKeySchema()
+    );
+    // Destination is group membership.
+    $this->destination = new MigrateDestinationOGMembership(); // THIS WORKS FOR USERS AND CONTENT
+    // Field mappings.
+    $this->addFieldMapping('group_type')
+      ->defaultValue('node');
+    $this->addFieldMapping('entity_type')
+      ->defaultValue('node');
+    $this->addFieldMapping('state')
+      ->defaultValue('1');
+
+    // Content nids
+    $this->addFieldMapping('etid', 'nid')
+      ->sourceMigration($this->contentSourceMigration);
+    // Group nids
+    $this->addFieldMapping('gid', 'group_nid')
+      ->sourceMigration($this->groupSourceMigration);
+
+    // Accept defaults for these destination fields.
+    $no_input = array(
+      'created',
+    );
+    $this->addUnmigratedDestinations($no_input, t('Do Not Migrate'));
+  }
+  /**
+   * Query for the source group data.
+   *
+   * @return QueryConditionInterface
+   *   Provides a connection and query for getting OGMembership records.
+   */
+  protected function query() {
+    $query = Database::getConnection('default', $this->sourceConnection)
+      ->select('og_ancestry', 'oga');
+    // only load JUST the type of nodes we need
+    $query->join('node', 'n', 'oga.nid = n.nid AND n.type = :type', array(':type' => $this->sourceType));
+    $query->condition('group_nid', 0, '>') // handle 0 values
+      ->fields('oga', array('nid', 'group_nid'));
     return $query;
   }
 }

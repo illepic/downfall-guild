@@ -181,15 +181,63 @@ function migratedf_register_migrations() {
     $raid_node_arguments['machine_name'], $raid_node_arguments);
 
   /**
-   * DownfallD2DMigration - USERS/ Custom OG USERS membership migration
+   * DownfallD2DMigration - USERS / Raid users (OG) membership
    */
   $og_membership_arguments = $common_arguments + array(
-    'machine_name' => 'DownfallOGMembership',
+    'machine_name' => 'DownfallOGUserMembership',
     'description' => t('OG user membership to raid nodes'),
     'dependencies' => array('DownfallD2DUser', 'DownfallD2DNodeRaid'),
   );
-  Migration::registerMigration('DownfallOGMembershipMigration',
+  Migration::registerMigration('DownfallOGUserMembershipMigration',
     $og_membership_arguments['machine_name'], $og_membership_arguments);
+
+  /**
+   * DownfallD2DMigration - NODES / Forums
+   */
+
+  $forum_node_arguments = $node_arguments + array(
+    'machine_name' => 'DownfallD2DNodeForum',
+    'description' => t('Import Drupal 6 forum nodes'),
+    'source_type' => 'forum',
+    'destination_type' => 'forum',
+    'dependencies' => array(
+      'DownfallD2DTermForums',
+      'DownfallD2DNodeDfImage',
+      'DownfallD2DNodeRaid'),
+  );
+  Migration::registerMigration('DownfallForumMigration',
+    $forum_node_arguments['machine_name'], $forum_node_arguments);
+
+  /**
+   * DownfallD2DMigration - Comments / Forum
+   */
+  $forum_comment_arguments = $comment_arguments + array(
+    'machine_name' => 'DownfallD2DCommentForum',
+    'description' => t('Import forum comments'),
+    'source_type' => 'forum',
+    'destination_type' => 'forum',
+    'node_migration' => 'DownfallD2DNodeForum',
+    'dependencies' => array('DownfallD2DNodeForum', 'DownfallD2DNodeDfImage'),
+  );
+  Migration::registerMigration('DownfallCommentMigration',
+    $forum_comment_arguments['machine_name'], $forum_comment_arguments);
+
+  /**
+   * DownfallD2DMigration - Group membership / Forum
+   */
+  $forum_og_membership_arguments = $common_arguments + array(
+    'machine_name' => 'DownfallOGNodeMembershipForum',
+    'description' => t('Forum OG content membership to raid nodes'),
+    'content_migration' => 'DownfallD2DNodeForum',
+    'source_type' => $forum_node_arguments['source_type'],
+    'dependencies' => array(
+      'DownfallD2DUser',
+      'DownfallD2DNodeRaid',
+      'DownfallD2DNodeForum'
+      ),
+  );
+  Migration::registerMigration('DownfallOGNodeMembershipMigration',
+    $forum_og_membership_arguments['machine_name'], $forum_og_membership_arguments);
 
   /**
    * DownfallD2DMigration - NODES / Book
@@ -248,38 +296,6 @@ function migratedf_register_migrations() {
   );
   Migration::registerMigration('DownfallCommentMigration',
     $blog_comment_arguments['machine_name'], $blog_comment_arguments);
-
-  /**
-   * DownfallD2DMigration - NODES / Forums
-   */
-
-  $forum_node_arguments = $node_arguments + array(
-    'machine_name' => 'DownfallD2DNodeForum',
-    'description' => t('Import Drupal 6 forum nodes'),
-    'source_type' => 'forum',
-    'destination_type' => 'forum',
-    'dependencies' => array(
-      'DownfallD2DTermForums',
-      'DownfallD2DNodeDfImage',
-      'DownfallD2DNodeRaid'),
-  );
-  Migration::registerMigration('DownfallForumMigration',
-    $forum_node_arguments['machine_name'], $forum_node_arguments);
-
-  /**
-   * DownfallD2DMigration - Comments / Forum
-   */
-
-  $forum_comment_arguments = $comment_arguments + array(
-    'machine_name' => 'DownfallD2DCommentForum',
-    'description' => t('Import forum comments'),
-    'source_type' => 'forum',
-    'destination_type' => 'forum',
-    'node_migration' => 'DownfallD2DNodeForum',
-    'dependencies' => array('DownfallD2DNodeForum', 'DownfallD2DNodeDfImage'),
-  );
-  Migration::registerMigration('DownfallCommentMigration',
-    $forum_comment_arguments['machine_name'], $forum_comment_arguments);
 
   /**
    * DownfallD2DMigration - NODES / Page -> Article
