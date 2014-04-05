@@ -137,39 +137,9 @@ function migratedf_register_migrations() {
   );
 
   /**
-   * DownfallD2DMigration - NODES / Images
-   */
-
-  $dfimage_node_arguments = $node_arguments + array(
-    'machine_name' => 'DownfallD2DNodeDfImage',
-    'description' => t('Import Drupal 6 Images module nodes'),
-    'source_type' => 'image',
-    'destination_type' => 'df_image',
-    'dependencies' => array('DownfallD2DFiles', 'DownfallD2DTermGallery'),
-  );
-  Migration::registerMigration('DownfallImageMigration',
-    $dfimage_node_arguments['machine_name'], $dfimage_node_arguments);
-
-  /**
-   * DownfallD2DMigration - Comments / Images
-   */
-
-  $dfimage_comment_arguments = $comment_arguments + array(
-    'machine_name' => 'DownfallD2DCommentDfImage',
-    'description' => t('Import Drupal 6 images comments'),
-    'source_type' => 'image',
-    'destination_type' => 'df_image',
-    'node_migration' => 'DownfallD2DNodeDfImage',
-    'dependencies' => array('DownfallD2DNodeDfImage'),
-  );
-  Migration::registerMigration('DownfallCommentMigration',
-    $dfimage_comment_arguments['machine_name'], $dfimage_comment_arguments);
-
-  /**
    * DownfallD2DMigration - NODES / Raid
    * Moving this up higher since a Events and Images can be Group content
    */
-
   $raid_node_arguments = $node_arguments + array(
     'machine_name' => 'DownfallD2DNodeRaid',
     'description' => t('Import Drupal 6 og nodes'),
@@ -192,9 +162,56 @@ function migratedf_register_migrations() {
     $og_membership_arguments['machine_name'], $og_membership_arguments);
 
   /**
+   * DownfallD2DMigration - NODES / Images
+   * These are standalone Image nodes
+   */
+  $dfimage_node_arguments = $node_arguments + array(
+    'machine_name' => 'DownfallD2DNodeDfImage',
+    'description' => t('Import Drupal 6 Images module nodes'),
+    'source_type' => 'image',
+    'destination_type' => 'df_image',
+    'dependencies' => array(
+      'DownfallD2DFiles',
+      'DownfallD2DTermGallery',
+      'DownfallD2DNodeRaid'),
+  );
+  Migration::registerMigration('DownfallImageMigration',
+    $dfimage_node_arguments['machine_name'], $dfimage_node_arguments);
+
+  /**
+   * DownfallD2DMigration - Comments / Images
+   */
+  $dfimage_comment_arguments = $comment_arguments + array(
+    'machine_name' => 'DownfallD2DCommentDfImage',
+    'description' => t('Import Drupal 6 images comments'),
+    'source_type' => 'image',
+    'destination_type' => 'df_image',
+    'node_migration' => 'DownfallD2DNodeDfImage',
+    'dependencies' => array('DownfallD2DNodeDfImage'),
+  );
+  Migration::registerMigration('DownfallCommentMigration',
+    $dfimage_comment_arguments['machine_name'], $dfimage_comment_arguments);
+
+  /**
+   * DownfallD2DMigration - Group membership / Images
+   */
+  $image_og_membership_arguments = $common_arguments + array(
+    'machine_name' => 'DownfallOGNodeMembershipImage',
+    'description' => t('Image OG content membership to raid nodes'),
+    'content_migration' => 'DownfallD2DNodeDfImage',
+    'source_type' => $dfimage_node_arguments['source_type'],
+    'dependencies' => array(
+      'DownfallD2DUser',
+      'DownfallD2DNodeRaid',
+      'DownfallD2DNodeDfImage'
+      ),
+  );
+  Migration::registerMigration('DownfallOGNodeMembershipMigration',
+    $image_og_membership_arguments['machine_name'], $image_og_membership_arguments);
+
+  /**
    * DownfallD2DMigration - NODES / Forums
    */
-
   $forum_node_arguments = $node_arguments + array(
     'machine_name' => 'DownfallD2DNodeForum',
     'description' => t('Import Drupal 6 forum nodes'),
@@ -416,13 +433,15 @@ function migratedf_register_migrations() {
   /**
    * DownfallD2DMigration - NODES / guild_app
    */
-
   $guildapp_node_arguments = $node_arguments + array(
     'machine_name' => 'DownfallD2DNodeGuildApp',
     'description' => t('Import Drupal 6 guild apps'),
     'source_type' => 'guild_app',
     'destination_type' => 'guild_app',
-    'dependencies' => array('DownfallD2DFiles'),
+    'dependencies' => array(
+      'DownfallD2DFiles',
+      'DownfallD2DUser'
+    ),
   );
   Migration::registerMigration('DownfallGuildAppsMigration',
     $guildapp_node_arguments['machine_name'], $guildapp_node_arguments);
@@ -430,7 +449,6 @@ function migratedf_register_migrations() {
   /**
    * DownfallD2DMigration - Comments / guild_app
    */
-
   $guildapp_comment_arguments = $comment_arguments + array(
     'machine_name' => 'DownfallD2DCommentGuildApp',
     'description' => t('Import Drupal 6 guild app comments'),
