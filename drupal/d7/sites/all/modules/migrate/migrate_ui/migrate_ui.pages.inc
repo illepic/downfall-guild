@@ -1377,19 +1377,34 @@ function migrate_ui_edit_mappings_submit(&$form, &$form_state) {
 
     // Handle any source fields marked DNM.
     foreach ($form_state['values']['source_fields'] as $source_field => $value) {
-      if ($value) {
-        // But if there in the coded mappings we have this field mapped to no
-        // destination field, then let that mapping stand.
-        $already_ignored = FALSE;
-        foreach ($coded_mappings as $destination_field => $mapping) {
-          if (is_numeric($destination_field) &&
-              $mapping->getSourceField() == $source_field) {
-            $already_ignored = TRUE;
+      // Is this field ignored in the code?
+      $code_ignored = FALSE;
+      foreach ($coded_mappings as $destination_field => $mapping) {
+        if (is_numeric($destination_field) &&
+            $mapping->getSourceField() == $source_field) {
+          $code_ignored = TRUE;
+        }
+      }
+      // If it is marked DNM in the UI, but is not ignored in the code,
+      // generate a DNM mapping.
+      if ($value && !$code_ignored) {
+        $mapping = new MigrateFieldMapping(NULL, $source_field);
+        $mapping->issueGroup(t('DNM'));
+        $arguments['field_mappings'][] = $mapping;
+      }
+      // If it is marked DNM in the code, but is unchecked in the UI, see if
+      // it's mapped to a destination field through the UI. If not, generate
+      // an empty mapping without the DNM so it's available to be mapped.
+      elseif (!$value && $code_ignored) {
+        $mapping_found = FALSE;
+        foreach ($field_mappings as $destination_field => $mapped_source_field) {
+          if ($source_field == $mapped_source_field) {
+            $mapping_found = TRUE;
+            break;
           }
         }
-        if (!$already_ignored) {
+        if (!$mapping_found) {
           $mapping = new MigrateFieldMapping(NULL, $source_field);
-          $mapping->issueGroup(t('DNM'));
           $arguments['field_mappings'][] = $mapping;
         }
       }

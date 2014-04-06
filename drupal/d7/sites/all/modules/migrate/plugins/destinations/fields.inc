@@ -206,7 +206,7 @@ class MigrateDefaultFieldHandler extends MigrateFieldHandler {
       // Handle multivalue arguments (especially for subfields).
       $delta_arguments = array();
       foreach ($arguments as $name => $argument) {
-        if (is_array($argument) && isset($argument[$delta])) {
+        if (is_array($argument) && array_key_exists($delta, $argument)) {
           $delta_arguments[$name] = $argument[$delta];
         }
         else {

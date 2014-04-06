@@ -137,6 +137,23 @@ abstract class Migration extends MigrationBase {
     if (empty($allFieldMappings)) {
       $this->allFieldMappings = array_merge($this->getCodedFieldMappings(),
                                             $this->getStoredFieldMappings());
+      // If there are multiple mappings of a given source field to no
+      // destination field, keep only the last (so the UI can override a source
+      // field DNM that was defined in code).
+      $no_destination = array();
+      foreach ($this->allFieldMappings as $destination_field => $mapping) {
+        // If the source field is not mapped to a destination field, the
+        // array index is integer.
+        if (is_int($destination_field)) {
+          $source_field = $mapping->getSourceField();
+          if (isset($no_destination[$source_field])) {
+            unset($this->allFieldMappings[$no_destination[$source_field]]);
+            unset($no_destination[$source_field]);
+          }
+          $no_destination[$source_field] = $destination_field;
+        }
+      }
+
       // Make sure primary fields come before their subfields
       ksort($this->allFieldMappings);
     }
@@ -1272,7 +1289,8 @@ abstract class Migration extends MigrationBase {
         }
         // We've seen a subfield, so add as an array value.
         else {
-          $this->destinationValues->{$destination_field}[] = $destination_values;
+          $this->destinationValues->{$destination_field} = array_merge(
+            (array)$destination_values, $this->destinationValues->{$destination_field});
         }
       }
     }

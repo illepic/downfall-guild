@@ -11,9 +11,9 @@ files[] = includes/MediaInternetFileHandler.inc
 files[] = includes/MediaInternetNoHandlerException.inc
 files[] = includes/MediaInternetValidationException.inc
 
-; Information added by Drupal.org packaging script on 2014-03-17
-version = "7.x-2.0-alpha3+75-dev"
+; Information added by Drupal.org packaging script on 2014-03-19
+version = "7.x-2.0-alpha3+77-dev"
 core = "7.x"
 project = "media"
-datestamp = "1395073742"
+datestamp = "1395242357"
 

@@ -21,6 +21,10 @@ Features and enhancements
 - #2051547 - Add ability to revert UI-defined field mappings.
 
 Bug fixes
+- #2159291 - Add message for missing argument to drush migrate-messages.
+- #2019193 - Fix unsetting of DNM source fields through the UI.
+- #2227061 - Fix to subfields in a multi-value context.
+- #2170177 - Properly handle multi-value fields when a subfield is mapped first.
 - #2120205 - Fix bug when upgrading lastimported from D6 to D7.
 - #2109821 - Handle multi-value subfields in the default field handler.
 - #2039649 - Smarter setting of file 'type' field.

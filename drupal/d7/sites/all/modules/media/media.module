@@ -188,29 +188,9 @@ function media_permission() {
  */
 function media_theme() {
   return array(
-    // A preview of the uploaded file.
-    'media_thumbnail' => array(
-      'render element' => 'element',
-      'file' => 'includes/media.theme.inc',
-    ),
-
-    // Dialog page.
-    'media_dialog_page' => array(
-      'render element' => 'page',
-      'template' => 'templates/media-dialog-page',
-      'file' => 'includes/media.theme.inc',
-    ),
-
-    // Media form API element type.
+    // media.module.
     'media_element' => array(
       'render element' => 'element',
-      'file' => 'includes/media.theme.inc',
-    ),
-
-    // Display a file as a large icon.
-    'media_formatter_large_icon' => array(
-      'variables' => array('file' => NULL, 'attributes' => array(), 'style_name' => 'media_thumbnail'),
-      'file' => 'includes/media.theme.inc',
     ),
 
     // media.field.inc.
@@ -220,8 +200,23 @@ function media_theme() {
     'media_widget_multiple' => array(
       'render element' => 'element',
     ),
-    'media_formatter_table' => array(
-      'variables' => array('items' => NULL),
+    'media_upload_help' => array(
+      'variables' => array('description' => NULL),
+    ),
+
+    // media.theme.inc.
+    'media_thumbnail' => array(
+      'render element' => 'element',
+      'file' => 'includes/media.theme.inc',
+    ),
+    'media_formatter_large_icon' => array(
+      'variables' => array('file' => NULL, 'attributes' => array(), 'style_name' => 'media_thumbnail'),
+      'file' => 'includes/media.theme.inc',
+    ),
+    'media_dialog_page' => array(
+      'render element' => 'page',
+      'template' => 'templates/media-dialog-page',
+      'file' => 'includes/media.theme.inc',
     ),
   );
 }
@@ -804,31 +799,6 @@ function media_file_value(&$element, $input = FALSE, $form_state = NULL) {
 }
 
 /**
- * Attaches any files that have been referenced by a media element.
- *
- * @param $element
- *   The FAPI element whose files are being attached.
- *
- * @return
- *   The file object representing the file that was attached, or FALSE if no
- *   file was attached.
- */
-function media_attach_file($element) {
-  $upload_name = implode('_', $element['#parents']);
-  if (empty($_POST['media'][$upload_name])) {
-    return FALSE;
-  }
-
-  if (!$file = file_load($_POST['media'][$upload_name])) {
-    watchdog('file', 'The file upload failed. %upload', array('%upload' => $upload_name));
-    form_set_error($upload_name, t('The file in the !name field was unable to be uploaded.', array('!name' => $element['#title'])));
-    return FALSE;
-  }
-
-  return $file;
-}
-
-/**
  * Validate media form elements.
  *
  * The file type is validated during the upload process, but this is necessary
@@ -890,6 +860,60 @@ function media_file_submit($form, &$form_state) {
   // However, we choose to always rebuild, to keep the form processing workflow
   // consistent between the two buttons.
   $form_state['rebuild'] = TRUE;
+}
+
+/**
+ * Attaches any files that have been referenced by a media element.
+ *
+ * @param $element
+ *   The FAPI element whose files are being attached.
+ *
+ * @return
+ *   The file object representing the file that was attached, or FALSE if no
+ *   file was attached.
+ */
+function media_attach_file($element) {
+  $upload_name = implode('_', $element['#parents']);
+  if (empty($_POST['media'][$upload_name])) {
+    return FALSE;
+  }
+
+  if (!$file = file_load($_POST['media'][$upload_name])) {
+    watchdog('file', 'The file upload failed. %upload', array('%upload' => $upload_name));
+    form_set_error($upload_name, t('The file in the !name field was unable to be uploaded.', array('!name' => $element['#title'])));
+    return FALSE;
+  }
+
+  return $file;
+}
+
+/**
+ * Returns HTML for a managed file element.
+ *
+ * @param $variables
+ *   An associative array containing:
+ *   - element: A render element representing the file.
+ *
+ * @ingroup themeable
+ */
+function theme_media_element($variables) {
+  $element = $variables['element'];
+
+  $attributes = array();
+  if (isset($element['#id'])) {
+    $attributes['id'] = $element['#id'];
+  }
+  if (!empty($element['#attributes']['class'])) {
+    $attributes['class'] = (array) $element['#attributes']['class'];
+  }
+  $attributes['class'][] = 'form-media';
+
+  // This wrapper is required to apply JS behaviors and CSS styling.
+  $output = '';
+  $output .= '<div' . drupal_attributes($attributes) . '>';
+  $output .= drupal_render_children($element);
+  $output .= '</div>';
+  return $output;
 }
 
 /**

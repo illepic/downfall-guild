@@ -577,6 +577,10 @@ function drush_migrate_mappings($args = NULL) {
  * Display messages for a migration.
  */
 function drush_migrate_messages($migration_name) {
+  if (!trim($migration_name)) {
+    drush_log(dt('You must specify a migration name'), 'status');
+    return;
+  }
   try {
     $migration = MigrationBase::getInstance($migration_name);
     if (is_a($migration, 'Migration')) {

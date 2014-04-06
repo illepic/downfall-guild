@@ -8,42 +8,6 @@
  */
 
 /**
- * Returns HTML for a managed file element.
- *
- * @param $variables
- *   An associative array containing:
- *   - element: A render element representing the file.
- *
- * @ingroup themeable
- */
-function theme_media_element($variables) {
-  $element = $variables['element'];
-
-  $attributes = array();
-  if (isset($element['#id'])) {
-    $attributes['id'] = $element['#id'];
-  }
-  if (!empty($element['#attributes']['class'])) {
-    $attributes['class'] = (array) $element['#attributes']['class'];
-  }
-  $attributes['class'][] = 'form-media';
-
-  // This wrapper is required to apply JS behaviors and CSS styling.
-  $output = '';
-  $output .= '<div' . drupal_attributes($attributes) . '>';
-  $output .= drupal_render_children($element);
-  $output .= '</div>';
-  return $output;
-}
-
-/**
- * Add messages to the page.
- */
-function template_preprocess_media_dialog_page(&$variables) {
-  $variables['messages'] = theme('status_messages');
-}
-
-/**
  * Adds a wrapper around a preview of a media file.
  */
 function theme_media_thumbnail($variables) {
@@ -128,4 +92,11 @@ function theme_media_formatter_large_icon($variables) {
     $output = theme('image', $variables);
   }
   return $output;
+}
+
+/**
+ * Add messages to the page.
+ */
+function template_preprocess_media_dialog_page(&$variables) {
+  $variables['messages'] = theme('status_messages');
 }
