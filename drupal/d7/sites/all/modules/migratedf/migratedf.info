@@ -1,7 +1,9 @@
 name = "Downfall Migration"
 description = "Migrating Downfall d6 content to D7 site"
 package = "Downfall Custom"
+project = migratedf
 core = 7.x
+version = 7.x-2.1
 dependencies[] = taxonomy
 dependencies[] = image
 dependencies[] = comment
