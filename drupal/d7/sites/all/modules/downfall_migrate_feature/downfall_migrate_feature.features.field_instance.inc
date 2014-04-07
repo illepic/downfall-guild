@@ -456,7 +456,7 @@ function downfall_migrate_feature_field_default_field_instances() {
         'label' => 'above',
         'module' => 'file_entity',
         'settings' => array(
-          'file_view_mode' => 'teaser',
+          'file_view_mode' => 'df_teaser',
         ),
         'type' => 'file_rendered',
         'weight' => 1,
