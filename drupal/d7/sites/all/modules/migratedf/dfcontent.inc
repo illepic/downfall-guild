@@ -23,10 +23,6 @@ class DownfallUserMigration extends DrupalUser6Migration {
 abstract class DownfallNodeMigration extends DrupalNode6Migration {
   public function __construct(array $arguments) {
     parent::__construct($arguments);
-
-    // we don't really need this kind of mapping
-    // $this->addFieldMapping('nid', 'nid')
-    //      ->description('We have a common field to save the D6 nid');
   }
 
   /**
@@ -70,9 +66,9 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
     $result = $matches[0];
     // the embed code
     $image_info = '';
+
     // Extract the src parameter
     if (preg_match('|\|nid=(\d+)\||i', $matches[0], $src_matches)) {
-
       // my work
       $src = $src_matches[1];
       $dest_image_nid = parent::handleSourceMigration('DownfallD2DNodeDfImage', $src);
@@ -113,8 +109,37 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
 
         $result = '[[' . drupal_json_encode($image_info) . ']]';
       }
-    }
+    } // if
+
     return $result;
+  }
+}
+
+/**
+ * Nodes / generic nodes (Stoey, Page, Blog)
+ *
+ * For any node that really only has this taxonomy field
+ */
+
+class DownfallGenericWowTermNodeMigration extends DownfallNodeMigration {
+  public function __construct(array $arguments) {
+
+  parent::__construct($arguments);
+
+  // Note that we map migrated terms by the vocabulary ID.
+  $this->addFieldMapping('field_wow_category', '5')
+    ->sourceMigration('DownfallD2DTermWoW');
+    // ->arguments(array('source_type' => 'tid'));
+  $this->addFieldMapping('field_wow_category:source_type')
+    ->defaultValue('tid');
+  }
+
+  /**
+   * Implementation of Migration::prepare().
+   */
+  public function prepare($node, $row) {
+    // This will replace any [img_assist] tags in the body with the media module's JSON reference
+    parent::rewriteImgAssistTags($node);
   }
 }
 
@@ -194,34 +219,6 @@ class DownfallOldEventNodeMigration extends DownfallNodeMigration {
     );
 
     $row->placeholder_date = drupal_json_encode($date_data);
-  }
-
-  /**
-   * Implementation of Migration::prepare().
-   */
-  public function prepare($node, $row) {
-    // This will replace any [img_assist] tags in the body with the media module's JSON reference
-    parent::rewriteImgAssistTags($node);
-  }
-}
-
-/**
- * Blogs / generic nodes (story, page, blog)
- *
- * For any node that really only has this taxonomy field
- */
-
-class DownfallGenericWowTermNodeMigration extends DownfallNodeMigration {
-  public function __construct(array $arguments) {
-
-  parent::__construct($arguments);
-
-  // Note that we map migrated terms by the vocabulary ID.
-  $this->addFieldMapping('field_wow_category', '5')
-    ->sourceMigration('DownfallD2DTermWoW');
-    // ->arguments(array('source_type' => 'tid'));
-  $this->addFieldMapping('field_wow_category:source_type')
-    ->defaultValue('tid');
   }
 
   /**
