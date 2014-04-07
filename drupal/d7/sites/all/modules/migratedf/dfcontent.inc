@@ -52,15 +52,15 @@ trait DownfallHelper {
   public function replaceCallback(array $matches) {
     $src_matches = array(); // nid within the string
     $result = ''; // Return this string
+    $original_img_assist_string = $matches[0];
 
     // Extract the src parameter
-    if (preg_match('|\|nid=(\d+)\||i', $matches[0], $src_matches)) {
+    if (preg_match('|\|nid=(\d+)\||i', $original_img_assist_string, $src_matches)) {
 
       // Our Image NODES have been migrated, that means their file ids (fid) are
       // in the file_usage table in D7. Let's find the new nid based on prior
       // migrate
       $dest_image_nid = parent::handleSourceMigration('DownfallD2DNodeDfImage', $src_matches[1]);
-      dpm($dest_image_nid, 'dest_image_nid');
 
       // Now let's find the fid from the file_usage table of our new image
       $fid = db_select('file_usage', 'f')
@@ -70,35 +70,36 @@ trait DownfallHelper {
         ->execute()
         ->fetchField();
 
-      // Build an array of key-values we'll turn into json shortly
-      if ($fid) {
-        $image_info = array(
-          'type' => 'media',
-          // 'view_mode' => 'media_preview',
-          'view_mode' => 'full',
-          'fid' => $fid,
-          'attributes' => array(
-            'alt' => '',
-            'title' => '',
-            'class' => 'media-image',
-            'typeof' => 'foaf:Image',
-            'wysiwyg' => 1,
-          ),
-        );
-        // Get the height and width parameters if present
-        // preg_match('|width=[\'"]([^\'"]+)[\'"]|i', $matches[0], $width);
-        // preg_match('|height=[\'"]([^\'"]+)[\'"]|i', $matches[0], $height);
-        // image width
-        // if ($width) {
-        //   $image_info['attributes']['width'] = $width[1];
-        // }
-        // // image height
-        // if ($height) {
-        //   $image_info['attributes']['height'] = $height[1];
-        // }
+      dpm($original_img_assist_string, 'original');
+      // title
+      preg_match('|\|title=(.*?)\||i', $original_img_assist_string, $title_matches);
+      dpm($title_matches, 'title_matches');
 
-        $result = '[[' . drupal_json_encode($image_info) . ']]';
-      } // if ($fid)
+      // alt
+      preg_match('|\|desc=(.*?)\||i', $original_img_assist_string, $alt_matches);
+      dpm($alt_matches, 'alt_matches');
+
+      // alt tends to be empty on our site, just make it title here
+      if ($alt_matches[1] == '') {
+        $alt_matches[1] = $title_matches[1];
+      }
+
+      // Build an array of key-values we'll turn into json shortly
+      $image_info = array(
+        'type' => 'media',
+        // 'view_mode' => 'media_preview',
+        'view_mode' => 'wysiwyg',
+        'fid' => $fid,
+        'attributes' => array(
+          'alt' => $alt_matches[1],
+          'title' => $title_matches[1],
+          'class' => 'media-image',
+          'typeof' => 'foaf:Image',
+          'wysiwyg' => 1,
+        ),
+      );
+
+      $result = '[[' . drupal_json_encode($image_info) . ']]';
     } // if (preg_match)
 
     return $result;
