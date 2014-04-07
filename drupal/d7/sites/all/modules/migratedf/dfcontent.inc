@@ -25,22 +25,26 @@ trait DownfallHelper {
    */
   public function rewriteImgAssistTags($entity, $field = 'body') {
     if (is_array($entity->$field)) {
-      migrate_instrument_start('MigrateDestinationMedia rewriteImgTags');
       foreach ($entity->$field as $language => $values) {
         $body = $values[0]['value'];
         break;
       }
       // Quickly skip any non-candidates
       if (!stristr($body, '[img_assist')) {
-        migrate_instrument_stop('MigrateDestinationMedia rewriteImgTags');
         return;
       }
       // Pass full img tags into the callback
-      $new_body = preg_replace_callback('|\[img_assist[^\]]*\]|i', "self::replaceCallback",
-        $body);
+      $new_body = preg_replace_callback('|\[img_assist[^\]]*\]|i', "self::replaceCallback", $body);
       $entity->{$field}[$language][0]['value'] = $new_body;
-      migrate_instrument_stop('MigrateDestinationMedia rewriteImgTags');
+
+      // teasers too
+      if (stristr($entity->{$field}[$language][0]['summary'], '[img_assist')) {
+        $summary = $entity->{$field}[$language][0]['summary'];
+        $new_summary = preg_replace_callback('|\[img_assist[^\]]*\]|i', "self::replaceCallback", $summary);
+        $entity->{$field}[$language][0]['summary'] = $new_summary;
+      }
     }
+
   }
 
   /**
@@ -70,14 +74,11 @@ trait DownfallHelper {
         ->execute()
         ->fetchField();
 
-      dpm($original_img_assist_string, 'original');
       // title
       preg_match('|\|title=(.*?)\||i', $original_img_assist_string, $title_matches);
-      dpm($title_matches, 'title_matches');
 
       // alt
       preg_match('|\|desc=(.*?)\||i', $original_img_assist_string, $alt_matches);
-      dpm($alt_matches, 'alt_matches');
 
       // alt tends to be empty on our site, just make it title here
       if ($alt_matches[1] == '') {
