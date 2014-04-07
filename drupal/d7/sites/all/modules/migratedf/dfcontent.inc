@@ -105,12 +105,6 @@ trait DownfallHelper {
   }
 }
 
-// abstract class DownfallHelperMigration extends DrupalNode6Migration {
-//   public function __construct(array $arguments) {
-//     parent::__construct($arguments);
-//   }
-// }
-
 /**
  * Common mappings for the Drupal 6 node migrations.
  */
@@ -120,96 +114,6 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
   public function __construct(array $arguments) {
     parent::__construct($arguments);
   }
-
-  // /**
-  //  * Call this from the prepare() method of a migration that contains media
-  //  * image files, if you want to rewrite the IMG tags into media references.
-  //  *
-  //  * @param $entity
-  //  *  Entity object being built.
-  //  * @param $field
-  //  *  Name of the text field within the entity to be modified. Defaults to 'body'.
-  //  */
-  // public function rewriteImgAssistTags($entity, $field = 'body') {
-  //   if (is_array($entity->$field)) {
-  //     migrate_instrument_start('MigrateDestinationMedia rewriteImgTags');
-  //     foreach ($entity->$field as $language => $values) {
-  //       $body = $values[0]['value'];
-  //       break;
-  //     }
-  //     // Quickly skip any non-candidates
-  //     if (!stristr($body, '[img_assist')) {
-  //       migrate_instrument_stop('MigrateDestinationMedia rewriteImgTags');
-  //       return;
-  //     }
-  //     // Pass full img tags into the callback
-  //     $new_body = preg_replace_callback('|\[img_assist[^\]]*\]|i', "self::replaceCallback",
-  //       $body);
-  //     $entity->{$field}[$language][0]['value'] = $new_body;
-  //     migrate_instrument_stop('MigrateDestinationMedia rewriteImgTags');
-  //   }
-  // }
-
-  // /**
-  //  * If a referenced image can be found in the files table, replace the <img> tag
-  //  * with a media JSON reference.
-  //  *
-  //  * @param array $matches
-  //  */
-  // protected function replaceCallback(array $matches) {
-  //   $src_matches = array(); // nid within the string
-  //   $result = ''; // Return this string
-
-  //   // Extract the src parameter
-  //   if (preg_match('|\|nid=(\d+)\||i', $matches[0], $src_matches)) {
-
-  //     // Our Image NODES have been migrated, that means their file ids (fid) are
-  //     // in the file_usage table in D7. Let's find the new nid based on prior
-  //     // migrate
-  //     $dest_image_nid = parent::handleSourceMigration('DownfallD2DNodeDfImage', $src_matches[1]);
-  //     dpm($dest_image_nid, 'dest_image_nid');
-
-  //     // Now let's find the fid from the file_usage table of our new image
-  //     $fid = db_select('file_usage', 'f')
-  //       ->fields('f', array('fid'))
-  //       ->condition('id', $dest_image_nid, '=')
-  //       ->condition('module', 'file', '=')
-  //       ->execute()
-  //       ->fetchField();
-
-  //     // Build an array of key-values we'll turn into json shortly
-  //     if ($fid) {
-  //       $image_info = array(
-  //         'type' => 'media',
-  //         // 'view_mode' => 'media_preview',
-  //         'view_mode' => 'full',
-  //         'fid' => $fid,
-  //         'attributes' => array(
-  //           'alt' => '',
-  //           'title' => '',
-  //           'class' => 'media-image',
-  //           'typeof' => 'foaf:Image',
-  //           'wysiwyg' => 1,
-  //         ),
-  //       );
-  //       // Get the height and width parameters if present
-  //       // preg_match('|width=[\'"]([^\'"]+)[\'"]|i', $matches[0], $width);
-  //       // preg_match('|height=[\'"]([^\'"]+)[\'"]|i', $matches[0], $height);
-  //       // image width
-  //       // if ($width) {
-  //       //   $image_info['attributes']['width'] = $width[1];
-  //       // }
-  //       // // image height
-  //       // if ($height) {
-  //       //   $image_info['attributes']['height'] = $height[1];
-  //       // }
-
-  //       $result = '[[' . drupal_json_encode($image_info) . ']]';
-  //     } // if ($fid)
-  //   } // if (preg_match)
-
-  //   return $result;
-  // }
 }
 
 /**
@@ -592,7 +496,6 @@ class DownfallGuildAppsMigration extends DownfallNodeMigration {
 
 class DownfallImageMigration extends DownfallNodeMigration {
 
-
   public function __construct(array $arguments) {
 
     parent::__construct($arguments);
@@ -687,10 +590,6 @@ class DownfallFile6Migraton extends DrupalFile6Migration{
 class DownfallPicture6Migration extends DrupalPicture6Migration{
   public function __construct(array $arguments) {
     parent::__construct($arguments);
-
-    // $this->addFieldMapping(NULL, 'filemime');
-    // $this->addFieldMapping('type', 'type')
-    //   ->defaultValue('image');
   }
 }
 
@@ -699,116 +598,19 @@ class DownfallPicture6Migration extends DrupalPicture6Migration{
  * Common mappings for the Drupal 6 comments
  */
 class DownfallCommentMigration extends DrupalComment6Migration {
+  use DownfallHelper;
+
   public function __construct(array $arguments) {
     parent::__construct($arguments);
-
   }
-
-  // public function query() {
-  //   $query = parent::query();
-  //   $query->range(0,25);
-  //   return $query;
-  // }
 
   /**
    * Implementation of Migration::prepare().
    */
   public function prepare($comment, $row) {
-    // dpm($comment);
-    // dpm($row);
     // This will replace any [img_assist] tags in the body with the media module's JSON reference
-    $this->rewriteImgAssistTags($comment);
+    $this->rewriteImgAssistTags($comment, 'comment_body');
   }
-
-  /**
-   * Call this from the prepare() method of a migration that contains media
-   * image files, if you want to rewrite the IMG tags into media references.
-   *
-   * @param $entity
-   *  Entity object being built.
-   * @param $field
-   *  Name of the text field within the entity to be modified. Defaults to 'body'.
-   */
-  public function rewriteImgAssistTags($entity, $field = 'comment_body') {
-    if (is_array($entity->$field)) {
-      migrate_instrument_start('MigrateDestinationMedia rewriteImgTags');
-      foreach ($entity->$field as $language => $values) {
-        $body = $values[0]['value'];
-        break;
-      }
-      // Quickly skip any non-candidates
-      if (!stristr($body, '[img_assist')) {
-        migrate_instrument_stop('MigrateDestinationMedia rewriteImgTags');
-        return;
-      }
-      // Pass full img tags into the callback
-      $new_body = preg_replace_callback('|\[img_assist[^\]]*\]|i', "self::replaceCallback",
-        $body);
-      $entity->{$field}[$language][0]['value'] = $new_body;
-      migrate_instrument_stop('MigrateDestinationMedia rewriteImgTags');
-    }
-  }
-
-  /**
-   * If a referenced image can be found in the files table, replace the <img> tag
-   * with a media JSON reference.
-   *
-   * @param array $matches
-   */
-  protected function replaceCallback(array $matches) {
-
-    $src_matches = array();
-    // Default to the original <img> tag
-    $result = $matches[0];
-    // the embed code
-    $image_info = '';
-    // Extract the src parameter
-    if (preg_match('|\|nid=(\d+)\||i', $matches[0], $src_matches)) {
-
-      // my work
-      $src = $src_matches[1];
-      $dest_image_nid = parent::handleSourceMigration('DownfallD2DNodeDfImage', $src);
-      // end my work
-
-      // Replace the scheme and host portions of the referenced URI with the
-      // Drupal scheme as it's saved in the file_unmanaged table
-
-      $fid = db_select('file_usage', 'f')
-             ->fields('f', array('fid'))
-             ->condition('id', basename($dest_image_nid))
-             ->execute()
-             ->fetchField();
-      if ($fid) {
-        $image_info = array(
-          'type' => 'media',
-          'view_mode' => 'media_preview',
-          'fid' => $fid,
-          'attributes' => array(
-            'alt' => '',
-            'title' => '',
-            'class' => 'media-image',
-            'typeof' => 'foaf:Image',
-            'wysiwyg' => 1,
-          ),
-        );
-        // Get the height and width parameters if present
-        // preg_match('|width=[\'"]([^\'"]+)[\'"]|i', $matches[0], $width);
-        // preg_match('|height=[\'"]([^\'"]+)[\'"]|i', $matches[0], $height);
-        // image width
-        // if ($width) {
-        //   $image_info['attributes']['width'] = $width[1];
-        // }
-        // // image height
-        // if ($height) {
-        //   $image_info['attributes']['height'] = $height[1];
-        // }
-
-        $result = '[[' . drupal_json_encode($image_info) . ']]';
-      }
-    }
-    return $result;
-  }
-
 }
 
 /**
