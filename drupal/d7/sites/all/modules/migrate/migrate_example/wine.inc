@@ -59,8 +59,7 @@ class WinePrepMigration extends MigrationBase {
 
   public function __construct($arguments) {
     parent::__construct($arguments);
-    $this->description = t('If auto_nodetitle is present, disable it for the ' .
-                           'duration');
+    $this->description = t('If auto_nodetitle is present, disable it for the duration');
   }
 
   // Define isComplete(), returning a boolean, to indicate whether dependent
@@ -587,6 +586,119 @@ class WineProducerXMLMigration extends XMLMigration {
 }
 
 /**
+ * TIP: An example of importing from an XML feed with namespaces.
+ * See the files in the xml directory - index2.xml contains a list of IDs
+ * to import, and <id>.xml is the data for a given producer.
+ *
+ * Note that, if basing a migration on an XML source, you need to derive it
+ * from XMLMigration instead of Migration.
+ */
+class WineProducerNamespaceXMLMigration extends XMLMigration {
+  public function __construct($arguments) {
+    parent::__construct($arguments);
+    $this->description = t('Namespaced XML feed of wine producers of the world');
+
+    // There isn't a consistent way to automatically identify appropriate
+    // "fields" from an XML feed, so we pass an explicit list of source fields.
+    $fields = array(
+      'pr:name' => t('Producer name'),
+      'pr:description' => t('Description of producer'),
+      'pr:authorid' => t('Numeric ID of the author'),
+      'pr:region' => t('Name of region'),
+    );
+
+    // IMPORTANT: Do not try this at home! We have included importable files
+    // with the migrate_example module so it can be very simply installed and
+    // run, but you should never include any data you want to keep private
+    // (especially user data like email addresses, phone numbers, etc.) in the
+    // module directory. Your source data should be outside of the webroot, and
+    // should not be anywhere where it may get committed into a revision control
+    // system.
+
+    // This can also be an URL instead of a file path.
+    $xml_folder = DRUPAL_ROOT . '/' .
+                  drupal_get_path('module', 'migrate_example') . '/xml/';
+    $list_url = $xml_folder . 'index2.xml';
+    // Each ID retrieved from the list URL will be plugged into :id in the
+    // item URL to fetch the specific objects.
+    $item_url = $xml_folder . ':id.xml';
+
+    // We use the MigrateSourceList class for any source where we obtain the
+    // list of IDs to process separately from the data for each item. The
+    // listing and item are represented by separate classes, so for example we
+    // could replace the XML listing with a file directory listing, or the XML
+    // item with a JSON item.
+    $list = new MigrateListXML($list_url, array('wn' => 'http://www.wine.org/wine'));
+    $item = new MigrateItemXML($item_url, array('pr' => 'http://www.wine.org/wine-producers'));
+    $this->source = new MigrateSourceList($list, $item, $fields);
+
+    $this->destination = new MigrateDestinationNode('migrate_example_producer');
+
+    // The source ID here is the one retrieved from the XML listing file, and
+    // used to identify the specific item's file
+    $this->map = new MigrateSQLMap($this->machineName,
+      array(
+        'sourceid' => array(
+          'type' => 'varchar',
+          'length' => 4,
+          'not null' => TRUE,
+        )
+      ),
+      MigrateDestinationNode::getKeySchema()
+    );
+
+    // TIP: Note that for XML sources, in addition to the source field passed to
+    // addFieldMapping (the name under which it will be saved in the data row
+    // passed through the migration process) we specify the Xpath used to
+    // retrieve the value from the XML.
+    $this->addFieldMapping('title', 'pr:name')
+         ->xpath('/pr:producer/pr:name');
+    $this->addFieldMapping('uid', 'pr:authorid')
+         ->xpath('/pr:producer/pr:authorid')
+         ->sourceMigration('WineUser')
+         ->defaultValue(1);
+    $this->addFieldMapping('migrate_example_wine_regions', 'pr:region')
+         ->xpath('/pr:producer/pr:region');
+    $this->addFieldMapping('body', 'pr:description')
+         ->xpath('/pr:producer/pr:description');
+
+    $this->addUnmigratedDestinations(array(
+        'body:summary', 'body:format', 'body:language',
+      'changed',
+      'comment',
+      'created',
+      'is_new',
+      'language',
+      'log',
+        'migrate_example_wine_regions:create_term',
+        'migrate_example_wine_regions:ignore_case',
+        'migrate_example_wine_regions:source_type',
+      'promote',
+      'revision',
+      'revision_uid',
+      'status',
+      'sticky',
+      'tnid',
+      'translate',
+    ));
+
+    $destination_fields = $this->destination->fields();
+    if (isset($destination_fields['path'])) {
+      $this->addFieldMapping('path')
+           ->issueGroup(t('DNM'));
+      if (isset($destination_fields['pathauto'])) {
+        $this->addFieldMapping('pathauto')
+             ->issueGroup(t('DNM'));
+      }
+    }
+    if (module_exists('statistics')) {
+      $this->addUnmigratedDestinations(
+        array('totalcount', 'daycount', 'timestamp'));
+    }
+  }
+}
+
+/**
  * TIP: An example of importing from an XML feed where both the id and the
  * data to import are in the same file.  The id is a part of the data.  See
  * the file in the xml directory - producers.xml which contains all IDs and
@@ -708,6 +820,129 @@ class WineProducerMultiXMLMigration extends XMLMigration {
 }
 
 /**
+ * TIP: An example of importing from an XML feed with namespaces, where both
+ * the id and the data to import are in the same file.  The id is a part of
+ * the data. See the file in the xml directory - producers3.xml which contains
+ * all IDs and producer data for this example.
+ *
+ * Note that, if basing a migration on an XML source, you need to derive it
+ * from XMLMigration instead of Migration.
+ */
+class WineProducerMultiNamespaceXMLMigration extends XMLMigration {
+  public function __construct($arguments) {
+    parent::__construct($arguments);
+    $this->description =
+      t('Namespaced XML feed (multi items) of wine producers of the world');
+
+    // There isn't a consistent way to automatically identify appropriate
+    // "fields" from an XML feed, so we pass an explicit list of source fields.
+    $fields = array(
+      'pr:name' => t('Producer name'),
+      'pr:description' => t('Description of producer'),
+      'pr:authorid' => t('Numeric ID of the author'),
+      'pr:region' => t('Name of region'),
+    );
+
+    // IMPORTANT: Do not try this at home! We have included importable files
+    // with the migrate_example module so it can be very simply installed and
+    // run, but you should never include any data you want to keep private
+    // (especially user data like email addresses, phone numbers, etc.) in the
+    // module directory. Your source data should be outside of the webroot, and
+    // should not be anywhere where it may get committed into a revision control
+    // system.
+
+    // This can also be an URL instead of a file path.
+    $xml_folder = DRUPAL_ROOT . '/' . drupal_get_path('module', 'migrate_example') . '/xml/';
+    $items_url = $xml_folder . 'producers3.xml';
+
+    // We use the MigrateSourceMultiItems class for any source where we obtain
+    // the list of IDs to process and the data for each item from the same
+    // file. Examples include multiple items defined in a single xml file or a
+    // single json file where in both cases the id is part of the item.
+
+    // This is the xpath identifying the items to be migrated, relative to the
+    // document.
+    $item_xpath = '/pr:producers/pr:producer';
+    // This is the xpath relative to the individual items - thus the full xpath
+    // of an ID will be /producers/producer/sourceid.
+    $item_ID_xpath = 'pr:sourceid';
+    // All XML namespaces used in the XML file need to be defined here too.
+    $namespaces = array('pr' => 'http://www.wine.org/wine-producers');
+
+    $items_class = new MigrateItemsXML($items_url, $item_xpath, $item_ID_xpath, $namespaces);
+    $this->source = new MigrateSourceMultiItems($items_class, $fields);
+
+    $this->destination = new MigrateDestinationNode('migrate_example_producer');
+
+    // The source ID here is the one retrieved from each data item in the XML
+    // file, and used to identify specific items
+    $this->map = new MigrateSQLMap($this->machineName,
+      array(
+        'sourceid' => array(
+          'type' => 'varchar',
+          'length' => 4,
+          'not null' => TRUE,
+        )
+      ),
+      MigrateDestinationNode::getKeySchema()
+    );
+
+    // TIP: Note that for XML sources, in addition to the source field passed to
+    // addFieldMapping (the name under which it will be saved in the data row
+    // passed through the migration process) we specify the Xpath used to
+    // retrieve the value from the XML.
+    // TIP: Note that all xpaths for fields begin at the last element of the
+    // item xpath since each item xml chunk is processed individually.
+    // (ex. xpath=name is equivalent to a full xpath of
+    // /producers/producer/name).
+    $this->addFieldMapping('title', 'pr:name')
+         ->xpath('pr:name');
+    $this->addFieldMapping('uid', 'pr:authorid')
+         ->xpath('pr:authorid')
+         ->sourceMigration('WineUser')
+         ->defaultValue(1);
+    $this->addFieldMapping('migrate_example_wine_regions', 'pr:region')
+         ->xpath('pr:region');
+    $this->addFieldMapping('body', 'pr:description')
+         ->xpath('pr:description');
+
+    $this->addUnmigratedDestinations(array(
+        'body:summary', 'body:format', 'body:language',
+      'changed',
+      'comment',
+      'created',
+      'is_new',
+      'language',
+      'log',
+        'migrate_example_wine_regions:create_term',
+        'migrate_example_wine_regions:ignore_case',
+        'migrate_example_wine_regions:source_type',
+      'promote',
+      'revision',
+      'revision_uid',
+      'status',
+      'sticky',
+      'tnid',
+      'translate',
+    ));
+
+    $destination_fields = $this->destination->fields();
+    if (isset($destination_fields['path'])) {
+      $this->addFieldMapping('path')
+           ->issueGroup(t('DNM'));
+      if (isset($destination_fields['pathauto'])) {
+        $this->addFieldMapping('pathauto')
+             ->issueGroup(t('DNM'));
+      }
+    }
+    if (module_exists('statistics')) {
+      $this->addUnmigratedDestinations(
+        array('totalcount', 'daycount', 'timestamp'));
+    }
+  }
+}
+
+/**
  * TIP: An alternative approach using MigrateSourceSQL. This uses a different
  * XML library, which advances element-by-element through the XML file rather
  * than reading in the whole file. This source will work better with large XML
@@ -775,6 +1010,113 @@ class WineProducerXMLPullMigration extends XMLMigration {
          ->xpath('region');
     $this->addFieldMapping('body', 'description')
          ->xpath('description');
+
+    $this->addUnmigratedDestinations(array(
+        'body:summary', 'body:format', 'body:language',
+      'changed',
+      'comment',
+      'created',
+      'is_new',
+      'language',
+      'log',
+        'migrate_example_wine_regions:create_term',
+        'migrate_example_wine_regions:ignore_case',
+        'migrate_example_wine_regions:source_type',
+      'promote',
+      'revision',
+      'revision_uid',
+      'status',
+      'sticky',
+      'tnid',
+      'translate',
+    ));
+
+    $destination_fields = $this->destination->fields();
+    if (isset($destination_fields['path'])) {
+      $this->addFieldMapping('path')
+           ->issueGroup(t('DNM'));
+      if (isset($destination_fields['pathauto'])) {
+        $this->addFieldMapping('pathauto')
+             ->issueGroup(t('DNM'));
+      }
+    }
+    if (module_exists('statistics')) {
+      $this->addUnmigratedDestinations(
+        array('totalcount', 'daycount', 'timestamp'));
+    }
+  }
+}
+
+/**
+ * TIP: An alternative approach using MigrateSourceSQL. This uses a different
+ * XML library, which advances element-by-element through the XML file rather
+ * than reading in the whole file. This source will work better with large XML
+ * files, but is slower for small files and has a more restrictive query
+ * language for selecting the elements to process.
+ */
+class WineProducerNamespaceXMLPullMigration extends XMLMigration {
+  public function __construct($arguments) {
+    parent::__construct($arguments);
+    $this->description = t('XML feed with namespaces (pull) of wine producers of the world');
+
+    $fields = array(
+      'pr:name' => t('Producer name'),
+      'pr:description' => t('Description of producer'),
+      'pr:authorid' => t('Numeric ID of the author'),
+      'pr:region' => t('Name of region'),
+    );
+
+    // IMPORTANT: Do not try this at home! We have included importable files
+    // with the migrate_example module so it can be very simply installed and
+    // run, but you should never include any data you want to keep private
+    // (especially user data like email addresses, phone numbers, etc.) in the
+    // module directory. Your source data should be outside of the webroot, and
+    // should not be anywhere where it may get committed into a revision control
+    // system.
+
+    // This can also be an URL instead of a local file path.
+    $xml_folder = DRUPAL_ROOT . '/' .
+                  drupal_get_path('module', 'migrate_example') . '/xml/';
+    $items_url = $xml_folder . 'producers4.xml';
+
+    // As with MigrateSourceMultiItems, this applies where there is not a
+    // separate list of IDs to process - the source XML file is entirely
+    // self-contained. For the ID path, and xpath for each component, we can
+    // use the full xpath syntax as usual. However, the syntax to select the
+    // elements that correspond to objects to import is more limited. It must
+    // be a fully-qualified path to the element (i.e.,
+    // /producers/producer rather than just //producer).
+    $item_xpath = '/pr:producers/pr:producer';  // relative to document
+    $item_ID_xpath = 'pr:sourceid';          // relative to item_xpath
+    $namespaces = array('pr' => 'http://www.wine.org/wine-producers');
+
+    $this->source = new MigrateSourceXML($items_url, $item_xpath,
+                                         $item_ID_xpath, $fields,
+                                         array(), $namespaces);
+
+    $this->destination = new MigrateDestinationNode('migrate_example_producer');
+
+    $this->map = new MigrateSQLMap($this->machineName,
+      array(
+        'sourceid' => array(
+          'type' => 'varchar',
+          'length' => 4,
+          'not null' => TRUE,
+        )
+      ),
+      MigrateDestinationNode::getKeySchema()
+    );
+
+    $this->addFieldMapping('title', 'pr:name')
+         ->xpath('pr:name');
+    $this->addFieldMapping('uid', 'pr:authorid')
+         ->xpath('pr:authorid')
+         ->sourceMigration('WineUser')
+         ->defaultValue(1);
+    $this->addFieldMapping('migrate_example_wine_regions', 'pr:region')
+         ->xpath('pr:region');
+    $this->addFieldMapping('body', 'pr:description')
+         ->xpath('pr:description');
 
     $this->addUnmigratedDestinations(array(
         'body:summary', 'body:format', 'body:language',

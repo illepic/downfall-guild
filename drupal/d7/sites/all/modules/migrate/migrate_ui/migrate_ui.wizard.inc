@@ -23,13 +23,38 @@ function migrate_ui_wizard($form, &$form_state, $class_name = '') {
   // instance there, and it encapsulates all the state. We just need
   // to create the instance the first time in, and it will be serialized
   // between steps.
+  /** @var MigrateUIWizard $wizard */
   if (empty($form_state['wizard'])) {
     $wizard = new $class_name();
+
+    // Add any extenders.
+    $module_apis = migrate_get_module_apis();
+    // Need a second pass at this to add wizard extenders.
+    foreach ($module_apis as $module => $info) {
+      // Add any extenders.
+      // @todo: consider allowing extender classes to declare dependencies on
+      // other extender classes, to ensure they work in the correct order?
+      if (isset($info['wizard extenders'])) {
+        foreach ($info['wizard extenders'] as $wizard_class => $extender_classes) {
+          // Note that $class_name is in lower case, so we can't just use isset()
+          // to find our wizard.
+          if (strtolower($wizard_class) == $class_name) {
+            foreach ($extender_classes as $extender_class) {
+              $wizard->addExtender($extender_class);
+            }
+          }
+        }
+      }
+    }
+
     $form_state['wizard'] = $wizard;
+  }
+  else {
+    $wizard = $form_state['wizard'];
   }
 
   // Fetch the form for the wizard's current step.
-  $form = $form_state['wizard']->form($form_state);
+  $form = $wizard->form($form_state);
 
   return $form;
 }
@@ -41,7 +66,9 @@ function migrate_ui_wizard($form, &$form_state, $class_name = '') {
  * @todo: Can we remove steps that were dynamically added?
  */
 function migrate_ui_wizard_previous_submit($form, &$form_state) {
-  $form_state['wizard']->gotoPreviousStep($form_state);
+  /** @var MigrateUIWizard $wizard */
+  $wizard = $form_state['wizard'];
+  $wizard->gotoPreviousStep($form_state);
 }
 
 /**
@@ -49,7 +76,9 @@ function migrate_ui_wizard_previous_submit($form, &$form_state) {
  * step for validation.
  */
 function migrate_ui_wizard_next_validate($form, &$form_state) {
-  $form_state['wizard']->formValidate($form_state);
+  /** @var MigrateUIWizard $wizard */
+  $wizard = $form_state['wizard'];
+  $wizard->formValidate($form_state);
 }
 
 /**
@@ -58,7 +87,9 @@ function migrate_ui_wizard_next_validate($form, &$form_state) {
  * next step.
  */
 function migrate_ui_wizard_next_submit($form, &$form_state) {
-  $form_state['wizard']->gotoNextStep($form_state);
+  /** @var MigrateUIWizard $wizard */
+  $wizard = $form_state['wizard'];
+  $wizard->gotoNextStep($form_state);
 }
 
 /**
@@ -66,8 +97,11 @@ function migrate_ui_wizard_next_submit($form, &$form_state) {
  * (implicitly) defined along the way and redirect to the Migrate dashboard.
  */
 function migrate_ui_wizard_submit($form, &$form_state) {
-  $form_state['wizard']->formSaveSettings();
-  $form_state['redirect'] = 'admin/content/migrate/groups/' . $form_state['wizard']->getGroupName();
+  /** @var MigrateUIWizard $wizard */
+  $wizard = $form_state['wizard'];
+  $wizard->formSaveSettings();
+  $form_state['redirect'] = 'admin/content/migrate/groups/' .
+                            $wizard->getGroupName();
 }
 
 /**
@@ -76,8 +110,12 @@ function migrate_ui_wizard_submit($form, &$form_state) {
  * redirect to the Migrate dashboard.
  */
 function migrate_ui_wizard_migrate_submit($form, &$form_state) {
-  $form_state['wizard']->formSaveSettings();
-  $form_state['wizard']->formPerformImport();
+  /** @var MigrateUIWizard $wizard */
+  $wizard = $form_state['wizard'];
+  $wizard->formSaveSettings();
+  $wizard->formPerformImport();
+  $form_state['redirect'] = 'admin/content/migrate/groups/' .
+                            $wizard->getGroupName();
 }
 
 /**
@@ -104,6 +142,27 @@ abstract class MigrateUIWizard {
    * @var MigrateUIStep
    */
   protected $lastStep;
+
+  /**
+   * Get the list of steps currently defined.
+   *
+   * @return
+   *  An array of MigrateUIStep objects, in the order defined, keyed by the step
+   *  name.
+   */
+  protected function getSteps() {
+    $steps = array();
+
+    $steps[$this->firstStep->getName()] = $this->firstStep;
+    $next_step = $this->firstStep->nextStep;
+    while (!is_null($next_step)) {
+      $steps[$next_step->getName()] = $next_step;
+
+      $next_step = $next_step->nextStep;
+    }
+
+    return $steps;
+  }
 
   /**
    * The current step of the wizard (the one being shown in the UI, and the one
@@ -153,6 +212,21 @@ abstract class MigrateUIWizard {
   protected $migrations = array();
 
   /**
+   * Array of MigrateUIWizardExtender objects that extend this wizard.
+   *
+   * @var array
+   */
+  protected $extenders = array();
+  public function getExtender($extender_class) {
+    if (isset($this->extenders[$extender_class])) {
+      return $this->extenders[$extender_class];
+    }
+    else {
+      return NULL;
+    }
+  }
+
+  /**
    * Returns the translatable name representing the source of the data (e.g.,
    * "Drupal", "WordPress", etc.).
    *
@@ -163,12 +237,30 @@ abstract class MigrateUIWizard {
   public function __construct() {}
 
   /**
-   * Add a step to the wizard.
+   * Add a wizard extender.
+   *
+   * This initializes the new extender and adds it to our internal list.
+   *
+   * @param $extender_class
+   *  The name of an extender class.
+   */
+  public function addExtender($extender_class) {
+    $steps = $this->getSteps();
+
+    $extender = new $extender_class($this, $steps);
+    $this->extenders[$extender_class] = $extender;
+  }
+
+  /**
+   * Add a step to the wizard, using a step name and method.
    *
    * @param string $name
    *  Translatable name for the step, to be used in the page title.
-   * @param string $form_method
-   *  MigrateUIWizard method returning the form array for the step.
+   * @param callable $form_method
+   *  Callable returning the form array for the step. This can be either the
+   *  name of a MigrateUIWizard method, or a callable array specifying a method
+   *  on a wizard extender. The validation method is formed from the method's
+   *  name with the suffix 'Validate' added.
    * @param MigrateUIStep $after
    *  Optional step after which to insert the new step. If omitted, add it at
    *  the end.
@@ -177,8 +269,13 @@ abstract class MigrateUIWizard {
    *
    * @return MigrateUIStep
    */
-  protected function addStep($name, $form_method, MigrateUIStep $after = NULL, $context = NULL) {
+  public function addStep($name, $form_method, MigrateUIStep $after = NULL, $context = NULL) {
+    if (!is_array($form_method)) {
+      $form_method = array($this, $form_method);
+    }
+
     $new_step = new MigrateUIStep($name, $form_method, $context);
+
     // There were no steps, so this is the only one.
     if (is_null($this->firstStep)) {
       $this->firstStep = $this->lastStep = $this->currentStep = $new_step;
@@ -204,6 +301,31 @@ abstract class MigrateUIWizard {
   }
 
   /**
+   * Remove the named step from the wizard.
+   *
+   * @param $name
+   */
+  protected function removeStep($name) {
+    for ($current_step = $this->firstStep; !is_null($current_step); $current_step = $current_step->nextStep) {
+      if ($current_step->getName() == $name) {
+        if (is_null($current_step->previousStep)) {
+          $this->firstStep = $current_step->nextStep;
+        }
+        else {
+          $current_step->previousStep->nextStep = $current_step->nextStep;
+        }
+        if (is_null($current_step->nextStep)) {
+          $this->lastStep = $current_step->previousStep;
+        }
+        else {
+          $current_step->nextStep->previousStep = $current_step->previousStep;
+        }
+        break;
+      }
+    }
+  }
+
+  /**
    * Move the wizard to the next step in line (if any), first squirreling away
    * the current step's form values.
    */
@@ -213,6 +335,15 @@ abstract class MigrateUIWizard {
       $form_state['rebuild'] = TRUE;
       $this->currentStep = $this->currentStep->nextStep;
       $this->stepNumber++;
+
+      // Ensure a page reload remains on the current step.
+      $current_step_form_values = $this->currentStep->getFormValues();
+      if (!empty($current_step_form_values)) {
+        $form_state['values'] = $current_step_form_values;
+      }
+      else {
+        $form_state['values'] = array();
+      }
     }
   }
 
@@ -248,7 +379,7 @@ abstract class MigrateUIWizard {
       '#suffix' => '</h2>',
     );
 
-    $form += $this->{$form_method}($form_state);
+    $form += call_user_func($form_method, $form_state);
 
     $form['actions'] = array('#type' => 'actions');
 
@@ -273,12 +404,12 @@ abstract class MigrateUIWizard {
         '#type' => 'submit',
         '#value' => t('Save import settings'),
       );
-/*
+
       $form['actions']['migrate'] = array(
         '#type' => 'submit',
-        '#value' => t('Save settings and import'),
+        '#value' => t('Save import settings and run import'),
         '#submit' => array('migrate_ui_wizard_migrate_submit'),
-      );*/
+      );
     }
     else {
       $form['actions']['next'] = array(
@@ -299,8 +430,17 @@ abstract class MigrateUIWizard {
    * @param array $form_state
    */
   public function formValidate(&$form_state) {
-    $validate_method = $this->currentStep->getFormMethod() . 'Validate';
-    $this->{$validate_method}($form_state);
+    $validate_method = $this->currentStep->getFormMethod();
+
+    // This is an array for a method, or a function name.
+    if (is_array($validate_method)) {
+      $validate_method[1] .= 'Validate';
+    }
+    else {
+      $validate_method .= 'Validate';
+    }
+
+    call_user_func($validate_method, $form_state);
   }
 
   /**
@@ -331,7 +471,28 @@ abstract class MigrateUIWizard {
    * Run the import process for the migration group we've defined.
    */
   public function formPerformImport() {
+    $migrations = migrate_migrations();
+    $operations = array();
+    /** @var Migration $migration */
+    foreach ($migrations as $migration) {
+      $group_name = $migration->getGroup()->getName();
+      if ($group_name == $this->groupName) {
+        $operations[] = array('migrate_ui_batch', array('import', $migration->getMachineName(), NULL, 0));
+      }
+    }
 
+    if (count($operations) > 0) {
+      $batch = array(
+        'operations' => $operations,
+        'title' => t('Import processing'),
+        'file' => drupal_get_path('module', 'migrate_ui') . '/migrate_ui.pages.inc',
+        'init_message' => t('Starting import process'),
+        'progress_message' => t(''),
+        'error_message' => t('An error occurred. Some or all of the import processing has failed.'),
+        'finished' => 'migrate_ui_batch_finish',
+      );
+      batch_set($batch);
+    }
   }
 
   /**
@@ -345,7 +506,14 @@ abstract class MigrateUIWizard {
    * @param array $arguments
    *  Further information configuring the migration.
    */
-  protected function addMigration($machine_name, $class_name, $arguments) {
+  public function addMigration($machine_name, $class_name, $arguments) {
+    // Give extenders an opportunity to modify or reject this migration.
+    foreach ($this->extenders as $extender) {
+      if (!$extender->addMigrationAlter($machine_name, $class_name, $arguments, $this)) {
+        return FALSE;
+      }
+    }
+
     $machine_name = $this->groupName . $machine_name;
     if (isset($arguments['dependencies'])) {
       foreach ($arguments['dependencies'] as $index => $dependency) {
@@ -365,6 +533,8 @@ abstract class MigrateUIWizard {
       'class_name' => $class_name,
       'arguments' => $arguments,
     );
+
+    return TRUE;
   }
 }
 
@@ -384,14 +554,13 @@ class MigrateUIStep {
   }
 
   /**
-   * The name of the MigrateUIWizard method returning the form array for this
-   * step.
+   * Callable that returns the form array for this step.
    *
    * @var string
    */
-  protected $form_method;
+  protected $formMethod;
   public function getFormMethod() {
-    return $this->form_method;
+    return $this->formMethod;
   }
 
   /**
@@ -433,9 +602,60 @@ class MigrateUIStep {
    */
   public $previousStep;
 
+  /**
+   * Class constructor.
+   *
+   * @param $name
+   *  The machine name of the wizard step.
+   * @param $form_method
+   *  A callable for the form array for this step. The validation method is
+   *  formed from the method name with the suffix 'Validate' added, regardless
+   *  of which object it is on.
+   * @param $context = NULL
+   *  Contextual data needed by the form for this step.
+   */
   public function __construct($name, $form_method, $context = NULL) {
     $this->name = $name;
-    $this->form_method = $form_method;
+    $this->formMethod = $form_method;
     $this->context = $context;
+  }
+}
+
+/**
+ *
+ */
+abstract class MigrateUIWizardExtender {
+  /**
+   * Reference to the wizard object that this extender applies to.
+   */
+  protected $wizard;
+
+  /**
+   * Class constructor.
+   *
+   * Wizard extenders should override this to add their steps to the wizard.
+   */
+  public function __construct(MigrateUIWizard $wizard, array $wizard_steps) {
+    $this->wizard = $wizard;
+  }
+
+  /**
+   * Alter the arguments to a migration before it is registered, or potentially
+   * reject it.
+   *
+   * @param string $machine_name
+   *  Machine name for the migration class.
+   * @param string $class_name
+   *  Name of the Migration class to instantiate.
+   * @param array $arguments
+   *  Further information configuring the migration.
+   * @param MigrateUIWizard $wizard
+   *  The wizard class performing the registration.
+   *
+   * @return bool
+   *  Return FALSE to prevent registration of this migration.
+   */
+  public function addMigrationAlter($machine_name, $class_name, &$arguments, $wizard) {
+    return TRUE;
   }
 }

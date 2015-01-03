@@ -15,9 +15,13 @@ function media_field_widget_info() {
       'label' => t('Media browser'),
       'field types' => array('file', 'image'),
       'settings' => array(
-        'allowed_types' => array('image'),
+        'allowed_types' => array(
+          'image' => 'image',
+        ),
         'browser_plugins' => array(),
-        'allowed_schemes' => array('public', 'private'),
+        'allowed_schemes' => array(
+          'public' => 'public',
+        ),
       ),
       'behaviors' => array(
         'multiple values' => FIELD_BEHAVIOR_CUSTOM,
@@ -361,7 +365,7 @@ function media_field_widget_submit($form, &$form_state) {
   $langcode = $element['#language'];
   $parents = $element['#field_parents'];
 
-  $submitted_values = drupal_array_get_nested_value($form_state['values'], array_slice($button['#array_parents'], 0, -2));
+  $submitted_values = drupal_array_get_nested_value($form_state['values'], array_slice($button['#parents'], 0, -2));
   foreach ($submitted_values as $delta => $submitted_value) {
     if (!$submitted_value['fid']) {
       unset($submitted_values[$delta]);
@@ -372,7 +376,7 @@ function media_field_widget_submit($form, &$form_state) {
   $submitted_values = array_values($submitted_values);
 
   // Update form_state values.
-  drupal_array_set_nested_value($form_state['values'], array_slice($button['#array_parents'], 0, -2), $submitted_values);
+  drupal_array_set_nested_value($form_state['values'], array_slice($button['#parents'], 0, -2), $submitted_values);
 
   // Update items.
   $field_state = field_form_get_state($parents, $field_name, $langcode, $form_state);

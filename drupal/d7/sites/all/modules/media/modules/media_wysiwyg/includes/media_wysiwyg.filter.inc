@@ -117,6 +117,9 @@ function media_wysiwyg_token_to_markup($match, $wysiwyg = FALSE) {
 
     // Grab the potentially overrided fields from the file.
     $fields = media_wysiwyg_filter_field_parser($tag_info);
+    foreach ($fields as $key => $value) {
+      $file->{$key} = $value;
+    }
 
     $attributes = is_array($tag_info['attributes']) ? $tag_info['attributes'] : array();
     $attribute_whitelist = variable_get('media_wysiwyg_wysiwyg_allowed_attributes', _media_wysiwyg_wysiwyg_allowed_attributes_default());
@@ -165,24 +168,26 @@ function media_wysiwyg_token_to_markup($match, $wysiwyg = FALSE) {
 
   if ($wysiwyg) {
     $settings['wysiwyg'] = $wysiwyg;
-    // If sending markup to a WYSIWYG, we need to pass the file infomation so
-    // that a inline macro can be generated when the WYSIWYG is detached.
-    // The WYSIWYG plugin is expecting this information in the format of a
-    // urlencoded JSON string stored in the data-file_info attribute of the
-    // element.
+    // If sending markup to a WYSIWYG, we need to pass the file information so
+    // that an inline macro can be generated when the WYSIWYG is detached.
+    // The WYSIWYG plugin is expecting this information in the
+    // Drupal.settings.mediaDataMap variable.
     $element = media_wysiwyg_get_file_without_label($file, $tag_info['view_mode'], $settings);
-    $data = drupal_json_encode(array(
+    $data = array(
       'type' => 'media',
-      'fid' => $file->fid,
+      'fid'  => $file->fid,
       'view_mode' => $tag_info['view_mode'],
       'link_text' => $tag_info['link_text'],
-    ));
-    $element['#attributes']['data-file_info'] = urlencode($data);
+    );
+    drupal_add_js(array('mediaDataMap' => array($file->fid => $data)), 'setting');
+    $element['#attributes']['data-fid'] = $file->fid;
+    $element['#attributes']['data-media-element'] = '1';
     $element['#attributes']['class'][] = 'media-element';
   }
   else {
     // Display the field elements.
     $element = array();
+    $element['content'] = file_view($file, $tag_info['view_mode']);
     $element['content']['file'] = media_wysiwyg_get_file_without_label($file, $tag_info['view_mode'], $settings);
     // Overwrite or set the file #alt attribute if it has been set in this
     // instance.
@@ -194,9 +199,6 @@ function media_wysiwyg_token_to_markup($match, $wysiwyg = FALSE) {
     if (!empty($element['content']['file']['#attributes']['title'])) {
       $element['content']['file']['#title'] = $element['content']['file']['#attributes']['title'];
     }
-    field_attach_prepare_view('file', array($file->fid => $file), $tag_info['view_mode']);
-    entity_prepare_view('file', array($file->fid => $file));
-    $element['content'] += field_attach_view('file', $file, $tag_info['view_mode']);
     if (count(element_children($element['content'])) > 1) {
       // Add surrounding divs to group them together.
       // We dont want divs when there are no additional fields to allow files
@@ -213,8 +215,6 @@ function media_wysiwyg_token_to_markup($match, $wysiwyg = FALSE) {
   return drupal_render($element);
 }
 
-
-
 /**
  * Parse the field array from the collapsed AJAX string.
  */
@@ -224,20 +224,25 @@ function media_wysiwyg_filter_field_parser($tag_info) {
     foreach($tag_info['fields'] as $field_name => $field_value) {
       if (strpos($field_name, 'field_') === 0) {
         $parsed_field = explode('[', str_replace(']', '', $field_name));
-        if(isset($parsed_field[2])) {
-          if(isset($parsed_field[3])) {
-            $fields[$parsed_field[0]][$parsed_field[1]][$parsed_field[2]][$parsed_field[3]] = $field_value;
-          } else {
-            $fields[$parsed_field[0]][$parsed_field[1]][$parsed_field[2]] = $field_value;
+        $ref = &$fields;
+
+        // Each key of the field needs to be the child of the previous key.
+        foreach ($parsed_field as $key) {
+          if (!isset($ref[$key])) {
+            $ref[$key] = array();
           }
-        } else {
-          $fields[$parsed_field[0]][$parsed_field[1]] = $field_value;
+          $ref = &$ref[$key];
         }
+
+        // The value should be set at the deepest level.
+        // Fields that use rich-text markup will be urlencoded.
+        $ref = urldecode($field_value);
       }
     }
   }
   return $fields;
 }
+
 /**
  * Builds a map of media tags in the element.
  *

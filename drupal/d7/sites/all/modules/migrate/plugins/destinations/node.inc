@@ -12,6 +12,8 @@
  * Destination class implementing migration into nodes.
  */
 class MigrateDestinationNode extends MigrateDestinationEntity {
+  protected $bypassDestIdCheck = FALSE;
+
   static public function getKeySchema() {
     return array(
       'nid' => array(
@@ -128,7 +130,7 @@ class MigrateDestinationNode extends MigrateDestinationEntity {
   public function import(stdClass $node, stdClass $row) {
     // Updating previously-migrated content?
     $migration = Migration::currentMigration();
-    if (isset($row->migrate_map_destid1)) {
+    if (isset($row->migrate_map_destid1) && !$this->bypassDestIdCheck) {
       // Make sure is_new is off
       $node->is_new = FALSE;
       if (isset($node->nid)) {
@@ -260,6 +262,9 @@ class MigrateDestinationNode extends MigrateDestinationEntity {
       unset($node->is_new);
     }
 
+    // Validate field data prior to saving.
+    field_attach_validate('node', $node);
+
     migrate_instrument_start('node_save');
     node_save($node);
     migrate_instrument_stop('node_save');
@@ -308,5 +313,138 @@ class MigrateDestinationNode extends MigrateDestinationEntity {
 
     $this->complete($node, $row);
     return $return;
+  }
+}
+
+/**
+ * Allows you to import revisions.
+ *
+ * Adapted from http://www.darrenmothersele.com/blog/2012/07/16/migrating-node-revisions-drupal-7/
+ *
+ * Class MigrateDestinationNodeRevision
+ *
+ * @author darrenmothersele
+ * @author cthos
+ */
+class MigrateDestinationNodeRevision extends MigrateDestinationNode {
+  /**
+   * Basic initialization.
+   *
+   * @see parent::__construct
+   *
+   * @param string $bundle
+   *   A.k.a. the content type (page, article, etc.) of the node.
+   * @param array $options
+   *   Options applied to nodes.
+   */
+  public function __construct($bundle, array $options = array()) {
+    parent::__construct($bundle, $options);
+
+    $this->bypassDestIdCheck = TRUE;
+  }
+
+  /**
+   * Get key schema for the node revision destination.
+   *
+   * @see MigrateDestination::getKeySchema
+   *
+   * @return array
+   *   Returns the key schema.
+   */
+  static public function getKeySchema() {
+    return array(
+      'vid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'description' => 'ID of destination node revision',
+      ),
+    );
+  }
+
+  /**
+   * Returns additional fields on top of node destinations.
+   *
+   * @param string $migration
+   *   Active migration
+   *
+   * @return array
+   *   Fields.
+   */
+  public function fields($migration = NULL) {
+    $fields = parent::fields($migration);
+    $fields['vid'] = t('Node: <a href="@doc">Revision (vid)</a>', array('@doc' => 'http://drupal.org/node/1298724'));
+    return $fields;
+  }
+
+  /**
+   * Rolls back any versions that have been created.
+   *
+   * @param array $vids
+   *   Version ids to roll back.
+   */
+  public function bulkRollback(array $vids) {
+    migrate_instrument_start('revision_delete_multiple');
+    $this->prepareRollback($vids);
+    $nids = array();
+    foreach ($vids as $vid) {
+      if ($revision = node_load(NULL, $vid)) {
+        db_delete('node_revision')
+          ->condition('vid', $revision->vid)
+          ->execute();
+        module_invoke_all('node_revision_delete', $revision);
+        field_attach_delete_revision('node', $revision);
+        $nids[$revision->nid] = $revision->nid;
+      }
+    }
+    $this->completeRollback($vids);
+    foreach ($nids as $nid) {
+      $vid = db_select('node_revision', 'nr')->fields('nr', array('vid'))->condition('nid', $nid, '=')->execute()->fetchField();
+      if (!empty($vid)) {
+        db_update('node')->fields(array('vid' => $vid))->condition('nid', $nid, '=')->execute();
+      }
+    }
+    migrate_instrument_stop('revision_delete_multiple');
+  }
+
+  /**
+   * Overridden import method.
+   *
+   * This is done because parent::import will return the nid of the newly
+   * created nodes. This is bad since the migrate_map_* table will have
+   * nids instead of vids, which could cause a nightmare explosion on
+   * rollback.
+   *
+   * @param stdClass $node
+   *   Populated entity.
+   *
+   * @param stdClass $row
+   *   Source information in object format.
+   *
+   * @return array|bool
+   *   Array with newly created vid, or FALSE on error.
+   *
+   * @throws MigrateException
+   */
+  public function import(stdClass $node, stdClass $row) {
+    // We're importing revisions, this should be set.
+    $node->revision = 1;
+
+    if (empty($node->nid)) {
+      throw new MigrateException(t('Missing incoming nid.'));
+    }
+
+    $original_updated = $this->numUpdated;
+
+    parent::import($node, $row);
+
+    // Reset num updated and increment created since new revision is always an update.
+    $this->numUpdated = $original_updated;
+    $this->numCreated++;
+
+    if (empty($node->vid)) {
+      return FALSE;
+    }
+
+    return array($node->vid);
   }
 }

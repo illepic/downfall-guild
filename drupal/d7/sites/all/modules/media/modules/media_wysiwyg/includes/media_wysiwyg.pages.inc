@@ -11,7 +11,7 @@
  * Allows the user to pick a format for their media file.
  * Can also have additional params depending on the media type.
  */
-function media_wysiwyg_format_form($form, $form_state, $file) {
+function media_wysiwyg_format_form($form, &$form_state, $file) {
   $form_state['file'] = $file;
 
   // Allow for overrides to the fields.

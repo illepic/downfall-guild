@@ -53,14 +53,7 @@ function migrate_example_baseball_uninstall() {
 }
 
 function migrate_example_baseball_disable() {
-  for ($i=0; $i<=9; $i++) {
-    $file = 'GL200' . $i . '.TXT';
-    Migration::deregisterMigration(pathinfo($file, PATHINFO_FILENAME));
-    $filename = dirname(__FILE__) . '/data/' . $file;
-    if (file_exists($filename)) {
-      unlink($filename);
-    }
-  }
+  MigrateGroup::deregister('baseball');
 }
 
 /**

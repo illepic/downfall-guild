@@ -56,9 +56,11 @@ class MigrateGroup {
   static public function groups() {
     $groups = array();
     $dependent_groups = array();
+    $dependencies_list = array();
     $required_groups = array();
     foreach (self::$groupList as $name => $group) {
       $dependencies = $group->getDependencies();
+      $dependencies_list[$name] = $dependencies;
       if (count($dependencies) > 0) {
         // Set groups with dependencies aside for reordering
         $dependent_groups[$name] = $group;
@@ -69,29 +71,11 @@ class MigrateGroup {
         $groups[$name] = $group;
       }
     }
-    $iterations = 0;
-    while (count($dependent_groups) > 0) {
-      if ($iterations++ > 20) {
-        $group_names = implode(',', array_keys($dependent_groups));
-        throw new MigrateException(t('Failure to sort migration list - most likely due ' .
-              'to circular dependencies involving groups !group_names',
-        array('!group_names' => $group_names)));
-      }
-      foreach ($dependent_groups as $name => $group) {
-        $ready = TRUE;
-        // Scan all the dependencies for this group and make sure they're all
-        // in the final list
-        foreach ($group->getDependencies() as $dependency) {
-          if (!isset($groups[$dependency])) {
-            $ready = FALSE;
-            break;
-          }
-        }
-        if ($ready) {
-          // Yes they are! Move this group to the final list
-          $groups[$name] = $group;
-          unset($dependent_groups[$name]);
-        }
+
+    $ordered_groups = migrate_order_dependencies($dependencies_list);
+    foreach ($ordered_groups as $name) {
+      if (!isset($groups[$name])) {
+        $groups[$name] = $dependent_groups[$name];
       }
     }
 

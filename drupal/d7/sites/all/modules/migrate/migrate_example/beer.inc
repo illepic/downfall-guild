@@ -133,8 +133,7 @@ class BeerTermMigration extends BasicExampleMigration {
     // Documenting your mappings makes it easier for the whole team to see
     // exactly what the status is when developing a migration process.
     $this->addFieldMapping('parent_name', 'style_parent')
-         ->description(t('The incoming style_parent field is the name of the ' .
-                         'term parent'));
+         ->description(t('The incoming style_parent field is the name of the term parent'));
 
     // Mappings are assigned issue groups, by which they are grouped on the
     // migration info page when the migrate_ui module is enabled. The default

@@ -148,6 +148,14 @@ function migrate_example_migrate_api() {
           'WineUser',
         ),
       ),
+      'WineProducerNamespaceXML' => array(
+        'class_name' => 'WineProducerNamespaceXMLMigration',
+        'group_name' => 'wine',
+        'dependencies' => array(
+          'WineRegion',
+          'WineUser',
+        ),
+      ),
       'WineProducerMultiXML' => array(
         'class_name' => 'WineProducerMultiXMLMigration',
         'group_name' => 'wine',
@@ -156,8 +164,24 @@ function migrate_example_migrate_api() {
           'WineUser',
         ),
       ),
+      'WineProducerMultiNamespaceXML' => array(
+        'class_name' => 'WineProducerMultiNamespaceXMLMigration',
+        'group_name' => 'wine',
+        'dependencies' => array(
+          'WineRegion',
+          'WineUser',
+        ),
+      ),
       'WineProducerXMLPull' => array(
         'class_name' => 'WineProducerXMLPullMigration',
+        'group_name' => 'wine',
+        'dependencies' => array(
+          'WineRegion',
+          'WineUser',
+        ),
+      ),
+      'WineProducerNamespaceXMLPull' => array(
+        'class_name' => 'WineProducerNamespaceXMLPullMigration',
         'group_name' => 'wine',
         'dependencies' => array(
           'WineRegion',

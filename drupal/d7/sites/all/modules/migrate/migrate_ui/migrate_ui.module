@@ -3,9 +3,7 @@
 function migrate_ui_help($path, $arg) {
   switch ($path) {
     case 'admin/content/migrate':
-      return t('The current status of each migration group defined in this ' .
-               'system. Click on a group name for details on its ' .
-               'configuration.');
+      return t('The current status of each migration group defined in this system. Click on a group name for details on its configuration.');
   }
 }
 
@@ -172,12 +170,14 @@ function migrate_ui_mail($key, &$message, $params) {
  *    source_title -
  */
 function migrate_ui_wizards() {
-  $migrate_implementors = module_invoke_all('migrate_api');
+  $module_apis = migrate_get_module_apis();
   $wizards = array();
-  if (isset($migrate_implementors['wizard classes'])) {
-    foreach ($migrate_implementors['wizard classes'] as $wizard_class) {
-      $wizard_class = strtolower($wizard_class);
-      $wizards[$wizard_class] = new $wizard_class;
+  foreach ($module_apis as $info) {
+    if (isset($info['wizard classes']) && is_array($info['wizard classes'])) {
+      foreach ($info['wizard classes'] as $wizard_class) {
+        $wizard_class = strtolower($wizard_class);
+        $wizards[$wizard_class] = new $wizard_class;
+      }
     }
   }
   return $wizards;

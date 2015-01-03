@@ -1,6 +1,16 @@
 Next release
 ============
 
+Features and enhancements
+
+Bug fixes
+
+
+Migrate 2.6
+===========
+
+IMPORTANT CHANGES SINCE MIGRATE 2.5
+-----------------------------------
 Migration developers will need to add the "advanced migration information"
 permission to their roles to continue seeing all the info in the UI they're
 used to.
@@ -11,45 +21,32 @@ longer supported. Registration of classes defined in hook_migrate_api() is no
 longer automatic - do a drush migrate-register or use the Register button in the
 UI to register them.
 
-Migration class constructors should now always accept a $arguments array as
+Migration class constructors should now always accept an $arguments array as
 the first parameter and pass it to its parent. This version does support legacy
-migrations which pass a group object, or nothing, but that support may be
-removed in a future version.
+migrations which pass a group object, or nothing, but these methods are
+deprecated.
 
 Features and enhancements
+- #2390229 - Make literal strings monolithic.
+- #2391789 - Add extender getter to better support extending wizards.
+- #2363015 - Add support for modifying wizards defined by other modules.
+- #2353527 - Add getter/setter for trackLastImported.
+- #2302929 - Explicitly count IDs for JSON source counts.
+- #2296187 - Batch MigrateSQLSource queries.
+- #2260211 - Allow skipping of file contents in MigrateListFiles.
+- #2259089 - Display actual query for SQL sources.
+- #2224297 - Destination handler for custom blocks.
+- #2370677 - Add removeStep() method to Wizard API.
+- #2306953 - Give basic users a little more information.
+- #2261357 - Add prepareCallback/completeCallback to table destination.
+- #2306923 - Propagate message statuses to drupal_set_message in batch.
+- #2301679 - Display all source key fields in the message view.
+- #2312075 - Add --ignore-highwater option to drush imports
+- #1961316 - Get data from all XML namespaces
+- #1298724 - Add a node revision destination plugin.
+- #1890610 - Add a MongoDB source plugin
 - #2065295 - Add ability to disable other module's hooks during migration.
 - #2051547 - Add ability to revert UI-defined field mappings.
-
-Bug fixes
-- #2159291 - Add message for missing argument to drush migrate-messages.
-- #2019193 - Fix unsetting of DNM source fields through the UI.
-- #2227061 - Fix to subfields in a multi-value context.
-- #2170177 - Properly handle multi-value fields when a subfield is mapped first.
-- #2120205 - Fix bug when upgrading lastimported from D6 to D7.
-- #2109821 - Handle multi-value subfields in the default field handler.
-- #2039649 - Smarter setting of file 'type' field.
-- #2106925 - Fix machine_name generation for legacy migrations.
-- #2102087 - Don't pass --group to drush subprocess.
-- #2099585 - Enable group option on drush migrate-stop.
-- #2088255 - Eliminate notices on migrate_map_hash with track_changes.
-- #2014849 - Make sure (again) statistics properly default to 0.
-- #2042535 - Properly set file_usage for user pictures.
-- #2060631 - Fix notices on poll vote import.
-- #2049689 - Empty values for node is_new caused SQL errors.
-- #2042399 - Node import did not respect revision flag.
-- #2034885 - For XML sources, don't override values populated in prepareRow().
-- #2041267 - Handle lack of potential dependencies on edit page.
-- #2040101 - Breadcrumbs in migration UI missing sections
-- #2033947 - Empty migration display names when matching group names.
-- #2037265 - Static migrations were not registered on module enable.
-- #2021457 - Coding standard improvements for xml.inc.
-- #2030559 - Add deprecation messages for arguments().
-- #1854382 - Fix handling of terms with leading spaces.
-
-Migrate 2.6 Release Candidate 1
-===============================
-
-Features and enhancements
 - #1998632 - Extend MigrateItemsXML to handle an array of XML files.
 - #1990612 - Add a row status argument to MigrateException, allowing rows to
              be cleanly skipped by throwing exceptions.
@@ -57,32 +54,6 @@ Features and enhancements
              flexible.
 - #2004426 - UI support for editing dependencies; enable setting dependencies
              through arguments.
-
-Bug fixes
-- #2025137 - Ignore --update in the presence of --idlist.
-- #2023813 - Apply defaultValue() for empty XML values.
-- #2023657 - Prevent duplicate aliases when updating nodes.
-- #2021973 - Drush deregistration needs to handle mixed-case machine names.
-- #2017443 - Properly hash XML source rows with track_changes on.
-- #2020095 - Preserve arguments in legacy constructors.
-- #2018841 - Default field handler needs to account for empty column
-             descriptions.
-- #2016173 - Fix fatal error editing MigrationBase migrations.
-- #2015327 - Remove broken automatic field mapping feature.
-- #2014849 - Make sure statistics properly default to 0.
-- #2011024 - Wildcard groups/tasks in the menu hierarchy, saving the need to
-             rebuild menus when migrations are registered/deregistered.
-- #2010884 - Clean up empty default groups on dbupdate.
-- #2004296 - Enforce map/message table names with prefixes.
-- #2009222 - Properly update map/message tables on a non-default connection.
-- #2006158 - Fix warnings on default field handler fields().
-- #1999918 - Move permissions to core Migrate module.
-- #1999290 - Check that an XMLMigration has actually populated $row->xml.
-
-Migrate 2.6 Beta 1
-==================
-
-Features and enhancements
 - #1826112 - A new API has been added to support external modules in developing
              easy-to-use wizard-based UIs.
 - #1833380 - Major refactoring of the UI, breaking groups and migrations
@@ -127,6 +98,94 @@ Features and enhancements
 - #1886404 - Allow subfields to be mapped before primary fields.
 
 Bug fixes
+- #2391891 - idlist with XML source causes exception.
+- #2314077 - Don't merge group dependencies into migration dependencies.
+- #2392683 - Set vocabulary name (bundle) explicitly for term reference fields.
+- #2266395 - Check for valid picture file saving users.
+- #2225551 - Add field validation to entity destination plugins.
+- #2285966 - Added exception handling around constructors.
+- #2370877 - Fix reloading of wizard steps after first.
+- #2358767 - Topological sort to help avoid false circular dependency errors.
+- #2019193 - Properly handle destination DNM status on field mapping save.
+- #2250081 - Fix PostgreSQL failure updating node statistics on comments.
+- #2157933 - Fix PostgreSQL error with empty source migrations.
+- #2177313 - Make sure reused file entities are saved to pick up field changes.
+- #2352971 - Treat empty default values as NULL in field mapping editor.
+- #2347205 - Explicitly default the language for terms.
+- #2307599 - Notice for non-advanced users on rollback.
+- #2305105 - Remove pedantically-deprecated hyphens.
+- #2325237 - Handle language arrays for file fields.
+- #2258909 - Use migrated languages for file fields.
+- #2323605 - Handle single-parent terms properly.
+- #2313495 - Handle multilingual path aliases.
+- #2261227 - Fixed missing subfields on edit mapping form.
+- #2154385 - Add file/line context to source plugin exceptions.
+- #2190255 - Remove duplicate warnings on missing XML source.
+- #2129609 - Remove warnings on MS SQL counts.
+- #2109931 - Pass drush global options to subprocess.
+- #2236279 - Prevent ignore_case from causing created terms to be lower-cased.
+- #2104149 - Sanity-check decrypted arguments.
+- #2047523 - Consistently document destination handler fields() implementations.
+- #2244759 - Rollback migrations in proper (reverse) order in UI.
+- #2184641 - Make saveHighwater() work with PostgreSQL.
+- #2076035 - Properly check key values in saveMessage().
+- #2076035 - Validate that term names are not empty.
+- #2225809 - Use proper API for registering wizard classes.
+- #2105037 - Expose nid/uid destinations when is_new is on.
+- #2145213 - Add SQLMap constructor documentation.
+- #2213033 - Add batch callback documentation.
+- #2095829 - Remove all variables on uninstall.
+- #2072721 - Proper title for migrate_example_baseball feature.
+- #1999228 - Removed AJAX from field mapping form for performance.
+- #2237755 - Fix activeUrl handling in JSON source.
+- #2237891 - Use drupal_register_shutdown_function().
+- #2141409 - Handle drush spawning when Drupal in subdirectory.
+- #2191335 - Remove unused columns from CSV source row.
+- #2210533 - Properly pass directory by reference.
+- #2141569 - Explicitly create group in baseball example.
+- #2159291 - Add message for missing argument to drush migrate-messages.
+- #2019193 - Fix unsetting of DNM source fields through the UI.
+- #2227061 - Fix to subfields in a multi-value context.
+- #2170177 - Properly handle multi-value fields when a subfield is mapped first.
+- #2120205 - Fix bug when upgrading lastimported from D6 to D7.
+- #2109821 - Handle multi-value subfields in the default field handler.
+- #2039649 - Smarter setting of file 'type' field.
+- #2106925 - Fix machine_name generation for legacy migrations.
+- #2102087 - Don't pass --group to drush subprocess.
+- #2099585 - Enable group option on drush migrate-stop.
+- #2088255 - Eliminate notices on migrate_map_hash with track_changes.
+- #2014849 - Make sure (again) statistics properly default to 0.
+- #2042535 - Properly set file_usage for user pictures.
+- #2060631 - Fix notices on poll vote import.
+- #2049689 - Empty values for node is_new caused SQL errors.
+- #2042399 - Node import did not respect revision flag.
+- #2034885 - For XML sources, don't override values populated in prepareRow().
+- #2041267 - Handle lack of potential dependencies on edit page.
+- #2040101 - Breadcrumbs in migration UI missing sections
+- #2033947 - Empty migration display names when matching group names.
+- #2037265 - Static migrations were not registered on module enable.
+- #2021457 - Coding standard improvements for xml.inc.
+- #2030559 - Add deprecation messages for arguments().
+- #1854382 - Fix handling of terms with leading spaces.
+- #2025137 - Ignore --update in the presence of --idlist.
+- #2023813 - Apply defaultValue() for empty XML values.
+- #2023657 - Prevent duplicate aliases when updating nodes.
+- #2021973 - Drush deregistration needs to handle mixed-case machine names.
+- #2017443 - Properly hash XML source rows with track_changes on.
+- #2020095 - Preserve arguments in legacy constructors.
+- #2018841 - Default field handler needs to account for empty column
+             descriptions.
+- #2016173 - Fix fatal error editing MigrationBase migrations.
+- #2015327 - Remove broken automatic field mapping feature.
+- #2014849 - Make sure statistics properly default to 0.
+- #2011024 - Wildcard groups/tasks in the menu hierarchy, saving the need to
+             rebuild menus when migrations are registered/deregistered.
+- #2010884 - Clean up empty default groups on dbupdate.
+- #2004296 - Enforce map/message table names with prefixes.
+- #2009222 - Properly update map/message tables on a non-default connection.
+- #2006158 - Fix warnings on default field handler fields().
+- #1999918 - Move permissions to core Migrate module.
+- #1999290 - Check that an XMLMigration has actually populated $row->xml.
 - #1989012 - Support preserve_files for MigrateFileFid.
 - #1982564 - Properly handle messages for ignored rows.
 - #1989022 - Strip HTML tags from drush fields output.

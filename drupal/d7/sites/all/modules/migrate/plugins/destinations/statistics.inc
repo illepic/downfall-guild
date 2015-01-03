@@ -10,7 +10,10 @@ class MigrateStatisticsEntityHandler extends MigrateDestinationHandler {
     $this->registerTypes(array('node'));
   }
 
-  public function fields() {
+  /**
+   * Implementation of MigrateDestinationHandler::fields().
+   */
+  public function fields($entity_type, $bundle, $migration = NULL) {
     if (module_exists('statistics')) {
       $fields = array(
         'totalcount' => t('The total number of times the node has been viewed.'),

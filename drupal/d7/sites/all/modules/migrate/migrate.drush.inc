@@ -131,8 +131,6 @@ function migrate_drush_command() {
   $items['migrate-rollback'] = array(
     'description' => 'Roll back the destination objects from a given migration',
     'options' => $migration_options,
-    // We will bootstrap to login from within the command callback.
-    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
     'arguments' => array(
       'migration' => 'Name of migration(s) to roll back. Delimit multiple using commas.',
     ),
@@ -152,6 +150,7 @@ function migrate_drush_command() {
   $migration_options['stop'] = 'Stop specified migration(s) if applicable.';
   $migration_options['rollback'] = 'Rollback specified migration(s) if applicable.';
   $migration_options['file_function'] = 'Override file function to use when migrating images.';
+  $migration_options['ignore-highwater'] = 'Ignore the highwater field during migration';
   $items['migrate-import'] = array(
     'description' => 'Perform one or more migration processes',
     'options' => $migration_options,
@@ -216,12 +215,12 @@ function migrate_drush_command() {
     'drupal dependencies' => array('migrate'),
   );
   $items['migrate-auto-register'] = array(
-    'description' => 'Register any newly-defined migration classes',
+    'description' => 'Register any newly defined migration classes',
     'drupal dependencies' => array('migrate'),
     'aliases' => array('mar'),
   );
   $items['migrate-register'] = array(
-    'description' => 'Register or reregister any statically-defined migrations',
+    'description' => 'Register or reregister any statically defined migrations',
     'drupal dependencies' => array('migrate'),
     'aliases' => array('mreg'),
   );
@@ -250,7 +249,9 @@ function drush_migrate_get_options() {
   $options = array();
   $blacklist = array('stop', 'rollback', 'update', 'all', 'group');
   $command = drush_parse_command();
-  foreach ($command['options'] as $key => $value) {
+  $global_options = drush_get_global_options();
+  $opts = array_merge($command['options'], $global_options);
+  foreach ($opts as $key => $value) {
     // Strip leading --
     $key = ltrim($key, '-');
     if (!in_array($key, $blacklist)) {
@@ -1199,6 +1200,10 @@ function drush_migrate_import($args = NULL) {
         array('!description' => $machine_name)));
       if (drush_get_option('update') && !$idlist) {
         $migration->prepareUpdate();
+
+        if (drush_get_option('ignore-highwater')) {
+          $migration->setHighwaterField(array());
+        }
       }
       if (drush_get_option('needs-update')) {
         $map_rows = $migration->getMap()->getRowsNeedingUpdate(10000);

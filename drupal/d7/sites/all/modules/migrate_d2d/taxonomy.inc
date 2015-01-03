@@ -58,6 +58,7 @@ abstract class DrupalTermMigration extends DrupalMigration {
                        'unsigned' => TRUE,
                        'not null' => TRUE,
                        'description' => 'Source term ID',
+                       'alias' => 'td',
                       ),
       ),
       MigrateDestinationTerm::getKeySchema()

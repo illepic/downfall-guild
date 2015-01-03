@@ -12,6 +12,17 @@ function migrate_ui_install() {
 }
 
 /**
+ * Implements hook_uninstall().
+ */
+function migrate_ui_uninstall() {
+  variable_del('migrate_import_method');
+  variable_del('migrate_drush_path');
+  variable_del('migrate_drush_mail');
+  variable_del('migrate_drush_mail_subject');
+  variable_del('migrate_drush_mail_body');
+}
+
+/**
  * Make sure we have a higher weight than node.
  */
 function migrate_ui_update_7201() {

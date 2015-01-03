@@ -51,7 +51,7 @@ class DrupalComment6Migration extends DrupalCommentMigration {
                'mail', 'homepage', 'format'));
     $query->join('node', 'n', 'c.nid = n.nid');
     $query->condition('n.type', $this->sourceType)
-          ->orderBy('timestamp');
+          ->orderBy($this->newOnly ? 'c.cid' : 'c.timestamp');
 
     return $query;
   }

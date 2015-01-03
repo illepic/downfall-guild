@@ -13,6 +13,11 @@
 function migrate_example_baseball_migrate_api() {
   $api = array(
     'api' => 2,
+    'groups' => array(
+      'baseball' => array(
+        'title' => t('Baseball'),
+      ),
+    ),
   );
   return $api;
 }

@@ -24,18 +24,18 @@ class DrupalVersion6 extends DrupalVersion {
   public function getDefaultFormatMappings() {
     migrate_instrument_start('DrupalVersion6::getDefaultFormatMappings');
     $format_mappings = array();
-    $result = Database::getConnection('default', $this->arguments['source_connection'])
+    $d6_formats = Database::getConnection('default', $this->arguments['source_connection'])
               ->select('filter_formats', 'f')
-              ->fields('f', array('format', 'name'))
-              ->execute();
-    foreach ($result as $format_row) {
-      $format = db_select('filter_format', 'f')
-                ->fields('f', array('format'))
-                ->condition('name', $format_row->name)
+              ->fields('f', array('name', 'format'))
+              ->execute()->fetchAllKeyed();
+    $d7_formats = db_select('filter_format', 'f')
+                ->fields('f', array('name', 'format'))
+                ->condition('name', array_keys($d6_formats), 'IN')
                 ->execute()
-                ->fetchField();
-      if ($format) {
-        $format_mappings[$format_row->format] = $format;
+                ->fetchAllKeyed();
+    foreach ($d6_formats as $name => $format) {
+      if (isset($d7_formats[$name])) {
+        $format_mappings[$format] = $d7_formats[$name];
       }
     }
     migrate_instrument_stop('DrupalVersion6::getDefaultFormatMappings');
@@ -56,6 +56,7 @@ class DrupalVersion6 extends DrupalVersion {
                     ->select('url_alias', 'ua')
                     ->fields('ua', array('dst'))
                     ->condition('src', $source)
+                    ->orderBy('pid', 'DESC')
                     ->execute()
                     ->fetchField();
     }
@@ -100,18 +101,19 @@ class DrupalVersion6 extends DrupalVersion {
                          ->fields('nt', array('has_title', 'title_label',
                                               'has_body', 'body_label'))
                          ->condition('type', $bundle)
-                         ->condition('has_body', 1)
                          ->execute()
                          ->fetchObject();
         // To hopefully uniquify the machine names, use the content_profile
-        // node type in the name.
-        if ($type_info->has_title) {
-          $this->sourceFieldInfo['field_' . $bundle . '_title'] =
-            array('label' => $type_info->title_label, 'type' => 'title');
-        }
-        if ($type_info->has_body) {
-          $this->sourceFieldInfo['field_' . $bundle . '_body'] =
-            array('label' => $type_info->body_label, 'type' => 'body');
+        // node type, with '_node_type' appended, in the name.
+        if (is_object($type_info)) {
+          if (!empty($type_info->has_title)) {
+            $this->sourceFieldInfo['field_' . $bundle . '_node_type_title'] =
+              array('label' => $type_info->title_label, 'type' => 'title');
+          }
+          if (!empty($type_info->has_body)) {
+            $this->sourceFieldInfo['field_' . $bundle . '_node_type_body'] =
+              array('label' => $type_info->body_label, 'type' => 'body');
+          }
         }
       }
 
@@ -146,8 +148,7 @@ class DrupalVersion6 extends DrupalVersion {
                 $columns[$field_name . ':title'] = $field_name . '_title';
               }
               if (!empty($global_settings['description_field'])) {
-                $columns[$field_name . ':description'] =
-                  $field_name . '_description';
+                $columns[$field_name . ':description'] = $field_name . '_description';
               }
             }
             else {
@@ -303,13 +304,16 @@ class DrupalVersion6 extends DrupalVersion {
                     $row->$index = array($row->$index);
                   }
                   // File field subfields need to be pulled from $data.
-                  if ($display_name == "$field_name:alt") {
+                  if ($display_name == "$field_name:alt" &&
+                      isset($data['alt'])) {
                     $row->{$index}[] = $data['alt'];
                   }
-                  elseif ($display_name == "$field_name:title") {
+                  elseif ($display_name == "$field_name:title" &&
+                          isset($data['title'])) {
                     $row->{$index}[] = $data['title'];
                   }
-                  elseif ($display_name == "$field_name:description") {
+                  elseif ($display_name == "$field_name:description" &&
+                          isset($data['description'])) {
                     $row->{$index}[] = $data['description'];
                   }
                   else {
@@ -390,23 +394,23 @@ class DrupalVersion6 extends DrupalVersion {
       foreach ($result as $term_row) {
         $row->{$term_row->vid}[] = $term_row->tid;
       }
-    }
 
-    if (Database::getConnection('default',
-                                $this->arguments['source_connection'])
-          ->schema()->tableExists('upload')) {
-      $result =
-        Database::getConnection('default', $this->arguments['source_connection'])
-                   ->select('upload', 'u')
-                   ->fields('u', array('fid', 'description', 'list', 'weight'))
-                   ->condition('vid', $revision_id)
-                   ->orderBy('weight')
-                   ->execute();
-      foreach ($result as $upload_row) {
-        $row->upload[] = $upload_row->fid;
-        $row->{'upload:description'}[] = $upload_row->description;
-        $row->{'upload:list'}[] = $upload_row->list;
-        $row->{'upload:weight'}[] = $upload_row->weight;
+      if (Database::getConnection('default',
+                                  $this->arguments['source_connection'])
+            ->schema()->tableExists('upload')) {
+        $result =
+          Database::getConnection('default', $this->arguments['source_connection'])
+                     ->select('upload', 'u')
+                     ->fields('u', array('fid', 'description', 'list', 'weight'))
+                     ->condition('vid', $revision_id)
+                     ->orderBy('weight')
+                     ->execute();
+        foreach ($result as $upload_row) {
+          $row->upload[] = $upload_row->fid;
+          $row->{'upload:description'}[] = $upload_row->description;
+          $row->{'upload:list'}[] = $upload_row->list;
+          $row->{'upload:weight'}[] = $upload_row->weight;
+        }
       }
     }
   }

@@ -46,7 +46,7 @@ class DrupalComment7Migration extends DrupalCommentMigration {
                'mail', 'homepage', 'language'));
     $query->join('node', 'n', 'c.nid = n.nid');
     $query->condition('n.type', $this->sourceType)
-          ->orderBy('changed');
+          ->orderBy('c.changed');
 
     return $query;
   }

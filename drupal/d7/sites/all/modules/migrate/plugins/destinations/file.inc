@@ -86,8 +86,7 @@ abstract class MigrateFileBase implements MigrateFileInterface {
    */
   static public function fields() {
     return array(
-      'preserve_files' => t('Option: <a href="@doc">Boolean indicating ' .
-          'whether files should be preserved or deleted on rollback</a>',
+      'preserve_files' => t('Option: <a href="@doc">Boolean indicating whether files should be preserved or deleted on rollback</a>',
         array('@doc' => 'http://drupal.org/node/1540106#preserve_files')),
 
     );
@@ -273,13 +272,10 @@ abstract class MigrateFile extends MigrateFileBase {
     // Our own file_replace behavior - if the file exists, use it without
     // replacing it
     if ($this->fileReplace == self::FILE_EXISTS_REUSE) {
-      // See if we this file already (we'll reuse a file entity if it exists).
+      // See if we this file already (we'll reuse and resave a file entity if it exists).
       if (file_exists($destination)) {
         $file = $this->createFileEntity($destination, $owner);
-        // File entity didn't already exist, create it
-        if (empty($file->fid)) {
-          $file = file_save($file);
-        }
+        $file = file_save($file);
         $this->markForPreservation($file->fid);
         return $file;
       }
@@ -288,7 +284,8 @@ abstract class MigrateFile extends MigrateFileBase {
     }
 
     // Prepare the destination directory.
-    if (!file_prepare_directory(drupal_dirname($destination),
+    $destdir = drupal_dirname($destination);
+    if (!file_prepare_directory($destdir,
                                 FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS)) {
       $migration->saveMessage(t('Could not create destination directory for !dest',
                               array('!dest' => $destination)));
@@ -298,8 +295,7 @@ abstract class MigrateFile extends MigrateFileBase {
     // Determine whether we can perform this operation based on overwrite rules.
     $destination = file_destination($destination, $this->fileReplace);
     if ($destination === FALSE) {
-      $migration->saveMessage(t('The file could not be copied because ' .
-        'file %dest already exists in the destination directory.',
+      $migration->saveMessage(t('The file could not be copied because file %dest already exists in the destination directory.',
         array('%dest' => $destination)));
       return FALSE;
     }
@@ -374,8 +370,7 @@ class MigrateFileUri extends MigrateFile {
       array(
         'source_dir' => t('Subfield: <a href="@doc">Path to source file.</a>',
           array('@doc' => 'http://drupal.org/node/1540106#source_dir')),
-        'urlencode' => t('Option: <a href="@doc">Encode all segments of the ' .
-            'incoming path (defaults to TRUE).</a>',
+        'urlencode' => t('Option: <a href="@doc">Encode all segments of the incoming path (defaults to TRUE).</a>',
           array('@doc' => 'http://drupal.org/node/1540106#urlencode')),
       );
   }
@@ -396,8 +391,7 @@ class MigrateFileUri extends MigrateFile {
     }
     if (!@copy($this->sourcePath, $destination)) {
       $migration = Migration::currentMigration();
-      $migration->saveMessage(t('The specified file %file could not be copied to ' .
-              '%destination.',
+      $migration->saveMessage(t('The specified file %file could not be copied to %destination.',
               array('%file' => $this->sourcePath, '%destination' => $destination)));
       return FALSE;
     }

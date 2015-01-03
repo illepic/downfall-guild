@@ -60,7 +60,10 @@ class MigratePollEntityHandler extends MigrateDestinationHandler {
     $this->registerTypes(array('node'));
   }
 
-  public function fields($entity_type, $bundle) {
+  /**
+   * Implementation of MigrateDestinationHandler::fields().
+   */
+  public function fields($entity_type, $bundle, $migration = NULL) {
     if ($bundle == 'poll') {
       $fields = array(
         'active' => t('Active status'),

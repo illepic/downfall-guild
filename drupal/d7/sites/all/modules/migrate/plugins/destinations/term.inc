@@ -205,7 +205,13 @@ class MigrateDestinationTerm extends MigrateDestinationEntity {
       if (empty($term->parent)) {
         $term->parent = array(0);
       }
-      if (is_array($term->parent) && isset($term->parent['arguments'])) {
+      elseif (!is_array($term->parent)) {
+        // Convert to an array for comparison in findMatchingTerm().
+        // Note: taxonomy_term_save() also normalizes to an array.
+        $term->parent = array($term->parent);
+      }
+
+      if (isset($term->parent['arguments'])) {
         // Unset arguments here to avoid duplicate entries in the
         // term_hierarchy table.
         unset($term->parent['arguments']);
@@ -213,7 +219,14 @@ class MigrateDestinationTerm extends MigrateDestinationEntity {
       if (!isset($term->format)) {
         $term->format = $this->textFormat;
       }
+      if (!isset($term->language)) {
+        $term->language = $this->language;
+      }
       $this->prepare($term, $row);
+
+      if (empty($term->name)) {
+        throw new MigrateException(t('Taxonomy term name is required.'));
+      }
 
       if (!$this->allowDuplicateTerms && $existing_term = $this->findMatchingTerm($term)) {
         foreach ($existing_term as $field => $value) {
@@ -243,6 +256,9 @@ class MigrateDestinationTerm extends MigrateDestinationEntity {
     else {
       $updating = FALSE;
     }
+
+    // Validate field data prior to saving.
+    field_attach_validate('taxonomy_term', $term);
 
     migrate_instrument_start('taxonomy_term_save');
     $status = taxonomy_term_save($term);

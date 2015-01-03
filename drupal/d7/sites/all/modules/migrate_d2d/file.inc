@@ -71,7 +71,7 @@ abstract class DrupalFileMigration extends DrupalMigration {
     $this->addFieldmapping('preserve_files')
           ->defaultValue(TRUE);
 
-    if (!empty($arguments['default_uid'])) {
+    if (isset($arguments['default_uid'])) {
       $default_uid = $arguments['default_uid'];
     }
     else {
@@ -86,6 +86,6 @@ abstract class DrupalFileMigration extends DrupalMigration {
       $this->addFieldMapping('uid')
            ->defaultValue($default_uid);
     }
-    $this->addUnmigratedSources(array('filename', 'filemime', 'filesize'));
+    $this->addUnmigratedSources(array('filename', 'filemime', 'filesize', 'urlencode'));
   }
 }

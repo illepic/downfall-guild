@@ -40,6 +40,7 @@ function migrate_migrations($reset = NULL) {
   // make sure any dynamic migrations defined in hook_migrate_api() get registered.
   migrate_get_module_apis(TRUE);
 
+  $dependencies_list = array();
   $dependent_migrations = array();
   $required_migrations = array();
 
@@ -51,15 +52,18 @@ function migrate_migrations($reset = NULL) {
       $reflect = new ReflectionClass($row->class_name);
       if (!$reflect->isAbstract() && $reflect->isSubclassOf('MigrationBase')) {
         $migration = MigrationBase::getInstance($row->machine_name);
-        $dependencies = $migration->getDependencies();
-        if (count($dependencies) > 0) {
-          // Set classes with dependencies aside for reordering
-          $dependent_migrations[$row->machine_name] = $migration;
-          $required_migrations += $dependencies;
-        }
-        else {
-          // No dependencies, just add
-          $migrations[$row->machine_name] = $migration;
+        if ($migration) {
+          $dependencies = $migration->getDependencies();
+          $dependencies_list[$row->machine_name] = $dependencies;
+          if (count($dependencies) > 0) {
+            // Set classes with dependencies aside for reordering
+            $dependent_migrations[$row->machine_name] = $migration;
+            $required_migrations += $dependencies;
+          }
+          else {
+            // No dependencies, just add
+            $migrations[$row->machine_name] = $migration;
+          }
         }
       }
       else {
@@ -73,42 +77,10 @@ function migrate_migrations($reset = NULL) {
     }
   }
 
-  // Scan modules with dependencies - we'll take 20 passes at it before
-  // giving up
-  $iterations = 0;
-  while (count($dependent_migrations) > 0) {
-    if ($iterations++ > 20) {
-      $migration_names = implode(',', array_keys($dependent_migrations));
-      throw new MigrateException(t('Failure to sort migration list - most likely due ' .
-            'to circular dependencies involving !migration_names',
-      array('!migration_names' => $migration_names)));
-    }
-    foreach ($dependent_migrations as $name => $migration) {
-      $ready = TRUE;
-      // Scan all the dependencies for this class and make sure they're all
-      // in the final list
-      foreach ($migration->getDependencies() as $dependency) {
-        try {
-          // Make sure the referenced migration actually exists.
-          $required_migration = MigrationBase::getInstance($dependency);
-          // If the migration exists, but we haven't seen it yet, we need to
-          // wait for it.
-          if (!isset($migrations[$dependency])) {
-            $ready = FALSE;
-            break;
-          }
-        }
-        catch (MigrateException $e) {
-          // The referenced migration doesn't exist, let them know. We will
-          // continue checking other dependencies for the current migration.
-          MigrationBase::displayMessage($e->getMessage());
-        }
-      }
-      if ($ready) {
-        // Yes they are! Move this class to the final list
-        $migrations[$name] = $migration;
-        unset($dependent_migrations[$name]);
-      }
+  $ordered_migrations = migrate_order_dependencies($dependencies_list);
+  foreach ($ordered_migrations as $name) {
+    if (!isset($migrations[$name])) {
+      $migrations[$name] = $dependent_migrations[$name];
     }
   }
 
@@ -368,6 +340,47 @@ function migrate_static_registration($machine_names = array()) {
     }
 
   }
+}
+
+/**
+ * Do a topological sort on our dependencies graph.
+ */
+function migrate_order_dependencies($dependencies) {
+  $visited = array();
+  $list = array();
+
+  foreach (array_keys($dependencies) as $name) {
+    $visited[$name] = FALSE;
+  }
+
+  foreach (array_keys($dependencies) as $name) {
+    migrate_visit_dependent($dependencies, $name, $list, $visited);
+  }
+
+  return $list;
+}
+
+/**
+ * Depth-first search for independent migrations.
+ */
+function migrate_visit_dependent($dependencies, $name, &$list, &$visited) {
+  if ($visited[$name]) {
+    if ($list[$name]) {
+      return;
+    }
+    else {
+      throw new MigrateException(t('Failure to sort migration list due to circular dependencies involving %name.', array('%name' => $name)));
+    }
+  }
+
+  $visited[$name] = TRUE;
+  if (isset($dependencies[$name])) {
+    foreach ($dependencies[$name] as $dependent) {
+      migrate_visit_dependent($dependencies, $dependent, $list, $visited);
+    }
+  }
+
+  $list[$name] = $name;
 }
 
 /**

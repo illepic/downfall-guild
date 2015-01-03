@@ -50,6 +50,7 @@ class DrupalVersion7 extends DrupalVersion {
                     ->select('url_alias', 'ua')
                     ->fields('ua', array('alias'))
                     ->condition('source', $source)
+                    ->orderBy('pid', 'DESC')
                     ->execute()
                     ->fetchField();
     }
@@ -139,6 +140,7 @@ class DrupalVersion7 extends DrupalVersion {
         }
       }
     }
+    $columns[$field_name . ':language'] = 'language';
     return $columns;
   }
 

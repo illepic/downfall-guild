@@ -44,11 +44,26 @@ abstract class MigrateMap implements Iterator {
   protected $sourceKeyMap, $destinationKeyMap;
 
   /**
+   * Get the source key map.
+   */
+  public function getSourceKeyMap() {
+    return $this->sourceKeyMap;
+  }
+
+  /**
    * Boolean determining whether to track last_imported times in map tables
    *
    * @var boolean
    */
   protected $trackLastImported = FALSE;
+  public function getTrackLastImported() {
+    return $this->trackLastImported;
+  }
+  public function setTrackLastImported($trackLastImported) {
+    if (is_bool($trackLastImported)) {
+      $this->trackLastImported = $trackLastImported;
+    }
+  }
 
   /**
    * Save a mapping from the key values in the source row to the destination

@@ -217,6 +217,7 @@ function migrate_uninstall() {
   // Remove variables
   variable_del('migrate_disable_autoregistration');
   variable_del('migrate_disabled_handlers');
+  variable_del('migrate_deprecation_warnings');
 }
 
 /**
@@ -376,8 +377,7 @@ function migrate_update_7008() {
   // Updates can be run when the module is disabled, which would mean the
   // call to migrate_migrations() will fail. Just bail in that case...
   if (!module_exists('migrate')) {
-    throw new DrupalUpdateException(t('This update cannot be run while the Migrate ' .
-      'module is disabled - you must enable Migrate to run this update.'));
+    throw new DrupalUpdateException(t('This update cannot be run while the Migrate module is disabled - you must enable Migrate to run this update.'));
   }
   $ret = '';
   foreach (migrate_migrations() as $migration) {

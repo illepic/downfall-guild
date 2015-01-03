@@ -33,11 +33,19 @@ class MigrateListXML extends MigrateList {
   protected $listUrl;
 
   /**
+   * An array of namespaces to explicitly register before Xpath queries.
+   *
+   * @var array
+   */
+  protected $namespaces;
+
+  /**
    * {@inheritdoc}
    */
-  public function __construct($list_url) {
+  public function __construct($list_url, array $namespaces = array()) {
     parent::__construct();
     $this->listUrl = $list_url;
+    $this->namespaces = $namespaces;
     // Suppress errors during parsing, so we can pick them up after.
     libxml_use_internal_errors(TRUE);
   }
@@ -62,6 +70,7 @@ class MigrateListXML extends MigrateList {
     $xml = simplexml_load_file($this->listUrl);
     migrate_instrument_stop("Retrieve $this->listUrl");
     if ($xml !== FALSE) {
+      $this->registerNamespaces($xml);
       return $this->getIDsFromXML($xml);
     }
     else {
@@ -95,6 +104,15 @@ class MigrateListXML extends MigrateList {
     foreach ($xml as $element) {
       $ids[] = (string) $element;
     }
+    // Additionally, if there are any namespaces registered, try to parse
+    // elements with namespaces as well.
+    if ($namespaces = $xml->getNamespaces()) {
+      foreach ($namespaces as $prefix => $url) {
+        foreach ($xml->children($url) as $element) {
+          $ids[] = (string) $element;
+        }
+      }
+    }
     return array_unique($ids);
   }
 
@@ -108,9 +126,29 @@ class MigrateListXML extends MigrateList {
    */
   public function computeCount() {
     $xml = simplexml_load_file($this->listUrl);
+    $this->registerNamespaces($xml);
     // Number of sourceid elements beneath the top-level element.
     $count = count($xml);
+    // Additionally, if there are any namespaces registered, try to count
+    // elements with namespaces as well.
+    if ($namespaces = $xml->getNamespaces()) {
+      foreach ($namespaces as $prefix => $url) {
+        $count += count($xml->children($url));
+      }
+    }
     return $count;
+  }
+
+  /**
+   * Explicitly register namespaces on an XML element.
+   *
+   * @param SimpleXMLElement $xml
+   *   A SimpleXMLElement to register the namespaces on.
+   */
+  protected function registerNamespaces(SimpleXMLElement &$xml) {
+    foreach ($this->namespaces as $prefix => $namespace) {
+      $xml->registerXPathNamespace($prefix, $namespace);
+    }
   }
 }
 
@@ -128,13 +166,33 @@ class MigrateItemXML extends MigrateItem {
   protected $itemUrl;
 
   /**
+   * An array of namespaces to explicitly register before Xpath queries.
+   *
+   * @var array
+   */
+  protected $namespaces;
+
+  /**
    * {@inheritdoc}
    */
-  public function __construct($item_url) {
+  public function __construct($item_url, array $namespaces = array()) {
     parent::__construct();
     $this->itemUrl = $item_url;
+    $this->namespaces = $namespaces;
     // Suppress errors during parsing, so we can pick them up after.
     libxml_use_internal_errors(TRUE);
+  }
+
+  /**
+   * Explicitly register namespaces on an XML element.
+   *
+   * @param SimpleXMLElement $xml
+   *   A SimpleXMLElement to register the namespaces on.
+   */
+  protected function registerNamespaces(SimpleXMLElement &$xml) {
+    foreach ($this->namespaces as $prefix => $namespace) {
+      $xml->registerXPathNamespace($prefix, $namespace);
+    }
   }
 
   /**
@@ -155,6 +213,7 @@ class MigrateItemXML extends MigrateItem {
     // Get the XML object at the specified URL.
     $xml = $this->loadXmlUrl($item_url);
     if ($xml !== FALSE) {
+      $this->registerNamespaces($xml);
       $return = new stdclass();
       $return->xml = $xml;
       return $return;
@@ -375,6 +434,13 @@ class MigrateItemsXML extends MigrateItems {
   protected $currentUrl;
 
   /**
+   * An array of namespaces to explicitly register before Xpath queries.
+   *
+   * @var array
+   */
+  protected $namespaces;
+
+  /**
    * Stores the loaded XML document from currentUrl.
    *
    * @var SimpleXMLElement
@@ -433,7 +499,8 @@ class MigrateItemsXML extends MigrateItems {
   /**
    * {@inheritdoc}
    */
-  public function __construct($urls, $item_xpath = 'item', $item_id_xpath = 'id') {
+  public function __construct($urls, $item_xpath = 'item', $item_id_xpath = 'id',
+                              array $namespaces = array()) {
     parent::__construct();
     if (!is_array($urls)) {
       $urls = array($urls);
@@ -441,9 +508,22 @@ class MigrateItemsXML extends MigrateItems {
     $this->urls = $urls;
     $this->itemXpath = $item_xpath;
     $this->itemIDXpath = $item_id_xpath;
+    $this->namespaces = $namespaces;
 
     // Suppress errors during parsing, so we can pick them up after.
     libxml_use_internal_errors(TRUE);
+  }
+
+  /**
+   * Explicitly register namespaces on an XML element.
+   *
+   * @param SimpleXMLElement $xml
+   *   A SimpleXMLElement to register the namespaces on.
+   */
+  protected function registerNamespaces(SimpleXMLElement &$xml) {
+    foreach ($this->namespaces as $prefix => $namespace) {
+      $xml->registerXPathNamespace($prefix, $namespace);
+    }
   }
 
   /**
@@ -470,7 +550,7 @@ class MigrateItemsXML extends MigrateItems {
   public function &xml() {
     if (!empty($this->currentUrl)) {
       $this->currentXml = simplexml_load_file($this->currentUrl);
-      if (!$this->currentXml) {
+      if ($this->currentXml === FALSE) {
         Migration::displayMessage(t(
           'Loading of !currentUrl failed:',
           array('!currentUrl' => $this->currentUrl)
@@ -478,6 +558,9 @@ class MigrateItemsXML extends MigrateItems {
         foreach (libxml_get_errors() as $error) {
           Migration::displayMessage(self::parseLibXMLError($error));
         }
+      }
+      else {
+        $this->registerNamespaces($this->currentXml);
       }
     }
     return $this->currentXml;
@@ -576,6 +659,11 @@ class MigrateItemsXML extends MigrateItems {
     $ids = array();
     if ($result) {
       foreach ($result as $element) {
+        if (!isset($element)) {
+          continue;
+        }
+        // Namespaces must be reapplied after xpath().
+        $this->registerNamespaces($element);
         $id = $this->getItemID($element);
         if (!is_null($id)) {
           $ids[] = (string) $id;
@@ -646,6 +734,11 @@ class MigrateItemsXML extends MigrateItems {
 
     if ($result) {
       foreach ($result as $item_xml) {
+        if (!isset($item_xml)) {
+          continue;
+        }
+        // Namespaces must be reapplied after xpath().
+        $this->registerNamespaces($item_xml);
         $id = $this->getItemID($item_xml);
         $item = new stdclass();
         $item->xml = $item_xml;
@@ -685,7 +778,7 @@ class MigrateItemsXML extends MigrateItems {
    */
   protected function getElementValue($item_xml, $xpath) {
     $value = NULL;
-    if ($item_xml) {
+    if ($item_xml->asXML()) {
       $result = $item_xml->xpath($xpath);
       if ($result) {
         $value = (string) $result[0];
@@ -715,6 +808,10 @@ class MigrateItemsXML extends MigrateItems {
     }
     else {
       // Otherwise find the right url and get the items from.
+      if ($this->idsMap === NULL) {
+        // Populate the map.
+        $this->getIdList();
+      }
       foreach ($this->idsMap as $url => $ids) {
         if (in_array($id, $ids)) {
           $this->currentItems = NULL;
@@ -894,17 +991,19 @@ class MigrateXMLReader implements Iterator {
   public function rewind() {
     // (Re)open the provided URL.
     $this->reader->close();
-    $status = $this->reader->open($this->url);
-    if (!$status) {
-      Migration::displayMessage(t('Could not open XML file !url',
-        array('!url' => $this->url)));
-    }
+    $status = $this->reader->open($this->url, NULL, LIBXML_NOWARNING);
 
     // Reset our path tracker.
     $this->currentPath = array();
 
-    // Load the first matching element and its ID.
-    $this->next();
+    if ($status) {
+      // Load the first matching element and its ID.
+      $this->next();
+    }
+    else {
+      Migration::displayMessage(t('Could not open XML file !url',
+                                array('!url' => $this->url)));
+    }
   }
 
   /**
@@ -1006,7 +1105,7 @@ class MigrateXMLReader implements Iterator {
    *   Indicates if current element is valid
    */
   public function valid() {
-    return !empty($this->currentElement);
+    return $this->currentElement instanceof SimpleXMLElement;
   }
 }
 
@@ -1043,6 +1142,13 @@ class MigrateSourceXML extends MigrateSource {
    * @var int
    */
   protected $activeUrl = NULL;
+
+  /**
+   * An array of namespaces to explicitly register before Xpath queries.
+   *
+   * @var array
+   */
+  protected $namespaces;
 
   /**
    * Store the query string used to recognize elements being iterated
@@ -1097,7 +1203,7 @@ class MigrateSourceXML extends MigrateSource {
    *     MigrateXMLReader).
    */
   public function __construct($urls, $element_query, $id_query, array $fields = array(),
-                              array $options = array()) {
+                              array $options = array(), array $namespaces = array()) {
     parent::__construct($options);
     if (empty($options['reader_class'])) {
       $reader_class = 'MigrateXMLReader';
@@ -1116,6 +1222,19 @@ class MigrateSourceXML extends MigrateSource {
     $this->idQuery = $id_query;
     $this->readerClass = $reader_class;
     $this->fields = $fields;
+    $this->namespaces = $namespaces;
+  }
+
+  /**
+   * Explicitly register namespaces on an XML element.
+   *
+   * @param SimpleXMLElement $xml
+   *   A SimpleXMLElement to register the namespaces on.
+   */
+  protected function registerNamespaces(SimpleXMLElement &$xml) {
+    foreach ($this->namespaces as $prefix => $namespace) {
+      $xml->registerXPathNamespace($prefix, $namespace);
+    }
   }
 
   /**
@@ -1209,6 +1328,7 @@ class MigrateSourceXML extends MigrateSource {
       $row = new stdClass();
       $row->$key_name = $this->reader->key();
       $row->xml = $this->reader->current();
+      $this->registerNamespaces($row->xml);
     }
     else {
       // The current source is at the end, try to load the next source.
@@ -1216,6 +1336,7 @@ class MigrateSourceXML extends MigrateSource {
         $row = new stdClass();
         $row->$key_name = $this->reader->key();
         $row->xml = $this->reader->current();
+        $this->registerNamespaces($row->xml);
       }
     }
 
