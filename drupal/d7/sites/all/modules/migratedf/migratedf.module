@@ -529,6 +529,11 @@ function migratedf_register_migrations() {
 function migratedf_migrate_api() {
   $api = array(
     'api' => 2,
+    'groups' => array(
+      'df_group' => array(
+        'title' => t('Downfall Group'),
+      ),
+    ),
   );
   return $api;
 }

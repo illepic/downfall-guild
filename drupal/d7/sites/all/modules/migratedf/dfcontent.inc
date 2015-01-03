@@ -7,6 +7,10 @@
 class DownfallUserMigration extends DrupalUser6Migration {
   public function __construct(array $arguments) {
     parent::__construct($arguments);
+
+    // test
+    // $query = parent::query();
+    // dpq($query);
   }
 }
 
@@ -52,6 +56,7 @@ trait DownfallHelper {
    * with a media JSON reference.
    *
    * @param array $matches
+   * @return string $result
    */
   public function replaceCallback(array $matches) {
     $src_matches = array(); // nid within the string
