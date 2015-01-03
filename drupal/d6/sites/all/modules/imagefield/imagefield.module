@@ -73,7 +73,6 @@ function imagefield_elements() {
   $filefield_elements = module_invoke('filefield', 'elements');
   $elements['imagefield_widget'] = $filefield_elements['filefield_widget'];
   $elements['imagefield_widget']['#process'][] = 'imagefield_widget_process';
-  $elements['imagefield_widget']['#element_validate'][] = 'imagefield_widget_validate';
 
   // ImageField needs a separate value callback to save its alt and title texts.
   $elements['imagefield_widget']['#value_callback'] = 'imagefield_widget_value';

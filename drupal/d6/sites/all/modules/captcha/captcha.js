@@ -1,4 +1,3 @@
-// $Id: captcha.js,v 1.2.2.3 2011/02/06 20:45:12 soxofaan Exp $
 
 // Javascript behaviors for general CAPTCHA functionality.
 Drupal.behaviors.captcha = function (context) {

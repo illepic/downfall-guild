@@ -41,8 +41,8 @@
  *
  * For information on the format of the structured arrays used to define forms,
  * and more detailed explanations of the Form API workflow, see the
- * @link http://api.drupal.org/api/file/developer/topics/forms_api_reference.html/6 reference @endlink
- * and the @link http://drupal.org/node/204270 Form API guide. @endlink
+ * @link forms_api_reference.html reference @endlink and the
+ * @link http://drupal.org/node/204270 Form API guide. @endlink
  */
 
 /**
@@ -101,7 +101,7 @@ function drupal_get_form($form_id) {
       array_unshift($args_temp, $form_id);
 
       $form = call_user_func_array('drupal_retrieve_form', $args_temp);
-      $form_build_id = 'form-'. md5(uniqid(mt_rand(), TRUE));
+      $form_build_id = 'form-'. drupal_random_key();
       $form['#build_id'] = $form_build_id;
       drupal_prepare_form($form_id, $form, $form_state);
       // Store a copy of the unprocessed form for caching and indicate that it
@@ -196,7 +196,7 @@ function drupal_rebuild_form($form_id, &$form_state, $args, $form_build_id = NUL
 
   if (!isset($form_build_id)) {
     // We need a new build_id for the new version of the form.
-    $form_build_id = 'form-'. md5(uniqid(mt_rand(), TRUE));
+    $form_build_id = 'form-'. drupal_random_key();
   }
   $form['#build_id'] = $form_build_id;
   drupal_prepare_form($form_id, $form, $form_state);
@@ -226,9 +226,24 @@ function form_set_cache($form_build_id, $form, $form_state) {
   if ($user->uid) {
     $form['#cache_token'] = drupal_get_token();
   }
+  elseif (variable_get('cache', CACHE_DISABLED) != CACHE_DISABLED && $_SERVER['REQUEST_METHOD'] == 'GET' && page_get_cache(TRUE)) {
+    $form['#immutable'] = TRUE;
+  }
+  $form_build_id_old = $form_build_id;
+  $form_build_id = form_build_id_map($form_build_id_old);
   cache_set('form_'. $form_build_id, $form, 'cache_form', time() + $expire);
   if (!empty($form_state['storage'])) {
     cache_set('storage_'. $form_build_id, $form_state['storage'], 'cache_form', time() + $expire);
+  }
+
+  // If form_set_cache is called in the context of an ahah handler inform the
+  // client about the changed form build_id via the X-Drupal-Build-Id HTTP
+  // header.
+  if (!empty($_SERVER['HTTP_X_DRUPAL_ACCEPT_BUILD_ID']) &&
+    !empty($_POST['form_build_id']) &&
+    $_POST['form_build_id'] == $form_build_id_old &&
+    $form_build_id_old != $form_build_id) {
+    drupal_set_header('X-Drupal-Build-Id: ' . $form_build_id);
   }
 }
 
@@ -243,9 +258,33 @@ function form_get_cache($form_build_id, &$form_state) {
       if ($cached = cache_get('storage_'. $form_build_id, 'cache_form')) {
         $form_state['storage'] = $cached->data;
       }
+
+      // Generate a new #build_id if the cached form was rendered on a cacheable
+      // page.
+      if (!empty($form['#immutable'])) {
+        $form['#build_id'] = 'form-' . drupal_random_key();
+        $form['form_build_id']['#value'] = $form['#build_id'];
+        $form['form_build_id']['#id'] = $form['#build_id'];
+        unset($form['#immutable']);
+
+        form_build_id_map($form_build_id, $form['#build_id']);
+      }
       return $form;
     }
   }
+}
+
+/**
+ * Maintain a map of immutable form_build_ids to cloned form.
+ */
+function form_build_id_map($form_build_id, $new_build_id = NULL) {
+  static $build_id_map = array();
+
+  if (isset($new_build_id) && isset($form_build_id)) {
+    $build_id_map[$form_build_id] = $new_build_id;
+  }
+
+  return isset($build_id_map[$form_build_id]) ? $build_id_map[$form_build_id] : $form_build_id;
 }
 
 /**
@@ -302,9 +341,14 @@ function drupal_execute($form_id, &$form_state) {
 
   // Make sure $form_state is passed around by reference.
   $args[1] = &$form_state;
-  
+
   $form = call_user_func_array('drupal_retrieve_form', $args);
   $form['#post'] = $form_state['values'];
+
+  // Reset form validation.
+  $form_state['must_validate'] = TRUE;
+  form_set_error(NULL, '', TRUE);
+
   drupal_prepare_form($form_id, $form, $form_state);
   drupal_process_form($form_id, $form, $form_state);
 }
@@ -575,7 +619,7 @@ function drupal_prepare_form($form_id, &$form, &$form_state) {
 function drupal_validate_form($form_id, $form, &$form_state) {
   static $validated_forms = array();
 
-  if (isset($validated_forms[$form_id])) {
+  if (isset($validated_forms[$form_id]) && empty($form_state['must_validate'])) {
     return;
   }
 
@@ -585,6 +629,12 @@ function drupal_validate_form($form_id, $form, &$form_state) {
     if (!drupal_valid_token($form_state['values']['form_token'], $form['#token'])) {
       // Setting this error will cause the form to fail validation.
       form_set_error('form_token', t('Validation error, please try again. If this error persists, please contact the site administrator.'));
+
+      // Stop here and don't run any further validation handlers, because they
+      // could invoke non-safe operations which opens the door for CSRF
+      // vulnerabilities.
+      $validated_forms[$form_id] = TRUE;
+      return;
     }
   }
 
@@ -768,8 +818,8 @@ function form_execute_handlers($type, &$form, &$form_state) {
 
   foreach ($handlers as $function) {
     if (function_exists($function))  {
-      // Check to see if a previous _submit handler has set a batch, but 
-      // make sure we do not react to a batch that is already being processed 
+      // Check to see if a previous _submit handler has set a batch, but
+      // make sure we do not react to a batch that is already being processed
       // (for instance if a batch operation performs a drupal_execute()).
       if ($type == 'submit' && ($batch =& batch_get()) && !isset($batch['current_set'])) {
         // Some previous _submit handler has set a batch. We store the call
@@ -1434,7 +1484,7 @@ function form_select_options($element, $choices = NULL) {
   $options = '';
   foreach ($choices as $key => $choice) {
     if (is_array($choice)) {
-      $options .= '<optgroup label="'. $key .'">';
+      $options .= '<optgroup label="'. check_plain($key) .'">';
       $options .= form_select_options($element, $choice);
       $options .= '</optgroup>';
     }
@@ -1787,6 +1837,8 @@ function expand_radios($element) {
  *   drupal_add_js.
  */
 function form_expand_ahah($element) {
+  global $user;
+
   static $js_added = array();
   // Add a reasonable default event handler if none specified.
   if (isset($element['#ahah']['path']) && !isset($element['#ahah']['event'])) {
@@ -1833,11 +1885,16 @@ function form_expand_ahah($element) {
       'button'   => isset($element['#executes_submit_callback']) ? array($element['#name'] => $element['#value']) : FALSE,
     );
 
+    // If page caching is active, indicate that this form is immutable.
+    if (variable_get('cache', CACHE_DISABLED) != CACHE_DISABLED && !$user->uid && $_SERVER['REQUEST_METHOD'] == 'GET' && page_get_cache(TRUE)) {
+      $ahah_binding['immutable'] = TRUE;
+    }
+
     // Convert a simple #ahah[progress] type string into an array.
     if (is_string($ahah_binding['progress'])) {
       $ahah_binding['progress'] = array('type' => $ahah_binding['progress']);
     }
-    // Change progress path to a full url.
+    // Change progress path to a full URL.
     if (isset($ahah_binding['progress']['path'])) {
       $ahah_binding['progress']['url'] = url($ahah_binding['progress']['path']);
     }
@@ -2420,8 +2477,8 @@ function form_clean_id($id = NULL, $flush = FALSE) {
  *   - 'init_message': Message displayed while the processing is initialized.
  *     Defaults to t('Initializing.').
  *   - 'progress_message': Message displayed while processing the batch.
- *     Available placeholders are @current, @remaining, @total, @percentage,
- *     @estimate and @elapsed. Defaults to t('Completed @current of @total.').
+ *     Available placeholders are @current, @remaining, @total, and
+ *     @percentage. Defaults to t('Completed @current of @total.').
  *   - 'error_message': Message displayed if an error occurred while processing
  *     the batch. Defaults to t('An error has occurred.').
  *   - 'finished': Name of a function to be executed after the batch has
@@ -2437,7 +2494,7 @@ function form_clean_id($id = NULL, $flush = FALSE) {
  * clean code independence, ensuring that several batches submitted by
  * different parts of the code (core / contrib modules) can be processed
  * correctly while not interfering or having to cope with each other. Each
- * batch set gets to specify his own UI messages, operates on its own set
+ * batch set gets to specify its own UI messages, operates on its own set
  * of operations and results, and triggers its own 'finished' callback.
  * Batch sets are processed sequentially, with the progress bar starting
  * fresh for every new set.

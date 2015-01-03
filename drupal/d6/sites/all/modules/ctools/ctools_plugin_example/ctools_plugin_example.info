@@ -7,9 +7,9 @@ dependencies[] = page_manager
 dependencies[] = advanced_help
 core = 6.x
 
-; Information added by drupal.org packaging script on 2010-10-29
-version = "6.x-1.8"
+; Information added by Drupal.org packaging script on 2014-02-12
+version = "6.x-1.11"
 core = "6.x"
 project = "ctools"
-datestamp = "1288393844"
+datestamp = "1392220726"
 

@@ -89,16 +89,25 @@ class backup_migrate_destination_db_mysql extends backup_migrate_destination_db 
     if ($file->open(TRUE)) {
       $file->write($this->_get_sql_file_header());
       $alltables = $this->_get_tables();
+      $allviews = $this->_get_views();
       foreach ($alltables as $table) {
         if (_backup_migrate_check_timeout()) {
           return FALSE;
         }
-        if ($table['Name'] && !isset($exclude[$table['Name']])) {
+        if ($table['Name'] && empty($exclude[$table['Name']])) {
           $file->write($this->_get_table_structure_sql($table));
           $lines++;
-          if (!in_array($table['Name'], $nodata)) {
+          if (empty($nodata[$table['Name']])) {
             $lines += $this->_dump_table_data_sql_to_file($file, $table);
           }
+        }
+      }
+      foreach ($allviews as $view) {
+        if (_backup_migrate_check_timeout()) {
+          return FALSE;
+        }
+        if ($view['Name'] && !isset($exclude[$view['Name']])) {
+          $file->write($this->_get_view_create_sql($view));
         }
       }
       $file->write($this->_get_sql_file_footer());
@@ -151,6 +160,17 @@ class backup_migrate_destination_db_mysql extends backup_migrate_destination_db 
   }
 
   /**
+   * Get a list of views in the database.
+   */
+  function _get_view_names() {
+    $out = array();
+    foreach ($this->_get_views() as $view) {
+      $out[$view['Name']] = $view['Name'];
+    }
+    return $out;
+  }
+
+  /**
    * Lock the list of given tables in the database.
    */
   function _lock_tables($tables) {
@@ -166,7 +186,7 @@ class backup_migrate_destination_db_mysql extends backup_migrate_destination_db 
   /**
    * Unlock all tables in the database.
    */
-  function _unlock_tables() {
+  function _unlock_tables($tables) {
     db_query('UNLOCK TABLES');
   }
 
@@ -178,7 +198,24 @@ class backup_migrate_destination_db_mysql extends backup_migrate_destination_db 
     // get auto_increment values and names of all tables
     $tables = db_query("show table status");
     while ($table = db_fetch_array($tables)) {
-      $out[$table['Name']] = $table;
+      if (!empty($table['Engine'])) {
+        $out[$table['Name']] = $table;
+      }
+    }
+    return $out;
+  }
+
+  /**
+   * Get a list of views in the db.
+   */
+  function _get_views() {
+    $out = array();
+    // get auto_increment values and names of all tables
+    $tables = db_query("show table status");
+    while ($table = db_fetch_array($tables)) {
+      if (empty($table['Engine'])) {
+        $out[$table['Name']] = $table;
+      }
     }
     return $out;
   }
@@ -200,6 +237,25 @@ class backup_migrate_destination_db_mysql extends backup_migrate_destination_db 
     return $out;
   }
   
+  /**
+   * Get the sql for the structure of the given table.
+   */
+  function _get_view_create_sql($view) {
+    $out = "";
+    // Switch SQL mode to get rid of "CREATE ALGORITHM..." what requires more permissions + troubles with the DEFINER user
+    $sql_mode = db_result(db_query("SELECT @@SESSION.sql_mode"));
+    db_query("SET sql_mode = 'ANSI'");
+    $result = db_query("SHOW CREATE VIEW `". $view['Name'] ."`");
+    db_query("SET SQL_mode = '%s'", $sql_mode);
+    if ($create = db_fetch_array($result)) {
+      $out .= "DROP VIEW IF EXISTS `". $view['Name'] ."`;\n";
+      $out .= "SET sql_mode = 'ANSI';\n";
+      $out .= strtr($create['Create View'], "\n", " ") . ";\n";
+      $out .= "SET sql_mode = '$sql_mode';\n";
+    }
+    return $out;
+  }
+
   /**
    *  Get the sql to insert the data for a given table
    */

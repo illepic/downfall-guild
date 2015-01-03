@@ -177,9 +177,12 @@ function revenue_sharing_basic_get_profile_client_id($uid) {
   $client_id = NULL;
 
   if ($uid) {
+    $user = user_load($uid);
     // Get the profile field for a certain user
     $profile_field = variable_get('revenue_sharing_basic_client_id_profile_field', REVENUE_SHARING_BASIC_CLIENT_ID_PROFILE_FIELD_DEFAULT);
-    $client_id = db_result(db_query('SELECT value FROM {profile_values} WHERE fid = %d AND uid = %d', $profile_field, $uid));
+    $profile_field = db_result(db_query('SELECT name FROM {profile_fields} WHERE fid = %d', $profile_field));
+    profile_load_profile($user);
+    $client_id = isset($user->{$profile_field}) ? $user->{$profile_field} : NULL;
   }
 
   return $client_id;

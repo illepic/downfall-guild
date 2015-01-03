@@ -1,7 +1,16 @@
 Date Module 6.x
 =================
 
-Version 6.2.8
+Version 6.2.x-dev
+=============
+
+- Issue #1289270 by pdrake: Fixed date arguments and filters do not work with relationships.
+- Issue #973924 by arlinsandbulte: Fixed jquery_ui() dependency not in .info file.
+- Issue #895760 by Reinette: Added RFC2447 option 'STATUS' to date_api_ical().inc.
+- Issue #1192020 by tim.plunkett: Fixed Date granularity is too fragile in date_field_all_day().
+- Issue #501416 by refman1073: Fixed Date validation incorrect for days > 31.
+
+Version 6.2.9
 =============
 
 - Issue #1005968 by jcmarco, dnotes: Added Ajax for date navigation attachment views.

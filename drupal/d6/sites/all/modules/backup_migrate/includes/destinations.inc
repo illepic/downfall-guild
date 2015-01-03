@@ -12,7 +12,12 @@ backup_migrate_include('crud');
  * Get the available destination types.
  */
 function backup_migrate_get_destination_types() {
-  return module_invoke_all('backup_migrate_destination_types');
+  $out = array();
+  foreach (module_implements('backup_migrate_destination_types') as $module) {
+    $fn = $module . '_backup_migrate_destination_types';
+    $out += $fn();
+  }
+  return $out;
 }
 
 /**
@@ -22,6 +27,17 @@ function backup_migrate_get_destination_types() {
  */
 function backup_migrate_backup_migrate_destination_types() {
   $out = array();
+  if (!module_exists('nodesquirrel')) {
+    $out += array(
+      'nodesquirrel' => array(
+        'description' => t('!link is the cloud backup service for Drupal built by the maintainer of Backup and Migrate.', array('!link' => l(t('NodeSquirrel'), 'http://nodesquirrel.com'))),
+        'file' => drupal_get_path('module', 'backup_migrate') .'/includes/destinations.nodesquirrel.inc',
+        'class' => 'backup_migrate_destination_nodesquirrel',
+        'type_name' => t('NodeSquirrel.com'),
+        'can_create' => TRUE,
+      ),
+    );
+  }
   if (variable_get('backup_migrate_allow_backup_to_file', TRUE)) {
     $out += array(
       'file' => array(
@@ -74,7 +90,7 @@ function backup_migrate_backup_migrate_destination_types() {
       'can_create' => TRUE,
     ),
     's3' => array(
-      'description' => t('Save the backup files to a bucket on your !link.', array('!link' => l(t('Amazon S3 account'), 'http://aws.amazon.com/s3/'))),
+      'description' => t('Save the backup files to a bucket on your <a href="@link">Amazon S3 account</a>.', array('@link' => url('http://aws.amazon.com/s3/'))),
       'file' => drupal_get_path('module', 'backup_migrate') .'/includes/destinations.s3.inc',
       'class' => 'backup_migrate_destination_s3',
       'type_name' => t('Amazon S3 Bucket'),
@@ -110,6 +126,11 @@ function backup_migrate_backup_migrate_destinations() {
     $out['download']  = backup_migrate_create_destination('browser_download');
   }
   $out['upload']    = backup_migrate_create_destination('browser_upload');
+
+  if ($secret_key = variable_get('nodesquirrel_secret_key', '')) {
+    $out['nodesquirrel'] = backup_migrate_create_destination('nodesquirrel', array('destination_id' => 'nodesquirrel'));
+    $out['nodesquirrel']->settings['secret_key'] = $secret_key;
+  }
 
   // Expose the configured databases as sources.
   backup_migrate_include('filters');
@@ -190,7 +211,9 @@ function backup_migrate_get_destination($id) {
  */
 function backup_migrate_create_destination($destination_type, $params = array()) {
   $params['type'] = $destination_type;
-  return backup_migrate_destination::create($params);
+  // Create a new dummy destination to call the create method on because the base item create is not static.
+  $destination = new backup_migrate_destination();
+  return $destination->create($params);
 }
 
 /**

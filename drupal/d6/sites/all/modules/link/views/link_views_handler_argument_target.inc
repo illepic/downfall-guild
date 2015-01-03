@@ -1,5 +1,4 @@
 <?php
-// $Id: link_views_handler_argument_target.inc,v 1.1.4.3 2010/06/14 15:59:35 jcfiala Exp $
 
 /**
  * @file

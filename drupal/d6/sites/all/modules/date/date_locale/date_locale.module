@@ -75,16 +75,18 @@ function date_locale_get_locale_date_format($languages) {
       // We have locale-specific date formats, so check for their types.  If
       // we're missing a type, use the default setting instead.
       foreach ($format_types as $type => $type_info) {
-        $format = $date_formats[$type];
+        if (isset($date_formats[$type])) {
+          $format = $date_formats[$type];
 
-        // If format exists for this language, use it.
-        if (!empty($format)) {
-          $formats['date_format_' . $type] = $format;
-        }
-        // Otherwise get default variable setting.  If this is not set, default
-        // to the short format.
-        else {
-          $formats['date_format_' . $type] = variable_get('date_format_' . $type, $short_default);
+          // If format exists for this language, use it.
+          if (!empty($format)) {
+            $formats['date_format_' . $type] = $format;
+          }
+          // Otherwise get default variable setting.  If this is not set, default
+          // to the short format.
+          else {
+            $formats['date_format_' . $type] = variable_get('date_format_' . $type, $short_default);
+          }
         }
       }
 

@@ -8,7 +8,7 @@ class ImageFieldTestCase extends FileFieldTestCase {
     // Views is included here just so that it doesn't whine when CCK tries to
     // clear the caches.
     $modules = array_merge(func_get_args(), array('content', 'filefield', 'imagefield', 'token', 'views'));
-    call_user_func_array(array($this, 'parent::setUp'), $modules);
+    call_user_func_array('parent::setUp', $modules);
   }
 
   /**

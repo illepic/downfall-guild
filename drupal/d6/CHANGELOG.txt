@@ -1,4 +1,41 @@
 
+Drupal 6.34, 2014-11-19
+----------------------
+- Fixed security issues (session hijacking). See SA-CORE-2014-006.
+
+Drupal 6.33, 2014-08-06
+----------------------
+- Fixed security issues (denial of service). See SA-CORE-2014-004.
+
+Drupal 6.32, 2014-07-16
+----------------------
+- Fixed security issues (multiple vulnerabilities). See SA-CORE-2014-003.
+
+Drupal 6.31, 2014-04-16
+----------------------
+- Fixed security issues (information disclosure). See SA-CORE-2014-002.
+
+Drupal 6.30, 2014-01-15
+----------------------
+- Fixed security issues (multiple vulnerabilities), see SA-CORE-2014-001.
+
+Drupal 6.29, 2013-11-20
+----------------------
+- Fixed security issues (multiple vulnerabilities), see SA-CORE-2013-003.
+
+Drupal 6.28, 2013-01-16
+----------------------
+- Fixed security issues (multiple vulnerabilities), see SA-CORE-2013-001.
+
+Drupal 6.27, 2012-12-19
+----------------------
+- Fixed security issues (multiple vulnerabilities), see SA-CORE-2012-004.
+
+Drupal 6.26, 2012-05-02
+----------------------
+- Fixed a small number of bugs.
+- Made code documentation improvements.
+
 Drupal 6.25, 2012-02-29
 ----------------------
 - Fixed regressions introduced in Drupal 6.24 only.

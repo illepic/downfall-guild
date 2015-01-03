@@ -56,7 +56,7 @@ function adsense_oldcode_block($op = 'list', $delta = 0, $edit = array()) {
           $title = $ad[0];
         }
         else {
-          $title = t('AdSense old code: unconfigured ') . $count;
+          $title = t('AdSense old code: unconfigured !d', array('!d' => $count + 1));
         }
         $block[$count]['info'] = $title;
         $block[$count]['cache'] = BLOCK_NO_CACHE;
@@ -134,7 +134,7 @@ function adsense_oldcode_block($op = 'list', $delta = 0, $edit = array()) {
     case 'view':
       if (_adsense_page_match()) {
         $ad = _adsense_oldcode_get_block_config($delta);
-        $block['content'] = ($ad) ? adsense_display(array('format' => $ad[1], 'group' => $ad[2], 'channel' => $ad[3])) : t('AdSense unconfigured block. <a href=!url>Click to configure.</a>', array('!url' => url('admin/build/block/configure/adsense_oldcode/'. $delta)));
+        $block['content'] = ($ad) ? adsense_display(array('title' => $ad[0], 'format' => $ad[1], 'group' => $ad[2], 'channel' => $ad[3])) : t('AdSense unconfigured block. <a href=!url>Click to configure.</a>', array('!url' => url('admin/build/block/configure/adsense_oldcode/'. $delta)));
         if (!empty($ad[4])) {
           $block['content'] = "<div style='text-align:${ad[4]}'>${block['content']}</div>";
         }
@@ -181,7 +181,7 @@ function _adsense_oldcode_get_ad($format, $client, $group = 1, $channel = 1) {
     $output = "";
   }
   elseif (variable_get('adsense_test_mode', ADSENSE_TEST_MODE_DEFAULT)) {
-      $output = _adsense_format_box("client = ${client}<br />format = ${format}<br />width = ${ad['width']}<br />height = ${ad['height']}", $ad['width'], $ad['height']);
+      $output = theme('adsense_placeholder', "client = ${client}<br />format = ${format}<br />width = ${ad['width']}<br />height = ${ad['height']}", $ad['width'], $ad['height']);
   }
   else {
     if (($group < 1) || ($group > ADSENSE_MAX_GROUPS)) {

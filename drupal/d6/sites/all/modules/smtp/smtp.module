@@ -1,5 +1,4 @@
 <?php
-// $Id: smtp.module,v 1.17.2.21 2010/08/04 17:52:04 franz Exp $
 
 /**
  * @file
@@ -216,7 +215,7 @@ function smtp_admin_settings() {
 
 
 /**
- * Validataion for the administrative settings form.
+ * Validation for the administrative settings form.
  *
  * @param form
  *   An associative array containing the structure of the form.
@@ -235,14 +234,86 @@ function smtp_admin_settings_validate($form, &$form_state) {
   if ($form_state['values']['smtp_from'] && !valid_email_address($form_state['values']['smtp_from'])) {
     form_set_error('smtp_from', t('The provided from e-mail address is not valid.'));
   }
+  // If username is set empty, we must set both username/password empty as
+  // as well.
+  if (empty($form_state['values']['smtp_username'])) {
+    $form_state['values']['smtp_password'] = '';
+  }
   // A little hack. When form is presentend, the password is not shown (Drupal way of doing).
-  // So, if user submits the form without changing the password, we mus prevent it from being reset.
-  if (empty($form_state['values']['smtp_password'])) {
+  // So, if user submits the form without changing the password, we must prevent it from being reset.
+  elseif (empty($form_state['values']['smtp_password'])) {
     unset($form_state['values']['smtp_password']);
   }
 }  //  End of smtp_admin_settings_validate().
 
 
+
+/**
+ * Check for the required 3rd party libaries
+ *
+ * @param phase
+ *   The phase in which hook_requirements is run. Only 'runtime' is called.
+ *
+ * @see hook_requirements()
+ */
+function smtp_requirements($phase) {
+  $requirements = array();
+
+  if ($phase == 'runtime') {
+    drupal_load('module', 'smtp');
+
+    if (!smtp_load_library()) {
+      $requirements['smtp_phpmailer'] = array(
+        'title' => t('SMTP'),
+        'value' => t('PHP Mailer missing'),
+        'severity' => REQUIREMENT_ERROR,
+        'description' => t('SMTP.module requires the <a href="http://phpmailer.codeworxtech.com/">PHP Mailer</a> class to properly send Mail. Please download the 2.0 version (if using PHP4) or the 5.0 version (if using PHP5) and place the phpmailer folder in the sites/all/libraries folder and rename it to "phpmailer".'),
+      );
+    }
+    else {
+      $requirements['smtp_phpmailer'] = array(
+        'title' => t('SMTP'),
+        'value' => t('PHP Mailer Installed'),
+        'severity' => REQUIREMENT_OK,
+      );
+    }
+  }
+  return $requirements;
+}
+
+
+
+/**
+ * Load the PHPMailer library.
+ *
+ * @return
+ *   TRUE if the PHPMailer library is loaded, FALSE otherwise.
+ */
+function smtp_load_library() {
+  // Include the PHPMailer class (which includes the SMTP class).
+  if (!class_exists('PHPMailer')) {
+    // First try using the libraries module.
+    if (module_exists('libraries')) {
+       $smtp_phpmailer_library = module_invoke('libraries', 'get_path', 'phpmailer') . '/class.phpmailer.php';
+     }
+     //If you aren't using libraries, then check a couple other places.
+     else {
+       //Look in the default libraries location
+       $smtp_phpmailer_library = 'sites/all/libraries/phpmailer/class.phpmailer.php';
+       //If the default libraries doesn't exist, then try the old module location.
+       if (!file_exists($smtp_phpmailer_library)) {
+         $smtp_phpmailer_library = drupal_get_path('module', 'smtp') .'/phpmailer/class.phpmailer.php';
+       }
+     }
+     //Now include whatever you found.
+     if (file_exists($smtp_phpmailer_library)) {
+        require_once($smtp_phpmailer_library);
+     }
+  }
+ 
+  // Tell the caller if PHPMailer class exists.
+  return class_exists('PHPMailer');
+}
 
 /**
  * Sends out the e-mail.
@@ -262,8 +333,10 @@ function smtp_drupal_mail_wrapper($message) {
   $body     = $message['body'];
   $headers  = $message['headers'];
 
-  // Include the PHPMailer class (which includes the SMTP class).
-  require_once(drupal_get_path('module', 'smtp') .'/phpmailer/class.phpmailer.php');
+  if (!smtp_load_library()) {
+    watchdog('smtp', 'Could not locate PHPMailer library.', array(), WATCHDOG_ERROR);
+    return FALSE;
+  }
 
   // Create a new PHPMailer object.
   $mail = new PHPMailer();
@@ -288,10 +361,8 @@ function smtp_drupal_mail_wrapper($message) {
 
 
   // Set the from name and e-mail address.
-  if (variable_get('smtp_fromname', '') != '') {
-    $from_name = variable_get('smtp_fromname', '');
-  }
-  else {
+  $from_name = variable_get('smtp_fromname', '');
+  if($from_name == '') {
     // If value is not defined in settings, use site_name.
     $from_name = variable_get('site_name', '');
   }
@@ -315,9 +386,9 @@ function smtp_drupal_mail_wrapper($message) {
 
   if ($from == NULL || $from == '') {
     // If from e-mail address is blank, use smtp_from config option.
-    if ($from = variable_get('smtp_from', '') == '') {
-      // If smtp_from config option is blank, use site_email.
-      if ($from = variable_get('site_email', '') == '') {
+    if (($from = variable_get('smtp_from', '')) == '') {
+      // If smtp_from config option is blank, use site_mail.
+      if (($from = variable_get('site_mail', '')) == '') {
         drupal_set_message(t('There is no submitted from address.'), 'error');
         watchdog('smtp', 'There is no submitted from address.', array(), WATCHDOG_ERROR);
         return FALSE;
@@ -330,15 +401,15 @@ function smtp_drupal_mail_wrapper($message) {
       $from = variable_get('smtp_from', '');
     }
     else {
-      // If smtp_from config option is blank, use site_email.
-      $from = variable_get('site_email', '');
+      // If smtp_from config option is blank, use site_mail.
+      $from = variable_get('site_mail', '');
     }
   }
  */
   if (preg_match('/^"?.*"?\s*<.*>$/', $from)) {
     // . == Matches any single character except line break characters \r and \n.
     // * == Repeats the previous item zero or more times.
-    $from_name = preg_replace('/"?([^("\s)]*)"?.*$/', '$1', $from); // It gives: Name
+    $from_name = preg_replace('/("([^"]*)")|(([^("\s)]*))\s*\<.*\>$/', '$2$4', $from); // It gives: Name
     $from      = preg_replace("/(.*)\<(.*)\>/i", '$2', $from); // It gives: name@domain.tld
   }
   elseif (!valid_email_address($from)) {
@@ -354,7 +425,7 @@ function smtp_drupal_mail_wrapper($message) {
 
 
   // Create the list of 'To:' recipients.
-  $torecipients = split(',', $to);
+  $torecipients = explode(',', $to);
   foreach ($torecipients as $torecipient) {
     if (strpos($torecipient, '<') !== FALSE) {
       $toparts = explode(' <', $torecipient);
@@ -390,7 +461,7 @@ function smtp_drupal_mail_wrapper($message) {
       case 'content-type':
   // Parse several values on the Content-type header, storing them in an array like
   // key=value -> $vars['key']='value'
-  $vars = explode('; ', $value);
+  $vars = preg_split('/;[\s]*/', $value);
   foreach ($vars as $i => $var) {
     if ($cut = strpos($var, '=')) {
       $new_var = drupal_strtolower(drupal_substr($var, $cut + 1));
@@ -400,11 +471,9 @@ function smtp_drupal_mail_wrapper($message) {
     }
   }
 
-        // Set the charset based on the provided value, if there is one.
-        $charset = $vars['charset'];
-        if ($charset) {
-          $mail->CharSet = $charset;
-        }
+  // Set the charset based on the provided value, otherwise set it to UTF-8 (which is Drupals internal default).
+  $mail->CharSet = isset($vars['charset']) ? $vars['charset'] : 'UTF-8';
+
   switch ($vars[0]) {
     case 'text/plain':
             // The message includes only a plain text part.
@@ -479,7 +548,7 @@ function smtp_drupal_mail_wrapper($message) {
         break;
 
       case 'cc':
-        $ccrecipients = split(',', $value);
+        $ccrecipients = explode(',', $value);
         foreach ($ccrecipients as $ccrecipient) {
           if (strpos($ccrecipient, '<') !== FALSE) {
             $ccparts = explode(' <', $ccrecipient);
@@ -490,12 +559,12 @@ function smtp_drupal_mail_wrapper($message) {
             $ccname = '';
             $ccaddr = $ccrecipient;
           }
-          $mail->AddBCC($ccaddr, $ccname);
+          $mail->AddCC($ccaddr, $ccname);
         }
         break;
 
       case 'bcc':
-        $bccrecipients = split(',', $value);
+        $bccrecipients = explode(',', $value);
         foreach ($bccrecipients as $bccrecipient) {
           if (strpos($bccrecipient, '<') !== FALSE) {
             $bccparts = explode(' <', $bccrecipient);
@@ -592,10 +661,10 @@ function smtp_drupal_mail_wrapper($message) {
         // $mail->AltBody or $mail->Body, depending on whether there is
         // also a text/html part ot not.
         if (strpos($body_part, 'multipart/alternative')) {
-          // Clean up the text.
-          $body_part = trim(_smtp_remove_headers(trim($body_part)));
           // Get boundary ID from the Content-Type header.
           $boundary2 = _smtp_get_substring($body_part, 'boundary', '"', '"');
+          // Clean up the text.
+          $body_part = trim(_smtp_remove_headers(trim($body_part)));
           // Split the body based on the boundary ID.
           $body_parts2 = _smtp_boundary_split($body_part, $boundary2);
 
@@ -792,20 +861,26 @@ function _smtp_boundary_split($input, $boundary) {
 function _smtp_remove_headers($input) {
   $part_array = explode("\n", $input);
 
-  if (strpos($part_array[0], 'Content') !== FALSE) {
-    if (strpos($part_array[1], 'Content') !== FALSE) {
-      if (strpos($part_array[2], 'Content') !== FALSE) {
-          array_shift($part_array);
-          array_shift($part_array);
-          array_shift($part_array);
+  // will strip these headers according to RFC2045
+  $headers_to_strip = array( 'Content-Type', 'Content-Transfer-Encoding', 'Content-ID', 'Content-Disposition');
+  $pattern = '/^('. implode('|', $headers_to_strip) .'):/';
+
+  while (count($part_array) > 0) {
+
+    $line = rtrim($part_array[0]); // ignore trailing spaces/newlines
+    // if the line starts with a known header string
+    if (preg_match($pattern, $line)) {
+      $line = rtrim(array_shift($part_array));
+      // remove line containing matched header.
+
+      // if line ends in a ';' and the next line starts with four spaces, it's a continuation
+      // of the header split onto the next line. Continue removing lines while we have this condition.
+      while (substr($line, -1) == ';' && count($part_array) > 0 && substr($part_array[0], 0, 4) == '    ') {
+        $line = rtrim(array_shift($part_array));
       }
-      else {
-        array_shift($part_array);
-        array_shift($part_array);
-      }
-    }
-    else {
-      array_shift($part_array);
+    } else {
+      // no match header, must be past headers; stop searching.
+      break;
     }
   }
 
@@ -847,68 +922,69 @@ function _smtp_get_substring($source, $target, $beginning_character, $ending_cha
   return $substring;
 }  //  End of _smtp_get_substring().
 
-if (!strpos(variable_get('smtp_library', ''), 'mimemail') &&
-      !function_exists('drupal_mail_wrapper') ) {
+if (!strpos(variable_get('smtp_library', ''), 'mimemail') && !function_exists('drupal_mail_wrapper')  && variable_get('smtp_on', 0)) {
 
   function drupal_mail_wrapper($message) {
     return smtp_drupal_mail_wrapper($message);
   }
+  
 }
 
 if (module_exists('mimemail')) {
-/**
- * hook_mailengine for SMTP/MIMEMAIL integration
- *
- * @param $op
- *   The operation to perform on the message.
- * @param $message
- *   The message to be sent.
- * @return
- *   Returns TRUE if the operation was successful or FALSE if it was not.
- */
-function smtp_mailengine($op, $message = array()) {
-  //default values
-  $message = array_merge( array(
-      'address' => '',
-      'subject' => '',
-      'body' => '',
-      'sender' => '',
-      'headers' => '',
-      ), $message);
-  switch ($op) {
-    case 'name':
-      return t('SMTP');
+  
+  /**
+   * hook_mailengine for SMTP/MIMEMAIL integration
+   *
+   * @param $op
+   *   The operation to perform on the message.
+   * @param $message
+   *   The message to be sent.
+   * @return
+   *   Returns TRUE if the operation was successful or FALSE if it was not.
+   */
+  function smtp_mailengine($op, $message = array()) {
+    //default values
+    $message = array_merge( array(
+        'address' => '',
+        'subject' => '',
+        'body' => '',
+        'sender' => '',
+        'headers' => '',
+        ), $message);
+    switch ($op) {
+      case 'name':
+        return t('SMTP');
 
-    case 'description':
-      return t("SMTP mailing engine using SMTP authenticaion.");
+      case 'description':
+        return t("SMTP mailing engine using SMTP authenticaion.");
 
-    case 'settings': //not implemented
-      return FALSE;
+      case 'settings': //not implemented
+        return FALSE;
 
-    case 'multiple':
-    case 'single':
-    case 'send':
-      if (!is_array($message['address'])) {
-        $message['address'] = array($message['address']);
-      }
-      $status = TRUE;
-      $message['headers']['Content-Type'] = str_replace('multipart/alternative', 'multipart/mixed', $message['headers']['Content-Type']);
-      foreach ($message['address'] as $to) {
-        $status = smtp_drupal_mail_wrapper(
-          array(
-              'id' => $message['id'],
-              'to' => $to,
-              'from' => $message['headers']['From'],
-              'language' => $message['language'] ? $message['language'] : '',
-              'subject'  => $message['subject'],
-              'body'     => str_replace("\r", '', $message['body']),
-              'headers'  => $message['headers'],
-            )
-        ) && $status;
-      }
-      return $status;
+      case 'multiple':
+      case 'single':
+      case 'send':
+        if (!is_array($message['address'])) {
+          $message['address'] = array($message['address']);
+        }
+        $status = TRUE;
+        $message['headers']['Content-Type'] = str_replace('multipart/alternative', 'multipart/mixed', $message['headers']['Content-Type']);
+        foreach ($message['address'] as $to) {
+          $status = smtp_drupal_mail_wrapper(
+            array(
+                'id' => $message['id'],
+                'to' => $to,
+                'from' => $message['headers']['From'],
+                'language' => $message['language'] ? $message['language'] : '',
+                'subject'  => $message['subject'],
+                'body'     => str_replace("\r", '', $message['body']),
+                'headers'  => $message['headers'],
+              )
+          ) && $status;
+        }
+        return $status;
+    }
+    return FALSE;
   }
-  return FALSE;
-}
 
 } // if (!module_exists('mimemail'))

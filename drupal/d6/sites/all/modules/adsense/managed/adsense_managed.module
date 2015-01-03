@@ -31,6 +31,13 @@ function adsense_managed_menu() {
 }
 
 /**
+ * Implementation of hook_theme_registry_alter().
+ */
+function adsense_managed_theme_registry_alter(&$theme_registry) {
+  $theme_registry['block']['theme paths'][] = drupal_get_path('module', 'adsense_managed');
+}
+
+/**
  * Implementation of hook_block().
  */
 function adsense_managed_block($op = 'list', $delta = 0, $edit = array()) {
@@ -44,7 +51,7 @@ function adsense_managed_block($op = 'list', $delta = 0, $edit = array()) {
           $title = $ad[0];
         }
         else {
-          $title = t('AdSense: unconfigured ') . $count;
+          $title = t('AdSense: unconfigured !d', array('!d' => $count + 1));
         }
         $block[$count]['info'] = $title;
         $block[$count]['cache'] = BLOCK_NO_CACHE;
@@ -108,9 +115,9 @@ function adsense_managed_block($op = 'list', $delta = 0, $edit = array()) {
     case 'view':
       if (_adsense_page_match()) {
         $ad = _adsense_managed_get_block_config($delta);
-        $block['content'] = ($ad) ? adsense_display(array('format' => $ad[1], 'slot' => $ad[2])) : t('AdSense unconfigured block. <a href=!url>Click to configure.</a>', array('!url' => url('admin/build/block/configure/adsense_managed/'. $delta)));
+        $block['content'] = ($ad) ? adsense_display(array('title' => $ad[0], 'format' => $ad[1], 'slot' => $ad[2])) : t('AdSense unconfigured block. <a href=!url>Click to configure.</a>', array('!url' => url('admin/build/block/configure/adsense_managed/'. $delta)));
         if (!empty($ad[3])) {
-          $block['content'] = "<div style='text-align:${ad[3]}; display: block;'>${block['content']}</div>";
+          $block['content'] = "<div style='text-align:${ad[3]}'>${block['content']}</div>";
         }
       }
       break;
@@ -153,7 +160,7 @@ function _adsense_managed_get_ad($format, $client, $slot) {
     $output = "";
   }
   elseif (variable_get('adsense_test_mode', ADSENSE_TEST_MODE_DEFAULT)) {
-    $output = _adsense_format_box("client = ${client}<br />slot = ${slot}<br />width = ${ad['width']}<br />height = ${ad['height']}", $ad['width'], $ad['height']);
+    $output = theme('adsense_placeholder', "client = ${client}<br />slot = ${slot}<br />width = ${ad['width']}<br />height = ${ad['height']}", $ad['width'], $ad['height']);
   }
   else {
     $secret = '';
@@ -175,7 +182,7 @@ $secret
 //-->
 </script>
 <script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 MANAGED_TXT;
   }

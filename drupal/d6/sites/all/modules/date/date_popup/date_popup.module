@@ -91,9 +91,9 @@ function date_popup_css_options() {
  */
 function date_popup_init() {
   global $user;
-  if (!module_exists('jquery_ui')) {
+  if (!module_exists('jquery_ui') || !function_exists('jquery_ui_get_path')) {
     if ($user->uid == 1) {
-      drupal_set_message(t('The Date Popup module now requires the <a href="@link">jQuery UI module</a> as a source for the datepicker. Please install it immediately.', array('@link' => 'http://drupal.org/project/jquery_ui')), 'error');
+      drupal_set_message(t('The Date Popup module now requires the <a href="@link">jQuery UI module</a> version 6.x-1.5 or higher as a source for the datepicker. Please install it immediately.', array('@link' => 'http://drupal.org/project/jquery_ui')), 'error');
     }
     return;
   }
@@ -327,7 +327,7 @@ function date_popup_process_date(&$element, $edit = NULL, $date = NULL) {
   $parents = array_merge($element['#parents'], array('date'));
   $sub_element = array(
     '#type' => 'textfield',
-    '#default_value' => (!empty($element['#value']['date']) || !empty($edit['date'])) && is_object($date) ? date_format_date($date, 'custom', $date_format) : '',
+    '#default_value' => (!empty($element['#value']) || !empty($edit['date'])) && is_object($date) ? date_format_date($date, 'custom', $date_format) : '',
     '#id' => $id,
     '#input' => FALSE,
     '#size' => !empty($element['#size']) ? $element['#size'] : 20,
@@ -369,7 +369,7 @@ function date_popup_process_time(&$element, $edit = NULL, $date = NULL) {
   $parents = array_merge($element['#parents'], array('time'));
   $sub_element = array(
     '#type' => 'textfield',
-    '#default_value' => (!empty($element['#value']['time']) || !empty($edit['time'])) && is_object($date) ? date_format_date($date, 'custom', $time_format) : '',
+    '#default_value' => (!empty($element['#value']) || !empty($edit['time'])) && is_object($date) ? date_format_date($date, 'custom', $time_format) : '',
     '#id' => $id,
     '#input' => FALSE,
     '#size' => 10,

@@ -1,5 +1,4 @@
 <?php
-// $Id: captcha.inc,v 1.11.2.7 2010/12/19 00:46:16 soxofaan Exp $
 
 /**
  * @file
@@ -57,11 +56,18 @@ function captcha_set_form_id_setting($form_id, $captcha_type) {
  *   or in the form 'captcha/Math'.
  */
 function captcha_get_form_id_setting($form_id, $symbolic=FALSE) {
-  $result = db_query("SELECT module, captcha_type FROM {captcha_points} WHERE form_id = '%s'", $form_id);
-  if (!$result) {
-    return NULL;
+  if (module_exists('ctools')) {
+    ctools_include('export');
+    $captcha_point = array_pop(ctools_export_load_object('captcha_points', 'names', array($form_id)));
   }
-  $captcha_point = db_fetch_object($result);
+  else {
+    $result = db_query("SELECT module, captcha_type FROM {captcha_points} WHERE form_id = '%s'", $form_id);
+    if (!$result) {
+      return NULL;
+    }
+    $captcha_point = db_fetch_object($result);
+  }
+
   if (!$captcha_point) {
     $captcha_point = NULL;
   }
@@ -84,6 +90,26 @@ function captcha_get_form_id_setting($form_id, $symbolic=FALSE) {
   return $captcha_point;
 }
 
+/**
+ * Helper function to load all captcha points.
+ *
+ * @return array of all captcha_points
+ */
+function captcha_get_captcha_points() {
+  if (module_exists('ctools')) {
+    ctools_include('export');
+    $captcha_points = ctools_export_load_object('captcha_points', 'all');
+    ksort($captcha_points);
+  }
+  else {
+    $captcha_points = array();
+    $result = db_query("SELECT * FROM {captcha_points} ORDER BY form_id");
+    while ($captcha_point = db_fetch_object($result)) {
+      $captcha_points[] = $captcha_point;
+    }
+  }
+  return $captcha_points;
+}
 
 /**
  * Helper function for generating a new CAPTCHA session.
@@ -351,4 +377,3 @@ function _captcha_insert_captcha_element(&$form, $placement, $captcha_element) {
     }
   }
 }
-

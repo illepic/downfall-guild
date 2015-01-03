@@ -13,14 +13,45 @@
  */
 
 /**
- * Implementation of hook_token_values().
+ * Implements hook_token_list() on behalf of comment.module.
+ */
+function comment_token_list($type = 'all') {
+  $tokens = array();
+
+  if ($type == 'comment' || $type == 'all') {
+    $tokens['comment']['comment-cid']             = t('The unique ID of the comment.');
+    $tokens['comment']['comment-nid']             = t('The unique ID of the node the comment was posted to.');
+    $tokens['comment']['comment-title']           = t('The title of the comment.');
+    $tokens['comment']['comment-title-raw']       = t('The title of the comment.');
+    $tokens['comment']['comment-body']            = t('The formatted content of the comment itself.');
+    $tokens['comment']['comment-body-raw']        = t('The formatted content of the comment itself.');
+
+    $tokens['comment']['comment-author-uid']      = t('The unique ID of the author of the comment.');
+    $tokens['comment']['comment-author-name']     = t('The name left by the comment author.');
+    $tokens['comment']['comment-author-name-raw'] = t('The name left by the comment author.');
+    $tokens['comment']['comment-author-homepage'] = t('The home page URL left by the comment author.');
+
+    $tokens['comment']['comment-author-mail']     = t('The email address left by the comment author.');
+    $tokens['comment']['comment-author-mail-raw'] = t('The email address left by the comment author.');
+
+    $tokens['comment'] += token_get_date_token_info(t('Comment creation'), 'comment-');
+
+    $tokens['comment']['comment-node-title']      = t('The title of the node the comment was posted to.');
+    $tokens['comment']['comment-node-title-raw']  = t('The title of the node the comment was posted to.');
+  }
+
+  return $tokens;
+}
+
+/**
+ * Implements hook_token_values() on behalf of comment.module.
  */
 function comment_token_values($type, $object = NULL, $options = array()) {
   $values = array();
 
   if ($type == 'comment' && !empty($object)) {
     // Cast to an object just in case fussy Drupal gave us an array
-    $comment = (object)$object;
+    $comment = (object) $object;
 
     $values['comment-cid']             = $comment->cid;
     $values['comment-nid']             = $comment->nid;
@@ -57,35 +88,4 @@ function comment_token_values($type, $object = NULL, $options = array()) {
   }
 
   return $values;
-}
-
-/**
- * Implementation of hook_token_list().
- */
-function comment_token_list($type = 'all') {
-  $tokens = array();
-
-  if ($type == 'comment' || $type == 'all') {
-    $tokens['comment']['comment-cid']             = t('The unique ID of the comment.');
-    $tokens['comment']['comment-nid']             = t('The unique ID of the node the comment was posted to.');
-    $tokens['comment']['comment-title']           = t('The title of the comment.');
-    $tokens['comment']['comment-title-raw']       = t('The title of the comment.');
-    $tokens['comment']['comment-body']            = t('The formatted content of the comment itself.');
-    $tokens['comment']['comment-body-raw']        = t('The formatted content of the comment itself.');
-
-    $tokens['comment']['comment-author-uid']      = t('The unique ID of the author of the comment.');
-    $tokens['comment']['comment-author-name']     = t('The name left by the comment author.');
-    $tokens['comment']['comment-author-name-raw'] = t('The name left by the comment author.');
-    $tokens['comment']['comment-author-homepage'] = t('The home page URL left by the comment author.');
-
-    $tokens['comment']['comment-author-mail']     = t('The email address left by the comment author.');
-    $tokens['comment']['comment-author-mail-raw'] = t('The email address left by the comment author.');
-
-    $tokens['comment'] += token_get_date_token_info(t('Comment creation'), 'comment-');
-
-    $tokens['comment']['comment-node-title']      = t('The title of the node the comment was posted to.');
-    $tokens['comment']['comment-node-title-raw']  = t('The title of the node the comment was posted to.');
-  }
-
-  return $tokens;
 }

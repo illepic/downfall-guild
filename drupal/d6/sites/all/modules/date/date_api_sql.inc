@@ -216,7 +216,7 @@ class date_sql_handler {
             return "ADDTIME($field, SEC_TO_TIME($offset))";
           }
           else {
-            return "DATE_ADD($field, INTERVAL $offset SECOND)";
+            return "DATE_ADD(CAST($field AS DATETIME), INTERVAL $offset SECOND)";
           }
         case 'pgsql':
           return "($field + INTERVAL '$offset SECONDS')";;
@@ -245,9 +245,9 @@ class date_sql_handler {
       case 'mysqli':
         switch ($direction) {
           case 'ADD':
-            return "DATE_ADD($field, INTERVAL $count $granularity)";
+            return "DATE_ADD(CAST($field AS DATETIME), INTERVAL $count $granularity)";
           case 'SUB':
-            return "DATE_SUB($field, INTERVAL $count $granularity)";
+            return "DATE_SUB(CAST($field AS DATETIME), INTERVAL $count $granularity)";
           }
 
       case 'pgsql':

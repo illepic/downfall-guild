@@ -24,6 +24,7 @@ define('ADSENSE_PLACEHOLDER_DEFAULT', 1);
 define('ADSENSE_PLACEHOLDER_TEXT_DEFAULT', 'Google AdSense');
 define('ADSENSE_SECTION_TARGETING_DEFAULT', 1);
 define('ADSENSE_TEST_MODE_DEFAULT', 0);
+define('ADSENSE_UNBLOCK_ADS_DEFAULT', 0);
 define('ADSENSE_VISIBILITY_DEFAULT', 0);
 
 define('ADSENSE_SECRET_ADTEST_DEFAULT', 0);
@@ -50,30 +51,34 @@ define('ADSENSE_SECRET_LANGUAGE_DEFAULT', '');
  */
 function adsense_ad_formats($key = NULL) {
   $ads = array(
-    '120x90'   =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('4-links 120x90'),   'code' => '120x90_0ads_al',   'width' => 120, 'height' =>  90),
-    '160x90'   =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('4-links 160x90'),   'code' => '160x90_0ads_al',   'width' => 160, 'height' =>  90),
-    '180x90'   =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('4-links 180x90'),   'code' => '180x90_0ads_al',   'width' => 180, 'height' =>  90),
-    '200x90'   =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('4-links 200x90'),   'code' => '200x90_0ads_al',   'width' => 200, 'height' =>  90),
-    '468x15'   =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('4-links 468x15'),   'code' => '468x15_0ads_al',   'width' => 468, 'height' =>  15),
-    '728x15'   =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('4-links 728x15'),   'code' => '728x15_0ads_al',   'width' => 728, 'height' =>  15),
-    '120x90_5' =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('5-links 120x90'),   'code' => '120x90_0ads_al_s', 'width' => 120, 'height' =>  90),
-    '160x90_5' =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('5-links 160x90'),   'code' => '160x90_0ads_al_s', 'width' => 160, 'height' =>  90),
-    '180x90_5' =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('5-links 180x90'),   'code' => '180x90_0ads_al_s', 'width' => 180, 'height' =>  90),
-    '200x90_5' =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('5-links 200x90'),   'code' => '200x90_0ads_al_s', 'width' => 200, 'height' =>  90),
-    '468x15_5' =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('5-links 468x15'),   'code' => '468x15_0ads_al_s', 'width' => 468, 'height' =>  15),
-    '728x15_5' =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('5-links 728x15'),   'code' => '728x15_0ads_al_s', 'width' => 728, 'height' =>  15),
-    '120x240'  =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Vertical banner'),  'code' => '120x240_as',       'width' => 120, 'height' => 240),
-    '120x600'  =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Skyscraper'),       'code' => '120x600_as',       'width' => 120, 'height' => 600),
-    '125x125'  =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Button'),           'code' => '125x125_as',       'width' => 125, 'height' => 125),
-    '160x600'  =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Wide Skyscraper'),  'code' => '160x600_as',       'width' => 160, 'height' => 600),
-    '180x150'  =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Small Rectangle'),  'code' => '180x150_as',       'width' => 180, 'height' => 150),
-    '200x200'  =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Small Square'),     'code' => '200x200_as',       'width' => 200, 'height' => 200),
-    '234x60'   =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Half Banner'),      'code' => '234x60_as',        'width' => 234, 'height' =>  60),
-    '250x250'  =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Square'),           'code' => '250x250_as',       'width' => 250, 'height' => 250),
-    '300x250'  =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Medium Rectangle'), 'code' => '300x250_as',       'width' => 300, 'height' => 250),
-    '336x280'  =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Large Rectangle'),  'code' => '336x280_as',       'width' => 336, 'height' => 280),
-    '468x60'   =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Banner'),           'code' => '468x60_as',        'width' => 468, 'height' =>  60),
-    '728x90'   =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Leaderboard'),      'code' => '728x90_as',        'width' => 728, 'height' =>  90),
+    '120x240'  =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Vertical Banner'),           'code' => '120x240_as',       'width' => 120, 'height' => 240),
+    '120x600'  =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Skyscraper'),                'code' => '120x600_as',       'width' => 120, 'height' => 600),
+    '125x125'  =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Button'),                    'code' => '125x125_as',       'width' => 125, 'height' => 125),
+    '160x600'  =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Wide Skyscraper'),           'code' => '160x600_as',       'width' => 160, 'height' => 600),
+    '180x150'  =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Small Rectangle'),           'code' => '180x150_as',       'width' => 180, 'height' => 150),
+    '200x200'  =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Small Square'),              'code' => '200x200_as',       'width' => 200, 'height' => 200),
+    '234x60'   =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Half Banner'),               'code' => '234x60_as',        'width' => 234, 'height' =>  60),
+    '250x250'  =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Square'),                    'code' => '250x250_as',       'width' => 250, 'height' => 250),
+    '300x250'  =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Medium Rectangle'),          'code' => '300x250_as',       'width' => 300, 'height' => 250),
+    '300x600'  =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Large Skyscraper'),          'code' => '300x600_as',       'width' => 300, 'height' => 600),
+    '320x50'   =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Mobile Banner'),             'code' => '320x50_as',        'width' => 320, 'height' =>  50),
+    '320x100'  =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Large Mobile Banner'),       'code' => '320x100_as',       'width' => 320, 'height' => 100),
+    '336x280'  =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Large Rectangle'),           'code' => '336x280_as',       'width' => 336, 'height' => 280),
+    '468x60'   =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Banner'),                    'code' => '468x60_as',        'width' => 468, 'height' =>  60),
+    '728x90'   =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Leaderboard'),               'code' => '728x90_as',        'width' => 728, 'height' =>  90),
+    '970x90'   =>  array('type' => ADSENSE_TYPE_AD,   'desc' => t('Large Leaderboard'),         'code' => '970x90_as',        'width' => 970, 'height' =>  90),
+    '120x90'   =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('4-links Vertical Smal'),     'code' => '120x90_0ads_al',   'width' => 120, 'height' =>  90),
+    '160x90'   =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('4-links Vertical Medium'),   'code' => '160x90_0ads_al',   'width' => 160, 'height' =>  90),
+    '180x90'   =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('4-links Vertical Large'),    'code' => '180x90_0ads_al',   'width' => 180, 'height' =>  90),
+    '200x90'   =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('4-links Vertical X-Large'),  'code' => '200x90_0ads_al',   'width' => 200, 'height' =>  90),
+    '468x15'   =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('4-links Horizontal Medium'), 'code' => '468x15_0ads_al',   'width' => 468, 'height' =>  15),
+    '728x15'   =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('4-links Horizontal Large'),  'code' => '728x15_0ads_al',   'width' => 728, 'height' =>  15),
+    '120x90_5' =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('5-links Vertical Smal'),     'code' => '120x90_0ads_al_s', 'width' => 120, 'height' =>  90),
+    '160x90_5' =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('5-links Vertical Medium'),   'code' => '160x90_0ads_al_s', 'width' => 160, 'height' =>  90),
+    '180x90_5' =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('5-links Vertical Large'),    'code' => '180x90_0ads_al_s', 'width' => 180, 'height' =>  90),
+    '200x90_5' =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('5-links Vertical X-Large'),  'code' => '200x90_0ads_al_s', 'width' => 200, 'height' =>  90),
+    '468x15_5' =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('5-links Horizontal Medium'), 'code' => '468x15_0ads_al_s', 'width' => 468, 'height' =>  15),
+    '728x15_5' =>  array('type' => ADSENSE_TYPE_LINK, 'desc' => t('5-links Horizontal Large'),  'code' => '728x15_0ads_al_s', 'width' => 728, 'height' =>  15),
   );
 
   if (!empty($key)) {
@@ -95,7 +100,7 @@ function adsense_ad_formats($key = NULL) {
  * Implementation of hook_perm().
  */
 function adsense_perm() {
-  return array('administer adsense', 'hide adsense', 'use PHP for ad visibility');
+  return array('administer adsense', 'hide adsense', 'show adsense placeholders', 'use PHP for ad visibility');
 }
 
 /**
@@ -104,7 +109,10 @@ function adsense_perm() {
 function adsense_theme() {
   return array(
     'adsense_ad' => array(
-      'arguments' => array('ad' => NULL, 'module' => NULL),
+      'arguments' => array('ad' => NULL, 'module' => NULL, 'format' => NULL),
+    ),
+    'adsense_placeholder' => array(
+      'arguments' => array('text' => NULL, 'width' => 0, 'height' => 0),
     ),
   );
 }
@@ -145,6 +153,37 @@ function adsense_menu() {
 
   return $items;
 }
+
+/**
+ * Implementation of hook_block().
+ */
+function adsense_block($op = 'list', $delta = 0, $edit = array()) {
+  if (!variable_get('adsense_section_targeting', ADSENSE_SECTION_TARGETING_DEFAULT)) {
+    switch ($op) {
+      case 'list':
+        $block[0]['info'] = t('AdSense section targeting start');
+        $block[0]['cache'] = BLOCK_CACHE_GLOBAL;
+        $block[1]['info'] = t('AdSense section targeting end');
+        $block[1]['cache'] = BLOCK_CACHE_GLOBAL;
+        return $block;
+      case 'configure':
+        return '';
+      case 'save':
+        return;
+      case 'view':
+        switch ($delta) {
+          case 0:
+            $block['content'] = '<!-- google_ad_section_start -->';
+            break;
+          case 1:
+            $block['content'] = '<!-- google_ad_section_end -->';
+            break;
+        }
+        return $block;
+    }
+  }
+}
+
 
 /**
  * Implementation of hook_requirements().
@@ -194,13 +233,15 @@ function adsense_nodeapi(&$node, $op = 'view', $teaser, $page) {
   switch ($op) {
     case 'view':
       if (variable_get('adsense_section_targeting', ADSENSE_SECTION_TARGETING_DEFAULT)) {
+        $body_weight = isset($node->content['body']['#weight']) ? $node->content['body']['#weight'] : 0;
+
         $node->content['adsense_start'] = array(
           '#value' => '<!-- google_ad_section_start -->',
-          '#weight' => -5,
+          '#weight' => $body_weight - 1,
           );
         $node->content['adsense_end'] = array(
           '#value' => '<!-- google_ad_section_end -->',
-          '#weight' => 5,
+          '#weight' => $body_weight + 1,
           );
       }
   }
@@ -352,7 +393,7 @@ function adsense_get_client_slot_id($format = NULL) {
  * @see adsense_ad_formats()
  * @see _adsense_page_match()
  * @see _adsense_check_if_enabled()
- * @see _adsense_format_box()
+ * @see theme_adsense_placeholder()
  * @see _adsense_can_insert_another()
  * @see _adsense_cse_get_searchbox()
  * @see _adsense_search_get_searchbox()
@@ -396,26 +437,29 @@ function adsense_display() {
     // Check first if disabled or if we are at adsense limit or if this page doesn't allow adsense
     $ad = '<!--adsense: page not in match list-->';
   }
+  elseif (!_adsense_can_insert_another($ad['type'])) {
+    $ad = '<!--adsense: ad limit reached for type-->';
+  }
   elseif (!_adsense_check_if_enabled()) {
     global $user;
 
     // Ads are disabled
-    if (variable_get('adsense_placeholder', ADSENSE_PLACEHOLDER_DEFAULT) || ($user->uid == 1)) {
+    if (variable_get('adsense_placeholder', ADSENSE_PLACEHOLDER_DEFAULT) || ($user->uid == 1 || user_access('show adsense placeholders'))) {
       $width = array_key_exists('width', $ad) ? $ad['width'] : 0;
       $height = array_key_exists('height', $ad) ? $ad['height'] : 0;
-      $text = variable_get('adsense_placeholder_text', ADSENSE_PLACEHOLDER_TEXT_DEFAULT) ." ${ad['desc']}";
-      if ($user->uid == 1) {
-        $text = 'Ads disabled for site admin<br />'. $text;
+      // The text to display in the placeholder starts with the block title,
+      // and then the default text as specified in the admin settings.
+      $text = isset($args['title']) ? t('Block') . ': ' . $args['title'] . '<br />' : '';
+      $text .= variable_get('adsense_placeholder_text', ADSENSE_PLACEHOLDER_TEXT_DEFAULT) . ' ' . $args['format'];
+      if ((isset($user) && ($user->uid == 1)) || user_access('show adsense placeholders')) {
+        $text = t('Ads disabled for %name', array('%name' => $user->name)) . '<br />' . $text;
       }
 
-      $ad = "<!--adsense: placeholder-->\n". _adsense_format_box($text, $width, $height);
+      $ad = "<!--adsense: placeholder-->\n". theme('adsense_placeholder', $text, $width, $height);
     }
     else {
       $ad = '<!--adsense: ads disabled -->';
     }
-  }
-  elseif (!_adsense_can_insert_another($ad['type'])) {
-    $ad = '<!--adsense: ad limit reached for type-->';
   }
   else {
     // If site Slot ID for this ad was passed, pass the format as argument
@@ -460,9 +504,14 @@ function adsense_display() {
         }
         else {
           $ad = '<!--adsense: no AdSense for Content module found-->';
+          $module = '';
         }
 
-        $ad = theme('adsense_ad', $ad, $module);
+        // Display ad-block disabling request
+        if (variable_get('adsense_unblock_ads', ADSENSE_UNBLOCK_ADS_DEFAULT)) {
+          adsense_request_unblock();
+        }
+        $ad = theme('adsense_ad', $ad, $module, $args['format']);
 
         break;
     }
@@ -471,6 +520,18 @@ function adsense_display() {
   }
 
   return $ad;
+}
+
+/**
+ * Displays a request to disable adblockers, when their use is detected
+ */
+function adsense_request_unblock() {
+  static $done = FALSE;
+
+  if (!$done) {
+    drupal_add_js(file_get_contents(drupal_get_path('module', 'adsense') .'/js/unblock.js'), 'inline');
+    $done = TRUE;
+  }
 }
 
 /**
@@ -485,8 +546,14 @@ function adsense_display() {
  *   string with the modified ad unit
  * @ingroup themeable
  */
-function theme_adsense_ad($ad, $module) {
-  return "<div class='adsense $module'>\n$ad\n</div>";
+function theme_adsense_ad($ad, $module, $format = NULL) {
+  $dimensions = '';
+  if (isset($format)) {
+    $ad_fmt = adsense_ad_formats($format);
+    $dimensions = "width:{$ad_fmt['width']}px;height:{$ad_fmt['height']}px;";
+  }
+
+  return "<div class='adsense' style='display:inline-block;${dimensions}'>\n$ad\n</div>";
 }
 
 /**
@@ -510,6 +577,10 @@ function _adsense_check_if_enabled() {
     return TRUE;
   }
   if (user_access('hide adsense')) {
+    return FALSE;
+  }
+  if (user_access('show adsense placeholders')) {
+    // AdSense is enabled but this user should only see placeholders instead.
     return FALSE;
   }
 
@@ -541,7 +612,9 @@ function _adsense_can_insert_another($type = ADSENSE_TYPE_AD) {
     return TRUE;
   }
 
-  return FALSE;
+  // Because of #1627846, it's better to always return TRUE
+  return TRUE;
+//  return FALSE;
 }
 
 /**
@@ -551,17 +624,6 @@ function _adsense_can_insert_another($type = ADSENSE_TYPE_AD) {
  *   TRUE if can render, FALSE if not allowed.
  */
 function _adsense_page_match() {
-  // Do not show ads on secure pages.
-  // This is for two reasons:
-  // Google would most probably not have indexed secure pages
-  // and it also prevents warnings about mixed-content
-  // Thanks to Brad Konia http://drupal.org/node/29585
-  // Should be restricted when running on Apache only
-  if (isset($_SERVER['SERVER_SOFTWARE']) && (stristr($_SERVER['SERVER_SOFTWARE'], 'Apache') !== FALSE) && 
-      isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on')) {
-    return FALSE;
-  }
-
   $pages = variable_get('adsense_access_pages', ADSENSE_ACCESS_PAGES_DEFAULT);
   $visibility = variable_get('adsense_visibility', ADSENSE_VISIBILITY_DEFAULT);
 
@@ -587,10 +649,12 @@ function _adsense_page_match() {
  *
  * @return
  *   string with the HTML text to create the box
+ * @ingroup themeable
  */
-function _adsense_format_box($text, $width, $height) {
-  $dimensions = ((!empty($width)) && (!empty($height)))
-                ? " width:". $width ."px; height:". $height ."px;" : "";
+function theme_adsense_placeholder($text, $width, $height) {
+  // Use inline CSS, as some ad-blocking software blocks CSS files
+  $style = 'border:solid 1px;display:inline-block;overflow:hidden;text-align:center;word-wrap:break-word;';
+  $style .= ((!empty($width)) && (!empty($height))) ? 'width:'. ($width - 2) .'px;height:'. ($height - 2) .'px;' : '';
 
-  return "<div class='adsense' style='text-align:center;display: table-cell;vertical-align:middle;border:solid 1px;${dimensions}'>${text}</div>";
+  return "<div class='adsense adsense-placeholder' style='${style}'>${text}</div>";
 }

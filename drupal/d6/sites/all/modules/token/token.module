@@ -253,18 +253,6 @@ function token_replace_multiple($text, $types = array('global' => NULL), $leadin
   // Ensure that the $text parameter is a string and not an array which is an
   // invalid input.
   if (is_array($text)) {
-    $backtrace = debug_backtrace();
-    foreach ($backtrace as $caller) {
-      switch ($caller['function']) {
-        case 'token_replace':
-        case 'token_replace_multiple':
-          continue;
-        default:
-          trigger_error(t('The @function() function called token replacement with an array rather than a string for $text', array('@function' => $caller['function'])), E_USER_NOTICE);
-          break 2;
-      }
-    }
-
     foreach ($text as $key => $value) {
       $text[$key] = token_replace_multiple($value, $types, $leading, $trailing, $options, $flush);
     }

@@ -20,7 +20,7 @@ function _adsense_search_results() {
   $country = variable_get('adsense_search_country', ADSENSE_SEARCH_COUNTRY_DEFAULT);
 
   if (variable_get('adsense_test_mode', ADSENSE_TEST_MODE_DEFAULT)) {
-    $output = _adsense_format_box("Results<br />width = ${width}<br />country = ${country}", $width, 100);
+    $output = theme('adsense_placeholder', "Results<br />width = ${width}<br />country = ${country}", $width, 100);
   }
   else {
     if (variable_get('adsense_secret_adtest', ADSENSE_SECRET_ADTEST_DEFAULT)) {

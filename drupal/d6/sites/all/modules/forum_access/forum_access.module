@@ -75,7 +75,6 @@ function forum_access_node_access_records($node) {
 /**
  * Implementation of hook_init().
  *
- * Deny access to forum if the user does not have access to it.
  * Enable moderator access on node/%, node/%/edit, comment/edit/%,
  * and comment/delete/% where needed.
  */
@@ -86,16 +85,6 @@ function forum_access_init() {
   }
 
   switch (arg(0)) {
-    case 'forum':
-      if (is_numeric($tid = arg(1))) {
-        if (!forum_access_access($tid, 'view')) {
-          drupal_access_denied();
-          module_invoke_all('exit');
-          exit;
-        }
-      }
-      break;
-
     case 'comment':
       if (variable_get('forum_access_D5_legacy_mode', FALSE)) {
         return; // disable comment access control
@@ -424,7 +413,7 @@ function forum_access_link_alter(&$links, $node, $comment = NULL) {
       'delete' => 'comment_delete',
     );
     foreach ($required_keys as $access => $key) {
-      if (!forum_access_access($tid, $access)) {
+      if (!forum_access_access($tid, $access) && !($access == 'update' && comment_access('edit', $comment))) {
         unset($links[$required_keys[$access]]);
         unset($required_keys[$access]);
       }
@@ -602,13 +591,24 @@ function forum_access_menu_alter(&$items) {
       drupal_set_message(t('Unexpected access specification for the %forum menu path; @Forum_Access cannot control its access.', array('%forum' => 'forum', '@Forum_Access' => 'Forum Access')), 'error');
       return;
     }
-    $items['forum']['access callback'] = '_forum_access_access_any_forum';
-    unset($items['forum']['access arguments']);
+    $items['forum']['access callback'] = '_forum_access_forum_access_callback';
+    $items['forum']['access arguments'] = array(1);
   }
 }
 
 /**
- * Access callback for the 'forum' menu item.
+ * Access callback for the 'forum' menu path.
+ *
+ * Returns TRUE if the user has access to the specified forum or containter. If
+ * no forum or container is specified will return TRUE if the user has at least
+ * one role that can access at least one forum.
+ */
+function _forum_access_forum_access_callback($tid = NULL) {
+  return (!$tid && _forum_access_access_any_forum()) || forum_access_access($tid, 'view');
+}
+
+/**
+ * Helper function to determine the access to the 'forum' menu item.
  *
  * Returns TRUE if the user has at least one role that can access
  * at least one forum.

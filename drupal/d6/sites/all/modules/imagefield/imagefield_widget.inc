@@ -17,7 +17,7 @@ function imagefield_widget_settings_form($widget) {
 
   $form['max_resolution'] = array(
     '#type' => 'textfield',
-    '#title' => t('Maximum resolution for Images'),
+    '#title' => t('Maximum dimensions for images'),
     '#default_value' => !empty($widget['max_resolution']) ? $widget['max_resolution'] : 0,
     '#size' => 15,
     '#maxlength' => 10,
@@ -26,7 +26,7 @@ function imagefield_widget_settings_form($widget) {
   );
   $form['min_resolution'] = array(
     '#type' => 'textfield',
-    '#title' => t('Minimum resolution for Images'),
+    '#title' => t('Minimum dimensions for images'),
     '#default_value' => !empty($widget['min_resolution']) ? $widget['min_resolution'] : 0,
     '#size' => 15,
     '#maxlength' => 10,

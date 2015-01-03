@@ -499,6 +499,8 @@ function openid_association_request($public) {
 }
 
 function openid_authentication_request($claimed_id, $identity, $return_to = '', $assoc_handle = '', $version = 2) {
+  global $base_url;
+
   module_load_include('inc', 'openid');
 
   $ns = ($version == 2) ? OPENID_NS_2_0 : OPENID_NS_1_0;
@@ -512,10 +514,10 @@ function openid_authentication_request($claimed_id, $identity, $return_to = '', 
   );
 
   if ($version == 2) {
-    $request['openid.realm'] = url('', array('absolute' => TRUE));
+    $request['openid.realm'] = $base_url . '/';
   }
   else {
-    $request['openid.trust_root'] = url('', array('absolute' => TRUE));
+    $request['openid.trust_root'] = $base_url . '/';
   }
 
   // Simple Registration
@@ -549,7 +551,7 @@ function openid_verify_assertion($service, $response) {
   // http://openid.net/specs/openid-authentication-2_0.html#rfc.section.11.4
   // Verify the signatures.
   $valid = FALSE;
-  $association = db_fetch_object(db_query("SELECT * FROM {openid_association} WHERE assoc_handle = '%s'", $response['openid.assoc_handle']));
+  $association = db_fetch_object(db_query("SELECT * FROM {openid_association} WHERE idp_endpoint_uri = '%s' AND assoc_handle = '%s'", $service['uri'], $response['openid.assoc_handle']));
   if ($association && isset($association->session_type)) {
     // http://openid.net/specs/openid-authentication-2_0.html#rfc.section.11.4.2
     // Verification using an association.

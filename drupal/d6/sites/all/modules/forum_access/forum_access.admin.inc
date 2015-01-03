@@ -19,12 +19,7 @@ function _forum_access_forum_form(&$form, &$form_state, $is_container) {
     exit;
   }
 
-  $roles = array();
-  $result = db_query(db_rewrite_sql("SELECT r.rid, r.name FROM {role} r ORDER BY r.name", 'r', 'rid'));
-  while ($obj = db_fetch_object($result)) {
-    $roles[$obj->rid] = check_plain($obj->name);
-  }
-
+  $roles = user_roles();
   if (isset($tid)) {  // edit
     $template_tid = variable_get('forum_access_default_template_tid', 0);
     $settings = _forum_access_get_settings($tid);

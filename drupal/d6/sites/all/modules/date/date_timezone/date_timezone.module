@@ -9,16 +9,6 @@
  */
 
 /**
- * Make sure a timezone has been selected.
- */
-function date_timezone_init() {
-  $tz_name = variable_get('date_default_timezone_name', NULL);
-  if (!empty($user->uid) && $_GET['q'] != 'admin/settings/date-time' && empty($tz_name)) {
-    drupal_set_message(t('The Date Timezone module requires you to <a href="@link">set the site timezone name</a>.', array('@link' => url('admin/settings/date-time'))), 'error');
-  }
-}
-
-/**
  * Implementation of hook_menu().
  */
 function date_timezone_menu() {

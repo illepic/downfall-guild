@@ -5,9 +5,9 @@ dependencies[] = views
 package = Image
 core = 6.x
 
-; Information added by drupal.org packaging script on 2011-02-25
+; Information added by drupal.org packaging script on 2013-09-30
 version = "6.x-3.x-dev"
 core = "6.x"
 project = "img_assist"
-datestamp = "1298619437"
+datestamp = "1380583092"
 

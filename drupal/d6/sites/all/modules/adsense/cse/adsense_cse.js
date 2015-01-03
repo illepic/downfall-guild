@@ -4,32 +4,50 @@ var f = document.getElementById('cse-search-box');
 if (!f) {
 f = document.getElementById('searchbox_demo');
 }
-if (f && f.as_q) {
-var q = f.as_q;
+if (f && f['q']) {
+var q = f['q'];
 var n = navigator;
 var l = location;
-var su = function (n, v, l) {
-if (!encodeURIComponent || !decodeURI) {
+var du = function(n, v) {
+var u = document.createElement('input');
+u.name = n;
+u.value = v;
+u.type = 'hidden';
+f.appendChild(u);
+return u;
+};
+var su = function (n, t, v, l) {
+if (!encodeURIComponent || !decodeURIComponent) {
 return;
 }
-var u = document.createElement('input');
 var regexp = new RegExp('(?:[?&]' + n + '=)([^&#]*)');
-var existing = regexp.exec(v);
+var existing = regexp.exec(t);
 if (existing) {
-v = decodeURI(existing[1]);
+v = decodeURIComponent(existing[1]);
 }
 var delimIndex = v.indexOf('://');
 if (delimIndex >= 0) {
 v = v.substring(delimIndex + '://'.length, v.length);
 }
-u.name = n;
 var v_sub = v.substring(0, l);
 while (encodeURIComponent(v_sub).length > l) {
 v_sub = v_sub.substring(0, v_sub.length - 1);
 }
-u.value = v_sub;
-u.type = 'hidden';
-f.appendChild(u);
+du(n, v_sub);
+};
+var pl = function(he) {
+var ti = 0, tsi = 0, tk = 0, pt;
+return function() {
+var ct = (new Date).getTime();
+if (pt) {
+var i = ct - pt;
+ti += i;
+tsi += i*i;
+}
+tk++;
+pt = ct;
+he.value = [ti, tsi, tk].join('j');
+};
 };
 var append = false;
 if (n.appName == 'Microsoft Internet Explorer') {
@@ -47,8 +65,17 @@ for (var i = 0; i < s.length; i++) {
     }
     if (append) {
       
-      su('siteurl', document.location.toString(), 250);
-      su('ref', document.referrer, 750);
+      var loc = document.location.toString(); var ref = document.referrer;
+      su('siteurl', loc, loc, 250);
+      su('ref', loc, ref, 750);
+
+      
+      
+      if (q.addEventListener) {
+        q.addEventListener('keyup', pl(du('ss', '')), false);
+      } else if (q.attachEvent) {
+        q.attachEvent('onkeyup', pl(du('ss', '')));
+      }
     }
 
     
@@ -63,7 +90,7 @@ for (var i = 0; i < s.length; i++) {
 
     var b = function() {
       if (q.value == '') {
-        q.style.background = '#FFFFFF url(http:\x2F\x2Fwww.google.com\x2Fcse\x2Fintl\x2F' + lang + '\x2Fimages\x2Fgoogle_custom_search_watermark.gif) left no-repeat';
+        q.style.background = '#FFFFFF url(\x2F\x2Fwww.google.com\x2Fcse\x2Fintl\x2F' + lang + '\x2Fimages\x2Fgoogle_custom_search_watermark.gif) left no-repeat';
       }
     };
 

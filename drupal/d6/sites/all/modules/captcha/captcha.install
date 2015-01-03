@@ -1,5 +1,4 @@
 <?php
-// $Id: captcha.install,v 1.11.2.8 2011/02/03 23:43:56 soxofaan Exp $
 
 /**
  * @file
@@ -13,6 +12,18 @@ function captcha_schema() {
   // Table for positions and types of the challenges.
   $schema['captcha_points'] = array(
     'description' => 'This table describes which challenges should be added to which forms.',
+    'export' => array(
+      'key' => 'form_id',
+      'identifier' => 'captcha',
+      'default hook' => 'captcha_default_points',  // Function hook name.
+      'status' => 'mark_status',
+      'api' => array(
+        'owner' => 'captcha',
+        'api' => 'captcha',  // Base name for api include files.
+        'minimum_version' => 1,
+        'current_version' => 1,
+      ),
+    ),
     'fields' => array(
       'form_id' => array(
         'description' => 'The form_id of the form to add a CAPTCHA to.',
@@ -137,16 +148,6 @@ function captcha_install() {
   $t = get_t();
   drupal_install_schema('captcha');
 
-  // Insert some default CAPTCHA points.
-  $form_ids = array(
-    'comment_form',
-    'contact_mail_user', 'contact_mail_page',
-    'user_register', 'user_pass', 'user_login', 'user_login_block',
-    'forum_node_form'
-  );
-  foreach ($form_ids as $form_id) {
-    db_query("INSERT INTO {captcha_points} (form_id, module, captcha_type) VALUES ('%s', NULL, NULL)", $form_id);
-  }
 
   // Be friendly to your users: what to do after install?
   drupal_set_message($t('You can now <a href="!captcha_admin">configure the CAPTCHA module</a> for your site.',
@@ -323,7 +324,6 @@ function captcha_update_6202() {
   db_add_column($ret, 'captcha_sessions', 'token', 'varchar(64)');
   return $ret;
 }
-
 
 /**
  * Implementation of hook_update_N()

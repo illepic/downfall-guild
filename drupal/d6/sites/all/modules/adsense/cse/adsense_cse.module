@@ -63,7 +63,7 @@ function adsense_cse_block($op = 'list', $delta = 0, $edit = array()) {
           $title = $ad[0];
         }
         else {
-          $title = t('AdSense CSE: unconfigured ') . $count;
+          $title = t('AdSense CSE: unconfigured !d', array('!d' => $count + 1));
         }
         $block[$count]['info'] = $title;
         $block[$count]['cache'] = BLOCK_NO_CACHE;
@@ -87,7 +87,7 @@ function adsense_cse_block($op = 'list', $delta = 0, $edit = array()) {
         '#type' => 'textfield',
         '#title' => t('Ad Slot ID'),
         '#default_value' => ($ad) ? $ad[1] : '',
-        '#description' => t('This is the provided by the AdSense site in the Search Box Code "cx" field. This is usually provided in the form partner-<em>Publisher ID</em>:<em>Slot Id</em>. If the code provided is, for example, partner-pub-0123456789:<strong>abcdef-ghij</strong>, then insert only <strong>abcdef-ghij</strong> here.'),
+        '#description' => t('This is the provided by the AdSense site in the Search Box Code "cx" field. This is usually provided in the form partner-<em>Publisher ID</em>:<em>Slot Id</em>. If the code provided is, for example, partner-pub-0123456789:<strong>abcdefghij</strong>, then insert only <strong>abcdefghij</strong> here.'),
         '#required' => TRUE,
       );
 
@@ -101,7 +101,7 @@ function adsense_cse_block($op = 'list', $delta = 0, $edit = array()) {
     case 'view':
       if (_adsense_page_match()) {
         $ad = _adsense_cse_get_block_config($delta);
-        $block['content'] = ($ad) ? adsense_display(array('format' => 'Search Box', 'slot' => $ad[1])) : t('AdSense unconfigured block. <a href=!url>Click to configure.</a>', array('!url' => url('admin/build/block/configure/adsense_cse/'. $delta)));
+        $block['content'] = ($ad) ? adsense_display(array('title' => $ad[0], 'format' => 'Search Box', 'slot' => $ad[1])) : t('AdSense unconfigured block. <a href=!url>Click to configure.</a>', array('!url' => url('admin/build/block/configure/adsense_cse/'. $delta)));
       }
       break;
     }

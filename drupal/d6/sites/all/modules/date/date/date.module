@@ -877,8 +877,7 @@ function date_field_all_day($field, $date1, $date2 = NULL) {
   if (empty($date2)) {
     $date2 = $date1;
   }
-  $granularity = $field['granularity'];
-  $granularity = array_pop($granularity);
+  $granularity = date_granularity_precision($field['granularity']);
   $increment = isset($field['widget']['increment']) ? $field['widget']['increment'] : 1;
   $date1 = date_format($date1, DATE_FORMAT_DATETIME);
   $date2 = date_format($date2, DATE_FORMAT_DATETIME);

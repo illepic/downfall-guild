@@ -1,4 +1,4 @@
-#i
+#
 # Apache/PHP/Drupal settings:
 #
 
@@ -87,10 +87,8 @@ DirectoryIndex index.php
   # To redirect all users to access the site WITH the 'www.' prefix,
   # (http://example.com/... will be redirected to http://www.example.com/...)
   # adapt and uncomment the following:
-
-  #RewriteCond %{HTTP_HOST} (^downfallguild\.org|downfallguild\.com$) [NC]
-  #RewriteRule ^(.*)$ http://www.downfallguild.org/$1 [L,R=301]  
-
+  RewriteCond %{HTTP_HOST} ^downfallguild\.org$ [NC]
+  RewriteRule ^(.*)$ http://www.downfallguild.org/$1 [L,R=301]
   #
   # To redirect all users to access the site WITHOUT the 'www.' prefix,
   # (http://www.example.com/... will be redirected to http://example.com/...)

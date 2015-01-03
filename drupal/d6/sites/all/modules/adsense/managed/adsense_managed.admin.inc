@@ -14,7 +14,7 @@
  * @ingroup forms
  */
 function adsense_managed_settings() {
-  include_once(drupal_get_path('module', 'adsense_managed') .'/help/adsense_managed.help.inc');
+  module_load_include('inc', 'adsense_managed', 'help/adsense_managed.help');
 
   $form['help'] = array(
     '#type'        => 'fieldset',

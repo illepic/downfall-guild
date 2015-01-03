@@ -15,7 +15,7 @@
  */
 function adsense_search_settings() {
   global $base_url;
-  require_once(drupal_get_path('module', 'adsense') .'/includes/adsense.search_options.inc');
+  module_load_include('inc', 'adsense', 'includes/adsense.search_options');
 
   $form['searchbox'] = array(
     '#type' => 'fieldset',

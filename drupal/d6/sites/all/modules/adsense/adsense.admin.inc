@@ -14,8 +14,8 @@
  * @ingroup forms
  */
 function adsense_main_settings() {
-  include_once(drupal_get_path('module', 'adsense') .'/help/adsense.help.inc');
-  require_once(drupal_get_path('module', 'adsense') .'/includes/adsense.search_options.inc');
+  module_load_include('inc', 'adsense', 'help/adsense.help');
+  module_load_include('inc', 'adsense', 'includes/adsense.search_options');
 
   $form['help'] = array(
     '#type'        => 'fieldset',
@@ -67,6 +67,13 @@ function adsense_main_settings() {
     '#collapsible' => TRUE,
     '#collapsed' => FALSE,
     '#title' => t('Advanced options'),
+  );
+
+  $form['advanced']['adsense_unblock_ads'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Display anti ad-block request?'),
+    '#default_value' => variable_get('adsense_unblock_ads', ADSENSE_UNBLOCK_ADS_DEFAULT),
+    '#description' => t("EXPERIMENTAL! Enabling this feature will add a mechanism that tries to detect when adblocker software is in use, displaying a polite request to the user to enable ads on this site. [!moreinfo]", array('!moreinfo' => l(t('More information'), 'http://easylist.adblockplus.org/blog/2013/05/10/anti-adblock-guide-for-site-admins'))),
   );
 
   $form['advanced']['adsense_test_mode'] = array(
@@ -143,7 +150,7 @@ function adsense_main_settings() {
  * @ingroup forms
  */
 function adsense_id_settings() {
-  include_once(drupal_get_path('module', 'adsense') .'/help/adsense_id_help.inc');
+  module_load_include('inc', 'adsense', 'help/adsense_id_help');
 
   $form['help'] = array(
     '#type'        => 'fieldset',

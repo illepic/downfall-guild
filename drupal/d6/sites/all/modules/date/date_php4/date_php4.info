@@ -4,9 +4,9 @@ package = Date/Time
 dependencies[] = date_api
 core = 6.x
 
-; Information added by drupal.org packaging script on 2012-04-27
-version = "6.x-2.9"
+; Information added by Drupal.org packaging script on 2014-03-31
+version = "6.x-2.10"
 core = "6.x"
 project = "date"
-datestamp = "1335549078"
+datestamp = "1396284252"
 

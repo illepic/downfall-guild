@@ -1,4 +1,13 @@
-// $Id: image_captcha.js,v 1.1.2.2 2010/11/29 23:34:44 soxofaan Exp $
+
+// JavaScript behaviors for the Image CAPTCHA
+Drupal.behaviors.imageCaptcha = function (context) {
+
+  // Add a click event to CAPTCHA images to reload the CAPTCHA image
+  $(".captcha_image", context).click(function() {
+    $(this).attr('src', $(this).attr('src').replace(/\?.*$/, '') + '?r=' + Math.random());
+  })
+
+};
 
 // JavaScript behaviors for the Image CAPTCHA admin page
 Drupal.behaviors.imageCaptchaAdmin = function (context) {

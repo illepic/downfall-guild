@@ -5,12 +5,19 @@ CHANGELOG for Forum Access for Drupal 6
 forum_access 6.x-1.x-dev:
 
 
+forum_access 6.x-1.8 (2012-05-05):
+  Enhancements:
+    - #762270: Add (commented out) code to disable clean URLs, in case we need it.
+  Bugs fixed:
+    - #1478822: Use user_roles() to allow translation of built-in roles and because it's the right way.
+    - #1356390 by smokris, salvis: Restore the core ability to edit your own comments as long as they haven't been replied to.
+
+
 forum_access 6.x-1.7 (2011-11-08):
   Enhancements:
     - #762270 by daffie, salvis: Add extensive Simpletests.
   Bugs fixed:
     - #762270 by salvis: Fix a number of minor bugs (edge cases) uncovered by the tests.
-
 
 forum_access 6.x-1.6 (2011-11-08):
   Bugs fixed:

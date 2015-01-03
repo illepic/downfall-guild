@@ -1,5 +1,4 @@
 <?php
-// $Id: link.views.inc,v 1.1.4.3 2010/06/14 15:59:35 jcfiala Exp $
 /**
  * @file
  * Contains functions handling views integration.

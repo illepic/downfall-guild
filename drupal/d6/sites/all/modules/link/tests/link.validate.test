@@ -1,5 +1,4 @@
 <?php
-// $Id: link.validate.test,v 1.1.2.13 2010/06/14 17:51:03 jcfiala Exp $
 
 /**
  * @file
@@ -362,6 +361,8 @@ class LinkValidateUrlLight extends DrupalUnitTestCase {
   
   function setUp() {
     // do we need to include something here?
+    module_load_include('module', 'link');
+    module_load_include('inc', 'link');
   }
   
   function getInfo() {

@@ -124,6 +124,9 @@ class ForumAccessTestCase extends DrupalWebTestCase {
 
       $this->testForumAccessLogin('admin_user');
 
+      // Disable clean URLs (on qa.d.o they are disabled!).
+      //$this->drupalPost('admin/settings/clean-urls', array('clean_url' => 0), t('Save configuration'));
+
       if ($this->testForumAccessUseDNA) {
         // Enable Devel Node Access verbose mode.
         $this->drupalPost('admin/settings/devel', array('devel_node_access_debug_mode' => 1), t('Save configuration'));
@@ -190,7 +193,10 @@ class ForumAccessTestCase extends DrupalWebTestCase {
           if (intval($user_comment_id) == 0) {
             $user_comment_id = $admin_comment_id;
           }
-          $user_reply_id = $this->testForumAccessCreateReply($user_topic_id, $user_comment_id);
+          $user_reply_id = 0;
+          if ($this->testForumAccessCreateReply($user_topic_id, $user_comment_id)) {
+            $user_reply_id = $user_comment_id + 1;
+          }
 
           // edit
           if ($user_topic_id != $admin_topic_id) {
@@ -198,6 +204,9 @@ class ForumAccessTestCase extends DrupalWebTestCase {
           }
           if ($user_comment_id != $admin_comment_id) {
             $this->testForumAccessUpdateComment($user_topic_id, $user_comment_id);
+          }
+          if ($user_reply_id) {
+            $this->testForumAccessUpdateComment($user_topic_id, $user_reply_id);
           }
           $this->testForumAccessUpdateTopic($admin_topic_id);
           $this->testForumAccessUpdateComment($admin_topic_id, $admin_comment_id);
@@ -238,6 +247,7 @@ class ForumAccessTestCase extends DrupalWebTestCase {
      * forum permissions: 'create forum topics', 'delete any forum topic', 'delete own forum topics', 'edit any forum topic', 'edit own forum topics'
      */
 
+    global $user;
     $current_user_is_content_owner = FALSE;
 
     if (!$this->loggedInUser) {
@@ -417,6 +427,17 @@ class ForumAccessTestCase extends DrupalWebTestCase {
         else {
           if ((in_array('administer comments', $user_permissions)) || ($this->testForumAccessGrants['authenticated_update']) || $current_user_is_moderator) {
             if ((in_array('access content', $user_permissions)) && (in_array('access comments', $user_permissions))) {
+              return TRUE;
+            }
+          }
+          elseif ($current_user_is_content_owner) {
+            session_save_session(FALSE);
+            $user_saved = $user;
+            $user = user_load($comment->uid);
+            $allow_editing_own_comment = comment_access('edit', $comment);
+            $user = $user_saved;
+            session_save_session(TRUE);
+            if ($allow_editing_own_comment) {
               return TRUE;
             }
           }
@@ -920,8 +941,9 @@ class ForumAccessTestCase extends DrupalWebTestCase {
         $this->drupalPost(NULL, $comment_options, t('Save'));
         if ($allowed) {
           if ($this->assertNoText("not authorized", t('@user should be allowed to reply on this comment: @page', array('@user' => ($this->loggedInUser ? t('The user') : t('Anonymous')), '@page' => $this->getUrl())))) {
-            preg_match_all('/node\/(?<topic_id>\d+)#comment-(?<comment_id>\d+)/', $this->url, $matches);
-            return (array_key_exists('comment_id', $matches) ? intval($matches['comment_id']) : 0);
+            //preg_match_all('/node\/(?<topic_id>\d+)#comment-(?<comment_id>\d+)/', $this->url, $matches);
+            //return (array_key_exists('comment_id', $matches) ? intval($matches['comment_id']) : 0);
+            return TRUE;
           }
           else {
             $this->testForumAccessDumpDebugInfo('comment', $comment_id);
@@ -930,12 +952,13 @@ class ForumAccessTestCase extends DrupalWebTestCase {
         else {
           if (!$this->assertText("not authorized", t('@user should NOT be allowed to reply on this comment: @page', array('@user' => ($this->loggedInUser ? t('The user') : t('Anonymous')), '@page' => $this->getUrl())))) {
             $this->testForumAccessDumpDebugInfo('comment', $comment_id);
-            preg_match_all('/node\/(?<topic_id>\d+)#comment-(?<comment_id>\d+)/', $this->url, $matches);
-            return (array_key_exists('comment_id', $matches) ? intval($matches['comment_id']) : 0);
+            //preg_match_all('/node\/(?<topic_id>\d+)#comment-(?<comment_id>\d+)/', $this->url, $matches);
+            //return (array_key_exists('comment_id', $matches) ? intval($matches['comment_id']) : 0);
           }
         }
       }
     }
+    return FALSE;
   }
 
   /**

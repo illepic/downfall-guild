@@ -15,8 +15,8 @@
  */
 function adsense_cse_settings() {
   global $base_url;
-  include_once(drupal_get_path('module', 'adsense_cse') .'/help/adsense_cse.help.inc');
-  require_once(drupal_get_path('module', 'adsense') .'/includes/adsense.search_options.inc');
+  module_load_include('inc', 'adsense_cse', 'help/adsense_cse.help');
+  module_load_include('inc', 'adsense', 'includes/adsense.search_options');
 
   $form['help'] = array(
     '#type'        => 'fieldset',

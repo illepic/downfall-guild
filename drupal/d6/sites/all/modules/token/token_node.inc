@@ -14,7 +14,56 @@
  */
 
 /**
- * Implementation of hook_token_values().
+ * Implements hook_token_list() on behalf of node.module.
+ */
+function node_token_list($type = 'all') {
+  $tokens = array();
+
+  if ($type == 'node' || $type == 'all') {
+    $tokens['node']['nid']             = t('The unique ID of the content item, or "node".');
+    $tokens['node']['type']            = t('The type of the node.');
+    $tokens['node']['type-name']       = t('The human-readable name of the node type.');
+    $tokens['node']['language']        = t('The language the node is written in.');
+    $tokens['node']['title']           = t('The title of the node.');
+    $tokens['node']['title-raw']       = t('The title of the node.');
+    $tokens['node']['node-path']       = t('The URL alias of the node.');
+    $tokens['node']['node-path-raw']   = t('The URL alias of the node.');
+    $tokens['node']['node-url']        = t('The URL of the node.');
+
+    $tokens['node']['author-uid']      = t("The unique ID of the author of the node.");
+    $tokens['node']['author-name']     = t("The login name of the author of the node.");
+    $tokens['node']['author-name-raw'] = t("The login name of the author of the node.");
+    $tokens['node']['author-mail']     = t("The email address of the author of the node.");
+    $tokens['node']['author-mail-raw'] = t("The email address of the author of the node.");
+
+    $tokens['node']['log']     = t('The explanation of the most recent changes made to the node.');
+    $tokens['node']['log-raw'] = t('The explanation of the most recent changes made to the node.');
+
+    $tokens['node'] += token_get_date_token_info(t('Node creation'));
+    $tokens['node'] += token_get_date_token_info(t('Node modification'), 'mod-');
+
+    if (module_exists('comment')) {
+      $tokens['node']['node_comment_count']   = t("The number of comments posted on a node.");
+      $tokens['node']['unread_comment_count'] = t("The number of comments posted on a node since the reader last viewed it.");
+    }
+
+    if (module_exists('taxonomy')) {
+      $tokens['node']['term']            = t("Name of top taxonomy term");
+      $tokens['node']['term-raw']        = t("Unfiltered name of top taxonomy term.");
+      $tokens['node']['term-id']         = t("ID of top taxonomy term");
+      $tokens['node']['vocab']           = t("Name of top term's vocabulary");
+      $tokens['node']['vocab-raw']       = t("Unfiltered name of top term's vocabulary.");
+      $tokens['node']['vocab-id']        = t("ID of top term's vocabulary");
+      // Temporarily disabled -- see notes in node_token_values.
+      // $tokens['node']['catpath']        = t("Full taxonomy tree for the topmost term");
+    }
+  }
+
+  return $tokens;
+}
+
+/**
+ * Implements hook_token_values() on behalf of node.module.
  */
 function node_token_values($type, $object = NULL, $options = array()) {
   $values = array();
@@ -126,55 +175,6 @@ function node_token_values($type, $object = NULL, $options = array()) {
   }
 
   return $values;
-}
-
-/**
- * Implementation of hook_token_list().
- */
-function node_token_list($type = 'all') {
-  $tokens = array();
-
-  if ($type == 'node' || $type == 'all') {
-    $tokens['node']['nid']             = t('The unique ID of the content item, or "node".');
-    $tokens['node']['type']            = t('The type of the node.');
-    $tokens['node']['type-name']       = t('The human-readable name of the node type.');
-    $tokens['node']['language']        = t('The language the node is written in.');
-    $tokens['node']['title']           = t('The title of the node.');
-    $tokens['node']['title-raw']       = t('The title of the node.');
-    $tokens['node']['node-path']       = t('The URL alias of the node.');
-    $tokens['node']['node-path-raw']   = t('The URL alias of the node.');
-    $tokens['node']['node-url']        = t('The URL of the node.');
-
-    $tokens['node']['author-uid']      = t("The unique ID of the author of the node.");
-    $tokens['node']['author-name']     = t("The login name of the author of the node.");
-    $tokens['node']['author-name-raw'] = t("The login name of the author of the node.");
-    $tokens['node']['author-mail']     = t("The email address of the author of the node.");
-    $tokens['node']['author-mail-raw'] = t("The email address of the author of the node.");
-
-    $tokens['node']['log']     = t('The explanation of the most recent changes made to the node.');
-    $tokens['node']['log-raw'] = t('The explanation of the most recent changes made to the node.');
-
-    $tokens['node'] += token_get_date_token_info(t('Node creation'));
-    $tokens['node'] += token_get_date_token_info(t('Node modification'), 'mod-');
-
-    if (module_exists('comment')) {
-      $tokens['node']['node_comment_count']   = t("The number of comments posted on a node.");
-      $tokens['node']['unread_comment_count'] = t("The number of comments posted on a node since the reader last viewed it.");
-    }
-
-    if (module_exists('taxonomy')) {
-      $tokens['node']['term']            = t("Name of top taxonomy term");
-      $tokens['node']['term-raw']        = t("Unfiltered name of top taxonomy term.");
-      $tokens['node']['term-id']         = t("ID of top taxonomy term");
-      $tokens['node']['vocab']           = t("Name of top term's vocabulary");
-      $tokens['node']['vocab-raw']       = t("Unfiltered name of top term's vocabulary.");
-      $tokens['node']['vocab-id']        = t("ID of top term's vocabulary");
-      // Temporarily disabled -- see notes in node_token_values.
-      // $tokens['node']['catpath']        = t("Full taxonomy tree for the topmost term");
-    }
-  }
-
-  return $tokens;
 }
 
 /**

@@ -1,5 +1,4 @@
 <?php
-/* $Id: css.inc,v 1.10.2.7 2010/10/15 21:10:11 merlinofchaos Exp $ */
 
 /*
  * @file
@@ -309,8 +308,10 @@ function ctools_css_disassemble($css) {
   $disassembled_css = array();
   // Remove comments.
   $css = preg_replace("/\/\*(.*)?\*\//Usi", "", $css);
-  // Split out each statement
-  $statements = explode("}", $css);
+  // Split out each statement. Match either a right curly brace or a semi-colon
+  // that precedes a left curly brace with no right curly brace separating them.
+  $statements = preg_split('/}|;(?=[^}]*{)/', $css);
+
   // If we have any statements, parse them.
   if (!empty($statements)) {
     // Iterate through all of the statements.
@@ -331,13 +332,10 @@ function ctools_css_disassemble($css) {
       }
 
       // Disassemble the declaration, check it and tuck it into an array.
-      $declarations = _ctools_css_disassemble_declaration($declaration);
       if (!isset($disassembled_css[$selector_str])) {
-        $disassembled_css[$selector_str] = $declarations;
+        $disassembled_css[$selector_str] = array();
       }
-      else {
-        $disassembled_css[$selector_str] += $declarations;
-      }
+      $disassembled_css[$selector_str] += _ctools_css_disassemble_declaration($declaration);
     }
   }
   return $disassembled_css;

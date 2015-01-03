@@ -72,6 +72,16 @@ class date_api_filter_handler extends views_handler_filter_numeric {
     return $options;
   }
 
+  function operators() {
+    $operators = parent::operators();
+    $operators['contains'] = array(
+      'title' => t('Contains'),
+      'short' => t('contains'),
+      'values' => 1,
+    );
+    return $operators;
+  }
+
   /**
    * Make sure our custom options get exported.
    * Handle the options we know about, pass the rest to the parent plugin.
@@ -444,7 +454,7 @@ class date_api_filter_handler extends views_handler_filter_numeric {
         $field = $query_field['field'];
         if (!isset($this->query->table_queue[$field['table_name']])) {
           if ($field['table_name'] != $this->table || !empty($this->relationship)) {
-            $this->related_table_alias = $this->query->queue_table($field['table_name'], $this->relationship);
+            $this->related_table_alias = $this->query->ensure_table($field['table_name'], $this->relationship);
           }
         }
         $table_alias = !empty($this->related_table_alias) ? $this->related_table_alias : $field['table_name'];
@@ -452,21 +462,33 @@ class date_api_filter_handler extends views_handler_filter_numeric {
 
         $sql = '';
         $sql_parts = array();
+
         switch ($this->operator) {
           case 'between':
             $sql_parts[] = $this->date_filter('min', $query_field, '>=');
             $sql_parts[] = $this->date_filter('max', $query_field, '<=');
             $sql = implode(' AND ', array_filter($sql_parts));
             break;
+
           case 'not between':
             $sql_parts[] = $this->date_filter('min', $query_field, '<');
             $sql_parts[] = $this->date_filter('max', $query_field, '>');
             $sql = implode(' OR ', array_filter($sql_parts));
             break;
+
+          case 'contains':
+            $query_field['field']['fullname'] = str_replace($field['table_name'] .'_', $table_alias .'.', $field['fromto'][0]);
+            $sql_parts[] = $this->date_filter('value', $query_field, '<=');
+            $query_field['field']['fullname'] = str_replace($field['table_name'] .'_', $table_alias .'.', $field['fromto'][1]);
+            $sql_parts[] = $this->date_filter('value', $query_field, '>=');
+            $sql = implode(' AND ', array_filter($sql_parts));
+            break;
+
           default:
             $sql = $this->date_filter('value', $query_field, $this->operator);
             break;
         }
+
         if (!empty($sql)) {
           // Use set_where_group() with the selected date_method
           // of 'AND' or 'OR' to combine the field WHERE clauses.

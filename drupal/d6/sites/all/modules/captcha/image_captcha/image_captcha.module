@@ -1,5 +1,4 @@
 <?php
-// $Id: image_captcha.module,v 1.33.2.4 2011/02/06 20:45:12 soxofaan Exp $
 
 /**
  * @file
@@ -153,17 +152,9 @@ function _image_captcha_check_setup($check_fonts=TRUE) {
   // Start clean.
   $status = 0;
   // Check if we can use the GD library.
-  // Note that we are only checking
-  // for the existence of the imagejpeg function.
-  // We could also check for imagepng, which can also be used
-  // (optionally) for the image CAPTCHA by the site admin.
-  // However, this incurs extra complexity in the setup checking
-  // (more constants to define) and in the caller functions
-  // (more situations to check for).
-  // We take this shortcut (only checking for imagejpeg) because
-  // it's probably pretty safe to assume that imagepng
-  // is available when imagejpeg is available.
-  if (!function_exists('imagejpeg')) {
+  // We need at least the imagepng function (for font previews on the settings page).
+  // Note that the imagejpg function is optionally also used, but not required.
+  if (!function_exists('imagepng')) {
     $status = $status | IMAGE_CAPTCHA_ERROR_NO_GDLIB;
   }
   if (!function_exists('imagettftext')) {
@@ -215,6 +206,9 @@ function image_captcha_captcha($op, $captcha_type='', $captcha_sid=NULL) {
         // build the result to return
         $result = array();
 
+        // Use javascript for some added usability (e.g. image reload).
+        drupal_add_js(drupal_get_path('module', 'image_captcha') .'/image_captcha.js');
+
         $result['solution'] = $code;
         // Generate image source URL (add timestamp to avoid problems with
         // client side caching: subsequent images of the same CAPTCHA session
@@ -222,7 +216,7 @@ function image_captcha_captcha($op, $captcha_type='', $captcha_sid=NULL) {
         $img_src = check_url(url("image_captcha/$captcha_sid/". time()));
         $result['form']['captcha_image'] = array(
           '#type' => 'markup',
-          '#value' => '<img src="'. $img_src .'" alt="'. t('Image CAPTCHA') .'" title="'. t('Image CAPTCHA') .'" />',
+          '#value' => '<img src="'. $img_src .'" class="captcha_image" id="captcha_image_'. $captcha_sid .'" alt="'. t('Image CAPTCHA') .'" title="'. t('Image CAPTCHA') .'" />',
           '#weight' => -2,
         );
         $result['form']['captcha_response'] = array(

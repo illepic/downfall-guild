@@ -150,7 +150,7 @@ function date_repeat_build_dates($rrule = NULL, $rrule_values = NULL, $field, $i
   $duration = date_difference($start, $end);
   $start_datetime = date_format($start, DATE_FORMAT_DATETIME);
   if (!empty($rrule_values['UNTIL']['datetime'])) {
-    if (strlen($form_values['UNTIL']['datetime']) < 11) {
+    if (strlen($rrule_values['UNTIL']['datetime']) < 11) {
       $rrule_values['UNTIL']['datetime'] .= ' 23:59:59';
     }
     $end = date_ical_date($rrule_values['UNTIL'], $timezone);

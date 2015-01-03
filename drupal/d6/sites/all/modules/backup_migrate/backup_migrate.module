@@ -144,6 +144,14 @@ function backup_migrate_menu() {
     'weight' => 1,
     'type' => MENU_LOCAL_TASK,
   );
+  $items[BACKUP_MIGRATE_MENU_PATH . '/nodesquirrel'] = array(
+      'title' => 'NodeSquirrel',
+      'page callback' => 'backup_migrate_menu_callback',
+      'page arguments' => array('destinations.nodesquirrel', 'nodesquirrel_settings_page'),
+      'access arguments' => array('administer backup and migrate'),
+      'weight' => 10,
+      'type' => MENU_LOCAL_TASK,
+    );
 
   backup_migrate_include('crud');
   $items += backup_migrate_crud_menu();
@@ -632,7 +640,7 @@ function backup_migrate_perform_backup(&$settings) {
   timer_start('backup_migrate_backup');
 
   // If not in 'safe mode', increase the maximum execution time:
-  if (!ini_get('safe_mode') && ini_get('max_execution_time') < 1200) {
+  if (!ini_get('safe_mode') && strpos(ini_get('disable_functions'), 'set_time_limit') === FALSE && ini_get('max_execution_time') != 0 && ini_get('max_execution_time') < variable_get('backup_migrate_backup_max_time', 1200)) {
     set_time_limit(variable_get('backup_migrate_backup_max_time', 1200));
   }
 
@@ -694,7 +702,7 @@ function backup_migrate_perform_restore($destination_id, $file, $settings = arra
   timer_start('backup_migrate_restore');
 
   // If not in 'safe mode', increase the maximum execution time:
-  if (!ini_get('safe_mode') && ini_get('max_execution_time') < variable_get('backup_migrate_backup_max_time', 1200)) {
+  if (!ini_get('safe_mode') && strpos(ini_get('disable_functions'), 'set_time_limit') === FALSE && ini_get('max_execution_time') != 0 && ini_get('max_execution_time') < variable_get('backup_migrate_restore_max_time', 1200)) {
     set_time_limit(variable_get('backup_migrate_restore_max_time', 1200));
   }
 

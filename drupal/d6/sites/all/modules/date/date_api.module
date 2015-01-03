@@ -507,7 +507,7 @@ function date_granularity_array_from_precision($precision) {
  * Give a granularity array, return the highest precision.
  */
 function date_granularity_precision($granularity_array) {
-  $input = clone($granularity_array);
+  $input = date_granularity_sorted($granularity_array);
   return array_pop($input);
 }
 
@@ -699,7 +699,7 @@ function date_t_strings(&$replace, $langcode) {
  *
  * Translates formatted date results, unlike PHP function date_format().
  *
- * @param $oject
+ * @param $date
  *   A date object, could be created by date_make_date().
  * @param $type
  *   The format to use. Can be "small", "medium" or "large" for the preconfigured
@@ -1504,7 +1504,7 @@ function date_is_valid($date, $type = DATE_DATETIME, $granularity = array('year'
       return FALSE;
     }
   }
-  elseif (!date_valid_year($year) || !date_valid_month($month) || date_valid_day($day, $month, $year)) {
+  elseif (!date_valid_year($year) || !date_valid_month($month) || !date_valid_day($day, $month, $year)) {
     // Unix and datetime are expected to have at least a year, month, and day.
     return FALSE;
   }
