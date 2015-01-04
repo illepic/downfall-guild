@@ -556,7 +556,7 @@ class DownfallImageMigration extends DownfallNodeMigration {
 /**
  * A new files migration that handles media filetypes better
  */
-class DownfallFile6Migraton extends DrupalFile6Migration{
+class DownfallFile6Migration extends DrupalFile6Migration{
   public function __construct(array $arguments) {
     parent::__construct($arguments);
 

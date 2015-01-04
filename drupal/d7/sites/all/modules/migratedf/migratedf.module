@@ -84,7 +84,7 @@ function migratedf_register_migrations() {
     'source_dir' => '../d6/sites/www.downfallguild.org/files/',
     'destination_dir' => 'public://',
   );
-  Migration::registerMigration('DownfallFile6Migraton',
+  Migration::registerMigration('DownfallFile6Migration',
     $file_arguments['machine_name'], $file_arguments);
 
   /**
