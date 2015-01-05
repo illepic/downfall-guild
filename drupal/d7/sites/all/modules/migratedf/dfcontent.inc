@@ -7,11 +7,30 @@
 class DownfallUserMigration extends DrupalUser6Migration {
   public function __construct(array $arguments) {
     parent::__construct($arguments);
-
     // test
-    // $query = parent::query();
-    // dpq($query);
+//     $query = parent::query();
+//     dpq($query);
   }
+
+  private $counter = 0;
+
+//  public function prepareRow($row) {
+//    if (parent::prepareRow($row) === FALSE) {
+//      return FALSE;
+//    }
+//
+//    $this->counter++;
+//    dpm($this->counter, 'User counter');
+//
+//    dpm($row->migrate_map_destid1, 'migrate_map_destid1');
+//    if (!empty($row->migrate_map_destid1)) {
+//      dpm($row, "User that already has a migrate_map_destid1 for some reason");
+//      // This seems to cause trouble
+//      $row->migrate_map_destid1 = '';
+//    }
+//
+//    return TRUE;
+//  }
 }
 
 /**

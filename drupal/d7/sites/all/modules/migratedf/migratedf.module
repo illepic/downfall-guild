@@ -530,7 +530,7 @@ function migratedf_migrate_api() {
   $api = array(
     'api' => 2,
     'groups' => array(
-      'df_group' => array(
+      'DownfallD2DMigration' => array(
         'title' => t('Downfall Group'),
       ),
     ),

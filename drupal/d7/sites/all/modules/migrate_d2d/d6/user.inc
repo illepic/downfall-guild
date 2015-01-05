@@ -38,7 +38,6 @@ class DrupalUser6Migration extends DrupalUserMigration {
    */
   public function prepareRow($row) {
     if (parent::prepareRow($row) === FALSE) {
-      dpm('prepareRow was false for', $row->name);
       return FALSE;
     }
 
