@@ -35,7 +35,7 @@ vagrantfile-local:
             hKadyo9457eY:
                 owner: ''
                 group: ''
-                source: ./sites
+                source: ./drupal
                 target: /var/www
                 sync_type: nfs
                 rsync:
@@ -87,18 +87,18 @@ apache:
     modules:
         - rewrite
     vhosts:
-        crziizvuhjvl:
-            servername: drupal7.dev
+        dfd7:
+            servername: d7.local.downfallguild.org
             serveraliases:
-                - www.drupal7.dev
-            docroot: /var/www/drupal-7
+                - downfalld7.local
+            docroot: /var/www/d7
             port: '80'
             setenv:
                 - 'APP_ENV dev'
             directories:
                 gctfcnawjw9h:
                     provider: directory
-                    path: /var/www/drupal-7
+                    path: /var/www/d7
                     options:
                         - Indexes
                         - FollowSymlinks
@@ -115,18 +115,18 @@ apache:
             ssl_key: ''
             ssl_chain: ''
             ssl_certs_dir: ''
-        1bu3amqoncxg:
-            servername: drupal8.dev
+        dfd6:
+            servername: d6.local.downfallguild.org
             serveraliases:
-                - www.drupal8.dev
-            docroot: /var/www/drupal-8
+                - downfalld6.local
+            docroot: /var/www/d6
             port: '80'
             setenv:
                 - 'APP_ENV dev'
             directories:
-                jjmeb6cjl9c0:
+                gctfcnawjw9h:
                     provider: directory
-                    path: /var/www/drupal-8
+                    path: /var/www/d6
                     options:
                         - Indexes
                         - FollowSymlinks
@@ -319,18 +319,18 @@ mysql:
         UHkaiIbFnczd:
             grant:
                 - ALL
-            name: drupal7
+            name: downfall_d7
             host: localhost
-            user: drupal7
-            password: drupal7
+            user: dfdb7
+            password: root
             sql_file: ''
         K2kuUyJy5fMh:
             grant:
                 - ALL
-            name: drupal8
+            name: downfall_d6
             host: localhost
-            user: drupal8
-            password: drupal8
+            user: dfdb6
+            password: root
             sql_file: ''
 postgresql:
     install: '0'

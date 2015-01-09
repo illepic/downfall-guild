@@ -211,12 +211,12 @@
  * @endcode
  */
 $databases = array (
-  'default' => 
+  'default' =>
   array (
-    'default' => 
+    'default' =>
     array (
       'database' => 'downfall_d7',
-      'username' => 'root',
+      'username' => 'dfdb7',
       'password' => 'root',
       'host' => 'localhost',
       'port' => '',
@@ -224,12 +224,12 @@ $databases = array (
       'prefix' => '',
     ),
   ),
-  'df6import' => 
+  'df6import' =>
   array (
-    'default' => 
+    'default' =>
     array (
       'database' => 'downfall_d6',
-      'username' => 'root',
+      'username' => 'dfdb6',
       'password' => 'root',
       'host' => 'localhost',
       'port' => '',
