@@ -1690,3 +1690,8 @@ td.menu-disabled {
   padding-left: 0.35em;
   background: none;
 }
+
+/* Shoutbox tweaks */
+.shoutbox-msg {
+  clear: right;
+}

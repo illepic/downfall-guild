@@ -216,7 +216,7 @@ $databases = array (
     'default' =>
     array (
       'database' => 'downfall_d7',
-      'username' => 'dfdb7',
+      'username' => 'root',
       'password' => 'root',
       'host' => 'localhost',
       'port' => '',
@@ -229,7 +229,7 @@ $databases = array (
     'default' =>
     array (
       'database' => 'downfall_d6',
-      'username' => 'dfdb6',
+      'username' => 'root',
       'password' => 'root',
       'host' => 'localhost',
       'port' => '',
