@@ -8,7 +8,7 @@ Full details here: https://github.com/illepic/downfall-guild/wiki
 
 * Vagrant
 ** vagrant-hostmanager: `vagrant plugin install vagrant-hostmanager`
-** vagrant-bindfs: `vagrant plugin install vagrant-bindnfs`
+** vagrant-bindfs: `vagrant plugin install vagrant-bindfs`
 * VirtualBox
 
 ## Migration
