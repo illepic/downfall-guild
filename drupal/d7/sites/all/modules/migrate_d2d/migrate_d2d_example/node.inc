@@ -25,9 +25,9 @@ class ExampleImageMigration extends ExampleNodeMigration {
     parent::__construct($arguments);
 
     $this->addFieldMapping('field_credit', 'copyright');
-    $arguments = array('source_path' => '/mnt/source_images');
-    $this->addFieldMapping('field_main_image', 'filename')
-         ->arguments($arguments);
+    $this->addFieldMapping('field_main_image', 'filename');
+    $this->addFieldMapping('field_main_image:source_path')
+         ->defaultValue('/mnt/source_images');
   }
 
   /**
@@ -72,10 +72,12 @@ class ExampleArticleMigration extends ExampleNodeMigration {
          ->sourceMigration('Image');
     // Note that we map migrated terms by the vocabulary ID.
     $this->addFieldMapping('field_countries', '1')
-         ->sourceMigration('Countries')
-         ->arguments(array('source_type' => 'tid'));
+         ->sourceMigration('Countries');
+    $this->addFieldMapping('field_countries:source_type')
+         ->defaultValue('tid');
     $this->addFieldMapping('field_topics', '2')
-         ->sourceMigration('Topics')
-         ->arguments(array('source_type' => 'tid'));
+         ->sourceMigration('Topics');
+    $this->addFieldMapping('field_topics:source_type')
+         ->defaultValue('tid');
   }
 }

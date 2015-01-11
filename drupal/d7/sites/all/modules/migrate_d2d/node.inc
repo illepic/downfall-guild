@@ -41,6 +41,7 @@ abstract class DrupalNodeMigration extends DrupalMigration {
    */
   public function __construct(array $arguments) {
     $this->destinationType = $arguments['destination_type'];
+    $this->sourceType = $arguments['source_type'];
     if (!empty($arguments['user_migration'])) {
       $user_migration = $arguments['user_migration'];
       $this->dependencies[] = $user_migration;
@@ -49,9 +50,30 @@ abstract class DrupalNodeMigration extends DrupalMigration {
       $this->defaultLanguage = $arguments['default_language'];
     }
     parent::__construct($arguments);
+
+    // Document known core fields
+    $this->sourceFields += array(
+      'nid' => t('Node ID'),
+      'title' => t('Title'),  // @todo Depends on has_title, and label may be customized
+      'body' => t('Body'),
+      'format' => t('Format'),
+      'teaser' => t('Teaser'),
+      'uid' => t('Authored by (uid)'),
+      'created' => t('Created timestamp'),
+      'changed' => t('Modified timestamp'),
+      'status' => t('Published'),
+      'promote' => t('Promoted to front page'),
+      'sticky' => t('Sticky at top of lists'),
+      'revision' => t('Create new revision'),
+      'log' => t('Revision Log message'),
+      'language' => t('Language (fr, en, ...)'),
+      'tnid' => t('The translation set id for this node'),
+      'revision_uid' => t('Revision modified by author (uid)'),
+    );
+
     $this->sourceFields += $this->version->getSourceFields('node', $this->sourceType);
     if ($this->moduleExists('path')) {
-      $this->sourceFields['path'] = array('label' => t('Node: Path alias'));
+      $this->sourceFields['path'] = t('Path alias');
     }
 
     $this->destination = new MigrateDestinationNode($this->destinationType);
@@ -68,24 +90,32 @@ abstract class DrupalNodeMigration extends DrupalMigration {
       MigrateDestinationNode::getKeySchema()
     );
 
-    $this->highwaterField = array(
-      'name' => 'changed',
-      'alias' => 'n',
-      'type' => 'int',
-    );
+    if (!$this->newOnly) {
+      $this->highwaterField = array(
+        'name' => 'changed',
+        'alias' => 'n',
+        'type' => 'int',
+      );
+    }
 
     // Setup common mappings
-    $this->addSimpleMappings(array('title', 'body', 'status', 'created', 'changed',
+    $this->addSimpleMappings(array('title', 'status', 'created', 'changed',
       'comment', 'promote', 'sticky'));
 
-    $this->addFieldMapping('body:language')
-         ->defaultValue($this->defaultLanguage);
+    if (field_info_instance('node', 'body', $this->destinationType)) {
+      $this->addFieldMapping('body', 'body');
+      $this->addFieldMapping('body:language')
+           ->defaultValue($this->defaultLanguage);
+    }
+    else {
+      $this->addUnmigratedSources(array('body'));
+    }
 
     $this->addUnmigratedSources(array('vid'));
     $this->addUnmigratedDestinations(array('is_new', 'revision',
       'revision_uid', 'log'));
 
-    if (!empty($arguments['default_uid'])) {
+    if (isset($arguments['default_uid'])) {
       $default_uid = $arguments['default_uid'];
     }
     else {
@@ -152,7 +182,7 @@ abstract class DrupalNodeMigration extends DrupalMigration {
     migrate_instrument_start('DrupalNodeMigration::createStub');
     $node = new stdClass;
     $node->title = t('Stub');
-    $node->body = t('Stub body');
+    $node->body = array(LANGUAGE_NONE => array(array("value" => t('Stub body'))));
     $node->type = $this->destination->getBundle();
     $node->uid = 1;
     node_save($node);

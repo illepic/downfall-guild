@@ -43,7 +43,7 @@ abstract class DrupalTermMigration extends DrupalMigration {
     $this->sourceFields += $this->version->getSourceFields(
       'taxonomy_term', $this->sourceVocabulary);
     if ($this->moduleExists('path')) {
-      $this->sourceFields['path'] = array('label' => t('Node: Path alias'));
+      $this->sourceFields['path'] = t('Path alias');
     }
 
     // Create our three main objects - source, destination, and map
@@ -58,6 +58,7 @@ abstract class DrupalTermMigration extends DrupalMigration {
                        'unsigned' => TRUE,
                        'not null' => TRUE,
                        'description' => 'Source term ID',
+                       'alias' => 'td',
                       ),
       ),
       MigrateDestinationTerm::getKeySchema()
@@ -100,6 +101,34 @@ abstract class DrupalTermMigration extends DrupalMigration {
         $row->path = $path;
       }
     }
+
     return TRUE;
+  }
+
+  /**
+   * Implementation of Migration::createStub().
+   *
+   * @param $migration
+   * @return array|bool
+   */
+  protected function createStub($migration, $source_key) {
+    // Ignore an attempt to create a stub corresponding to "tid" 0.
+    if ($source_key[0] == 0) {
+      return FALSE;
+    }
+    
+    migrate_instrument_start('DrupalTermMigration::createStub');
+    $vocab = taxonomy_vocabulary_machine_name_load($this->destinationVocabulary);
+    $term = new stdClass;
+    $term->vid = $vocab->vid;
+    $term->name = t('Stub');
+    taxonomy_term_save($term);
+    migrate_instrument_stop('DrupalTermMigration::createStub');
+    if (isset($term->tid)) {
+      return array($term->tid);
+    }
+    else {
+      return FALSE;
+    }
   }
 }

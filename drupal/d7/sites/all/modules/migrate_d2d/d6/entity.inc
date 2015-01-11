@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * Implementation of DrupalNodeMigration for Drupal 5 sources.
+ * Implementation of DrupalEntityMigration for Drupal 6 sources.
  */
 
 /**
- * Handling specific to a Drupal 5 source for nodes.
+ * Handling specific to a Drupal 6 node source for entities.
  */
-class DrupalNode5Migration extends DrupalNodeMigration {
+class DrupalEntity6Migration extends DrupalEntityMigration {
   /**
    * Translation from field names assigned when executing the query to our
    * subfield notation.
@@ -28,34 +28,31 @@ class DrupalNode5Migration extends DrupalNodeMigration {
 
     $this->sourceOptions['fix_field_names'] = $this->fixFieldNames;
 
-    $this->source = new MigrateDrupal5SourceSQL($query, $this->sourceFields, NULL,
+    $this->source = new MigrateDrupal6SourceSQL($query, $this->sourceFields, NULL,
       $this->sourceOptions);
 
-    if (field_info_instance('node', 'body', $this->destinationType)) {
-      $this->addFieldMapping('body:summary', 'teaser');
-      $this->addFieldMapping('body:format', 'format')
-           ->callbacks(array($this, 'mapFormat'));
-    }
-    else {
-      $this->addUnmigratedSources(array('teaser', 'format'));
-    }
-
-    $this->addFieldMapping(NULL, 'moderate');
+    $this->addUnmigratedSources(array(
+      'format',
+      'language',
+      'teaser',
+      'tnid',
+      'translate',
+    ));
   }
 
   /**
-   * Query for basic node fields from Drupal 5.
+   * Query for basic node fields from Drupal 6.
    *
    * @return QueryConditionInterface
    */
   protected function query() {
     $query = Database::getConnection('default', $this->sourceConnection)
              ->select('node', 'n')
-             ->fields('n', array('nid', 'vid', 'title',
+             ->fields('n', array('nid', 'vid', 'language', 'title',
                  'uid', 'status', 'created', 'changed', 'comment', 'promote',
-                 'moderate', 'sticky'))
-             ->condition('n.type', $this->sourceType)
-             ->orderBy('n.changed');
+                 'moderate', 'sticky', 'tnid', 'translate'))
+             ->condition('type', $this->sourceType)
+             ->orderBy('changed');
     $query->innerJoin('node_revisions', 'nr', 'n.vid=nr.vid');
     $query->fields('nr', array('body', 'teaser', 'format'));
     // Pick up simple CCK fields
@@ -86,14 +83,6 @@ class DrupalNode5Migration extends DrupalNodeMigration {
         }
       }
     }
-    // Join node_counter for Statistics support
-    if (Database::getConnection('default', $this->sourceConnection)
-        ->schema()->tableExists('node_counter')) {
-      $query->leftJoin('node_counter', 'nc', 'n.nid=nc.nid');
-      $query->addField('nc', 'daycount');
-      $query->addField('nc', 'timestamp');
-      $query->addField('nc', 'totalcount');
-    }
     return $query;
   }
 
@@ -108,42 +97,5 @@ class DrupalNode5Migration extends DrupalNodeMigration {
         unset($row->$clean);
       }
     }
-    // Don't populate summary if the teaser matches the generated summary.
-    if (empty($row->teaser) || $row->teaser == text_summary($row->body)) {
-      $row->teaser = '';
-    }
-  }
-}
-
-/**
- * We override the default SQL source class just so we can clean up subfield
- * names for the UI.
- */
-class MigrateDrupal5SourceSQL extends MigrateSourceSQL {
-  /**
-   * Translation from field names assigned when executing the query to our
-   * subfield notation.
-   *
-   * @var array
-   *  key: DB-compatible name (e.g., field_buy_link_title).
-   *  value: Subfield notation (e.g., field_buy_link:title).
-   */
-  public $fixFieldNames = array();
-
-  public function __construct(SelectQueryInterface $query, array $fields = array(),
-        SelectQueryInterface $count_query = NULL, array $options = array()) {
-    $this->fixFieldNames = $options['fix_field_names'];
-    parent::__construct($query, $fields, $count_query, $options);
-  }
-
-  public function fields() {
-    $fields = parent::fields();
-    // Remove the default subfield names in favor of the nice-looking ones.
-    foreach ($this->fixFieldNames as $clean => $display) {
-      if (isset($fields[$clean])) {
-        unset($fields[$clean]);
-      }
-    }
-    return $fields;
   }
 }

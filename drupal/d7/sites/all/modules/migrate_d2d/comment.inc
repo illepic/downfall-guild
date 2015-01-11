@@ -69,8 +69,15 @@ abstract class DrupalCommentMigration extends DrupalMigration {
     /**
      * Setup common mappings.
      */
-    $this->addSimpleMappings(array('pid', 'subject',
+    $this->addSimpleMappings(array('subject',
       'hostname', 'thread', 'name', 'mail', 'homepage'));
+    if (isset($arguments['machine_name'])) {
+      $this->addFieldMapping('pid', 'pid')
+        ->sourceMigration($arguments['machine_name']);
+    }
+    else {
+      $this->addFieldMapping('pid', 'pid');
+    }
 
     if (!empty($this->nodeMigration)) {
       $this->addFieldMapping('nid', 'nid')
@@ -84,7 +91,7 @@ abstract class DrupalCommentMigration extends DrupalMigration {
       $default_uid = $arguments['default_uid'];
     }
     else {
-      $default_uid = 1;
+      $default_uid = 0;
     }
     if (isset($user_migration)) {
       $this->addFieldMapping('uid', 'uid')

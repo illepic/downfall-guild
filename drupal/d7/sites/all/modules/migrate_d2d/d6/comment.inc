@@ -15,11 +15,13 @@ class DrupalComment6Migration extends DrupalCommentMigration {
   public function __construct(array $arguments) {
     parent::__construct($arguments);
 
-    $this->highwaterField = array(
-      'name' => 'timestamp',
-      'alias' => 'c',
-      'type' => 'int',
-    );
+    if (!$this->newOnly) {
+      $this->highwaterField = array(
+        'name' => 'timestamp',
+        'alias' => 'c',
+        'type' => 'int',
+      );
+    }
 
     // Version-specific field mappings
     $this->addFieldMapping('comment_body', 'comment');
@@ -27,15 +29,10 @@ class DrupalComment6Migration extends DrupalCommentMigration {
          ->callbacks(array($this, 'mapFormat'));
     $this->addFieldMapping('created', 'timestamp');
     $this->addFieldMapping('changed', 'timestamp');
-    // Comment status flag flipped between D6 and D7
     $this->addFieldMapping('status', 'status')
          ->callbacks(array($this, 'handleStatus'));
 
     $this->addUnmigratedDestinations(array('language', 'comment_body:language'));
-  }
-
-  protected function handleStatus($value) {
-    return !$value;
   }
 
   /**
@@ -54,9 +51,28 @@ class DrupalComment6Migration extends DrupalCommentMigration {
                'mail', 'homepage', 'format'));
     $query->join('node', 'n', 'c.nid = n.nid');
     $query->condition('n.type', $this->sourceType)
-          ->orderBy('timestamp');
+          ->orderBy($this->newOnly ? 'c.cid' : 'c.timestamp');
 
     return $query;
+  }
+
+  /**
+   * Default status flag values flipped in D7. Non-standard statuses are kept.
+   *
+   * @param $value
+   *
+   * @return int
+   */
+  protected function handleStatus($value) {
+    if ($value == 0) {
+      return 1;
+    }
+    elseif ($value == 1) {
+      return 0;
+    }
+    else {
+      return $value;
+    }
   }
 
   /**

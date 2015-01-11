@@ -15,11 +15,13 @@ class DrupalComment7Migration extends DrupalCommentMigration {
   public function __construct(array $arguments) {
     parent::__construct($arguments);
 
-    $this->highwaterField = array(
-      'name' => 'changed',
-      'alias' => 'c',
-      'type' => 'int',
-    );
+    if (!$this->newOnly) {
+      $this->highwaterField = array(
+        'name' => 'changed',
+        'alias' => 'c',
+        'type' => 'int',
+      );
+    }
 
     // Version-specific field mappings
     $this->addSimpleMappings(array('comment_body', 'created', 'changed',
@@ -44,7 +46,7 @@ class DrupalComment7Migration extends DrupalCommentMigration {
                'mail', 'homepage', 'language'));
     $query->join('node', 'n', 'c.nid = n.nid');
     $query->condition('n.type', $this->sourceType)
-          ->orderBy('changed');
+          ->orderBy('c.changed');
 
     return $query;
   }

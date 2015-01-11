@@ -126,6 +126,16 @@ class DrupalMenuLinks6Migration extends DrupalMenuLinksMigration {
   }
 
   /**
+   * Migrate menu link language, if set.
+   */
+  public function prepare($menu_link, $row) {
+    $options = unserialize($row->options);
+    if (isset($options['langcode']) && module_exists('i18n_menu')) {
+      $menu_link->language = $options['langcode'];
+    }
+  }
+
+  /**
    * Actions to take after a menu has been saved.
    *
    * @param $menu
