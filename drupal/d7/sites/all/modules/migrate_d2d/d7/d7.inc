@@ -6,34 +6,17 @@
 
 class DrupalVersion7 extends DrupalVersion {
   /**
-   * Generate default format mappings based on matching machine names or
-   * display names.
+   * Generate default format mappings based on matching names.
    */
   public function getDefaultFormatMappings() {
     $format_mappings = array();
-    $formats = filter_formats();
-    $result = Database::getConnection('default',
-                                      $this->arguments['source_connection'])
+    $result = Database::getConnection('default', $this->arguments['source_connection'])
               ->select('filter_format', 'f')
-              ->fields('f', array('format', 'name'))
+              ->fields('f', array('format'))
               ->execute();
     foreach ($result as $format_row) {
-      // Take a match on the machine name.
-      if (isset($formats[$format_row->format])) {
-        $format_mappings[$format_row->format] = $format_row->format;
-      }
-      else {
-        // Otherwise, look for a matching display name.
-        foreach ($formats as $machine_name => $format_info) {
-          if (drupal_strtolower($format_row->name) ==
-              drupal_strtolower($format_info->name)) {
-            $format_mappings[$format_row->format] = $machine_name;
-            break;
-          }
-        }
-      }
+      $format_mappings[$format_row->format] = $format_row->format;
     }
-
     return $format_mappings;
   }
 
@@ -50,7 +33,6 @@ class DrupalVersion7 extends DrupalVersion {
                     ->select('url_alias', 'ua')
                     ->fields('ua', array('alias'))
                     ->condition('source', $source)
-                    ->orderBy('pid', 'DESC')
                     ->execute()
                     ->fetchField();
     }
@@ -66,9 +48,8 @@ class DrupalVersion7 extends DrupalVersion {
    *
    * @param $entity_type
    * @param $bundle
-   * @param $include_body
    */
-  protected function populateSourceFieldInfo($entity_type, $bundle, $include_body = FALSE) {
+  protected function populateSourceFieldInfo($entity_type, $bundle) {
     if (empty($this->sourceFieldInfo)) {
       migrate_instrument_start('DrupalVersion7::sourceFieldInfo');
 
@@ -140,7 +121,6 @@ class DrupalVersion7 extends DrupalVersion {
         }
       }
     }
-    $columns[$field_name . ':language'] = 'language';
     return $columns;
   }
 
@@ -149,7 +129,6 @@ class DrupalVersion7 extends DrupalVersion {
    *
    * @param $row
    * @param $entity_id
-   * @param $include_body
    */
   public function getSourceValues($row, $entity_id) {
     // Load up field data for dynamically mapped fields
@@ -174,9 +153,6 @@ class DrupalVersion7 extends DrupalVersion {
           }
           else {
             $index = $display_name;
-          }
-          if (isset($row->$index) && !is_array($row->$index)) {
-            $row->$index = array($row->$index);
           }
           $row->{$index}[] = $field_row->$column_name;
         }

@@ -43,39 +43,15 @@ abstract class DrupalUserMigration extends DrupalMigration {
       $this->dependencies[] = $this->roleMigration;
     }
 
-    // Document known core fields
-    $this->sourceFields += array(
-      'uid' => t('User ID'),
-      'mail' => t('Email address'),
-      'name' => t('Username'),
-      'pass' => t('Password'),
-      'status' => t('Status'),
-      'created' => t('Registered timestamp'),
-      'access' => t('Last access timestamp'),
-      'login' => t('Last login timestamp'),
-      'picture' => t('Picture'),
-      'signature' => t('Signature'),
-      'signature_format' => t('Signature format'),
-      'timezone' => t('Timezone'),
-      'language' => t('Language'),
-      'theme' => t('Default theme'),
-      'init' => t('Init'),
-      'data' => t('Data'),
-    );
-
-    // Get any CCK fields attached to users.
+    // Get any CCK/core fields attached to users.
     $this->sourceFields += $this->version->getSourceFields(
       'user', 'user');
 
     if ($this->moduleExists('path')) {
-      $this->sourceFields['path'] = t('Path alias');
+      $this->sourceFields['path'] = array('label' => t('User: Path alias'));
     }
     if ($this->roleMigration) {
-      $this->sourceFields['roles'] = t('Roles');
-    }
-
-    if (!isset($this->sourceOptions['track_changes']) && !$this->newOnly) {
-      $this->sourceOptions['track_changes'] = TRUE;
+      $this->sourceFields['roles'] = array('label' => t('User: Roles'));
     }
 
     $this->source = new MigrateSourceSQL($this->query(), $this->sourceFields,
@@ -92,6 +68,17 @@ abstract class DrupalUserMigration extends DrupalMigration {
       ),
       DrupalDestinationUser::getKeySchema()
     );
+
+    // We don't have a proper last-changed timestamp on users, access is the
+    // best we can do.
+    // @todo: Doesn't work in a straight-forward way, because access is 0 for
+    // accounts that haven't been logged in. Disabled until we come up with a
+    // good solution
+/*    $this->highwaterField = array(
+      'name' => 'access',
+      'alias' => 'u',
+      'type' => 'int',
+    );*/
 
     // Most mappings are straight-forward
     $this->addSimpleMappings(array('pass', 'mail', 'theme', 'signature',
@@ -149,11 +136,12 @@ abstract class DrupalUserMigration extends DrupalMigration {
    * @return QueryConditionInterface
    */
   protected function query() {
-    // Do not attempt to migrate the anonymous user row.
+    // Do not attempt to migrate the anonymous or admin user rows.
     $query = Database::getConnection('default', $this->sourceConnection)
              ->select('users', 'u')
              ->fields('u')
-             ->condition('u.uid', 0, '>');
+             ->condition('u.uid', 1, '>');
+//             ->orderBy('access');
     return $query;
   }
 
@@ -167,35 +155,21 @@ abstract class DrupalUserMigration extends DrupalMigration {
     if (parent::prepareRow($row) === FALSE) {
       return FALSE;
     }
-
-    // On initial import, if this email address already exists, just map to the
-    // existing uid and don't allow it to be deleted. When updating, we can
-    // take the existing uid from the map instead of querying for it. Make sure
-    // when updating an imported user that we don't apply this logic.
-    if (empty($row->migrate_map_destid1)) {
-      $new_uid = db_select('users', 'u')
-                 ->fields('u', array('uid'))
-                 ->condition('mail', $row->mail)
-                 ->execute()
-                 ->fetchField();
-      // If we haven't mapped the admin account based on email address, map it
-      // directly to the destination admin account.
-      if (!$new_uid && $row->uid == 1) {
-        $new_uid = 1;
+    /*
+    // On initial import, skip accounts with email addresses already existing
+    // on the destination side (we assume these are manually-created staff
+    // accounts or the like).
+    // TODO: Add options to overwrite such accounts, throw errors, etc.
+    if (empty($row->migrate_map_sourceid1)) {
+      $uid = db_select('users', 'u')
+             ->fields('u', array('uid'))
+             ->condition('mail', $row->mail)
+             ->execute()
+             ->fetchField();
+      if ($uid) {
+        return FALSE;
       }
-    }
-    elseif ($row->migrate_map_needs_update == MigrateMap::STATUS_IGNORED &&
-            $row->migrate_map_rollback_action == MigrateMap::ROLLBACK_PRESERVE) {
-      $new_uid = $row->migrate_map_destid1;
-    }
-
-    if (!empty($new_uid)) {
-      $hash = isset($row->migrate_map_hash) ? $row->migrate_map_hash : NULL;
-      $this->map->saveIDMapping($row, array($new_uid), MigrateMap::STATUS_IGNORED,
-        MigrateMap::ROLLBACK_PRESERVE, $hash);
-      $this->rollbackAction = MigrateMap::ROLLBACK_PRESERVE;
-      return FALSE;
-    }
+    }*/
 
     // Add the path to the source row, if relevant
     if ($this->moduleExists('path')) {
@@ -207,6 +181,7 @@ abstract class DrupalUserMigration extends DrupalMigration {
 
     // Pick up profile data.
     $this->version->getSourceValues($row, $row->uid);
+
     // Populate the source roles
     if ($this->roleMigration) {
       $result = Database::getConnection('default', $this->sourceConnection)
@@ -218,21 +193,7 @@ abstract class DrupalUserMigration extends DrupalMigration {
         $row->roles[] = $role_row->rid;
       }
     }
-
     return TRUE;
-  }
-
-  /**
-   * Implements Migration::prepare().
-   *
-   * @param $account
-   * @param $row
-   */
-  public function prepare($account, $row) {
-    // Unserialize data if necessary.
-    if (!is_array($account->data) && !strncmp($account->data, 'a:', 2)) {
-      $account->data = unserialize($account->data);
-    }
   }
 
   /**
@@ -261,7 +222,7 @@ abstract class DrupalUserMigration extends DrupalMigration {
 class DrupalDestinationUser extends MigrateDestinationUser {
   public function fields($migration = NULL) {
     $fields = parent::fields($migration);
-    $fields['path'] = t('Path alias');
+    $fields['path'] = t('Node: Path alias');
     return $fields;
   }
 }

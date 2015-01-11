@@ -17,7 +17,6 @@
  *   dependencies and a sourceMigration for the uid mapping.
  * default_uid - Drupal 7 (destination) uid of the user account to use as
  *   the default.
- * bundle - File bundle to use as the target - defaults to 'file'.
  * file_class - Override for the default MigrateFileUri file class.
  * destination_dir - Destination directory for the files (defaults to public://).
  */
@@ -28,17 +27,13 @@ abstract class DrupalFileMigration extends DrupalMigration {
        $user_migration = $arguments['user_migration'];
        $this->dependencies[] = $user_migration;
     }
-    if (empty($arguments['bundle'])) {
-      $arguments['bundle'] = 'file';
-    }
     if (empty($arguments['file_class'])) {
       $arguments['file_class'] = 'MigrateFileUri';
     }
     if (empty($arguments['destination_dir'])) {
       $arguments['destination_dir'] = 'public://';
     }
-    $this->sourceFields += $this->version->getSourceFields('file',
-                                                           $arguments['bundle']);
+    $this->sourceFields += $this->version->getSourceFields('file', 'file');
     // Allow derived classes to override this definition by setting it before
     // calling their parent constructor
     if (!isset($this->map)) {
@@ -58,8 +53,7 @@ abstract class DrupalFileMigration extends DrupalMigration {
     $this->source = new MigrateSourceSQL($this->query(),
       $this->sourceFields, NULL, $this->sourceOptions);
 
-    $this->destination = new MigrateDestinationFile($arguments['bundle'],
-                                                    $arguments['file_class']);
+    $this->destination = new MigrateDestinationFile('file', $arguments['file_class']);
 
     // Setup common mappings
     $this->addFieldMapping('destination_dir')
@@ -71,7 +65,7 @@ abstract class DrupalFileMigration extends DrupalMigration {
     $this->addFieldmapping('preserve_files')
           ->defaultValue(TRUE);
 
-    if (isset($arguments['default_uid'])) {
+    if (!empty($arguments['default_uid'])) {
       $default_uid = $arguments['default_uid'];
     }
     else {
@@ -86,6 +80,6 @@ abstract class DrupalFileMigration extends DrupalMigration {
       $this->addFieldMapping('uid')
            ->defaultValue($default_uid);
     }
-    $this->addUnmigratedSources(array('filename', 'filemime', 'filesize', 'urlencode'));
+    $this->addUnmigratedSources(array('filename', 'filemime', 'filesize'));
   }
 }

@@ -4,7 +4,7 @@
  * Base classes for all Drupal-to-Drupal migration classes.
  */
 
-abstract class DrupalMigration extends Migration {
+abstract class DrupalMigration extends DynamicMigration {
   /**
    * Connection key for the DatabaseConnection holding the source Drupal
    * installation.
@@ -63,14 +63,6 @@ abstract class DrupalMigration extends Migration {
   protected $formatMappings = array();
 
   /**
-   * Set to TRUE to suppress highwater marks or track_changes (i.e., to only
-   * import new items, skipping updated items, on subsequent imports).
-   *
-   * @var bool
-   */
-  protected $newOnly = FALSE;
-
-  /**
    * Required arguments:
    *
    * source_connection - Connection key for the DatabaseConnection holding the
@@ -78,8 +70,6 @@ abstract class DrupalMigration extends Migration {
    * source_version - Major version number (as an integer) of the source install.
    * machine_name - Machine name under which a particular migration is registered.
    * description - Description of the migration.
-   * group_name - The group (import job) containing this migration (import
-   *  task).
    *
    * Optional arguments:
    *
@@ -96,67 +86,60 @@ abstract class DrupalMigration extends Migration {
    *  derived from the machine name).
    * version_class - The name of a custom DrupalVersion class overriding the
    *  default derived from source_version.
-   * new_only - For any destination types that support highwater marks or
-   *  track_changes, suppress that support so repeated migrations only import
-   *  new items.
    *
    * @param array $arguments
    */
   public function __construct($arguments) {
-    parent::__construct($arguments);
-
-    if (empty($this->arguments['source_version'])) {
-      throw new MigrateException(
-        t('No source_version provided in migrate_d2d migration arguments.'));
-    }
-    else {
-      $this->sourceVersion = $this->arguments['source_version'];
-    }
-    if (isset($this->arguments['version_class'])) {
-      $version_class = $this->arguments['version_class'];
+    $this->arguments = $arguments;
+    $this->sourceVersion = $arguments['source_version'];
+    if (isset($arguments['version_class'])) {
+      $version_class = $arguments['version_class'];
     }
     else {
       $version_class = 'DrupalVersion' . $this->sourceVersion;
     }
-    $this->version = new $version_class($this->arguments);
-    if (!isset($this->arguments['group'])) {
-      $this->arguments['group'] = MigrateGroup::getInstance($this->arguments['group_name']);
+    $this->version = new $version_class($arguments);
+    if (!isset($arguments['group'])) {
+      $arguments['group'] = MigrateGroup::getInstance('default');
     }
-    elseif (!is_object($this->arguments['group'])) {
-      $this->arguments['group'] = MigrateGroup::getInstance($this->arguments['group']);
+    elseif (!is_object($arguments['group'])) {
+      $arguments['group'] = MigrateGroup::getInstance($arguments['group']);
     }
-    $this->sourceConnection = $this->arguments['source_connection'];
-    if (!empty($this->arguments['source_database'])) {
-      Database::addConnectionInfo($this->sourceConnection, 'default',
-                                  $this->arguments['source_database']);
+    parent::__construct($arguments['group']);
+    $this->sourceConnection = $arguments['source_connection'];
+    if (!empty($arguments['source_database'])) {
+      Database::addConnectionInfo($this->sourceConnection, 'default', $arguments['source_database']);
     }
-    if (!empty($this->arguments['source_type'])) {
-      $this->sourceType = $this->arguments['source_type'];
+    if (!empty($arguments['source_type'])) {
+      $this->sourceType = $arguments['source_type'];
     }
-    $this->description = $this->arguments['description'];
-    if (!empty($this->arguments['dependencies'])) {
-      $this->dependencies = $this->arguments['dependencies'];
+    $this->description = $arguments['description'];
+    if (!empty($arguments['dependencies'])) {
+      $this->dependencies = $arguments['dependencies'];
     }
-    if (!empty($this->arguments['soft_dependencies'])) {
-      $this->softDependencies = $this->arguments['soft_dependencies'];
+    if (!empty($arguments['soft_dependencies'])) {
+      $this->softDependencies = $arguments['soft_dependencies'];
     }
     $this->sourceOptions = array('map_joinable' => FALSE, 'cache_counts' => TRUE,
                      'cache_key' => 'migrate_' . $this->machineName);
-    if (!empty($this->arguments['source_options'])) {
+    if (!empty($arguments['source_options'])) {
       $this->sourceOptions = array_merge($this->sourceOptions,
-                                         $this->arguments['source_options']);
+                                         $arguments['source_options']);
     }
 
-    if (!empty($this->arguments['format_mappings'])) {
-      $this->formatMappings = $this->arguments['format_mappings'];
+    if (!empty($arguments['format_mappings'])) {
+      $this->formatMappings = $arguments['format_mappings'];
     }
     else {
       $this->formatMappings = $this->version->getDefaultFormatMappings();
     }
+  }
 
-    if (!empty($this->arguments['new_only'])) {
-      $this->newOnly = $this->arguments['new_only'];
-    }
+  /**
+   * Use the explicit machine_name argument as this migration's machine name.
+   */
+  protected function generateMachineName($class_name = NULL) {
+    return $this->arguments['machine_name'];
   }
 
   /**
@@ -300,14 +283,11 @@ abstract class DrupalVersion {
    *  Type of entity ('node', 'user', etc.) for which to retrieve field info.
    * @param $bundle
    *  Bundle within the entity type (e.g., 'article', 'blog', etc.).
-   * @param $include_body
-   *  Treat a node body as if it were a custom field (for supporting
-   *  content_profile).
    *
    * @return array
    *  An array keyed by field name, with field labels as the values.
    */
-  public function getSourceFields($entity_type, $bundle, $include_body = FALSE) {
+  public function getSourceFields($entity_type, $bundle) {
     $this->populateSourceFieldInfo($entity_type, $bundle);
     $fields = array();
     foreach ($this->sourceFieldInfo as $field_name => $info) {

@@ -15,13 +15,11 @@ class DrupalComment5Migration extends DrupalCommentMigration {
   public function __construct(array $arguments) {
     parent::__construct($arguments);
 
-    if (!$this->newOnly) {
-      $this->highwaterField = array(
-        'name' => 'timestamp',
-        'alias' => 'c',
-        'type' => 'int',
-      );
-    }
+    $this->highwaterField = array(
+      'name' => 'timestamp',
+      'alias' => 'c',
+      'type' => 'int',
+    );
 
     // Version-specific field mappings
     $this->addFieldMapping('comment_body', 'comment');
@@ -30,8 +28,6 @@ class DrupalComment5Migration extends DrupalCommentMigration {
 
     $this->addFieldMapping('created', 'timestamp');
     $this->addFieldMapping('changed', 'timestamp');
-    $this->addFieldMapping('status', 'status')
-         ->callbacks(array($this, 'handleStatus'));
   }
 
   /**
@@ -50,28 +46,9 @@ class DrupalComment5Migration extends DrupalCommentMigration {
                'mail', 'homepage', 'format'));
     $query->join('node', 'n', 'c.nid = n.nid');
     $query->condition('n.type', $this->sourceType)
-          ->orderBy($this->newOnly ? 'c.cid' : 'c.timestamp');
+          ->orderBy('timestamp');
 
     return $query;
-  }
-
-  /**
-   * Default status flag values flipped in D7. Non-standard statuses are kept.
-   *
-   * @param $value
-   *
-   * @return int
-   */
-  protected function handleStatus($value) {
-    if ($value == 0) {
-      return 1;
-    }
-    elseif ($value == 1) {
-      return 0;
-    }
-    else {
-      return $value;
-    }
   }
 
   /**

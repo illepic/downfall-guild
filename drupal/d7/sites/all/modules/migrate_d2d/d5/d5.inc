@@ -24,18 +24,18 @@ class DrupalVersion5 extends DrupalVersion {
   public function getDefaultFormatMappings() {
     migrate_instrument_start('DrupalVersion5::getDefaultFormatMappings');
     $format_mappings = array();
-    $d5_formats = Database::getConnection('default', $this->arguments['source_connection'])
+    $result = Database::getConnection('default', $this->arguments['source_connection'])
               ->select('filter_formats', 'f')
-              ->fields('f', array('name', 'format'))
-              ->execute()->fetchAllKeyed();
-    $d7_formats = db_select('filter_format', 'f')
-                ->fields('f', array('name', 'format'))
-                ->condition('name', array_keys($d5_formats), 'IN')
+              ->fields('f', array('format', 'name'))
+              ->execute();
+    foreach ($result as $format_row) {
+      $format = db_select('filter_format', 'f')
+                ->fields('f', array('format'))
+                ->condition('name', $format_row->name)
                 ->execute()
-                ->fetchAllKeyed();
-    foreach ($d5_formats as $name => $format) {
-      if (isset($d7_formats[$name])) {
-        $format_mappings[$format] = $d7_formats[$name];
+                ->fetchField();
+      if ($format) {
+        $format_mappings[$format_row->format] = $format;
       }
     }
     migrate_instrument_stop('DrupalVersion5::getDefaultFormatMappings');
@@ -56,7 +56,6 @@ class DrupalVersion5 extends DrupalVersion {
                     ->select('url_alias', 'ua')
                     ->fields('ua', array('dst'))
                     ->condition('src', $source)
-                    ->orderBy('pid', 'DESC')
                     ->execute()
                     ->fetchField();
     }
@@ -73,9 +72,8 @@ class DrupalVersion5 extends DrupalVersion {
    *
    * @param $entity_type
    * @param $bundle
-   * @param $include_body
    */
-  protected function populateSourceFieldInfo($entity_type, $bundle, $include_body = FALSE) {
+  protected function populateSourceFieldInfo($entity_type, $bundle) {
     if ($entity_type == 'user') {
       // Get core profile fields.
       $this->profileFields();
@@ -220,7 +218,7 @@ class DrupalVersion5 extends DrupalVersion {
             $query = Database::getConnection('default', $this->arguments['source_connection'])
                      ->select($table, 'f')
                      ->fields('f')
-                     ->condition('vid', $revision_id);
+                     ->condition('nid', $entity_id);
             // There isn't always a delta,
             // @see http://drupal.org/node/1715244
             if ($schema->fieldExists($table, 'delta')) {
@@ -235,9 +233,6 @@ class DrupalVersion5 extends DrupalVersion {
                 }
                 else {
                   $index = $display_name;
-                }
-                if (isset($row->$index) && !is_array($row->$index)) {
-                  $row->$index = array($row->$index);
                 }
                 $row->{$index}[] = $field_row->$column_name;
               }
@@ -257,7 +252,6 @@ class DrupalVersion5 extends DrupalVersion {
           // The main column for the field should be rendered with
           // the field name, not the column name (e.g., field_foo rather
           // than field_foo_value).
-          $field_found = FALSE;
           foreach ($this->sourceFieldInfo as $field_name => $info) {
             if (isset($info['columns']) && !$info['multiple'] && $info['db_storage']) {
               $i = 0;
@@ -268,15 +262,12 @@ class DrupalVersion5 extends DrupalVersion {
                 else {
                   $query->addField('f', $column_name, $display_name);
                 }
-                $field_found = TRUE;
               }
             }
           }
-          if ($field_found) {
-            $data_row = $query->execute()->fetchObject();
-            foreach ($data_row as $name => $value) {
-              $row->$name = $value;
-            }
+          $data_row = $query->execute()->fetchObject();
+          foreach ($data_row as $name => $value) {
+            $row->$name = $value;
           }
         }
       }
@@ -340,9 +331,8 @@ class DrupalVersion5 extends DrupalVersion {
    *
    * @param $row
    * @param $entity_id
-   * @param $include_body
    */
-  public function getProfileValues($row, $entity_id, $include_body = FALSE) {
+  public function getProfileValues($row, $entity_id) {
     if (Database::getConnection('default', $this->arguments['source_connection'])
           ->schema()->tableExists('profile_values')) {
       migrate_instrument_start('DrupalVersion5::getProfileValues');
