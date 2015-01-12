@@ -69,6 +69,7 @@ function migratedf_register_migrations() {
     'soft_dependencies' => array('DownfallD2DPictures'),
     'dependencies' => array('DownfallD2DRoles'),
   );
+
   Migration::registerMigration('DownfallUserMigration',
     $user_arguments['machine_name'], $user_arguments);
 
