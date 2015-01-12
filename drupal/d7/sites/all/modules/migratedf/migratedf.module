@@ -51,7 +51,7 @@ function migratedf_register_migrations() {
     'description' => t('Import Drupal 6 picture files'),
     'default_uid' => 1,
     // 'source_dir' => 'sites/www.downfallguild.org/d6files/',
-    'source_dir' => '../d6/sites/www.downfallguild.org/files/',
+    'source_dir' => '../d6/',
     'destination_dir' => 'public://',
   );
   Migration::registerMigration('DownfallPicture6Migration',
@@ -82,7 +82,7 @@ function migratedf_register_migrations() {
     'description' => t('Import Drupal 6 files'),
     'user_migration' => 'DownfallD2DUser',
     'default_uid' => 1,
-    'source_dir' => '../d6/sites/www.downfallguild.org/files/',
+    'source_dir' => '../d6/',
     'destination_dir' => 'public://',
   );
   Migration::registerMigration('DownfallFile6Migration',
