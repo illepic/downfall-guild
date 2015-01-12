@@ -268,7 +268,7 @@ php:
         display_errors: On
         error_reporting: '-1'
         session.save_path: /var/lib/php/session
-        memory_limit: 256M
+        memory_limit: 2048M
     timezone: America/Chicago
     mod_php: 0
 hhvm:
