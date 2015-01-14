@@ -35,7 +35,7 @@ vagrantfile-local:
             hKadyo9457eY:
                 owner: ''
                 group: ''
-                source: ./drupal
+                source: ./project
                 target: /var/www
                 sync_type: nfs
                 rsync:
@@ -80,7 +80,7 @@ apache:
     settings:
         user: www-data
         group: www-data
-        default_vhost: true
+        default_vhost: false
         manage_user: false
         manage_group: false
         sendfile: 0
@@ -91,14 +91,14 @@ apache:
             servername: d7.local.downfallguild.org
             serveraliases:
                 - downfalld7.local
-            docroot: /var/www/d7
+            docroot: /var/www/web/drupal/d7
             port: '80'
             setenv:
                 - 'APP_ENV dev'
             directories:
                 gctfcnawjw9h:
                     provider: directory
-                    path: /var/www/d7
+                    path: /var/www/web/drupal/d7
                     options:
                         - Indexes
                         - FollowSymlinks
@@ -119,14 +119,14 @@ apache:
             servername: d6.local.downfallguild.org
             serveraliases:
                 - downfalld6.local
-            docroot: /var/www/d6
+            docroot: /var/www/web/drupal/d6
             port: '80'
             setenv:
                 - 'APP_ENV dev'
             directories:
                 gctfcnawjw9h:
                     provider: directory
-                    path: /var/www/d6
+                    path: /var/www/web/drupal/d6
                     options:
                         - Indexes
                         - FollowSymlinks
@@ -297,7 +297,7 @@ wpcli:
     version: ''
 drush:
     install: '1'
-    version: 7.0.0-alpha7
+    version: 6.5.0
 ruby:
     install: '1'
     versions:
