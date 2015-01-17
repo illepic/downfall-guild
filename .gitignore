@@ -7,3 +7,4 @@ drupal/d6/sites/default/settings.php*
 .idea/dataSources.local.xml
 .idea/dataSources.xml
 .vagrant
+node_modules
