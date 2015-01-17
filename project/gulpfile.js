@@ -1,6 +1,7 @@
 var gulp = require('gulp')
   ,shell = require('gulp-shell')
-  ,del = require('del');
+  ,del = require('del')
+  ,watch = require('gulp-watch');
 
 gulp.task('default', function() {
 
@@ -36,6 +37,13 @@ gulp.task('d7:init', ['d7:customFiles']);
 gulp.task('d7:cc', function() {
   return gulp.src('')
     .pipe(
-      shell(['drush cc all'], {'cwd': '/var/www/web/drupal/d7/sites/d7.local.downfallguild.org'})
+      shell(['drush cc all'], {'cwd': 'web/drupal/d7/sites/d7.local.downfallguild.org'})
     );
+});
+
+gulp.task('d7:watch', function() {
+  return gulp.src('build/config/d7/**/*')
+    .pipe(watch('build/config/d7/**/*'))
+    //.pipe(gulp.dest('web/drupal/d7/sites/'));
+    .pipe(shell(['rsync -avzr /var/www/build/config/d7/* /var/www/web/drupal/d7/sites']));
 });

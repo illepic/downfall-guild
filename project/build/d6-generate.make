@@ -8,8 +8,6 @@ projects[drupal][version] = "6.34"
 ; Modules
 projects[acl][version] = "1.4"
 
-projects[views_bulk_operations][version] = "1.16"
-
 projects[admin][version] = "2.0"
 
 projects[adsense][version] = "1.7"
@@ -22,13 +20,13 @@ projects[backup_migrate][version] = "2.8"
 
 projects[better_formats][version] = "1.2"
 
-projects[ctools][version] = "1.11"
-
 projects[calendar][version] = "2.4"
 
 projects[captcha][version] = "2.6"
 
 projects[cck][version] = "2.9"
+
+projects[ctools][version] = "1.11"
 
 projects[css_gzip][version] = "1.3"
 
@@ -84,7 +82,10 @@ projects[token][version] = "1.19"
 
 projects[views][version] = "2.16"
 
+projects[views_bulk_operations][version] = "1.16"
+
 projects[wysiwyg][version] = "2.4"
+
 
 ; Themes
 projects[deco][version] = "1.1"
