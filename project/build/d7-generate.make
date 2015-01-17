@@ -9,17 +9,14 @@ projects[drupal][version] = "7.34"
 projects[acl][version] = "1.0"
 projects[acl][subdir] = "contrib"
 
-projects[views_bulk_operations][version] = "3.2"
-projects[views_bulk_operations][subdir] = "contrib"
-
 projects[advanced_forum][version] = "2.4"
 projects[advanced_forum][subdir] = "contrib"
 
-projects[ctools][version] = "1.5"
-projects[ctools][subdir] = "contrib"
-
 projects[chain_menu_access][version] = "2.0"
 projects[chain_menu_access][subdir] = "contrib"
+
+projects[ctools][version] = "1.5"
+projects[ctools][subdir] = "contrib"
 
 projects[date][version] = "2.8"
 projects[date][subdir] = "contrib"
@@ -27,16 +24,25 @@ projects[date][subdir] = "contrib"
 projects[devel][version] = "1.5"
 projects[devel][subdir] = "contrib"
 
+projects[diff][version] = "3.2"
+projects[diff][subdir] = "contrib"
+
 projects[ds][version] = "2.7"
 projects[ds][subdir] = "contrib"
+
+projects[eck][version] = "2.0-rc6"
+projects[eck][subdir] = "contrib"
 
 projects[entity][version] = "1.5"
 projects[entity][subdir] = "contrib"
 
+projects[entity_view_mode][version] = "1.0-rc1"
+projects[entity_view_mode][subdir] = "contrib"
+
 projects[entityreference][version] = "1.1"
 projects[entityreference][subdir] = "contrib"
 
-projects[features][version] = "2.2"
+projects[features][version] = "2.3"
 projects[features][subdir] = "contrib"
 
 projects[field_group][version] = "1.4"
@@ -48,6 +54,9 @@ projects[file_entity][subdir] = "contrib"
 projects[forum_access][version] = "1.2"
 projects[forum_access][subdir] = "contrib"
 
+projects[jquery_update][version] = "2.4"
+projects[jquery_update][subdir] = "contrib"
+
 projects[media][version] = "2.0-alpha4"
 projects[media][subdir] = "contrib"
 
@@ -57,20 +66,29 @@ projects[migrate][subdir] = "contrib"
 projects[migrate_d2d][version] = "2.x-dev"
 projects[migrate_d2d][subdir] = "contrib"
 
-projects[migrate_extras][version] = "2.5"
+projects[migrate_extras][version] = "2.x-dev"
 projects[migrate_extras][subdir] = "contrib"
 
-projects[module_filter][version] = "2.0-alpha2"
+projects[module_filter][version] = "2.x-dev"
 projects[module_filter][subdir] = "contrib"
 
-projects[og][version] = "2.7"
+projects[og][version] = "2.x-dev"
 projects[og][subdir] = "contrib"
 
-projects[strongarm][version] = "2.0"
+projects[pathauto][version] = "1.x-dev"
+projects[pathauto][subdir] = "contrib"
+
+projects[strongarm][version] = "2.x-dev"
 projects[strongarm][subdir] = "contrib"
 
-projects[views][version] = "3.8"
+projects[token][version] = "1.x-dev"
+projects[token][subdir] = "contrib"
+
+projects[views][version] = "3.x-dev"
 projects[views][subdir] = "contrib"
+
+projects[views_bulk_operations][version] = "3.x-dev"
+projects[views_bulk_operations][subdir] = "contrib"
 
 ; Themes
 ;projects[zurb-foundation][version] = "5.x-dev"
