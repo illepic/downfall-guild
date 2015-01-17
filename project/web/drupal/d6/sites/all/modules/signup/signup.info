@@ -1,5 +1,0 @@
-; $Id: signup.info,v 1.4 2007/06/13 19:35:49 dww Exp $
-name = Signup
-description = "Allow users to sign up for content (especially events)."
-
-core = 6.x

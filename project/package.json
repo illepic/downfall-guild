@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "A more modern workflow for the Downfall site migration",
   "main": "index.js",
-  "dependencies": {
-    "gulp": "^3.8.10"
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-shell": "^0.2.11"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

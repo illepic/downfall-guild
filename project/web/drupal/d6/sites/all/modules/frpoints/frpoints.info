@@ -1,5 +1,0 @@
-; $Id$
-name = FuriousRaid Points
-description = An uploading and display system for FuriousRaid in Drupal
-package = WoW Stuff
-core = 6.x
