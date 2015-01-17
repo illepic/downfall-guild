@@ -143,6 +143,34 @@ apache:
             ssl_key: ''
             ssl_chain: ''
             ssl_certs_dir: ''
+        dfd8:
+            servername: d8.local.downfallguild.org
+            serveraliases:
+                - downfalld8.local
+            docroot: /var/www/web/drupal/d8
+            port: '80'
+            setenv:
+                - 'APP_ENV dev'
+            directories:
+                gctfcnawjw9h:
+                    provider: directory
+                    path: /var/www/web/drupal/d8
+                    options:
+                        - Indexes
+                        - FollowSymlinks
+                        - MultiViews
+                    allow_override:
+                        - All
+                    require:
+                        - all
+                        - granted
+                    custom_fragment: ''
+            engine: php
+            custom_fragment: ''
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_chain: ''
+            ssl_certs_dir: ''
     mod_pagespeed: 0
 nginx:
     install: '0'
@@ -271,16 +299,16 @@ php:
         memory_limit: 2048M
     timezone: America/Chicago
     mod_php: 0
-hhvm:
-    install: '0'
-    nightly: 0
-    composer: '1'
-    composer_home: ''
-    settings:
-        host: 127.0.0.1
-        port: '9000'
-    ini: {  }
-    timezone: null
+#hhvm:
+#    install: '0'
+#    nightly: 0
+#    composer: '1'
+#    composer_home: ''
+#    settings:
+#        host: 127.0.0.1
+#        port: '9000'
+#    ini: {  }
+#    timezone: null
 xdebug:
     install: '1'
     settings:
@@ -297,7 +325,7 @@ wpcli:
     version: ''
 drush:
     install: '1'
-    version: 6.5.0
+    version: 7.0.0-alpha8
 ruby:
     install: '1'
     versions:
@@ -305,8 +333,7 @@ ruby:
             version: ''
 nodejs:
     install: '1'
-    npm_packages:
-      - gulp
+    npm_packages: {  }
 python:
     install: '1'
     packages: {  }
@@ -317,20 +344,28 @@ mysql:
     root_password: root
     adminer: 0
     databases:
-        UHkaiIbFnczd:
-            grant:
-                - ALL
-            name: downfall_d7
-            host: localhost
-            user: dfdb7
-            password: root
-            sql_file: ''
-        K2kuUyJy5fMh:
+        dfdb6:
             grant:
                 - ALL
             name: downfall_d6
             host: localhost
-            user: dfdb6
+            user: dfmysqluser6
+            password: root
+            sql_file: ''
+        dfdb7:
+            grant:
+                - ALL
+            name: downfall_d7
+            host: localhost
+            user: dfmysqluser7
+            password: root
+            sql_file: ''
+        dfdb8:
+            grant:
+                - ALL
+            name: downfall_d8
+            host: localhost
+            user: dfmysqluser8
             password: root
             sql_file: ''
 postgresql:
@@ -372,22 +407,22 @@ mailcatcher:
         http_port: '1080'
         mailcatcher_path: /usr/local/rvm/wrappers/default
         from_email_method: inline
-beanstalkd:
-    install: '0'
-    settings:
-        listenaddress: 0.0.0.0
-        listenport: '13000'
-        maxjobsize: '65535'
-        maxconnections: '1024'
-        binlogdir: /var/lib/beanstalkd/binlog
-        binlogfsync: null
-        binlogsize: '10485760'
-    beanstalk_console: 0
-    binlogdir: /var/lib/beanstalkd/binlog
-rabbitmq:
-    install: '0'
-    settings:
-        port: '5672'
+#beanstalkd:
+#    install: '0'
+#    settings:
+#        listenaddress: 0.0.0.0
+#        listenport: '13000'
+#        maxjobsize: '65535'
+#        maxconnections: '1024'
+#        binlogdir: /var/lib/beanstalkd/binlog
+#        binlogfsync: null
+#        binlogsize: '10485760'
+#    beanstalk_console: 0
+#    binlogdir: /var/lib/beanstalkd/binlog
+#rabbitmq:
+#    install: '0'
+#    settings:
+#        port: '5672'
 elastic_search:
     install: '0'
     settings:
