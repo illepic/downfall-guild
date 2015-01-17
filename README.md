@@ -6,17 +6,19 @@ Full details here: https://github.com/illepic/downfall-guild/wiki
 
 ## Quick Start
 
-### Install
+### Install local
 
 * Vagrant
   * vagrant-hostmanager: `vagrant plugin install vagrant-hostmanager`
   * vagrant-bindfs: `vagrant plugin install vagrant-bindfs`
 * VirtualBox
+* Git
 
-## Migration
+## Initial
 
-* `vagrant up`
+* Turn the dev environment on: `vagrant up`
   * If change in puphpet/config.yml, then after `vagrant up` run `vagrant provision`
-* `vagrant ssh`
-* cd /var/www
-* `drush make make/d7-generate.make test --no-core`
+* Enter the dev environment: `vagrant ssh`
+* Go to the mapped working directory: `cd /var/www`
+  * Every under `project` in your local shows at `/var/www` in the VirtualBox
+* Install tools: `npm install`. Only need to run this once.
