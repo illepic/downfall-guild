@@ -1,17 +1,21 @@
 var gulp = require('gulp')
   ,shell = require('gulp-shell')
   ,del = require('del')
-  ,watch = require('gulp-watch');
+  ,watch = require('gulp-watch')
+  ,chmod = require('gulp-chmod');
 
 gulp.task('default', function() {
 
 });
 
 // Need to nuke d7 directory before Drush making
+//gulp.task('d7:chmod', function() {
+//  return gulp.src('web/drupal/d7/**/*')
+//    .pipe(chmod(777));
+//});
+
 gulp.task('d7:clean', function(cb) {
-  del([
-    'web/drupal/d7'
-  ], cb);
+  del(['web/drupal/d7'], cb);
 });
 
 // Drush make drupal and contrib modules
@@ -36,8 +40,12 @@ gulp.task('d7:install', ['d7:customFiles'], function() {
   return gulp.src('')
     .pipe(
       shell([
+        'echo "Installing drupal, make sure you catch the password printed out"',
         'drush site-install standard --site-name=DOWNFALLD7 --yes',
-        'drush en downfall_migrate_feature --yes'
+        'echo "Enabling downfall_migrate_feature"',
+        'drush en downfall_migrate_feature --yes',
+        'echo "Rebuilding node access permissons"',
+        'drush php-eval "node_access_rebuild();"'
       ], {
         'cwd':'web/drupal/d7/sites/d7.local.downfallguild.org'
       })
