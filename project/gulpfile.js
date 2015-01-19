@@ -66,5 +66,16 @@ gulp.task('d7:watch', function() {
   return gulp.src('build/dev/d7/**/*')
     .pipe(watch('build/dev/d7/**/*'))
     //.pipe(gulp.dest('web/drupal/d7/sites/'));
-    .pipe(shell(['rsync -avzr /var/www/build/dev/d7/* /var/www/web/drupal/d7/sites']));
+    .pipe(shell(['rsync -vzr /var/www/build/dev/d7/* /var/www/web/drupal/d7/sites']));
+});
+
+
+// D6 Work
+gulp.task('d6:init', function() {
+  return gulp.src('')
+    .pipe(shell([
+        'rsync -zvrP illepic@direct.downfallguild.org:webapps/downfall_drupal/* /var/www/web/drupal/d6',
+        'rsync -zvrP /var/www/build/dev/d6/* /var/www/web/drupal/d6/sites'
+      ])
+    );
 });
