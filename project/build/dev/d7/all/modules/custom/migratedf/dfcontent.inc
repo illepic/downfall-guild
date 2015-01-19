@@ -6,12 +6,11 @@
  */
 class DownfallUserMigration extends DrupalUser6Migration {
 
-  // testadfadfasdf
   public function __construct(array $arguments) {
     parent::__construct($arguments);
   }
 
-
+  // Handles missing users bug
   protected function query() {
     $query = parent::query();
     $query->orderBy('uid');
