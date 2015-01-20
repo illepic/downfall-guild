@@ -670,6 +670,7 @@ class DownfallRaidMigration extends DownfallNodeMigration {
   }
 
   // Use this to change things like "active/notactive" to 1/0
+  // https://www.drupal.org/node/1133448
   protected function cleanOnOffBinaryField($value) {
 
   }
