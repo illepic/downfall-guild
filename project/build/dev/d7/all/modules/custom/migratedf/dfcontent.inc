@@ -669,6 +669,11 @@ class DownfallRaidMigration extends DownfallNodeMigration {
     ));
   }
 
+  // Use this to change things like "active/notactive" to 1/0
+  protected function cleanOnOffBinaryField($value) {
+
+  }
+
   public function prepareRow($row){
     if (parent::prepareRow($row) === FALSE) {
       return FALSE;
