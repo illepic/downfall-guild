@@ -2504,7 +2504,7 @@ function downfall_migrate_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_raid_status',
-    'label' => 'Raid Status',
+    'label' => 'Active',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -2513,7 +2513,7 @@ function downfall_migrate_feature_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'display_label' => 0,
+        'display_label' => 1,
       ),
       'type' => 'options_onoff',
       'weight' => 7,
@@ -2582,6 +2582,7 @@ function downfall_migrate_feature_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('/played will tell you.');
   t('A quick description of this raid gorup.');
+  t('Active');
   t('All raids need a mascot. You know what to do.');
   t('Any other significant hobbies?');
   t('Anything else you would like to add?');
@@ -2623,7 +2624,6 @@ function downfall_migrate_feature_field_default_field_instances() {
   t('Raid End Time');
   t('Raid Size');
   t('Raid Start Time');
-  t('Raid Status');
   t('Same as above, just the one you absolutely hate!');
   t('Select all nights that you are available to raid.');
   t('Tell us a little about how your class contributes to a raid');

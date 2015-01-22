@@ -74,7 +74,7 @@ gulp.task('d7:watch', function() {
 gulp.task('d6:init', function() {
   return gulp.src('')
     .pipe(shell([
-        'rsync -zvrP illepic@direct.downfallguild.org:webapps/downfall_drupal/* /var/www/web/drupal/d6',
+        'rsync -zvrP --progress illepic@direct.downfallguild.org:webapps/downfall_drupal/ /var/www/web/drupal/d6/',
         'rsync -zvrP /var/www/build/dev/d6/* /var/www/web/drupal/d6/sites'
       ])
     );

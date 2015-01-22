@@ -638,6 +638,8 @@ class DownfallRaidMigration extends DownfallNodeMigration {
 
     parent::__construct($arguments);
 
+    dpm('in downfallraidmigration');
+
     // ui -> media field
     $this->addFieldMapping('field_raid_mascot_image', 'field_mascot')
       ->sourceMigration('DownfallD2DFiles');
@@ -652,13 +654,17 @@ class DownfallRaidMigration extends DownfallNodeMigration {
     $this->addFieldMapping('field_raid_mascot_image:display')
              ->defaultValue(1);
 
+    $this->addFieldMapping('field_raid_status', 'field_raid_status')
+      ->callbacks(array($this, 'cleanOnOffBinaryField'));
 
-    $this->addFieldMapping('field_raid_status')
-      ->defaultValue(1);
+
     $this->addFieldMapping('field_raid_size', 'field_raidsize');
     $this->addFieldMapping('field_raid_days', 'field_raiddays');
-    $this->addFieldMapping('field_raid_start_time', 'field_raidstart');
-    $this->addFieldMapping('field_raid_end_time', 'field_raidend');
+
+    $this->addFieldMapping('field_raid_start_time', 'field_raidstart')
+      ->callbacks(array($this, 'ohBlahHours'));
+    $this->addFieldMapping('field_raid_end_time', 'field_raidend')
+      ->callbacks(array($this, 'ohBlahHours'));
 
     // Ignore this for now, OG Membership in a seprate node
     $this->addFieldMapping('group_group')->defaultValue(1);
@@ -672,7 +678,12 @@ class DownfallRaidMigration extends DownfallNodeMigration {
   // Use this to change things like "active/notactive" to 1/0
   // https://www.drupal.org/node/1133448
   protected function cleanOnOffBinaryField($value) {
+    return ($value == 'active' ? 1 : 0);
+  }
 
+  // Add zeroes to dates
+  protected function ohBlahHours($value) {
+    return (strlen($value) < 4 ? '0' . $value : $value);
   }
 
   public function prepareRow($row){
