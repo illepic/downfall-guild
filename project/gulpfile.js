@@ -63,10 +63,11 @@ gulp.task('d7:cc', function() {
 });
 
 gulp.task('d7:watch', function() {
-  return gulp.src('build/dev/d7/**/*')
-    .pipe(watch('build/dev/d7/**/*'))
+    watch(['build/dev/d7/**/*']).pipe(
+      shell(['rsync -vzr /var/www/build/dev/d7/* /var/www/web/drupal/d7/sites'])
+    );
     //.pipe(gulp.dest('web/drupal/d7/sites/'));
-    .pipe(shell(['rsync -vzr /var/www/build/dev/d7/* /var/www/web/drupal/d7/sites']));
+    //.pipe(shell(['rsync -vzr /var/www/build/dev/d7/* /var/www/web/drupal/d7/sites']));
 });
 
 

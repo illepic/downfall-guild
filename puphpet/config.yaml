@@ -13,7 +13,7 @@ vagrantfile-local:
                 RtzkG0VZ9wlk:
                     host: '5096'
                     guest: '22'
-        post_up_message: ''
+        post_up_message: 'Hello Downfall Drupal 7'
         provider:
             virtualbox:
                 modifyvm:

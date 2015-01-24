@@ -52,7 +52,7 @@ function migratedf_register_migrations() {
     'default_uid' => 1,
     // 'source_dir' => 'sites/www.downfallguild.org/d6files/',
 //    'source_dir' => '../d6/',
-    'source_dir' => 'http://d6.local.downfallguild.org/sites/www.downfallguild.org/files/',
+    'source_dir' => '/var/www/web/drupal/d6/',
     'destination_dir' => 'public://',
   );
   Migration::registerMigration('DownfallPicture6Migration',

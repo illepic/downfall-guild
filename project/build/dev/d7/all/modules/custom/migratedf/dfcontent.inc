@@ -638,7 +638,6 @@ class DownfallRaidMigration extends DownfallNodeMigration {
 
     parent::__construct($arguments);
 
-    dpm('in downfallraidmigration');
 
     // ui -> media field
     $this->addFieldMapping('field_raid_mascot_image', 'field_mascot')
