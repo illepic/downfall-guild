@@ -33,11 +33,19 @@ trait DownfallHelper {
    *  Name of the text field within the entity to be modified. Defaults to 'body'.
    */
   public function rewriteImgAssistTags($entity, $field = 'body') {
+
+    $body = '';
+    $language = '';
+
     if (is_array($entity->$field)) {
       foreach ($entity->$field as $language => $values) {
-        $body = $values[0]['value'];
-        break;
+        // Sometimes body doesn't have [und] index
+        if (isset($values[0])) {
+          $body = $values[0]['value'];
+          break;
+        }
       }
+
       // Quickly skip any non-candidates
       if (!stristr($body, '[img_assist')) {
         return;
@@ -47,12 +55,15 @@ trait DownfallHelper {
       $entity->{$field}[$language][0]['value'] = $new_body;
 
       // teasers too
-      if (stristr($entity->{$field}[$language][0]['summary'], '[img_assist')) {
-        $summary = $entity->{$field}[$language][0]['summary'];
-        $new_summary = preg_replace_callback('|\[img_assist[^\]]*\]|i', "self::replaceCallback", $summary);
-        $entity->{$field}[$language][0]['summary'] = $new_summary;
+      if (isset($entity->{$field}[$language][0]['summary'])) {
+        if (stristr($entity->{$field}[$language][0]['summary'], '[img_assist')) {
+          $summary = $entity->{$field}[$language][0]['summary'];
+          $new_summary = preg_replace_callback('|\[img_assist[^\]]*\]|i', "self::replaceCallback", $summary);
+          $entity->{$field}[$language][0]['summary'] = $new_summary;
+        }
       }
     }
+
 
   }
 
@@ -86,12 +97,14 @@ trait DownfallHelper {
 
       // title
       preg_match('|\|title=(.*?)\||i', $original_img_assist_string, $title_matches);
+      if (!isset($title_matches[1])) {
+        $title_matches[1] = '';
+      }
 
       // alt
       preg_match('|\|desc=(.*?)\||i', $original_img_assist_string, $alt_matches);
-
       // alt tends to be empty on our site, just make it title here
-      if ($alt_matches[1] == '') {
+      if (!isset($alt_matches[1])) {
         $alt_matches[1] = $title_matches[1];
       }
 
@@ -129,7 +142,7 @@ abstract class DownfallNodeMigration extends DrupalNode6Migration {
 }
 
 /**
- * Nodes / generic nodes (Stoey, Page, Blog)
+ * Nodes / generic nodes (Storey, Page, Blog)
  *
  * For any node that really only has this taxonomy field
  */
@@ -344,7 +357,12 @@ class DownfallBookMigration extends DownfallNodeMigration {
         // load the node to get at book data
         $parentnode = node_load($newnid);
         // if the node was created, it's part of a book menu hierarchy now
-        $newplid = $parentnode->book['mlid'];
+        if (isset($parentnode->book)) {
+          $newplid = $parentnode->book['mlid'];
+        }
+        else {
+          $newplid = 0;
+        }
       } else{
         $newplid = 0;
       }
@@ -747,6 +765,7 @@ class DownfallOGUserMembershipMigration extends DrupalMigration {
       ->sourceMigration('DownfallD2DUser');
     $this->addFieldMapping('state', 'is_active');
     $this->addFieldMapping('is_admin', 'is_admin');
+
     // Group migration maps the gid via the OG Node migration.
     $this->addFieldMapping('gid', 'nid')
       ->sourceMigration('DownfallD2DNodeRaid');

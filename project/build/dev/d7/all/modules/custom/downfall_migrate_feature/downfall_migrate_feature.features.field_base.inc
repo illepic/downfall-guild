@@ -1282,8 +1282,8 @@ function downfall_migrate_feature_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        0 => 0,
-        1 => 1,
+        0 => 'Not Active',
+        1 => 'Active',
       ),
       'allowed_values_function' => '',
     ),
@@ -1294,7 +1294,7 @@ function downfall_migrate_feature_field_default_field_bases() {
   // Exported field_base: 'field_wow_category'
   $field_bases['field_wow_category'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_wow_category',
@@ -1358,14 +1358,7 @@ function downfall_migrate_feature_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'og_group_ref',
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
-    ),
+    'foreign keys' => array(),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
