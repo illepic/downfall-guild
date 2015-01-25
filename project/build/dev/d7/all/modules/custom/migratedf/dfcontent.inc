@@ -174,11 +174,26 @@ class DownfallGenericWowTermNodeMigration extends DownfallNodeMigration {
  */
 
 class DownfallDateNodeMigration extends DownfallNodeMigration {
-  public function __construct(array $arguments) {
 
+  protected $defaulTimezone = '';
+
+  public function __construct(array $arguments) {
     parent::__construct($arguments);
 
+    $this->defaulTimezone = date_default_timezone(FALSE);
+    dpm($this->defaulTimezone, 'defaultTimezone');
+
+//    $this->addFieldMapping('field_event_date', 'field_startdate')
+//      ->arguments(array('timezone' => $this->defaulTimezone));
+
     $this->addFieldMapping('field_event_date', 'field_startdate');
+    $this->addFieldMapping('field_event_date:to', 'field_startdate:value2');
+    $this->addFieldMapping('field_event_date:timezone')
+      ->defaultValue($this->defaulTimezone);
+
+//    $this->addFieldMapping('field_event_date', 'datetime_range_from');
+//    $this->addFieldMapping('field_event_date:to', 'datetime_range_to');
+//    $this->addFieldMapping('field_event_date:timezone', 'datetime_range_timezone');
   }
 
   public function prepareRow($row){
@@ -187,16 +202,24 @@ class DownfallDateNodeMigration extends DownfallNodeMigration {
     }
 
 
-    $date_data = array(
-      'from' => (string)$row->field_startdate[0],
-      'to' => $row->{'field_startdate:value2'}[0],
-    );
+//    $row->datetime_range_from = (string) $row->field_startdate[0];
+//    $row->datetime_range_to = (string) $row->{'field_startdate:value2'}[0];
+//    $row->datetime_range_timezone = $this->defaulTimezone;
+
+//    dpm($row);
+
+//    $date_data = array(
+//      'from' => (string)$row->field_startdate[0],
+//      'to' => $row->{'field_startdate:value2'}[0],
+//    );
 
     // Here we're replacing the value of (d6) field_startdate with some json that indicates
     // beginning and end dates. We could have mapped a dummy field and then filled this in
     // with a lookup, but this is super clean.
-    $row->field_startdate = drupal_json_encode($date_data);
+//    $row->field_startdate = drupal_json_encode($date_data);
   }
+
+
 
   /**
    * Implementation of Migration::prepare().
