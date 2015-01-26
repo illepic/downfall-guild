@@ -938,6 +938,62 @@ function downfall_migrate_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
+  // Exported field_base: 'field_datetime'
+  $field_bases['field_datetime'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_datetime',
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'date',
+    'settings' => array(
+      'granularity' => array(
+        'day' => 'day',
+        'hour' => 'hour',
+        'minute' => 'minute',
+        'month' => 'month',
+        'year' => 'year',
+      ),
+      'repeat' => 0,
+      'timezone_db' => 'UTC',
+      'todate' => '',
+      'tz_handling' => 'site',
+    ),
+    'translatable' => 1,
+    'type' => 'datetime',
+  );
+
+  // Exported field_base: 'field_datetime_range'
+  $field_bases['field_datetime_range'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_datetime_range',
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'date',
+    'settings' => array(
+      'granularity' => array(
+        'day' => 'day',
+        'hour' => 'hour',
+        'minute' => 'minute',
+        'month' => 'month',
+        'year' => 'year',
+      ),
+      'repeat' => 0,
+      'timezone_db' => 'UTC',
+      'todate' => 'required',
+      'tz_handling' => 'site',
+    ),
+    'translatable' => 1,
+    'type' => 'datetime',
+  );
+
   // Exported field_base: 'field_df_image'
   $field_bases['field_df_image'] = array(
     'active' => 1,
@@ -994,7 +1050,7 @@ function downfall_migrate_feature_field_default_field_bases() {
       'repeat' => 1,
       'timezone_db' => 'UTC',
       'todate' => 'optional',
-      'tz_handling' => 'site',
+      'tz_handling' => 'user',
     ),
     'translatable' => 0,
     'type' => 'datetime',

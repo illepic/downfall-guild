@@ -6,8 +6,19 @@
  */
 class DownfallUserMigration extends DrupalUser6Migration {
 
+  private $defaultTimezone = '';
+
   public function __construct(array $arguments) {
     parent::__construct($arguments);
+
+    // Default used below
+    $this->defaultTimezone = date_default_timezone(FALSE);
+
+    // Quick, smarter timezone conversion
+    $this->addFieldMapping('timezone', 'timezone_salvage')
+      ->callbacks(array($this, 'userTimezoneConversion'))
+      ->defaultValue(-28800);
+
   }
 
   // Handles missing users bug
@@ -15,6 +26,27 @@ class DownfallUserMigration extends DrupalUser6Migration {
     $query = parent::query();
     $query->orderBy('uid');
     return $query;
+  }
+
+  public function prepareRow($row) {
+    // Save our seconds offset for use in a callback later
+    $row->timezone_salvage = $row->timezone;
+
+    // Let our parent step on timezone (deletes)
+    if (parent::prepareRow($row) === FALSE) {
+      return FALSE;
+    }
+  }
+
+  // Convert to named timezones for d7
+  protected function userTimezoneConversion($value) {
+    $tz = timezone_name_from_abbr(null, $value, 0);
+//    dpm($this->defaultTimezone, 'defaultTimezone');
+//    dpm($tz, 'timezone from callback');
+    if (empty($tz)) {
+      $tz = $this->defaultTimezone;
+    }
+    return $tz;
   }
 
 }
@@ -155,7 +187,6 @@ class DownfallGenericWowTermNodeMigration extends DownfallNodeMigration {
   // Note that we map migrated terms by the vocabulary ID.
   $this->addFieldMapping('field_wow_category', '5')
     ->sourceMigration('DownfallD2DTermWoW');
-    // ->arguments(array('source_type' => 'tid'));
   $this->addFieldMapping('field_wow_category:source_type')
     ->defaultValue('tid');
   }
@@ -175,21 +206,21 @@ class DownfallGenericWowTermNodeMigration extends DownfallNodeMigration {
 
 class DownfallDateNodeMigration extends DownfallNodeMigration {
 
-  protected $defaulTimezone = '';
+  protected $defaultTimezone = '';
 
   public function __construct(array $arguments) {
     parent::__construct($arguments);
 
     $this->defaulTimezone = date_default_timezone(FALSE);
-    dpm($this->defaulTimezone, 'defaultTimezone');
+//    dpm($this->defaulTimezone, 'defaultTimezone');
 
 //    $this->addFieldMapping('field_event_date', 'field_startdate')
 //      ->arguments(array('timezone' => $this->defaulTimezone));
 
     $this->addFieldMapping('field_event_date', 'field_startdate');
     $this->addFieldMapping('field_event_date:to', 'field_startdate:value2');
-    $this->addFieldMapping('field_event_date:timezone')
-      ->defaultValue($this->defaulTimezone);
+//    $this->addFieldMapping('field_event_date:timezone')
+//      ->defaultValue($this->defaultTimezone);
 
 //    $this->addFieldMapping('field_event_date', 'datetime_range_from');
 //    $this->addFieldMapping('field_event_date:to', 'datetime_range_to');
