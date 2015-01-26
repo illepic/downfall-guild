@@ -212,45 +212,20 @@ class DownfallDateNodeMigration extends DownfallNodeMigration {
     parent::__construct($arguments);
 
     $this->defaulTimezone = date_default_timezone(FALSE);
-//    dpm($this->defaulTimezone, 'defaultTimezone');
-
-//    $this->addFieldMapping('field_event_date', 'field_startdate')
-//      ->arguments(array('timezone' => $this->defaulTimezone));
 
     $this->addFieldMapping('field_event_date', 'field_startdate');
     $this->addFieldMapping('field_event_date:to', 'field_startdate:value2');
+
+    // Timezone is pulled in from user creating node due to Date field setting
 //    $this->addFieldMapping('field_event_date:timezone')
 //      ->defaultValue($this->defaultTimezone);
-
-//    $this->addFieldMapping('field_event_date', 'datetime_range_from');
-//    $this->addFieldMapping('field_event_date:to', 'datetime_range_to');
-//    $this->addFieldMapping('field_event_date:timezone', 'datetime_range_timezone');
   }
 
   public function prepareRow($row){
     if (parent::prepareRow($row) === FALSE) {
       return FALSE;
     }
-
-
-//    $row->datetime_range_from = (string) $row->field_startdate[0];
-//    $row->datetime_range_to = (string) $row->{'field_startdate:value2'}[0];
-//    $row->datetime_range_timezone = $this->defaulTimezone;
-
-//    dpm($row);
-
-//    $date_data = array(
-//      'from' => (string)$row->field_startdate[0],
-//      'to' => $row->{'field_startdate:value2'}[0],
-//    );
-
-    // Here we're replacing the value of (d6) field_startdate with some json that indicates
-    // beginning and end dates. We could have mapped a dummy field and then filled this in
-    // with a lookup, but this is super clean.
-//    $row->field_startdate = drupal_json_encode($date_data);
   }
-
-
 
   /**
    * Implementation of Migration::prepare().
@@ -272,14 +247,9 @@ class DownfallOldEventNodeMigration extends DownfallNodeMigration {
 
     parent::__construct($arguments);
 
-    $this->addFieldMapping('field_event_date', 'placeholder_date');
+    $this->addFieldMapping('field_event_date', 'placeholder_date_start');
+    $this->addFieldMapping('field_event_date:to', 'placeholder_date_end');
   }
-
-  // public function query() {
-  //   $query = parent::query();
-  //   $query->range(0,10);
-  //   return $query;
-  // }
 
   public function prepareRow($row){
     if (parent::prepareRow($row) === FALSE) {
@@ -293,12 +263,9 @@ class DownfallOldEventNodeMigration extends DownfallNodeMigration {
       ->execute()
       ->fetchObject();
 
-    $date_data = array(
-      'from' => (string)$d6_date_row->event_start,
-      'to' => (string)$d6_date_row->event_end,
-    );
+    $row->placeholder_date_start = (string) $d6_date_row->event_start;
+    $row->placeholder_date_end = (string) $d6_date_row->event_end;
 
-    $row->placeholder_date = drupal_json_encode($date_data);
   }
 
   /**
@@ -711,6 +678,7 @@ class DownfallRaidMigration extends DownfallNodeMigration {
     parent::__construct($arguments);
 
 
+    // @TODO: fix this
     // ui -> media field
     $this->addFieldMapping('field_raid_mascot_image', 'field_mascot')
       ->sourceMigration('DownfallD2DFiles');
