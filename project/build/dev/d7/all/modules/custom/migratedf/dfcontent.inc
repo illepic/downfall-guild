@@ -21,12 +21,12 @@ class DownfallUserMigration extends DrupalUser6Migration {
 
   }
 
-  // Handles missing users bug
-  protected function query() {
-    $query = parent::query();
-    $query->orderBy('uid');
-    return $query;
-  }
+//  // Handles missing users bug
+//  protected function query() {
+//    $query = parent::query();
+//    $query->orderBy('uid');
+//    return $query;
+//  }
 
   public function prepareRow($row) {
     // Save our seconds offset for use in a callback later

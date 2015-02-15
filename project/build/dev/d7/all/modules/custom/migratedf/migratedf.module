@@ -22,7 +22,7 @@ function migratedf_register_migrations() {
     'group_name' => 'DownfallD2DMigration',
   );
 
-  /**f
+  /**
    * COMMENTS (not "common", Bloom) shared arguments
    */
   $comment_arguments = $common_arguments + array(
