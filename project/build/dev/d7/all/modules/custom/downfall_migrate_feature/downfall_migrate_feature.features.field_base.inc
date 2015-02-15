@@ -69,28 +69,32 @@ function downfall_migrate_feature_field_default_field_bases() {
   // Exported field_base: 'field_app_availability'
   $field_bases['field_app_availability'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_app_availability',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
+    'foreign keys' => array(),
     'indexes' => array(
-      'format' => array(
-        0 => 'format',
+      'value' => array(
+        0 => 'value',
       ),
     ),
     'locked' => 0,
-    'module' => 'text',
-    'settings' => array(),
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'Monday' => 'Monday',
+        'Tuesday' => 'Tuesday',
+        'Wednesday' => 'Wednesday',
+        'Thursday' => 'Thursday',
+        'Friday' => 'Friday',
+        'Saturday' => 'Saturday',
+        'Sunday' => 'Sunday',
+      ),
+      'allowed_values_function' => '',
+    ),
     'translatable' => 0,
-    'type' => 'text_long',
+    'type' => 'list_text',
   );
 
   // Exported field_base: 'field_app_boss_encounters'

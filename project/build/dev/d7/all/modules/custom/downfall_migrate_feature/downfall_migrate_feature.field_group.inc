@@ -117,8 +117,8 @@ function downfall_migrate_feature_field_group_info() {
     'weight' => '2',
     'children' => array(
       0 => 'field_app_history',
-      1 => 'field_app_state_of_class',
-      2 => 'field_app_led_to_guild',
+      1 => 'field_app_led_to_guild',
+      2 => 'field_app_state_of_class',
       3 => 'field_app_availability',
     ),
     'format_type' => 'fieldset',
@@ -175,9 +175,9 @@ function downfall_migrate_feature_field_group_info() {
     'label' => 'Personal',
     'weight' => '6',
     'children' => array(
-      0 => 'field_app_timezone',
-      1 => 'field_app_yourself',
-      2 => 'field_app_language',
+      0 => 'field_app_language',
+      1 => 'field_app_timezone',
+      2 => 'field_app_yourself',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -234,10 +234,10 @@ function downfall_migrate_feature_field_group_info() {
     'label' => 'PvE',
     'weight' => '4',
     'children' => array(
-      0 => 'field_app_raid_experience',
+      0 => 'field_app_boss_encounters',
       1 => 'field_app_playstyle',
-      2 => 'field_app_specializations',
-      3 => 'field_app_boss_encounters',
+      2 => 'field_app_raid_experience',
+      3 => 'field_app_specializations',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -351,9 +351,9 @@ function downfall_migrate_feature_field_group_info() {
     'label' => 'UI',
     'weight' => '3',
     'children' => array(
-      0 => 'field_app_ui_media',
-      1 => 'field_app_addons',
-      2 => 'field_app_field_like_your_ui',
+      0 => 'field_app_addons',
+      1 => 'field_app_field_like_your_ui',
+      2 => 'field_app_ui_media',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

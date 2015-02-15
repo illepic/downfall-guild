@@ -436,15 +436,15 @@ class DownfallGuildAppsMigration extends DownfallNodeMigration {
   );
 
   // used for raiding nights
-//  public $nightsmap = array(
-//    0 => 'Monday',
-//    1 => 'Tuesday',
-//    2 => 'Wednesday',
-//    3 => 'Thursday',
-//    4 => 'Friday',
-//    5 => 'Saturday',
-//    6 => 'Sunday',
-//  );
+  public $nightsmap = array(
+    0 => 'Monday',
+    1 => 'Tuesday',
+    2 => 'Wednesday',
+    3 => 'Thursday',
+    4 => 'Friday',
+    5 => 'Saturday',
+    6 => 'Sunday',
+  );
 
   public function __construct(array $arguments) {
 
@@ -462,7 +462,8 @@ class DownfallGuildAppsMigration extends DownfallNodeMigration {
     $this->addFieldMapping('field_app_history', 'field_history');
     $this->addFieldMapping('field_app_state_of_class', 'field_state_of_class');
     $this->addFieldMapping('field_app_led_to_guild', 'field_led_you_to_guild');
-    $this->addFieldMapping('field_app_availability', 'field_nights_available');
+    $this->addFieldMapping('field_app_availability', 'field_nights_available')
+      ->callbacks(array($this, 'nightsLookup'));
 
     // UI: group_app_group_ui
     // start media field
@@ -499,7 +500,7 @@ class DownfallGuildAppsMigration extends DownfallNodeMigration {
     // Other
     $this->addFieldMapping('field_app_open_closed', 'field_closed');
 
-    // Do not import
+    // Do not import the following:
 
   }
 
