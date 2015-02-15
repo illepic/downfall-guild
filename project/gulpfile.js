@@ -45,7 +45,9 @@ gulp.task('d7:install', ['d7:customFiles'], function() {
         'echo "Enabling downfall_migrate_feature"',
         'drush en downfall_migrate_feature --yes',
         'echo "Rebuilding node access permissons"',
-        'drush php-eval "node_access_rebuild();"'
+        'drush php-eval "node_access_rebuild();"',
+        'echo "Reverting features"',
+        'drush fr downfall_migrate_feature --yes'
       ], {
         'cwd':'web/drupal/d7/sites/d7.local.downfallguild.org'
       })
