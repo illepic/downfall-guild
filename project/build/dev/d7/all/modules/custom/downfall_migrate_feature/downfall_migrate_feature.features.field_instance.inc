@@ -982,10 +982,10 @@ function downfall_migrate_feature_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
+        'module' => 'list',
         'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 13,
+        'type' => 'list_default',
+        'weight' => 26,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -996,19 +996,16 @@ function downfall_migrate_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_app_availability',
-    'label' => 'Which days and times are you available for organized events (raids, RGBs, etc)?',
+    'label' => 'Which days are you available for organized guild events? (Raids, RBGs, etc)',
     'required' => 0,
     'settings' => array(
-      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 5,
-      ),
-      'type' => 'text_textarea',
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
       'weight' => 25,
     ),
   );
@@ -2264,7 +2261,7 @@ function downfall_migrate_feature_field_default_field_instances() {
   t('What specializations do you have experience with?');
   t('What timezone are you in?');
   t('Which addons do you consider essential and why?');
-  t('Which days and times are you available for organized events (raids, RGBs, etc)?');
+  t('Which days are you available for organized guild events? (Raids, RBGs, etc)');
   t('WoW Category');
 
   return $field_instances;
