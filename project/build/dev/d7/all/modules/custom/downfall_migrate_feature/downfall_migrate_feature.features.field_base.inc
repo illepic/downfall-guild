@@ -39,13 +39,13 @@ function downfall_migrate_feature_field_default_field_bases() {
     'type' => 'text_with_summary',
   );
 
-  // Exported field_base: 'field_app_anything_else'
-  $field_bases['field_app_anything_else'] = array(
+  // Exported field_base: 'field_app_addons'
+  $field_bases['field_app_addons'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_app_anything_else',
+    'field_name' => 'field_app_addons',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -66,13 +66,13 @@ function downfall_migrate_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_app_boss_favorite'
-  $field_bases['field_app_boss_favorite'] = array(
+  // Exported field_base: 'field_app_availability'
+  $field_bases['field_app_availability'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_app_boss_favorite',
+    'field_name' => 'field_app_availability',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -93,40 +93,13 @@ function downfall_migrate_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_app_boss_least_favorite'
-  $field_bases['field_app_boss_least_favorite'] = array(
+  // Exported field_base: 'field_app_boss_encounters'
+  $field_bases['field_app_boss_encounters'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_app_boss_least_favorite',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'text_long',
-  );
-
-  // Exported field_base: 'field_app_cause_leave'
-  $field_bases['field_app_cause_leave'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_app_cause_leave',
+    'field_name' => 'field_app_boss_encounters',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -211,89 +184,6 @@ function downfall_migrate_feature_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_app_class_contributes'
-  $field_bases['field_app_class_contributes'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_app_class_contributes',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'text_long',
-  );
-
-  // Exported field_base: 'field_app_contribute_community'
-  $field_bases['field_app_contribute_community'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_app_contribute_community',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'text_long',
-  );
-
-  // Exported field_base: 'field_app_country_state'
-  $field_bases['field_app_country_state'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_app_country_state',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'max_length' => 255,
-    ),
-    'translatable' => 0,
-    'type' => 'text',
-  );
-
   // Exported field_base: 'field_app_current_server'
   $field_bases['field_app_current_server'] = array(
     'active' => 1,
@@ -323,71 +213,13 @@ function downfall_migrate_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_app_current_server_time'
-  $field_bases['field_app_current_server_time'] = array(
+  // Exported field_base: 'field_app_field_like_your_ui'
+  $field_bases['field_app_field_like_your_ui'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_app_current_server_time',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'max_length' => 255,
-    ),
-    'translatable' => 0,
-    'type' => 'text',
-  );
-
-  // Exported field_base: 'field_app_duration_of_stay'
-  $field_bases['field_app_duration_of_stay'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_app_duration_of_stay',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'max_length' => 255,
-    ),
-    'translatable' => 0,
-    'type' => 'text',
-  );
-
-  // Exported field_base: 'field_app_get_out_of_membership'
-  $field_bases['field_app_get_out_of_membership'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_app_get_out_of_membership',
+    'field_name' => 'field_app_field_like_your_ui',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -408,42 +240,13 @@ function downfall_migrate_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_app_hobbies'
-  $field_bases['field_app_hobbies'] = array(
+  // Exported field_base: 'field_app_history'
+  $field_bases['field_app_history'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_app_hobbies',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'max_length' => 255,
-    ),
-    'translatable' => 0,
-    'type' => 'text',
-  );
-
-  // Exported field_base: 'field_app_how_long_wow'
-  $field_bases['field_app_how_long_wow'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_app_how_long_wow',
+    'field_name' => 'field_app_history',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -464,13 +267,13 @@ function downfall_migrate_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_app_how_old'
-  $field_bases['field_app_how_old'] = array(
+  // Exported field_base: 'field_app_language'
+  $field_bases['field_app_language'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_app_how_old',
+    'field_name' => 'field_app_language',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -487,19 +290,19 @@ function downfall_migrate_feature_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
-      'max_length' => 255,
+      'max_length' => 512,
     ),
     'translatable' => 0,
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_app_instances_experience'
-  $field_bases['field_app_instances_experience'] = array(
+  // Exported field_base: 'field_app_led_to_guild'
+  $field_bases['field_app_led_to_guild'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_app_instances_experience',
+    'field_name' => 'field_app_led_to_guild',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -518,51 +321,6 @@ function downfall_migrate_feature_field_default_field_bases() {
     'settings' => array(),
     'translatable' => 0,
     'type' => 'text_long',
-  );
-
-  // Exported field_base: 'field_app_level'
-  $field_bases['field_app_level'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_app_level',
-    'foreign keys' => array(),
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'number',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'number_integer',
-  );
-
-  // Exported field_base: 'field_app_max_time'
-  $field_bases['field_app_max_time'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_app_max_time',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'max_length' => 255,
-    ),
-    'translatable' => 0,
-    'type' => 'text',
   );
 
   // Exported field_base: 'field_app_open_closed'
@@ -591,30 +349,85 @@ function downfall_migrate_feature_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_app_pvp_interest'
-  $field_bases['field_app_pvp_interest'] = array(
+  // Exported field_base: 'field_app_playstyle'
+  $field_bases['field_app_playstyle'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_app_pvp_interest',
-    'foreign keys' => array(),
+    'field_name' => 'field_app_playstyle',
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
     'indexes' => array(
-      'value' => array(
-        0 => 'value',
+      'format' => array(
+        0 => 'format',
       ),
     ),
     'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(
-        'Yes' => 'Yes',
-        'No' => 'No',
-      ),
-      'allowed_values_function' => '',
-    ),
+    'module' => 'text',
+    'settings' => array(),
     'translatable' => 0,
-    'type' => 'list_text',
+    'type' => 'text_long',
+  );
+
+  // Exported field_base: 'field_app_pvp_experience'
+  $field_bases['field_app_pvp_experience'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_app_pvp_experience',
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'text_long',
+  );
+
+  // Exported field_base: 'field_app_pvp_focus'
+  $field_bases['field_app_pvp_focus'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_app_pvp_focus',
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'text_long',
   );
 
   // Exported field_base: 'field_app_race'
@@ -654,44 +467,13 @@ function downfall_migrate_feature_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_app_raid_nights'
-  $field_bases['field_app_raid_nights'] = array(
-    'active' => 1,
-    'cardinality' => -1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_app_raid_nights',
-    'foreign keys' => array(),
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(
-        'Monday' => 'Monday',
-        'Tuesday' => 'Tuesday',
-        'Wednesday' => 'Wednesday',
-        'Thursday' => 'Thursday',
-        'Friday' => 'Friday',
-        'Saturday' => 'Saturday',
-        'Sunday' => 'Sunday',
-      ),
-      'allowed_values_function' => '',
-    ),
-    'translatable' => 0,
-    'type' => 'list_text',
-  );
-
-  // Exported field_base: 'field_app_references'
-  $field_bases['field_app_references'] = array(
+  // Exported field_base: 'field_app_raid_experience'
+  $field_bases['field_app_raid_experience'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_app_references',
+    'field_name' => 'field_app_raid_experience',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -707,20 +489,45 @@ function downfall_migrate_feature_field_default_field_bases() {
     ),
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(
-      'max_length' => 255,
-    ),
+    'settings' => array(),
     'translatable' => 0,
-    'type' => 'text',
+    'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_app_role_comfortable'
-  $field_bases['field_app_role_comfortable'] = array(
+  // Exported field_base: 'field_app_rated_bgs'
+  $field_bases['field_app_rated_bgs'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_app_rated_bgs',
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'text_long',
+  );
+
+  // Exported field_base: 'field_app_role'
+  $field_bases['field_app_role'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_app_role_comfortable',
+    'field_name' => 'field_app_role',
     'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
@@ -741,13 +548,13 @@ function downfall_migrate_feature_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_app_school_or_work'
-  $field_bases['field_app_school_or_work'] = array(
+  // Exported field_base: 'field_app_specializations'
+  $field_bases['field_app_specializations'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_app_school_or_work',
+    'field_name' => 'field_app_specializations',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -763,20 +570,18 @@ function downfall_migrate_feature_field_default_field_bases() {
     ),
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(
-      'max_length' => 255,
-    ),
+    'settings' => array(),
     'translatable' => 0,
-    'type' => 'text',
+    'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_app_talents'
-  $field_bases['field_app_talents'] = array(
+  // Exported field_base: 'field_app_state_of_class'
+  $field_bases['field_app_state_of_class'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_app_talents',
+    'field_name' => 'field_app_state_of_class',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -855,60 +660,6 @@ function downfall_migrate_feature_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'file',
-  );
-
-  // Exported field_base: 'field_app_why_apply'
-  $field_bases['field_app_why_apply'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_app_why_apply',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'text_long',
-  );
-
-  // Exported field_base: 'field_app_why_recruit'
-  $field_bases['field_app_why_recruit'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_app_why_recruit',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'text_long',
   );
 
   // Exported field_base: 'field_app_yourself'

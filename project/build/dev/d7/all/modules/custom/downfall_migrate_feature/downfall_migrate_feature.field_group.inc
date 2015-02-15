@@ -13,266 +13,181 @@ function downfall_migrate_feature_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_char_info_edit|node|guild_app|form';
-  $field_group->group_name = 'group_char_info_edit';
+  $field_group->identifier = 'group_app_group_character|node|guild_app|form';
+  $field_group->group_name = 'group_app_group_character';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'guild_app';
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'Character Information',
+    'label' => 'Character',
     'weight' => '1',
     'children' => array(
       0 => 'field_app_char_name',
       1 => 'field_app_class',
       2 => 'field_app_current_server',
-      3 => 'field_app_current_server_time',
-      4 => 'field_app_level',
-      5 => 'field_app_max_time',
-      6 => 'field_app_race',
+      3 => 'field_app_race',
+      4 => 'field_app_role',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
-      'formatter' => 'collapsible',
+      'label' => 'Character',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-char-info-edit field-group-fieldset',
         'required_fields' => 1,
-      ),
-    ),
-  );
-  $export['group_char_info_edit|node|guild_app|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
-  $field_group->identifier = 'group_char_info|node|guild_app|default';
-  $field_group->group_name = 'group_char_info';
-  $field_group->entity_type = 'node';
-  $field_group->bundle = 'guild_app';
-  $field_group->mode = 'default';
-  $field_group->parent_name = '';
-  $field_group->data = array(
-    'label' => 'Character Info',
-    'weight' => '0',
-    'children' => array(
-      0 => 'field_app_char_name',
-      1 => 'field_app_class',
-      2 => 'field_app_current_server',
-      3 => 'field_app_current_server_time',
-      4 => 'field_app_level',
-      5 => 'field_app_max_time',
-      6 => 'field_app_race',
-    ),
-    'format_type' => 'fieldset',
-    'format_settings' => array(
-      'formatter' => 'collapsible',
-      'instance_settings' => array(
+        'classes' => 'group-app-group-character field-group-fieldset',
         'description' => '',
-        'classes' => 'group-char-info field-group-fieldset',
       ),
+      'formatter' => 'collapsible',
     ),
   );
-  $export['group_char_info|node|guild_app|default'] = $field_group;
+  $export['group_app_group_character|node|guild_app|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_guild_info_edit|node|guild_app|form';
-  $field_group->group_name = 'group_guild_info_edit';
+  $field_group->identifier = 'group_app_group_general|node|guild_app|form';
+  $field_group->group_name = 'group_app_group_general';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'guild_app';
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'Guild Information',
-    'weight' => '3',
-    'children' => array(
-      0 => 'field_app_cause_leave',
-      1 => 'field_app_contribute_community',
-      2 => 'field_app_duration_of_stay',
-      3 => 'field_app_get_out_of_membership',
-      4 => 'field_app_pvp_interest',
-      5 => 'field_app_references',
-      6 => 'field_app_why_apply',
-      7 => 'field_app_why_recruit',
-    ),
-    'format_type' => 'fieldset',
-    'format_settings' => array(
-      'formatter' => 'collapsible',
-      'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-guild-info-edit field-group-fieldset',
-        'required_fields' => 1,
-      ),
-    ),
-  );
-  $export['group_guild_info_edit|node|guild_app|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
-  $field_group->identifier = 'group_guild_info|node|guild_app|default';
-  $field_group->group_name = 'group_guild_info';
-  $field_group->entity_type = 'node';
-  $field_group->bundle = 'guild_app';
-  $field_group->mode = 'default';
-  $field_group->parent_name = '';
-  $field_group->data = array(
-    'label' => 'Guild Information',
+    'label' => 'General',
     'weight' => '2',
     'children' => array(
-      0 => 'field_app_cause_leave',
-      1 => 'field_app_contribute_community',
-      2 => 'field_app_duration_of_stay',
-      3 => 'field_app_get_out_of_membership',
-      4 => 'field_app_pvp_interest',
-      5 => 'field_app_references',
-      6 => 'field_app_why_apply',
-      7 => 'field_app_why_recruit',
+      0 => 'field_app_history',
+      1 => 'field_app_state_of_class',
+      2 => 'field_app_led_to_guild',
+      3 => 'field_app_availability',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
       'formatter' => 'collapsible',
       'instance_settings' => array(
         'description' => '',
-        'classes' => 'group-guild-info field-group-fieldset',
+        'classes' => 'group-app-group-general field-group-fieldset',
+        'required_fields' => 1,
       ),
     ),
   );
-  $export['group_guild_info|node|guild_app|default'] = $field_group;
+  $export['group_app_group_general|node|guild_app|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_person_info_edit|node|guild_app|form';
-  $field_group->group_name = 'group_person_info_edit';
+  $field_group->identifier = 'group_app_group_personal|node|guild_app|form';
+  $field_group->group_name = 'group_app_group_personal';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'guild_app';
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'Person Information',
+    'label' => 'Personal',
+    'weight' => '6',
+    'children' => array(
+      0 => 'field_app_timezone',
+      1 => 'field_app_yourself',
+      2 => 'field_app_language',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-app-group-personal field-group-fieldset',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $export['group_app_group_personal|node|guild_app|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_app_group_pve|node|guild_app|form';
+  $field_group->group_name = 'group_app_group_pve';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'guild_app';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'PvE',
     'weight' => '4',
     'children' => array(
-      0 => 'field_app_anything_else',
-      1 => 'field_app_country_state',
-      2 => 'field_app_hobbies',
-      3 => 'field_app_how_long_wow',
-      4 => 'field_app_how_old',
-      5 => 'field_app_school_or_work',
-      6 => 'field_app_timezone',
-      7 => 'field_app_yourself',
+      0 => 'field_app_raid_experience',
+      1 => 'field_app_playstyle',
+      2 => 'field_app_specializations',
+      3 => 'field_app_boss_encounters',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
       'formatter' => 'collapsible',
       'instance_settings' => array(
         'description' => '',
-        'classes' => 'group-person-info-edit field-group-fieldset',
+        'classes' => 'group-app-group-pve field-group-fieldset',
         'required_fields' => 1,
       ),
     ),
   );
-  $export['group_person_info_edit|node|guild_app|form'] = $field_group;
+  $export['group_app_group_pve|node|guild_app|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_person_info|node|guild_app|default';
-  $field_group->group_name = 'group_person_info';
-  $field_group->entity_type = 'node';
-  $field_group->bundle = 'guild_app';
-  $field_group->mode = 'default';
-  $field_group->parent_name = '';
-  $field_group->data = array(
-    'label' => 'Person Information',
-    'weight' => '3',
-    'children' => array(
-      0 => 'field_app_anything_else',
-      1 => 'field_app_country_state',
-      2 => 'field_app_hobbies',
-      3 => 'field_app_how_long_wow',
-      4 => 'field_app_how_old',
-      5 => 'field_app_school_or_work',
-      6 => 'field_app_timezone',
-      7 => 'field_app_yourself',
-    ),
-    'format_type' => 'fieldset',
-    'format_settings' => array(
-      'formatter' => 'collapsible',
-      'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-person-info field-group-fieldset',
-      ),
-    ),
-  );
-  $export['group_person_info|node|guild_app|default'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
-  $field_group->identifier = 'group_raid_info_edit|node|guild_app|form';
-  $field_group->group_name = 'group_raid_info_edit';
+  $field_group->identifier = 'group_app_group_pvp|node|guild_app|form';
+  $field_group->group_name = 'group_app_group_pvp';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'guild_app';
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'Raid Information',
-    'weight' => '2',
+    'label' => 'PvP',
+    'weight' => '5',
     'children' => array(
-      0 => 'field_app_boss_favorite',
-      1 => 'field_app_boss_least_favorite',
-      2 => 'field_app_class_contributes',
-      3 => 'field_app_instances_experience',
-      4 => 'field_app_raid_nights',
-      5 => 'field_app_role_comfortable',
-      6 => 'field_app_talents',
+      0 => 'field_app_pvp_experience',
+      1 => 'field_app_pvp_focus',
+      2 => 'field_app_rated_bgs',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
       'formatter' => 'collapsible',
       'instance_settings' => array(
         'description' => '',
-        'classes' => 'group-raid-info-edit field-group-fieldset',
+        'classes' => 'group-app-group-pvp field-group-fieldset',
         'required_fields' => 1,
       ),
     ),
   );
-  $export['group_raid_info_edit|node|guild_app|form'] = $field_group;
+  $export['group_app_group_pvp|node|guild_app|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_raid_info|node|guild_app|default';
-  $field_group->group_name = 'group_raid_info';
+  $field_group->identifier = 'group_app_group_ui|node|guild_app|form';
+  $field_group->group_name = 'group_app_group_ui';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'guild_app';
-  $field_group->mode = 'default';
+  $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'Raid Information',
-    'weight' => '1',
+    'label' => 'UI',
+    'weight' => '3',
     'children' => array(
-      0 => 'field_app_boss_favorite',
-      1 => 'field_app_boss_least_favorite',
-      2 => 'field_app_class_contributes',
-      3 => 'field_app_instances_experience',
-      4 => 'field_app_raid_nights',
-      5 => 'field_app_role_comfortable',
-      6 => 'field_app_talents',
+      0 => 'field_app_ui_media',
+      1 => 'field_app_addons',
+      2 => 'field_app_field_like_your_ui',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
       'formatter' => 'collapsible',
       'instance_settings' => array(
         'description' => '',
-        'classes' => 'group-raid-info field-group-fieldset',
+        'classes' => 'group-app-group-ui field-group-fieldset',
+        'required_fields' => 1,
       ),
     ),
   );
-  $export['group_raid_info|node|guild_app|default'] = $field_group;
+  $export['group_app_group_ui|node|guild_app|form'] = $field_group;
 
   return $export;
 }

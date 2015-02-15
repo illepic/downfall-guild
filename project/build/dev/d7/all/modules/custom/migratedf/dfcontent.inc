@@ -436,69 +436,70 @@ class DownfallGuildAppsMigration extends DownfallNodeMigration {
   );
 
   // used for raiding nights
-  public $nightsmap = array(
-    0 => 'Monday',
-    1 => 'Tuesday',
-    2 => 'Wednesday',
-    3 => 'Thursday',
-    4 => 'Friday',
-    5 => 'Saturday',
-    6 => 'Sunday',
-  );
+//  public $nightsmap = array(
+//    0 => 'Monday',
+//    1 => 'Tuesday',
+//    2 => 'Wednesday',
+//    3 => 'Thursday',
+//    4 => 'Friday',
+//    5 => 'Saturday',
+//    6 => 'Sunday',
+//  );
 
   public function __construct(array $arguments) {
 
     parent::__construct($arguments);
 
-    // character info
+    // Character: group_app_group_character
     $this->addFieldMapping('field_app_char_name', 'field_toon_name');
+    $this->addFieldMapping('field_app_current_server', 'field_server');
     $this->addFieldMapping('field_app_race', 'field_race');
     $this->addFieldMapping('field_app_class', 'field_toon_class');
-    $this->addFieldMapping('field_app_level', 'field_toon_level');
-    $this->addFieldMapping('field_app_max_time', 'field_70_playtime');
-    $this->addFieldMapping('field_app_current_server', 'field_server');
-    $this->addFieldMapping('field_app_current_server_time', 'field_time_on_server');
-    // raiding
-    $this->addFieldMapping('field_app_talents', 'field_talent_build');
-    $this->addFieldMapping('field_app_role_comfortable', 'field_role')
+    $this->addFieldMapping('field_app_role', 'field_role')
       ->callbacks(array($this, 'roleLookup'));
-    $this->addFieldMapping('field_app_class_contributes', 'field_class_contribution');
-    $this->addFieldMapping('field_app_instances_experience', 'field_raid_experience');
-    $this->addFieldMapping('field_app_boss_favorite', 'field_favorite_encounter');
-    $this->addFieldMapping('field_app_boss_least_favorite', 'field_least_favorite_encounter');
-    $this->addFieldMapping('field_app_raid_nights', 'field_nights_available')
-      ->callbacks(array($this, 'nightsLookup'));
-    $this->addFieldMapping('field_app_pvp_interest', 'field_interested_pvp');
-    // general questions
-    $this->addFieldMapping('field_app_why_recruit', 'field_why');
-    $this->addFieldMapping('field_app_why_apply', 'field_why_downfall');
-    $this->addFieldMapping('field_app_get_out_of_membership', 'field_what_getting_out');
-    $this->addFieldMapping('field_app_contribute_community', 'field_contribute');
-    $this->addFieldMapping('field_app_references', 'field_references');
-    $this->addFieldMapping('field_app_duration_of_stay', 'field_sticking_around');
-    $this->addFieldMapping('field_app_cause_leave', 'field_leaving');
-    $this->addFieldMapping('field_app_timezone', 'field_timezone');
-    $this->addFieldMapping('field_app_anything_else', 'field_additional');
-    // ui -> media field
+
+    // General: group_app_group_general
+    $this->addFieldMapping('field_app_history', 'field_history');
+    $this->addFieldMapping('field_app_state_of_class', 'field_state_of_class');
+    $this->addFieldMapping('field_app_led_to_guild', 'field_led_you_to_guild');
+    $this->addFieldMapping('field_app_availability', 'field_nights_available');
+
+    // UI: group_app_group_ui
+    // start media field
     $this->addFieldMapping('field_app_ui_media', 'field_ui_ss_2')
       ->sourceMigration('DownfallD2DFiles');
     $this->addFieldMapping('field_app_ui_media:file_class')
-             ->defaultValue('MigrateFileFid');
+      ->defaultValue('MigrateFileFid');
     $this->addFieldMapping('field_app_ui_media:preserve_files')
-             ->defaultValue(TRUE);
+      ->defaultValue(TRUE);
     $this->addFieldMapping('field_app_ui_media:title', 'image_title_placeholder')
-             ->defaultValue(t('Guild application UI screenshot'));
+      ->defaultValue(t('Guild application UI screenshot'));
     $this->addFieldMapping('field_app_ui_media:language')
-             ->defaultValue(LANGUAGE_NONE);
-    // personal
-    $this->addFieldMapping('field_app_how_long_wow', 'field_how_long_playing');
-    $this->addFieldMapping('field_app_how_old', 'field_age');
-    $this->addFieldMapping('field_app_yourself', 'field_about_you');
-    $this->addFieldMapping('field_app_school_or_work', 'field_school_or_working');
-    $this->addFieldMapping('field_app_hobbies', 'field_hobbies');
-    $this->addFieldMapping('field_app_country_state', 'field_location');
+      ->defaultValue(LANGUAGE_NONE);
+    // end media field
+    $this->addFieldMapping('field_app_addons', 'field_raid_addon_feelings');
+    $this->addFieldMapping('field_app_field_like_your_ui', 'field_like_your_ui');
 
+    // PvE: group_app_group_pve
+    $this->addFieldMapping('field_app_raid_experience', 'field_raid_experience');
+    $this->addFieldMapping('field_app_playstyle', 'field_play_style');
+    $this->addFieldMapping('field_app_specializations', 'field_specializations');
+    $this->addFieldMapping('field_app_boss_encounters', 'field_boss_encounter');
+
+    // PvP: group_app_group_pvp
+    $this->addFieldMapping('field_app_pvp_experience', 'field_response');
+    $this->addFieldMapping('field_app_pvp_focus', 'field_apply'); // ?? looks like grasen messed with this
+    $this->addFieldMapping('field_app_rated_bgs', 'field_interested_rated_bg');
+
+    // Personal: group_app_group_personal
+    $this->addFieldMapping('field_app_language', 'field_language');
+    $this->addFieldMapping('field_app_timezone', 'field_location');
+    $this->addFieldMapping('field_app_yourself', 'field_about_you');
+
+    // Other
     $this->addFieldMapping('field_app_open_closed', 'field_closed');
+
+    // Do not import
 
   }
 

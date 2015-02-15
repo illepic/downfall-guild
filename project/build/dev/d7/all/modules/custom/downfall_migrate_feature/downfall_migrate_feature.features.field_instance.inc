@@ -933,8 +933,8 @@ function downfall_migrate_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-guild_app-field_app_anything_else'
-  $field_instances['node-guild_app-field_app_anything_else'] = array(
+  // Exported field_instance: 'node-guild_app-field_app_addons'
+  $field_instances['node-guild_app-field_app_addons'] = array(
     'bundle' => 'guild_app',
     'default_value' => NULL,
     'deleted' => 0,
@@ -945,7 +945,7 @@ function downfall_migrate_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 5,
+        'weight' => 17,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -955,8 +955,8 @@ function downfall_migrate_feature_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_app_anything_else',
-    'label' => 'Anything else you would like to add?',
+    'field_name' => 'field_app_addons',
+    'label' => 'Which addons do you consider essential and why?',
     'required' => 0,
     'settings' => array(
       'text_processing' => 0,
@@ -969,92 +969,12 @@ function downfall_migrate_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
-  // Exported field_instance: 'node-guild_app-field_app_boss_favorite'
-  $field_instances['node-guild_app-field_app_boss_favorite'] = array(
-    'bundle' => 'guild_app',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Even if it\'s only LFR, let us know!',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 6,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_app_boss_favorite',
-    'label' => 'What is your favorite Raid Boss encounter, and why?',
-    'required' => 0,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 3,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 9,
-    ),
-  );
-
-  // Exported field_instance: 'node-guild_app-field_app_boss_least_favorite'
-  $field_instances['node-guild_app-field_app_boss_least_favorite'] = array(
-    'bundle' => 'guild_app',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Same as above, just the one you absolutely hate!',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 7,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_app_boss_least_favorite',
-    'label' => 'What is your least favorite Raid Boss encounter, and why?',
-    'required' => 0,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 3,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 10,
-    ),
-  );
-
-  // Exported field_instance: 'node-guild_app-field_app_cause_leave'
-  $field_instances['node-guild_app-field_app_cause_leave'] = array(
+  // Exported field_instance: 'node-guild_app-field_app_availability'
+  $field_instances['node-guild_app-field_app_availability'] = array(
     'bundle' => 'guild_app',
     'default_value' => NULL,
     'deleted' => 0,
@@ -1065,7 +985,7 @@ function downfall_migrate_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 10,
+        'weight' => 16,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1075,8 +995,8 @@ function downfall_migrate_feature_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_app_cause_leave',
-    'label' => 'What things might cause you to leave?',
+    'field_name' => 'field_app_availability',
+    'label' => 'Which days and times are you available for organized events (raids, RGBs, etc)?',
     'required' => 0,
     'settings' => array(
       'text_processing' => 0,
@@ -1086,10 +1006,50 @@ function downfall_migrate_feature_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 3,
+        'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 20,
+      'weight' => 25,
+    ),
+  );
+
+  // Exported field_instance: 'node-guild_app-field_app_boss_encounters'
+  $field_instances['node-guild_app-field_app_boss_encounters'] = array(
+    'bundle' => 'guild_app',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 22,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_app_boss_encounters',
+    'label' => 'What are your most and least favorite boss encounters?',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 29,
     ),
   );
 
@@ -1166,127 +1126,7 @@ function downfall_migrate_feature_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 4,
-    ),
-  );
-
-  // Exported field_instance: 'node-guild_app-field_app_class_contributes'
-  $field_instances['node-guild_app-field_app_class_contributes'] = array(
-    'bundle' => 'guild_app',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 4,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_app_class_contributes',
-    'label' => 'Tell us a little about how your class contributes to a raid',
-    'required' => 0,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 5,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 7,
-    ),
-  );
-
-  // Exported field_instance: 'node-guild_app-field_app_contribute_community'
-  $field_instances['node-guild_app-field_app_contribute_community'] = array(
-    'bundle' => 'guild_app',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 7,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_app_contribute_community',
-    'label' => 'How do you feel you will contribute to the downfall community?',
-    'required' => 0,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 3,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 17,
-    ),
-  );
-
-  // Exported field_instance: 'node-guild_app-field_app_country_state'
-  $field_instances['node-guild_app-field_app_country_state'] = array(
-    'bundle' => 'guild_app',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 11,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_app_country_state',
-    'label' => 'What country/state do you live in?',
-    'required' => 0,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 12,
+      'weight' => 5,
     ),
   );
 
@@ -1326,52 +1166,12 @@ function downfall_migrate_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 7,
+      'weight' => 3,
     ),
   );
 
-  // Exported field_instance: 'node-guild_app-field_app_current_server_time'
-  $field_instances['node-guild_app-field_app_current_server_time'] = array(
-    'bundle' => 'guild_app',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'How long have you been playing on your old server?',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 7,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_app_current_server_time',
-    'label' => 'How long have you been on the above server?',
-    'required' => 0,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 8,
-    ),
-  );
-
-  // Exported field_instance: 'node-guild_app-field_app_duration_of_stay'
-  $field_instances['node-guild_app-field_app_duration_of_stay'] = array(
+  // Exported field_instance: 'node-guild_app-field_app_field_like_your_ui'
+  $field_instances['node-guild_app-field_app_field_like_your_ui'] = array(
     'bundle' => 'guild_app',
     'default_value' => NULL,
     'deleted' => 0,
@@ -1382,7 +1182,7 @@ function downfall_migrate_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 9,
+        'weight' => 18,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1392,208 +1192,8 @@ function downfall_migrate_feature_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_app_duration_of_stay',
-    'label' => 'How long do you intend to stay in Downfall?',
-    'required' => 0,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 19,
-    ),
-  );
-
-  // Exported field_instance: 'node-guild_app-field_app_get_out_of_membership'
-  $field_instances['node-guild_app-field_app_get_out_of_membership'] = array(
-    'bundle' => 'guild_app',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 6,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_app_get_out_of_membership',
-    'label' => 'What do you expect to get out of Downfall membership?',
-    'required' => 0,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 3,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 16,
-    ),
-  );
-
-  // Exported field_instance: 'node-guild_app-field_app_hobbies'
-  $field_instances['node-guild_app-field_app_hobbies'] = array(
-    'bundle' => 'guild_app',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 10,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_app_hobbies',
-    'label' => 'Any other significant hobbies?',
-    'required' => 0,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 11,
-    ),
-  );
-
-  // Exported field_instance: 'node-guild_app-field_app_how_long_wow'
-  $field_instances['node-guild_app-field_app_how_long_wow'] = array(
-    'bundle' => 'guild_app',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 6,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_app_how_long_wow',
-    'label' => 'Tell us about you the person.',
-    'required' => 0,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 3,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 7,
-    ),
-  );
-
-  // Exported field_instance: 'node-guild_app-field_app_how_old'
-  $field_instances['node-guild_app-field_app_how_old'] = array(
-    'bundle' => 'guild_app',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Downfall is made up of "older" people. If you have a curfew or "bedtime", we won\'t be a good fit.',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 7,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_app_how_old',
-    'label' => 'How old are you?',
-    'required' => 0,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 8,
-    ),
-  );
-
-  // Exported field_instance: 'node-guild_app-field_app_instances_experience'
-  $field_instances['node-guild_app-field_app_instances_experience'] = array(
-    'bundle' => 'guild_app',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Tell us about your raid experience in expansions up to and including the current. Were you filling the same role in those raids as you are currently applying to the guild?',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 5,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_app_instances_experience',
-    'label' => 'List the instances you have experience in, and the farthest you have been in that instance.',
+    'field_name' => 'field_app_field_like_your_ui',
+    'label' => 'What do you like in particular about the UI you are currently using?',
     'required' => 0,
     'settings' => array(
       'text_processing' => 0,
@@ -1610,65 +1210,19 @@ function downfall_migrate_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-guild_app-field_app_level'
-  $field_instances['node-guild_app-field_app_level'] = array(
+  // Exported field_instance: 'node-guild_app-field_app_history'
+  $field_instances['node-guild_app-field_app_history'] = array(
     'bundle' => 'guild_app',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'The level of the toon you are applying to guild.',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 4,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_app_level',
-    'label' => 'Level',
-    'required' => 0,
-    'settings' => array(
-      'max' => '',
-      'min' => 1,
-      'prefix' => 'lvl',
-      'suffix' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 5,
-    ),
-  );
-
-  // Exported field_instance: 'node-guild_app-field_app_max_time'
-  $field_instances['node-guild_app-field_app_max_time'] = array(
-    'bundle' => 'guild_app',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '/played will tell you.',
+    'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 5,
+        'weight' => 13,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1678,8 +1232,48 @@ function downfall_migrate_feature_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_app_max_time',
-    'label' => 'Total play time at max level',
+    'field_name' => 'field_app_history',
+    'label' => 'Tell us a little of your history in WoW.',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 22,
+    ),
+  );
+
+  // Exported field_instance: 'node-guild_app-field_app_language'
+  $field_instances['node-guild_app-field_app_language'] = array(
+    'bundle' => 'guild_app',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 26,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_app_language',
+    'label' => 'Is English your first language?',
     'required' => 0,
     'settings' => array(
       'text_processing' => 0,
@@ -1692,7 +1286,47 @@ function downfall_migrate_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 6,
+      'weight' => 33,
+    ),
+  );
+
+  // Exported field_instance: 'node-guild_app-field_app_led_to_guild'
+  $field_instances['node-guild_app-field_app_led_to_guild'] = array(
+    'bundle' => 'guild_app',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 15,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_app_led_to_guild',
+    'label' => 'What led you to our guild and what would you like to accomplish with us?',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 24,
     ),
   );
 
@@ -1733,12 +1367,12 @@ function downfall_migrate_feature_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 6,
+      'weight' => 8,
     ),
   );
 
-  // Exported field_instance: 'node-guild_app-field_app_pvp_interest'
-  $field_instances['node-guild_app-field_app_pvp_interest'] = array(
+  // Exported field_instance: 'node-guild_app-field_app_playstyle'
+  $field_instances['node-guild_app-field_app_playstyle'] = array(
     'bundle' => 'guild_app',
     'default_value' => NULL,
     'deleted' => 0,
@@ -1746,10 +1380,10 @@ function downfall_migrate_feature_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'list',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 3,
+        'type' => 'text_default',
+        'weight' => 20,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1759,18 +1393,101 @@ function downfall_migrate_feature_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_app_pvp_interest',
-    'label' => 'Are you interested in PvP?:',
+    'field_name' => 'field_app_playstyle',
+    'label' => 'Describe your playstyle.',
     'required' => 0,
     'settings' => array(
+      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 13,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 27,
+    ),
+  );
+
+  // Exported field_instance: 'node-guild_app-field_app_pvp_experience'
+  $field_instances['node-guild_app-field_app_pvp_experience'] = array(
+    'bundle' => 'guild_app',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 23,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_app_pvp_experience',
+    'label' => 'Describe your PvP experience.',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 30,
+    ),
+  );
+
+  // Exported field_instance: 'node-guild_app-field_app_pvp_focus'
+  $field_instances['node-guild_app-field_app_pvp_focus'] = array(
+    'bundle' => 'guild_app',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 24,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_app_pvp_focus',
+    'label' => 'Is PvP your primary focus?',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 31,
     ),
   );
 
@@ -1807,49 +1524,12 @@ function downfall_migrate_feature_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
-  // Exported field_instance: 'node-guild_app-field_app_raid_nights'
-  $field_instances['node-guild_app-field_app_raid_nights'] = array(
-    'bundle' => 'guild_app',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Select all nights that you are available to raid.',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 8,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_app_raid_nights',
-    'label' => 'If you are applying to raid, which nights can you raid?',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 11,
-    ),
-  );
-
-  // Exported field_instance: 'node-guild_app-field_app_references'
-  $field_instances['node-guild_app-field_app_references'] = array(
+  // Exported field_instance: 'node-guild_app-field_app_raid_experience'
+  $field_instances['node-guild_app-field_app_raid_experience'] = array(
     'bundle' => 'guild_app',
     'default_value' => NULL,
     'deleted' => 0,
@@ -1860,7 +1540,7 @@ function downfall_migrate_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 8,
+        'weight' => 19,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1870,8 +1550,8 @@ function downfall_migrate_feature_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_app_references',
-    'label' => 'Do you have any references in Downfall?',
+    'field_name' => 'field_app_raid_experience',
+    'label' => 'Describe your raid experience here.',
     'required' => 0,
     'settings' => array(
       'text_processing' => 0,
@@ -1881,26 +1561,26 @@ function downfall_migrate_feature_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'rows' => 5,
       ),
-      'type' => 'text_textfield',
-      'weight' => 18,
+      'type' => 'text_textarea',
+      'weight' => 26,
     ),
   );
 
-  // Exported field_instance: 'node-guild_app-field_app_role_comfortable'
-  $field_instances['node-guild_app-field_app_role_comfortable'] = array(
+  // Exported field_instance: 'node-guild_app-field_app_rated_bgs'
+  $field_instances['node-guild_app-field_app_rated_bgs'] = array(
     'bundle' => 'guild_app',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'What role do you prefer to play on this character?  ',
+    'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'list',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 3,
+        'type' => 'text_default',
+        'weight' => 25,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1910,8 +1590,48 @@ function downfall_migrate_feature_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_app_role_comfortable',
-    'label' => 'What role are you most comfortable/geared playing?',
+    'field_name' => 'field_app_rated_bgs',
+    'label' => 'Are you interested in participating in guild rated battlegrounds?',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 32,
+    ),
+  );
+
+  // Exported field_instance: 'node-guild_app-field_app_role'
+  $field_instances['node-guild_app-field_app_role'] = array(
+    'bundle' => 'guild_app',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Select the role(s) you typically play on this toon.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 12,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_app_role',
+    'label' => 'Role',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -1925,8 +1645,8 @@ function downfall_migrate_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-guild_app-field_app_school_or_work'
-  $field_instances['node-guild_app-field_app_school_or_work'] = array(
+  // Exported field_instance: 'node-guild_app-field_app_specializations'
+  $field_instances['node-guild_app-field_app_specializations'] = array(
     'bundle' => 'guild_app',
     'default_value' => NULL,
     'deleted' => 0,
@@ -1937,7 +1657,7 @@ function downfall_migrate_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 9,
+        'weight' => 21,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1947,8 +1667,8 @@ function downfall_migrate_feature_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_app_school_or_work',
-    'label' => 'Are you in school or working?',
+    'field_name' => 'field_app_specializations',
+    'label' => 'What specializations do you have experience with?',
     'required' => 0,
     'settings' => array(
       'text_processing' => 0,
@@ -1958,26 +1678,26 @@ function downfall_migrate_feature_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'rows' => 5,
       ),
-      'type' => 'text_textfield',
-      'weight' => 10,
+      'type' => 'text_textarea',
+      'weight' => 28,
     ),
   );
 
-  // Exported field_instance: 'node-guild_app-field_app_talents'
-  $field_instances['node-guild_app-field_app_talents'] = array(
+  // Exported field_instance: 'node-guild_app-field_app_state_of_class'
+  $field_instances['node-guild_app-field_app_state_of_class'] = array(
     'bundle' => 'guild_app',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Please include a link to this build from WowHead (http://wowhead.com/talent).  Please also include your major glyphs. What are the strengths of this build? Do you change talents and glyphs depending on the fight?',
+    'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 14,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1987,8 +1707,8 @@ function downfall_migrate_feature_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_app_talents',
-    'label' => 'What talent build do you use to raid?',
+    'field_name' => 'field_app_state_of_class',
+    'label' => 'How do you feel about the state of your class in the game?',
     'required' => 0,
     'settings' => array(
       'text_processing' => 0,
@@ -1998,10 +1718,10 @@ function downfall_migrate_feature_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 4,
+        'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 5,
+      'weight' => 23,
     ),
   );
 
@@ -2041,7 +1761,7 @@ function downfall_migrate_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 5,
+      'weight' => 34,
     ),
   );
 
@@ -2049,7 +1769,7 @@ function downfall_migrate_feature_field_default_field_instances() {
   $field_instances['node-guild_app-field_app_ui_media'] = array(
     'bundle' => 'guild_app',
     'deleted' => 0,
-    'description' => 'Please attach a screenshot of your UI.',
+    'description' => 'Please attach a screenshot of your UI. Image formats accepted are jpg and png.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -2069,7 +1789,7 @@ function downfall_migrate_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_app_ui_media',
-    'label' => 'UI',
+    'label' => 'Upload UI screenshot',
     'required' => 0,
     'settings' => array(
       'description_field' => 0,
@@ -2094,93 +1814,11 @@ function downfall_migrate_feature_field_default_field_instances() {
         'browser_plugins' => array(
           'media_default--media_browser_1' => 0,
           'media_default--media_browser_my_files' => 0,
-          'media_internet' => 'media_internet',
           'upload' => 'upload',
         ),
-        'progress_indicator' => 'throbber',
       ),
       'type' => 'media_generic',
-      'weight' => 5,
-    ),
-  );
-
-  // Exported field_instance: 'node-guild_app-field_app_why_apply'
-  $field_instances['node-guild_app-field_app_why_apply'] = array(
-    'bundle' => 'guild_app',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 5,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_app_why_apply',
-    'label' => 'Why have you chosen to apply to Downfall?',
-    'required' => 0,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 3,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 15,
-    ),
-  );
-
-  // Exported field_instance: 'node-guild_app-field_app_why_recruit'
-  $field_instances['node-guild_app-field_app_why_recruit'] = array(
-    'bundle' => 'guild_app',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Please link a World of Logs report or screenshots of damage/healing meters to demonstrate your performance in a raid setting, if possible.',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 4,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_app_why_recruit',
-    'label' => 'Why should we recruit you?',
-    'required' => 0,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 5,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 14,
+      'weight' => 6,
     ),
   );
 
@@ -2220,7 +1858,7 @@ function downfall_migrate_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 9,
+      'weight' => 35,
     ),
   );
 
@@ -2579,73 +2217,54 @@ function downfall_migrate_feature_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('/played will tell you.');
   t('A quick description of this raid gorup.');
   t('Active');
   t('All raids need a mascot. You know what to do.');
-  t('Any other significant hobbies?');
-  t('Anything else you would like to add?');
-  t('Are you in school or working?');
-  t('Are you interested in PvP?:');
+  t('Are you interested in participating in guild rated battlegrounds?');
   t('Body');
   t('Caption');
   t('Character Name');
   t('Class');
   t('Current server');
   t('Date');
+  t('Describe your PvP experience.');
+  t('Describe your playstyle.');
+  t('Describe your raid experience here.');
   t('Description');
   t('Determine if this is an OG group.');
-  t('Do you have any references in Downfall?');
-  t('Downfall is made up of "older" people. If you have a curfew or "bedtime", we won\'t be a good fit.');
-  t('Even if it\'s only LFR, let us know!');
   t('Forums');
   t('Gallery');
   t('Group');
   t('Groups audience');
-  t('How do you feel you will contribute to the downfall community?');
-  t('How long do you intend to stay in Downfall?');
-  t('How long have you been on the above server?');
-  t('How long have you been playing on your old server?');
-  t('How old are you?');
-  t('If you are applying to raid, which nights can you raid?');
+  t('How do you feel about the state of your class in the game?');
   t('Image');
+  t('Is English your first language?');
+  t('Is PvP your primary focus?');
   t('Is this raid active anymore?');
   t('Leave your app Open if you wish it to be viewable by Downfall.  Close it and it will disappear.');
-  t('Level');
-  t('List the instances you have experience in, and the farthest you have been in that instance.');
   t('Mascot Image');
   t('Open/Closed');
-  t('Please attach a screenshot of your UI.');
-  t('Please include a link to this build from WowHead (http://wowhead.com/talent).  Please also include your major glyphs. What are the strengths of this build? Do you change talents and glyphs depending on the fight?');
-  t('Please link a World of Logs report or screenshots of damage/healing meters to demonstrate your performance in a raid setting, if possible.');
+  t('Please attach a screenshot of your UI. Image formats accepted are jpg and png.');
   t('Race');
   t('Raid Days');
   t('Raid End Time');
   t('Raid Size');
   t('Raid Start Time');
-  t('Same as above, just the one you absolutely hate!');
-  t('Select all nights that you are available to raid.');
-  t('Tell us a little about how your class contributes to a raid');
-  t('Tell us about you the person.');
-  t('Tell us about your raid experience in expansions up to and including the current. Were you filling the same role in those raids as you are currently applying to the guild?');
+  t('Role');
+  t('Select the role(s) you typically play on this toon.');
+  t('Tell us a little of your history in WoW.');
   t('Tell us about yourself');
-  t('The level of the toon you are applying to guild.');
   t('The race of the toon applying to guild.  Downfall does not discriminate based on race, gender or affinity of pie vs cake.');
-  t('Total play time at max level');
-  t('UI');
+  t('Upload UI screenshot');
   t('What WoW server are you currently playing on?  Downfall is located on the American Pacific Time Zone PvP server (GMT -8) Gorgonnash.');
-  t('What country/state do you live in?');
+  t('What are your most and least favorite boss encounters?');
   t('What days does this raid run consistently?');
-  t('What do you expect to get out of Downfall membership?');
-  t('What is your favorite Raid Boss encounter, and why?');
-  t('What is your least favorite Raid Boss encounter, and why?');
-  t('What role are you most comfortable/geared playing?');
-  t('What role do you prefer to play on this character?  ');
-  t('What talent build do you use to raid?');
-  t('What things might cause you to leave?');
+  t('What do you like in particular about the UI you are currently using?');
+  t('What led you to our guild and what would you like to accomplish with us?');
+  t('What specializations do you have experience with?');
   t('What timezone are you in?');
-  t('Why have you chosen to apply to Downfall?');
-  t('Why should we recruit you?');
+  t('Which addons do you consider essential and why?');
+  t('Which days and times are you available for organized events (raids, RGBs, etc)?');
   t('WoW Category');
 
   return $field_instances;
