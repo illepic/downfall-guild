@@ -20,5 +20,6 @@ Full details here: https://github.com/illepic/downfall-guild/wiki
   * If change in puphpet/config.yml, then after `vagrant up` run `vagrant provision`
 * Enter the dev environment: `vagrant ssh`
 * Go to the mapped working directory: `cd /var/www`
-  * Every under `project` in your local shows at `/var/www` in the VirtualBox
-* Install tools: `npm install`. Only need to run this once.
+  * Everything under `project/` in your local shows at `/var/www` in the VirtualBox
+  * Install tools: `npm install`. Only need to run this once.
+  * Run `grunt d7:watch` for grunt to watch files changed in `project/build` and copy them to `project/web`
