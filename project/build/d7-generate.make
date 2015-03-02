@@ -9,13 +9,13 @@ projects[drupal][version] = "7.34"
 projects[acl][version] = "1.0"
 projects[acl][subdir] = "contrib"
 
-projects[advanced_forum][version] = "2.4"
+projects[advanced_forum][version] = "2.5"
 projects[advanced_forum][subdir] = "contrib"
 
 projects[chain_menu_access][version] = "2.0"
 projects[chain_menu_access][subdir] = "contrib"
 
-projects[ctools][version] = "1.5"
+projects[ctools][version] = "1.6"
 projects[ctools][subdir] = "contrib"
 
 projects[date][version] = "2.8"
@@ -60,10 +60,10 @@ projects[jquery_update][subdir] = "contrib"
 projects[media][version] = "2.0-alpha4"
 projects[media][subdir] = "contrib"
 
-projects[migrate][version] = "2.x-dev"
+projects[migrate][version] = "2.7"
 projects[migrate][subdir] = "contrib"
 
-projects[migrate_d2d][version] = "2.x-dev"
+projects[migrate_d2d][version] = "2.1"
 projects[migrate_d2d][subdir] = "contrib"
 
 projects[migrate_extras][version] = "2.x-dev"
@@ -84,13 +84,13 @@ projects[strongarm][subdir] = "contrib"
 projects[token][version] = "1.x-dev"
 projects[token][subdir] = "contrib"
 
-projects[views][version] = "3.x-dev"
+projects[views][version] = "3.10"
 projects[views][subdir] = "contrib"
 
 projects[views_bulk_operations][version] = "3.x-dev"
 projects[views_bulk_operations][subdir] = "contrib"
 
 ; Themes
-;projects[zurb-foundation][version] = "5.x-dev"
-;projects[zurb-foundation][subdir] = "contrib"
+projects[zurb-foundation][version] = "5.x-dev"
+projects[zurb-foundation][subdir] = "contrib"
 

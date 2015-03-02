@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/redesign/patternlab/core/lib" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/drupal/d7/modules/simpletest/lib" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/drupal/d7/modules/simpletest/tests/psr_0_test/lib" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/project/web/drupal/d7/sites/all/modules/custom" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
