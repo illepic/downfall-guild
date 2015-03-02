@@ -278,7 +278,7 @@ nginx:
             ssl_key: ''
 php:
     install: '1'
-    version: '56'
+    version: '55'
     composer: '1'
     composer_home: ''
     modules:
@@ -294,7 +294,8 @@ php:
             - pecl_http
     ini:
         display_errors: On
-        error_reporting: '-1'
+        #error_reporting: '-1'
+        error_reporting: 'E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED'
         session.save_path: /var/lib/php/session
         memory_limit: 2048M
     timezone: America/Chicago
@@ -310,7 +311,7 @@ php:
 #    ini: {  }
 #    timezone: null
 xdebug:
-    install: '1'
+    install: '0'
     settings:
         xdebug.default_enable: '1'
         xdebug.remote_autostart: '1'
@@ -325,7 +326,7 @@ wpcli:
     version: ''
 drush:
     install: '1'
-    version: 6.5.0
+    version: '6.5.0'
 ruby:
     install: '1'
     versions:

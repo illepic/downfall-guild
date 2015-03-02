@@ -47,7 +47,9 @@ gulp.task('d7:install', ['d7:customFiles'], function() {
         'echo "Rebuilding node access permissons"',
         'drush php-eval "node_access_rebuild();"',
         'echo "Reverting features"',
-        'drush fr downfall_migrate_feature --yes'
+        'drush fr downfall_migrate_feature --yes',
+        'echo RUN SQL FROM FILE FOR forum_access',
+        "`drush sql-connect` < forum_access.sql"
       ], {
         'cwd':'web/drupal/d7/sites/d7.local.downfallguild.org'
       })
