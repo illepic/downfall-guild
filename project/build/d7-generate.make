@@ -91,6 +91,6 @@ projects[views_bulk_operations][version] = "3.x-dev"
 projects[views_bulk_operations][subdir] = "contrib"
 
 ; Themes
-;projects[zurb-foundation][version] = "5.x-dev"
-;projects[zurb-foundation][subdir] = "contrib"
+projects[zurb-foundation][version] = "5.x-dev"
+projects[zurb-foundation][subdir] = "contrib"
 
