@@ -26,7 +26,10 @@ Full details here: https://github.com/illepic/downfall-guild/wiki
 ### Initializing Local D6
   
 * Run `gulp d6:init`
-* Install a recent d6 database (details soon)
+* Install a recent d6 database via ssh db connection:
+  * User `illepic_downfall`, pasword (lookup from live site)
+  * Host 127.0.0.1, port 3306, database: illepic_downfall
+  * SSH tunnel: direct.downfallguild.org, illepic, private key used
 
 ### Initializing Local D7
 
