@@ -14,7 +14,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['access administration pages'] = array(
     'name' => 'access administration pages',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'system',
@@ -24,9 +23,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['access all views'] = array(
     'name' => 'access all views',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'views',
   );
@@ -57,9 +54,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['access content overview'] = array(
     'name' => 'access content overview',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -68,9 +63,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['access contextual links'] = array(
     'name' => 'access contextual links',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'contextual',
   );
@@ -79,9 +72,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['access dashboard'] = array(
     'name' => 'access dashboard',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'dashboard',
   );
@@ -90,7 +81,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['access devel information'] = array(
     'name' => 'access devel information',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'devel',
@@ -110,9 +100,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['access overlay'] = array(
     'name' => 'access overlay',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'overlay',
   );
@@ -131,7 +119,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['access site in maintenance mode'] = array(
     'name' => 'access site in maintenance mode',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'system',
@@ -141,9 +128,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['access site reports'] = array(
     'name' => 'access site reports',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'system',
   );
@@ -152,9 +137,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['access toolbar'] = array(
     'name' => 'access toolbar',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'toolbar',
   );
@@ -173,9 +156,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['add content to books'] = array(
     'name' => 'add content to books',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'book',
   );
@@ -184,7 +165,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['admin_display_suite'] = array(
     'name' => 'admin_display_suite',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'ds',
@@ -194,7 +174,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer actions'] = array(
     'name' => 'administer actions',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'system',
@@ -204,9 +183,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer advanced forum'] = array(
     'name' => 'administer advanced forum',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'advanced_forum',
   );
@@ -215,9 +192,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer blocks'] = array(
     'name' => 'administer blocks',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'block',
   );
@@ -226,9 +201,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer book outlines'] = array(
     'name' => 'administer book outlines',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'book',
   );
@@ -237,9 +210,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer comments'] = array(
     'name' => 'administer comments',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'comment',
   );
@@ -248,9 +219,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer content types'] = array(
     'name' => 'administer content types',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -259,9 +228,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer date tools'] = array(
     'name' => 'administer date tools',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'date_tools',
   );
@@ -270,7 +237,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer features'] = array(
     'name' => 'administer features',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'features',
@@ -280,9 +246,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer fieldgroups'] = array(
     'name' => 'administer fieldgroups',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'field_group',
   );
@@ -291,7 +255,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer file types'] = array(
     'name' => 'administer file types',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'file_entity',
@@ -301,7 +264,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer files'] = array(
     'name' => 'administer files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'file_entity',
@@ -311,7 +273,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer filters'] = array(
     'name' => 'administer filters',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'filter',
@@ -321,9 +282,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer forums'] = array(
     'name' => 'administer forums',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'forum',
   );
@@ -332,9 +291,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer group'] = array(
     'name' => 'administer group',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'og',
   );
@@ -343,9 +300,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer image styles'] = array(
     'name' => 'administer image styles',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'image',
   );
@@ -354,9 +309,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer media browser'] = array(
     'name' => 'administer media browser',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'media',
   );
@@ -365,9 +318,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer media wysiwyg view mode'] = array(
     'name' => 'administer media wysiwyg view mode',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'media_wysiwyg_view_mode',
   );
@@ -376,9 +327,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer menu'] = array(
     'name' => 'administer menu',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'menu',
   );
@@ -387,9 +336,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer module filter'] = array(
     'name' => 'administer module filter',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'module_filter',
   );
@@ -398,7 +345,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer modules'] = array(
     'name' => 'administer modules',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'system',
@@ -408,9 +354,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer nodes'] = array(
     'name' => 'administer nodes',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -419,7 +363,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer permissions'] = array(
     'name' => 'administer permissions',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'user',
@@ -429,9 +372,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer search'] = array(
     'name' => 'administer search',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'search',
   );
@@ -440,9 +381,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer shortcuts'] = array(
     'name' => 'administer shortcuts',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'shortcut',
   );
@@ -451,7 +390,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer site configuration'] = array(
     'name' => 'administer site configuration',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'system',
@@ -461,7 +399,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer software updates'] = array(
     'name' => 'administer software updates',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'system',
@@ -471,9 +408,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer taxonomy'] = array(
     'name' => 'administer taxonomy',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'taxonomy',
   );
@@ -482,7 +417,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer themes'] = array(
     'name' => 'administer themes',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'system',
@@ -492,9 +426,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer url aliases'] = array(
     'name' => 'administer url aliases',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'path',
   );
@@ -503,9 +435,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer users'] = array(
     'name' => 'administer users',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'user',
   );
@@ -514,7 +444,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['administer views'] = array(
     'name' => 'administer views',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'views',
@@ -524,7 +453,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['advanced migration information'] = array(
     'name' => 'advanced migration information',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'migrate',
@@ -534,9 +462,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['block IP addresses'] = array(
     'name' => 'block IP addresses',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'system',
   );
@@ -545,9 +471,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['bypass file access'] = array(
     'name' => 'bypass file access',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -556,7 +480,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['bypass node access'] = array(
     'name' => 'bypass node access',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -631,7 +554,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['create files'] = array(
     'name' => 'create files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
       'authenticated user' => 'authenticated user',
     ),
@@ -660,9 +582,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['create new books'] = array(
     'name' => 'create new books',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'book',
   );
@@ -690,9 +610,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['create url aliases'] = array(
     'name' => 'create url aliases',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'path',
   );
@@ -701,9 +619,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['customize shortcut links'] = array(
     'name' => 'customize shortcut links',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'shortcut',
   );
@@ -712,9 +628,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete any article content'] = array(
     'name' => 'delete any article content',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -723,9 +637,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete any audio files'] = array(
     'name' => 'delete any audio files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -734,9 +646,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete any blog content'] = array(
     'name' => 'delete any blog content',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -745,9 +655,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete any book content'] = array(
     'name' => 'delete any book content',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -756,9 +664,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete any df_image content'] = array(
     'name' => 'delete any df_image content',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -767,9 +673,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete any document files'] = array(
     'name' => 'delete any document files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -778,9 +682,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete any event content'] = array(
     'name' => 'delete any event content',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -789,9 +691,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete any forum content'] = array(
     'name' => 'delete any forum content',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -800,9 +700,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete any guild_app content'] = array(
     'name' => 'delete any guild_app content',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -811,9 +709,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete any image files'] = array(
     'name' => 'delete any image files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -822,9 +718,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete any page content'] = array(
     'name' => 'delete any page content',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -833,9 +727,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete any raid content'] = array(
     'name' => 'delete any raid content',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -844,9 +736,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete any video files'] = array(
     'name' => 'delete any video files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -865,10 +755,8 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete own audio files'] = array(
     'name' => 'delete own audio files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
       'authenticated user' => 'authenticated user',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -904,10 +792,8 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete own document files'] = array(
     'name' => 'delete own document files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
       'authenticated user' => 'authenticated user',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -972,7 +858,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete own video files'] = array(
     'name' => 'delete own video files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
       'authenticated user' => 'authenticated user',
     ),
@@ -983,9 +868,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete revisions'] = array(
     'name' => 'delete revisions',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -994,7 +877,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete terms in forums'] = array(
     'name' => 'delete terms in forums',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'taxonomy',
@@ -1004,7 +886,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete terms in gallery'] = array(
     'name' => 'delete terms in gallery',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'taxonomy',
@@ -1014,7 +895,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete terms in tags'] = array(
     'name' => 'delete terms in tags',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'taxonomy',
@@ -1024,7 +904,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['delete terms in wow'] = array(
     'name' => 'delete terms in wow',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'taxonomy',
@@ -1034,9 +913,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['download any audio files'] = array(
     'name' => 'download any audio files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -1045,9 +922,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['download any document files'] = array(
     'name' => 'download any document files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -1056,9 +931,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['download any image files'] = array(
     'name' => 'download any image files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -1067,9 +940,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['download any video files'] = array(
     'name' => 'download any video files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -1078,10 +949,8 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['download own audio files'] = array(
     'name' => 'download own audio files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
       'authenticated user' => 'authenticated user',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -1090,10 +959,8 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['download own document files'] = array(
     'name' => 'download own document files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
       'authenticated user' => 'authenticated user',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -1112,10 +979,8 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['download own video files'] = array(
     'name' => 'download own video files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
       'authenticated user' => 'authenticated user',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -1124,9 +989,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['edit any article content'] = array(
     'name' => 'edit any article content',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -1135,9 +998,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['edit any audio files'] = array(
     'name' => 'edit any audio files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -1146,9 +1007,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['edit any blog content'] = array(
     'name' => 'edit any blog content',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -1157,10 +1016,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['edit any book content'] = array(
     'name' => 'edit any book content',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
-      'guildy' => 'guildy',
     ),
     'module' => 'node',
   );
@@ -1169,9 +1025,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['edit any df_image content'] = array(
     'name' => 'edit any df_image content',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -1180,9 +1034,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['edit any document files'] = array(
     'name' => 'edit any document files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -1191,9 +1043,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['edit any event content'] = array(
     'name' => 'edit any event content',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -1202,9 +1052,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['edit any forum content'] = array(
     'name' => 'edit any forum content',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -1213,9 +1061,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['edit any guild_app content'] = array(
     'name' => 'edit any guild_app content',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -1224,9 +1070,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['edit any image files'] = array(
     'name' => 'edit any image files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -1235,9 +1079,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['edit any page content'] = array(
     'name' => 'edit any page content',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -1246,9 +1088,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['edit any raid content'] = array(
     'name' => 'edit any raid content',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -1257,9 +1097,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['edit any video files'] = array(
     'name' => 'edit any video files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -1278,10 +1116,8 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['edit own audio files'] = array(
     'name' => 'edit own audio files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
       'authenticated user' => 'authenticated user',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -1327,10 +1163,8 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['edit own document files'] = array(
     'name' => 'edit own document files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
       'authenticated user' => 'authenticated user',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -1405,9 +1239,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['edit terms in forums'] = array(
     'name' => 'edit terms in forums',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'taxonomy',
   );
@@ -1416,9 +1248,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['edit terms in gallery'] = array(
     'name' => 'edit terms in gallery',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'taxonomy',
   );
@@ -1427,9 +1257,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['edit terms in tags'] = array(
     'name' => 'edit terms in tags',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'taxonomy',
   );
@@ -1438,9 +1266,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['edit terms in wow'] = array(
     'name' => 'edit terms in wow',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'taxonomy',
   );
@@ -1449,7 +1275,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['execute php code'] = array(
     'name' => 'execute php code',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'devel',
@@ -1459,7 +1284,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['generate features'] = array(
     'name' => 'generate features',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'features',
@@ -1469,7 +1293,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['manage features'] = array(
     'name' => 'manage features',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'features',
@@ -1479,7 +1302,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['migration information'] = array(
     'name' => 'migration information',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'migrate',
@@ -1499,7 +1321,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['rename features'] = array(
     'name' => 'rename features',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'features',
@@ -1509,9 +1330,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['revert revisions'] = array(
     'name' => 'revert revisions',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -1530,7 +1349,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['select account cancellation method'] = array(
     'name' => 'select account cancellation method',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'user',
@@ -1550,9 +1368,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['switch shortcut sets'] = array(
     'name' => 'switch shortcut sets',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'shortcut',
   );
@@ -1561,7 +1377,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['switch users'] = array(
     'name' => 'switch users',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'devel',
@@ -1581,7 +1396,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['use ctools import'] = array(
     'name' => 'use ctools import',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'ctools',
@@ -1602,7 +1416,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['use text format full_html'] = array(
     'name' => 'use text format full_html',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'filter',
@@ -1612,7 +1425,6 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['use text format raw_input'] = array(
     'name' => 'use text format raw_input',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
     ),
     'module' => 'filter',
@@ -1695,9 +1507,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['view private files'] = array(
     'name' => 'view private files',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'file_entity',
   );
@@ -1706,9 +1516,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['view revisions'] = array(
     'name' => 'view revisions',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'node',
   );
@@ -1717,9 +1525,7 @@ function downfall_migrate_feature_user_default_permissions() {
   $permissions['view the administration theme'] = array(
     'name' => 'view the administration theme',
     'roles' => array(
-      'WebDev' => 'WebDev',
       'administrator' => 'administrator',
-      'guild officer' => 'guild officer',
     ),
     'module' => 'system',
   );
