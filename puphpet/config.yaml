@@ -311,7 +311,7 @@ php:
 #    ini: {  }
 #    timezone: null
 xdebug:
-    install: '0'
+    install: '1'
     settings:
         xdebug.default_enable: '1'
         xdebug.remote_autostart: '1'

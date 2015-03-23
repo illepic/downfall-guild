@@ -6,7 +6,7 @@ Full details here: https://github.com/illepic/downfall-guild/wiki
 
 ## Quick Start
 
-### Install local
+### Local Environment
 
 * Vagrant
   * vagrant-hostmanager: `vagrant plugin install vagrant-hostmanager`
@@ -32,4 +32,5 @@ Full details here: https://github.com/illepic/downfall-guild/wiki
 
 * Run `gulp d7:init` (only need to do this once)
 * Run `gulp d7:watch` for grunt to watch files changed in `project/build` and copy them to `project/web`
-*
+* To kick off migration, run `drush mi --group="DownfallD2DMigration" --feedback="100 items"
+* After migration is finished, enable the forum_access module, then run Node Access Permissions (/admin/reports/status/rebuild)
