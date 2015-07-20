@@ -278,7 +278,7 @@ nginx:
             ssl_key: ''
 php:
     install: '1'
-    version: '55'
+    version: '56'
     composer: '1'
     composer_home: ''
     modules:
@@ -319,6 +319,7 @@ xdebug:
         xdebug.remote_enable: '1'
         xdebug.remote_handler: dbgp
         xdebug.remote_port: '9000'
+        xdebug.max_nesting_level: '256'
 xhprof:
     install: '0'
 wpcli:
@@ -326,7 +327,7 @@ wpcli:
     version: ''
 drush:
     install: '1'
-    version: '6.5.0'
+    version: '8.0.0-beta12'
 ruby:
     install: '1'
     versions:
