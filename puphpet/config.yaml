@@ -1,23 +1,30 @@
----
-vagrantfile-local:
+vagrantfile:
+    target: local
     vm:
         box: puphpet/ubuntu1404-x64
         box_url: puphpet/ubuntu1404-x64
-        hostname: ''
+        hostname: downfall.puphpet
         memory: '4096'
         cpus: '4'
         chosen_provider: virtualbox
         network:
             private_network: 10.22.22.10
             forwarded_port:
+                vflnp_tegb090ks14h:
+                    host: '7838'
+                    guest: '22'
+                vflnp_nmh9fijc704i:
+                    host: '9450'
+                    guest: '22'
                 RtzkG0VZ9wlk:
                     host: '5096'
                     guest: '22'
-        post_up_message: 'Hello Downfall Drupal 7'
+        post_up_message: 'Hello from Vagrant Downfall!'
         provider:
             virtualbox:
                 modifyvm:
-                    natdnshostresolver1: on
+                    natdnshostresolver1: 'on'
+                showgui: '0'
             vmware:
                 numvcpus: 1
             parallels:
@@ -32,12 +39,14 @@ vagrantfile-local:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            hKadyo9457eY:
-                owner: ''
-                group: ''
+            vflsf_j5b3h6j7uvaa:
                 source: ./project
                 target: /var/www
                 sync_type: nfs
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
                 rsync:
                     args:
                         - '--verbose'
@@ -45,7 +54,10 @@ vagrantfile-local:
                         - '-z'
                     exclude:
                         - .vagrant/
-                    auto: 'false'
+                        - .git/
+                    auto: 'true'
+                owner: ''
+                group: ''
         usable_port_range:
             start: 10200
             stop: 10500
@@ -69,25 +81,131 @@ users_groups:
     install: '1'
     groups: {  }
     users: {  }
+locale:
+    install: '1'
+    settings:
+        default_locale: ''
+        locales:
+            - 'en_GB.UTF-8 UTF-8'
+            - 'en_US.UTF-8 UTF-8'
+firewall:
+    install: '1'
+    rules: {  }
 cron:
     install: '1'
     jobs: {  }
-firewall:
-    install: '1'
-    rules: null
+nginx:
+    install: '0'
+    settings:
+        default_vhost: 1
+        proxy_buffer_size: 128k
+        proxy_buffers: '4 256k'
+    upstreams: {  }
+    vhosts:
+        nxv_xdcc00j91iz4:
+            server_name: commercedeploy.dev
+            server_aliases:
+                - www.commercedeploy.dev
+            www_root: /var/www/commerce_deploy
+            listen_port: '80'
+            index_files:
+                - index.php
+            client_max_body_size: 1m
+            ssl: '0'
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_port: ''
+            ssl_protocols: ''
+            ssl_ciphers: ''
+        nxv_1s5stav80kij:
+            server_name: commercekickstart.dev
+            server_aliases:
+                - www.commercekickstart.dev
+            www_root: /var/www/commerce_kickstart
+            listen_port: '80'
+            index_files:
+                - index.php
+            client_max_body_size: 1m
+            ssl: '0'
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_port: ''
+            ssl_protocols: ''
+            ssl_ciphers: ''
+        nxv_lwu1an89pyc6:
+            server_name: drupal7.dev
+            server_aliases:
+                - www.drupal7.dev
+            www_root: /var/www/drupal-7
+            listen_port: '80'
+            index_files:
+                - index.php
+            client_max_body_size: 1m
+            ssl: '0'
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_port: ''
+            ssl_protocols: ''
+            ssl_ciphers: ''
+        nxv_e58pteomkw6f:
+            server_name: drupal8.dev
+            server_aliases:
+                - www.drupal8.dev
+            www_root: /var/www/drupal-8
+            listen_port: '80'
+            index_files:
+                - index.php
+            client_max_body_size: 1m
+            ssl: '0'
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_port: ''
+            ssl_protocols: ''
+            ssl_ciphers: ''
+        nxv_w75lnkdvs4cr:
+            server_name: glamanate.dev
+            server_aliases:
+                - www.glamanate.dev
+            www_root: /var/www/glamanate
+            listen_port: '80'
+            index_files:
+                - index.php
+            client_max_body_size: 1m
+            ssl: '0'
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_port: ''
+            ssl_protocols: ''
+            ssl_ciphers: ''
+        nxv_mj4wzerafar6:
+            server_name: panopoly.dev
+            server_aliases:
+                - www.panopoly.dev
+            www_root: /var/www/panopoly
+            listen_port: '80'
+            index_files:
+                - index.php
+            client_max_body_size: 1m
+            ssl: '0'
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_port: ''
+            ssl_protocols: ''
+            ssl_ciphers: ''
+    proxies: {  }
 apache:
     install: '1'
     settings:
         user: www-data
         group: www-data
-        default_vhost: false
+        default_vhost: true
         manage_user: false
         manage_group: false
         sendfile: 0
     modules:
         - rewrite
     vhosts:
-        dfd7:
+        av_8wllyynixazk:
             servername: d7.local.downfallguild.org
             serveraliases:
                 - downfalld7.local
@@ -95,9 +213,16 @@ apache:
             port: '80'
             setenv:
                 - 'APP_ENV dev'
+            custom_fragment: ''
+            ssl: '0'
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_chain: ''
+            ssl_certs_dir: ''
+            ssl_protocol: ''
+            ssl_cipher: ''
             directories:
-                gctfcnawjw9h:
-                    provider: directory
+                avd_5gulls6xjji3:
                     path: /var/www/web/drupal/d7
                     options:
                         - Indexes
@@ -109,13 +234,8 @@ apache:
                         - all
                         - granted
                     custom_fragment: ''
-            engine: php
-            custom_fragment: ''
-            ssl_cert: ''
-            ssl_key: ''
-            ssl_chain: ''
-            ssl_certs_dir: ''
-        dfd6:
+                    provider: directory
+        av_zgf9xd5swesm:
             servername: d6.local.downfallguild.org
             serveraliases:
                 - downfalld6.local
@@ -123,9 +243,16 @@ apache:
             port: '80'
             setenv:
                 - 'APP_ENV dev'
+            custom_fragment: ''
+            ssl: '0'
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_chain: ''
+            ssl_certs_dir: ''
+            ssl_protocol: ''
+            ssl_cipher: ''
             directories:
-                gctfcnawjw9h:
-                    provider: directory
+                avd_ri37o6jypycy:
                     path: /var/www/web/drupal/d6
                     options:
                         - Indexes
@@ -137,13 +264,8 @@ apache:
                         - all
                         - granted
                     custom_fragment: ''
-            engine: php
-            custom_fragment: ''
-            ssl_cert: ''
-            ssl_key: ''
-            ssl_chain: ''
-            ssl_certs_dir: ''
-        dfd8:
+                    provider: directory
+        av_46fy42xlinpc:
             servername: d8.local.downfallguild.org
             serveraliases:
                 - downfalld8.local
@@ -151,9 +273,16 @@ apache:
             port: '80'
             setenv:
                 - 'APP_ENV dev'
+            custom_fragment: ''
+            ssl: '0'
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_chain: ''
+            ssl_certs_dir: ''
+            ssl_protocol: ''
+            ssl_cipher: ''
             directories:
-                gctfcnawjw9h:
-                    provider: directory
+                avd_46flqj4ezs00:
                     path: /var/www/web/drupal/d8
                     options:
                         - Indexes
@@ -162,125 +291,13 @@ apache:
                     allow_override:
                         - All
                     require:
-                        - all
-                        - granted
+                        - 'all granted'
                     custom_fragment: ''
-            engine: php
-            custom_fragment: ''
-            ssl_cert: ''
-            ssl_key: ''
-            ssl_chain: ''
-            ssl_certs_dir: ''
-    mod_pagespeed: 0
-nginx:
-    install: '0'
-    settings:
-        default_vhost: 1
-        proxy_buffer_size: 128k
-        proxy_buffers: '4 256k'
-    upstreams: {  }
-    vhosts:
-        cuhlegfqst5p:
-            proxy: ''
-            server_name: commercedeploy.dev
-            server_aliases:
-                - www.commercedeploy.dev
-            www_root: /var/www/commerce_deploy
-            listen_port: '80'
-            location: .php$
-            index_files:
-                - index.php
-            envvars:
-                - 'APP_ENV dev'
-            engine: php
-            client_max_body_size: 1m
-            ssl_cert: ''
-            ssl_key: ''
-        csvqyru64exk:
-            proxy: ''
-            server_name: commercekickstart.dev
-            server_aliases:
-                - www.commercekickstart.dev
-            www_root: /var/www/commerce_kickstart
-            listen_port: '80'
-            location: .php$
-            index_files:
-                - index.php
-            envvars:
-                - 'APP_ENV dev'
-            engine: php
-            client_max_body_size: 1m
-            ssl_cert: ''
-            ssl_key: ''
-        9tftba2lesws:
-            proxy: ''
-            server_name: drupal7.dev
-            server_aliases:
-                - www.drupal7.dev
-            www_root: /var/www/drupal-7
-            listen_port: '80'
-            location: .php$
-            index_files:
-                - index.php
-            envvars:
-                - 'APP_ENV dev'
-            engine: php
-            client_max_body_size: 1m
-            ssl_cert: ''
-            ssl_key: ''
-        bnilpifqaiei:
-            proxy: ''
-            server_name: drupal8.dev
-            server_aliases:
-                - www.drupal8.dev
-            www_root: /var/www/drupal-8
-            listen_port: '80'
-            location: .php$
-            index_files:
-                - index.php
-            envvars:
-                - 'APP_ENV dev'
-            engine: php
-            client_max_body_size: 1m
-            ssl_cert: ''
-            ssl_key: ''
-        bflmaf32hvww:
-            proxy: ''
-            server_name: glamanate.dev
-            server_aliases:
-                - www.glamanate.dev
-            www_root: /var/www/glamanate
-            listen_port: '80'
-            location: .php$
-            index_files:
-                - index.php
-            envvars:
-                - 'APP_ENV dev'
-            engine: php
-            client_max_body_size: 1m
-            ssl_cert: ''
-            ssl_key: ''
-        rlttura7aw03:
-            proxy: ''
-            server_name: panopoly.dev
-            server_aliases:
-                - www.panopoly.dev
-            www_root: /var/www/panopoly
-            listen_port: '80'
-            location: .php$
-            index_files:
-                - index.php
-            envvars:
-                - 'APP_ENV dev'
-            engine: php
-            client_max_body_size: 1m
-            ssl_cert: ''
-            ssl_key: ''
+                    provider: directory
 php:
     install: '1'
-    version: '56'
-    composer: '1'
-    composer_home: ''
+    settings:
+        version: '56'
     modules:
         php:
             - cli
@@ -293,23 +310,15 @@ php:
         pecl:
             - pecl_http
     ini:
-        display_errors: On
-        #error_reporting: '-1'
+        display_errors: 'On'
         error_reporting: 'E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED'
         session.save_path: /var/lib/php/session
         memory_limit: 2048M
-    timezone: America/Chicago
-    mod_php: 0
-#hhvm:
-#    install: '0'
-#    nightly: 0
-#    composer: '1'
-#    composer_home: ''
-#    settings:
-#        host: 127.0.0.1
-#        port: '9000'
-#    ini: {  }
-#    timezone: null
+    fpm_ini:
+        error_log: /var/log/php-fpm.log
+    fpm_pools: {  }
+    composer: '1'
+    composer_home: ''
 xdebug:
     install: '1'
     settings:
@@ -320,6 +329,20 @@ xdebug:
         xdebug.remote_handler: dbgp
         xdebug.remote_port: '9000'
         xdebug.max_nesting_level: '256'
+blackfire:
+    install: '0'
+    settings:
+        server_id: ''
+        server_token: ''
+        agent:
+            http_proxy: ''
+            https_proxy: ''
+            log_file: stderr
+            log_level: '1'
+        php:
+            agent_timeout: '0.25'
+            log_file: ''
+            log_level: '1'
 xhprof:
     install: '0'
 wpcli:
@@ -327,79 +350,90 @@ wpcli:
     version: ''
 drush:
     install: '1'
-    version: '8.0.0-beta12'
+    version: 8.0.0-beta12
 ruby:
     install: '1'
     versions:
-        KMoRw5l4Ci8S:
+        rv_8bu17r0h1hji:
             version: ''
-nodejs:
-    install: '1'
-    npm_packages: {  }
 python:
     install: '1'
     packages: {  }
     versions: {  }
+nodejs:
+    install: '1'
+    npm_packages: {  }
+hhvm:
+    install: '0'
+    nightly: 0
+    composer: '1'
+    composer_home: ''
+    settings: {  }
+    server_ini:
+        hhvm.server.host: 127.0.0.1
+        hhvm.server.port: '9000'
+        hhvm.log.use_log_file: '1'
+        hhvm.log.file: /var/log/hhvm/error.log
+    php_ini:
+        display_errors: 'On'
+        error_reporting: '-1'
+        date.timezone: UTC
 mysql:
     install: '1'
-    override_options: {  }
-    root_password: root
+    settings:
+        version: '5.6'
+        root_password: 'root'
+        override_options: {  }
     adminer: 0
+    users: {  }
     databases:
-        dfdb6:
-            grant:
-                - ALL
+        mysqlnd_kzwzot0svsxd:
             name: downfall_d6
-            host: localhost
-            user: dfmysqluser6
-            password: root
-            sql_file: ''
-        dfdb7:
-            grant:
-                - ALL
+            sql: ''
+        mysqlnd_b3bofrlg8lav:
             name: downfall_d7
-            host: localhost
-            user: dfmysqluser7
-            password: root
-            sql_file: ''
-        dfdb8:
-            grant:
-                - ALL
+            sql: ''
+        mysqlnd_zfns9y6t20a9:
             name: downfall_d8
-            host: localhost
-            user: dfmysqluser8
-            password: root
-            sql_file: ''
+            sql: ''
+    grants: {  }
+mariadb:
+    install: '0'
+    settings:
+        version: '10.0'
+        root_password: '123'
+        override_options: {  }
+    adminer: 0
+    users: {  }
+    databases: {  }
+    grants: {  }
 postgresql:
     install: '0'
     settings:
-        root_password: '123'
-        user_group: postgres
-        encoding: UTF8
-        version: '9.3'
+        global:
+            encoding: UTF8
+            version: '9.3'
+        server:
+            postgres_password: ''
     databases: {  }
+    users: {  }
+    grants: {  }
     adminer: 0
-mariadb:
-    install: '0'
-    override_options: {  }
-    root_password: '123'
-    adminer: 0
-    databases: {  }
-    version: '10.0'
-sqlite:
-    install: '0'
-    adminer: 0
-    databases: {  }
 mongodb:
     install: '0'
     settings:
         auth: 1
+        bind_ip: 127.0.0.1
         port: '27017'
     databases: {  }
 redis:
     install: '0'
     settings:
         conf_port: '6379'
+sqlite:
+    install: '0'
+    adminer: 0
+    databases: {  }
 mailcatcher:
     install: '0'
     settings:
@@ -409,30 +443,32 @@ mailcatcher:
         http_port: '1080'
         mailcatcher_path: /usr/local/rvm/wrappers/default
         from_email_method: inline
-#beanstalkd:
-#    install: '0'
-#    settings:
-#        listenaddress: 0.0.0.0
-#        listenport: '13000'
-#        maxjobsize: '65535'
-#        maxconnections: '1024'
-#        binlogdir: /var/lib/beanstalkd/binlog
-#        binlogfsync: null
-#        binlogsize: '10485760'
-#    beanstalk_console: 0
-#    binlogdir: /var/lib/beanstalkd/binlog
-#rabbitmq:
-#    install: '0'
-#    settings:
-#        port: '5672'
+beanstalkd:
+    install: '0'
+    settings:
+        listenaddress: 0.0.0.0
+        listenport: '13000'
+        maxjobsize: '65535'
+        maxconnections: '1024'
+        binlogdir: /var/lib/beanstalkd/binlog
+        binlogfsync: null
+        binlogsize: '10485760'
+    beanstalk_console: 0
+rabbitmq:
+    install: '0'
+    settings:
+        port: '5672'
+    users: {  }
+    vhosts: {  }
+    plugins: {  }
 elastic_search:
     install: '0'
     settings:
-        version: ''
+        version: null
         java_install: true
 solr:
     install: '0'
     settings:
-        version: ''
+        version: 4.10.2
         port: ''
 
