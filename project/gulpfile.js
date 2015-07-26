@@ -68,10 +68,10 @@ gulp.task('d7:cc', function() {
 
 gulp.task('d7:watch', function() {
     watch(['build/dev/d7/**/*']).pipe(
-      shell(['rsync -vzr /var/www/build/dev/d7/* /var/www/web/drupal/d7/sites'])
+      shell(['rsync -vzr /var/www/df/build/dev/d7/* /var/www/df/web/drupal/d7/sites'])
     );
     //.pipe(gulp.dest('web/drupal/d7/sites/'));
-    //.pipe(shell(['rsync -vzr /var/www/build/dev/d7/* /var/www/web/drupal/d7/sites']));
+    //.pipe(shell(['rsync -vzr /var/www/df/build/dev/d7/* /var/www/df/web/drupal/d7/sites']));
 });
 
 
@@ -79,8 +79,8 @@ gulp.task('d7:watch', function() {
 gulp.task('d6:init', function() {
   return gulp.src('')
     .pipe(shell([
-        'rsync -zvrP --progress illepic@direct.downfallguild.org:webapps/downfall_drupal/ /var/www/web/drupal/d6/',
-        'rsync -zvrP /var/www/build/dev/d6/* /var/www/web/drupal/d6/sites'
+        'rsync -zvrP --progress illepic@direct.downfallguild.org:webapps/downfall_drupal/ /var/www/df/web/drupal/d6/',
+        'rsync -zvrP /var/www/df/build/dev/d6/* /var/www/df/web/drupal/d6/sites'
       ])
     );
 });
