@@ -9,18 +9,19 @@ Full details here: https://github.com/illepic/downfall-guild/wiki
 ### Local Environment
 
 * Vagrant
+* Vagrant plugins
   * vagrant-hostmanager: `vagrant plugin install vagrant-hostmanager`
-  * vagrant-bindfs: `vagrant plugin install vagrant-bindfs`
+  * vagrant-vbguest: `vagrant plugin install vagrant-vbguest`
 * VirtualBox
 * Git
 
 ## Initial
 
-* Turn the dev environment on: `vagrant up`
+* Turn the dev environment on: Run `vagrant up` from the **env** folder
   * If there is a change in puphpet/config.yml, then after `vagrant up` run `vagrant provision`
 * Enter the dev environment: `vagrant ssh`
-* Go to the mapped working directory: `cd /var/www`
-  * Everything under `project/` in your local shows at `/var/www` in the VirtualBox
+* Go to the mapped working directory: `cd /var/www/df`
+  * Everything under `project/` in your local shows at `/var/www/df` in the VirtualBox
   * Install tools: `npm install`. Only need to run this once.
 
 ### Initializing Local D6
