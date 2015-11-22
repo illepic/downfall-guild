@@ -317,19 +317,6 @@ function downfall_migrate_feature_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'forum_access_rids';
-  $strongarm->value = array(
-    0 => '1',
-    1 => '2',
-    2 => '4',
-    3 => '5',
-    4 => '7',
-  );
-  $export['forum_access_rids'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_df_image';
   $strongarm->value = array(
     0 => 'main-menu',

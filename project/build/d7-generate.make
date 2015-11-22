@@ -3,7 +3,7 @@ core = 7.x
 api = 2
 
 ; Core
-projects[drupal][version] = "7.34"
+projects[drupal][version] = "7.35"
 
 ; Modules
 projects[acl][version] = "1.0"
@@ -15,7 +15,7 @@ projects[advanced_forum][subdir] = "contrib"
 projects[chain_menu_access][version] = "2.0"
 projects[chain_menu_access][subdir] = "contrib"
 
-projects[ctools][version] = "1.6"
+projects[ctools][version] = "1.7"
 projects[ctools][subdir] = "contrib"
 
 projects[date][version] = "2.8"
@@ -33,7 +33,7 @@ projects[ds][subdir] = "contrib"
 projects[eck][version] = "2.0-rc6"
 projects[eck][subdir] = "contrib"
 
-projects[entity][version] = "1.5"
+projects[entity][version] = "1.6"
 projects[entity][subdir] = "contrib"
 
 projects[entity_view_mode][version] = "1.0-rc1"
@@ -42,7 +42,7 @@ projects[entity_view_mode][subdir] = "contrib"
 projects[entityreference][version] = "1.1"
 projects[entityreference][subdir] = "contrib"
 
-projects[features][version] = "2.3"
+projects[features][version] = "2.4"
 projects[features][subdir] = "contrib"
 
 projects[field_group][version] = "1.4"
@@ -69,7 +69,7 @@ projects[migrate_d2d][subdir] = "contrib"
 projects[migrate_extras][version] = "2.x-dev"
 projects[migrate_extras][subdir] = "contrib"
 
-projects[module_filter][version] = "2.x-dev"
+projects[module_filter][version] = "2.0"
 projects[module_filter][subdir] = "contrib"
 
 projects[og][version] = "2.x-dev"
@@ -91,6 +91,6 @@ projects[views_bulk_operations][version] = "3.x-dev"
 projects[views_bulk_operations][subdir] = "contrib"
 
 ; Themes
-projects[zurb-foundation][version] = "5.x-dev"
-projects[zurb-foundation][subdir] = "contrib"
+projects[zurb_foundation][version] = "5.0-rc6"
+projects[zurb_foundation][subdir] = "contrib"
 
