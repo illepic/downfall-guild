@@ -5,7 +5,7 @@
 .idea/dataSources.xml
 # Vagrant specific
 .vagrant
-env/puphpet/files/dot/ssh
+env/puphpet/files/dot/ssh/*
 !env/puphpet/files/dot/ssh/insecure_private_key
 # Project specific
 node_modules
