@@ -1,0 +1,11 @@
+name: NAMA Migrate
+type: module
+description: Contains code for migrating from Drupal 6 to Drupal 8.
+core: 8.x
+package: NAMA
+dependencies:
+  - migrate_plus
+  - migrate_tools
+  - migrate_upgrade
+  - migrate_drupal
+
