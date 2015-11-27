@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Contains \Drupal\nama_migrate\Plugin\migrate\process\NamaImgAssist.
+ * Contains \Drupal\migratedf\Plugin\migrate\process\MigratedfImgAssist.
  */
 
-namespace Drupal\nama_migrate\Plugin\migrate\process;
+namespace Drupal\migratedf\Plugin\migrate\process;
 
 use Drupal\Core\Database\Database;
 use Drupal\migrate\ProcessPluginBase;
@@ -16,10 +16,10 @@ use Drupal\migrate\Row;
  * This plugin replaces img_assist tags in node body fields with standard HTML image tags.
  *
  * @MigrateProcessPlugin(
- *   id = "nama_img_assist"
+ *   id = "migratedf_img_assist"
  * )
  */
-class NamaImgAssist extends ProcessPluginBase {
+class MigratedfImgAssist extends ProcessPluginBase {
 
   /**
    * Find and return image assist tags.

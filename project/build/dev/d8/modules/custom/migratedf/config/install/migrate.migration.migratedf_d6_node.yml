@@ -1,7 +1,7 @@
-id: nama_d6_node
-label: NAMA Drupal 6 nodes
+id: migratedf_d6_node
+label: Migrate DF Drupal 6 nodes
 migration_tags:
-  - NAMA
+  - migratedf
 builder:
   plugin: d6_node
 source:
@@ -32,11 +32,11 @@ process:
     plugin: migration
     migration: d6_filter_format
     source: format
-  'body/value': 
-    plugin: nama_img_assist
+  'body/value':
+    plugin: migratedf_img_assist
     source: body
-  'body/summary': 
-    plugin: nama_img_assist
+  'body/summary':
+    plugin: migratedf_img_assist
     source: teaser
   revision_uid: revision_uid
   revision_log: log
