@@ -1,7 +1,7 @@
 id: migratedf_d6_node
 label: Migrate DF Drupal 6 nodes
 migration_tags:
-  - migratedf
+  - Drupal 6
 builder:
   plugin: d6_node
 source:
