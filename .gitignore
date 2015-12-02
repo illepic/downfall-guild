@@ -4,6 +4,8 @@
 .idea/dataSources.local.xml
 .idea/dataSources.xml
 
+env/puphpet/puppet/.tmp
+
 # Vagrant specific
 .vagrant
 env/puphpet/files/dot/ssh/*
