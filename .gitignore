@@ -3,6 +3,7 @@
 .idea/dataSources.ids
 .idea/dataSources.local.xml
 .idea/dataSources.xml
+.idea/deployment.xml
 
 env/puphpet/puppet/.tmp
 
