@@ -1,3 +1,4 @@
+# PHPStorm
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/dataSources.ids
@@ -5,14 +6,17 @@
 .idea/dataSources.xml
 .idea/deployment.xml
 
-env/puphpet/puppet/.tmp
+# Packages
+node_modules
 
 # Vagrant specific
 .vagrant
+env/puphpet/puppet/.tmp
 env/puphpet/files/dot/ssh/*
 !env/puphpet/files/dot/ssh/.gitkeep
 !env/puphpet/files/dot/ssh/insecure_private_key
 
 # Project specific
-node_modules
 project/web
+!project/web/drupal/d6/.gitkeep
+!project/web/drupal/d8/.gitkeep
