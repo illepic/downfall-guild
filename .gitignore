@@ -12,11 +12,12 @@ node_modules
 # Vagrant specific
 .vagrant
 env/puphpet/puppet/.tmp
+
 env/puphpet/files/dot/ssh/*
 !env/puphpet/files/dot/ssh/.gitkeep
 !env/puphpet/files/dot/ssh/insecure_private_key
 
 # Project specific
-project/web
+project/web/drupal/d*/*
 !project/web/drupal/d6/.gitkeep
 !project/web/drupal/d8/.gitkeep
