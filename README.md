@@ -16,9 +16,10 @@ Full details here: https://github.com/illepic/downfall-guild/wiki
 * Git
 
 Windows-specific:
+* [PowerShell](https://www.microsoft.com/en-us/download/details.aspx?id=40855)? (maybe)
 * [Cmder](http://cmder.net/) running as administrator
 * [Symlinks enabled for Windows](http://cmder.net/)
-* HeidiSQL for GUI database access
+* [HeidiSQL](http://www.heidisql.com/) for GUI database access
 
 OSX-specific
 * [SequelPro](http://www.sequelpro.com/) for GUI database access
