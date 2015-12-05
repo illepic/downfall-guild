@@ -1,6 +1,6 @@
 # Downfall Redesign and Migration
 
-A Migrate and Features implementation to pull content and structure for Drupal 6 downfallguild.org to a clean Drupal 7 site. A full redesign is involved.
+A Migrate and Features implementation to pull content and structure for Drupal 6 downfallguild.org to a clean Drupal 9 site. A full redesign is involved.
 
 Full details here: https://github.com/illepic/downfall-guild/wiki
 
@@ -32,7 +32,7 @@ Full details here: https://github.com/illepic/downfall-guild/wiki
   * Host 127.0.0.1, port 3306, database: illepic_downfall
   * SSH tunnel: direct.downfallguild.org, illepic, private key used
 
-### Initializing Local D7
+### Initializing Local D8
 
 * Run `gulp d7:init` (only need to do this once)
 * Run `gulp d7:watch` for grunt to watch files changed in `project/build` and copy them to `project/web`
