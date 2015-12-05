@@ -1,6 +1,6 @@
 # Downfall Redesign and Migration
 
-A Migrate and Features implementation to pull content and structure for Drupal 6 downfallguild.org to a clean Drupal 9 site. A full redesign is involved.
+A Migrate and Features implementation to pull content and structure for Drupal 6 downfallguild.org to a clean Drupal 8 site. A full redesign is involved.
 
 Full details here: https://github.com/illepic/downfall-guild/wiki
 
