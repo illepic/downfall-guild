@@ -15,6 +15,14 @@ Full details here: https://github.com/illepic/downfall-guild/wiki
 * VirtualBox
 * Git
 
+Windows-specific:
+* [Cmder](http://cmder.net/) running as administrator
+* [Symlinks enabled for Windows](http://cmder.net/)
+* HeidiSQL for GUI database access
+
+OSX-specific
+* [SequelPro](http://www.sequelpro.com/) for GUI database access
+
 ## Initial
 
 * Turn the dev environment on: Run `vagrant up` from the **env** folder
@@ -22,9 +30,9 @@ Full details here: https://github.com/illepic/downfall-guild/wiki
 * Enter the dev environment: `vagrant ssh`
 * Go to the mapped working directory: `cd /var/www/df`
   * Everything under `project/` in your local shows at `/var/www/df` in the VirtualBox
-  * Install tools: `npm install`. Only need to run this once.
+  * (coming soon) Install tools: `npm install`. Only need to run this once.
 
-### Initializing Local D6
+### Initializing Local D6 (coming soon)
   
 * Run `gulp d6:init`
 * Install a recent d6 database via ssh db connection:
@@ -32,9 +40,6 @@ Full details here: https://github.com/illepic/downfall-guild/wiki
   * Host 127.0.0.1, port 3306, database: illepic_downfall
   * SSH tunnel: direct.downfallguild.org, illepic, private key used
 
-### Initializing Local D8
+### Initializing Local D8 (coming soon)
 
-* Run `gulp d7:init` (only need to do this once)
-* Run `gulp d7:watch` for grunt to watch files changed in `project/build` and copy them to `project/web`
-* To kick off migration, run `drush mi --group="DownfallD2DMigration" --feedback="100 items"
-* After migration is finished, enable the forum_access module, then run Node Access Permissions (/admin/reports/status/rebuild)
+* Run `gulp d8:init` (coming soon)
