@@ -18,5 +18,7 @@ env/puphpet/files/dot/ssh/*
 !env/puphpet/files/dot/ssh/insecure_private_key
 
 # Keep drupal generated folders around for web roots
-project/web/drupal/d*/*
-!project/web/drupal/d*/.gitkeep
+#project/web/drupal/d*/*
+#!project/web/drupal/d*/.gitkeep
+project/web/*
+!project/web/.gitkeep
