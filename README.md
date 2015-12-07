@@ -10,7 +10,7 @@ Full details here: https://github.com/illepic/downfall-guild/wiki
 
 * Vagrant
 * Vagrant plugins
-  * vagrant-hostmanager: `vagrant plugin install vagrant-hostmanager`
+  * vagrant-hostsupdater: `vagrant plugin install vagrant-hostsupdater`
   * vagrant-vbguest: `vagrant plugin install vagrant-vbguest`
 * VirtualBox
 * Git
