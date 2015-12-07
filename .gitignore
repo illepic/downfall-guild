@@ -22,3 +22,5 @@ env/puphpet/files/dot/ssh/*
 #!project/web/drupal/d*/.gitkeep
 project/web/*
 !project/web/.gitkeep
+
+drupal-vm
