@@ -27,24 +27,24 @@ OSX-specific
 
 * Clone Druapl VM into our repo:
 
-    git clone git@github.com:geerlingguy/drupal-vm.git
+      git clone git@github.com:geerlingguy/drupal-vm.git
     
 * Copy settings from config to the VM:
 
-    cp config/config.yml drupal-vm
-    cp drupal.make.yml drupal-vm
+      cp config/config.yml drupal-vm
+      cp drupal.make.yml drupal-vm
     
 * Turn the dev environment on
     
-    cd drupal-vm && vagrant up
+      cd drupal-vm && vagrant up
     
 * Enter the dev environment:
 
-    vagrant ssh
+      vagrant ssh
     
 * Go to the mapped working directory:
 
-    cd /var/www/df
+      cd /var/www/df
     
 *Everything under `project/` in your local shows at `/var/www/df` in the VirtualBox
 *(coming soon) Install tools: `npm install`. Only need to run this once.
