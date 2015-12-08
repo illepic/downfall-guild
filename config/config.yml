@@ -31,7 +31,7 @@ vagrant_memory: 1024
 vagrant_cpus: 2
 
 # The web server software to use. Can be either 'apache' or 'nginx'.
-drupalvm_webserver: nginx
+drupalvm_webserver: apache
 
 # Set this to false if you are using a different site deployment strategy and
 # would like to configure 'vagrant_synced_folders' and 'apache_vhosts' manually.
@@ -151,6 +151,7 @@ mysql_users:
 # to install *any* extras, make set this value to an empty set, e.g. `[]`.
 installed_extras:
   - adminer
+#  - drupalconsole
   # - mailhog
   # - memcached
   - nodejs
@@ -195,7 +196,23 @@ firewall_allowed_tcp_ports:
 firewall_log_dropped_packets: false
 
 # PHP Configuration. Currently-supported versions: 5.5, 5.6, 7.0 (experimental).
-php_version: "5.6"
+php_version: "7.0"
+php_packages:
+  - libapache2-mod-php7.0
+  - php7.0-common
+  - php7.0-cli
+  - php7.0-dev
+  - php7.0-fpm
+  - libpcre3-dev
+  - php-gd
+  - php-curl
+  - php-imap
+  - php-json
+  - php-opcache
+php_mysql_package: php-mysql
+php_fpm_daemon: php7.0-fpm
+
+#php_version: "5.6"
 php_memory_limit: "192M"
 php_display_errors: "On"
 php_display_startup_errors: "On"
