@@ -47,7 +47,7 @@ cd drupal-vm && vagrant up
 * Enter the dev environment:
 
 ```shell
-vagrant ssh
+cd drupal-vm && vagrant ssh
 ```
     
 * Go to the mapped working directory:
