@@ -43,6 +43,14 @@ cp config/drupal.make.yml drupal-vm
 ```shell
 cd drupal-vm && vagrant up
 ```
+
+* If vagrant did not already add these entries to your hosts file, add the following to `\Windows\System32\drivers\etc\hosts` on Windows or `/etc/hosts` on OSX/Linux
+
+````
+192.168.88.88  d8.local.downfallguild.org
+192.168.88.88  d6.local.downfallguild.org
+192.168.88.88  adminer.local.downfallguild.org
+````
     
 * To Enter the dev environment:
 
