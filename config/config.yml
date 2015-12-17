@@ -1,7 +1,7 @@
 ---
 # `vagrant_box` can also be set to geerlingguy/centos6, geerlingguy/centos7,
 # geerlingguy/ubuntu1204, parallels/ubuntu-14.04, etc.
-vagrant_box: geerlingguy/ubuntu1404
+vagrant_box: geerlingguy/centos7
 vagrant_user: vagrant
 
 # If you need to run multiple instances of Drupal VM, set a unique hostname,
@@ -151,11 +151,12 @@ mysql_users:
 # to install *any* extras, make set this value to an empty set, e.g. `[]`.
 installed_extras:
   - adminer
-#  - drupalconsole
+  - drupalconsole
   # - mailhog
   # - memcached
   - nodejs
   # - pimpmylog
+  - redis
   # - ruby
   # - selenium
   # - solr
@@ -197,24 +198,7 @@ firewall_log_dropped_packets: false
 
 # PHP Configuration. Currently-supported versions: 5.5, 5.6, 7.0 (experimental).
 php_version: "7.0"
-php_packages:
-#  - libapache2-mod-php7.0
-  - php7.0-common
-  - php7.0-cli
-  - php7.0-dev
-  - php7.0-fpm
-  - libpcre3-dev
-  - php-gd
-  - php-curl
-  - php-imap
-  - php-json
-  - php-opcache
-php_mysql_package: php-mysql
-php_fpm_daemon: php7.0-fpm
-php_extension_conf_path: /etc/php7.0/fpm/conf.d
-
-#php_version: "5.6"
-php_memory_limit: "192M"
+php_memory_limit: "512M"
 php_display_errors: "On"
 php_display_startup_errors: "On"
 php_enable_php_fpm: 1
@@ -230,12 +214,30 @@ composer_home_path: '/home/vagrant/.composer'
 # composer_global_packages:
 #   - { name: phpunit/phpunit, release: '@stable' }
 
+# Run specified scripts after VM is provisioned. Path is relative to the
+# `provisioning/playbook.yml` file.
+post_provision_scripts: []
+  # - "../examples/scripts/configure-solr.sh"
+
 # MySQL Configuration.
 mysql_root_password: root
 mysql_slow_query_log_enabled: true
 mysql_slow_query_time: 2
 mysql_wait_timeout: 300
 adminer_install_filename: index.php
+# Add the following variables to the 'MySQL Configuration' section to make sure
+# the MariaDB installation works correctly.
+mysql_packages:
+  - mariadb
+  - mariadb-server
+  - mariadb-libs
+  - MySQL-python
+  - perl-DBD-MySQL
+mysql_daemon: mariadb
+mysql_socket: /var/lib/mysql/mysql.sock
+mysql_log_error: /var/log/mariadb/mariadb.log
+mysql_syslog_tag: mariadb
+mysql_pid_file: /var/run/mariadb/mariadb.pid
 
 # Varnish Configuration.
 varnish_listen_port: "81"
@@ -267,3 +269,8 @@ selenium_version: 2.46.0
 
 # Other configuration.
 known_hosts_path: ~/.ssh/known_hosts
+
+# Add the following variables to the end of the file to make sure the PhpRedis
+# extension is compiled to run with PHP 7.
+php_redis_install_from_source: true
+php_redis_source_version: php7

@@ -6,7 +6,7 @@ Full details here: https://github.com/illepic/downfall-guild/wiki
 
 ## Quick Start
 
-### Local Environment
+### Local Environment Requirements
 
 * Vagrant
 * Vagrant plugins
@@ -16,9 +16,9 @@ Full details here: https://github.com/illepic/downfall-guild/wiki
 * Git
 
 Windows-specific:
-* [Cmder](http://cmder.net/) running as administrator
-* [Symlinks enabled for Windows](http://cmder.net/)
-* [HeidiSQL](http://www.heidisql.com/) for GUI database access
+* [Symlinks enabled for Windows](http://blog.puphpet.com/blog/2015/06/25/windows-symlinks/)
+* (Optional) [Cmder](http://cmder.net/) running as administrator
+* (Optional) [HeidiSQL](http://www.heidisql.com/) for GUI database access
 
 OSX-specific
 * [SequelPro](http://www.sequelpro.com/) for GUI database access
@@ -35,29 +35,24 @@ git clone git@github.com:geerlingguy/drupal-vm.git
 
 ```shell
 cp config/config.yml drupal-vm
-cp drupal.make.yml drupal-vm
+cp config/drupal.make.yml drupal-vm
 ```
     
-* Turn the dev environment on
+* Turn the dev environment on and go make a sandwich. You may need to run this command as admin on Windows.
     
 ```shell
 cd drupal-vm && vagrant up
 ```
     
-* Enter the dev environment:
+* To Enter the dev environment:
 
 ```shell
 cd drupal-vm && vagrant ssh
 ```
-    
-* Go to the mapped working directory:
 
-```shell
-cd /var/www/df
-```
     
-*Everything under `project/` in your local shows at `/var/www/df` in the VirtualBox
-*(coming soon) Install tools: `npm install`. Only need to run this once.
+* Everything under `project/` in your local shows at `/var/www/df` in the VirtualBox
+* (coming soon) Install tools: `npm install`. Only need to run this once.
 
 ### Initializing Local D6 (coming soon)
   
