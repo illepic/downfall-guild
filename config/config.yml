@@ -80,7 +80,7 @@ apache_vhosts:
     documentroot: "{{ drupal_core_path }}"
 
   - servername: "d8.local.downfallguild.org"
-    documentroot: "/var/www/df/web/d6"
+    documentroot: "/var/www/df/web/d8"
 
   - servername: "d6.local.downfallguild.org"
     documentroot: "/var/www/df/web/d6"
