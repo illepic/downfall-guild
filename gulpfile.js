@@ -3,15 +3,71 @@ var gulp = require('gulp')
   ,del = require('del')
   ,watch = require('gulp-watch')
   ,chmod = require('gulp-chmod')
-  ,symlink = require('gulp-symlink');
+  ,symlink = require('gulp-symlink')
+  ,fs = require('fs')
+  ,runSequence = require('run-sequence');
 
 gulp.task('default', function() {
 
 });
 
-gulp.task('d8:symlink', function() {
-  return gulp.src('build/dev/d8/modules/custom/')
-    .pipe(symlink('web/d8/modules/custom/'))
+// Check for and cloen the Drupal VM repo
+gulp.task('drupalVM:repo', function() {
+  var command = '';
+  fs.stat('drupal-vm', function (err, stat) {
+    if (err == null) {
+      console.log('drupal-vm folder exists, updating from repo');
+      command = 'cd drupal-vm && git pull';
+    } else {
+      console.log('drupal-vm folder does not exist, cloning');
+      command = 'git clone git@github.com:geerlingguy/drupal-vm.git';
+    }
+  });
+
+  return gulp.src('')
+    .pipe(shell([command]));
+});
+
+// Symlink into the Drupal VM repo our custom config files
+gulp.task('drupalVM:copy:VMConfig', function() {
+  return gulp.src(['config/config.yml', 'config/drupal.make.yml'])
+    .pipe(gulp.dest('drupal-vm'));
+});
+
+// Blow away D8
+gulp.task('d8:nukeD8', function() {
+  return del([
+    'project/web/d8'
+  ]);
+});
+
+// Restart vagrant: this changes the server AND rebuilds drupal if we've deleted it
+gulp.task('drupalVM:vagrantUp', function(cb) {
+  return gulp.src('')
+    .pipe(
+      shell([
+        'vagrant halt && vagrant up --provision'],
+        {
+          cwd: 'drupal-vm'
+        }
+      )
+    );
+});
+
+// Symlink our local custom drupal module dev work
+gulp.task('d8:symlink:D8Modules', function() {
+  return gulp.src('project/build/dev/d8/modules/custom')
+    .pipe(symlink('project/web/d8/modules/custom'))
+});
+
+gulp.task('d8:rebuild', function() {
+  runSequence(
+    'drupalVM:repo',
+    'drupalVM:copy:VMConfig',
+    'd8:nukeD8',
+    'drupalVM:vagrantUp',
+    'd8:symlink:D8Modules'
+  );
 });
 
 

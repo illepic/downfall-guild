@@ -7,6 +7,10 @@ api: 2
 # Drupal core (major version, e.g. 6.x, 7.x, 8.x).
 core: "8.x"
 
+defaults:
+  projects:
+    subdir: "contrib"
+
 projects:
 
   # Core.
@@ -19,16 +23,11 @@ projects:
 
   # Other modules.
   devel: "1.x-dev"
-    sudir: contrib
   redis:
     download:
       type: git
       url: https://github.com/md-systems/redis.git
       branch: 8.x-1.x
-    subdir: contrib
   migrate_upgrade: "1.x-dev"
-    subdir: contrib
   migrate_plus: "1.x-dev"
-    subdir: contrib
   migrate_tools: "1.x-dev"
-    subdir: contrib
