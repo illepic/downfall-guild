@@ -2,11 +2,18 @@ var gulp = require('gulp')
   ,shell = require('gulp-shell')
   ,del = require('del')
   ,watch = require('gulp-watch')
-  ,chmod = require('gulp-chmod');
+  ,chmod = require('gulp-chmod')
+  ,symlink = require('gulp-symlink');
 
 gulp.task('default', function() {
 
 });
+
+gulp.task('d8:symlink', function() {
+  return gulp.src('build/dev/d8/modules/custom/')
+    .pipe(symlink('web/d8/modules/custom/'))
+});
+
 
 // Need to nuke d7 directory before Drush making
 //gulp.task('d7:chmod', function() {

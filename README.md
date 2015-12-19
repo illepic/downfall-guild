@@ -11,9 +11,11 @@ Full details here: https://github.com/illepic/downfall-guild/wiki
 * Vagrant
 * Vagrant plugins
   * vagrant-hostsupdater: `vagrant plugin install vagrant-hostsupdater`
-  * vagrant-vbguest: `vagrant plugin install vagrant-vbguest`
 * VirtualBox
 * Git
+* Node >= 4.2.3/NPM >= 2.14.7
+  * npm install gulp -g
+  * `cd project && npm install`
 
 Windows-specific:
 * [Symlinks enabled for Windows](http://blog.puphpet.com/blog/2015/06/25/windows-symlinks/)
