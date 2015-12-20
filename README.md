@@ -4,9 +4,7 @@ A Migrate and Features implementation to pull content and structure for Drupal 6
 
 Full details here: https://github.com/illepic/downfall-guild/wiki
 
-## Quick Start
-
-### Local Environment Requirements
+## Local Environment Requirements
 
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 * [Vagrant](https://www.vagrantup.com/downloads.html)
@@ -27,7 +25,7 @@ OSX-specific
 
 All commands listed are assumed to be run from the root of the project unless otherwise noted.
 
-## Initial: D8
+## Initialize: D8 + VM
 
 Running this gulp task:
 
@@ -52,9 +50,9 @@ If vagrant did not already add these entries to your hosts file, add the followi
 192.168.88.88  adminer.local.downfallguild.org
 ````
 
-### Drupal
+### Drupal 8
 
-Drupal is built completely from scratch if and only if the `project/web/d8` folder is **empty**.
+Drupal 8 is built completely from scratch if and only if the `project/web/d8` folder is **empty**.
 
 * To rebuild Drupal, simpley delete the `project/web/d8/` folder and re-run `gulp d8:rebuild`
 * Otherwise, running `gulp d8:rebuild` simply updates the `drupal-vm/` repo, halts Vagrant, and re-provisions it (leaving Drupal alone)
@@ -80,7 +78,7 @@ Sometimes Vagrant gets REALLY stuck. In these cases, the following steps will al
 1. `cd drupal-vm && vagrant destroy -f`
 2. Open Virtualbox, find the **downfall.dev** box, right click and Remove all including files.
 
-## Initial: D6
+## Initializ: D6
   
 To pull down all files from the D6 site:
 
@@ -102,3 +100,16 @@ To import a recent D6 database:
     ```
 
 3. Replace `dfdb-XXXXXXXX.sql.zip` above with the actuall db file name. Yes, there is no space between "-p" and the "dfdbpass" password.
+
+## Prototyping redesign
+
+The following sets up PatternLab for first use, should only be done once or when starting over:
+
+```shell
+cd redesign/pl && npm install
+```
+You may see errors on Windows because Windows.
+
+Run `gulp pl:build` at least once to do an initial PL build.
+
+Run `gulp proto:watch` to compile assets and refresh the prototype.
