@@ -1,11 +1,10 @@
 var gulp = require('gulp')
   ,shell = require('gulp-shell')
-  ,del = require('del')
-  ,watch = require('gulp-watch')
+  ,clean = require('gulp-clean')
   ,chmod = require('gulp-chmod')
   ,symlink = require('gulp-symlink')
-  ,fs = require('fs')
-  ,runSequence = require('run-sequence');
+  ,runSequence = require('run-sequence')
+  ,git = require('gulp-git');
 
 gulp.task('default', function() {
 
@@ -13,36 +12,51 @@ gulp.task('default', function() {
 
 // Check for and cloen the Drupal VM repo
 gulp.task('drupalVM:repo', function() {
-  var command = '';
-  fs.stat('drupal-vm', function (err, stat) {
+
+  var config = ['config/config.yml', 'config/drupal.make.yml'];
+  var dest = 'drupal-vm';
+
+  git.clone('git@github.com:geerlingguy/drupal-vm.git', function (err) {
     if (err == null) {
-      console.log('drupal-vm folder exists, updating from repo');
-      command = 'cd drupal-vm && git pull';
+
+      console.log('Clone successful, copying config');
+
+      return gulp.src(config)
+        .pipe(gulp.dest(dest));
+
     } else {
-      console.log('drupal-vm folder does not exist, cloning');
-      command = 'git clone git@github.com:geerlingguy/drupal-vm.git';
+
+      console.log('Folder exists, updating repo, copying config');
+
+      git.pull('origin', 'master', {cwd: 'drupal-vm'}, function(err) {
+
+        if (err) throw err;
+
+        return gulp.src(config)
+          .pipe(gulp.dest(dest));
+
+      });
     }
   });
 
-  return gulp.src('')
-    .pipe(shell([command]));
 });
 
 // Symlink into the Drupal VM repo our custom config files
-gulp.task('drupalVM:copy:VMConfig', function() {
+gulp.task('drupalVM:copy:VMConfig', ['drupalVM:repo'], function() {
+  console.log('Writing config to vm');
   return gulp.src(['config/config.yml', 'config/drupal.make.yml'])
     .pipe(gulp.dest('drupal-vm'));
 });
 
 // Blow away D8
 gulp.task('d8:nukeD8', function() {
-  return del([
-    'project/web/d8'
-  ]);
+  return gulp.src('project/web/d8', {read: false})
+    .pipe(chmod(777))
+    .pipe(clean({force: true}));
 });
 
 // Restart vagrant: this changes the server AND rebuilds drupal if we've deleted it
-gulp.task('drupalVM:vagrantUp', function(cb) {
+gulp.task('drupalVM:vagrantUp', ['drupalVM:repo'], function() {
   return gulp.src('')
     .pipe(
       shell([
@@ -60,13 +74,14 @@ gulp.task('d8:symlink:D8Modules', function() {
     .pipe(symlink('project/web/d8/modules/custom'))
 });
 
-gulp.task('d8:rebuild', function() {
+gulp.task('d8:rebuild', function(callback) {
   runSequence(
-    'drupalVM:repo',
-    'drupalVM:copy:VMConfig',
+    //'drupalVM:repo',
+    //'drupalVM:copy:VMConfig',
     'd8:nukeD8',
     'drupalVM:vagrantUp',
-    'd8:symlink:D8Modules'
+    'd8:symlink:D8Modules',
+    callback
   );
 });
 
@@ -77,9 +92,9 @@ gulp.task('d8:rebuild', function() {
 //    .pipe(chmod(777));
 //});
 
-gulp.task('d7:clean', function(cb) {
-  del(['web/drupal/d7'], cb);
-});
+//gulp.task('d7:clean', function(cb) {
+//  del(['web/drupal/d7'], cb);
+//});
 
 // Drush make drupal and contrib modules
 gulp.task('d7:make', ['d7:clean'], function() {
@@ -129,13 +144,13 @@ gulp.task('d7:cc', function() {
     );
 });
 
-gulp.task('d7:watch', function() {
-    watch(['build/dev/d7/**/*']).pipe(
-      shell(['rsync -vzr /var/www/df/build/dev/d7/* /var/www/df/web/drupal/d7/sites'])
-    );
-    //.pipe(gulp.dest('web/drupal/d7/sites/'));
-    //.pipe(shell(['rsync -vzr /var/www/df/build/dev/d7/* /var/www/df/web/drupal/d7/sites']));
-});
+//gulp.task('d7:watch', function() {
+//    watch(['build/dev/d7/**/*']).pipe(
+//      shell(['rsync -vzr /var/www/df/build/dev/d7/* /var/www/df/web/drupal/d7/sites'])
+//    );
+//    //.pipe(gulp.dest('web/drupal/d7/sites/'));
+//    //.pipe(shell(['rsync -vzr /var/www/df/build/dev/d7/* /var/www/df/web/drupal/d7/sites']));
+//});
 
 
 // D6 Work
