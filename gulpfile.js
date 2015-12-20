@@ -41,7 +41,7 @@ gulp.task('drupalVM:repo', function() {
 });
 
 // Symlink into the Drupal VM repo our custom config files
-gulp.task('drupalVM:copy:VMConfig', ['drupalVM:repo'], function() {
+gulp.task('drupalVM:copy:VMConfig', function() {
   console.log('Writing config to vm');
   return gulp.src(['config/config.yml', 'config/drupal.make.yml'])
     .pipe(gulp.dest('drupal-vm'));

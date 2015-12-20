@@ -18,6 +18,7 @@ Full details here: https://github.com/illepic/downfall-guild/wiki
 Windows-specific:
 
 * [Symlinks enabled for Windows](http://blog.puphpet.com/blog/2015/06/25/windows-symlinks/)
+* [rsync for windows](http://codingsimply.com/blog/grunt-rsync-and-windows)
 * (Optional) [Cmder](http://cmder.net/) running as administrator
 * (Optional) [HeidiSQL](http://www.heidisql.com/) for GUI database access
 
