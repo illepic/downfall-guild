@@ -1,10 +1,11 @@
 var gulp = require('gulp')
   ,shell = require('gulp-shell')
-  ,clean = require('gulp-clean')
+  ,del = require('del')
   ,chmod = require('gulp-chmod')
   ,symlink = require('gulp-symlink')
   ,runSequence = require('run-sequence')
-  ,git = require('gulp-git');
+  ,git = require('gulp-git')
+  ,vinylPaths = require('vinyl-paths');
 
 gulp.task('default', function() {
 
@@ -50,9 +51,14 @@ gulp.task('drupalVM:copy:VMConfig', ['drupalVM:repo'], function() {
 
 // Blow away D8
 gulp.task('d8:nukeD8', function() {
-  return gulp.src('project/web/d8', {read: false})
+
+  //return del([
+  //  'project/web/d8'
+  //]);
+
+  return gulp.src(['project/web/d8/**/*', 'project/web/d8'], {read: false})
     .pipe(chmod(777))
-    .pipe(clean({force: true}));
+    .pipe(vinylPaths(del));
 });
 
 // Restart vagrant: this changes the server AND rebuilds drupal if we've deleted it
