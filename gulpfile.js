@@ -31,7 +31,7 @@ gulp.task('drupalVM:repo', function() {
 
       git.pull('origin', 'master', {cwd: 'drupal-vm'}, function(err) {
 
-        if (err) throw err;
+        //if (err) throw err;
 
         return gulp.src(config)
           .pipe(gulp.dest(dest));
@@ -50,19 +50,23 @@ gulp.task('drupalVM:copy:VMConfig', ['drupalVM:repo'], function() {
 });
 
 // Blow away D8
+gulp.task('d8:ownD8', function() {
+  return gulp.src(['project/web/d8', 'project/web/d8/**/*'])
+  .pipe(chmod(755))
+});
 gulp.task('d8:nukeD8', function() {
-
-  //return del([
-  //  'project/web/d8'
-  //]);
-
-  return gulp.src(['project/web/d8/**/*', 'project/web/d8'], {read: false})
-    .pipe(chmod(777))
+  return gulp.src(['project/web/d8'])
+    //.pipe(chmod(777))
     .pipe(vinylPaths(del));
+
+  //return gulp.src('')
+  //  .pipe(shell([
+  //    'chmod -R 777 project/web/d8 && rm -rf project/web/d8'
+  //  ]));
 });
 
 // Restart vagrant: this changes the server AND rebuilds drupal if we've deleted it
-gulp.task('drupalVM:vagrantUp', ['drupalVM:repo'], function() {
+gulp.task('drupalVM:vagrantUp', function() {
   return gulp.src('')
     .pipe(
       shell([
@@ -77,14 +81,13 @@ gulp.task('drupalVM:vagrantUp', ['drupalVM:repo'], function() {
 // Symlink our local custom drupal module dev work
 gulp.task('d8:symlink:D8Modules', function() {
   return gulp.src('project/build/dev/d8/modules/custom')
-    .pipe(symlink('project/web/d8/modules/custom'))
+    .pipe(symlink('project/web/d8/modules/custom', {force: true}));
 });
 
 gulp.task('d8:rebuild', function(callback) {
   runSequence(
-    //'drupalVM:repo',
-    //'drupalVM:copy:VMConfig',
-    'd8:nukeD8',
+    'drupalVM:repo',
+    'drupalVM:copy:VMConfig',
     'drupalVM:vagrantUp',
     'd8:symlink:D8Modules',
     callback
