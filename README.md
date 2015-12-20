@@ -25,6 +25,8 @@ OSX-specific
 
 * [SequelPro](http://www.sequelpro.com/) for GUI database access
 
+All commands listed are assumed to be run from the root of the project unless otherwise noted.
+
 ## Initial: D8
 
 Running this gulp task:
@@ -33,7 +35,7 @@ Running this gulp task:
 gulp d8:rebuild
 ```
 
-attempts to run following setup:
+attempts to run the following setup:
 
 1. Clone the drupal-vm repo into the root of our project if it does not exist already
 2. Update the drupal-vm repo in the root of our project if it does exist already
@@ -80,15 +82,23 @@ Sometimes Vagrant gets REALLY stuck. In these cases, the following steps will al
 
 ## Initial: D6
   
-* Option 1 (osx/linux): Run `gulp d6:init --user=WEBFACTIONUSERNAME` to rsync download the entire original Downfall site 
-* Option 2 (windows compatible): `cd drupal-vm && vagrant ssh` into the box, then when in Linux run:
+To pull down all files from the D6 site:
 
-```shell
-cd /var/www/df/web
-rsync -zvrP illepic@direct.illepic.com:webapps/downfall_drupal/ d6/
-```
+1. SSH into the Vagrant box: `cd drupal-vm && vagrant ssh` then:
 
-(Coming soon) Install a recent d6 database via ssh db connection:
-  * User `illepic_downfall`, pasword (lookup from live site)
-  * Host 127.0.0.1, port 3306, database: illepic_downfall
-  * SSH tunnel: direct.downfallguild.org, illepic, private key used
+    ```shell
+    cd /var/www/df/web
+    rsync -zvrP USERNAME@direct.illepic.com:webapps/downfall_drupal/ d6/
+    ```
+
+To import a recent D6 database:
+
+1. Copy a recent `dfdb-XXXXXXXX.sql.zip` file from the shared Dropbox into `project/web/d6/sites/d6.local.downfallguild.org`
+2. SSH into the Vagrant box: `cd drupal-vm && vagrant ssh` then:
+
+    ```shell
+    cd /var/www/df/web/d6/sites/d6.local.downfallguild.org
+    unzip -p dfdb-XXXXXXXX.sql.zip | mysql -u dfdbuser -pdfdbpass downfall_d6
+    ```
+
+3. Replace `dfdb-XXXXXXXX.sql.zip` above with the actuall db file name. Yes, there is no space between "-p" and the "dfdbpass" password.
