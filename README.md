@@ -80,8 +80,8 @@ Sometimes Vagrant gets REALLY stuck. In these cases, the following steps will al
 
 ## Initial: D6
   
-* Run `gulp d6:init`
-* Install a recent d6 database via ssh db connection:
+* Run `gulp d6:init --user=WEBFACTIONUSERNAME` to sync download the entire original Downfall site
+* (Coming soon) Install a recent d6 database via ssh db connection:
   * User `illepic_downfall`, pasword (lookup from live site)
   * Host 127.0.0.1, port 3306, database: illepic_downfall
   * SSH tunnel: direct.downfallguild.org, illepic, private key used
