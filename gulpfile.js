@@ -79,20 +79,21 @@ gulp.task('d8:rebuild', function(callback) {
 });
 
 // PL stuff
-gulp.task('pl:gulp:package', function() {
-  return gulp.src('./node_modules/patternlab-node/package.gulp.json')
-    .pipe(gulp.dest('./node_modules/patternlab-node/package.json'));
-});
-gulp.task('pl:npm:install', ['pl:gulp:package'], function() {
-  return gulp.src('')
-    .pipe(shell(['npm install'], {cwd: 'node_modules/patternlab-node'}));
-});
-gulp.task('pl:symlink', ['pl:npm:install'], function() {
-  return gulp.src('redesign/pl/source')
-    .pipe(shell(['rm -rf node_modules/patternlab-node/source']))
-    .pipe(symlink('node_modules/patternlab-node/source', {force: true}));
-});
-gulp.task('pl:build', ['pl:symlink'], function() {
+//gulp.task('pl:gulp:package', function() {
+//  return gulp.src('./node_modules/patternlab-node/package.gulp.json')
+//    .pipe(gulp.dest('./node_modules/patternlab-node/package.json'));
+//});
+//gulp.task('pl:npm:install', ['pl:gulp:package'], function() {
+//  return gulp.src('')
+//    .pipe(shell(['npm install'], {cwd: 'node_modules/patternlab-node'}));
+//});
+//gulp.task('pl:symlink', ['pl:npm:install'], function() {
+//  return gulp.src('redesign/pl/source')
+//    .pipe(shell(['rm -rf node_modules/patternlab-node/source']))
+//    .pipe(symlink('node_modules/patternlab-node/source', {force: true}));
+//});
+
+gulp.task('pl:build', function() {
   gulp.src('node_modules/patternlab-node/gulpfile.js')
     .pipe(chug());
 });

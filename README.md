@@ -103,13 +103,21 @@ To import a recent D6 database:
 
 ## Prototyping redesign
 
+NOTE: Windows users: Install Visual Studio Community Edition 2015. Open it, create a Visual C++ project. You'll see an option to:
+
+    "Install Visual C++ 2015 Tools for Windows Desktop"
+    
+Do the above, then run:
+ 
+    npm install -g browser-sync --msvs_version=2015
+
 The following sets up PatternLab for first use, should only be done once or when starting over:
 
 ```shell
 cd redesign/pl && npm install
 ```
-You may see errors on Windows because Windows.
+You may see an error on Windows regarding utf-8-validate not compiling. This doesn't affect us.
 
-Run `gulp pl:build` at least once to do an initial PL build.
+Temp: Run `cd redesign/pl && gulp` at least once to do an initial PL build.
 
-Run `gulp proto:watch` to compile assets and refresh the prototype.
+Temp: Run `cd redesign/pl && gulp serve` to compile assets and refresh the prototype.
