@@ -5,7 +5,7 @@
 		{
 			"img": {
 				"landscape-16x9": {
-					"src": "../../images/sample/landscape-16x9-mountains.jpg",
+					"src": "../../../../assets/images/sample/landscape-16x9-mountains.jpg",
 					"alt": "Mountains"	
 				}
 			},
@@ -18,7 +18,7 @@
 		{
 			"img": {
 				"landscape-4x3": {
-					"src": "../../images/sample/tout-4x3-climber.jpg",
+					"src": "../../../../assets/images/sample/tout-4x3-climber.jpg",
 					"alt": "Climber"	
 				}
 			},
@@ -29,7 +29,7 @@
 		{
 			"img": {
 				"landscape-4x3": {
-					"src": "../../images/sample/tout-4x3-stream.jpg",
+					"src": "../../../../assets/images/sample/tout-4x3-stream.jpg",
 					"alt": "Stream hiking"	
 				}
 			},
@@ -40,7 +40,7 @@
 		{
 			"img": {
 				"landscape-4x3": {
-					"src": "../../images/sample/tout-4x3-climbers.jpg",
+					"src": "../../../../assets/images/sample/tout-4x3-climbers.jpg",
 					"alt": "Explore hiking trails"	
 				}
 			},
@@ -53,7 +53,7 @@
 		{
 			"img": {
 				"square": {
-					"src": "../../images/sample/thumb-square-river.jpg",
+					"src": "../../../../assets/images/sample/thumb-square-river.jpg",
 					"alt": "Post Thumbnail"	
 				}
 			},
@@ -67,7 +67,7 @@
 		{
 			"img": {
 				"square": {
-					"src": "../../images/sample/thumb-square-ivy.jpg",
+					"src": "../../../../assets/images/sample/thumb-square-ivy.jpg",
 					"alt": "Ivy"	
 				}
 			},
@@ -81,7 +81,7 @@
 		{
 			"img": {
 				"square": {
-					"src": "../../images/sample/thumb-square-yosemite.jpg",
+					"src": "../../../../assets/images/sample/thumb-square-yosemite.jpg",
 					"alt": "Yosemite"	
 				}
 			},
@@ -95,7 +95,7 @@
 		{
 			"img": {
 				"square": {
-					"src": "../../images/sample/thumb-square-fire.jpg",
+					"src": "../../../../assets/images/sample/thumb-square-fire.jpg",
 					"alt": "Fire"	
 				}
 			},
@@ -109,7 +109,7 @@
 		{
 			"img": {
 				"square": {
-					"src": "../../images/sample/thumb-square-gear.jpg",
+					"src": "../../../../assets/images/sample/thumb-square-gear.jpg",
 					"alt": "Camping Gear"	
 				}
 			},

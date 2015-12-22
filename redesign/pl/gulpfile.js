@@ -134,7 +134,7 @@ gulp.task('lab-pipe', ['lab'], function(cb){
 
 gulp.task('default', ['lab']);
 
-gulp.task('assets', ['cp:js', 'cp:img', 'cp:font', 'cp:data', /*'sass:style', 'sass:styleguide'*/]);
+gulp.task('assets', [/*'cp:js', 'cp:img', 'cp:font',*/ 'cp:data', /*'sass:style', 'sass:styleguide'*/]);
 gulp.task('prelab', ['clean', 'banner', 'assets']);
 gulp.task('lab', ['prelab', 'patternlab'], function(cb){cb();});
 gulp.task('patterns', ['patternlab:only_patterns']);

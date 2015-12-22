@@ -3,7 +3,14 @@ var gulp = require('gulp')
   ,symlink = require('gulp-symlink')
   ,runSequence = require('run-sequence')
   ,git = require('gulp-git')
-  ,chug = require('gulp-chug');
+  ,chug = require('gulp-chug')
+  ,browserSync = require('browser-sync')
+  ,reload = browserSync.reload
+  ,sass = require('gulp-sass');
+
+require('gulp-load')(gulp);
+gulp.loadTasks(__dirname + '/redesign/pl/gulpfile.js');
+
 
 gulp.task('default', function() {
 
@@ -93,13 +100,50 @@ gulp.task('d8:rebuild', function(callback) {
 //    .pipe(symlink('node_modules/patternlab-node/source', {force: true}));
 //});
 
-gulp.task('pl:build', function() {
-  gulp.src('node_modules/patternlab-node/gulpfile.js')
-    .pipe(chug());
+
+
+
+//gulp.task('pl:build', function() {
+//  gulp.src('redesign/pl/gulpfile.js')
+//    .pipe(chug({tasks: ['lab']}))
+//    .pipe(reload());
+//});
+//
+//gulp.task('pl:watch', function() {
+//  gulp.src('redesign/pl/gulpfile.js')
+//    .pipe(chug({tasks: ['serve']}));
+//});
+
+// Sass
+gulp.task('browser-sync', function() {
+  browserSync({
+      startPath: 'redesign/pl/public',
+      server: {
+        baseDir: './'
+      }
+  });
 });
-gulp.task('pl:watch', function() {
-  gulp.src('node_modules/patternlab-node/gulpfile.js')
-    .pipe(chug({tasks: ['serve']}));
+gulp.task('sass', function() {
+  return gulp.src('./redesign/assets/src/sass/style.scss')
+    .pipe(sass({
+      sourceMap: true,
+      outputStyle: 'expanded',
+      includePaths: ['./redesign/assets/src/sass']
+    }))
+    .pipe(gulp.dest('redesign/assets/compiled/css'))
+    .pipe(reload({stream: true}));
+});
+
+gulp.task('pl:reload', ['pl:build'], function() {
+  reload();
+});
+gulp.task('proto', ['sass', 'pl:build', 'browser-sync'], function() {
+  gulp.watch('redesign/assets/src/sass/**/*.scss', ['sass']);
+
+  gulp.watch([
+    './redesign/pl/source/_patterns/**/*.mustache',
+    './redesign/pl/source/_patterns/**/*.json',
+    './redesign/pl/source/_data/*.json'], ['lab']);
 });
 
 // D6 Work
