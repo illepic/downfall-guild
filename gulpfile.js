@@ -1,16 +1,11 @@
 var gulp = require('gulp')
-  ,shell = require('gulp-shell')
   ,symlink = require('gulp-symlink')
   ,runSequence = require('run-sequence')
   ,git = require('gulp-git')
-  ,chug = require('gulp-chug')
   ,browserSync = require('browser-sync')
   ,reload = browserSync.reload
-  ,sass = require('gulp-sass');
-
-require('gulp-load')(gulp);
-gulp.loadTasks(__dirname + '/redesign/pl/gulpfile.js');
-
+  ,sass = require('gulp-sass')
+  ,exec = require('gulp-exec');
 
 gulp.task('default', function() {
 
@@ -55,16 +50,14 @@ gulp.task('drupalVM:copy:VMConfig', function() {
 });
 
 // Restart vagrant: this changes the server AND rebuilds drupal if we've deleted it
+var vagrantoptions = {
+  cwd: __dirname + '/drupal-vm',
+  continueOnError: false,
+  pipeStdout: false
+};
 gulp.task('drupalVM:vagrantUp', function() {
   return gulp.src('')
-    .pipe(
-      shell([
-        'vagrant halt && vagrant up --provision'
-      ],
-        {
-          cwd: 'drupal-vm'
-        }
-      )
+    .pipe(exec('vagrant halt && vagrant up --provision', vagrantoptions)
     );
 });
 
@@ -100,19 +93,28 @@ gulp.task('d8:rebuild', function(callback) {
 //    .pipe(symlink('node_modules/patternlab-node/source', {force: true}));
 //});
 
+var ploptions = {
+  cwd: __dirname + '/redesign/pl',
+  continueOnError: false,
+  pipeStdout: false
+};
 
+// First, full build of PL. Only needs to run once
+gulp.task('pl:build', function() {
+  return gulp.src('')
+    .pipe(
+      exec('gulp lab', ploptions)
+    );
+});
 
+//var exec = require('child_process').exec;
 
-//gulp.task('pl:build', function() {
-//  gulp.src('redesign/pl/gulpfile.js')
-//    .pipe(chug({tasks: ['lab']}))
-//    .pipe(reload());
-//});
-//
-//gulp.task('pl:watch', function() {
-//  gulp.src('redesign/pl/gulpfile.js')
-//    .pipe(chug({tasks: ['serve']}));
-//});
+// Rebuild patterns
+gulp.task('pl:patternlab', function() {
+  return gulp.src('')
+    .pipe(exec('gulp lab', ploptions));
+});
+gulp.task('watch-pl:patternlab', ['pl:patternlab'], reload);
 
 // Sass
 gulp.task('browser-sync', function() {
@@ -124,26 +126,29 @@ gulp.task('browser-sync', function() {
   });
 });
 gulp.task('sass', function() {
-  return gulp.src('./redesign/assets/src/sass/style.scss')
+  return gulp.src('redesign/assets/src/sass/style.scss')
     .pipe(sass({
       sourceMap: true,
       outputStyle: 'expanded',
-      includePaths: ['./redesign/assets/src/sass']
+      includePaths: ['redesign/assets/src/sass']
     }))
     .pipe(gulp.dest('redesign/assets/compiled/css'))
     .pipe(reload({stream: true}));
 });
 
-gulp.task('pl:reload', ['pl:build'], function() {
-  reload();
-});
+gulp.task('proto:reload', reload);
+
+// Prototype watch
 gulp.task('proto', ['sass', 'pl:build', 'browser-sync'], function() {
   gulp.watch('redesign/assets/src/sass/**/*.scss', ['sass']);
 
   gulp.watch([
-    './redesign/pl/source/_patterns/**/*.mustache',
-    './redesign/pl/source/_patterns/**/*.json',
-    './redesign/pl/source/_data/*.json'], ['lab']);
+    'redesign/pl/source/_patterns/**/*.mustache',
+    'redesign/pl/source/_patterns/**/*.json',
+    'redesign/pl/source/_data/*.json'], ['watch-pl:patternlab']);
+
+  gulp.watch('redesign/assets/src/js/**/*.js', ['proto:reload']);
+
 });
 
 // D6 Work
