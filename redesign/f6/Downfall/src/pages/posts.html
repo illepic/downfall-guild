@@ -1,15 +1,26 @@
 <div class="pull-up posts">
-  <div class="row df-bg">
-    <div class="df-ornaments"></div>
-      <div class="large-8 columns">
-        {{#each posts}}
-          {{> post}}
-        {{/each}}
-      </div>
 
-      <div class="large-4 columns">
-        <p>sidebar right</p>
+  <div class="row">
+
+    <div class="large-12 columns">
+      <div class="df-content df-bg">
+        <div class="df-ornaments"></div>
+        <p>Search form goes here</p>
+        <div class="row">
+          <div class="large-8 columns">
+            {{#each posts}}
+              {{> post}}
+            {{/each}}
+          </div>
+
+          <div class="large-4 columns">
+            <p>sidebar right</p>
+          </div>
+        </div>
       </div>
+    </div>
 
   </div>
+
 </div>
+
