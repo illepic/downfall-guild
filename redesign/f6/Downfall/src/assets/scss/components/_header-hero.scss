@@ -2,11 +2,18 @@
   color: $white;
   position: relative;
   background-position: center top;
-  height: 44rem;
   background-attachment: fixed;
+  padding-top: 1rem;
+  height: 22rem;
+}
+.header--large {
+  height: 44rem;
 }
 .header-hero__inner {
-  padding-top: 8rem;
+  padding-top: 4rem;
+  .header--large & {
+    padding-top: 8rem;
+  }
 }
 .header-hero__content {
 

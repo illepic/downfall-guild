@@ -1,8 +1,10 @@
+.df-top-bar {
+  background: url("../img/df-triangles.png") repeat;
+  border-top: 1px solid $black;
+  border-bottom: 1px solid $black;
+}
 .top-bar__logo {
   //display: inline-block;
   width: 1.5rem;
   margin-top: -.25rem;
-}
-.df-top-bar {
-  background: url("../img/df-triangles.png") repeat;
 }

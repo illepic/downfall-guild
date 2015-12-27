@@ -1,9 +1,13 @@
-<div class="header-hero" style="background-image: url('{{root}}assets/img/header1.jpg')">
+<div class="header-hero {{#if large}}header--large{{/if}}" style="background-image: url('{{root}}assets/img/header1.jpg')">
+
+  {{> top-bar}}
+
   <div class="header-hero__inner">
     <div class="row">
       <div class="large-6 columns header-hero__content">
-        <h1 class="header-hero__title">Welcome to Downfall</h1>
-        <p>{{lorem.text.long}}</p>
+        <h1 class="header-hero__title">{{title}}</h1>
+        <p>{{{intro}}}</p>
+        {{#each links}}{{> button}}{{/each}}
       </div>
     </div>
   </div>
