@@ -43,5 +43,8 @@
 @include motion-ui-transitions;
 @include motion-ui-animations;
 
+@import 'df-global';
 @import 'header-hero';
 @import 'df-top-bar';
+@import 'main-content';
+@import 'footer';

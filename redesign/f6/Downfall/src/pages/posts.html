@@ -1,16 +1,15 @@
-<div class="row">
-  <div class="large-12 columns">
-    <p>hello</p>
-    {{> button}}
+<div class="pull-up posts">
+  <div class="row df-bg">
+    <div class="df-ornaments"></div>
+      <div class="large-8 columns">
+        {{#each posts}}
+          {{> post}}
+        {{/each}}
+      </div>
 
-    <ul class="posts">
-      {{#each posts}}
-        <li>
-          <h2>{{title}}</h2>
-          <div>{{body}}</div>
-          <div>{{author}}</div>
-        </li>
-      {{/each}}
-    </ul>
+      <div class="large-4 columns">
+        <p>sidebar right</p>
+      </div>
+
   </div>
 </div>

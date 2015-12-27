@@ -1,0 +1,47 @@
+$pull-up: 8rem;
+.pull-up {
+  position: relative;
+  margin-top: -$pull-up;
+  overflow: hidden;
+}
+
+.df-bg {
+  background: $white;
+  position: relative;
+  z-index: 1;
+}
+
+$logo-size: 9.5rem;
+.df-ornaments {
+  position: relative;
+  z-index: -1;
+  &:before,
+  &:after {
+    position: absolute;
+    width: $logo-size;
+    height: $logo-size;
+    content: url('../img/dflogo-white.svg');
+  }
+  &:before {
+    left: -(0.5 * $logo-size);
+  }
+  &:after {
+    right: -(0.5 * $logo-size);
+  }
+}
+
+
+.df-bg__logo {
+  width: $logo-size;
+  position: absolute;
+  z-index: -1;
+  color: $white;
+  //left: 0;
+  //top: 0;
+}
+//.df-bg__logo-left {
+//  left: -($logo-size/2);
+//}
+//.df-bg__logo-right {
+//  right: -($logo-size/2);
+//}
