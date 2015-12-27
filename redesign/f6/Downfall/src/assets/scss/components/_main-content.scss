@@ -10,6 +10,7 @@ $pull-up: 8rem;
   position: relative;
   z-index: 1;
   border-top: 2px solid $color--epic;
+  min-height: $pull-up;
 }
 .df-content {
   padding: 1rem;
@@ -17,11 +18,13 @@ $pull-up: 8rem;
 
 $logo-size: 9.5rem;
 .df-ornaments {
-  position: relative;
-  z-index: -1;
+  //position: relative;
+  //z-index: -1;
   &:before,
   &:after {
     position: absolute;
+    top: 0;
+    z-index: -1;
     width: $logo-size;
     height: $logo-size;
     content: url('../img/dflogo-white.svg');
