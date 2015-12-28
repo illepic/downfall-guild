@@ -5,7 +5,21 @@ post_1:
   author: "Garreth"
   image-300x300: "kill-1-thumb.png"
   image-1920x1080: ""
-  avatar: ""
+  avatar: "avatar-1.jpg"
+  type: "post"
+  tags:
+    - tag1:
+      tag: "Post"
+      type: "secondary"
+    - tag2:
+      tag: "Raid"
+      type: "warning"
+    - tag3:
+      tag: "Priest"
+      type: "success"
+  stats:
+    comments: 33
+    views: 1,100
 post_2:
   title: "Post 2 orem ipsum dolor sit amet blah blah blah"
   body: "Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. "
@@ -13,6 +27,17 @@ post_2:
   author: "Elapsed"
   image-300x300: "kill-2-thumb.png"
   image-1920x1080: ""
+  avatar: "avatar-2.png"
+  tags:
+    - tag1:
+      tag: "Event"
+      type: "secondary"
+    - tag2:
+      tag: "Raid"
+      type: "warning"
+  stats:
+    comments: 11
+    views: 100
 post_3:
   title: "A longer title indicating something here."
   body: "Post body text. Post body text. Post body text. Post body text. Post body text. "
@@ -20,6 +45,20 @@ post_3:
   author: "AuthorName"
   image-300x300: "kill-4-thumb.png"
   image-1920x1080: ""
+  avatar: "avatar-3.jpg"
+  tags:
+    - tag1:
+      tag: "Post"
+      type: "secondary"
+    - tag2:
+      tag: "Thing"
+      type: "success"
+    - tag3:
+      tag: "Priest"
+      type: "success"
+  stats:
+    comments: 10
+    views: 3,222
 post_4:
   title: "Internet dragons were killed. Loot was had. Boobs."
   body: "Post body text. Post body text. Post body text. Post body text. Post body text. "
@@ -27,6 +66,20 @@ post_4:
   author: "AuthorName"
   image-300x300: "kill-1-thumb.png"
   image-1920x1080: ""
+  avatar: "avatar-1.jpg"
+  tags:
+    - tag1:
+      tag: "Article"
+      type: "secondary"
+    - tag2:
+      tag: "Raid"
+      type: "warning"
+    - tag3:
+      tag: "Priest"
+      type: "error"
+  stats:
+    comments: 45
+    views: 724
 post_5:
   title: "Lorem ipsom dolor."
   body: "Post body text. Post body text. Post body text. Post body text. Post body text. "
@@ -34,6 +87,20 @@ post_5:
   author: "AuthorName"
   image-300x300: "kill-2-thumb.png"
   image-1920x1080: ""
+  avatar: "avatar-2.png"
+  tags:
+    - tag1:
+      tag: "Post"
+      type: "secondary"
+    - tag2:
+      tag: "Raid"
+      type: "warning"
+    - tag3:
+      tag: "Thing"
+      type: "success"
+  stats:
+    comments: 33
+    views: 1,100
 post_6:
   title: "Buy my book! Buy my book!"
   body: "Post body text. Post body text. Post body text. Post body text. Post body text. "
@@ -41,3 +108,14 @@ post_6:
   author: "AuthorName"
   image-300x300: "kill-4-thumb.png"
   image-1920x1080: ""
+  avatar: "avatar-3.jpg"
+  tags:
+    - tag1:
+      tag: "Post"
+      type: "secondary"
+    - tag2:
+      tag: "Blog"
+      type: "warning"
+  stats:
+    comments: 33
+    views: 1,100

@@ -1,21 +1,22 @@
 <div class="post post--thin">
   <a class="post__avatar" href="#">
-    <img class="thumbnail df-avatar" src="{{root}}assets/img/avatars/avatar-1.jpg">
+    <img class="thumbnail df-avatar" src="{{root}}assets/img/avatars/{{avatar}}">
   </a>
 
   <div class="post__content">
-    <h5 class="post__title">Title goes here</h5>
-    <p class="post__byline">about 1 hour ago by <strong>AuthorName</strong></p>
-    <a class="small button hollow secondary">Label 1</a>
-    <a class="small button hollow warning">Label 2</a>
-    <a class="small button hollow success">Label 3</a>
+    <h5 class="post__title"><a href="post-detail.html">{{title}}</a></h5>
+    <p class="post__byline">about 1 hour ago by <a href="#">{{author}}</a></p>
+
+    {{#each tags}}
+      <a class="small button hollow {{type}}">{{tag}}</a>
+    {{/each}}
 
   </div>
 
   <div class="post__comment-count text-center">
-    <div class="stat">55</div>
+    <div class="stat">{{stats.comments}}</div>
     <p>Comments</p>
-    <span>2,100</span>
+    <span>{{stats.views}}</span>
     <p>Views</p>
   </div>
 </div>

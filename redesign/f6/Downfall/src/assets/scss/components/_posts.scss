@@ -7,12 +7,16 @@
   margin: 1rem 0;
 }
 .posts-list__item {
-  padding: 0 1rem;
+  //padding: 0 1rem;
 }
 .post--thin {
+  @include trans();
   display: flex;
-  padding: 1rem 0;
+  padding: 1rem;
   border-bottom: 1px solid $light-gray;
+  &:hover {
+    background: $color--very-light;
+  }
 
   .post__content {
     flex-grow: 1;
@@ -24,7 +28,9 @@
     margin-left: 2rem;
   }
 }
-
+.post__title a {
+  @include df-dark-hover();
+}
 .post__byline {
   color: $secondary-color;
 }

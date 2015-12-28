@@ -1,3 +1,21 @@
+@mixin trans() {
+  transition: all 0.5s ease;
+}
+.trans {
+  @include trans();
+}
+@mixin df-dark-hover() {
+  @include trans();
+  color: $black;
+  &:hover {
+    color: $anchor-color-hover;
+    //text-shadow: $primary-color 0 0 10px;
+  }
+}
+.df-dark-hover {
+  @include df-dark-hover();
+}
+
 svg {
   fill: currentColor;
 }
