@@ -1,0 +1,21 @@
+  title: "Post 1 lorem ipsum dolor sit amet blah blah blah"
+  body: "Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. "
+  excerpt: "Post body text. Post body text. Post body text. Post body text."
+  author: "Garreth"
+  image-300x300: "kill-1-thumb.png"
+  image-1920x1080: "kill-3.jpg"
+  avatar: "avatar-1.jpg"
+  type: "post"
+  tags:
+    - tag1:
+      tag: "Post"
+      type: "secondary"
+    - tag2:
+      tag: "Raid: Awesome"
+      type: "warning"
+    - tag3:
+      tag: "Priest"
+      type: "success"
+  stats:
+    comments: 33
+    views: 1,100

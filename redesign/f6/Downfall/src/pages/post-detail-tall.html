@@ -1,0 +1,59 @@
+---
+headerData:
+  title: "This is an example of a post title that is very long and shows up here in the header"
+  large: true
+  bg: "header2.jpg"
+---
+
+{{> header headerData}}
+
+<div class="pull-up post post--detail">
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="df-content pull-content">
+
+        <div class="df-ornaments"></div>
+
+        {{#with post}}
+          <div class="post__information">
+            <div class="post__left">
+              <a class="post__avatar" href="#">
+                <img class="thumbnail df-avatar" src="{{root}}assets/img/avatars/{{avatar}}">
+              </a>
+            </div>
+            <div class="post__middle">
+              <!--<h4 class="post__title">{{title}}</h4>--> <!-- Leaving out for "tall" pages -->
+              <p class="post__byline">Written about 1 hour ago by <a href="#">{{author}}</a></p>
+              {{#each tags}}
+                <a class="small button hollow {{type}}">{{tag}}</a>
+              {{/each}}
+            </div>
+            <div class="post__right">
+              <div class="post__comment-count text-center">
+                <div class="stat">{{stats.comments}}</div>
+                <p>Comments</p>
+              </div>
+              <div class="post__view-count text-center">
+                <span>{{stats.views}}</span>
+                <p>Views</p>
+              </div>
+            </div>
+
+          </div>
+          <div class="post__body">
+            <p>{{body}}</p>
+            <img src="{{root}}assets/img/{{image-1920x1080}}">
+            <p>{{body}}</p>
+            <p>{{body}}</p>
+            <ul>
+              <li>Thingy 1</li>
+              <li>Thingy 1</li>
+              <li>Thingy 1</li>
+              <li>Thingy 1</li>
+            </ul>
+          </div>
+        {{/with}}
+      </div>
+    </div>
+  </div>
+</div>

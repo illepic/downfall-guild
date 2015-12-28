@@ -6,35 +6,62 @@
 .posts-list {
   margin: 1rem 0;
 }
-.posts-list__item {
-  //padding: 0 1rem;
-}
-.post--thin {
-  @include trans();
+.post__information {
   display: flex;
   padding: 1rem;
+  .post__left {
+    margin-right: 2rem;
+  }
+  .post__middle {
+    flex-grow: 1;
+  }
+  .post__right {
+    margin-left: 2rem;
+  }
+}
+.post__right {
+  color: $secondary-color;
+}
+
+// Detail page
+.post--detail {
+  .post__left {
+    //padding-top: 1rem;
+  }
+  .post__middle {
+    //padding-top: 1rem;
+  }
+  .post__comment-count,
+  .post__view-count {
+    display: inline-block;
+  }
+  .post__view-count {
+    margin-left: 1rem;
+  }
+}
+.post__body {
+  margin-top: 2rem;
+  img {
+    margin: 1rem 0;
+  }
+}
+// Posts listing page
+.post--thin {
+  @include trans();
+
   border-bottom: 1px solid $light-gray;
   &:hover {
     background: $color--very-light;
   }
-
-  .post__content {
-    flex-grow: 1;
-  }
-  .post__avatar {
-    margin-right: 2rem;
-  }
-  .post__comment-count {
-    margin-left: 2rem;
-  }
 }
+
 .post__title a {
   @include df-dark-hover();
 }
 .post__byline {
   color: $secondary-color;
 }
-
-.post__comment-count {
-  color: $secondary-color;
+.post__comment-count,
+.post__view-count {
+  font-weight: 300;
 }
