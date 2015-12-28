@@ -1,0 +1,22 @@
+.df-thumb {
+  position: relative;
+  color: white;
+  display: block;
+  &:hover {
+    color: white;
+  }
+}
+.df-thumb__text {
+  background: rgba($black, 0.8);
+  position: absolute;
+  //top: 0;
+  bottom: 6px;
+  left: 0;
+  right: 0;
+  padding: .5rem;
+  font-size: 1rem;
+  display: none;
+  .df-thumb:hover & {
+    display: block;
+  }
+}

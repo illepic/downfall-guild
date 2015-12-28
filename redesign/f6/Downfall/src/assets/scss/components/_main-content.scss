@@ -5,15 +5,17 @@ $pull-up: 8rem;
   overflow: hidden;
 }
 
-.df-bg {
+.df-content {
   background: $white;
   position: relative;
   z-index: 1;
   border-top: 2px solid $color--epic;
   min-height: $pull-up;
-}
-.df-content {
   padding: 1rem;
+}
+.pull-content {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 $logo-size: 9.5rem;

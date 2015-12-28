@@ -1,0 +1,34 @@
+.posts-header {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid $light-gray;
+}
+.posts-list {
+  margin: 1rem 0;
+}
+.posts-list__item {
+  padding: 0 1rem;
+}
+.post--thin {
+  display: flex;
+  padding: 1rem 0;
+  border-bottom: 1px solid $light-gray;
+
+  .post__content {
+    flex-grow: 1;
+  }
+  .post__avatar {
+    margin-right: 2rem;
+  }
+  .post__comment-count {
+    margin-left: 2rem;
+  }
+}
+
+.post__byline {
+  color: $secondary-color;
+}
+
+.post__comment-count {
+  color: $secondary-color;
+}

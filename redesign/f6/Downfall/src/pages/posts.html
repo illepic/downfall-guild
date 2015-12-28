@@ -11,14 +11,46 @@ headerData:
   <div class="row">
     <div class="large-12 columns">
 
-      <div class="df-content df-bg">
+      <div class="df-content pull-content">
         <div class="df-ornaments"></div>
-        <p>Search form goes here</p>
+
+
         <div class="row">
           <div class="large-8 columns">
-            {{#each posts}}
-              {{> post}}
-            {{/each}}
+
+            <div class="posts-header clearfix">
+              <ul class="menu float-left">
+                <li><a href="#">Post</a></li>
+                <li><a href="#">Event</a></li>
+                <li><a href="#">Article</a></li>
+              </ul>
+              <ul class="menu dropdown float-right" data-dropdown-menu>
+                <li>
+                  <a href="#">All topics</a>
+                  <ul class="menu">
+                    <li><a href="#">Topic 1</a></li>
+                    <li><a href="#">Topic 2</a></li>
+                    <li><a href="#">Topic 3</a></li>
+                    <li><a href="#">Topic 4</a></li>
+                    <li><a href="#">Topic 5</a></li>
+                    <li><a href="#">Topic 6</a></li>
+                    <li><a href="#">Topic 7</a></li>
+                    <li><a href="#">Topic 8</a></li>
+                  </ul>
+                </li>
+
+              </ul>
+            </div> <!--/.posts-header-->
+
+            <div class="posts-list">
+              {{#each posts}}
+                <div class="posts-list__item">
+                  {{> post-thin}}
+                </div>
+              {{/each}}
+
+            </div>
+            {{> pagination }}
           </div>
 
           <div class="large-4 columns">
