@@ -7,60 +7,20 @@ headerData:
 
 {{> header headerData}}
 
-<div class="pull-up post post--detail">
+<div class="pull-up ">
   <div class="row">
     <div class="large-12 columns">
       <div class="df-content pull-content">
-
         <div class="df-ornaments"></div>
 
         {{#with post}}
-          <div class="post__information">
-            <div class="post__left">
-              <a class="post__avatar" href="#">
-                <img class="thumbnail df-avatar" src="{{root}}assets/img/avatars/{{avatar}}">
-              </a>
-            </div>
-            <div class="post__middle">
-              <!--<h4 class="post__title">{{title}}</h4>--> <!-- Leaving out for "tall" pages -->
-              <p class="post__byline">Written about 1 hour ago by <a href="#">{{author}}</a></p>
-              {{#each tags}}
-                <a class="small button hollow {{type}}">{{tag}}</a>
-              {{/each}}
-            </div>
-            <div class="post__right">
-              <div class="post__comment-count text-center">
-                <div class="stat">{{stats.comments}}</div>
-                <p>Comments</p>
-              </div>
-              <div class="post__view-count text-center">
-                <span>{{stats.views}}</span>
-                <p>Views</p>
-              </div>
-            </div>
-
-          </div>
-          <div class="post__body">
-            <p>{{body}}</p>
-            <img src="{{root}}assets/img/{{image-1920x1080}}">
-            <p>{{body}}</p>
-            <p>{{body}}</p>
-            <ul>
-              <li>Thingy 1</li>
-              <li>Thingy 1</li>
-              <li>Thingy 1</li>
-              <li>Thingy 1</li>
-            </ul>
-          </div>
-          <div class="post__controls clearfix">
-            <ul class="menu">
-              <li><a href="#">View</a></li>
-              <li><a href="#">Edit</a></li>
-              <li><a href="#">Devel</a></li>
-              <li><a href="#"><i aria-hidden="true" class="fi-chat"></i>Add new comment</a></li>
-            </ul>
-          </div>
+          {{> post}}
         {{/with}}
+
+        {{> df-hr}}
+
+        {{> comments}}
+
       </div>
     </div>
   </div>

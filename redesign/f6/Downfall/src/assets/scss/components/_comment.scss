@@ -1,0 +1,36 @@
+.comments {
+  margin-bottom: 1rem;
+}
+.comment {
+  border-top: 1px solid $light-gray;
+}
+.comment__container {
+  padding: 2rem 0 1rem;
+  display: flex;
+}
+.comment__left {
+  margin-right: 2rem;
+  max-width: 3.5rem;
+}
+.comment__right {
+  flex-grow: 1;
+}
+.comments__wrapper-count-title,
+.comments__wrapper-form-title {
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+.comment__information {
+  color: $dark-gray;
+  a {
+    color: $dark-gray;
+  }
+}
+.comment__author {
+  font-weight: 700;
+}
+.comment {
+  .indented {
+    margin-left: 5.5rem;
+  }
+}

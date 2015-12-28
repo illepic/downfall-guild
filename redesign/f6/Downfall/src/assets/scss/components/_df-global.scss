@@ -16,6 +16,13 @@
   @include df-dark-hover();
 }
 
+@mixin center-both() {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 ::selection {
   background: $primary-color;
   color: $white;

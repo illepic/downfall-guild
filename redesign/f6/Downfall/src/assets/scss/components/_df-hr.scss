@@ -1,0 +1,18 @@
+.df-hr {
+  margin: 4rem 20%;
+  color: $medium-gray;
+  text-align: center;
+  position: relative;
+  hr {
+    margin: 0;
+  }
+}
+.df-hr__logo {
+  //@include center-both();
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -58%);
+  width: 4rem;
+  height: 4rem;
+}

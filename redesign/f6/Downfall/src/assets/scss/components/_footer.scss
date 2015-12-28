@@ -1,6 +1,13 @@
 .footer {
-  height: 10rem;
+  //height: 10rem;
   background: url("../img/df-triangles.png") repeat;
-  color: $light-gray;
+  color: $dark-gray;
   border-top: 1px solid $color--epic;
+  padding: 2rem 0;
+  h5 {
+    text-transform: uppercase;
+  }
+  a {
+    color: $medium-gray;
+  }
 }
