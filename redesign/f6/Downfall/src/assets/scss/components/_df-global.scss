@@ -16,6 +16,10 @@
   @include df-dark-hover();
 }
 
+::selection {
+  background: $primary-color;
+  color: $white;
+}
 svg {
   fill: currentColor;
 }
