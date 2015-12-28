@@ -41,13 +41,23 @@
 
 @import 'util/util';
 
+// 0. Custom
+// ---------
+
+$color--poor: #9d9d9d;
+$color--common: #ffffff;
+$color--uncommon: #1eff00;
+$color--rare: #0070ff;
+$color--epic: #a335ee;
+$color--legendary: #ff8000;
+
 // 1. Global
 // ---------
 
 $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
-$primary-color: #2199e8; //original: #2199e8
+$primary-color: $color--epic; //original: #2199e8
 $secondary-color: #777;
 $success-color: #3adb76;
 $warning-color: #ffae00;
@@ -67,13 +77,6 @@ $global-weight-normal: 400;
 $global-weight-bold: 700;
 $global-radius: 0;
 $global-text-direction: ltr;
-
-$color--poor: #9d9d9d;
-$color--common: #ffffff;
-$color--uncommon: #1eff00;
-$color--rare: #0070ff;
-$color--epic: #a335ee;
-$color--legendary: #ff8000;
 
 // 2. Breakpoints
 // --------------
