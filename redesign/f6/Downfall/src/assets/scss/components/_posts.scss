@@ -23,14 +23,12 @@
   color: $secondary-color;
 }
 
-// Detail page
-.post--detail {
-  .post__left {
-    //padding-top: 1rem;
-  }
-  .post__middle {
-    //padding-top: 1rem;
-  }
+// Full detail page
+.post--full {
+
+  //.post__title {
+  //  display: none;
+  //}
   .post__comment-count,
   .post__view-count {
     display: inline-block;

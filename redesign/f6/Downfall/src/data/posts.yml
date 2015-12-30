@@ -1,10 +1,10 @@
-post_1:
+- post_1:
   title: "Post 1 lorem ipsum dolor sit amet blah blah blah"
   body: "Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. "
   excerpt: "Post body text. Post body text. Post body text. Post body text."
   author: "Garreth"
   image-300x300: "kill-1-thumb.png"
-  image-1920x1080: ""
+  image-1920x1080: "kill-2.jpeg"
   avatar: "avatar-1.jpg"
   type: "post"
   tags:
@@ -20,13 +20,13 @@ post_1:
   stats:
     comments: 33
     views: 1,100
-post_2:
+- post_2:
   title: "Post 2 orem ipsum dolor sit amet blah blah blah"
   body: "Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. Post body text. "
   excerpt: "Post body text. Post body text. Post body text. Post body text."
   author: "Elapsed"
   image-300x300: "kill-2-thumb.png"
-  image-1920x1080: ""
+  image-1920x1080: "kill-1.jpeg"
   avatar: "avatar-2.png"
   tags:
     - tag1:
@@ -38,13 +38,13 @@ post_2:
   stats:
     comments: 11
     views: 100
-post_3:
+- post_3:
   title: "A longer title indicating something here."
   body: "Post body text. Post body text. Post body text. Post body text. Post body text. "
   excerpt: "Post body text. Post body text. Post body text. Post body text."
   author: "AuthorName"
   image-300x300: "kill-4-thumb.png"
-  image-1920x1080: ""
+  image-1920x1080: "kill-3.jpeg"
   avatar: "avatar-3.jpg"
   tags:
     - tag1:
@@ -59,13 +59,13 @@ post_3:
   stats:
     comments: 10
     views: 3,222
-post_4:
+- post_4:
   title: "Internet dragons were killed. Loot was had. Boobs."
   body: "Post body text. Post body text. Post body text. Post body text. Post body text. "
   excerpt: "Post body text. Post body text. Post body text. Post body text."
   author: "AuthorName"
   image-300x300: "kill-1-thumb.png"
-  image-1920x1080: ""
+  image-1920x1080: "kill-4.jpeg"
   avatar: "avatar-1.jpg"
   tags:
     - tag1:
@@ -80,13 +80,13 @@ post_4:
   stats:
     comments: 45
     views: 724
-post_5:
+- post_5:
   title: "Lorem ipsom dolor."
   body: "Post body text. Post body text. Post body text. Post body text. Post body text. "
   excerpt: "Post body text. Post body text. Post body text. Post body text."
   author: "AuthorName"
   image-300x300: "kill-2-thumb.png"
-  image-1920x1080: ""
+  image-1920x1080: "kill-1.jpeg"
   avatar: "avatar-2.png"
   tags:
     - tag1:
@@ -101,13 +101,13 @@ post_5:
   stats:
     comments: 33
     views: 1,100
-post_6:
+- post_6:
   title: "Buy my book! Buy my book!"
   body: "Post body text. Post body text. Post body text. Post body text. Post body text. "
   excerpt: "Post body text. Post body text. Post body text. Post body text."
   author: "AuthorName"
   image-300x300: "kill-4-thumb.png"
-  image-1920x1080: ""
+  image-1920x1080: "kill-2.jpeg"
   avatar: "avatar-3.jpg"
   tags:
     - tag1:
