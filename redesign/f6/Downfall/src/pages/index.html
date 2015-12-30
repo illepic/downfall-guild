@@ -10,7 +10,7 @@ headerData:
       text: "Apply"
     - link3:
       text: "Media"
-  bg: "header1.jpg"
+  bg: "header1.jpeg"
 ---
 
 {{> header headerData}}
@@ -30,13 +30,15 @@ headerData:
   <!--Experimenting with not putting this in .df-content-->
   <div class="row">
     <div class="large-8 columns">
-      <p>Main content</p>
       {{#each posts}}
         {{> post vertical="true"}}
       {{/each}}
     </div>
     <div class="large-4 columns">
-      <p>Big Sidebar</p>
+      {{> sidebar-block}}
+      {{> sidebar-block}}
+      {{> sidebar-block}}
+      {{> sidebar-block}}
     </div>
   </div>
 
