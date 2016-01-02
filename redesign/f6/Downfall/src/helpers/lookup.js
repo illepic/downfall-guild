@@ -17,9 +17,9 @@ var _ = require('lodash');
  */
 module.exports = function(data, lookupField, lookupValue, returnKey, options) {
 
-  return _.result(_.find(_.result(options.data.root, data), function(object) {
-    console.log(object);
-    return _.result(object, lookupField) === lookupValue;
-  }), returnKey);
+  // Return the value of the key from
+  // the found object from the collection we asked for
+  // using the _.matches syntax by _.set'ing a key/value to an empty object
+  return _.result(_.find(_.result(options.data.root, data), _.set({}, lookupField, lookupValue)), returnKey);
 
 };

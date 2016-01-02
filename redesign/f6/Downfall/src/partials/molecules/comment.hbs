@@ -1,25 +1,24 @@
 <div class="comment clearfix">
   <div class="comment__container">
+
     <div class="comment__left">
       <a class="comment__avatar" href="#">
-        <img class="thumbnail df-avatar" src="{{root}}assets/img/avatars/avatar-2.png">
+        <img class="thumbnail df-avatar" src="{{root}}assets/img/avatars/{{lookup "users" "name" user "avatar"}}">
       </a>
     </div>
+
     <div class="comment__right">
       <div class="comment__information">
         <p>
           <span class="comment__author">
             <a href="#">{{lookup "users" "name" user "name"}}</a>
           </span>
-          <span>about 2 hours ago</span>
+          <span>{{timestamp}}</span>
         </p>
       </div>
 
-
-
       <div class="comment__body">
-        <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. </p>
-        <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. </p>
+        {{{body}}}
       </div>
       <div class="comment__controls">
         <ul class="menu">
@@ -31,37 +30,9 @@
     </div>
   </div>
 
-
   <div class="indented clearfix">
-
-    <div class="comment clearfix">
-      <div class="comment__container">
-        <div class="comment__left">
-          <a class="comment__avatar" href="#">
-            <img class="thumbnail df-avatar" src="{{root}}assets/img/avatars/avatar-2.png">
-          </a>
-        </div>
-        <div class="comment__right">
-          <div class="comment__information">
-            <p><span class="comment__author"><a href="#">Elapsed</a></span> about 2 hours ago</p>
-          </div>
-          <div class="comment__body">
-            <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. </p>
-            <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. </p>
-          </div>
-          <div class="comment__controls">
-            <ul class="menu">
-              <li><a href="#"><i aria-hidden="true" class="fi-chat"></i>Reply</a></li>
-              <li><a href="#"><i aria-hidden="true" class="fi-pencil"></i>Edit</a></li>
-              <li><a href="#"><i aria-hidden="true" class="fi-trash"></i>Delete</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="indented clearfix">
-      </div>
-    </div> <!--/.comment-->
-
-  </div> <!--/.indented-->
+    {{#each replies}}
+      {{> comment}}
+    {{/each}}
+  </div>
 </div>
