@@ -15,6 +15,8 @@ Full details here: https://github.com/illepic/downfall-guild/wiki
 
 Windows-specific:
 
+WARNING: As of 2016/01/01 this box is simply not working on Windows
+
 * [Symlinks enabled for Windows](http://blog.puphpet.com/blog/2015/06/25/windows-symlinks/)
 * (Optional) [Cmder](http://cmder.net/) running as administrator
 * (Optional) [HeidiSQL](http://www.heidisql.com/) for GUI database access
@@ -22,6 +24,10 @@ Windows-specific:
 OSX-specific
 
 * [SequelPro](http://www.sequelpro.com/) for GUI database access
+
+Ubuntu-specific
+
+* `sudo apt-get install nfs-common nfs-kernel-server`
 
 All commands listed are assumed to be run from the root of the project unless otherwise noted.
 
