@@ -1,15 +1,15 @@
 <div class="df-block">
   <div class="df-block__icon">
-    <i class="fi-list-nested iconic-md"></i>
+    <i class="fi-{{icon}} iconic-md"></i>
   </div>
-  <h3 class="df-block__title">Recent Posts</h3>
+  <h3 class="df-block__title">{{title}}</h3>
   <div class="df-block__content">
-    <div class="sidebar-posts-list">
+    <ul class="sidebar-posts-list">
       {{#each posts}}
-        <div class="sidebar-posts-list__item">
+        <li class="sidebar-posts-list__item">
           {{> post tiny="true"}}
-        </div>
+        </li>
       {{/each}}
-    </div>
+    </ul>
   </div>
 </div>

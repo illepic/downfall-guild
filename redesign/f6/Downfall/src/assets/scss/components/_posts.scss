@@ -25,13 +25,10 @@
 
 // Full detail page
 .post--full {
-
-  //.post__title {
-  //  display: none;
-  //}
   .post__comment-count,
   .post__view-count {
     display: inline-block;
+    margin-left: 1rem;
   }
   .post__view-count {
     margin-left: 1rem;
@@ -56,7 +53,7 @@
 }
 
 .post__title a {
-  @include df-dark-hover();
+  //@include df-dark-hover();
 }
 .post__byline {
   color: $secondary-color;
@@ -72,6 +69,23 @@
   background-color: $color--very-light;
 }
 
+.post--vertical {
+  .post__title {
+    margin-bottom: 1rem;
+  }
+  .post__title a {
+    @include df-dark-hover();
+  }
+  .post__information .post__title {
+    display: none;
+  }
+  .post__comment-count,
+  .post__view-count {
+    display: inline-block;
+    margin-left: 1rem;
+  }
+}
+
 .post--tiny {
   .post__information {
     display: block;
@@ -84,13 +98,13 @@
   .post__title {
     font-size: 1rem;
     a {
-      color: inherit;
+      //color: inherit;
     }
   }
   .post__byline {
     font-size: 0.75rem;
   }
-  .post__tags {
+  .post__tags-buttons {
     display: none;
   }
 }
