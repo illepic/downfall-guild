@@ -71,3 +71,26 @@
   margin-top: 2rem;
   background-color: $color--very-light;
 }
+
+.post--tiny {
+  .post__information {
+    display: block;
+    padding: 0;
+  }
+  .post__left,
+  .post__right {
+    display: none;
+  }
+  .post__title {
+    font-size: 1rem;
+    a {
+      color: inherit;
+    }
+  }
+  .post__byline {
+    font-size: 0.75rem;
+  }
+  .post__tags {
+    display: none;
+  }
+}

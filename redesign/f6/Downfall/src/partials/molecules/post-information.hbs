@@ -11,10 +11,12 @@
       <h5 class="post__title"><a href="{{root}}post-detail-tall.html">{{title}}</a></h5>
     {{/unless}}
 
-    <p class="post__byline">Written about 1 hour ago by <a href="#">{{author}}</a></p>
-    {{#each tags}}
-      <a class="small button hollow {{type}}">{{tag}}</a>
-    {{/each}}
+    <p class="post__byline">about 1 hour ago by <a href="#">{{author}}</a></p>
+    <div class="post__tags">
+      {{#each tags}}
+        <a class="small button hollow {{type}}">{{tag}}</a>
+      {{/each}}
+    </div>
   </div>
   <div class="post__right">
     <div class="post__comment-count text-center">

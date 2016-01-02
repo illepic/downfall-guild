@@ -3,3 +3,19 @@
   background-color: $light-gray;
   margin-bottom: 1rem;
 }
+
+.df-block {
+  color: $dark-gray;
+  margin: 2rem 0;
+}
+.df-block__icon {
+  text-align: center;
+}
+.df-block__title {
+  font-size: 1rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+.sidebar-posts-list__item {
+  margin: 1rem 0;
+}
