@@ -55,7 +55,10 @@ headerData:
           </div>
 
           <div class="large-4 columns">
-            <p>sidebar right</p>
+            <div class="sidebar">
+              {{> sidebar-block-content title="Recent comments" icon="comment-square"}}
+              {{> sidebar-block-grid title="Recent images" icon="image-landscape"}}
+            </div>
           </div>
         </div>
       </div>

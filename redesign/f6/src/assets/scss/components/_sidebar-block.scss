@@ -1,10 +1,7 @@
 .sidebar-block {
-  //padding: 1rem;
-  //background-color: $light-gray;
   margin: 3rem 0;
 }
 .sidebar-block__title {
-  text-align: center;
   margin-bottom: 2rem;
   font-size: 1rem;
   text-transform: uppercase;
@@ -12,7 +9,6 @@
 
 .sidebar-block__title-icon {
   color: $dark-gray;
-  text-align: center;
 }
 
 .sidebar-posts-list__item {
