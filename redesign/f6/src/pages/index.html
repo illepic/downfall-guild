@@ -31,17 +31,21 @@ headerData:
   <!--Experimenting with not putting this in .df-content-->
   <div class="row">
     <div class="large-8 columns">
-      {{#each posts}}
-        {{> post vertical="true"}}
-      {{/each}}
+      <div class="main-content">
+        {{#each posts}}
+          {{> post vertical="true"}}
+        {{/each}}
+      </div>
     </div>
     <div class="large-4 columns">
-      {{> sidebar-block-content title="Recent posts" icon="list-nested"}}
-      {{> sidebar-block}}
-      {{> sidebar-block-content title="Recent comments" icon="comment-square"}}
-      {{> sidebar-block}}
-      {{> sidebar-block}}
-      {{> sidebar-block}}
+      <div class="sidebar">
+        {{> sidebar-block-content title="Recent posts" icon="list-nested"}}
+        {{> sidebar-block}}
+        {{> sidebar-block-content title="Recent comments" icon="comment-square"}}
+        {{> sidebar-block}}
+        {{> sidebar-block}}
+        {{> sidebar-block}}
+      </div>
     </div>
   </div>
 
