@@ -23,6 +23,26 @@
   color: $secondary-color;
 }
 
+.post__title {
+  font-weight: $global-weight-light;
+}
+.post__title a {
+  //@include df-dark-hover();
+}
+.post__byline {
+  color: $secondary-color;
+}
+.post__comment-count,
+.post__view-count {
+  font-weight: 300;
+}
+
+.post__controls {
+  //border-top: 1px solid $light-gray;
+  margin-top: 2rem;
+  background-color: $color--very-light;
+}
+
 // Full detail page
 .post--full {
   .post__comment-count,
@@ -47,28 +67,15 @@
   &:hover {
     background: $color--very-light;
   }
+  .post__title {
+    font-weight: $global-weight-normal;
+  }
   .post__information {
     padding-top: 2rem;
   }
 }
 
-.post__title a {
-  //@include df-dark-hover();
-}
-.post__byline {
-  color: $secondary-color;
-}
-.post__comment-count,
-.post__view-count {
-  font-weight: 300;
-}
-
-.post__controls {
-  //border-top: 1px solid $light-gray;
-  margin-top: 2rem;
-  background-color: $color--very-light;
-}
-
+// Posts with a teaser, frontpage
 .post--vertical {
   .post__title {
     margin-bottom: 1rem;
@@ -86,7 +93,15 @@
   }
 }
 
+// Posts listed in sidebar block
 .post--tiny {
+  .post__title {
+    font-size: 1rem;
+    font-weight: $global-weight-normal;
+    a {
+      //color: inherit;
+    }
+  }
   .post__information {
     display: block;
     padding: 0;
@@ -94,12 +109,6 @@
   .post__left,
   .post__right {
     display: none;
-  }
-  .post__title {
-    font-size: 1rem;
-    a {
-      //color: inherit;
-    }
   }
   .post__byline {
     font-size: 0.75rem;

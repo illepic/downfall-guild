@@ -37,3 +37,10 @@
 .comment__controls {
   margin-top: 1rem;
 }
+
+.comment--tiny {
+  border-top: none;
+  .comment__container {
+    padding: 0;
+  }
+}

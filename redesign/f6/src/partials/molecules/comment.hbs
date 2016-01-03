@@ -1,4 +1,4 @@
-<div class="comment clearfix">
+<div class="comment {{#if tiny}}comment--tiny{{/if}}">
   <div class="comment__container">
 
     <div class="comment__left">
@@ -30,9 +30,11 @@
     </div>
   </div>
 
-  <div class="indented clearfix">
-    {{#each replies}}
-      {{> comment}}
-    {{/each}}
-  </div>
+  {{#unless tiny }}
+    <div class="indented clearfix">
+      {{#each replies}}
+        {{> comment}}
+      {{/each}}
+    </div>
+  {{/unless}}
 </div>

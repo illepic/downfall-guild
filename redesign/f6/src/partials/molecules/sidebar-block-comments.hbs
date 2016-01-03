@@ -5,9 +5,9 @@
   <h3 class="sidebar-block__title text-center">{{title}}</h3>
   <div class="sidebar-block__content">
     <ul class="sidebar-list">
-      {{#each posts}}
+      {{#each comments}}
         <li class="sidebar-list__item">
-          {{> post tiny="true"}}
+          {{> comment tiny="true"}}
         </li>
       {{/each}}
     </ul>
