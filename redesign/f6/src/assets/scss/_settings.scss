@@ -51,6 +51,8 @@ $color--rare: #0070ff;
 $color--epic: #a335ee;
 $color--legendary: #ff8000;
 $color--very-light: #f8f8f8;
+$color--df-dark: rgb(87,99,102);
+$color--black: rgb(56,64,71);
 
 // 1. Global
 // ---------
@@ -59,17 +61,18 @@ $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 $primary-color: $color--epic; //original: #2199e8
-$secondary-color: #777;
+$secondary-color: $color--df-dark; // original: #777
 $success-color: #3adb76;
 $warning-color: #ffae00;
 $alert-color: #ec5840;
 $light-gray: #e6e6e6; // original: #e6e6e6, test: #f6f5f2
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
-$black: #0a0a0a;
+$black: $color--df-dark; // original: #0a0a0a
 $white: #fefefe;
+
 $body-background: $white; // original: $white
-$body-font-color: $black;
+$body-font-color: $black; // original: $black
 $body-font-family: 'Roboto', Helvetica, Arial, sans-serif; //original: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif
 $body-antialiased: true;
 $global-margin: 1rem;

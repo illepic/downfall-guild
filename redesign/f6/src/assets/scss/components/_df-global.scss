@@ -6,7 +6,7 @@
 }
 @mixin df-dark-hover() {
   @include trans();
-  color: $black;
+  color: $color--black;
   &:hover {
     color: $anchor-color-hover;
     //text-shadow: $primary-color 0 0 10px;

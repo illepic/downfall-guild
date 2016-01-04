@@ -15,6 +15,10 @@
 }
 .post-information__left {
   width: 4.5rem;
+  // flex-grow: 0: don't grow
+  // flex-shrink: 0: don't shrink,
+  // flex-basis: 4.5rem: start at 3.5rem
+  flex: 0 0 4.5rem;
   margin-right: 2rem;
 }
 .post-information__middle {
@@ -116,7 +120,7 @@
   }
   .post-information__left {
     margin-right: 1rem;
-    width: 3rem;
+    flex-basis: 3rem;
   }
   .post-information__right {
     display: none;

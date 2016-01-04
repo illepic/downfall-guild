@@ -1,9 +1,11 @@
 .df-avatar {
-
+  a {
+    display: block;
+  }
 }
 .df-avatar__image {
   border-radius: 50%;
-  width: 100%;
+  //width: 100%;
 }
 .df-avatar__username {
   display: block;
