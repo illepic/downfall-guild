@@ -46,7 +46,7 @@
 .post__controls {
   //border-top: 1px solid $light-gray;
   margin-top: 2rem;
-  background-color: $color--very-light;
+  background-color: $light-gray;
 }
 
 // Full detail page
@@ -59,6 +59,10 @@
   .post__view-count {
     margin-left: 1rem;
   }
+  .post__byline-author,
+  .post__byline-tags {
+    display: none;
+  }
 }
 .post__body {
   margin-top: 2rem;
@@ -69,9 +73,9 @@
 // Posts listing page
 .post--thin {
   @include trans();
-  border-bottom: 1px solid $light-gray;
+  border-bottom: 1px solid $medium-gray;
   &:hover {
-    background: $color--very-light;
+    background: $light-gray;
   }
   .post__title {
     font-weight: $global-weight-normal;

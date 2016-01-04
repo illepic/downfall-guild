@@ -32,6 +32,10 @@
   //  color: $dark-gray;
   //}
 }
+.comment__information-author,
+.comment__information-post {
+  display: none;
+}
 .comment__author {
   font-weight: 700;
 }
@@ -59,5 +63,9 @@
   }
   .comment__information {
     font-size: 0.75rem;
+  }
+  .comment__information-author,
+  .comment__information-post {
+    display: inline;
   }
 }
