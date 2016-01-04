@@ -1,5 +1,10 @@
 .df-avatar {
+  //width: 5rem;
+}
+.df-avatar__image {
   border-radius: 50%;
-  //overflow: hidden;
-  width: 85px;
+}
+.df-avatar__username {
+  display: block;
+  font-weight: $global-weight-bold;
 }

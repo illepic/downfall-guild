@@ -1,10 +1,13 @@
-<div class="post__information">
-  <div class="post__left">
-    <a class="post__avatar" href="#">
-      <img class="thumbnail df-avatar" src="{{root}}assets/img/avatars/{{avatar}}">
-    </a>
+<div class="post-information">
+  <div class="post-information__left">
+
+    <div class="post__avatar" href="#">
+      {{> avatar img=(lookup "users" "name" author "avatar") name=author}}
+      <!--<img class="thumbnail df-avatar" src="{{root}}assets/img/avatars/{{avatar}}">-->
+    </div>
+
   </div>
-  <div class="post__middle">
+  <div class="post-information__middle">
 
     {{#unless full}}
       <!-- Only show this title when this is NOT the full page -->
@@ -18,7 +21,7 @@
       {{/each}}
     </div>
   </div>
-  <div class="post__right">
+  <div class="post-information__right">
     <div class="post__comment-count text-center">
       <div class="stat">{{stats.comments}}</div>
       <p>Comments</p>

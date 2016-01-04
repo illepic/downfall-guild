@@ -1,3 +1,4 @@
+// PostS listing page
 .posts-header {
   padding-bottom: 1rem;
   margin-bottom: 1rem;
@@ -6,28 +7,28 @@
 .posts-list {
   margin: 1rem 0;
 }
-.post__information {
+
+// Top of a post
+.post-information {
   display: flex;
   padding: 1rem;
-  .post__left {
-    margin-right: 2rem;
-  }
-  .post__middle {
-    flex-grow: 1;
-  }
-  .post__right {
-    margin-left: 2rem;
-  }
 }
-.post__right {
+.post-information__left {
+  margin-right: 2rem;
+}
+.post-information__middle {
+  flex-grow: 1;
+}
+.post-information__right {
+  margin-left: 2rem;
   color: $secondary-color;
 }
 
 .post__title {
   font-weight: $global-weight-light;
 }
-.post__title a {
-  //@include df-dark-hover();
+.post__avatar {
+  width: 5rem;
 }
 .post__byline {
   color: $secondary-color;
@@ -70,7 +71,7 @@
   .post__title {
     font-weight: $global-weight-normal;
   }
-  .post__information {
+  .post-information {
     padding-top: 2rem;
   }
 }
@@ -83,7 +84,7 @@
   .post__title a {
     @include df-dark-hover();
   }
-  .post__information .post__title {
+  .post-information .post__title {
     display: none;
   }
   .post__comment-count,
@@ -102,12 +103,12 @@
       //color: inherit;
     }
   }
-  .post__information {
+  .post-information {
     display: block;
     padding: 0;
   }
-  .post__left,
-  .post__right {
+  .post-information__left,
+  .post-information__right {
     display: none;
   }
   .post__byline {
