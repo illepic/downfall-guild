@@ -5,6 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Example page - Downfall Guild</title>
+    <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png" sizes="32x32">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,700,900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="assets/css/app.css">
   </head>
@@ -18,7 +19,7 @@
           <ul class="menu">
             <li class="menu-text">
               <a href="index.html">
-                <span>Downfall Guild</span>
+                <span class="top-bar__name">Downfall Guild</span>
               </a>
             </li>
             <li><a href="posts.html">Posts</a></li>
@@ -189,7 +190,9 @@
                       <div class="comment__right">
                         <div class="comment__information">
                           <p>
-                            <span>about 2 days ago</span>
+                            <span class="comment__information-timestamp">about 2 days ago</span>
+                            <span class="comment__information-author">by <a href="#">Elapsed</a></span>
+                            <span class="comment__information-post">in <a href="#">Post 1 lorem ipsum dolor sit amet blah blah blah</a></span>
                           </p>
                         </div>
                   
@@ -224,7 +227,9 @@
                               <div class="comment__right">
                                 <div class="comment__information">
                                   <p>
-                                    <span>about 12 hours ago</span>
+                                    <span class="comment__information-timestamp">about 12 hours ago</span>
+                                    <span class="comment__information-author">by <a href="#">Garreth</a></span>
+                                    <span class="comment__information-post">in <a href="#">Post 1 lorem ipsum dolor sit amet blah blah blah</a></span>
                                   </p>
                                 </div>
                           
@@ -259,7 +264,9 @@
                                       <div class="comment__right">
                                         <div class="comment__information">
                                           <p>
-                                            <span>about an hour ago</span>
+                                            <span class="comment__information-timestamp">about an hour ago</span>
+                                            <span class="comment__information-author">by <a href="#">Elapsed</a></span>
+                                            <span class="comment__information-post">in <a href="#"></a></span>
                                           </p>
                                         </div>
                                   
@@ -298,7 +305,9 @@
                               <div class="comment__right">
                                 <div class="comment__information">
                                   <p>
-                                    <span>about 8 hours ago</span>
+                                    <span class="comment__information-timestamp">about 8 hours ago</span>
+                                    <span class="comment__information-author">by <a href="#">Painhax</a></span>
+                                    <span class="comment__information-post">in <a href="#">Post 1 lorem ipsum dolor sit amet blah blah blah</a></span>
                                   </p>
                                 </div>
                           
@@ -337,7 +346,9 @@
                       <div class="comment__right">
                         <div class="comment__information">
                           <p>
-                            <span>about 6 days ago</span>
+                            <span class="comment__information-timestamp">about 6 days ago</span>
+                            <span class="comment__information-author">by <a href="#">Garreth</a></span>
+                            <span class="comment__information-post">in <a href="#">Post 1 lorem ipsum dolor sit amet blah blah blah</a></span>
                           </p>
                         </div>
                   
@@ -372,7 +383,9 @@
                               <div class="comment__right">
                                 <div class="comment__information">
                                   <p>
-                                    <span>about 12 hours ago</span>
+                                    <span class="comment__information-timestamp">about 12 hours ago</span>
+                                    <span class="comment__information-author">by <a href="#">Garreth</a></span>
+                                    <span class="comment__information-post">in <a href="#">Post 1 lorem ipsum dolor sit amet blah blah blah</a></span>
                                   </p>
                                 </div>
                           
@@ -411,7 +424,9 @@
                       <div class="comment__right">
                         <div class="comment__information">
                           <p>
-                            <span>2 hours ago</span>
+                            <span class="comment__information-timestamp">2 hours ago</span>
+                            <span class="comment__information-author">by <a href="#">Painhax</a></span>
+                            <span class="comment__information-post">in <a href="#">Post 1 lorem ipsum dolor sit amet blah blah blah</a></span>
                           </p>
                         </div>
                   
@@ -446,7 +461,9 @@
                               <div class="comment__right">
                                 <div class="comment__information">
                                   <p>
-                                    <span>about 12 hours ago</span>
+                                    <span class="comment__information-timestamp">about 12 hours ago</span>
+                                    <span class="comment__information-author">by <a href="#">Garreth</a></span>
+                                    <span class="comment__information-post">in <a href="#"></a></span>
                                   </p>
                                 </div>
                           
@@ -467,6 +484,84 @@
                               <div class="indented clearfix">
                               </div>
                           </div>
+                      </div>
+                  </div>
+                  <div class="comment ">
+                    <div class="comment__container">
+                  
+                      <div class="comment__left">
+                        <div class="comment__avatar" href="#">
+                          <div class="df-avatar text-center">
+                            <a href="#"><img class="thumbnail df-avatar__image" src="assets/img/avatars/picture-44.jpg"></a>
+                            <a href="#" class="df-avatar__username">Saedo</a>
+                          </div>
+                          
+                        </div>
+                      </div>
+                  
+                      <div class="comment__right">
+                        <div class="comment__information">
+                          <p>
+                            <span class="comment__information-timestamp">2 hours ago</span>
+                            <span class="comment__information-author">by <a href="#">Saedo</a></span>
+                            <span class="comment__information-post">in <a href="#">Post 1 lorem ipsum dolor sit amet blah blah blah</a></span>
+                          </p>
+                        </div>
+                  
+                          <div class="comment__body">
+                            <p>Praesent elementum est sem, ac maximus massa vulputate in. Phasellus a sagittis neque, ac tincidunt nunc. Nam ullamcorper eleifend convallis. Curabitur dolor ante, bibendum sed scelerisque vitae, dignissim eu quam. Nam vel volutpat nibh, quis hendrerit justo. Phasellus a tristique magna. Nunc tempor, nibh vel pellentesque hendrerit, metus libero tincidunt nulla, aliquam auctor enim quam eu risus. Proin id orci ut turpis interdum molestie. Pellentesque tristique tortor mattis nunc consectetur, ut sollicitudin leo ultricies.</p>
+                          </div>
+                  
+                          <div class="comment__controls">
+                            <ul class="menu">
+                              <li><a href="#"><i aria-hidden="true" class="fi-chat"></i>Reply</a></li>
+                              <li><a href="#"><i aria-hidden="true" class="fi-pencil"></i>Edit</a></li>
+                              <li><a href="#"><i aria-hidden="true" class="fi-trash"></i>Delete</a></li>
+                            </ul>
+                          </div>
+                      </div>
+                    </div>
+                  
+                      <div class="indented clearfix">
+                      </div>
+                  </div>
+                  <div class="comment ">
+                    <div class="comment__container">
+                  
+                      <div class="comment__left">
+                        <div class="comment__avatar" href="#">
+                          <div class="df-avatar text-center">
+                            <a href="#"><img class="thumbnail df-avatar__image" src="assets/img/avatars/pally.png"></a>
+                            <a href="#" class="df-avatar__username">Kaluu</a>
+                          </div>
+                          
+                        </div>
+                      </div>
+                  
+                      <div class="comment__right">
+                        <div class="comment__information">
+                          <p>
+                            <span class="comment__information-timestamp">about 2 days ago</span>
+                            <span class="comment__information-author">by <a href="#">Kaluu</a></span>
+                            <span class="comment__information-post">in <a href="#">Post 1 lorem ipsum dolor sit amet blah blah blah</a></span>
+                          </p>
+                        </div>
+                  
+                          <div class="comment__body">
+                            <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                          </div>
+                  
+                          <div class="comment__controls">
+                            <ul class="menu">
+                              <li><a href="#"><i aria-hidden="true" class="fi-chat"></i>Reply</a></li>
+                              <li><a href="#"><i aria-hidden="true" class="fi-pencil"></i>Edit</a></li>
+                              <li><a href="#"><i aria-hidden="true" class="fi-trash"></i>Delete</a></li>
+                            </ul>
+                          </div>
+                      </div>
+                    </div>
+                  
+                      <div class="indented clearfix">
                       </div>
                   </div>
               </div>
