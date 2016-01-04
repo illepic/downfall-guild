@@ -1,6 +1,6 @@
 - user: "Elapsed"
   body: "<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>"
-  excerpt: "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Donec laoreet a sem at lobortis. Maecenas ut gravida quam, quis porttitor neque. Proin ut dui accumsan, aliquet dolor sed, mollis massa."
+  excerpt: "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Donec laoreet a sem at lobortis. Maecenas ut gravida quam"
   timestamp: "about 2 days ago"
   replies:
     - user: "Garreth"

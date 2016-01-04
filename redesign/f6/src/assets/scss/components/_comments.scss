@@ -45,5 +45,10 @@
   border-top: none;
   .comment__container {
     padding: 0;
+    display: block;
+  }
+  .comment__left {
+    margin: 0;
+    text-align: center;
   }
 }

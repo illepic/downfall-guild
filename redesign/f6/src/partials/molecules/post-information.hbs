@@ -3,7 +3,6 @@
 
     <div class="post__avatar" href="#">
       {{> avatar img=(lookup "users" "name" author "avatar") name=author}}
-      <!--<img class="thumbnail df-avatar" src="{{root}}assets/img/avatars/{{avatar}}">-->
     </div>
 
   </div>
@@ -14,7 +13,12 @@
       <h5 class="post__title"><a href="{{root}}post-detail-tall.html">{{title}}</a></h5>
     {{/unless}}
 
-    <p class="post__byline">about 1 hour ago by <a href="#">{{author}}</a></p>
+    <p class="post__byline">
+      <span class="post__byline-timestamp">about 1 hour ago</span>
+      <span class="post__byline-author">by <a href="#">{{author}}</a></span>
+      <span class="post__byline-tags">in {{#each tags}}<span class="{{type}}">{{tag}}</span>, {{/each}}</span>
+    </p>
+
     <div class="post__tags-buttons">
       {{#each tags}}
         <a class="small button hollow {{type}}">{{tag}}</a>
