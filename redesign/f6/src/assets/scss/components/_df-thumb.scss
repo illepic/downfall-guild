@@ -20,3 +20,8 @@
     display: block;
   }
 }
+
+.df-thumb__icon {
+  @include center-both();
+
+}

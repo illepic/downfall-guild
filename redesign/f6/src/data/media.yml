@@ -1,0 +1,81 @@
+- image:
+  image-300x300: "kill-1-thumb.png"
+  image-1920x1080: "kill-1.jpeg"
+  title: "Demo image title"
+- image:
+  image-300x300: "kill-4-thumb.png"
+  title: "Demo image title"
+- image:
+  image-300x300: "kill-1-thumb.png"
+  title: "Demo image title"
+- image:
+  image-300x300: "kill-2-thumb.png"
+  title: "Demo image title"
+- image:
+  image-300x300: "kill-2-thumb.png"
+  title: "Demo image title"
+  video: true
+- image:
+  image-300x300: "kill-4-thumb.png"
+  title: "Demo image title"
+- image:
+  image-300x300: "kill-2-thumb.png"
+  title: "Demo image title"
+- image:
+  image-300x300: "kill-4-thumb.png"
+  title: "Demo image title"
+- image:
+  image-300x300: "kill-4-thumb.png"
+  title: "Demo image title"
+- image:
+  image-300x300: "kill-1-thumb.png"
+  title: "Demo image title"
+- image:
+  image-300x300: "kill-2-thumb.png"
+  title: "Demo image title"
+- image:
+  image-300x300: "kill-4-thumb.png"
+  title: "Demo image title"
+- image:
+  image-300x300: "kill-1-thumb.png"
+  title: "Demo image title"
+- image:
+  image-300x300: "kill-4-thumb.png"
+- image:
+  image-300x300: "kill-2-thumb.png"
+- image:
+  image-300x300: "kill-1-thumb.png"
+  video: true
+- image:
+  image-300x300: "kill-1-thumb.png"
+  title: "Image"
+- image:
+  image-300x300: "kill-4-thumb.png"
+- image:
+  image-300x300: "kill-1-thumb.png"
+  video: true
+- image:
+  image-300x300: "kill-2-thumb.png"
+  video: true
+- image:
+  image-300x300: "kill-2-thumb.png"
+- image:
+  image-300x300: "kill-4-thumb.png"
+- image:
+  image-300x300: "kill-2-thumb.png"
+- image:
+  image-300x300: "kill-4-thumb.png"
+- image:
+  image-300x300: "kill-4-thumb.png"
+- image:
+  image-300x300: "kill-1-thumb.png"
+- image:
+  image-300x300: "kill-2-thumb.png"
+- image:
+  image-300x300: "kill-4-thumb.png"
+  video: true
+- image:
+  image-300x300: "kill-1-thumb.png"
+- image:
+  image-300x300: "kill-4-thumb.png"
+

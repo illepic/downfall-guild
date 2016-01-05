@@ -1,14 +1,14 @@
 ---
-pageTitle: Posts
+pageTitle: Media
 headerData:
-  title: "Posts"
+  title: "Media"
   large: false
-  bg: "kill-1.jpeg"
+  bg: "kill-3.jpeg"
 ---
 
 {{> header headerData}}
 
-<div class="pull-up posts">
+<div class="pull-up media">
   <div class="row">
     <div class="large-12 columns">
 
@@ -17,13 +17,12 @@ headerData:
 
 
         <div class="row">
-          <div class="large-8 columns">
+          <div class="large-12 columns">
 
             <div class="posts-header clearfix">
               <ul class="menu float-left df-filter">
-                <li class="active"><a href="#"><i aria-hidden="true" class="fi-list-nested"></i>Posts</a></li>
-                <li><a href="#"><i aria-hidden="true" class="fi-calendar"></i>Events</a></li>
-                <li><a href="#"><i aria-hidden="true" class="fi-document"></i>Articles</a></li>
+                <li class="active"><a href="#"><i aria-hidden="true" class="fi-image-landscape"></i>Images</a></li>
+                <li><a href="#"><i aria-hidden="true" class="fi-video"></i>Video</a></li>
               </ul>
               <ul class="menu dropdown float-right" data-dropdown-menu>
                 <li>
@@ -43,23 +42,24 @@ headerData:
               </ul>
             </div> <!--/.posts-header-->
 
-            <div class="posts-list">
-              {{#each posts}}
-                <div class="posts-list__item">
-                  {{> post thin="true"}}
+            <div class="media-grid">
+
+              <div class="row small-up-2 medium-up-3 large-up-6">
+
+                {{#each media}}
+                <div class="column">
+                  {{> media-thumbnail}}
                 </div>
-              {{/each}}
+                {{/each}}
+
+              </div>
 
             </div>
+
             {{> pagination }}
           </div>
 
-          <div class="large-4 columns">
-            <div class="sidebar">
-              {{> sidebar-block-content title="Recent comments" icon="comment-square"}}
-              {{> sidebar-block-grid title="Recent images" icon="image-landscape"}}
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
