@@ -1,27 +1,34 @@
-$pull-up: 8rem;
-.pull-up {
-  position: relative;
-  margin-top: -$pull-up;
-  overflow: hidden;
-}
+//.pull-up {
+  //z-index: -1;
+  //position: relative;
+  //margin-top: -$pull-up;
+  //overflow: hidden;
+//}
+//.df-content {
+  //background: $white;
+  //position: relative;
+  //z-index: 1;
 
-.df-content {
-  background: $white;
-  position: relative;
-  z-index: 1;
-  border-top: 2px solid $color--epic;
-  min-height: $pull-up;
-  padding: 1rem;
+  //min-height: $pull-up;
+//}
+//.pull-wrapper {
+//  overflow: hidden;
+//}
+.main {
+  //position: relative;
+  //z-index: 2;
 }
 .pull-content {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  background-color: $white;
+  padding: 3rem 1rem;
+  border-top: 2px solid $color--epic;
 }
 
 $logo-size: 9.5rem;
 .df-ornaments {
-  //position: relative;
-  //z-index: -1;
+  position: relative;
+  z-index: -1;
+  //height: $logo-size;
   &:before,
   &:after {
     position: absolute;

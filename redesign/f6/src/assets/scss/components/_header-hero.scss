@@ -1,10 +1,12 @@
+$pull-up: 8rem;
+
 .header-hero {
   color: $white;
-  position: relative;
   background-position: center top;
   background-attachment: fixed;
   padding-top: 1rem;
   height: 22rem;
+  margin-bottom: -$pull-up;
 }
 .header--large {
   height: 44rem;
