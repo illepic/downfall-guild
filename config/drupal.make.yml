@@ -7,19 +7,18 @@ api: 2
 # Drupal core (major version, e.g. 6.x, 7.x, 8.x).
 core: "8.x"
 
-defaults:
-  projects:
-    subdir: "contrib"
-
 projects:
 
   # Core.
   drupal:
-    type: "core"
-    download:
-      # Drupal core branch (e.g. "6.x", "7.x", "8.0.x").
-      branch: "8.0.2"
-      working-copy: true
+    version: 8.1
+    # Use this if you need a working git repository of Drupal core instead of
+    # the latest stable.
+    # type: "core"
+    # download:
+    #   # Drupal core branch (e.g. "6.x", "7.x", "8.0.x").
+    #   branch: "8.1.x"
+    #   working-copy: true
 
   # Other modules.
   devel: "1.x-dev"
@@ -28,6 +27,6 @@ projects:
       type: git
       url: https://github.com/md-systems/redis.git
       branch: 8.x-1.x
-  migrate_upgrade: "1.x-dev"
-  migrate_plus: "1.x-dev"
-  migrate_tools: "1.x-dev"
+  migrate_upgrade: "2.0-beta1"
+  migrate_plus: "2.0-beta1"
+  migrate_tools: "2.0-beta1"
