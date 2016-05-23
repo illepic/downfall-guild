@@ -120,7 +120,7 @@ To pull down all files from the D6 site and restore the database locally:
 
     ```shell
     echo "Are you at the root of the repo right now?"
-    cp -R config/d6/ project/web/
+    cp -R config/d6/ project/web/d6
     ```
 
 ## Prototyping redesign
