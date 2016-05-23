@@ -82,15 +82,10 @@ apache_vhosts:
     extra_parameters: |
           ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ drupal_core_path }}"
 
-  - servername: "d8.local.downfallguild.org"
-    documentroot: "/var/www/df/web/d8"
-    extra_parameters: |
-          ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ drupal_core_path }}"
-
   - servername: "d6.local.downfallguild.org"
     documentroot: "/var/www/df/web/d6"
     extra_parameters: |
-          ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/var/ww/df/web/d6"
+          ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/var/www/df/web/d6"
 
   - servername: "adminer.{{ vagrant_hostname }}"
     documentroot: "{{ adminer_install_dir }}"
@@ -168,7 +163,7 @@ mysql_users:
   - name: "{{ drupal_mysql_user }}"
     host: "%"
     password: "{{ drupal_mysql_password }}"
-    priv: "{{ drupal_mysql_database }}.*:ALL"
+    priv: "*.*:ALL"
 
 # Comment out any extra utilities you don't want to install. If you don't want
 # to install *any* extras, make set this value to an empty set, e.g. `[]`.
@@ -176,7 +171,7 @@ installed_extras:
   - adminer
   # - blackfire
   - drupalconsole
-  # - mailhog
+  - mailhog
   # - memcached
   # - newrelic
   - nodejs
@@ -197,8 +192,7 @@ extra_packages:
 # `nodejs` must be in installed_extras for this to work. Valid examples: "0.10",
 # "0.12", "4.x", "5.x".
 nodejs_version: "4.x"
-nodejs_npm_global_packages:
-  - name: gulp
+nodejs_npm_global_packages: []
 nodejs_install_npm_user: "{{ drupalvm_user }}"
 
 # `ruby` must be in installed_extras for this to work.

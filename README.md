@@ -84,28 +84,44 @@ Sometimes Vagrant gets REALLY stuck. In these cases, the following steps will al
 1. `cd drupal-vm && vagrant destroy -f`
 2. Open Virtualbox, find the **downfall.dev** box, right click and Remove all including files.
 
-## Initializ: D6
+## Initialize: D6
   
-To pull down all files from the D6 site:
+To pull down all files from the D6 site and restore the database locally:
 
-1. SSH into the Vagrant box: `cd drupal-vm && vagrant ssh` then:
-
-    ```shell
-    cd /var/www/df/web
-    rsync -zvrP USERNAME@direct.illepic.com:webapps/downfall_drupal/ d6/
-    ```
-
-To import a recent D6 database:
-
-1. Copy a recent `dfdb-XXXXXXXX.sql.zip` file from the shared Dropbox into `project/web/d6/sites/d6.local.downfallguild.org`
-2. SSH into the Vagrant box: `cd drupal-vm && vagrant ssh` then:
+1. `ssh` into webfaction and archive-dump the whole site. Run the following from root of repo:
 
     ```shell
-    cd /var/www/df/web/d6/sites/d6.local.downfallguild.org
-    unzip -p dfdb-XXXXXXXX.sql.zip | mysql -u dfdbuser -pdfdbpass downfall_d6
+    ssh USERNAME@direct.illepic.com
+    cd webapps/downfall_drupal/sites/www.downfallguild.org
+    drush -v archive-dump www.downfallguild.org --destination=/home/illepic/dfmigrate/df.tar.gz --overwrite
+    exit
     ```
 
-3. Replace `dfdb-XXXXXXXX.sql.zip` above with the actuall db file name. Yes, there is no space between "-p" and the "dfdbpass" password.
+2. `rsync` down the dfmigrate folder from webfaction. Run the following from root of repo:
+
+    ```shell
+    rsync -zvrP USERNAME@direct.illepic.com:dfmigrate/ project/dfmigrate/
+    ```
+
+  Or simply grab a provided archive from Dropbox and restore it to `project/dfmigrate` so that the path to the archive is `project/dfmigrate/df.tar.gz`
+
+3. `drush archive-restore` the entire site from within the Vagrant box. This will take a long time. Run the following **from the root of the repo**:
+
+    ```shell
+    cd drupal-vm
+    vagrant ssh
+    cd /var/www/df
+    echo "Go make coffee. This is going to take awhile."
+    drush -v archive-restore dfmigrate/df.tar.gz --destination=web/d6 --db-url=mysql://dfdbuser:dfdbpass@localhost/downfall_d6 --db-prefix=demo_ --overwrite
+    exit
+    ```
+
+4. Copy over our local d6.local.downfallguild.org site settings file. Run the following from the root of the repo:
+
+    ```shell
+    echo "Are you at the root of the repo right now?"
+    cp -R config/d6/ project/web/
+    ```
 
 ## Prototyping redesign
 

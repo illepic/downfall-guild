@@ -5,7 +5,6 @@
 node_modules
 
 # Vagrant specific
-.vagrant
 env/puphpet/puppet/.tmp
 
 env/puphpet/files/dot/ssh/*
@@ -19,6 +18,7 @@ project/web/*
 !project/web/.gitkeep
 
 drupal-vm
+project/dfmigrate
 
 # Design work
 redesign/assets/compiled
