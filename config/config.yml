@@ -50,7 +50,7 @@ drupal_core_path: "/var/www/df/web/d8"
 drupal_domain: "d8.local.downfallguild.org"
 drupal_site_name: "DF"
 drupal_install_profile: standard
-drupal_enable_modules: [ 'devel' ]
+drupal_enable_modules: [ 'devel', 'migrate_upgrade', 'migrate_plus', 'migrate_tools' ]
 drupal_account_name: admin
 drupal_account_pass: admin
 drupal_mysql_user: dfdbuser
