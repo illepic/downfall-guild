@@ -51,6 +51,5 @@ process:
 destination:
   plugin: 'entity:user_role'
 migration_dependencies:
-  required:
-    - upgrade_d6_filter_format
+  required: {  }
   optional: {  }

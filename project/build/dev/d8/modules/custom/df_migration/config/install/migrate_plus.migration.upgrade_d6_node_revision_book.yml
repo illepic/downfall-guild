@@ -26,9 +26,8 @@ process:
   promote: promote
   sticky: sticky
   body/format:
-    plugin: migration
-    migration: upgrade_d6_filter_format
-    source: format
+    plugin: default_value
+    migration: basic_html
   body/value: body
   body/summary: teaser
   revision_uid: revision_uid

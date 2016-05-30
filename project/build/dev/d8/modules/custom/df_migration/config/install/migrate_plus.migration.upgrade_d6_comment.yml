@@ -33,9 +33,8 @@ process:
   thread: thread
   comment_body/value: comment
   comment_body/format:
-    plugin: migration
-    migration: upgrade_d6_filter_format
-    source: format
+    plugin: default_value
+    migration: basic_html
 destination:
   plugin: 'entity:comment'
 migration_dependencies:
@@ -58,5 +57,4 @@ migration_dependencies:
     95: upgrade_d6_comment_entity_display
     96: upgrade_d6_comment_entity_form_display
     97: upgrade_d6_user
-    98: upgrade_d6_filter_format
   optional: {  }

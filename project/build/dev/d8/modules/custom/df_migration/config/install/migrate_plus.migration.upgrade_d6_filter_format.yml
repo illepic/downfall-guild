@@ -1,6 +1,6 @@
 uuid: d8fa32ea-4ed6-42b7-ad08-c2fc377a0578
 langcode: en
-status: true
+status: false
 dependencies: {  }
 id: upgrade_d6_filter_format
 migration_tags:
