@@ -28,7 +28,7 @@ vagrant_synced_folders:
     create: true
 
 # Memory and CPU to use for this VM.
-vagrant_memory: 1024
+vagrant_memory: 2048
 vagrant_cpus: 2
 
 # The web server software to use. Can be either 'apache' or 'nginx'.
@@ -50,7 +50,7 @@ drupal_core_path: "/var/www/df/web/d8"
 drupal_domain: "d8.local.downfallguild.org"
 drupal_site_name: "DF"
 drupal_install_profile: standard
-drupal_enable_modules: [ 'devel', 'migrate_upgrade', 'migrate_plus', 'migrate_tools', 'migrate_drupal_ui' ]
+drupal_enable_modules: [ 'devel', 'migrate_upgrade', 'migrate_plus', 'migrate_tools', 'migrate_drupal_ui', 'config_devel' ]
 drupal_account_name: admin
 drupal_account_pass: admin
 drupal_mysql_user: dfdbuser
@@ -222,7 +222,7 @@ firewall_log_dropped_packets: false
 # PHP Configuration. Currently-supported versions: 5.6, 7.0.
 # To use 5.6, see: http://docs.drupalvm.com/en/latest/other/php-56/
 php_version: "7.0"
-php_memory_limit: "512M"
+php_memory_limit: "1024M"
 php_display_errors: "On"
 php_display_startup_errors: "On"
 php_realpath_cache_size: "1024K"

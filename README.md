@@ -33,20 +33,37 @@ All commands listed are assumed to be run from the root of the project unless ot
 
 ## Initialize: D8 + VM
 
-Running this gulp task:
+Clone the drupal-vm repo into the root of our project if it does not exist already. Run from root of repo:
 
-```shell
-gulp d8:rebuild
-```
+````shell
+git clone git@github.com:geerlingguy/drupal-vm.git
+````
 
-attempts to run the following setup:
+Symlink `config.yml` and `drupal.make.yml` from `config/` into `drupal-vm/`. Run from root of repo:
 
-1. Clone the drupal-vm repo into the root of our project if it does not exist already
-2. Update the drupal-vm repo in the root of our project if it does exist already
-3. Copy `config.yml` and `drupal.make.yml` from `config/` into `drupal-vm/`
-4. Kick off a full `vagrant halt && vagrant up` to build our Vagrant box dev environment
-5. Build Drupal completely from the make file
-6. Symlink all our custom modules into the Vagrant box from `project/build/dev/d8/modules/custom` to `web/d8/modules/custom` 
+````shell
+cd drupal-vm && ln -sf ../config/config.yml && ln -sf ../config/drupal.make.yml
+````
+    
+DELETE the D8 folder and kick off Vagrant. Run from root of folder:
+
+````shell
+sudo rm -rf project/web/d8 && cd drupal-vm && vagrant up --provision
+````
+
+Symlink our customizations. Run from root of repo:
+
+````shell
+cd project/web/d8/modules && ln -sf ../../../build/dev/d8/modules/custom && cd ../sites/default && sudo ln -sf ../../../../build/dev/d8/sites/default/settings.local.php && sudo vi settings.php
+````
+        
+Ensure this line is **uncommented** in `project/web/d8/sites/default/settings.php`:
+
+````php
+if (file_exists(__DIR__ . '/settings.local.php')) {
+  include __DIR__ . '/settings.local.php';
+}
+````
 
 If vagrant did not already add these entries to your hosts file, add the following to `\Windows\System32\drivers\etc\hosts` on Windows or `/etc/hosts` on OSX/Linux:
 
@@ -79,7 +96,7 @@ A Vagrant box can be started right up from where you left off with `cd drupal-vm
 
 #### Nuke it
 
-Sometimes Vagrant gets REALLY stuck. In these cases, the following steps will allow you to run `gulp d8:rebuild` again:
+Sometimes Vagrant gets REALLY stuck. In these cases, the following steps will allow you to rebuild again. Run from root of repo:
 
 1. `cd drupal-vm && vagrant destroy -f`
 2. Open Virtualbox, find the **downfall.dev** box, right click and Remove all including files.
@@ -127,33 +144,24 @@ To pull down all files from the D6 site and restore the database locally:
 
 See this article for most details: https://drupalize.me/blog/201605/custom-drupal-drupal-migrations-migrate-tools. 
 
-Nuke local d8 before starting (from repo root):
-
-    sudo rm -rf project/web/d8 && cd drupal-vm && vagrant provision && ../project/web/d8/modules && ln -s ../../../build/dev/d8/modules/custom custom && cd ../sites/default && sudo ln -s ../../../../build/dev/d8/sites/default/settings.local.php settings.local.php && sudo vi settings.php
-    
-Ensure this line is **uncommented** in `project/web/d8/sites/default/settings.php`:
-
-    if (file_exists(__DIR__ . '/settings.local.php')) {
-      include __DIR__ . '/settings.local.php';
-    }
-
-Ensure that `project/build/d8/sites/default/settings.local.php` is symlinked to `project/web/d8/sites/default/settings.local.php`.
-
-Then from root of project:
+From root of project:
 
     cd drupal-vm && vagrant ssh
-    cd /var/www/df/web/d8 && drupal cr all 
+    cd /var/www/df/web/d8 && drupal module:install df_migration 
 
 DOCUMENTATION PURPOSES ONLY, NO NEED TO RUN: This was already run, but to config export:
 
     drush migrate-upgrade --legacy-db-url="mysql://dfdbuser:dfdbpass@127.0.0.1/downfall_d6" --legacy-db-prefix="demo_" --legacy-root="http://d6.local.downfallguild.org" --configure-only
     
 Notes:
-  - Need a simple map for formats, ie "If full_html, just use existing"
+  - SOLVED: Need a simple map for formats, ie "If full_html, just use existing"
+    - Everything just comes over as basic_html now, PERIOD.
+  - Do we even need revisions? Test by commenting out all revision migrations to simplify
+  - Need content type called "Post" to map Forums, Blogs, 
   - On file import, ditch all thumbnail and gallery size entries
   - Need content type for image to understand the Image field
   - Failed (maybe run later?) upgrade_d6_field_instance, upgrade_d6_field_instance_widget_settings
-  - Yeah, all fields failed to come over
+    - Yeah, all fields failed to come over
 
 ## Prototyping redesign
 

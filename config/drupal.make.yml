@@ -34,3 +34,4 @@ projects:
   migrate_upgrade: "2.0-beta1"
   migrate_plus: "2.0-beta1"
   migrate_tools: "2.0-beta1"
+  config_devel: "1.0-rc1"
