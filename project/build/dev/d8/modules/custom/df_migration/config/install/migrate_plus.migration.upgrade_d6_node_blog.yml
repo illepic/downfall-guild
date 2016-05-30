@@ -29,7 +29,7 @@ process:
   sticky: sticky
   body/format:
     plugin: default_value
-    migration: basic_html
+    default_value: basic_html
   body/value: body
   revision_uid: revision_uid
   revision_log: log
