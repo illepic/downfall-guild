@@ -137,7 +137,12 @@ Run the following for config export (NOTE: This will have already been done and 
 
     drush migrate-upgrade --legacy-db-url="mysql://dfdbuser:dfdbpass@127.0.0.1/downfall_d6" --legacy-db-prefix="demo_" --legacy-root="http://d6.local.downfallguild.org" --configure-only
     
-
+Notes:
+  - Need a simple map for formats, ie "If full_html, just use existing"
+  - On file import, ditch all thumbnail and gallery size entries
+  - Need content type for image to understand the Image field
+  - Failed (maybe run later?) upgrade_d6_field_instance, upgrade_d6_field_instance_widget_settings
+  - Yeah, all fields failed to come over
 
 ## Prototyping redesign
 
