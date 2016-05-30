@@ -54,7 +54,7 @@ sudo rm -rf project/web/d8 && cd drupal-vm && vagrant provision
 Symlink our customizations. Run from root of repo:
 
 ````shell
-cd project/web/d8/modules && ln -sf ../../../build/dev/d8/modules/custom && cd ../sites/default && sudo ln -sf ../../../../build/dev/d8/sites/default/settings.local.php && sudo vi settings.php
+cd project/web/d8/modules && ln -sf ../../../build/dev/d8/modules/custom && cd ../sites/default && sudo ln -sf ../../../../build/dev/d8/sites/default/settings.local.php && sudo bash -c 'cat ../../../../../config/enable_local_settings.txt >> settings.php'
 ````
         
 Ensure this line is **uncommented** in `project/web/d8/sites/default/settings.php`:
