@@ -1,0 +1,69 @@
+uuid: b58ca72b-db1b-4f53-9975-98ee2c0fc057
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_field_instance_widget_settings
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'Field instance widget configuration'
+source:
+  plugin: d6_field_instance_per_form_display
+  constants:
+    entity_type: node
+    form_mode: default
+    third_party_settings: {  }
+process:
+  field_type_exists:
+    -
+      plugin: migration
+      migration: d6_field
+      source:
+        - field_name
+    -
+      plugin: extract
+      index:
+        - 1
+    -
+      plugin: skip_on_empty
+      method: row
+  bundle:
+    -
+      plugin: migration
+      migration: d6_node_type
+      source: type_name
+    -
+      plugin: skip_on_empty
+      method: row
+  form_mode: constants/form_mode
+  field_name: field_name
+  entity_type: constants/entity_type
+  options/weight: weight
+  options/type:
+    type:
+      plugin: static_map
+      bypass: true
+      source: widget_type
+      map:
+        number: number
+        email_textfield: email_default
+        date_select: datetime_default
+        date_text: datetime_default
+        imagefield_widget: image_image
+        phone_textfield: telephone_default
+        optionwidgets_onoff: boolean_checkbox
+        optionwidgets_buttons: options_buttons
+        optionwidgets_select: options_select
+  options/settings:
+    -
+      plugin: field_instance_widget_settings
+      source:
+        - widget_type
+        - widget_settings
+  options/third_party_settings: constants/third_party_settings
+destination:
+  plugin: component_entity_form_display
+migration_dependencies:
+  required:
+    - upgrade_d6_field_instance
+  optional: {  }

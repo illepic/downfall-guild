@@ -1,0 +1,14 @@
+{
+  "name": "drupal/df_migration",
+  "type": "drupal-module",
+  "description": "Downfall D6 to D8 migration",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/df_migration",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "http://drupal.org/project/issues/df_migration",
+    "source": "http://cgit.drupalcode.org/df_migration"
+  },
+  "require": { }
+}

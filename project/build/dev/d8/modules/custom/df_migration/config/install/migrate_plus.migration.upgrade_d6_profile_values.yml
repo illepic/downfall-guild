@@ -1,0 +1,22 @@
+uuid: 48ee94e5-4a2b-4b62-974f-009c21496330
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_profile_values
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'Profile values'
+source:
+  plugin: d6_profile_field_values
+process:
+  uid: uid
+destination:
+  plugin: 'entity:user'
+migration_dependencies:
+  required:
+    - upgrade_d6_user
+    - upgrade_user_profile_field_instance
+    - upgrade_user_profile_entity_display
+    - upgrade_user_profile_entity_form_display
+  optional: {  }

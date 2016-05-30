@@ -1,0 +1,100 @@
+uuid: 1d9af776-fe23-493b-9c15-3444b50016b9
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_node_revision_raid
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'Node revisions (raid)'
+source:
+  plugin: d6_node_revision
+  node_type: raid
+process:
+  nid: nid
+  vid: vid
+  type: type
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  body/format:
+    plugin: migration
+    migration: upgrade_d6_filter_format
+    source: format
+  body/value: body
+  body/summary: teaser
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  field_mascot:
+    plugin: d6_cck_file
+    source: field_mascot
+  field_raidsize:
+    plugin: iterator
+    source: field_raidsize
+    process:
+      value: value
+      format:
+        -
+          plugin: static_map
+          bypass: true
+          source: format
+          map:
+            - null
+        -
+          plugin: skip_on_empty
+          method: process
+        -
+          plugin: migration
+          migration:
+            - d6_filter_format
+            - d7_filter_format
+          source: format
+  field_raiddays:
+    plugin: iterator
+    source: field_raiddays
+    process:
+      value: value
+      format:
+        -
+          plugin: static_map
+          bypass: true
+          source: format
+          map:
+            - null
+        -
+          plugin: skip_on_empty
+          method: process
+        -
+          plugin: migration
+          migration:
+            - d6_filter_format
+            - d7_filter_format
+          source: format
+  field_raidstart: field_raidstart
+  field_raidend: field_raidend
+  field_raidroster: field_raidroster
+  field_raid_status:
+    plugin: iterator
+    source: field_raid_status
+    process:
+      value:
+        plugin: static_map
+        source: value
+        default_value: 0
+        map:
+          active: 1
+destination:
+  plugin: 'entity_revision:node'
+migration_dependencies:
+  required:
+    - upgrade_d6_node_raid
+  optional: {  }

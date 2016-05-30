@@ -123,6 +123,22 @@ To pull down all files from the D6 site and restore the database locally:
     cp -R config/d6/ project/web/d6
     ```
 
+## Migration to Drupal 8
+
+See this article for most details: https://drupalize.me/blog/201605/custom-drupal-drupal-migrations-migrate-tools. 
+
+Ensure that `project/build/d8/sites/default/settings.local.php` is copied/symlinked to `project/web/d8/sites/default/settings.local.php`. Then, ensure this line is **uncommented** in `project/web/d8/sites/default/settings.local.php`:
+
+    if (file_exists(__DIR__ . '/settings.local.php')) {
+      include __DIR__ . '/settings.local.php';
+    }
+
+Run the following for config export (NOTE: This will have already been done and saved to the site module, this is here for documentation purposes):
+
+    drush migrate-upgrade --legacy-db-url="mysql://dfdbuser:dfdbpass@127.0.0.1/downfall_d6" --legacy-db-prefix="demo_" --legacy-root="http://d6.local.downfallguild.org" --configure-only
+    
+
+
 ## Prototyping redesign
 
 NOTE: Windows users: Install Visual Studio Community Edition 2015. Open it, create a Visual C++ project. You'll see an option to:

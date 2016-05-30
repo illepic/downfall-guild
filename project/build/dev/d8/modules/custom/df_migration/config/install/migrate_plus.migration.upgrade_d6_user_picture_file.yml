@@ -1,0 +1,31 @@
+uuid: ac53ae1f-e3e3-49ad-a61a-ad5d34339fb1
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_user_picture_file
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'User pictures'
+source:
+  plugin: d6_user_picture_file
+  constants:
+    is_public: true
+process:
+  filename: filename
+  uid: uid
+  uri:
+    plugin: file_uri
+    source:
+      - picture
+      - file_directory_path
+      - temp_directory_path
+      - constants/is_public
+destination:
+  plugin: 'entity:file'
+  source_path_property: picture
+  source_base_path: 'http://d6.local.downfallguild.org/'
+migration_dependencies:
+  optional:
+    - upgrade_d6_file
+  required: {  }

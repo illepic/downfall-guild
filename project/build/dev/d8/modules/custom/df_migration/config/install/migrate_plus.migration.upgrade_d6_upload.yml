@@ -1,0 +1,46 @@
+uuid: e656de7a-b914-46ba-832a-0975e97884f7
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_upload
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'File uploads'
+source:
+  plugin: d6_upload
+process:
+  nid: nid
+  vid: vid
+  type: type
+  upload:
+    plugin: iterator
+    source: upload
+    process:
+      target_id:
+        plugin: migration
+        migration: d6_file
+        source: fid
+      display: list
+      description: description
+destination:
+  plugin: 'entity:node'
+migration_dependencies:
+  required:
+    0: upgrade_d6_file
+    80: upgrade_d6_node_blog
+    81: upgrade_d6_node_book
+    82: upgrade_d6_node_character
+    83: upgrade_d6_node_embedded
+    84: upgrade_d6_node_event
+    85: upgrade_d6_node_forum
+    86: upgrade_d6_node_guild_app
+    87: upgrade_d6_node_image
+    88: upgrade_d6_node_page
+    89: upgrade_d6_node_panel
+    90: upgrade_d6_node_poll
+    91: upgrade_d6_node_raid
+    92: upgrade_d6_node_raidevent
+    93: upgrade_d6_node_story
+    94: upgrade_d6_upload_field_instance
+  optional: {  }

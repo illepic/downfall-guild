@@ -1,0 +1,60 @@
+uuid: be50f3f4-62f9-4d97-afbd-015f5bd0ace6
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_field_instance
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'Field instance configuration'
+source:
+  plugin: d6_field_instance
+  constants:
+    entity_type: node
+process:
+  field_type_exists:
+    -
+      plugin: migration
+      migration: d6_field
+      source:
+        - field_name
+    -
+      plugin: extract
+      index:
+        - 1
+    -
+      plugin: skip_on_empty
+      method: row
+  entity_type: constants/entity_type
+  field_name: field_name
+  bundle:
+    -
+      plugin: migration
+      migration: d6_node_type
+      source: type_name
+    -
+      plugin: skip_on_empty
+      method: row
+  label: label
+  description: description
+  required: required
+  status: active
+  settings:
+    plugin: d6_field_field_settings
+    source:
+      - widget_type
+      - widget_settings
+      - global_settings
+  default_value_callback: ''
+  default_value:
+    plugin: d6_field_instance_defaults
+    source:
+      - widget_type
+      - widget_settings
+destination:
+  plugin: 'entity:field_config'
+migration_dependencies:
+  required:
+    - upgrade_d6_node_type
+    - upgrade_d6_field
+  optional: {  }

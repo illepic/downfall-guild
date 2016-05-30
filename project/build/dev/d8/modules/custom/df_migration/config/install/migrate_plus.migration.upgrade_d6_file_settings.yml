@@ -1,0 +1,25 @@
+uuid: 285e9ebc-2b59-4b14-a52d-67a2ac0086db
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_file_settings
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'File configuration'
+source:
+  plugin: variable
+  variables:
+    - file_description_type
+    - file_description_length
+    - file_icon_directory
+process:
+  description/type: file_description_type
+  description/length: file_description_length
+  icon/directory: file_icon_directory
+destination:
+  plugin: config
+  config_name: file.settings
+migration_dependencies:
+  required: {  }
+  optional: {  }

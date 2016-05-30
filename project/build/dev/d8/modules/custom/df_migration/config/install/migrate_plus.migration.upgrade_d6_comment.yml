@@ -1,0 +1,62 @@
+uuid: 8835cbac-cd7f-4d01-8a9e-4af56fff87be
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_comment
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: Comments
+source:
+  plugin: d6_comment
+  constants:
+    entity_type: node
+process:
+  cid: cid
+  pid:
+    plugin: migration
+    migration: upgrade_d6_comment
+    source: pid
+  entity_id: nid
+  entity_type: constants/entity_type
+  field_name: field_name
+  comment_type: comment_type
+  subject: subject
+  uid: uid
+  name: name
+  mail: mail
+  homepage: homepage
+  hostname: hostname
+  created: timestamp
+  changed: timestamp
+  status: status
+  thread: thread
+  comment_body/value: comment
+  comment_body/format:
+    plugin: migration
+    migration: upgrade_d6_filter_format
+    source: format
+destination:
+  plugin: 'entity:comment'
+migration_dependencies:
+  required:
+    80: upgrade_d6_node_blog
+    81: upgrade_d6_node_book
+    82: upgrade_d6_node_character
+    83: upgrade_d6_node_embedded
+    84: upgrade_d6_node_event
+    85: upgrade_d6_node_forum
+    86: upgrade_d6_node_guild_app
+    87: upgrade_d6_node_image
+    88: upgrade_d6_node_page
+    89: upgrade_d6_node_panel
+    90: upgrade_d6_node_poll
+    91: upgrade_d6_node_raid
+    92: upgrade_d6_node_raidevent
+    93: upgrade_d6_node_story
+    94: upgrade_d6_comment_type
+    95: upgrade_d6_comment_entity_display
+    96: upgrade_d6_comment_entity_form_display
+    97: upgrade_d6_user
+    98: upgrade_d6_filter_format
+  optional: {  }

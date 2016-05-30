@@ -1,0 +1,32 @@
+uuid: 8ef9fa8e-7adf-41a8-a40d-1ecc9f03beae
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_node_type
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'Node type configuration'
+source:
+  plugin: d6_node_type
+  constants:
+    preview: 1
+    create_body: false
+process:
+  type: type
+  name: name
+  module: module
+  description: description
+  help: help
+  title_label: title_label
+  preview_mode: constants/preview
+  display_submitted: display_submitted
+  new_revision: options/revision
+  settings/node/options: options
+  create_body: has_body
+  create_body_label: body_label
+destination:
+  plugin: 'entity:node_type'
+migration_dependencies:
+  required: {  }
+  optional: {  }

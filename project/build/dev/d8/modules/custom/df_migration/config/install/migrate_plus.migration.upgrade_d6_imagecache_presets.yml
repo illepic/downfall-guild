@@ -1,0 +1,32 @@
+uuid: bd54ee73-cb2c-4343-a865-67bad13813d5
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_imagecache_presets
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'ImageCache Presets'
+source:
+  plugin: d6_imagecache_presets
+process:
+  name:
+    -
+      plugin: machine_name
+      source: presetname
+    -
+      plugin: dedupe_entity
+      entity_type: image_style
+      field: name
+      length: 32
+  label: presetname
+  effects:
+    plugin: d6_imagecache_actions
+    source:
+      - '@plugin'
+      - data
+destination:
+  plugin: 'entity:image_style'
+migration_dependencies:
+  required: {  }
+  optional: {  }

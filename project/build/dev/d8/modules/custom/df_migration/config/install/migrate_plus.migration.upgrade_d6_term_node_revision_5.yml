@@ -1,0 +1,45 @@
+uuid: 3d750920-9276-4e91-80f5-8780690988fa
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_term_node_revision_5
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'Term/node relationship revisions'
+source:
+  plugin: d6_term_node_revision
+  vid: '5'
+process:
+  vid:
+    -
+      plugin: migration
+      migration: d6_node
+      source: vid
+    -
+      plugin: skip_on_empty
+      method: row
+  type: type
+  wow: tid
+destination:
+  plugin: 'entity_revision:node'
+migration_dependencies:
+  required:
+    140: upgrade_d6_term_node_5
+    141: upgrade_d6_term_node_8
+    142: upgrade_d6_term_node_3
+    66: upgrade_d6_node_revision_blog
+    67: upgrade_d6_node_revision_book
+    68: upgrade_d6_node_revision_character
+    69: upgrade_d6_node_revision_embedded
+    70: upgrade_d6_node_revision_event
+    71: upgrade_d6_node_revision_forum
+    72: upgrade_d6_node_revision_guild_app
+    73: upgrade_d6_node_revision_image
+    74: upgrade_d6_node_revision_page
+    75: upgrade_d6_node_revision_panel
+    76: upgrade_d6_node_revision_poll
+    77: upgrade_d6_node_revision_raid
+    78: upgrade_d6_node_revision_raidevent
+    79: upgrade_d6_node_revision_story
+  optional: {  }

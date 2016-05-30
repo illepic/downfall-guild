@@ -1,0 +1,44 @@
+uuid: 41cea692-bdf4-4c14-994e-1ee4cc550a1e
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_user
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'User accounts'
+source:
+  plugin: d6_user
+process:
+  uid: uid
+  name: name
+  pass: pass
+  mail: mail
+  created: created
+  access: access
+  login: login
+  status: status
+  timezone:
+    plugin: user_update_7002
+    source: timezone
+  preferred_langcode: language
+  init: init
+  roles:
+    plugin: migration
+    migration: upgrade_d6_user_role
+    source: roles
+  user_picture:
+    plugin: migration
+    migration: upgrade_d6_user_picture_file
+    source: uid
+    no_stub: true
+destination:
+  plugin: 'entity:user'
+  md5_passwords: true
+migration_dependencies:
+  required:
+    - upgrade_d6_user_role
+  optional:
+    - upgrade_d6_user_picture_file
+    - upgrade_user_picture_entity_display
+    - upgrade_user_picture_entity_form_display
