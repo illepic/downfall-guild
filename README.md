@@ -76,7 +76,7 @@ If vagrant did not already add these entries to your hosts file, add the followi
 Enable our modules:
 
 ````shell
-drupal module:install df_config, df_migration
+drupal module:install df_config && drupal module:install df_migration
 ````
 
 ### Drupal 8

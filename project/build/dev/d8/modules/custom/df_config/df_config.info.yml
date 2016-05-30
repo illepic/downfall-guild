@@ -1,4 +1,4 @@
-name: df_config
+name: Downfall Config
 type: module
 description: Downfall site configuration
 core: 8.x

@@ -8,6 +8,8 @@ dependencies:
     module:
         - text
         - user
+_core:
+    default_config_hash: ulZoB4s9hPGRINg_XjVed53FoMf40UIF8RigHY5NyO0
 id: node.post.teaser
 targetEntityType: node
 bundle: post

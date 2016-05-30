@@ -3,10 +3,14 @@ status: true
 dependencies:
     config:
         - field.field.node.post.body
+        - field.field.node.post.comment
         - node.type.post
     module:
+        - comment
         - path
         - text
+_core:
+    default_config_hash: 7SM0_KnbOS4EMkMVBN3kUw-FtiAz1YW0jiA1RWogYGM
 id: node.post.default
 targetEntityType: node
 bundle: post
@@ -20,6 +24,11 @@ content:
             summary_rows: 3
             placeholder: ''
         third_party_settings: {  }
+    comment:
+        weight: 32
+        settings: {  }
+        third_party_settings: {  }
+        type: comment_default
     created:
         type: datetime_timestamp
         weight: 10
