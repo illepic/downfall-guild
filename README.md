@@ -48,7 +48,7 @@ cd drupal-vm && ln -sf ../config/config.yml && ln -sf ../config/drupal.make.yml
 DELETE the D8 folder and kick off Vagrant. Run from root of folder:
 
 ````shell
-sudo rm -rf project/web/d8 && cd drupal-vm && vagrant up --provision
+sudo rm -rf project/web/d8 && cd drupal-vm && vagrant provision
 ````
 
 Symlink our customizations. Run from root of repo:
@@ -71,6 +71,12 @@ If vagrant did not already add these entries to your hosts file, add the followi
 192.168.88.88  d8.local.downfallguild.org
 192.168.88.88  d6.local.downfallguild.org
 192.168.88.88  adminer.local.downfallguild.org
+````
+
+Enable our modules:
+
+````shell
+drupal module:install df_config, df_migration
 ````
 
 ### Drupal 8

@@ -2,7 +2,7 @@ name: DF Migration
 type: module
 description: Downfall D6 to D8 migration
 core: 8.x
-package: Custom
+package: Downfall
 dependencies:
   - migrate_drupal
   - migrate_plus
