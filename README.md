@@ -44,8 +44,8 @@ Symlink `config.yml` and `drupal.make.yml` from `config/` into `drupal-vm/`. Run
 ````shell
 cd drupal-vm && ln -sf ../config/config.yml && ln -sf ../config/drupal.make.yml
 ````
-    
-DELETE the D8 folder and kick off Vagrant. Run from root of folder:
+
+DELETE the D8 folder and kick off Vagrant. Run from root of folder (you'll need to `cd ..` if you just ran the prior command):
 
 ````shell
 sudo rm -rf project/web/d8 && cd drupal-vm && vagrant provision
@@ -56,7 +56,7 @@ Symlink our customizations. Run from root of repo:
 ````shell
 cd project/web/d8/modules && ln -sf ../../../build/dev/d8/modules/custom && cd ../sites/default && sudo ln -sf ../../../../build/dev/d8/sites/default/settings.local.php && sudo bash -c 'cat ../../../../../config/enable_local_settings.txt >> settings.php'
 ````
-        
+
 Ensure this line is **uncommented** in `project/web/d8/sites/default/settings.php`:
 
 ````php
@@ -73,11 +73,14 @@ If vagrant did not already add these entries to your hosts file, add the followi
 192.168.88.88  adminer.local.downfallguild.org
 ````
 
-Enable our modules:
+Enable our modules by ssh'ing into the Vagrant box first. Run from root of repo:
 
 ````shell
+cd drupal-vm && vagrant ssh
+cd /var/www/df/web/d8
 drupal module:install df_config df_migration
-OR, if we need everything:
+
+OR, if we need everything and it wasn't enabled on a fresh provision (ie you've run drush site-install to blow everything away and start over):
 drupal module:install devel migrate_upgrade migrate_plus migrate_tools migrate_manifest config_devel kint df_config df_migration
 ````
 
@@ -89,10 +92,10 @@ drush php-eval 'var_dump(Drupal::keyValue("migrate_status")->set('your_migration
 
 ### Drupal 8
 
-Drupal 8 is built completely from scratch if and only if the `project/web/d8` folder is **empty**.
+Drupal 8 is built completely from scratch if and only if the `project/web/d8` folder does not exist.
 
-* To rebuild Drupal, simpley delete the `project/web/d8/` folder and re-run `gulp d8:rebuild`
-* Otherwise, running `gulp d8:rebuild` simply updates the `drupal-vm/` repo, halts Vagrant, and re-provisions it (leaving Drupal alone)
+* OBSOLETE: To rebuild Drupal, simpley delete the `project/web/d8/` folder and re-run `gulp d8:rebuild`
+* OBSOLETE: Otherwise, running `gulp d8:rebuild` simply updates the `drupal-vm/` repo, halts Vagrant, and re-provisions it (leaving Drupal alone)
 
 ## Vagrant:
 
@@ -101,7 +104,7 @@ Enter the Vagrant box:
 ```shell
 cd drupal-vm && vagrant ssh
 ```
-    
+
 Everything under `project/` in your local shows at `/var/www/df` in the VirtualBox
 
 Halt the Vagrant box by `cd drupal-vm && vagrant halt`. Halting is highly recommended while not actively working on the project and very much recommended before shutting down your OS.
@@ -116,7 +119,7 @@ Sometimes Vagrant gets REALLY stuck. In these cases, the following steps will al
 2. Open Virtualbox, find the **downfall.dev** box, right click and Remove all including files.
 
 ## Initialize: D6
-  
+
 To pull down all files from the D6 site and restore the database locally:
 
 1. `ssh` into webfaction and archive-dump the whole site. Run the following from root of repo:
@@ -156,17 +159,17 @@ To pull down all files from the D6 site and restore the database locally:
 
 ## Migration to Drupal 8
 
-See this article for most details: https://drupalize.me/blog/201605/custom-drupal-drupal-migrations-migrate-tools. 
+See this article for most details: https://drupalize.me/blog/201605/custom-drupal-drupal-migrations-migrate-tools.
 
 From root of project:
 
     cd drupal-vm && vagrant ssh
-    cd /var/www/df/web/d8 && drupal module:install df_migration 
+    cd /var/www/df/web/d8 && drupal module:install df_config df_migration
 
 DOCUMENTATION PURPOSES ONLY, NO NEED TO RUN: This was already run, but to config export:
 
     drush migrate-upgrade --legacy-db-url="mysql://dfdbuser:dfdbpass@127.0.0.1/downfall_d6" --legacy-db-prefix="demo_" --legacy-root="http://d6.local.downfallguild.org" --configure-only
-    
+
 Notes:
   - SOLVED: Need a simple map for formats, ie "If full_html, just use existing"
     - Everything just comes over as basic_html now, PERIOD.
@@ -187,9 +190,9 @@ Notes:
 NOTE: Windows users: Install Visual Studio Community Edition 2015. Open it, create a Visual C++ project. You'll see an option to:
 
     "Install Visual C++ 2015 Tools for Windows Desktop"
-    
+
 Do the above, then run:
- 
+
     npm install -g browser-sync --msvs_version=2015
 
 The following sets up PatternLab for first use, should only be done once or when starting over:

@@ -98,6 +98,8 @@ class ImgAssist extends ProcessPluginBase {
     // Look up the node referenced by the img_assist tag, then grab the image file ID from that node.
     $image = Database::getConnection('default', 'migrate')->query('SELECT * FROM {image} WHERE nid=:nid AND image_size=:image_size', array(':nid' => $nid, ':image_size' => '_original'))->fetchObject();
 
+    print_r($image->fid);
+
     // Get the image path from the image file ID.
     $file = Database::getConnection('default', 'migrate')->query('SELECT * FROM {files} WHERE fid=:fid', array(':fid' => $image->fid))->fetchObject();
 
