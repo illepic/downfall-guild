@@ -175,6 +175,7 @@ Notes:
   - SOLVED: Need content type called "Post" to map Forums, Blogs,
     - Now part of df_config module, provides a basic content type, comments field.
   - SOLVED: Blog/Forums fail to move to Post content type if they have an "upload"
+  - img_assist process plugin should lookup in D8 db, file_managed table to get public file uri instead of d6 table doing the hard str_replace
   - On file import, ditch all thumbnail and gallery size entries
   - Need content type for image to understand the Image field
   - Failed (maybe run later?) upgrade_d6_field_instance, upgrade_d6_field_instance_widget_settings
