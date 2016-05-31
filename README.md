@@ -78,7 +78,13 @@ Enable our modules:
 ````shell
 drupal module:install df_config df_migration
 OR, if we need everything:
-drupal module:install devel migrate_upgrade migrate_plus migrate_tools config_devel kint df_config df_migration
+drupal module:install devel migrate_upgrade migrate_plus migrate_tools migrate_manifest config_devel kint df_config df_migration
+````
+
+Rollback stuck migration:
+
+````shell
+drush php-eval 'var_dump(Drupal::keyValue("migrate_status")->set('your_migration_name', 0))'
 ````
 
 ### Drupal 8

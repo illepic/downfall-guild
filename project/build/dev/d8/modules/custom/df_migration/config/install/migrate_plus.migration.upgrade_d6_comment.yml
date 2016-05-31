@@ -31,7 +31,9 @@ process:
   changed: timestamp
   status: status
   thread: thread
-  comment_body/value: comment
+  comment_body/value:
+    plugin: img_assist
+    source: comment
   comment_body/format:
     plugin: default_value
     default_value: basic_html

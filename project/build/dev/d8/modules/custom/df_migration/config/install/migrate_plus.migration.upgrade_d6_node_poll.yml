@@ -28,7 +28,9 @@ process:
   body/format:
     plugin: default_value
     default_value: basic_html
-  body/value: body
+  body/value:
+    plugin: img_assist
+    source: body
   body/summary: teaser
   revision_uid: revision_uid
   revision_log: log

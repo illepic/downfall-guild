@@ -29,7 +29,6 @@ process:
     plugin: default_value
     default_value: basic_html
   body/value: body
-  body/summary: teaser
   revision_uid: revision_uid
   revision_log: log
   revision_timestamp: timestamp

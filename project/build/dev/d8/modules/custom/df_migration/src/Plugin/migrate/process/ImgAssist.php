@@ -16,7 +16,7 @@ use Drupal\migrate\Row;
  * This plugin replaces img_assist tags in node body fields with standard HTML image tags.
  *
  * @MigrateProcessPlugin(
- *   id = "df_migration_img_assist"
+ *   id = "img_assist"
  * )
  */
 class ImgAssist extends ProcessPluginBase {
@@ -29,6 +29,7 @@ class ImgAssist extends ProcessPluginBase {
    * @return array $matches array of matched strings
    */
   protected function findImgAssistTags($value) {
+    dpm($value);
     $pattern = "/\[img_assist(?:\\\\|\\\]|[^\]])*\]/"; // See http://rubular.com/r/gQs5HjGLok
     preg_match_all($pattern, $value, $matches, PREG_OFFSET_CAPTURE); // The PREG_OFFSET_CAPTURE gives us the offset_in_tmp variable.
     return $matches;
@@ -95,13 +96,16 @@ class ImgAssist extends ProcessPluginBase {
   private function getImagePath($nid) {
 
     // Look up the node referenced by the img_assist tag, then grab the image file ID from that node.
-    $image = Database::getConnection('default', 'migrate')->query('SELECT * FROM {image} WHERE nid=:nid', array(':nid' => $nid))->fetchObject();
+    $image = Database::getConnection('default', 'migrate')->query('SELECT * FROM {image} WHERE nid=:nid AND image_size=:image_size', array(':nid' => $nid, ':image_size' => '_original'))->fetchObject();
 
     // Get the image path from the image file ID.
     $file = Database::getConnection('default', 'migrate')->query('SELECT * FROM {files} WHERE fid=:fid', array(':fid' => $image->fid))->fetchObject();
 
+    // Remove the 'www.downfallguild.org' sub folder, replace with default
+    $path = str_replace('www.downfallguild.org', 'default', $file->filepath);
+
     // Add a beginning slash to the path.
-    $image_path = '/' . $file->filepath;
+    $image_path = '/' . $path;
 
     return $image_path;
   }
