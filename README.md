@@ -76,7 +76,9 @@ If vagrant did not already add these entries to your hosts file, add the followi
 Enable our modules:
 
 ````shell
-drupal module:install df_config && drupal module:install df_migration
+drupal module:install df_config df_migration
+OR, if we need everything:
+drupal module:install devel migrate_upgrade migrate_plus migrate_tools config_devel kint df_config df_migration
 ````
 
 ### Drupal 8
@@ -162,12 +164,16 @@ DOCUMENTATION PURPOSES ONLY, NO NEED TO RUN: This was already run, but to config
 Notes:
   - SOLVED: Need a simple map for formats, ie "If full_html, just use existing"
     - Everything just comes over as basic_html now, PERIOD.
-  - Do we even need revisions? Test by commenting out all revision migrations to simplify
-  - Need content type called "Post" to map Forums, Blogs, 
+  - SOLVED: Do we even need revisions? Test by commenting out all revision migrations to simplify
+    - No revisions, not needed
+  - SOLVED: Need content type called "Post" to map Forums, Blogs,
+    - Now part of df_config module, provides a basic content type, comments field.
+  - SOLVED: Blog/Forums fail to move to Post content type if they have an "upload"
   - On file import, ditch all thumbnail and gallery size entries
   - Need content type for image to understand the Image field
   - Failed (maybe run later?) upgrade_d6_field_instance, upgrade_d6_field_instance_widget_settings
     - Yeah, all fields failed to come over
+    - We really don't want these though. We have the definitions if we **really** want them. We'll transform instead.
 
 ## Prototyping redesign
 
