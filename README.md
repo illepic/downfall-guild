@@ -171,6 +171,7 @@ DOCUMENTATION PURPOSES ONLY, NO NEED TO RUN: This was already run, but to config
     drush migrate-upgrade --legacy-db-url="mysql://dfdbuser:dfdbpass@127.0.0.1/downfall_d6" --legacy-db-prefix="demo_" --legacy-root="http://d6.local.downfallguild.org" --configure-only
 
 Notes:
+  - Did all content with "upload" fields end up as Posts?
   - SOLVED: Need a simple map for formats, ie "If full_html, just use existing"
     - Everything just comes over as basic_html now, PERIOD.
   - SOLVED: Do we even need revisions? Test by commenting out all revision migrations to simplify
