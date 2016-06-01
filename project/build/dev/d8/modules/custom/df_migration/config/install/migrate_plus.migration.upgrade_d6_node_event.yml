@@ -49,12 +49,6 @@ process:
         -
           plugin: skip_on_empty
           method: process
-        -
-          plugin: migration
-          migration:
-            - d6_filter_format
-            - d7_filter_format
-          source: format
 destination:
   plugin: 'entity:node'
 migration_dependencies:

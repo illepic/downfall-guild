@@ -52,12 +52,6 @@ process:
         -
           plugin: skip_on_empty
           method: process
-        -
-          plugin: migration
-          migration:
-            - d6_filter_format
-            - d7_filter_format
-          source: format
   field_raiddays:
     plugin: iterator
     source: field_raiddays
@@ -73,15 +67,9 @@ process:
         -
           plugin: skip_on_empty
           method: process
-        -
-          plugin: migration
-          migration:
-            - d6_filter_format
-            - d7_filter_format
-          source: format
   field_raidstart: field_raidstart
   field_raidend: field_raidend
-  field_raidroster: field_raidroster
+  #field_raidroster: field_raidroster
   field_raid_status:
     plugin: iterator
     source: field_raid_status
