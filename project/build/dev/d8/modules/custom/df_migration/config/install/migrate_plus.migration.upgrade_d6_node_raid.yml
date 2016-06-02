@@ -35,8 +35,10 @@ process:
   revision_log: log
   revision_timestamp: timestamp
   field_mascot:
-    plugin: d6_cck_file
+    plugin: extract
     source: field_mascot
+    index:
+      - fid
   field_raidsize:
     plugin: iterator
     source: field_raidsize
