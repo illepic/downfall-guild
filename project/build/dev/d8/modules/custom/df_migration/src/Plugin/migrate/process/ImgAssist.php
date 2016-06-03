@@ -114,6 +114,9 @@ class ImgAssist extends ProcessPluginBase {
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
+    // Nuke those blank lines
+    $value = str_replace('<p>&nbsp;</p>', '', $value);
+    // Now replace images
     return $this->replaceImgAssistTags($value);
   }
 }
