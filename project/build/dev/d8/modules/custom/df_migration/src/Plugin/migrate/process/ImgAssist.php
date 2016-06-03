@@ -104,6 +104,8 @@ class ImgAssist extends ProcessPluginBase {
     // Remove the 'www.downfallguild.org' sub folder, replace with default
     $path = str_replace('www.downfallguild.org', 'default', $file->filepath);
 
+    // Instead look up public file path here
+
     // Add a beginning slash to the path.
     $image_path = '/' . $path;
 

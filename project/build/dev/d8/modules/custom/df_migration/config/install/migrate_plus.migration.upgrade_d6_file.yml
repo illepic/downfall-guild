@@ -11,7 +11,21 @@ source:
   plugin: d6_file
 process:
   fid: fid
-  filename: filename
+#  filename: filename
+  filename:
+    -
+      plugin: static_map
+      source: filename
+      bypass: true
+      map:
+        'gallery grid': ''
+        preview: ''
+        thumbnail: ''
+        img_assist_properties: ''
+        large: ''
+    -
+      plugin: skip_on_empty
+      method: row
   uri:
     plugin: file_uri
     source:
