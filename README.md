@@ -179,6 +179,7 @@ Run all dependencies up to a specific migration
     drush mi migration_name --execute-dependencies --feedback="100 items"
 
 Notes:
+  - ALL FIELDS MUST COME OVER AS STANDALONE FIELDS ON NEW CONTENT TYPES
   - Did all content with "upload" fields end up as Posts?
   - SOLVED: Need a simple map for formats, ie "If full_html, just use existing"
     - Everything just comes over as basic_html now, PERIOD.

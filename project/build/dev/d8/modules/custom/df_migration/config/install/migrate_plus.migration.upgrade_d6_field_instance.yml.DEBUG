@@ -31,7 +31,8 @@ process:
     -
       plugin: migration
       migration: d6_node_type
-      source: type_name
+      source:
+        - type_name
     -
       plugin: skip_on_empty
       method: row

@@ -17,21 +17,22 @@ process:
   type:
     plugin: static_map
     source: type
+    bypass: true
     map:
-      book: book
-      blog: post
-      character: trash
-      embedded: trash
-      event: event
-      forum: post
-      guild_app: guild_app
-      page: post
-      panel: trash
-      poll: poll
+#      book: book
+#      blog: post
+#      character: trash
+#      embedded: trash
+#      event: event
+#      forum: post
+#      guild_app: guild_app
+#      page: post
+#      panel: trash
+#      poll: poll
       raid: group
-      raidevent: event
-      story: post
-      image: image
+#      raidevent: event
+#      story: post
+#      image: image
 #  type:
 #    plugin: default_value
 #    default_value: post

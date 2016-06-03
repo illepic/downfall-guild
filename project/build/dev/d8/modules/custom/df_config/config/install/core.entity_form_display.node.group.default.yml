@@ -3,10 +3,15 @@ status: true
 dependencies:
     config:
         - field.field.node.group.body
+        - field.field.node.group.field_group_mascot
+        - image.style.thumbnail
         - node.type.group
     module:
+        - image
         - path
         - text
+_core:
+    default_config_hash: '-Cy8-G8vyc4isnhsQ1Z3YZtYdWzjQmE7N_4ykyvBCu0'
 id: node.group.default
 targetEntityType: node
 bundle: group
@@ -25,6 +30,13 @@ content:
         weight: 10
         settings: {  }
         third_party_settings: {  }
+    field_group_mascot:
+        weight: 32
+        settings:
+            progress_indicator: throbber
+            preview_image_style: thumbnail
+        third_party_settings: {  }
+        type: image_image
     path:
         type: path
         weight: 30

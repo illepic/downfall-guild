@@ -8,6 +8,8 @@ dependencies:
     module:
         - text
         - user
+_core:
+    default_config_hash: 3fS95qVbR_WJhsumN6H5Fn4M2atocTpwP1Ysfh88Jpc
 id: node.group.teaser
 targetEntityType: node
 bundle: group

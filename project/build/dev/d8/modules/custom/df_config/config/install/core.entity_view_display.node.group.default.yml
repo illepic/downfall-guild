@@ -3,10 +3,14 @@ status: true
 dependencies:
     config:
         - field.field.node.group.body
+        - field.field.node.group.field_group_mascot
         - node.type.group
     module:
+        - image
         - text
         - user
+_core:
+    default_config_hash: lL4-JMcRkmOpuLevogyVInj8gGfoMJrxqewyPAYOimw
 id: node.group.default
 targetEntityType: node
 bundle: group
@@ -18,6 +22,14 @@ content:
         weight: 101
         settings: {  }
         third_party_settings: {  }
+    field_group_mascot:
+        weight: 102
+        label: above
+        settings:
+            image_style: ''
+            image_link: ''
+        third_party_settings: {  }
+        type: image
     links:
         weight: 100
 hidden: {  }

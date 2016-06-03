@@ -24,17 +24,18 @@ process:
       plugin: extract
       index:
         - 1
-    -
-      plugin: skip_on_empty
-      method: row
+#    -
+#      plugin: skip_on_empty
+#      method: row
   bundle:
     -
       plugin: migration
       migration: d6_node_type
-      source: type_name
-    -
-      plugin: skip_on_empty
-      method: row
+      source:
+        - type_name
+#    -
+#      plugin: skip_on_empty
+#      method: row
   form_mode: constants/form_mode
   field_name: field_name
   entity_type: constants/entity_type

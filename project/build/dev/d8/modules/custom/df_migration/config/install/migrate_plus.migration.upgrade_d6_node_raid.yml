@@ -36,6 +36,11 @@ process:
   revision_uid: revision_uid
   revision_log: log
   revision_timestamp: timestamp
+  field_group_mascot:
+    plugin: extract
+    source: field_mascot
+    index:
+      - fid
   field_mascot:
     plugin: extract
     source: field_mascot
