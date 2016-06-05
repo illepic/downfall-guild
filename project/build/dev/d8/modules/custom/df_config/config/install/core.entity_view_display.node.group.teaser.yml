@@ -4,12 +4,13 @@ dependencies:
     config:
         - core.entity_view_mode.node.teaser
         - field.field.node.group.body
+        - field.field.node.group.field_group_mascot
         - node.type.group
     module:
         - text
         - user
 _core:
-    default_config_hash: 3fS95qVbR_WJhsumN6H5Fn4M2atocTpwP1Ysfh88Jpc
+    default_config_hash: OOgdFTYsTSSHR35T3ArAGMxdgKrxjOyqArkAWPL4vqY
 id: node.group.teaser
 targetEntityType: node
 bundle: group
@@ -24,4 +25,5 @@ content:
         third_party_settings: {  }
     links:
         weight: 100
-hidden: {  }
+hidden:
+    field_group_mascot: true

@@ -4,6 +4,7 @@ dependencies:
     config:
         - field.field.node.group.body
         - field.field.node.group.field_group_mascot
+        - field.field.node.group.field_group_raid_size
         - image.style.thumbnail
         - node.type.group
     module:
@@ -11,7 +12,7 @@ dependencies:
         - path
         - text
 _core:
-    default_config_hash: '-Cy8-G8vyc4isnhsQ1Z3YZtYdWzjQmE7N_4ykyvBCu0'
+    default_config_hash: fED7as9FcKeNkgZPhzW0faVQkzuMtRWY9ETX3xIn3KQ
 id: node.group.default
 targetEntityType: node
 bundle: group
@@ -37,6 +38,14 @@ content:
             preview_image_style: thumbnail
         third_party_settings: {  }
         type: image_image
+    field_group_raid_size:
+        weight: 33
+        settings:
+            match_operator: CONTAINS
+            size: 60
+            placeholder: ''
+        third_party_settings: {  }
+        type: entity_reference_autocomplete
     path:
         type: path
         weight: 30

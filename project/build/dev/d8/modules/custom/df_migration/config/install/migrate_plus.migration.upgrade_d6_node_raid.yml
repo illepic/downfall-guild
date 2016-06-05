@@ -42,13 +42,12 @@ process:
     source: field_mascot
     index:
       - fid
-  # Need to line up the values comeing over ("1", "37") with a map to our taxonomy ids
   field_group_instance_size:
     plugin: iterator
     source: field_raidsize
     process:
       value: value
-      
+
   # OLD FIELDS
   field_mascot:
     plugin: extract
