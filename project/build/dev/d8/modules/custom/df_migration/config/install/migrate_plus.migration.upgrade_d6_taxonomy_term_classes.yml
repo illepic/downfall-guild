@@ -5,9 +5,10 @@ id: upgrade_d6_taxonomy_term_classes
 migration_tags:
   - 'Drupal 6'
 migration_group: migrate_drupal_6
-label: 'Taxonomy terms for instance_size vocab'
+label: 'Taxonomy terms for WoW character classes '
 source:
   plugin: embedded_data
+  # The uid's below are just there for unique keys, they do not carry over to Drupal
   data_rows:
     -
       term_name: 'Death Knight'
@@ -45,22 +46,16 @@ source:
     -
       term_name: 'Warrior'
       uid: 677
+  # "uid" is the key on our data that the migration can use for unique identifiers. Drupal still
+  # assigns proper tid's based on available tid's in the system
   ids:
     uid:
       type: integer
 process:
-#  tid: tid
   vid:
     plugin: default_value
     default_value: classes
   name: term_name
-#  description: description
-#  weight: weight
-#  parent:
-#    plugin: migration
-#    migration: upgrade_d6_taxonomy_term
-#    source: parent
-#  changed: timestamp
 destination:
   plugin: 'entity:taxonomy_term'
 migration_dependencies:

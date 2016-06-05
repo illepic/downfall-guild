@@ -3,3 +3,8 @@ type: module
 description: Downfall site configuration
 core: 8.x
 package: Downfall
+dependencies:
+  - node
+  - field
+  - book
+  - taxonomy

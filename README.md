@@ -81,7 +81,8 @@ cd /var/www/df/web/d8
 drupal module:install df_config df_migration
 
 OR, if we need everything and it wasn't enabled on a fresh provision (ie you've run drush site-install to blow everything away and start over):
-drupal module:install devel migrate_upgrade migrate_plus migrate_tools migrate_manifest config_devel kint df_config df_migration
+
+drupal module:install df_migration
 ````
 
 Rollback stuck migration:
