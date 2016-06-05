@@ -1,0 +1,71 @@
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_taxonomy_term_classes
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'Taxonomy terms for instance_size vocab'
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      term_name: 'Death Knight'
+      uid: 666
+    -
+      term_name: 'Demon Hunter'
+      uid: 667
+    -
+      term_name: 'Druid'
+      uid: 668
+    -
+      term_name: 'Hunter'
+      uid: 669
+    -
+      term_name: 'Mage'
+      uid: 670
+    -
+      term_name: 'Monk'
+      uid: 671
+    -
+      term_name: 'Paladin'
+      uid: 672
+    -
+      term_name: 'Priest'
+      uid: 673
+    -
+      term_name: 'Rogue'
+      uid: 674
+    -
+      term_name: 'Shaman'
+      uid: 675
+    -
+      term_name: 'Warlock'
+      uid: 676
+    -
+      term_name: 'Warrior'
+      uid: 677
+  ids:
+    uid:
+      type: integer
+process:
+#  tid: tid
+  vid:
+    plugin: default_value
+    default_value: classes
+  name: term_name
+#  description: description
+#  weight: weight
+#  parent:
+#    plugin: migration
+#    migration: upgrade_d6_taxonomy_term
+#    source: parent
+#  changed: timestamp
+destination:
+  plugin: 'entity:taxonomy_term'
+migration_dependencies:
+  required:
+    - upgrade_d6_taxonomy_vocabulary
+    - upgrade_d6_taxonomy_term
+    - upgrade_d6_taxonomy_term_instance_size
+  optional: {  }
