@@ -36,11 +36,29 @@ process:
   revision_uid: revision_uid
   revision_log: log
   revision_timestamp: timestamp
+  # NEW FIELDS
   field_group_mascot:
     plugin: extract
     source: field_mascot
     index:
       - fid
+  # Need to line up the values comeing over ("1", "37") with a map to our taxonomy ids
+  field_group_instance_size:
+    plugin: iterator
+    source: field_raidsize
+    process:
+      value: value
+      format:
+        -
+          plugin: static_map
+          bypass: true
+          source: format
+          map:
+            - null
+        -
+          plugin: skip_on_empty
+          method: process
+  # OLD FIELDS
   field_mascot:
     plugin: extract
     source: field_mascot

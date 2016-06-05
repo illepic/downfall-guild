@@ -1,0 +1,9 @@
+uuid: 36539dc3-b44a-4d49-8b1f-f1fc550f7ee3
+langcode: en
+status: true
+dependencies: {  }
+name: 'Instance Size'
+vid: instance_size
+description: ''
+hierarchy: 0
+weight: 0
