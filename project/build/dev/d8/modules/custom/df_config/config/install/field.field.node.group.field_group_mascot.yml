@@ -7,7 +7,7 @@ dependencies:
     module:
         - image
 _core:
-    default_config_hash: XsT_z1ZYAwVwYINXocGnPpJt-fJvQ3neCkKgEC4xEJ8
+    default_config_hash: tdW3FbTK8k2Eh4weogfXnT1kYR0gQTQ0JTf5xQfVUL4
 id: node.group.field_group_mascot
 field_name: field_group_mascot
 entity_type: node

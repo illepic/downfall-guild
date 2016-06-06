@@ -5,6 +5,8 @@ dependencies:
         - field.storage.node.field_group_raid_size
         - node.type.group
         - taxonomy.vocabulary.instance_size
+_core:
+    default_config_hash: VH4MNsGI2A90kt2lt10UzNCCChARu1MoM3ei0mPsyj4
 id: node.group.field_group_raid_size
 field_name: field_group_raid_size
 entity_type: node

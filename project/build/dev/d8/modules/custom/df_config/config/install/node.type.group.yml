@@ -8,7 +8,7 @@ third_party_settings:
         available_menus: {  }
         parent: ''
 _core:
-    default_config_hash: YPUJVVheFwydiKoASRmHLccoIDqgHvPeyXFpjPVUUWk
+    default_config_hash: DFVf3ulVDba9xc1r0jmysidYl3QYYss7MNiVrzkC7a4
 name: Group
 type: group
 description: 'Create a raid that gets its own section on the site. Members can subscribe to it and you, as the creator of the raid, can automatically or manually add members to it. Forum posts, images, events, videos, boss kills, news, etc can all be posted to this raid.'

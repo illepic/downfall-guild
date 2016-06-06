@@ -5,6 +5,7 @@ dependencies:
         - field.field.node.group.body
         - field.field.node.group.field_group_mascot
         - field.field.node.group.field_group_raid_size
+        - field.field.node.group.field_week_days
         - image.style.thumbnail
         - node.type.group
     module:
@@ -12,7 +13,7 @@ dependencies:
         - path
         - text
 _core:
-    default_config_hash: fED7as9FcKeNkgZPhzW0faVQkzuMtRWY9ETX3xIn3KQ
+    default_config_hash: KySqVMdnsEjEzPuY-yItfV7k1OfnD4KVV6KYvlkhZUs
 id: node.group.default
 targetEntityType: node
 bundle: group
@@ -46,6 +47,11 @@ content:
             placeholder: ''
         third_party_settings: {  }
         type: entity_reference_autocomplete
+    field_week_days:
+        weight: 34
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
     path:
         type: path
         weight: 30

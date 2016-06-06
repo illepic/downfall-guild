@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-    default_config_hash: _5TMg9INWJqe_VD6mV3gIPnmHGcgMiN-0I1hKV4-loE
+    default_config_hash: 3uq9DrkmopOsfFdM31LABqL09RpQ9jnp_EzZ1odJ0rs
 name: 'Instance Size'
 vid: instance_size
 description: ''

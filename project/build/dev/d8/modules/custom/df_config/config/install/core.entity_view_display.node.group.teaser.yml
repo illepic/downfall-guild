@@ -5,12 +5,14 @@ dependencies:
         - core.entity_view_mode.node.teaser
         - field.field.node.group.body
         - field.field.node.group.field_group_mascot
+        - field.field.node.group.field_group_raid_size
+        - field.field.node.group.field_week_days
         - node.type.group
     module:
         - text
         - user
 _core:
-    default_config_hash: OOgdFTYsTSSHR35T3ArAGMxdgKrxjOyqArkAWPL4vqY
+    default_config_hash: VoFE6W3_V57CAwjGbytk6pyw5Wncas7p4gMsWH5Vb7Q
 id: node.group.teaser
 targetEntityType: node
 bundle: group
@@ -27,3 +29,5 @@ content:
         weight: 100
 hidden:
     field_group_mascot: true
+    field_group_raid_size: true
+    field_week_days: true

@@ -180,7 +180,6 @@ Run all dependencies up to a specific migration
     drush mi migration_name --execute-dependencies --feedback="100 items"
 
 Notes:
-  - ALL FIELDS MUST COME OVER AS STANDALONE FIELDS ON NEW CONTENT TYPES
   - Did all content with "upload" fields end up as Posts?
   - SOLVED: Need a simple map for formats, ie "If full_html, just use existing"
     - Everything just comes over as basic_html now, PERIOD.
@@ -190,9 +189,9 @@ Notes:
     - Now part of df_config module, provides a basic content type, comments field.
   - SOLVED: Blog/Forums fail to move to Post content type if they have an "upload"
   - img_assist process plugin should lookup in D8 db, file_managed table to get public file uri instead of d6 table doing the hard str_replace
-  - On file import, ditch all thumbnail and gallery size entries
+  - SOLVED: On file import, ditch all thumbnail and gallery size entries
   - Need content type for image to understand the Image field
-  - Failed (maybe run later?) upgrade_d6_field_instance, upgrade_d6_field_instance_widget_settings
+  - DON'T NEED: Failed (maybe run later?) upgrade_d6_field_instance, upgrade_d6_field_instance_widget_settings
     - Yeah, all fields failed to come over
     - We really don't want these though. We have the definitions if we **really** want them. We'll transform instead.
 
