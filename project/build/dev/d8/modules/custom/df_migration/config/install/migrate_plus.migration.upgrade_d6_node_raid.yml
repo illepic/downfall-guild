@@ -71,42 +71,6 @@ process:
         map:
           active: 1
   # OLD FIELDS
-#  field_mascot:
-#    plugin: extract
-#    source: field_mascot
-#    index:
-#      - fid
-#  field_raidsize:
-#    plugin: iterator
-#    source: field_raidsize
-#    process:
-#      value: value
-#      format:
-#        -
-#          plugin: static_map
-#          bypass: true
-#          source: format
-#          map:
-#            - null
-#        -
-#          plugin: skip_on_empty
-#          method: process
-#  field_raiddays:
-#    plugin: iterator
-#    source: field_raiddays
-#    process:
-#      value: value
-#      format:
-#        -
-#          plugin: static_map
-#          bypass: true
-#          source: format
-#          map:
-#            - null
-#        -
-#          plugin: skip_on_empty
-#          method: process
-
   #field_raidroster: field_raidroster
 destination:
   plugin: 'entity:node'
