@@ -3,8 +3,11 @@ status: true
 dependencies:
     config:
         - field.field.node.group.body
+        - field.field.node.group.field_end_time
+        - field.field.node.group.field_group_active
         - field.field.node.group.field_group_mascot
         - field.field.node.group.field_group_raid_size
+        - field.field.node.group.field_start_time
         - field.field.node.group.field_week_days
         - image.style.thumbnail
         - node.type.group
@@ -32,6 +35,17 @@ content:
         weight: 10
         settings: {  }
         third_party_settings: {  }
+    field_end_time:
+        weight: 36
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
+    field_group_active:
+        weight: 37
+        settings:
+            display_label: false
+        third_party_settings: {  }
+        type: boolean_checkbox
     field_group_mascot:
         weight: 32
         settings:
@@ -47,6 +61,11 @@ content:
             placeholder: ''
         third_party_settings: {  }
         type: entity_reference_autocomplete
+    field_start_time:
+        weight: 35
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
     field_week_days:
         weight: 34
         settings: {  }
