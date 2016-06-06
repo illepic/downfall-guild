@@ -58,6 +58,18 @@ process:
     source: field_raiddays
     process:
       value: value
+  field_start_time: field_raidstart
+  field_end_time: field_raidend
+  field_group_active:
+    plugin: iterator
+    source: field_raid_status
+    process:
+      value:
+        plugin: static_map
+        source: value
+        default_value: 0
+        map:
+          active: 1
   # OLD FIELDS
 #  field_mascot:
 #    plugin: extract
@@ -79,34 +91,23 @@ process:
 #        -
 #          plugin: skip_on_empty
 #          method: process
-  field_raiddays:
-    plugin: iterator
-    source: field_raiddays
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
-  field_raidstart: field_raidstart
-  field_raidend: field_raidend
+#  field_raiddays:
+#    plugin: iterator
+#    source: field_raiddays
+#    process:
+#      value: value
+#      format:
+#        -
+#          plugin: static_map
+#          bypass: true
+#          source: format
+#          map:
+#            - null
+#        -
+#          plugin: skip_on_empty
+#          method: process
+
   #field_raidroster: field_raidroster
-  field_raid_status:
-    plugin: iterator
-    source: field_raid_status
-    process:
-      value:
-        plugin: static_map
-        source: value
-        default_value: 0
-        map:
-          active: 1
 destination:
   plugin: 'entity:node'
 migration_dependencies:
