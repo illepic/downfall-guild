@@ -42,33 +42,51 @@ process:
     source: field_mascot
     index:
       - fid
-  field_group_instance_size:
+  field_group_raid_size:
     plugin: iterator
     source: field_raidsize
     process:
-      value: value
-
+      target_id:
+        plugin: static_map
+        source: value
+        map:
+          '5-man': 106
+          '10-man': 107
+          '25-man': 108
+#    plugin: iterator
+#    source: field_raidsize
+#    process:
+#      value:
+#        plugin: default_value
+#        default_value: 107
+#        -
+#          plugin: static_map
+#          source: value
+#          map:
+#            '5-man': 106
+#            '10-man': 107
+#            '25-man': 108
   # OLD FIELDS
-  field_mascot:
-    plugin: extract
-    source: field_mascot
-    index:
-      - fid
-  field_raidsize:
-    plugin: iterator
-    source: field_raidsize
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
+#  field_mascot:
+#    plugin: extract
+#    source: field_mascot
+#    index:
+#      - fid
+#  field_raidsize:
+#    plugin: iterator
+#    source: field_raidsize
+#    process:
+#      value: value
+#      format:
+#        -
+#          plugin: static_map
+#          bypass: true
+#          source: format
+#          map:
+#            - null
+#        -
+#          plugin: skip_on_empty
+#          method: process
   field_raiddays:
     plugin: iterator
     source: field_raiddays
@@ -104,7 +122,7 @@ migration_dependencies:
     - upgrade_d6_user
     - upgrade_d6_node_type
     - upgrade_d6_node_settings
-    - upgrade_d6_taxonomy_term_instance_size.yml
+    - upgrade_d6_taxonomy_term_instance_size
   optional:
     - upgrade_d6_field_instance_widget_settings
     - upgrade_d6_field_formatter_settings
