@@ -42,7 +42,7 @@ git clone git@github.com:geerlingguy/drupal-vm.git
 Symlink `config.yml` and `drupal.make.yml` from `config/` into `drupal-vm/`. Run from root of repo:
 
 ````shell
-cd drupal-vm && ln -sf ../config/config.yml && ln -sf ../config/drupal.make.yml
+cd drupal-vm && ln -sf ../config/config.yml && ln -sf ../config/drupal.composer.json
 ````
 
 DELETE the D8 folder and kick off Vagrant. Run from root of folder (you'll need to `cd ..` if you just ran the prior command):
@@ -171,7 +171,7 @@ DOCUMENTATION PURPOSES ONLY, NO NEED TO RUN: This was already run, but to config
 Run ALL the migrations:
 
     drush mi --feedback="100 items"
-    
+
 Run all dependencies up to a specific migration
 
     drush mi migration_name --execute-dependencies --feedback="100 items"
