@@ -21,7 +21,8 @@ vagrant_public_ip: ""
 # http://docs.drupalvm.com/en/latest/extras/syncing-folders/ for more info.
 vagrant_synced_folders:
   # The first synced folder will be used for the default Drupal installation, if
-  # build_makefile: is 'true'.
+  # any of the build_* settings are 'true'. By default the folder is set to
+  # the drupal-vm folder.
   - local_path: ../project
     destination: /var/www/df
     type: nfs
@@ -34,23 +35,36 @@ vagrant_cpus: 2
 # The web server software to use. Can be either 'apache' or 'nginx'.
 drupalvm_webserver: apache
 
-# Set this to false if you are using a different site deployment strategy and
+# Set this to 'false' if you are using a different site deployment strategy and
 # would like to configure 'vagrant_synced_folders' and 'apache_vhosts' manually.
-build_makefile: true
+build_makefile: false
 drush_makefile_path: "{{ config_dir }}/drupal.make.yml"
 
-# Set this to false if you don't need to install drupal (using the drupal_*
+# Set 'build_makefile' to 'false' and this to 'true' if you are using a
+# composer based site deployment strategy.
+build_composer: true
+drupal_composer_path: "{{ config_dir }}/drupal.composer.json"
+drupal_composer_install_dir: "/var/www/df/web/d8"
+drupal_composer_dependencies:
+  - "drupal/devel:1.0.x-dev"
+
+# Set this to 'true' and 'build_makefile', 'build_composer' to 'false' if you
+# are using Composer's create-project as a site deployment strategy.
+build_composer_project: false
+drupal_composer_project_package: "drupal-composer/drupal-project:8.x-dev"
+drupal_composer_project_options: "--prefer-dist --stability dev --no-interaction"
+
+# Set this to 'false' if you don't need to install drupal (using the drupal_*
 # settings below), but instead copy down a database (e.g. using drush sql-sync).
 install_site: true
 
-# Settings for building a Drupal site from a makefile (if 'build_makefile:'
-# is 'true').
+# Settings for installing a Drupal site (if 'install_site:' is 'true').
 drupal_major_version: 8
-drupal_core_path: "/var/www/df/web/d8"
+drupal_core_path: "{{ drupal_composer_install_dir }}/web"
 drupal_domain: "d8.local.downfallguild.org"
 drupal_site_name: "DF"
 drupal_install_profile: standard
-drupal_enable_modules: [ 'df_config', 'df_migration' ]
+drupal_enable_modules: [ 'devel' ]
 drupal_account_name: admin
 drupal_account_pass: admin
 drupal_mysql_user: dfdbuser
@@ -71,7 +85,7 @@ drupalvm_cron_jobs: []
 
 # Drupal VM automatically creates a drush alias file in your ~/.drush folder if
 # this variable is 'true'.
-configure_local_drush_aliases: true
+configure_drush_aliases: true
 
 # Apache VirtualHosts. Add one for each site you are running inside the VM. For
 # multisite deployments, you can point multiple servernames at one documentroot.
@@ -105,6 +119,9 @@ apache_vhosts:
   - servername: "{{ vagrant_ip }}"
     serveralias: "dashboard.{{ vagrant_hostname }}"
     documentroot: "{{ dashboard_install_dir }}"
+    extra_parameters: |
+          ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ dashboard_install_dir }}"
+          DirectoryIndex index.html
 
 apache_remove_default_vhost: true
 apache_mods_enabled:
@@ -120,10 +137,6 @@ apache_mods_enabled:
 nginx_hosts:
   - server_name: "{{ drupal_domain }}"
     root: "{{ drupal_core_path }}"
-    is_php: true
-
-  - server_name: "d8.local.downfallguild.org"
-    root: "/var/www/df/web/d8"
     is_php: true
 
   - server_name: "d6.local.downfallguild.org"
@@ -148,8 +161,8 @@ nginx_hosts:
 nginx_remove_default_vhost: true
 nginx_ppa_use: true
 
-# MySQL Databases and users. If build_makefile: is true, first database will
-# be used for the makefile-built site.
+# MySQL Databases and users. If 'install_site' is 'true', first database will
+# be used for the site.
 mysql_databases:
   - name: "{{ drupal_mysql_database }}"
     encoding: utf8
@@ -174,9 +187,9 @@ installed_extras:
   - mailhog
   # - memcached
   # - newrelic
-  - nodejs
+  # - nodejs
   - pimpmylog
-  - redis
+  # - redis
   # - ruby
   # - selenium
   # - solr
@@ -187,17 +200,6 @@ installed_extras:
 # Add any extra apt or yum packages you would like installed.
 extra_packages:
   - sqlite
-  - unzip
-
-# `nodejs` must be in installed_extras for this to work. Valid examples: "0.10",
-# "0.12", "4.x", "5.x".
-nodejs_version: "4.x"
-nodejs_npm_global_packages: []
-nodejs_install_npm_user: "{{ drupalvm_user }}"
-
-# `ruby` must be in installed_extras for this to work.
-ruby_install_gems_user: "{{ drupalvm_user }}"
-ruby_install_gems: []
 
 # You can configure almost anything else on the server in the rest of this file.
 extra_security_enabled: false
@@ -242,8 +244,8 @@ composer_path: /usr/bin/composer
 composer_home_path: "/home/{{ drupalvm_user }}/.composer"
 composer_home_owner: "{{ drupalvm_user }}"
 composer_home_group: "{{ drupalvm_user }}"
-# composer_global_packages:
-#   - { name: phpunit/phpunit, release: '@stable' }
+composer_global_packages:
+  - { name: hirak/prestissimo, release: '^0.3' }
 
 # Run specified scripts before or after VM is provisioned. Path is relative to
 # the `provisioning/playbook.yml` file.
@@ -258,7 +260,18 @@ mysql_slow_query_time: 2
 mysql_wait_timeout: 300
 adminer_install_filename: index.php
 
-# Varnish Configuration.
+# Node.js configuration (if enabled above).
+# Valid examples: "0.10", "0.12", "4.x", "5.x".
+nodejs_version: "4.x"
+nodejs_npm_global_packages: []
+nodejs_install_npm_user: "{{ drupalvm_user }}"
+npm_config_prefix: "~/.npm-global"
+
+# Ruby Configuration (if enabled above).
+ruby_install_gems_user: "{{ drupalvm_user }}"
+ruby_install_gems: []
+
+# Varnish Configuration (if enabled above).
 varnish_listen_port: "81"
 varnish_default_vcl_template_path: templates/drupalvm.vcl.j2
 varnish_default_backend_host: "127.0.0.1"
@@ -279,7 +292,7 @@ php_xdebug_idekey: PHPSTORM
 php_xdebug_max_nesting_level: 256
 
 # Solr Configuration (if enabled above).
-solr_version: "4.10.4"
+solr_version: "5.5.1"
 solr_xms: "64M"
 solr_xmx: "128M"
 
