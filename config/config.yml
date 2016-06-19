@@ -201,6 +201,7 @@ installed_extras:
 extra_packages:
   - sqlite
 
+
 # You can configure almost anything else on the server in the rest of this file.
 extra_security_enabled: false
 
@@ -249,8 +250,10 @@ composer_global_packages:
 
 # Run specified scripts before or after VM is provisioned. Path is relative to
 # the `provisioning/playbook.yml` file.
-pre_provision_scripts: []
-post_provision_scripts: []
+pre_provision_scripts:
+  - "../../project/scripts/vm/pre_provision.sh"
+post_provision_scripts:
+  - "../../project/scripts/vm/post_provision.sh"
   # - "../examples/scripts/configure-solr.sh"
 
 # MySQL Configuration.

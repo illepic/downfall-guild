@@ -9,6 +9,7 @@ Full details here: https://github.com/illepic/downfall-guild/wiki
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 * [Vagrant](https://www.vagrantup.com/downloads.html)
   * Install Vagrant plugin: vagrant-hostsupdater: `vagrant plugin install vagrant-hostsupdater`
+  * Install Vagrant plugin: vagrant-cachier: `vagrant plugin install vagrant-cachier`
 * [https://git-scm.com/downloads](Git)
 * [Node >= 4.2.3/NPM >= 2.14.7](https://nodejs.org/en/download/)
   * Install gulp globally and install all project packages: `npm install gulp -g && npm install`
@@ -33,10 +34,17 @@ All commands listed are assumed to be run from the root of the project unless ot
 
 ## Initialize: D8 + VM
 
+To initialize the project, from the root of the project run:
+
+    bash ./project/scripts/start.sh
+
+This will attempt to run the following:
+
+
 Clone the drupal-vm repo into the root of our project if it does not exist already. Run from root of repo:
 
 ````shell
-git clone git@github.com:geerlingguy/drupal-vm.git
+git clone git@github.com:geerlingguy/drupal-vm.git && bash ./project/scripts/start.sh
 ````
 
 Symlink `config.yml` and `drupal.make.yml` from `config/` into `drupal-vm/`. Run from root of repo:

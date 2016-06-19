@@ -1,4 +1,6 @@
 <?php
+
+
 $databases['migrate']['default'] = array (
   'database' => 'downfall_d6',
   'username' => 'dfdbuser',
