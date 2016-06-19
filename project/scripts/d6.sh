@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Pull down d6 site
+rsync -zvrP illepic@direct.illepic.com:dfmigrate/ project/dfmigrate/
+
 # cd to drupal-vm
 cd drupal-vm
 

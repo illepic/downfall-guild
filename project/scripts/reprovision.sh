@@ -15,5 +15,5 @@ cd ../
 # Symlinks
 bash ./project/scripts/symlinks.sh
 
-# We don't want to rebuild d6 every time
+# We don't want to rebuild d6 every time on provision
 #bash ./project/scripts/d6.sh

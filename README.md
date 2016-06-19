@@ -28,15 +28,19 @@ OSX-specific
 
 Ubuntu-specific
 
-* `sudo apt-get install nfs-common nfs-kernel-server`
+* `sudo apt install nfs-common nfs-kernel-server`
 
 All commands listed are assumed to be run from the root of the project unless otherwise noted.
 
 ## Initialize: D8 + VM
 
-To initialize the project, from the root of the project run:
+To initialize the project, from the root of the project run (warning, takes a long time):
 
     bash ./project/scripts/start.sh
+
+To reset and build D8 again, run from root of project:
+
+    bash ./project/scripts/reprovision.sh
 
 This will attempt to run the following:
 
@@ -86,7 +90,7 @@ Enable our modules by ssh'ing into the Vagrant box first. Run from root of repo:
 ````shell
 cd drupal-vm && vagrant ssh
 cd /var/www/df/web/d8/web
-drupal module:install df_config df_migration
+drupal module:install df_migration
 
 OR, if we need everything and it wasn't enabled on a fresh provision (ie you've run drush site-install to blow everything away and start over):
 

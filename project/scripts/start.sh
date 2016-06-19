@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# Pull down d6 site
-rsync -zvrP illepic@direct.illepic.com:dfmigrate/ project/dfmigrate/
-
 # Clone drupal-vm
 git clone git@github.com:geerlingguy/drupal-vm.git
 
