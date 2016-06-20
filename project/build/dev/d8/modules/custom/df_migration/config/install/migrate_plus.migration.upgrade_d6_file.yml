@@ -26,10 +26,10 @@ process:
     -
       plugin: skip_on_empty
       method: row
-    # TESTING RENAMING FILES
     -
-      plugin: default_value
-      default_value: imagemctestimage.jpg
+      plugin: callback
+      callable: basename
+      source: filepath
   uri:
     plugin: file_uri
     source:

@@ -11,7 +11,7 @@ dependencies:
         - text
         - user
 _core:
-    default_config_hash: Bq0tufhYiywhD-rP6vUE9aXz5t66BCRL-J_vTOIGy0A
+    default_config_hash: zwyKbak2uFo2ow1VpH-uWRjSIPboL41mQMgClQE9024
 id: node.image.default
 targetEntityType: node
 bundle: image
