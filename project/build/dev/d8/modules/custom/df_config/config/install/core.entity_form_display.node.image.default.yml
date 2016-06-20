@@ -3,14 +3,16 @@ status: true
 dependencies:
     config:
         - field.field.node.image.body
+        - field.field.node.image.field_df_image
         - field.field.node.image.field_group
-        - field.field.node.image.field_image
         - image.style.thumbnail
         - node.type.image
     module:
         - image
         - path
         - text
+_core:
+    default_config_hash: YBq9AQaHVbx49XIrQCPcbIbx8VQH_MyTGzkdrnQ94KY
 id: node.image.default
 targetEntityType: node
 bundle: image
@@ -29,6 +31,13 @@ content:
         weight: 10
         settings: {  }
         third_party_settings: {  }
+    field_df_image:
+        weight: 34
+        settings:
+            progress_indicator: throbber
+            preview_image_style: thumbnail
+        third_party_settings: {  }
+        type: image_image
     field_group:
         weight: 33
         settings:
@@ -37,13 +46,6 @@ content:
             placeholder: ''
         third_party_settings: {  }
         type: entity_reference_autocomplete
-    field_image:
-        weight: 32
-        settings:
-            progress_indicator: throbber
-            preview_image_style: thumbnail
-        third_party_settings: {  }
-        type: image_image
     path:
         type: path
         weight: 30

@@ -6,6 +6,8 @@ dependencies:
         - node.type.image
     module:
         - text
+_core:
+    default_config_hash: z3xalQaEj_JiarZcewIOwMwDDrkRPEo3b5zOwosGBdA
 id: node.image.body
 field_name: body
 entity_type: node

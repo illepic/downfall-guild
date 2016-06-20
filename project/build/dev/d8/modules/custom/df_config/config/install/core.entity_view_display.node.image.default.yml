@@ -3,13 +3,15 @@ status: true
 dependencies:
     config:
         - field.field.node.image.body
+        - field.field.node.image.field_df_image
         - field.field.node.image.field_group
-        - field.field.node.image.field_image
         - node.type.image
     module:
         - image
         - text
         - user
+_core:
+    default_config_hash: Bq0tufhYiywhD-rP6vUE9aXz5t66BCRL-J_vTOIGy0A
 id: node.image.default
 targetEntityType: node
 bundle: image
@@ -21,6 +23,14 @@ content:
         weight: 101
         settings: {  }
         third_party_settings: {  }
+    field_df_image:
+        weight: 104
+        label: above
+        settings:
+            image_style: ''
+            image_link: ''
+        third_party_settings: {  }
+        type: image
     field_group:
         weight: 103
         label: above
@@ -28,14 +38,6 @@ content:
             link: true
         third_party_settings: {  }
         type: entity_reference_label
-    field_image:
-        weight: 102
-        label: above
-        settings:
-            image_style: ''
-            image_link: ''
-        third_party_settings: {  }
-        type: image
     links:
         weight: 100
 hidden: {  }

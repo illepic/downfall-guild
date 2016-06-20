@@ -5,6 +5,8 @@ dependencies:
         - field.storage.node.field_group
         - node.type.group
         - node.type.image
+_core:
+    default_config_hash: tC9QLWyWVFjO46gdXabPiXmZuQ9iU36UiK67wYuZHHk
 id: node.image.field_group
 field_name: field_group
 entity_type: node

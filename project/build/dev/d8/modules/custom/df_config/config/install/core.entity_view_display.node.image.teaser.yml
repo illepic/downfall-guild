@@ -4,10 +4,14 @@ dependencies:
     config:
         - core.entity_view_mode.node.teaser
         - field.field.node.image.body
+        - field.field.node.image.field_df_image
+        - field.field.node.image.field_group
         - node.type.image
     module:
         - text
         - user
+_core:
+    default_config_hash: Z9OtHfxrxjL9AT_9PcLv3GF55jlLRc-viOkxMJueOiQ
 id: node.image.teaser
 targetEntityType: node
 bundle: image
@@ -22,4 +26,6 @@ content:
         third_party_settings: {  }
     links:
         weight: 100
-hidden: {  }
+hidden:
+    field_df_image: true
+    field_group: true
