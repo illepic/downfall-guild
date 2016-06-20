@@ -3,6 +3,7 @@ status: true
 dependencies:
     config:
         - field.field.node.image.body
+        - field.field.node.image.field_group
         - field.field.node.image.field_image
         - image.style.thumbnail
         - node.type.image
@@ -28,6 +29,14 @@ content:
         weight: 10
         settings: {  }
         third_party_settings: {  }
+    field_group:
+        weight: 33
+        settings:
+            match_operator: CONTAINS
+            size: 60
+            placeholder: ''
+        third_party_settings: {  }
+        type: entity_reference_autocomplete
     field_image:
         weight: 32
         settings:

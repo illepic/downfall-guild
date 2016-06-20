@@ -9,7 +9,7 @@ third_party_settings:
         parent: ''
 name: Image
 type: image
-description: ''
+description: 'Upload and share an image.'
 help: ''
 new_revision: false
 preview_mode: 1

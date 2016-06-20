@@ -3,6 +3,7 @@ status: true
 dependencies:
     config:
         - field.field.node.image.body
+        - field.field.node.image.field_group
         - field.field.node.image.field_image
         - node.type.image
     module:
@@ -20,6 +21,13 @@ content:
         weight: 101
         settings: {  }
         third_party_settings: {  }
+    field_group:
+        weight: 103
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
     field_image:
         weight: 102
         label: above

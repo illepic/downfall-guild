@@ -36,7 +36,7 @@ process:
   revision_uid: revision_uid
   revision_log: log
   revision_timestamp: timestamp
-  # Testing default image
+  # Convert old Image module to new image field
   field_image:
     -
       source: nid
