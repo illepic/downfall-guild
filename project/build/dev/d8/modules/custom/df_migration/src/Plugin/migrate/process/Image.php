@@ -26,7 +26,7 @@ class Image extends ProcessPluginBase {
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     // Within the D6 Image table, find the D6 fid and return it
-    $image = Database::getConnection('default', 'migrate')->query('SELECT * FROM {image} WHERE nid=:nid', array(':nid' => $value))->fetchObject();
+    $image = Database::getConnection('default', 'migrate')->query('SELECT * FROM {image} WHERE nid=:nid AND image_size=:image_size', array(':nid' => $value, ':image_size' => '_original'))->fetchObject();
 
     // Return the D6 fid (so this can be part of a Migrate process chain)
     return $image->fid;
