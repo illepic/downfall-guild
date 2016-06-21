@@ -199,7 +199,7 @@ Notes:
   - SOLVED: Blog/Forums fail to move to Post content type if they have an "upload"
   - img_assist process plugin should lookup in D8 db, file_managed table to get public file uri instead of d6 table doing the hard str_replace
   - SOLVED: On file import, ditch all thumbnail and gallery size entries
-  - Need content type for image to understand the Image field
+  - SOLVED: Need content type for image to understand the Image field
   - DON'T NEED: Failed (maybe run later?) upgrade_d6_field_instance, upgrade_d6_field_instance_widget_settings
     - Yeah, all fields failed to come over
     - We really don't want these though. We have the definitions if we **really** want them. We'll transform instead.
