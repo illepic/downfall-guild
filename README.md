@@ -4,7 +4,7 @@ A Migrate and Features implementation to pull content and structure for Drupal 6
 
 Full details here: https://github.com/illepic/downfall-guild/wiki
 
-## Local Environment Requirements
+## Local Host Environment Requirements
 
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 * [Vagrant](https://www.vagrantup.com/downloads.html)
@@ -13,20 +13,22 @@ Full details here: https://github.com/illepic/downfall-guild/wiki
 * [https://git-scm.com/downloads](Git)
 * [Node >= 4.2.3/NPM >= 2.14.7](https://nodejs.org/en/download/)
   * Install gulp globally and install all project packages: `npm install gulp -g && npm install`
+* [https://docs.ansible.com/ansible/intro_installation.html](Ansible)
+  * OSX: `brew install ansible`, Ubuntu: `sudo apt install ansible`, Windows: LOL
 
-Windows-specific:
+### Windows-specific:
 
-WARNING: As of 2016/01/01 this box is simply not working on Windows
+WARNING: As of 2016/01/01 this box is simply not working on Windows. Will investigate further at a later date.
 
 * [Symlinks enabled for Windows](http://blog.puphpet.com/blog/2015/06/25/windows-symlinks/)
 * (Optional) [Cmder](http://cmder.net/) running as administrator
 * (Optional) [HeidiSQL](http://www.heidisql.com/) for GUI database access
 
-OSX-specific
+### OSX-specific
 
 * [SequelPro](http://www.sequelpro.com/) for GUI database access
 
-Ubuntu-specific
+### Ubuntu-specific
 
 * `sudo apt install nfs-common nfs-kernel-server`
 
