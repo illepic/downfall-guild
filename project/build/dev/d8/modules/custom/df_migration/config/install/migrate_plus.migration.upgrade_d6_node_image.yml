@@ -44,6 +44,10 @@ process:
     -
       plugin: migration
       migration: upgrade_d6_file
+  # Convert OG to node reference
+  field_group:
+    source: nid
+    plugin: og_lookup
 destination:
   plugin: 'entity:node'
 migration_dependencies:
