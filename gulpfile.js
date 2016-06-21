@@ -5,7 +5,12 @@ var gulp = require('gulp')
   ,browserSync = require('browser-sync')
   ,reload = browserSync.reload
   ,sass = require('gulp-sass')
-  ,exec = require('gulp-exec');
+  ,exec = require('gulp-exec')
+  ,execSync = require('child_process').execSync;
+
+function sh(cmd) {
+  console.log(execSync(cmd, {encoding: 'utf8'}));
+}
 
 gulp.task('default', function() {
 
