@@ -49,12 +49,9 @@ content:
         type: entity_reference_autocomplete
     field_image_gallery:
         weight: 35
-        settings:
-            match_operator: CONTAINS
-            size: 60
-            placeholder: ''
+        settings: {  }
         third_party_settings: {  }
-        type: entity_reference_autocomplete
+        type: options_select
     path:
         type: path
         weight: 30

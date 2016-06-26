@@ -49,7 +49,13 @@ process:
     source: nid
     plugin: og_lookup
   field_image_gallery:
-
+    -
+      plugin: taxonomy_lookup
+      source: nid
+      vocabulary: 8 # vocab id of image galleries
+    -
+      plugin: default_value
+      default_value: 88 # Random Crap vocab
 destination:
   plugin: 'entity:node'
 migration_dependencies:
@@ -58,6 +64,7 @@ migration_dependencies:
     - upgrade_d6_node_type
     - upgrade_d6_file
     - upgrade_d6_node_raid
+    - upgrade_d6_taxonomy_term
 #    - upgrade_d6_node_settings
   optional:
     - upgrade_d6_field_instance_widget_settings

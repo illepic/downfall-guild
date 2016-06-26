@@ -38,7 +38,8 @@ destination:
 migration_dependencies:
   required:
     - upgrade_d6_user_role
-  optional:
     - upgrade_d6_user_picture_file
     - upgrade_user_picture_entity_display
     - upgrade_user_picture_entity_form_display
+  optional: {}
+
