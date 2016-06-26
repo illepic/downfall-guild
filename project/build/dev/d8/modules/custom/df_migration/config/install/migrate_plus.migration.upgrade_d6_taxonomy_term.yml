@@ -20,14 +20,11 @@ process:
   weight: weight
   parent: parent
 #    -
-#      plugin: wat
-#    -
 #      plugin: migration
 #      migration: upgrade_d6_taxonomy_term
 #      source: parent
 #    -
-#      plugin: default_value
-#      default_value: 0
+#      plugin: wat
   changed: timestamp
 destination:
   plugin: 'entity:taxonomy_term'

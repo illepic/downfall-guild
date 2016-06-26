@@ -5,13 +5,14 @@ dependencies:
         - field.field.node.image.body
         - field.field.node.image.field_df_image
         - field.field.node.image.field_group
+        - field.field.node.image.field_image_gallery
         - node.type.image
     module:
         - image
         - text
         - user
 _core:
-    default_config_hash: zwyKbak2uFo2ow1VpH-uWRjSIPboL41mQMgClQE9024
+    default_config_hash: fEPypb_pmiWgpGSxtpzlmv-J9H7G1AoasJfS-z_YtE8
 id: node.image.default
 targetEntityType: node
 bundle: image
@@ -33,6 +34,13 @@ content:
         type: image
     field_group:
         weight: 103
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_image_gallery:
+        weight: 105
         label: above
         settings:
             link: true

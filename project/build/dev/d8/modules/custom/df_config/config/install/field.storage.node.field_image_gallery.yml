@@ -3,17 +3,16 @@ status: true
 dependencies:
     module:
         - node
-_core:
-    default_config_hash: EZ9GQ0sdU1zs_uoHzOWVQPJfyQ_X792KVJJdKOlMB10
-id: node.field_group
-field_name: field_group
+        - taxonomy
+id: node.field_image_gallery
+field_name: field_image_gallery
 entity_type: node
 type: entity_reference
 settings:
-    target_type: node
+    target_type: taxonomy_term
 module: core
 locked: false
-cardinality: -1
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

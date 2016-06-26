@@ -5,6 +5,7 @@ dependencies:
         - field.field.node.image.body
         - field.field.node.image.field_df_image
         - field.field.node.image.field_group
+        - field.field.node.image.field_image_gallery
         - image.style.thumbnail
         - node.type.image
     module:
@@ -12,7 +13,7 @@ dependencies:
         - path
         - text
 _core:
-    default_config_hash: gNxRkU0bOefxXQ4qc_l_ayMNVhxRhFzGgUSMbTyzLms
+    default_config_hash: sqrNRSp5K2UgRHT97KZ7NzkfA9v4gioPEtaxkUCRjXc
 id: node.image.default
 targetEntityType: node
 bundle: image
@@ -40,6 +41,14 @@ content:
         type: image_image
     field_group:
         weight: 33
+        settings:
+            match_operator: CONTAINS
+            size: 60
+            placeholder: ''
+        third_party_settings: {  }
+        type: entity_reference_autocomplete
+    field_image_gallery:
+        weight: 35
         settings:
             match_operator: CONTAINS
             size: 60

@@ -48,6 +48,8 @@ process:
   field_group:
     source: nid
     plugin: og_lookup
+  field_image_gallery:
+
 destination:
   plugin: 'entity:node'
 migration_dependencies:

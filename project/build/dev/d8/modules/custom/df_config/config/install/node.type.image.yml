@@ -8,7 +8,7 @@ third_party_settings:
         available_menus: {  }
         parent: ''
 _core:
-    default_config_hash: 09aKhJZcEQtXSdVl0ipv5-EzLF_aW881e5TbILgKvSA
+    default_config_hash: hh83W9H4zsSg9EqFo-gTd9OoUan_-7kx9jfy9uYj0rY
 name: Image
 type: image
 description: 'Upload and share an image.'
