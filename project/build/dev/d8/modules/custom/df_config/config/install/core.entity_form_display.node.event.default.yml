@@ -5,6 +5,7 @@ dependencies:
         - field.field.node.event.body
         - field.field.node.event.field_event_end
         - field.field.node.event.field_event_start
+        - field.field.node.event.field_group
         - node.type.event
     module:
         - datetime
@@ -38,6 +39,14 @@ content:
         settings: {  }
         third_party_settings: {  }
         type: datetime_default
+    field_group:
+        weight: 34
+        settings:
+            match_operator: CONTAINS
+            size: 60
+            placeholder: ''
+        third_party_settings: {  }
+        type: entity_reference_autocomplete
     path:
         type: path
         weight: 30

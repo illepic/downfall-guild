@@ -4,6 +4,9 @@ dependencies:
     config:
         - core.entity_view_mode.node.teaser
         - field.field.node.event.body
+        - field.field.node.event.field_event_end
+        - field.field.node.event.field_event_start
+        - field.field.node.event.field_group
         - node.type.event
     module:
         - text
@@ -22,4 +25,7 @@ content:
         third_party_settings: {  }
     links:
         weight: 100
-hidden: {  }
+hidden:
+    field_event_end: true
+    field_event_start: true
+    field_group: true
