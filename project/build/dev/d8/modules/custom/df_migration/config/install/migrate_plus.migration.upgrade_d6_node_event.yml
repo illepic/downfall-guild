@@ -13,7 +13,9 @@ source:
 process:
   nid: nid
   vid: vid
-  type: type
+  type:
+    plugin: default_value
+    default_value: event
   langcode:
     plugin: default_value
     source: language
@@ -28,18 +30,29 @@ process:
   body/format:
     plugin: default_value
     default_value: basic_html
-  # Concatenate the "Raid Zone" field onto body (TODO)
   body/value:
     plugin: img_assist
     source: body
   revision_uid: revision_uid
   revision_log: log
   revision_timestamp: timestamp
-  field_raid_zone:
-    plugin: iterator
-    source: field_raid_zone
-    process:
-      value: value
+  field_event_start:
+    plugin: event_old
+    source: nid
+    startend: start
+  field_event_end:
+    plugin: event_old
+    source: nid
+    startend: end
+  # Convert OG to node reference
+  field_group:
+    source: nid
+    plugin: og_lookup
+#  field_raid_zone:
+#    plugin: iterator
+#    source: field_raid_zone
+#    process:
+#      value: value
 destination:
   plugin: 'entity:node'
 migration_dependencies:

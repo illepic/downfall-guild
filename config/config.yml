@@ -101,6 +101,11 @@ apache_vhosts:
     extra_parameters: |
           ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/var/www/df/web/d6"
 
+  - servername: "social.downfallguild.org"
+    documentroot: "/var/www/df/web/social"
+    extra_parameters: |
+          ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/var/www/df/web/social"
+
   - servername: "adminer.{{ vagrant_hostname }}"
     documentroot: "{{ adminer_install_dir }}"
     extra_parameters: |
@@ -143,6 +148,10 @@ nginx_hosts:
     root: "/var/www/df/web/d6"
     is_php: true
 
+  - server_name: "social.downfallguild.org"
+    root: "/var/www/df/web/social"
+    is_php: true
+
   - server_name: "adminer.{{ vagrant_hostname }}"
     root: "{{ adminer_install_dir }}"
     is_php: true
@@ -169,6 +178,10 @@ mysql_databases:
     collation: utf8_general_ci
 
   - name: "downfall_d6"
+    encoding: utf8
+    collation: utf8_general_ci
+
+  - name: "social"
     encoding: utf8
     collation: utf8_general_ci
 
@@ -200,7 +213,6 @@ installed_extras:
 # Add any extra apt or yum packages you would like installed.
 extra_packages:
   - sqlite
-
 
 # You can configure almost anything else on the server in the rest of this file.
 extra_security_enabled: false
