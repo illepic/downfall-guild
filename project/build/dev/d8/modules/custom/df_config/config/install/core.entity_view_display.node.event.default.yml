@@ -1,0 +1,42 @@
+langcode: en
+status: true
+dependencies:
+    config:
+        - field.field.node.event.body
+        - field.field.node.event.field_event_end
+        - field.field.node.event.field_event_start
+        - node.type.event
+    module:
+        - datetime
+        - text
+        - user
+id: node.event.default
+targetEntityType: node
+bundle: event
+mode: default
+content:
+    body:
+        label: hidden
+        type: text_default
+        weight: 101
+        settings: {  }
+        third_party_settings: {  }
+    field_event_end:
+        weight: 103
+        label: above
+        settings:
+            format_type: medium
+            timezone_override: ''
+        third_party_settings: {  }
+        type: datetime_default
+    field_event_start:
+        weight: 102
+        label: above
+        settings:
+            format_type: medium
+            timezone_override: ''
+        third_party_settings: {  }
+        type: datetime_default
+    links:
+        weight: 100
+hidden: {  }

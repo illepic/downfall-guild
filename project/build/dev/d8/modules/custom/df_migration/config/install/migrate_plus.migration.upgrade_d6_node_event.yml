@@ -28,6 +28,7 @@ process:
   body/format:
     plugin: default_value
     default_value: basic_html
+  # Concatenate the "Raid Zone" field onto body (TODO)
   body/value:
     plugin: img_assist
     source: body
@@ -39,16 +40,6 @@ process:
     source: field_raid_zone
     process:
       value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
 destination:
   plugin: 'entity:node'
 migration_dependencies:
