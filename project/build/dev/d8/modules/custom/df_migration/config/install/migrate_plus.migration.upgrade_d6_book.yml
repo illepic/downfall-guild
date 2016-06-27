@@ -5,7 +5,9 @@ migration_tags:
 source:
   plugin: d6_book
 process:
-  nid: nid
+  nid:
+    plugin: wat
+    source: nid
   'book/bid': bid
   'book/weight': weight
   'book/pid':
