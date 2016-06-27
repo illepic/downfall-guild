@@ -13,7 +13,9 @@ source:
 process:
   nid: nid
   vid: vid
-  type: type
+  type:
+    plugin: default_value
+    default_value: event
   langcode:
     plugin: default_value
     source: language
@@ -34,7 +36,22 @@ process:
   revision_uid: revision_uid
   revision_log: log
   revision_timestamp: timestamp
-  field_startdate: field_startdate
+  field_event_start:
+    -
+      plugin: extract
+      source: field_startdate
+      index:
+        - value
+    -
+      plugin: event_new
+  field_event_end:
+    -
+      plugin: extract
+      source: field_startdate
+      index:
+        - value2
+    -
+      plugin: event_new
 destination:
   plugin: 'entity:node'
 migration_dependencies:
@@ -43,7 +60,7 @@ migration_dependencies:
     - upgrade_d6_node_type
     - upgrade_d6_file
 #    - upgrade_d6_node_settings
-  optional:
-    - upgrade_d6_field_instance_widget_settings
-    - upgrade_d6_field_formatter_settings
-    - upgrade_d6_upload_field_instance
+  optional: {}
+#    - upgrade_d6_field_instance_widget_settings
+#    - upgrade_d6_field_formatter_settings
+#    - upgrade_d6_upload_field_instance
