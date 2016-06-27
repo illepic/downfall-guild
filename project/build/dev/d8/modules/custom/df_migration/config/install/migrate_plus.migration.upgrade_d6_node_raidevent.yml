@@ -52,6 +52,9 @@ process:
         - value2
     -
       plugin: event_new
+  field_group:
+    source: nid
+    plugin: og_lookup
 destination:
   plugin: 'entity:node'
 migration_dependencies:
