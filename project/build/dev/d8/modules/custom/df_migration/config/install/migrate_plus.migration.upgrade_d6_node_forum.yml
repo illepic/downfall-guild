@@ -11,7 +11,24 @@ source:
   plugin: d6_node
   node_type: forum
 process:
-  nid: nid
+  # Skip importing these nodes because they come over as Guide pages
+  nid:
+    -
+      plugin: static_map
+      source: nid
+      bypass: true
+      map:
+        5725: ''
+        5460: ''
+        5869: ''
+        10723: ''
+        10719: ''
+        10720: ''
+        10721: ''
+        10722: ''
+    -
+      plugin: skip_on_empty
+      method: row
   vid: vid
   type:
     plugin: default_value

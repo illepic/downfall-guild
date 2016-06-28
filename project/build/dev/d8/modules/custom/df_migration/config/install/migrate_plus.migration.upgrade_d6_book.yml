@@ -6,8 +6,19 @@ source:
   plugin: d6_book
 process:
   nid:
-    plugin: wat
-    source: nid
+    -
+      plugin: static_map
+      source: nid
+      bypass: true
+      map:
+        5131: ''
+        6947: ''
+        6841: ''
+        6827: ''
+        6953: ''
+    -
+      plugin: skip_on_empty
+      method: row
   'book/bid': bid
   'book/weight': weight
   'book/pid':

@@ -1,8 +1,7 @@
-uuid: c3507801-56bd-4122-aeb0-608ac5da9530
 langcode: en
 status: true
 dependencies: {  }
-id: upgrade_d6_node_blog
+id: upgrade_d6_book_blog
 migration_tags:
   - 'Drupal 6'
 migration_group: migrate_drupal_6
@@ -11,22 +10,21 @@ source:
   plugin: d6_node
   node_type: blog
 process:
-  # Skip these since they are coming over as Guide pages
   nid:
     -
       plugin: static_map
       source: nid
-      bypass: true
       map:
-        10597: ''
-        11673: ''
+        10597: 10597
+        11673: 11673
+      default_value: ''
     -
       plugin: skip_on_empty
       method: row
   vid: vid
   type:
     plugin: default_value
-    default_value: post
+    default_value: guide
   langcode:
     plugin: default_value
     source: language
@@ -55,7 +53,4 @@ migration_dependencies:
     - upgrade_d6_node_type
     - upgrade_d6_file
 #    - upgrade_d6_node_settings
-  optional:
-    - upgrade_d6_field_instance_widget_settings
-    - upgrade_d6_field_formatter_settings
-    - upgrade_d6_upload_field_instance
+  optional: {}
