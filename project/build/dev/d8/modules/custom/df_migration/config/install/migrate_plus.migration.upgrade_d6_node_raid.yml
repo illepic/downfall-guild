@@ -50,9 +50,9 @@ process:
         plugin: static_map
         source: value
         map:
-          '5-man': 106
-          '10-man': 107
-          '25-man': 108
+          '5-man': 83
+          '10-man': 14
+          '25-man': 13
   field_week_days:
     plugin: iterator
     source: field_raiddays

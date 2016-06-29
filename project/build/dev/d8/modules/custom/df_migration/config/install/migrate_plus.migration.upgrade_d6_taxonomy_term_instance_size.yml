@@ -7,33 +7,25 @@ migration_tags:
 migration_group: migrate_drupal_6
 label: 'Taxonomy terms for instance_size vocab'
 source:
-  plugin: embedded_data
-  data_rows:
-    -
-      term_name: '5 man'
-      uid: 555
-    -
-      term_name: '10 man'
-      uid: 556
-    -
-      term_name: '25 man'
-      uid: 557
-  ids:
-    uid:
-      type: integer
+  plugin: taxonomy_term
 process:
-#  tid: tid
+  tid:
+    plugin: static_map
+    source: tid
+    map:
+      83: 83 # 5-man
+      14: 14 # 10 man
+      13: 13 # 25 man
   vid:
     plugin: default_value
     default_value: instance_size
-  name: term_name
-#  description: description
-#  weight: weight
-#  parent:
-#    plugin: migration
-#    migration: upgrade_d6_taxonomy_term
-#    source: parent
-#  changed: timestamp
+  name: name
+  description: description
+  weight: weight
+  parent:
+    plugin: default_value
+    default_value: 0
+  changed: timestamp
 destination:
   plugin: 'entity:taxonomy_term'
 migration_dependencies:

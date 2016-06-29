@@ -19,6 +19,16 @@ process:
         83: '' # 5-man - moving to instance_size vocab
         14: '' # 10 Man - moving to instance_size vocab
         13: '' # 25 Man - moving to instance_size vocab
+        51: '' # Death Knight
+        50: '' # Druid
+        41: '' # Hunter
+        42: '' # Mage
+        43: '' # Paladin
+        44: '' # Priest
+        47: '' # Rogue
+        48: '' # Shaman
+        45: '' # Warlock
+        49: '' # Warrior
     -
       plugin: skip_on_empty
       method: row
@@ -34,9 +44,7 @@ process:
     source: parent
     bypass: true
     map:
-      92: 0 # Ulduar - move this to root since it's parent (13) is moving to new vocab
-      91: 0 # Naxxramus - move this to root since it's parent (13) is moving to new vocab
-      93: 0 # Sartharion - move this to root since it's parent (13) is moving to new vocab
+      13: 0 # Ulduar, Naxxramus, Sartharion - move this to root since it's parent (13) is moving to new vocab
 #    -
 #      plugin: migration
 #      migration: upgrade_d6_taxonomy_term

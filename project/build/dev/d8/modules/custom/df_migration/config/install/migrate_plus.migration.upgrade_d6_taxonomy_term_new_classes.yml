@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_taxonomy_term_new classes
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'Taxonomy terms for new WoW character classes '
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      term_name: 'Monk'
+      uid: 666
+    -
+      term_name: 'Demon Hunter'
+      uid: 667
+  # "uid" is the key on our data that the migration can use for unique identifiers. Drupal still
+  # assigns proper tid's based on available tid's in the system
+  ids:
+    uid:
+      type: integer
+process:
+  vid:
+    plugin: default_value
+    default_value: classes
+  name: term_name
+destination:
+  plugin: 'entity:taxonomy_term'
+migration_dependencies:
+  required:
+    - upgrade_d6_taxonomy_vocabulary
+    - upgrade_d6_taxonomy_term
+    - upgrade_d6_taxonomy_term_classes
+  optional: {  }
