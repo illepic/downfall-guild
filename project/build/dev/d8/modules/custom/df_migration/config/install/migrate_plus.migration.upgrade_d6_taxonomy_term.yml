@@ -10,7 +10,18 @@ label: 'Taxonomy terms'
 source:
   plugin: taxonomy_term
 process:
-  tid: tid
+  tid:
+    -
+      plugin: static_map
+      source: tid
+      bypass: true
+      map:
+        83: '' # 5-man - moving to instance_size vocab
+        14: '' # 10 Man - moving to instance_size vocab
+        13: '' # 25 Man - moving to instance_size vocab
+    -
+      plugin: skip_on_empty
+      method: row
   vid:
     plugin: migration
     migration: upgrade_d6_taxonomy_vocabulary
@@ -18,7 +29,14 @@ process:
   name: name
   description: description
   weight: weight
-  parent: parent
+  parent:
+    plugin: static_map
+    source: parent
+    bypass: true
+    map:
+      92: 0 # Ulduar - move this to root since it's parent (13) is moving to new vocab
+      91: 0 # Naxxramus - move this to root since it's parent (13) is moving to new vocab
+      93: 0 # Sartharion - move this to root since it's parent (13) is moving to new vocab
 #    -
 #      plugin: migration
 #      migration: upgrade_d6_taxonomy_term

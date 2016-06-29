@@ -177,6 +177,7 @@ From root of project:
 
     cd drupal-vm && vagrant ssh
     cd /var/www/df/web/d8/web && drupal module:install df_config df_migration
+    # DO THIS MANUAL: 
 
 DOCUMENTATION PURPOSES ONLY, NO NEED TO RUN: This was already run, but to config export:
 

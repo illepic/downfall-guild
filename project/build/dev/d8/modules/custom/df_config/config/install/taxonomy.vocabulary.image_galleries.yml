@@ -1,8 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-name: 'Image Galleries'
-vid: image_galleries
-description: ''
-hierarchy: 0
-weight: 0

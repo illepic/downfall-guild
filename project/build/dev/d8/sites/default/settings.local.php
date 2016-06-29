@@ -11,3 +11,5 @@ $databases['migrate']['default'] = array (
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
 );
+
+$config_directories[CONFIG_SYNC_DIRECTORY] = 'sites/default/files/sync';

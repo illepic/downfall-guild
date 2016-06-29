@@ -46,7 +46,7 @@ build_composer: true
 drupal_composer_path: "{{ config_dir }}/drupal.composer.json"
 drupal_composer_install_dir: "/var/www/df/web/d8"
 drupal_composer_dependencies:
-  - "drupal/devel:1.0.x-dev"
+  - "drupal/devel:1.0.0-alpha1"
 
 # Set this to 'true' and 'build_makefile', 'build_composer' to 'false' if you
 # are using Composer's create-project as a site deployment strategy.
