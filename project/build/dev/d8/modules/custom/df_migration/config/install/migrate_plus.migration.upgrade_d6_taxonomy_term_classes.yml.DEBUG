@@ -1,0 +1,43 @@
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_taxonomy_term_classes
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'Taxonomy terms for WoW character classes '
+source:
+  plugin: taxonomy_term
+process:
+  tid:
+    plugin: static_map
+    source: tid
+    map:
+      51: 51 # Death Knight
+      50: 50 # Druid
+      41: 41 # Hunter
+      42: 42 # Mage
+      43: 43 # Paladin
+      44: 44 # Priest
+      47: 47 # Rogue
+      48: 48 # Shaman
+      45: 45 # Warlock
+      49: 49 # Warrior
+  vid:
+    plugin: default_value
+    default_value: classes
+  name: name
+  description: description
+  weight: weight
+  parent:
+    plugin: default_value
+    default_value: 0
+  changed: timestamp
+destination:
+  plugin: 'entity:taxonomy_term'
+migration_dependencies:
+  required: {}
+#    - upgrade_d6_taxonomy_vocabulary
+#    - upgrade_d6_taxonomy_term
+#    - upgrade_d6_taxonomy_term_instance_size
+  optional: {  }

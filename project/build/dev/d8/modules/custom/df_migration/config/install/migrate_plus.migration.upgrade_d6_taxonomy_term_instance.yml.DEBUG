@@ -1,11 +1,11 @@
 langcode: en
 status: true
 dependencies: {  }
-id: upgrade_d6_taxonomy_term_instance_size
+id: upgrade_d6_taxonomy_term_instance
 migration_tags:
   - 'Drupal 6'
 migration_group: migrate_drupal_6
-label: 'Taxonomy terms for instance_size vocab'
+label: 'Taxonomy terms for instance vocab pulled from generic WoW vocab'
 source:
   plugin: taxonomy_term
 process:
@@ -13,12 +13,19 @@ process:
     plugin: static_map
     source: tid
     map:
-      83: 83 # 5-man
-      14: 14 # 10 man
-      13: 13 # 25 man
+      92: 92 # Ulduar
+      91: 91 # Naxxramus
+      93: 93 # Sartharion
+      21: 21 # Black Temple
+      20: 20 # Hyjal
+      29: 29 # SSC
+      75: 75 # Sunwell
+      17: 17 # Tempest Keep
+      27: 27 # Karazhan
+      28: 28 # Zul'Aman
   vid:
     plugin: default_value
-    default_value: instance_size
+    default_value: instance
   name: name
   description: description
   weight: weight
@@ -29,7 +36,7 @@ process:
 destination:
   plugin: 'entity:taxonomy_term'
 migration_dependencies:
-  required:
-    - upgrade_d6_taxonomy_vocabulary
+  required: {}
+#    - upgrade_d6_taxonomy_vocabulary
 #    - upgrade_d6_taxonomy_term
   optional: {  }

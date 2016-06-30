@@ -10,32 +10,64 @@ label: 'Taxonomy terms'
 source:
   plugin: taxonomy_term
 process:
-  tid:
+  tid: tid
+  vid:
+#    plugin: migration
+#    migration: upgrade_d6_taxonomy_vocabulary
+#      3: forums # Forums
+#      5: wow # WoW
+#      8: image_galleries # Image Galleries
     -
       plugin: static_map
-      source: tid
-      bypass: true
+      source:
+        - vid
+        - tid
       map:
-        83: '' # 5-man - moving to instance_size vocab
-        14: '' # 10 Man - moving to instance_size vocab
-        13: '' # 25 Man - moving to instance_size vocab
-        51: '' # Death Knight
-        50: '' # Druid
-        41: '' # Hunter
-        42: '' # Mage
-        43: '' # Paladin
-        44: '' # Priest
-        47: '' # Rogue
-        48: '' # Shaman
-        45: '' # Warlock
-        49: '' # Warrior
-    -
-      plugin: skip_on_empty
-      method: row
-  vid:
-    plugin: migration
-    migration: upgrade_d6_taxonomy_vocabulary
-    source: vid
+        3:
+          69: classes # Death Knight
+          70: classes # Druid
+          77: classes # Hunter
+          72: classes # Mage
+          105: classes # Monk
+          66: classes # Paladin
+          74: classes # Priest
+          67: classes # Rogue
+          73: classes # Shaman
+          68: classes # Warlock
+          71: classes # Warrior
+        5:
+          83: instance_size # 5-man - moving to instance_size vocab
+          14: instance_size # 10 Man - moving to instance_size vocab
+          13: instance_size # 25 Man - moving to instance_size vocab
+          51: classes # Death Knight
+          50: classes # Druid
+          41: classes # Hunter
+          42: classes # Mage
+          43: classes # Paladin
+          44: classes # Priest
+          47: classes # Rogue
+          48: classes # Shaman
+          45: classes # Warlock
+          49: classes # Warrior
+          92: instance # Ulduar
+          91: instance # Naxxramus
+          93: instance # Sartharion
+          21: instance # Black Temple
+          20: instance # Hyjal
+          29: instance # SSC
+          75: instance # Sunwell
+          17: instance # Tempest Keep
+          27: instance # Karazhan
+          28: instance # Zul'Aman
+          94: expansion # Burning Crusade
+          32: expansion # WoW 1.0
+          76: expansion # WotLK
+        8:
+          85: image_galleries # Screenshots
+          86: image_galleries # People
+          88: image_galleries # Random Crap
+          87: image_galleries # UI
+      default_value: wow
   name: name
   description: description
   weight: weight
@@ -45,6 +77,11 @@ process:
     bypass: true
     map:
       13: 0 # Ulduar, Naxxramus, Sartharion - move this to root since it's parent (13) is moving to new vocab
+      94: 0 # Burning Crusade
+      95: 0 # Nostalgic
+      40: 0 # Class
+      26: 0 # Raid
+      65: 0 # Forums:theorycraft
 #    -
 #      plugin: migration
 #      migration: upgrade_d6_taxonomy_term
@@ -55,6 +92,6 @@ process:
 destination:
   plugin: 'entity:taxonomy_term'
 migration_dependencies:
-  required:
-    - upgrade_d6_taxonomy_vocabulary
+  required: {}
+#    - upgrade_d6_taxonomy_vocabulary
   optional: {  }

@@ -1,0 +1,41 @@
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_taxonomy_term_expansion
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'Taxonomy terms for instance vocab pulled from generic WoW vocab'
+source:
+  plugin: taxonomy_term
+process:
+  tid:
+    plugin: static_map
+    source: tid
+    map:
+      94: 94 # Burning Crusade
+      32: 32 # WoW 1.0
+      76: 76 # WotLK
+  vid:
+    plugin: default_value
+    default_value: expansion
+  name:
+    plugin: static_map
+    source: name
+    bypass: true
+    map:
+#      'WoW 1.0': 'Vanilla' # the dot here causes huge errors
+      'WotLK': 'Wrath of the Lich King'
+  description: description
+  weight: weight
+  parent:
+    plugin: default_value
+    default_value: 0
+  changed: timestamp
+destination:
+  plugin: 'entity:taxonomy_term'
+migration_dependencies:
+  required: {}
+#    - upgrade_d6_taxonomy_vocabulary
+#    - upgrade_d6_taxonomy_term
+  optional: {  }

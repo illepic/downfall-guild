@@ -1,0 +1,9 @@
+uuid: 24ac6580-e5e4-4af3-a7a5-d2a3326f6330
+langcode: en
+status: true
+dependencies: {  }
+name: WoW
+vid: wow
+description: 'Categories related to WoW'
+hierarchy: 0
+weight: -5
