@@ -91,7 +91,6 @@ process:
       74: 40
       77: 40
       105: 40
-      109: 40 # 109 custom import: Demon Hunter
       34: 79
       35: 79
       36: 79
@@ -101,22 +100,18 @@ process:
       14: 107
       83: 107
       17: 106 # 106 custom import: Instance
+      75: 106
       20: 106
       21: 106
       27: 106
       28: 106
       29: 106
-      76: 106
       91: 106
       92: 106
       93: 106
       76: 108 # 108 custom import: Expansion
       94: 108
       32: 108
-      110: 108
-      111: 108
-      112: 108
-      113: 108
 #    plugin: static_map
 #    source: parent
 #    bypass: true

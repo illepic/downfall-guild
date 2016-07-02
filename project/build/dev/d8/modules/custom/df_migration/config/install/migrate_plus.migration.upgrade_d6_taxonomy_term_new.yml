@@ -12,27 +12,35 @@ source:
     -
       term_name: 'Instance'
       uid: 666 # tid 106
+      tid: 106
     -
       term_name: 'Instance Size'
       uid: 667 # tid 107
+      tid: 107
     -
       term_name: 'Expansion'
       uid: 668 # tid 108
+      tid: 108
     -
       term_name: 'Demon Hunter'
       uid: 669 # probably tid 109
+      tid: 109
     -
       term_name: 'Cataclysm'
       uid: 670 # tid 110
+      tid: 110
     -
       term_name: 'Mists of Pandaria'
       uid: 671 # tid 111
+      tid: 111
     -
       term_name: 'Warlords of Draenor'
       uid: 672 # tid 112
+      tid: 112
     -
       term_name: 'Legion'
       uid: 673 # tid 113
+      tid: 113
   # "uid" is the key on our data that the migration can use for unique identifiers. Drupal still
   # assigns proper tid's based on available tid's in the system
   ids:
@@ -43,6 +51,17 @@ process:
     plugin: default_value
     default_value: wow
   name: term_name
+  tid: tid
+  parent:
+    plugin: static_map
+    source: uid
+    default_value: 0
+    map:
+      669: 40
+      670: 108
+      671: 108
+      672: 108
+      673: 108
 destination:
   plugin: 'entity:taxonomy_term'
 migration_dependencies:
