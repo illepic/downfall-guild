@@ -112,22 +112,10 @@ process:
       76: 108 # 108 custom import: Expansion
       94: 108
       32: 108
-#    plugin: static_map
-#    source: parent
-#    bypass: true
-#    map:
-#      13: 0 # Ulduar, Naxxramus, Sartharion - move this to root since it's parent (13) is moving to new vocab
-#      94: 0 # Burning Crusade
-#      95: 0 # Nostalgic
-#      40: 0 # Class
-#      26: 0 # Raid
-#      65: 0 # Forums:theorycraft
 #    -
 #      plugin: migration
 #      migration: upgrade_d6_taxonomy_term
 #      source: parent
-#    -
-#      plugin: wat
   name:
     -
       plugin: static_map
@@ -145,6 +133,7 @@ process:
         'World': 'Wrath of the Lich King'
         'SSC': 'Serpentshrine Cavern'
         'WoW Discussion': 'General WoW Discussion'
+        'WotLK': 'Wrath of the Lich King'
   description: description
   weight: weight
   changed: timestamp
