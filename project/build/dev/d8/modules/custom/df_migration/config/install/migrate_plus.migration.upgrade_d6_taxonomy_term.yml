@@ -10,84 +10,147 @@ label: 'Taxonomy terms'
 source:
   plugin: taxonomy_term
 process:
-  tid: tid
-  vid:
-#    plugin: migration
-#    migration: upgrade_d6_taxonomy_vocabulary
-#      3: forums # Forums
-#      5: wow # WoW
-#      8: image_galleries # Image Galleries
+  tid:
     -
       plugin: static_map
-      source:
-        - vid
-        - tid
+      source: tid
+      bypass: true
       map:
-        3:
-          69: classes # Death Knight
-          70: classes # Druid
-          77: classes # Hunter
-          72: classes # Mage
-          105: classes # Monk
-          66: classes # Paladin
-          74: classes # Priest
-          67: classes # Rogue
-          73: classes # Shaman
-          68: classes # Warlock
-          71: classes # Warrior
-        5:
-          83: instance_size # 5-man - moving to instance_size vocab
-          14: instance_size # 10 Man - moving to instance_size vocab
-          13: instance_size # 25 Man - moving to instance_size vocab
-          51: classes # Death Knight
-          50: classes # Druid
-          41: classes # Hunter
-          42: classes # Mage
-          43: classes # Paladin
-          44: classes # Priest
-          47: classes # Rogue
-          48: classes # Shaman
-          45: classes # Warlock
-          49: classes # Warrior
-          92: instance # Ulduar
-          91: instance # Naxxramus
-          93: instance # Sartharion
-          21: instance # Black Temple
-          20: instance # Hyjal
-          29: instance # SSC
-          75: instance # Sunwell
-          17: instance # Tempest Keep
-          27: instance # Karazhan
-          28: instance # Zul'Aman
-          94: expansion # Burning Crusade
-          32: expansion # WoW 1.0
-          76: expansion # WotLK
-        8:
-          85: image_galleries # Screenshots
-          86: image_galleries # People
-          88: image_galleries # Random Crap
-          87: image_galleries # UI
+        1: '' # Guild forum container
+        2: '' # Raid forum container
+        3: '' # Hamfist, Group Ref: 12359
+        4: '' # LF1M, Group Ref: 12360
+        57: '' # World of Warcraft General forum container
+        60: '' # Lava Crab, Group Ref: 7393
+        61: 6 # Guild Officer, all content refs instead to tid 6 (Raid Officer)
+        62: '' # GPS, Group Ref: 10671
+        65: '' # Theorycraft forum container
+        78: '' # mALT, Group Ref: 8056
+        82: '' # Member forums forums container
+        89: '' # Kitten Brigade, Group Ref: 7365
+        90: '' # Salmon, Group Ref: 6593
+        100: '' # PMS, Group Ref: 12361
+        101: '' # Happy Ending, Group Ref: 9406
+        104: '' # Star Wars, forum container
+        15: '' # Hamfist tag, Group Ref: 12359
+        16: '' # LF1M, Group Ref: 12360
+        18: 56 # Guild tag, updating all content refs instead to tid 56 (Guild Discussion)
+        19: 39 # Other, updating all content refs instead to tid 39 (Everything Else)
+        26: 102 # Raid, content refs to 102 instead (General Raid Discussion)
+        31: 56 # Relations, covnerting all content refs to 56 (Guild Discussion)
+        33: 79 # PvP, converting all refs to 79 (PvP)
+        41: 77 # Hunter, tid
+        42: 72 # Mage
+        43: 66 # Paladin
+        44: 74 # Priest
+        45: 68 # Warlock
+        47: 67 # Rogue
+        48: 73 # Shaman
+        49: 71 # Warrior
+        50: 70 # Druid
+        51: 69 # Death Knight
+        53: 63 # UI, convert to 63
+        96: '' # Kitten Brigade, group ref: 7365
+        97: '' # Salmon, group ref: 6593
+        98: '' # Lava Crab, grou ref: 7393
+    -
+      plugin: skip_on_empty
+      method: row
+  vid:
+    -
+      plugin: static_map
+      source: tid
+      map:
+        6: downfall # Raid officer
+        61: downfall # Guild officer converted to 6
+        38: downfall
+        39: downfall # Everything Else
+        19: downfall # Other converted to 39
+        56: downfall # Guild discussion
+        18: downfall # Relations converted to Guild disucssion
+        30: downfall
+        52: downfall
+        85: image_galleries
+        86: image_galleries
+        87: image_galleries
+        88: image_galleries
       default_value: wow
-  name: name
-  description: description
-  weight: weight
   parent:
     plugin: static_map
-    source: parent
-    bypass: true
+    source: tid
+    default_value: 0
     map:
-      13: 0 # Ulduar, Naxxramus, Sartharion - move this to root since it's parent (13) is moving to new vocab
-      94: 0 # Burning Crusade
-      95: 0 # Nostalgic
-      40: 0 # Class
-      26: 0 # Raid
-      65: 0 # Forums:theorycraft
+      66: 40
+      67: 40
+      68: 40
+      69: 40
+      70: 40
+      71: 40
+      72: 40
+      73: 40
+      74: 40
+      77: 40
+      105: 40
+      109: 40 # 109 custom import: Demon Hunter
+      34: 79
+      35: 79
+      36: 79
+      54: 63
+      55: 63
+      13: 107 # 107 custom import: Instance Size
+      14: 107
+      83: 107
+      17: 106 # 106 custom import: Instance
+      20: 106
+      21: 106
+      27: 106
+      28: 106
+      29: 106
+      76: 106
+      91: 106
+      92: 106
+      93: 106
+      76: 108 # 108 custom import: Expansion
+      94: 108
+      32: 108
+      110: 108
+      111: 108
+      112: 108
+      113: 108
+#    plugin: static_map
+#    source: parent
+#    bypass: true
+#    map:
+#      13: 0 # Ulduar, Naxxramus, Sartharion - move this to root since it's parent (13) is moving to new vocab
+#      94: 0 # Burning Crusade
+#      95: 0 # Nostalgic
+#      40: 0 # Class
+#      26: 0 # Raid
+#      65: 0 # Forums:theorycraft
 #    -
 #      plugin: migration
 #      migration: upgrade_d6_taxonomy_term
 #      source: parent
 #    -
 #      plugin: wat
+  name:
+    -
+      plugin: static_map
+      source: name
+      bypass: true
+      map:
+        'Guild Officer': 'Officer'
+        'Raid Officer': 'Officer'
+        'Guild Discussion/Issues': 'Guild Discussion'
+        'UI/Macros': 'UI'
+        'Generic Raid Discussion': 'General Raid Discussion'
+        'Holonet': 'General SW:TOR Discussion'
+#        'WoW 1.0': 'Vanilla' # dots not allowed in keys
+        'World': 'World PvP'
+        'World': 'Wrath of the Lich King'
+        'SSC': 'Serpentshrine Cavern'
+  description: description
+  weight: weight
   changed: timestamp
 destination:
   plugin: 'entity:taxonomy_term'

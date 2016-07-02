@@ -1,8 +1,9 @@
+uuid: f3569740-3312-48fb-bc0b-cfc2d84bb784
 langcode: en
 status: true
 dependencies: {  }
-name: Classes
-vid: classes
+name: Game
+vid: game
 description: ''
 hierarchy: 0
 weight: 0

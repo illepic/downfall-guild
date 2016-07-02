@@ -1,7 +1,7 @@
 langcode: en
 status: true
 dependencies: {  }
-id: upgrade_d6_taxonomy_term_new_classes
+id: upgrade_d6_taxonomy_term_new
 migration_tags:
   - 'Drupal 6'
 migration_group: migrate_drupal_6
@@ -10,11 +10,29 @@ source:
   plugin: embedded_data
   data_rows:
     -
-      term_name: 'Monk'
-      uid: 666
+      term_name: 'Instance'
+      uid: 666 # tid 106
+    -
+      term_name: 'Instance Size'
+      uid: 667 # tid 107
+    -
+      term_name: 'Expansion'
+      uid: 668 # tid 108
     -
       term_name: 'Demon Hunter'
-      uid: 667
+      uid: 669 # probably tid 109
+    -
+      term_name: 'Cataclysm'
+      uid: 670 # tid 110
+    -
+      term_name: 'Mists of Pandaria'
+      uid: 671 # tid 111
+    -
+      term_name: 'Warlords of Draenor'
+      uid: 672 # tid 112
+    -
+      term_name: 'Legion'
+      uid: 673 # tid 113
   # "uid" is the key on our data that the migration can use for unique identifiers. Drupal still
   # assigns proper tid's based on available tid's in the system
   ids:
@@ -23,7 +41,7 @@ source:
 process:
   vid:
     plugin: default_value
-    default_value: classes
+    default_value: wow
   name: term_name
 destination:
   plugin: 'entity:taxonomy_term'

@@ -1,9 +1,0 @@
-uuid: 899d29d6-aaf9-4b89-9fc3-bdb789bfbb4c
-langcode: en
-status: true
-dependencies: {  }
-name: Instance
-vid: instance
-description: ''
-hierarchy: 0
-weight: 0
