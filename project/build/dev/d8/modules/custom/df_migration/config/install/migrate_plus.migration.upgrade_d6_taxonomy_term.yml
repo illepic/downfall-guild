@@ -144,6 +144,7 @@ process:
         'World': 'World PvP'
         'World': 'Wrath of the Lich King'
         'SSC': 'Serpentshrine Cavern'
+        'WoW Discussion': 'General WoW Discussion'
   description: description
   weight: weight
   changed: timestamp
