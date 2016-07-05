@@ -16,17 +16,18 @@ process:
       source: tid
       bypass: true
       map:
+        # Forum containers: Throw these away
         1: '' # Guild forum container
         2: '' # Raid forum container
+        57: '' # World of Warcraft General forum container
+        65: '' # Theorycraft forum container
+        82: '' # Member forums forums container
+        # TID -> Group ref lookup conversion
         3: '' # Hamfist, Group Ref: 12359
         4: '' # LF1M, Group Ref: 12360
-        57: '' # World of Warcraft General forum container
         60: '' # Lava Crab, Group Ref: 7393
-        61: 6 # Guild Officer, all content refs instead to tid 6 (Raid Officer)
         62: '' # GPS, Group Ref: 10671
-        65: '' # Theorycraft forum container
         78: '' # mALT, Group Ref: 8056
-        82: '' # Member forums forums container
         89: '' # Kitten Brigade, Group Ref: 7365
         90: '' # Salmon, Group Ref: 6593
         100: '' # PMS, Group Ref: 12361
@@ -34,6 +35,11 @@ process:
         104: '' # Star Wars, forum container
         15: '' # Hamfist tag, Group Ref: 12359
         16: '' # LF1M, Group Ref: 12360
+        96: '' # Kitten Brigade, group ref: 7365
+        97: '' # Salmon, group ref: 6593
+        98: '' # Lava Crab, group ref: 7393
+        # TID -> TID conversion. Consolidate tid dupes
+        61: 6 # Guild Officer, all content refs instead to tid 6 (Raid Officer)
         18: 56 # Guild tag, updating all content refs instead to tid 56 (Guild Discussion)
         19: 39 # Other, updating all content refs instead to tid 39 (Everything Else)
         26: 102 # Raid, content refs to 102 instead (General Raid Discussion)
@@ -50,9 +56,6 @@ process:
         50: 70 # Druid
         51: 69 # Death Knight
         53: 63 # UI, convert to 63
-        96: '' # Kitten Brigade, group ref: 7365
-        97: '' # Salmon, group ref: 6593
-        98: '' # Lava Crab, grou ref: 7393
     -
       plugin: skip_on_empty
       method: row
