@@ -6,6 +6,8 @@ dependencies:
         - node.type.group
     module:
         - options
+_core:
+    default_config_hash: tVFzW6-30wHc88xEL4gGR-Lv64pRXnjk7A1Djykp7Gs
 id: node.group.field_end_time
 field_name: field_end_time
 entity_type: node

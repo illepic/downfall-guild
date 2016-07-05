@@ -112,6 +112,13 @@ process:
       76: 108 # 108 custom import: Expansion
       94: 108
       32: 108
+      37: 114 # World of Warcraft new parent
+      102: 114
+      103: 114
+      99: 114
+      59: 114
+      58: 114
+      95: 114
 #    -
 #      plugin: migration
 #      migration: upgrade_d6_taxonomy_term

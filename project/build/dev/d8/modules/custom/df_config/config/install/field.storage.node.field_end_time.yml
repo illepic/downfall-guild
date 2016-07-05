@@ -4,6 +4,8 @@ dependencies:
     module:
         - node
         - options
+_core:
+    default_config_hash: M5TM2QXgzfs4zuYsTi4nsocY8wS-sAWSFoYL0tYaJV0
 id: node.field_end_time
 field_name: field_end_time
 entity_type: node

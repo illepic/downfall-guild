@@ -16,7 +16,7 @@ dependencies:
         - path
         - text
 _core:
-    default_config_hash: KySqVMdnsEjEzPuY-yItfV7k1OfnD4KVV6KYvlkhZUs
+    default_config_hash: SQVVOP6Ds91zzXbKr8nR7nA4u1WYWJzSXVVe9L4TgyQ
 id: node.group.default
 targetEntityType: node
 bundle: group
@@ -55,12 +55,9 @@ content:
         type: image_image
     field_group_raid_size:
         weight: 33
-        settings:
-            match_operator: CONTAINS
-            size: 60
-            placeholder: ''
+        settings: {  }
         third_party_settings: {  }
-        type: entity_reference_autocomplete
+        type: options_select
     field_start_time:
         weight: 35
         settings: {  }

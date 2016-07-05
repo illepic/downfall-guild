@@ -4,6 +4,8 @@ dependencies:
     module:
         - node
         - options
+_core:
+    default_config_hash: gOIb6XytQ3s5h9GOqy5D79bDtjvy-AKzlPZIWc37sA4
 id: node.field_start_time
 field_name: field_start_time
 entity_type: node

@@ -3,6 +3,8 @@ status: true
 dependencies:
     module:
         - node
+_core:
+    default_config_hash: K2U3quSjvXRTTnLun_5xgPVT6BxG9XJhd5E-GgrCl-g
 id: node.field_group_active
 field_name: field_group_active
 entity_type: node

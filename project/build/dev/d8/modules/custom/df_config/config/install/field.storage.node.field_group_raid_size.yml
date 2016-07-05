@@ -5,7 +5,7 @@ dependencies:
         - node
         - taxonomy
 _core:
-    default_config_hash: LmsFtQ4x8nR26EQ0z4MkCyBT9tW0YCzNWn-JvXDoSz8
+    default_config_hash: jdiJuFVdbJTjAsYufMrzDkyd07iesUpD2GHpwM5UuEs
 id: node.field_group_raid_size
 field_name: field_group_raid_size
 entity_type: node

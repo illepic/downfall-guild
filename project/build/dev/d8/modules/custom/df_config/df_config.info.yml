@@ -1,10 +1,11 @@
-name: Downfall Config
+name: 'Downfall Config'
 type: module
-description: Downfall site configuration
+description: 'Downfall site configuration'
 core: 8.x
 package: Downfall
 dependencies:
-  - node
-  - field
-  - book
-  - taxonomy
+    0: node
+    1: field
+    2: book
+    3: taxonomy
+    5: user
