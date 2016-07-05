@@ -141,6 +141,7 @@ process:
         'SSC': 'Serpentshrine Cavern'
         'WoW Discussion': 'General WoW Discussion'
         'WotLK': 'Wrath of the Lich King'
+        '5-man': '5 man'
   description: description
   weight: weight
   changed: timestamp
