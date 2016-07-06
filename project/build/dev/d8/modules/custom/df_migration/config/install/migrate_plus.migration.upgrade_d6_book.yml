@@ -2,6 +2,7 @@ id: upgrade_d6_book
 label: Books
 migration_tags:
   - Drupal 6
+migration_group: migrate_drupal_6
 source:
   plugin: d6_book
 process:
