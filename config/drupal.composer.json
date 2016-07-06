@@ -23,7 +23,11 @@
         "drupal/migrate_upgrade": "2.0.0-beta1",
         "drupal/migrate_plus": "2.0.0-beta1",
         "drupal/migrate_tools": "2.0.0-beta1",
-        "drupal/config_devel": "1.0.0-rc1"
+        "drupal/config_devel": "1.0.0-rc1",
+        "drupal/entity": "1.x-dev",
+        "drupal/media_entity": "1.2",
+        "drupal/media_entity_image": "1.1",
+        "drupal/video_embed_field": "1.1"
     },
     "replace": {
         "drupal/drupal": "*"

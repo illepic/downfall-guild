@@ -20,5 +20,9 @@ cd ../
 # Symlinks
 bash ./project/scripts/symlinks.sh
 
+# Copy config
+mkdir -p ./project/web/d8/web/sites/default/files/sync
+cp ./project/build/dev/d8/modules/custom/df_config/sync/* ./project/web/d8/web/sites/default/files/sync/
+
 # We don't want to rebuild d6 every time on provision
 #bash ./project/scripts/d6.sh

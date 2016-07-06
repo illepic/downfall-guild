@@ -93,6 +93,7 @@ Enable our modules by ssh'ing into the Vagrant box first. Run from root of repo:
 cd drupal-vm && vagrant ssh
 cd /var/www/df/web/d8/web
 drupal module:install df_migration
+drupal config:import
 
 OR, if we need everything and it wasn't enabled on a fresh provision (ie you've run drush site-install to blow everything away and start over):
 
@@ -190,24 +191,7 @@ Run ALL the migrations:
 Run all dependencies up to a specific migration
 
     drush mi migration_name --execute-dependencies --feedback="100 items"
-
-Notes:
-  - Did all content with "upload" fields end up as Posts?
-  - Update TaxonomyLookup plugin to be able to return multiple values so Image, Post, Event can get proper tags
-  - img_assist process plugin should lookup in D8 db, file_managed table to get public file uri instead of d6 table doing the hard str_replace
-  - SOLVED: Need a simple map for formats, ie "If full_html, just use existing"
-    - Everything just comes over as basic_html now, PERIOD.
-  - SOLVED: Do we even need revisions? Test by commenting out all revision migrations to simplify
-    - No revisions, not needed
-  - SOLVED: Need content type called "Post" to map Forums, Blogs,
-    - Now part of df_config module, provides a basic content type, comments field.
-  - SOLVED: Blog/Forums fail to move to Post content type if they have an "upload"
-  - SOLVED: On file import, ditch all thumbnail and gallery size entries
-  - SOLVED: Need content type for image to understand the Image field
-  - DON'T NEED: Failed (maybe run later?) upgrade_d6_field_instance, upgrade_d6_field_instance_widget_settings
-    - Yeah, all fields failed to come over
-    - We really don't want these though. We have the definitions if we **really** want them. We'll transform instead.
-
+    
 ## Prototyping redesign
 
 NOTE: Windows users: Install Visual Studio Community Edition 2015. Open it, create a Visual C++ project. You'll see an option to:
