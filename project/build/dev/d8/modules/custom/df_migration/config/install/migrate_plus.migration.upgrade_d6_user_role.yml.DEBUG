@@ -11,9 +11,26 @@ source:
   plugin: d6_user_role
 process:
   id:
+#    -
+#      source: id
+#      plugin: wat
+#    -
+#      plugin: static_map
+#      source: id
+#      bypass: true
+#      map:
+#        8: '' # "admin"
+#        5: '' # Core member
+#        9: '' # Forum moderator
+#        11: '' # meetup organizer
+#    -
+#      plugin: skip_on_empty
+#      method: row
     -
       plugin: machine_name
       source: name
+    -
+      plugin: wat
     -
       plugin: dedupe_entity
       entity_type: user_role
