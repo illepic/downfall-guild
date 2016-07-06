@@ -22,6 +22,7 @@ process:
         57: '' # World of Warcraft General forum container
         65: '' # Theorycraft forum container
         82: '' # Member forums forums container
+        104: '' # Star Wars, forum container
         # TID -> Group ref lookup conversion
         3: '' # Hamfist, Group Ref: 12359
         4: '' # LF1M, Group Ref: 12360
@@ -32,7 +33,6 @@ process:
         90: '' # Salmon, Group Ref: 6593
         100: '' # PMS, Group Ref: 12361
         101: '' # Happy Ending, Group Ref: 9406
-        104: '' # Star Wars, forum container
         15: '' # Hamfist tag, Group Ref: 12359
         16: '' # LF1M, Group Ref: 12360
         96: '' # Kitten Brigade, group ref: 7365
