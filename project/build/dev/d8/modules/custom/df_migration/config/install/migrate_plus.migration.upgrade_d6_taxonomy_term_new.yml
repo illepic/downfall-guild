@@ -42,7 +42,7 @@ source:
       uid: 673 # tid 113
       tid: 113
     -
-      term_name: 'World of Warcraft' # Container to hold our random wow tags
+      term_name: 'Gameplay' # Container to hold our random wow tags
       uid: 674
       tid: 114
   # "uid" is the key on our data that the migration can use for unique identifiers. Drupal still
