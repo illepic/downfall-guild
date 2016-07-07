@@ -1,0 +1,74 @@
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_file_media
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: Files
+source:
+  plugin: d6_file
+process:
+  bundle:
+    plugin: default_value
+    default_value: media_image
+  name:
+    -
+      plugin: static_map
+      source: filename
+      bypass: true
+      map:
+        'gallery grid': ''
+        preview: ''
+        thumbnail: ''
+        img_assist_properties: ''
+        large: ''
+    -
+      plugin: skip_on_empty
+      method: row
+    -
+      plugin: callback
+      callable: basename
+      source: filepath
+  status:
+    plugin: default_value
+    default_value: 1
+  'field_media_image_image/target_id': fid
+#  fid: fid
+#  filename: filename
+#  filename:
+#    -
+#      plugin: static_map
+#      source: filename
+#      bypass: true
+#      map:
+#        'gallery grid': ''
+#        preview: ''
+#        thumbnail: ''
+#        img_assist_properties: ''
+#        large: ''
+#    -
+#      plugin: skip_on_empty
+#      method: row
+#    -
+#      plugin: callback
+#      callable: basename
+#      source: filepath
+#  uri:
+#    plugin: file_uri
+#    source:
+#      - filepath
+#      - file_directory_path
+#      - temp_directory_path
+#      - is_public
+#  filemime: filemime
+#  filesize: filesize
+#  status: status
+#  changed: timestamp
+#  uid: uid
+destination:
+  plugin: 'entity:media'
+migration_dependencies:
+  required:
+    - upgrade_d6_file
+  optional: {  }
