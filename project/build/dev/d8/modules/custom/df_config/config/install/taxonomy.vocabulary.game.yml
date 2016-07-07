@@ -1,7 +1,8 @@
-uuid: f3569740-3312-48fb-bc0b-cfc2d84bb784
 langcode: en
 status: true
 dependencies: {  }
+_core:
+    default_config_hash: 5n7A7pNWrQkEdloir8SfX5YRruKrf_LCIIltLO_-ZzA
 name: Game
 vid: game
 description: ''

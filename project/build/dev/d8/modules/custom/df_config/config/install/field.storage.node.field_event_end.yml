@@ -4,6 +4,8 @@ dependencies:
     module:
         - datetime
         - node
+_core:
+    default_config_hash: aeet9cWl2zKc8bUCxhpah91um-VeZ87_oOq6Cqp7RXw
 id: node.field_event_end
 field_name: field_event_end
 entity_type: node

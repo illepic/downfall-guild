@@ -2,26 +2,24 @@ langcode: en
 status: true
 dependencies:
     config:
-        - field.storage.node.field_group
+        - field.storage.node.field_term_game
         - node.type.event
-        - node.type.group
-_core:
-    default_config_hash: AQEYZLRtwHw_xLBulYJfLATRZ1BR1Lcs4dyqapUk4_k
-id: node.event.field_group
-field_name: field_group
+        - taxonomy.vocabulary.game
+id: node.event.field_term_game
+field_name: field_term_game
 entity_type: node
 bundle: event
-label: Group
+label: Game
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-    handler: 'default:node'
+    handler: 'default:taxonomy_term'
     handler_settings:
         target_bundles:
-            group: group
+            game: game
         sort:
             field: _none
         auto_create: false

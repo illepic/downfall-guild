@@ -6,11 +6,21 @@ dependencies:
         - field.field.node.event.field_event_end
         - field.field.node.event.field_event_start
         - field.field.node.event.field_group
+        - field.field.node.event.field_term_class
+        - field.field.node.event.field_term_downfall
+        - field.field.node.event.field_term_expansion
+        - field.field.node.event.field_term_game
+        - field.field.node.event.field_term_gameplay
+        - field.field.node.event.field_term_instance
+        - field.field.node.event.field_term_pvp
+        - field.field.node.event.field_term_ui
         - node.type.event
     module:
         - datetime
         - text
         - user
+_core:
+    default_config_hash: 7_v_yySBROIInPWGW4snFMEIhiuQ6hYNFEtINIq_-8M
 id: node.event.default
 targetEntityType: node
 bundle: event
@@ -40,6 +50,62 @@ content:
         type: datetime_default
     field_group:
         weight: 104
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_class:
+        weight: 105
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_downfall:
+        weight: 110
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_expansion:
+        weight: 106
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_game:
+        weight: 112
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_gameplay:
+        weight: 107
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_instance:
+        weight: 108
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_pvp:
+        weight: 109
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_ui:
+        weight: 111
         label: above
         settings:
             link: true

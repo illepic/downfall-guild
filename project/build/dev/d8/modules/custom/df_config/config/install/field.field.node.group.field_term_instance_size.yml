@@ -2,16 +2,14 @@ langcode: en
 status: true
 dependencies:
     config:
-        - field.storage.node.field_group_raid_size
+        - field.storage.node.field_term_instance_size
         - node.type.group
-_core:
-    default_config_hash: ML0YRYgfCvjmBZMkK6yOMDAEOUSEzpXRllXZUity_Sc
-id: node.group.field_group_raid_size
-field_name: field_group_raid_size
+id: node.group.field_term_instance_size
+field_name: field_term_instance_size
 entity_type: node
 bundle: group
-label: 'Raid Size'
-description: 'What are the size of the instances that this raid group does?'
+label: 'Instance Size'
+description: ''
 required: false
 translatable: false
 default_value: {  }

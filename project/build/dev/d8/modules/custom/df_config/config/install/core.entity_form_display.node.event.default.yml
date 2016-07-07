@@ -6,11 +6,21 @@ dependencies:
         - field.field.node.event.field_event_end
         - field.field.node.event.field_event_start
         - field.field.node.event.field_group
+        - field.field.node.event.field_term_class
+        - field.field.node.event.field_term_downfall
+        - field.field.node.event.field_term_expansion
+        - field.field.node.event.field_term_game
+        - field.field.node.event.field_term_gameplay
+        - field.field.node.event.field_term_instance
+        - field.field.node.event.field_term_pvp
+        - field.field.node.event.field_term_ui
         - node.type.event
     module:
         - datetime
         - path
         - text
+_core:
+    default_config_hash: eqGgUKfIt4ZzlwMYhfdhYagOkr2QUs4D8GqR7x2gYHI
 id: node.event.default
 targetEntityType: node
 bundle: event
@@ -41,6 +51,55 @@ content:
         type: datetime_default
     field_group:
         weight: 34
+        settings:
+            match_operator: CONTAINS
+            size: 60
+            placeholder: ''
+        third_party_settings: {  }
+        type: entity_reference_autocomplete
+    field_term_class:
+        weight: 35
+        settings:
+            match_operator: CONTAINS
+            size: 60
+            placeholder: 'Separate tags with commas'
+        third_party_settings: {  }
+        type: entity_reference_autocomplete_tags
+    field_term_downfall:
+        weight: 40
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
+    field_term_expansion:
+        weight: 36
+        settings: {  }
+        third_party_settings: {  }
+        type: options_buttons
+    field_term_game:
+        weight: 42
+        settings:
+            match_operator: CONTAINS
+            size: 60
+            placeholder: ''
+        third_party_settings: {  }
+        type: entity_reference_autocomplete
+    field_term_gameplay:
+        weight: 37
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
+    field_term_instance:
+        weight: 38
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
+    field_term_pvp:
+        weight: 39
+        settings: {  }
+        third_party_settings: {  }
+        type: options_buttons
+    field_term_ui:
+        weight: 41
         settings:
             match_operator: CONTAINS
             size: 60

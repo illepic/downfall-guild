@@ -6,8 +6,8 @@ dependencies:
         - field.field.node.group.field_end_time
         - field.field.node.group.field_group_active
         - field.field.node.group.field_group_mascot
-        - field.field.node.group.field_group_raid_size
         - field.field.node.group.field_start_time
+        - field.field.node.group.field_term_instance_size
         - field.field.node.group.field_week_days
         - image.style.thumbnail
         - node.type.group
@@ -16,7 +16,7 @@ dependencies:
         - path
         - text
 _core:
-    default_config_hash: SQVVOP6Ds91zzXbKr8nR7nA4u1WYWJzSXVVe9L4TgyQ
+    default_config_hash: 6QZT5k9fWBbEgU5WcMHzgvrGy1obyUqcRoYqBIAtM8w
 id: node.group.default
 targetEntityType: node
 bundle: group
@@ -53,16 +53,19 @@ content:
             preview_image_style: thumbnail
         third_party_settings: {  }
         type: image_image
-    field_group_raid_size:
-        weight: 33
-        settings: {  }
-        third_party_settings: {  }
-        type: options_select
     field_start_time:
         weight: 35
         settings: {  }
         third_party_settings: {  }
         type: options_select
+    field_term_instance_size:
+        weight: 38
+        settings:
+            match_operator: CONTAINS
+            size: 60
+            placeholder: ''
+        third_party_settings: {  }
+        type: entity_reference_autocomplete
     field_week_days:
         weight: 34
         settings: {  }

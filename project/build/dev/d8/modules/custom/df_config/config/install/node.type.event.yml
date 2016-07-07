@@ -7,6 +7,8 @@ third_party_settings:
     menu_ui:
         available_menus: {  }
         parent: ''
+_core:
+    default_config_hash: ErtIj4sbfhfipQC9vsH1al6mQH1yyN5vswe0h2XEGR4
 name: Event
 type: event
 description: 'Schedule raids, meetups, BGs.'

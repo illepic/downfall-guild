@@ -3,14 +3,13 @@ status: true
 dependencies:
     module:
         - node
-_core:
-    default_config_hash: eUkAaDy61EtDvh2jb-HJzTAClWr1HV7e8nCAFcYSuQs
-id: node.field_group
-field_name: field_group
+        - taxonomy
+id: node.field_term_downfall
+field_name: field_term_downfall
 entity_type: node
 type: entity_reference
 settings:
-    target_type: node
+    target_type: taxonomy_term
 module: core
 locked: false
 cardinality: -1

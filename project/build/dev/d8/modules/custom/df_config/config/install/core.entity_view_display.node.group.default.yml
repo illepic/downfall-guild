@@ -6,8 +6,8 @@ dependencies:
         - field.field.node.group.field_end_time
         - field.field.node.group.field_group_active
         - field.field.node.group.field_group_mascot
-        - field.field.node.group.field_group_raid_size
         - field.field.node.group.field_start_time
+        - field.field.node.group.field_term_instance_size
         - field.field.node.group.field_week_days
         - node.type.group
     module:
@@ -16,7 +16,7 @@ dependencies:
         - text
         - user
 _core:
-    default_config_hash: ioLUQ3fseBaOcTDKSmPT5LPQn6rlo4euX31KasjOP0c
+    default_config_hash: _ZyPkm-12Ye4vLA7JpCtlCX1viNbR23sDrGPAc_B0nE
 id: node.group.default
 targetEntityType: node
 bundle: group
@@ -51,19 +51,19 @@ content:
             image_link: ''
         third_party_settings: {  }
         type: image
-    field_group_raid_size:
-        weight: 103
-        label: above
-        settings:
-            link: true
-        third_party_settings: {  }
-        type: entity_reference_label
     field_start_time:
         weight: 105
         label: above
         settings: {  }
         third_party_settings: {  }
         type: list_default
+    field_term_instance_size:
+        weight: 108
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
     field_week_days:
         weight: 104
         label: above
