@@ -7,7 +7,7 @@ dependencies:
     module:
         - datetime
 _core:
-    default_config_hash: HGrIk_XOgcd9heZRAyTS0UJqhtH7RV0gjCKc_6wOcFg
+    default_config_hash: Ub5MDMgVyPs60ZqYWNB3rUN7Nmdw-WANszr0Fdn5OXA
 id: node.event.field_event_start
 field_name: field_event_start
 entity_type: node

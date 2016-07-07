@@ -45,6 +45,18 @@ source:
       term_name: 'Gameplay' # Container to hold our random wow tags
       uid: 674
       tid: 114
+    -
+      term_name: 'World of Warcraft'
+      uid: 675
+      tid: 115
+    -
+      term_name: 'Star Wars: The Old Republic'
+      uid: 676
+      tid: 116
+    -
+      term_name: 'Overwatch'
+      uid: 677
+      tid: 117
   # "uid" is the key on our data that the migration can use for unique identifiers. Drupal still
   # assigns proper tid's based on available tid's in the system
   ids:
@@ -52,8 +64,13 @@ source:
       type: integer
 process:
   vid:
-    plugin: default_value
-    default_value: wow
+    plugin: static_map
+    source: tid
+    map:
+      115: 'game'
+      116: 'game'
+      117: 'game'
+    default_value: 'wow'
   name: term_name
   tid: tid
   parent:

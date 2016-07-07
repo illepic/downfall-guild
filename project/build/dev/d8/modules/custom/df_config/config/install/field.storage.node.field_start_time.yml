@@ -5,7 +5,7 @@ dependencies:
         - node
         - options
 _core:
-    default_config_hash: 7R2rCCTYaZepUQcOQjzbRJrrjWCksbIXAVb25VFbnsY
+    default_config_hash: 8dOfz1H_rQxutHJQMz0fmhcNY5cAxKFiHxS3gvWheac
 id: node.field_start_time
 field_name: field_start_time
 entity_type: node

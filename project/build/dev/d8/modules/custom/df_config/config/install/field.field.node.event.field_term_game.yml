@@ -5,6 +5,8 @@ dependencies:
         - field.storage.node.field_term_game
         - node.type.event
         - taxonomy.vocabulary.game
+_core:
+    default_config_hash: yaXihbVTCtHfTKcR3tzd-1kUDQlzWZzE9vBuzfCEfqQ
 id: node.event.field_term_game
 field_name: field_term_game
 entity_type: node

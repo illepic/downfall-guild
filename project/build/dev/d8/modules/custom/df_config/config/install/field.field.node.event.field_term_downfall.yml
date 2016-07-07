@@ -5,6 +5,8 @@ dependencies:
         - field.storage.node.field_term_downfall
         - node.type.event
         - taxonomy.vocabulary.downfall
+_core:
+    default_config_hash: cocUSWVykmUtOG5oGwo5GCGdR9glmWwdHPNqsXMo5Vo
 id: node.event.field_term_downfall
 field_name: field_term_downfall
 entity_type: node

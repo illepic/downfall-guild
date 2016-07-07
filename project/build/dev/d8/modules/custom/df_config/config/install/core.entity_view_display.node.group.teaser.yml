@@ -8,13 +8,14 @@ dependencies:
         - field.field.node.group.field_group_active
         - field.field.node.group.field_group_mascot
         - field.field.node.group.field_start_time
+        - field.field.node.group.field_term_instance_size
         - field.field.node.group.field_week_days
         - node.type.group
     module:
         - text
         - user
 _core:
-    default_config_hash: HBMFpQnQz_kzPHRHgd3G4KVtagSBPjG86_SLvxYtNX0
+    default_config_hash: SKiNDzmDUDSJKhPBIugZUsHPzvrtBZEWi1wBowLSq3A
 id: node.group.teaser
 targetEntityType: node
 bundle: group
@@ -34,4 +35,5 @@ hidden:
     field_group_active: true
     field_group_mascot: true
     field_start_time: true
+    field_term_instance_size: true
     field_week_days: true

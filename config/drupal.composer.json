@@ -27,7 +27,8 @@
         "drupal/entity": "1.x-dev",
         "drupal/media_entity": "1.2",
         "drupal/media_entity_image": "1.1",
-        "drupal/video_embed_field": "1.1"
+        "drupal/video_embed_field": "1.1",
+        "drupal/field_group": "1.x-dev"
     },
     "replace": {
         "drupal/drupal": "*"

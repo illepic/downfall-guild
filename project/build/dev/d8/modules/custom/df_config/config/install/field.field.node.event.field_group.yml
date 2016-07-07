@@ -6,7 +6,7 @@ dependencies:
         - node.type.event
         - node.type.group
 _core:
-    default_config_hash: AQEYZLRtwHw_xLBulYJfLATRZ1BR1Lcs4dyqapUk4_k
+    default_config_hash: OLkoRIzOFF_yTuVJgfqJyUI9qgqzscFDdsqj8fpkulY
 id: node.event.field_group
 field_name: field_group
 entity_type: node

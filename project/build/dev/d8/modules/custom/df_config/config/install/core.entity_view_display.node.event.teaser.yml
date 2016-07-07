@@ -7,12 +7,20 @@ dependencies:
         - field.field.node.event.field_event_end
         - field.field.node.event.field_event_start
         - field.field.node.event.field_group
+        - field.field.node.event.field_term_class
+        - field.field.node.event.field_term_downfall
+        - field.field.node.event.field_term_expansion
+        - field.field.node.event.field_term_game
+        - field.field.node.event.field_term_gameplay
+        - field.field.node.event.field_term_instance
+        - field.field.node.event.field_term_pvp
+        - field.field.node.event.field_term_ui
         - node.type.event
     module:
         - text
         - user
 _core:
-    default_config_hash: ZeqWrm9G7rv-ft0PShooz6MnfY8Zoc8LlfpcNnKE4f4
+    default_config_hash: h97U3ljWnIqtEcsaePb_LqP-HtpY3ut6k8Htga6Q2gw
 id: node.event.teaser
 targetEntityType: node
 bundle: event
@@ -31,3 +39,11 @@ hidden:
     field_event_end: true
     field_event_start: true
     field_group: true
+    field_term_class: true
+    field_term_downfall: true
+    field_term_expansion: true
+    field_term_game: true
+    field_term_gameplay: true
+    field_term_instance: true
+    field_term_pvp: true
+    field_term_ui: true

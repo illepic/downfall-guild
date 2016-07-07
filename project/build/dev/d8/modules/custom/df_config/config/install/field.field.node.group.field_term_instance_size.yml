@@ -4,6 +4,8 @@ dependencies:
     config:
         - field.storage.node.field_term_instance_size
         - node.type.group
+_core:
+    default_config_hash: yAwz9HIy2vyXTx0FZqtdfzqM28f47AO70TFNXNoafQ4
 id: node.group.field_term_instance_size
 field_name: field_term_instance_size
 entity_type: node

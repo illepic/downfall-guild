@@ -4,8 +4,8 @@ dependencies:
     config:
         - field.storage.node.field_term_expansion
         - node.type.event
-    content:
-        - 'taxonomy_term:wow:03c4b5e6-323a-49a2-ae74-57c594fa97b3'
+_core:
+    default_config_hash: qNJ9uxzioo3OoGy3FXpfi_yaK0nJt6wHCS_Mg9O_8Zw
 id: node.event.field_term_expansion
 field_name: field_term_expansion
 entity_type: node

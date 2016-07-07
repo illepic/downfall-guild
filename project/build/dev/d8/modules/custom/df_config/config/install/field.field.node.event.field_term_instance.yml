@@ -4,6 +4,8 @@ dependencies:
     config:
         - field.storage.node.field_term_instance
         - node.type.event
+_core:
+    default_config_hash: Q3OH4eHiVhzYYzfk-_ksPx9Xd6_LdmSxQ1gRPOJqSoQ
 id: node.event.field_term_instance
 field_name: field_term_instance
 entity_type: node

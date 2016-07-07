@@ -20,7 +20,7 @@ dependencies:
         - path
         - text
 _core:
-    default_config_hash: eqGgUKfIt4ZzlwMYhfdhYagOkr2QUs4D8GqR7x2gYHI
+    default_config_hash: D9UQZjUvooAIsrdxKrl_CxxssjCPU4Zfy7QiFbsKsEc
 id: node.event.default
 targetEntityType: node
 bundle: event
@@ -54,17 +54,14 @@ content:
         settings:
             match_operator: CONTAINS
             size: 60
-            placeholder: ''
-        third_party_settings: {  }
-        type: entity_reference_autocomplete
-    field_term_class:
-        weight: 35
-        settings:
-            match_operator: CONTAINS
-            size: 60
-            placeholder: 'Separate tags with commas'
+            placeholder: 'Separate multiple groups with commas'
         third_party_settings: {  }
         type: entity_reference_autocomplete_tags
+    field_term_class:
+        weight: 35
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
     field_term_downfall:
         weight: 40
         settings: {  }
@@ -74,15 +71,12 @@ content:
         weight: 36
         settings: {  }
         third_party_settings: {  }
-        type: options_buttons
+        type: options_select
     field_term_game:
         weight: 42
-        settings:
-            match_operator: CONTAINS
-            size: 60
-            placeholder: ''
+        settings: {  }
         third_party_settings: {  }
-        type: entity_reference_autocomplete
+        type: options_select
     field_term_gameplay:
         weight: 37
         settings: {  }
@@ -97,15 +91,12 @@ content:
         weight: 39
         settings: {  }
         third_party_settings: {  }
-        type: options_buttons
+        type: options_select
     field_term_ui:
         weight: 41
-        settings:
-            match_operator: CONTAINS
-            size: 60
-            placeholder: ''
+        settings: {  }
         third_party_settings: {  }
-        type: entity_reference_autocomplete
+        type: options_select
     path:
         type: path
         weight: 30

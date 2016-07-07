@@ -16,7 +16,7 @@ dependencies:
         - text
         - user
 _core:
-    default_config_hash: _ZyPkm-12Ye4vLA7JpCtlCX1viNbR23sDrGPAc_B0nE
+    default_config_hash: _uka7fE4_zzsuZz9E9HO1d8bil4BhbJpr0A9Ywn4lGA
 id: node.group.default
 targetEntityType: node
 bundle: group
