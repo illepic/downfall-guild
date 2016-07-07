@@ -3,10 +3,20 @@ status: true
 dependencies:
     config:
         - field.field.node.guide.body
+        - field.field.node.guide.field_term_class
+        - field.field.node.guide.field_term_downfall
+        - field.field.node.guide.field_term_expansion
+        - field.field.node.guide.field_term_game
+        - field.field.node.guide.field_term_gameplay
+        - field.field.node.guide.field_term_instance
+        - field.field.node.guide.field_term_pvp
+        - field.field.node.guide.field_term_ui
         - node.type.guide
     module:
         - text
         - user
+_core:
+    default_config_hash: 41wlbHl_zUFcuEPptRLEwxTbp_vXRd2vd1Kjh_sQTU4
 id: node.guide.default
 targetEntityType: node
 bundle: guide
@@ -18,6 +28,62 @@ content:
         weight: 101
         settings: {  }
         third_party_settings: {  }
+    field_term_class:
+        weight: 102
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_downfall:
+        weight: 107
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_expansion:
+        weight: 103
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_game:
+        weight: 109
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_gameplay:
+        weight: 104
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_instance:
+        weight: 105
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_pvp:
+        weight: 106
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_ui:
+        weight: 108
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
     links:
         weight: 100
 hidden: {  }

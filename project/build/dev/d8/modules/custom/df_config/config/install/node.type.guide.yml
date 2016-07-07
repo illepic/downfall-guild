@@ -8,6 +8,8 @@ third_party_settings:
         available_menus:
             - main
         parent: 'main:'
+_core:
+    default_config_hash: OgCgfBYtZ9Le9FjsTIpLIJEuJWWA1UbDbawU743mCSg
 name: Guide
 type: guide
 description: 'Guides are standalone pages that can have child pages. Guides have a hierarchical structure and are meant for more long-term information than Posts. '

@@ -3,10 +3,20 @@ status: true
 dependencies:
     config:
         - field.field.node.guide.body
+        - field.field.node.guide.field_term_class
+        - field.field.node.guide.field_term_downfall
+        - field.field.node.guide.field_term_expansion
+        - field.field.node.guide.field_term_game
+        - field.field.node.guide.field_term_gameplay
+        - field.field.node.guide.field_term_instance
+        - field.field.node.guide.field_term_pvp
+        - field.field.node.guide.field_term_ui
         - node.type.guide
     module:
         - path
         - text
+_core:
+    default_config_hash: J2IiW_LPl89nLZueooBK1F8j7QkoaX716S6D7FVqhtQ
 id: node.guide.default
 targetEntityType: node
 bundle: guide
@@ -25,6 +35,46 @@ content:
         weight: 10
         settings: {  }
         third_party_settings: {  }
+    field_term_class:
+        weight: 32
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
+    field_term_downfall:
+        weight: 37
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
+    field_term_expansion:
+        weight: 33
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
+    field_term_game:
+        weight: 39
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
+    field_term_gameplay:
+        weight: 34
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
+    field_term_instance:
+        weight: 35
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
+    field_term_pvp:
+        weight: 36
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
+    field_term_ui:
+        weight: 38
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
     path:
         type: path
         weight: 30

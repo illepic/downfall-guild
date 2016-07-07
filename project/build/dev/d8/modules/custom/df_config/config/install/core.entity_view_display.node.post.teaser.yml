@@ -4,12 +4,13 @@ dependencies:
     config:
         - core.entity_view_mode.node.teaser
         - field.field.node.post.body
+        - field.field.node.post.comment
         - node.type.post
     module:
         - text
         - user
 _core:
-    default_config_hash: ulZoB4s9hPGRINg_XjVed53FoMf40UIF8RigHY5NyO0
+    default_config_hash: w9TiYw_pWwkOOuGmSsRPO2PyzsFujQwIzjt7v3ESQXs
 id: node.post.teaser
 targetEntityType: node
 bundle: post
@@ -24,4 +25,5 @@ content:
         third_party_settings: {  }
     links:
         weight: 100
-hidden: {  }
+hidden:
+    comment: true

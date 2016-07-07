@@ -8,6 +8,8 @@ dependencies:
     module:
         - text
         - user
+_core:
+    default_config_hash: kN4AWIfyut8FWbFxVPchhSTlJr3OyqsGmf_bxcaehTA
 id: node.guide.teaser
 targetEntityType: node
 bundle: guide
