@@ -5,7 +5,7 @@ dependencies:
         - field.storage.node.field_term_expansion
         - node.type.event
 _core:
-    default_config_hash: qNJ9uxzioo3OoGy3FXpfi_yaK0nJt6wHCS_Mg9O_8Zw
+    default_config_hash: TebOy30SGMKeqR5x7eyJq2DS4wS-MkvZITSY2wbgBv4
 id: node.event.field_term_expansion
 field_name: field_term_expansion
 entity_type: node

@@ -14,13 +14,14 @@ dependencies:
         - field.field.node.event.field_term_instance
         - field.field.node.event.field_term_pvp
         - field.field.node.event.field_term_ui
+        - field.field.node.event.field_term_wow
         - node.type.event
     module:
         - datetime
         - path
         - text
 _core:
-    default_config_hash: D9UQZjUvooAIsrdxKrl_CxxssjCPU4Zfy7QiFbsKsEc
+    default_config_hash: phM16yIas4SvDqYCmfo8_6wJCqio7CPZlERgNNfrqhY
 id: node.event.default
 targetEntityType: node
 bundle: event
@@ -28,7 +29,7 @@ mode: default
 content:
     body:
         type: text_textarea_with_summary
-        weight: 31
+        weight: 6
         settings:
             rows: 9
             summary_rows: 3
@@ -36,21 +37,21 @@ content:
         third_party_settings: {  }
     created:
         type: datetime_timestamp
-        weight: 10
+        weight: 2
         settings: {  }
         third_party_settings: {  }
     field_event_end:
-        weight: 33
+        weight: 8
         settings: {  }
         third_party_settings: {  }
         type: datetime_default
     field_event_start:
-        weight: 32
+        weight: 7
         settings: {  }
         third_party_settings: {  }
         type: datetime_default
     field_group:
-        weight: 34
+        weight: 9
         settings:
             match_operator: CONTAINS
             size: 60
@@ -58,72 +59,77 @@ content:
         third_party_settings: {  }
         type: entity_reference_autocomplete_tags
     field_term_class:
-        weight: 35
+        weight: 12
         settings: {  }
         third_party_settings: {  }
         type: options_select
     field_term_downfall:
-        weight: 40
+        weight: 11
         settings: {  }
         third_party_settings: {  }
         type: options_select
     field_term_expansion:
-        weight: 36
+        weight: 13
         settings: {  }
         third_party_settings: {  }
         type: options_select
     field_term_game:
-        weight: 42
+        weight: 18
         settings: {  }
         third_party_settings: {  }
         type: options_select
     field_term_gameplay:
-        weight: 37
+        weight: 14
         settings: {  }
         third_party_settings: {  }
         type: options_select
     field_term_instance:
-        weight: 38
+        weight: 15
         settings: {  }
         third_party_settings: {  }
         type: options_select
     field_term_pvp:
-        weight: 39
+        weight: 16
         settings: {  }
         third_party_settings: {  }
         type: options_select
     field_term_ui:
-        weight: 41
+        weight: 17
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
+    field_term_wow:
+        weight: 10
         settings: {  }
         third_party_settings: {  }
         type: options_select
     path:
         type: path
-        weight: 30
+        weight: 5
         settings: {  }
         third_party_settings: {  }
     promote:
         type: boolean_checkbox
         settings:
             display_label: true
-        weight: 15
+        weight: 3
         third_party_settings: {  }
     sticky:
         type: boolean_checkbox
         settings:
             display_label: true
-        weight: 16
+        weight: 4
         third_party_settings: {  }
     title:
         type: string_textfield
-        weight: -5
+        weight: 0
         settings:
             size: 60
             placeholder: ''
         third_party_settings: {  }
     uid:
         type: entity_reference_autocomplete
-        weight: 5
+        weight: 1
         settings:
             match_operator: CONTAINS
             size: 60

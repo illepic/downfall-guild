@@ -20,7 +20,7 @@ dependencies:
         - text
         - user
 _core:
-    default_config_hash: h97U3ljWnIqtEcsaePb_LqP-HtpY3ut6k8Htga6Q2gw
+    default_config_hash: hyJUAoZPu5o0BGZRbbLs8sI4AaxoO1axKVVMIkOG_-0
 id: node.event.teaser
 targetEntityType: node
 bundle: event

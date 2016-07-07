@@ -4,10 +4,8 @@ dependencies:
     module:
         - node
         - taxonomy
-_core:
-    default_config_hash: Lxey1katLH0789SVNP3eqBPZ_YBb_W5--cq56aDNHwc
-id: node.field_term_instance
-field_name: field_term_instance
+id: node.field_term_wow
+field_name: field_term_wow
 entity_type: node
 type: entity_reference
 settings:

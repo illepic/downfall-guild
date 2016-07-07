@@ -48,6 +48,7 @@ process:
   field_group:
     source: nid
     plugin: og_lookup
+  
 #  field_raid_zone:
 #    plugin: iterator
 #    source: field_raid_zone

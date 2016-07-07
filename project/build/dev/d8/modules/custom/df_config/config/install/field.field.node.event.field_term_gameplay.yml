@@ -5,7 +5,7 @@ dependencies:
         - field.storage.node.field_term_gameplay
         - node.type.event
 _core:
-    default_config_hash: vSTrmY-IsVxzlSdFZGXeSoolzFJHU-UO9-2Kdw_2hW4
+    default_config_hash: B8UUVBrHWD9mRI3T_na9Vea5SAHY6cbWY1UsPrD2Rxk
 id: node.event.field_term_gameplay
 field_name: field_term_gameplay
 entity_type: node

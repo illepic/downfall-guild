@@ -5,7 +5,7 @@ dependencies:
         - field.storage.node.field_term_pvp
         - node.type.event
 _core:
-    default_config_hash: 2LdwiIIvzu92IhKLwFZLCEQfGjfAnj383K23sLg8OiE
+    default_config_hash: WNT7qgn8EGjU1RavEGYvdj_YCCyJ8ErUhLe1IO8r5xA
 id: node.event.field_term_pvp
 field_name: field_term_pvp
 entity_type: node
