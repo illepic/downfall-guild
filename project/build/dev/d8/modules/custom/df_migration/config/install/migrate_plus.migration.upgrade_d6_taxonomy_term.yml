@@ -43,7 +43,7 @@ process:
         18: 56 # Guild tag, updating all content refs instead to tid 56 (Guild Discussion)
         19: 39 # Other, updating all content refs instead to tid 39 (Everything Else)
         26: 102 # Raid, content refs to 102 instead (General Raid Discussion)
-        31: 56 # Relations, covnerting all content refs to 56 (Guild Discussion)
+        31: 56 # Relations, converting all content refs to 56 (Guild Discussion)
         33: 79 # PvP, converting all refs to 79 (PvP)
         41: 77 # Hunter, tid
         42: 72 # Mage
