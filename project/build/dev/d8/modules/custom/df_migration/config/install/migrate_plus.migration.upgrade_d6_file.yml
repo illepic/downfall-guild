@@ -10,6 +10,7 @@ label: Files
 source:
   plugin: d6_file
 process:
+  # skip all these fids because we don't care
   fid: fid
 #  filename: filename
   filename:
@@ -23,6 +24,10 @@ process:
         thumbnail: ''
         img_assist_properties: ''
         large: ''
+    -
+      plugin: skip_contains
+      skip:
+        - 'furiousraid'
     -
       plugin: skip_on_empty
       method: row

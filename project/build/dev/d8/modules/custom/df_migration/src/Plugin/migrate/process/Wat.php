@@ -24,10 +24,9 @@ class Wat extends ProcessPluginBase {
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
-    print_r(PHP_EOL);
-    print_r($value);
-    print_r(PHP_EOL);
-    print_r($this->configuration['debug']);
+    var_dump($value);
+//    var_dump($this);
+//    print_r($this->configuration['debug']);
 
     return $value;
   }

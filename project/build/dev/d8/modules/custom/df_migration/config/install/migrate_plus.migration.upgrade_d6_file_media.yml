@@ -24,6 +24,10 @@ process:
         img_assist_properties: ''
         large: ''
     -
+      plugin: skip_contains
+      skip:
+        - 'furiousraid'
+    -
       plugin: skip_on_empty
       method: row
     -
@@ -33,7 +37,19 @@ process:
   status:
     plugin: default_value
     default_value: 1
-  'field_media_image_image/target_id': fid
+  'field_media_image_image/target_id':
+    -
+      plugin: static_map
+      source: fid
+      bypass: true
+      map:
+        19636: '' # Ui.jpg bullshit
+        20875: '' # Same bullshit
+    -
+      plugin: skip_on_empty
+      method: row
+  uid: uid
+  changed: timestamp
 #  fid: fid
 #  filename: filename
 #  filename:
