@@ -57,6 +57,62 @@ source:
       term_name: 'Overwatch'
       uid: 677
       tid: 117
+    -
+      term_name: 'Race'
+      uid: 678
+      tid: 118
+    -
+      term_name: 'Pandaren'
+      uid: 679
+      tid: 119
+    -
+      term_name: 'Worgen'
+      uid: 680
+      tid: 120
+    -
+      term_name: 'Draenai'
+      uid: 681
+      tid: 121
+    -
+      term_name: 'Dwarf'
+      uid: 682
+      tid: 122
+    -
+      term_name: 'Gnome'
+      uid: 683
+      tid: 123
+    -
+      term_name: 'Human'
+      uid: 684
+      tid: 124
+    -
+      term_name: 'Night Elf'
+      uid: 685
+      tid: 125
+    -
+      term_name: 'Goblin'
+      uid: 686
+      tid: 126
+    -
+      term_name: 'Blood Elf'
+      uid: 687
+      tid: 127
+    -
+      term_name: 'Orc'
+      uid: 688
+      tid: 128
+    -
+      term_name: 'Tauren'
+      uid: 689
+      tid: 129
+    -
+      term_name: 'Troll'
+      uid: 690
+      tid: 130
+    -
+      term_name: 'Undead'
+      uid: 691
+      tid: 131
   # "uid" is the key on our data that the migration can use for unique identifiers. Drupal still
   # assigns proper tid's based on available tid's in the system
   ids:
@@ -83,6 +139,19 @@ process:
       671: 108
       672: 108
       673: 108
+      679: 118 # Pandaren, child of Race
+      680: 118
+      681: 118
+      682: 118
+      683: 118
+      684: 118
+      685: 118
+      686: 118
+      687: 118
+      688: 118
+      689: 118
+      690: 118
+      691: 118
 destination:
   plugin: 'entity:taxonomy_term'
 migration_dependencies:
