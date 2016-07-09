@@ -103,26 +103,42 @@ process:
         13: wow_group_size # 25 man
         14: wow_group_size # 10 man
         83: wow_group_size # 5-man
+        40: wow_class
+        66: wow_class
+        67: wow_class
+        68: wow_class
+        69: wow_class
+        70: wow_class
+        71: wow_class
+        72: wow_class
+        73: wow_class
+        74: wow_class
+        77: wow_class
+        105: wow_class
+        79: wow_pvp # PvP
+        34: wow_pvp # Arena
+        35: wow_pvp # Battlegrounds
+        36: wow_pvp # World PvP
       default_value: wow
   parent:
     plugin: static_map
     source: tid
     default_value: 0
     map:
-      66: 40
-      67: 40
-      68: 40
-      69: 40
-      70: 40
-      71: 40
-      72: 40
-      73: 40
-      74: 40
-      77: 40
-      105: 40
-      34: 79
-      35: 79
-      36: 79
+#      66: 40
+#      67: 40
+#      68: 40
+#      69: 40
+#      70: 40
+#      71: 40
+#      72: 40
+#      73: 40
+#      74: 40
+#      77: 40
+#      105: 40
+#      34: 79
+#      35: 79
+#      36: 79
       54: 63 # Addons new parent "UI"
       55: 63 # Macros new parent "UI"
 #      13: 107 # 107 custom import: Instance Size

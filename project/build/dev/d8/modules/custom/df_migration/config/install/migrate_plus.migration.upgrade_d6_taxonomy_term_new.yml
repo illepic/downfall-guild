@@ -113,6 +113,10 @@ source:
       term_name: 'Undead'
       uid: 691
       tid: 131
+#    -
+#      term_name: 'Class General Discussion'
+#      uid: 692
+#      tid: 132
   # "uid" is the key on our data that the migration can use for unique identifiers. Drupal still
   # assigns proper tid's based on available tid's in the system
   ids:
@@ -143,7 +147,8 @@ process:
       111: wow_expansion # Mists of Pandaria
       112: wow_expansion # Warlords of Draenor
       113: wow_expansion # Legion
-      114: wow_gameplay
+#      132: wow_class # Class General Dicussion
+      109: wow_class # Demon Hunter
     default_value: 'wow'
   name: term_name
   tid: tid
@@ -151,8 +156,8 @@ process:
     plugin: static_map
     source: uid
     default_value: 0
-    map:
-      669: 40
+    map: {}
+#      669: 40
 #      670: 108
 #      671: 108
 #      672: 108
