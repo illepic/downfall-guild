@@ -57,10 +57,10 @@ source:
       term_name: 'Overwatch'
       uid: 677
       tid: 117
-    -
-      term_name: 'Race'
-      uid: 678
-      tid: 118
+#    -
+#      term_name: 'Race'
+#      uid: 678
+#      tid: 118
     -
       term_name: 'Pandaren'
       uid: 679
@@ -126,6 +126,19 @@ process:
       115: 'game'
       116: 'game'
       117: 'game'
+      119: 'wow_race' # Pandaren
+      120: 'wow_race' # Worgen
+      121: 'wow_race' # Draenai
+      122: 'wow_race' # Dwarf
+      123: 'wow_race' # Gnome
+      124: 'wow_race' # Human
+      125: 'wow_race' # Night Elf
+      126: 'wow_race' # Goblin
+      127: 'wow_race' # Blood Elf
+      128: 'wow_race' # Orc
+      129: 'wow_race' # Tauren
+      130: 'wow_race' # Troll
+      131: 'wow_race' # Undead
     default_value: 'wow'
   name: term_name
   tid: tid
@@ -139,19 +152,6 @@ process:
       671: 108
       672: 108
       673: 108
-      679: 118 # Pandaren, child of Race
-      680: 118
-      681: 118
-      682: 118
-      683: 118
-      684: 118
-      685: 118
-      686: 118
-      687: 118
-      688: 118
-      689: 118
-      690: 118
-      691: 118
 destination:
   plugin: 'entity:taxonomy_term'
 migration_dependencies:
