@@ -66,8 +66,7 @@ class TaxonomyLookup extends ProcessPluginBase {
         WHERE termnode.nid = :nid AND vocab.vid = :vocabulary',
         array(':nid' => $nid, ':vocabulary' => $vocabulary))
       ->fetchAll();
-//    print_r(PHP_EOL . 'All tids' . PHP_EOL);
-//    print_r($tids);
+//    var_dump('All tids', $tids);
 
     // Make a clean array
     $clean_tids = array();
@@ -76,19 +75,15 @@ class TaxonomyLookup extends ProcessPluginBase {
     }
     // Dedupe
     $clean_tids = array_unique($clean_tids);
-
-//    print_r(PHP_EOL . 'tids as pure array' . PHP_EOL);
-//    print_r($clean_tids);
+//    var_dump('tids are pure array', $clean_tids);
 
     // Remove all tids that became Group node refs, see upgrade_d6_taxonomy_term.yml
     $clean_tids = array_diff($clean_tids, $this->terms_now_groups);
-//    print_r(PHP_EOL . 'Reduced tids' . PHP_EOL);
-//    print_r($clean_tids);
+//    var_dump('Reduced tids', $clean_tids);
 
     // Conversion from old tags to new
     $clean_tids_converted = array_map(array($this, "convertTids"), $clean_tids);
-//    print_r(PHP_EOL . 'Reduced + Converted tids' . PHP_EOL);
-//    print_r($clean_tids_converted);
+//    var_dump('Reduced + converted tids', $clean_tids_converted);
 
     return $clean_tids_converted;
   }
