@@ -1,0 +1,9 @@
+uuid: 4b65f23f-e98c-484b-887e-b6111a3a0527
+langcode: en
+status: true
+dependencies: {  }
+name: 'WoW - Group Size'
+vid: wow_group_size
+description: 'World of Warcraft group sizes for raids, instances, battlegrounds, etc'
+hierarchy: 0
+weight: 0

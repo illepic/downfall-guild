@@ -1,0 +1,9 @@
+uuid: 03e93a2f-17bb-48cc-add9-7315dc00f37f
+langcode: en
+status: true
+dependencies: {  }
+name: 'WoW - Race'
+vid: wow_race
+description: 'World of Warcraft player Races'
+hierarchy: 0
+weight: 0

@@ -1,0 +1,9 @@
+uuid: 4a790b7a-5ab1-4438-9e17-738e0926771b
+langcode: en
+status: true
+dependencies: {  }
+name: 'WoW - Gameplay'
+vid: wow_gameplay
+description: 'World of Warcraft gameplay subjects'
+hierarchy: 0
+weight: 0

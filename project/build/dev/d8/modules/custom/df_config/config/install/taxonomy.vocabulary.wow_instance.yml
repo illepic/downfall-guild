@@ -1,0 +1,9 @@
+uuid: 6fbbe089-cd58-48ab-b9db-1e03d89f0356
+langcode: en
+status: true
+dependencies: {  }
+name: 'WoW - Instance'
+vid: wow_instance
+description: 'World of Warcraft instances and raids'
+hierarchy: 0
+weight: 0
