@@ -77,6 +77,32 @@ process:
         86: image_galleries
         87: image_galleries
         88: image_galleries
+        76: wow_expansion
+        94: wow_expansion
+        32: wow_expansion
+        17: wow_instance # Tempest Keep
+        75: wow_instance # Sunwell
+        20: wow_instance # Hyjal
+        21: wow_instance # Black Temple
+        27: wow_instance # Karazhan
+        28: wow_instance # Zul'Aman
+        29: wow_instance # SSC
+        91: wow_instance # Naxxramus
+        92: wow_instance # Ulduar
+        93: wow_instance # Sartharion
+        37: wow_gameplay # WoW Discussion
+        102: wow_gameplay # Raid General Discussion
+        103: wow_gameplay # Holonet
+        99: wow_gameplay # PTR
+        59: wow_gameplay # Patch notes
+        58: wow_gameplay # Tools
+        95: wow_gameplay # Nostalgic
+        63: wow_gameplay # UI
+        54: wow_gameplay # Addons new parent "UI"
+        55: wow_gameplay # Macros new parent "UI"
+        13: wow_group_size # 25 man
+        14: wow_group_size # 10 man
+        83: wow_group_size # 5-man
       default_value: wow
   parent:
     plugin: static_map
@@ -97,31 +123,18 @@ process:
       34: 79
       35: 79
       36: 79
-      54: 63
-      55: 63
-      13: 107 # 107 custom import: Instance Size
-      14: 107
-      83: 107
-      17: 106 # 106 custom import: Instance
-      75: 106
-      20: 106
-      21: 106
-      27: 106
-      28: 106
-      29: 106
-      91: 106
-      92: 106
-      93: 106
-      76: 108 # 108 custom import: Expansion
-      94: 108
-      32: 108
-      37: 114 # Gameplay new parent
-      102: 114
-      103: 114
-      99: 114
-      59: 114
-      58: 114
-      95: 114
+      54: 63 # Addons new parent "UI"
+      55: 63 # Macros new parent "UI"
+#      13: 107 # 107 custom import: Instance Size
+#      14: 107
+#      83: 107
+#      37: 114 # Gameplay new parent
+#      102: 114
+#      103: 114
+#      99: 114
+#      59: 114
+#      58: 114
+#      95: 114
 #    -
 #      plugin: migration
 #      migration: upgrade_d6_taxonomy_term
@@ -136,13 +149,13 @@ process:
         'Raid Officer': 'Officer'
         'Guild Discussion/Issues': 'Guild Discussion'
         'UI/Macros': 'UI'
-        'Generic Raid Discussion': 'General Raid Discussion'
-        'Holonet': 'General SW:TOR Discussion'
+        'Generic Raid Discussion': 'Raid General Discussion'
+        'Holonet': 'SW:TOR General Discussion'
 #        'WoW 1.0': 'Vanilla' # dots not allowed in keys
         'World': 'World PvP'
         'World': 'Wrath of the Lich King'
         'SSC': 'Serpentshrine Cavern'
-        'WoW Discussion': 'General WoW Discussion'
+        'WoW Discussion': 'WoW General Discussion'
         'WotLK': 'Wrath of the Lich King'
         '5-man': '5 man'
   description: description

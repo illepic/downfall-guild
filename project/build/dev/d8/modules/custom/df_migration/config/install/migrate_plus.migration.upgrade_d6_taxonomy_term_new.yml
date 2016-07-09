@@ -9,18 +9,18 @@ label: 'Taxonomy terms for new WoW character classes '
 source:
   plugin: embedded_data
   data_rows:
-    -
-      term_name: 'Instance'
-      uid: 666 # tid 106
-      tid: 106
-    -
-      term_name: 'Instance Size'
-      uid: 667 # tid 107
-      tid: 107
-    -
-      term_name: 'Expansion'
-      uid: 668 # tid 108
-      tid: 108
+#    -
+#      term_name: 'Instance'
+#      uid: 666 # tid 106
+#      tid: 106
+#    -
+#      term_name: 'Instance Size'
+#      uid: 667 # tid 107
+#      tid: 107
+#    -
+#      term_name: 'Expansion'
+#      uid: 668 # tid 108
+#      tid: 108
     -
       term_name: 'Demon Hunter'
       uid: 669 # probably tid 109
@@ -41,10 +41,10 @@ source:
       term_name: 'Legion'
       uid: 673 # tid 113
       tid: 113
-    -
-      term_name: 'Gameplay' # Container to hold our random wow tags
-      uid: 674
-      tid: 114
+#    -
+#      term_name: 'Gameplay' # Container to hold our random wow tags
+#      uid: 674
+#      tid: 114
     -
       term_name: 'World of Warcraft'
       uid: 675
@@ -123,22 +123,27 @@ process:
     plugin: static_map
     source: tid
     map:
-      115: 'game'
-      116: 'game'
-      117: 'game'
-      119: 'wow_race' # Pandaren
-      120: 'wow_race' # Worgen
-      121: 'wow_race' # Draenai
-      122: 'wow_race' # Dwarf
-      123: 'wow_race' # Gnome
-      124: 'wow_race' # Human
-      125: 'wow_race' # Night Elf
-      126: 'wow_race' # Goblin
-      127: 'wow_race' # Blood Elf
-      128: 'wow_race' # Orc
-      129: 'wow_race' # Tauren
-      130: 'wow_race' # Troll
-      131: 'wow_race' # Undead
+      115: game # World of Warcraft
+      116: game # Star Wars: The Old Republic
+      117: game # Overwatch
+      119: wow_race # Pandaren
+      120: wow_race # Worgen
+      121: wow_race # Draenai
+      122: wow_race # Dwarf
+      123: wow_race # Gnome
+      124: wow_race # Human
+      125: wow_race # Night Elf
+      126: wow_race # Goblin
+      127: wow_race # Blood Elf
+      128: wow_race # Orc
+      129: wow_race # Tauren
+      130: wow_race # Troll
+      131: wow_race # Undead
+      110: wow_expansion # Cataclysm
+      111: wow_expansion # Mists of Pandaria
+      112: wow_expansion # Warlords of Draenor
+      113: wow_expansion # Legion
+      114: wow_gameplay
     default_value: 'wow'
   name: term_name
   tid: tid
@@ -148,10 +153,10 @@ process:
     default_value: 0
     map:
       669: 40
-      670: 108
-      671: 108
-      672: 108
-      673: 108
+#      670: 108
+#      671: 108
+#      672: 108
+#      673: 108
 destination:
   plugin: 'entity:taxonomy_term'
 migration_dependencies:
