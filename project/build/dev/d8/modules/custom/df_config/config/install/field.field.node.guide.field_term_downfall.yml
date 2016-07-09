@@ -5,6 +5,8 @@ dependencies:
         - field.storage.node.field_term_downfall
         - node.type.guide
         - taxonomy.vocabulary.downfall
+_core:
+    default_config_hash: mafaoqHY3AvR67secVnHtoGi_RpS5GzJbvg-FGo3jvo
 id: node.guide.field_term_downfall
 field_name: field_term_downfall
 entity_type: node

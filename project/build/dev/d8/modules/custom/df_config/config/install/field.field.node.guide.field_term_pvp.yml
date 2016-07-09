@@ -4,6 +4,8 @@ dependencies:
     config:
         - field.storage.node.field_term_pvp
         - node.type.guide
+_core:
+    default_config_hash: cJgEPN2iZdtUceGnAXalPr95zvJUQn1qZ1KYRmIQkgU
 id: node.guide.field_term_pvp
 field_name: field_term_pvp
 entity_type: node

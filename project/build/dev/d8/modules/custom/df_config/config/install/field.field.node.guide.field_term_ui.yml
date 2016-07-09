@@ -4,6 +4,8 @@ dependencies:
     config:
         - field.storage.node.field_term_ui
         - node.type.guide
+_core:
+    default_config_hash: pRhiaMgb2KTTirVlXe1kFflQBzSi5NoTYtMMoiT3KRI
 id: node.guide.field_term_ui
 field_name: field_term_ui
 entity_type: node

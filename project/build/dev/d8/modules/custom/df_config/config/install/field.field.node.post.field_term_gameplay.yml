@@ -4,6 +4,8 @@ dependencies:
     config:
         - field.storage.node.field_term_gameplay
         - node.type.post
+_core:
+    default_config_hash: qOvIU1Qg3tTTuO2jKgIYwVT6hJfwQIKVibWzmjOOYEE
 id: node.post.field_term_gameplay
 field_name: field_term_gameplay
 entity_type: node

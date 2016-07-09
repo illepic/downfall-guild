@@ -4,6 +4,8 @@ dependencies:
     config:
         - field.storage.node.field_term_instance_size
         - node.type.post
+_core:
+    default_config_hash: 7Gq-qKXjxPz958jvamaUgrhaUr7nW5GOl2q9hFSyduo
 id: node.post.field_term_instance_size
 field_name: field_term_instance_size
 entity_type: node

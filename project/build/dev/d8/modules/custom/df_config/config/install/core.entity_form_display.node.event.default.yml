@@ -18,8 +18,25 @@ dependencies:
         - node.type.event
     module:
         - datetime
+        - field_group
         - path
         - text
+third_party_settings:
+    field_group:
+        group_taxonomy_term_event:
+            children:
+                - field_term_wow
+                - field_term_downfall
+            parent_name: ''
+            weight: 20
+            label: 'Taxonomy Term Event'
+            format_type: fieldset
+            format_settings:
+                label: 'Taxonomy Term Event'
+                id: ''
+                classes: ''
+                required_fields: true
+                description: ''
 _core:
     default_config_hash: phM16yIas4SvDqYCmfo8_6wJCqio7CPZlERgNNfrqhY
 id: node.event.default

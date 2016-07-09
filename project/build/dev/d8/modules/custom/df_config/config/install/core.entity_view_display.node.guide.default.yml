@@ -11,12 +11,13 @@ dependencies:
         - field.field.node.guide.field_term_instance
         - field.field.node.guide.field_term_pvp
         - field.field.node.guide.field_term_ui
+        - field.field.node.guide.field_term_wow
         - node.type.guide
     module:
         - text
         - user
 _core:
-    default_config_hash: 41wlbHl_zUFcuEPptRLEwxTbp_vXRd2vd1Kjh_sQTU4
+    default_config_hash: Cqemyq890yhPUvDD24nJ5oVsH5BPipCmrHnJIl_huoQ
 id: node.guide.default
 targetEntityType: node
 bundle: guide
@@ -79,6 +80,13 @@ content:
         type: entity_reference_label
     field_term_ui:
         weight: 108
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_wow:
+        weight: 110
         label: above
         settings:
             link: true

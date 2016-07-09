@@ -4,6 +4,8 @@ dependencies:
     config:
         - field.storage.node.field_term_expansion
         - node.type.guide
+_core:
+    default_config_hash: Q01ik5IS6_4fPPfYESMF7jcSJesxr99TPRZFJAfQkOU
 id: node.guide.field_term_expansion
 field_name: field_term_expansion
 entity_type: node

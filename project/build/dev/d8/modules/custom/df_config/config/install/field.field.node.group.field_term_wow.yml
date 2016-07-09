@@ -2,16 +2,14 @@ langcode: en
 status: true
 dependencies:
     config:
-        - field.storage.node.field_term_game
-        - node.type.guide
-        - taxonomy.vocabulary.game
-_core:
-    default_config_hash: WS377Npp9alYKF56BrIw9hMcf17PIRPztruGrfbNRtA
-id: node.guide.field_term_game
-field_name: field_term_game
+        - field.storage.node.field_term_wow
+        - node.type.group
+        - taxonomy.vocabulary.wow
+id: node.group.field_term_wow
+field_name: field_term_wow
 entity_type: node
-bundle: guide
-label: Game
+bundle: group
+label: WoW
 description: ''
 required: false
 translatable: true
@@ -21,7 +19,7 @@ settings:
     handler: 'default:taxonomy_term'
     handler_settings:
         target_bundles:
-            game: game
+            wow: wow
         sort:
             field: _none
         auto_create: false

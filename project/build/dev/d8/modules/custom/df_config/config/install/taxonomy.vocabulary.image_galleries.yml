@@ -1,7 +1,8 @@
-uuid: 4cbd9bff-8007-4c95-8b3a-bbc286112f63
 langcode: en
 status: true
 dependencies: {  }
+_core:
+    default_config_hash: bW_aRUUqmehHtzfoV_HNTznS15ByujqG5YxwYLr-JSQ
 name: 'Image Galleries'
 vid: image_galleries
 description: ''

@@ -4,6 +4,8 @@ dependencies:
     module:
         - node
         - taxonomy
+_core:
+    default_config_hash: 94OjjPcoUwBZX0F-lAw8BIkKU94PdE4uNUgtA6rGhMs
 id: node.field_image_gallery
 field_name: field_image_gallery
 entity_type: node

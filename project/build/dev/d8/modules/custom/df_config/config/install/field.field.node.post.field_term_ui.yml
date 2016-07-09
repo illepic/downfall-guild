@@ -4,6 +4,8 @@ dependencies:
     config:
         - field.storage.node.field_term_ui
         - node.type.post
+_core:
+    default_config_hash: vg6QPv66HtLFt2rNcK0CGaCCdRYHENusu2_I086KRPo
 id: node.post.field_term_ui
 field_name: field_term_ui
 entity_type: node

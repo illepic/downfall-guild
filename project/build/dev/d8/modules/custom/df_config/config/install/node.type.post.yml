@@ -8,7 +8,7 @@ third_party_settings:
         available_menus: {  }
         parent: ''
 _core:
-    default_config_hash: yr_crMfYrBBZqsZa-S7rM6WN0XAjEqC5rB2rq7qbt_Y
+    default_config_hash: 1psGXrOJ3Y5eu8RS7XqCheVMltlgDwj9IgRMabwPey8
 name: Post
 type: post
 description: 'A post on the Downfall site. Use this to say hello, make announcements, kick off discussion.'

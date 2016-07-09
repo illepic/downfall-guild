@@ -6,6 +6,8 @@ dependencies:
         - field.field.node.image.field_df_image
         - field.field.node.image.field_group
         - field.field.node.image.field_image_gallery
+        - field.field.node.image.field_term_downfall
+        - field.field.node.image.field_term_wow
         - image.style.thumbnail
         - node.type.image
     module:
@@ -13,7 +15,7 @@ dependencies:
         - path
         - text
 _core:
-    default_config_hash: sqrNRSp5K2UgRHT97KZ7NzkfA9v4gioPEtaxkUCRjXc
+    default_config_hash: qM9sIPBC9fragy7IWroqwau8JdPJCufPOA06poyLDuQ
 id: node.image.default
 targetEntityType: node
 bundle: image
@@ -49,6 +51,16 @@ content:
         type: entity_reference_autocomplete
     field_image_gallery:
         weight: 35
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
+    field_term_downfall:
+        weight: 37
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
+    field_term_wow:
+        weight: 36
         settings: {  }
         third_party_settings: {  }
         type: options_select

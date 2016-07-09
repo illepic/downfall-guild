@@ -13,3 +13,4 @@ dependencies:
     - media_entity
     - media_entity_image
     - video_embed_field
+    - field_group

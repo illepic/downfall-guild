@@ -4,6 +4,8 @@ dependencies:
     config:
         - field.storage.node.field_term_pvp
         - node.type.post
+_core:
+    default_config_hash: Bbkohmnwh6On2cifosMUfRtNRiVphEUlkO2DZw5GbXY
 id: node.post.field_term_pvp
 field_name: field_term_pvp
 entity_type: node

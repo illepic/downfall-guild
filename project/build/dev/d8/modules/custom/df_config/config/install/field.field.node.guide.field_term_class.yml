@@ -4,6 +4,8 @@ dependencies:
     config:
         - field.storage.node.field_term_class
         - node.type.guide
+_core:
+    default_config_hash: ZL_DayzuzgfmFdCMLzkOOo0AqMLE0Lje8_Sua6OyYWc
 id: node.guide.field_term_class
 field_name: field_term_class
 entity_type: node

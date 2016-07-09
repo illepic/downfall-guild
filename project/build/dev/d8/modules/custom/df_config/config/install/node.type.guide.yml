@@ -9,7 +9,7 @@ third_party_settings:
             - main
         parent: 'main:'
 _core:
-    default_config_hash: OgCgfBYtZ9Le9FjsTIpLIJEuJWWA1UbDbawU743mCSg
+    default_config_hash: EF9TZqjusIRhTYe_Wpw2B00wdAFn7tbGaO6xG3EjV6g
 name: Guide
 type: guide
 description: 'Guides are standalone pages that can have child pages. Guides have a hierarchical structure and are meant for more long-term information than Posts. '

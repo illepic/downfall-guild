@@ -7,7 +7,9 @@ dependencies:
         - field.field.node.group.field_group_active
         - field.field.node.group.field_group_mascot
         - field.field.node.group.field_start_time
+        - field.field.node.group.field_term_downfall
         - field.field.node.group.field_term_instance_size
+        - field.field.node.group.field_term_wow
         - field.field.node.group.field_week_days
         - image.style.thumbnail
         - node.type.group
@@ -16,7 +18,7 @@ dependencies:
         - path
         - text
 _core:
-    default_config_hash: 14BH8vqEbSdMYylNVTetdL-uHYbAY8WRhaaiFFClhIo
+    default_config_hash: qhczz7OyagIWH9ZnsZOJdC4Ro3Hj1F4kmaqftA0G70Y
 id: node.group.default
 targetEntityType: node
 bundle: group
@@ -58,8 +60,18 @@ content:
         settings: {  }
         third_party_settings: {  }
         type: options_select
+    field_term_downfall:
+        weight: 40
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
     field_term_instance_size:
         weight: 38
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
+    field_term_wow:
+        weight: 39
         settings: {  }
         third_party_settings: {  }
         type: options_select

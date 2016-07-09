@@ -4,6 +4,8 @@ dependencies:
     config:
         - field.storage.node.field_term_expansion
         - node.type.post
+_core:
+    default_config_hash: Gb2RgWuiOqRcI_Uen1aVMAfW09FWQ2UANXAMCJraMu4
 id: node.post.field_term_expansion
 field_name: field_term_expansion
 entity_type: node
