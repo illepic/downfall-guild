@@ -165,7 +165,7 @@ process:
         'Raid Officer': 'Officer'
         'Guild Discussion/Issues': 'Guild Discussion'
         'UI/Macros': 'UI'
-        'Generic Raid Discussion': 'Raid General Discussion'
+        'Generic Raid Discussion': 'Raid'
         'Holonet': 'SW:TOR General Discussion'
 #        'WoW 1.0': 'Vanilla' # dots not allowed in keys
         'World': 'World PvP'

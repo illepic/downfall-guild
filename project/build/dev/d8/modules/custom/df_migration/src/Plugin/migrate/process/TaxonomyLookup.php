@@ -55,8 +55,11 @@ class TaxonomyLookup extends ProcessPluginBase {
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $nid = $value;
-    $vocabulary = $this->configuration['vocabulary'];
-    // Need to add in a Parent ID for our vocab that does that
+//    var_dump('nid', $nid);
+    $source_vocabulary = $this->configuration['source_vocabulary'];
+//    var_dump('Source vocabulary', $source_vocabulary);
+    $destination_vocabulary = $this->configuration['destination_vocabulary'];
+//    var_dump('Destination vocabulary', $destination_vocabulary);
 
     // We know the nid and the vocab, we need to find the tid
     $tids = Database::getConnection('default', 'migrate')
@@ -64,9 +67,14 @@ class TaxonomyLookup extends ProcessPluginBase {
         INNER JOIN {vocabulary} as vocab ON vocab.vid = termdata.vid
         INNER JOIN {term_node} as termnode ON termnode.tid = termdata.tid
         WHERE termnode.nid = :nid AND vocab.vid = :vocabulary',
-        array(':nid' => $nid, ':vocabulary' => $vocabulary))
+        array(':nid' => $nid, ':vocabulary' => $source_vocabulary))
       ->fetchAll();
 //    var_dump('All tids', $tids);
+
+    // EJECT NOW IF NO RESULTS
+    if(empty($tids)) {
+      return array();
+    }
 
     // Make a clean array
     $clean_tids = array();
@@ -75,7 +83,7 @@ class TaxonomyLookup extends ProcessPluginBase {
     }
     // Dedupe
     $clean_tids = array_unique($clean_tids);
-//    var_dump('tids are pure array', $clean_tids);
+//    var_dump('tids as pure array', $clean_tids);
 
     // Remove all tids that became Group node refs, see upgrade_d6_taxonomy_term.yml
     $clean_tids = array_diff($clean_tids, $this->terms_now_groups);
@@ -85,6 +93,22 @@ class TaxonomyLookup extends ProcessPluginBase {
     $clean_tids_converted = array_map(array($this, "convertTids"), $clean_tids);
 //    var_dump('Reduced + converted tids', $clean_tids_converted);
 
-    return $clean_tids_converted;
+    // Look up tids from DESTINATION vocab
+    $dest_tids = Database::getConnection('default', 'default')
+      ->query('SELECT tid from {taxonomy_term_data} WHERE vid = :vid',
+        array(':vid' => $destination_vocabulary))
+      ->fetchAll();
+//    var_dump('Destination tids', $dest_tids);
+
+    // Pull off the destination tids to an array
+    $clean_dest_tids = array();
+    foreach($dest_tids as $tid) {
+      $clean_dest_tids[] = $tid->tid;
+    }
+
+    // The intersection of our source lookup tids and the tids available to our destination vocab
+    $tids_appropriate_for_vocab = array_intersect($clean_tids_converted, $clean_dest_tids);
+
+    return $tids_appropriate_for_vocab;
   }
 }

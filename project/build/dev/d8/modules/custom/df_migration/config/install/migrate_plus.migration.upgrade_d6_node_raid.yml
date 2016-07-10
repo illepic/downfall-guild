@@ -52,7 +52,7 @@ process:
         map:
           '5-man': 83
           '10-man': 14
-          '15-man': 14
+          '15-man': 14 # Here to catch the old 15 tags. 
           '25-man': 13
   field_week_days:
     plugin: iterator

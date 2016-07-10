@@ -22,7 +22,7 @@ use Drupal\migrate\Row;
 class EventOld extends ProcessPluginBase {
 
   protected function dateConvert($value) {
-    // Create date object from the raw sting in db. PHP handles this smart
+    // Create date object from the raw string in db. PHP handles this smart
     $date = new \DateTime($value, new \DateTimeZone('America/Los_Angeles'));
     // Drupal stores all time in UTC, convert
     $date->setTimezone(new \DateTimeZone('UTC'));
