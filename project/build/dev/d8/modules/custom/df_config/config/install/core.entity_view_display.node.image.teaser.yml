@@ -7,12 +7,13 @@ dependencies:
         - field.field.node.image.field_df_image
         - field.field.node.image.field_group
         - field.field.node.image.field_image_gallery
+        - field.field.node.image.field_term_downfall
         - node.type.image
     module:
         - text
         - user
 _core:
-    default_config_hash: HeIPk9j0bw9u-dR3pzc5YOu3tjOB2cXGHnKE4KRtWOE
+    default_config_hash: ypptJ_QY2rG1-MWb47-SW45ptddHfirdziyjqNp5GlE
 id: node.image.teaser
 targetEntityType: node
 bundle: image
@@ -31,3 +32,4 @@ hidden:
     field_df_image: true
     field_group: true
     field_image_gallery: true
+    field_term_downfall: true

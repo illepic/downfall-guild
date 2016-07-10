@@ -5,6 +5,8 @@ dependencies:
         - field.storage.node.field_term_downfall
         - node.type.image
         - taxonomy.vocabulary.downfall
+_core:
+    default_config_hash: X2DtIYjnJv89AwdAKNCxlXhYmSyNaVDiBYuKAIkAx1E
 id: node.image.field_term_downfall
 field_name: field_term_downfall
 entity_type: node

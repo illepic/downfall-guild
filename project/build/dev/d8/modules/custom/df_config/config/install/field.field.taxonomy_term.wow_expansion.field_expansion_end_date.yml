@@ -1,0 +1,21 @@
+uuid: d7b8990b-5323-4ca4-9d3e-fc255db9f648
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_expansion_end_date
+    - taxonomy.vocabulary.wow_expansion
+  module:
+    - datetime
+id: taxonomy_term.wow_expansion.field_expansion_end_date
+field_name: field_expansion_end_date
+entity_type: taxonomy_term
+bundle: wow_expansion
+label: 'Expansion End Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

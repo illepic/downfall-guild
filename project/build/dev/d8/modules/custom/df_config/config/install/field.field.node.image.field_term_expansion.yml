@@ -2,26 +2,24 @@ langcode: en
 status: true
 dependencies:
     config:
-        - field.storage.node.field_group
-        - node.type.group
+        - field.storage.node.field_term_expansion
         - node.type.image
-_core:
-    default_config_hash: m-woK6nKEyKMv2d2iT0m28e2abHCwxx2bW3iMS3TFXk
-id: node.image.field_group
-field_name: field_group
+        - taxonomy.vocabulary.wow_expansion
+id: node.image.field_term_expansion
+field_name: field_term_expansion
 entity_type: node
 bundle: image
-label: Group
-description: 'To which Raid Group does this belong?'
+label: Expansion
+description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-    handler: 'default:node'
+    handler: 'default:taxonomy_term'
     handler_settings:
         target_bundles:
-            group: group
+            wow_expansion: wow_expansion
         sort:
             field: _none
         auto_create: false

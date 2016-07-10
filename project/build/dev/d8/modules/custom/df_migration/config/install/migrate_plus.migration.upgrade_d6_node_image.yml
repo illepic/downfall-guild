@@ -49,14 +49,51 @@ process:
     -
       source: nid
       plugin: og_lookup
+
   field_image_gallery:
     -
       plugin: taxonomy_lookup
       source: nid
-      vocabulary: 8 # vocab id of image galleries
+      source_vocabulary: 8 # vocab id of image galleries
+      destination_vocabulary: image_galleries
     -
       plugin: default_value
       default_value: 88 # Random Crap vocab
+
+  field_term_downfall:
+    plugin: taxonomy_lookup
+    source: nid
+    source_vocabulary: 5 # WoW
+    destination_vocabulary: downfall
+
+  field_term_expansion:
+    plugin: expansion_lookup
+    source: created
+
+  field_term_gameplay:
+    plugin: taxonomy_lookup
+    source: nid
+    source_vocabulary: 5 # WoW
+    destination_vocabulary: wow_gameplay
+
+  field_term_instance:
+    plugin: taxonomy_lookup
+    source: nid
+    source_vocabulary: 5 # WoW
+    destination_vocabulary: wow_instance
+
+  field_term_pvp:
+    plugin: taxonomy_lookup
+    source: nid
+    source_vocabulary: 5 # WoW
+    destination_vocabulary: wow_pvp
+
+  field_term_class:
+    plugin: taxonomy_lookup
+    source: nid
+    source_vocabulary: 5 # WoW
+    destination_vocabulary: wow_class
+
 destination:
   plugin: 'entity:node'
 migration_dependencies:
