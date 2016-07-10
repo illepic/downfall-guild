@@ -15,7 +15,7 @@ dependencies:
         - text
         - user
 _core:
-    default_config_hash: T9S8l8Pr4IUd_oxL1WkALl4zSSpIv_9L_4PHhw52Yk4
+    default_config_hash: 6POpWspEqoYKsXvB8TKgbYk9tJ4Y4jyjO4kDsiSHK6s
 id: node.group.teaser
 targetEntityType: node
 bundle: group

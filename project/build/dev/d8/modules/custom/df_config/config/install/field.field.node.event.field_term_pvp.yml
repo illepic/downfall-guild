@@ -4,8 +4,9 @@ dependencies:
     config:
         - field.storage.node.field_term_pvp
         - node.type.event
+        - taxonomy.vocabulary.wow_pvp
 _core:
-    default_config_hash: WNT7qgn8EGjU1RavEGYvdj_YCCyJ8ErUhLe1IO8r5xA
+    default_config_hash: g9AbPn0fGECkHLmFWzzEEWt0qEPiSaGm3baRn_Mp7RA
 id: node.event.field_term_pvp
 field_name: field_term_pvp
 entity_type: node
@@ -17,11 +18,12 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-    handler: views
+    handler: 'default:taxonomy_term'
     handler_settings:
-        view:
-            view_name: downfall_taxonomy
-            display_name: entity_reference_1
-            arguments:
-                - '79'
+        target_bundles:
+            wow_pvp: wow_pvp
+        sort:
+            field: _none
+        auto_create: false
+        auto_create_bundle: ''
 field_type: entity_reference

@@ -41,28 +41,28 @@ class ExpansionLookup extends ProcessPluginBase {
 
     switch ($created) {
       case $created > $vanilla && $created < $burning_crusade:
-//        echo('Vanilla');
+        echo('Vanilla');
         return 32;
       case $created > $burning_crusade && $created < $wrath_of_the_lich_king:
-//        echo('Burning Crusade');
+        echo('Burning Crusade');
         return 94;
       case $created > $wrath_of_the_lich_king && $created < $cataclysm:
-//        echo('Wrath of the Lich King');
+        echo('Wrath of the Lich King');
         return 76;
       case $created > $cataclysm && $created < $mists_of_pandaria:
-//        echo('Cataclysm');
+        echo('Cataclysm');
         return 110;
       case $created > $mists_of_pandaria && $created < $warlords_of_draenor:
-//        echo('Mists of Pandaria');
+        echo('Mists of Pandaria');
         return 111;
       case $created > $warlords_of_draenor && $created < $legion:
-//        echo('Warlords of Draenor');
+        echo('Warlords of Draenor');
         return 112;
       case $created > $legion:
-//        echo('Legion');
+        echo('Legion');
         return 113;
       default:
-//        echo('Vanilla');
+        echo('Vanilla');
         return 32;
     }
   }

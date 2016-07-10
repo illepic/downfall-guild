@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
     config:
-        - field.storage.node.field_term_gameplay
+        - field.storage.node.field_term_instance_size
         - node.type.event
-        - taxonomy.vocabulary.wow_gameplay
-id: node.event.field_term_gameplay
-field_name: field_term_gameplay
+        - taxonomy.vocabulary.wow_group_size
+id: node.event.field_term_instance_size
+field_name: field_term_instance_size
 entity_type: node
 bundle: event
-label: Gameplay
+label: 'Instance Size'
 description: ''
 required: false
 translatable: true
@@ -19,7 +19,7 @@ settings:
     handler: 'default:taxonomy_term'
     handler_settings:
         target_bundles:
-            wow_gameplay: wow_gameplay
+            wow_group_size: wow_group_size
         sort:
             field: _none
         auto_create: false

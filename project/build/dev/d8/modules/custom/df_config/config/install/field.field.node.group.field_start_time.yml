@@ -7,7 +7,7 @@ dependencies:
     module:
         - options
 _core:
-    default_config_hash: Dupqqim8qQ9807skq2KZKeWiyUdyBAeFtNXGWTZXpWU
+    default_config_hash: LFULDO-2NgT3CJYjtaYSp1Y-_QTxtdFSA8fhmsgj2F4
 id: node.group.field_start_time
 field_name: field_start_time
 entity_type: node

@@ -7,7 +7,7 @@ dependencies:
     module:
         - options
 _core:
-    default_config_hash: 14fQF6mQrqTWsntu01FWWr5lZgM7vWD5DzOVZJAXiXk
+    default_config_hash: vfUVYCJwYnGin-UlstL0fmLWPCPzZ4dSyVA2YBx2OX8
 id: node.group.field_end_time
 field_name: field_end_time
 entity_type: node

@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'WoW - Expansion'
+vid: wow_expansion
+description: 'World of Warcraft expansion and patches'
+hierarchy: 0
+weight: 0

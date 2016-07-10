@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
     config:
-        - field.storage.node.field_term_gameplay
-        - node.type.event
-        - taxonomy.vocabulary.wow_gameplay
-id: node.event.field_term_gameplay
-field_name: field_term_gameplay
+        - field.storage.node.field_term_pvp
+        - node.type.group
+        - taxonomy.vocabulary.wow_pvp
+id: node.group.field_term_pvp
+field_name: field_term_pvp
 entity_type: node
-bundle: event
-label: Gameplay
+bundle: group
+label: PvP
 description: ''
 required: false
 translatable: true
@@ -19,7 +19,7 @@ settings:
     handler: 'default:taxonomy_term'
     handler_settings:
         target_bundles:
-            wow_gameplay: wow_gameplay
+            wow_pvp: wow_pvp
         sort:
             field: _none
         auto_create: false

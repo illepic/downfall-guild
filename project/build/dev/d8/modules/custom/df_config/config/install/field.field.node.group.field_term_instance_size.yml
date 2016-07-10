@@ -4,8 +4,9 @@ dependencies:
     config:
         - field.storage.node.field_term_instance_size
         - node.type.group
+        - taxonomy.vocabulary.wow_group_size
 _core:
-    default_config_hash: sElgrKXSV5jBgVR7Z-wrViigid38JGhbg3YRMG72KnY
+    default_config_hash: LoPGQiPj-uvV8vjbIXlN1x6WG-mmf-cXB1DK7terB5g
 id: node.group.field_term_instance_size
 field_name: field_term_instance_size
 entity_type: node
@@ -17,11 +18,12 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-    handler: views
+    handler: 'default:taxonomy_term'
     handler_settings:
-        view:
-            view_name: downfall_taxonomy
-            display_name: entity_reference_1
-            arguments:
-                - '107'
+        target_bundles:
+            wow_group_size: wow_group_size
+        sort:
+            field: _none
+        auto_create: false
+        auto_create_bundle: ''
 field_type: entity_reference

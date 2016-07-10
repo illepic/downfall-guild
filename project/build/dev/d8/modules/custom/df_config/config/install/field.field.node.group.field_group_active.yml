@@ -5,7 +5,7 @@ dependencies:
         - field.storage.node.field_group_active
         - node.type.group
 _core:
-    default_config_hash: MpdZqBgo4xKIcJ85CcsynwDmnYWLcDvRI3rdBxpO9Io
+    default_config_hash: hxAX0c4eWSdO9xzkaByze_Tm8rYkUvaYCv6AoR2yw7E
 id: node.group.field_group_active
 field_name: field_group_active
 entity_type: node

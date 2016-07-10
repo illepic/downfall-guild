@@ -52,9 +52,47 @@ process:
         - value2
     -
       plugin: event_new
+
+  # Convert OG to node reference
   field_group:
     source: nid
     plugin: og_lookup
+
+  # New fields
+  field_term_downfall:
+    plugin: taxonomy_lookup
+    source: nid
+    source_vocabulary: 5 # WoW
+    destination_vocabulary: downfall
+
+  field_term_instance_size:
+    plugin: taxonomy_lookup
+    source: nid
+    source_vocabulary: 5 # WoW
+    destination_vocabulary: wow_group_size
+
+  field_term_gameplay:
+    plugin: taxonomy_lookup
+    source: nid
+    source_vocabulary: 5 # WoW
+    destination_vocabulary: wow_gameplay
+
+  field_term_instance:
+    plugin: taxonomy_lookup
+    source: nid
+    source_vocabulary: 5 # WoW
+    destination_vocabulary: wow_instance
+
+  field_term_pvp:
+    plugin: taxonomy_lookup
+    source: nid
+    source_vocabulary: 5 # WoW
+    destination_vocabulary: wow_pvp
+
+  field_term_expansion:
+    plugin: expansion_lookup
+    source: created
+
 destination:
   plugin: 'entity:node'
 migration_dependencies:

@@ -7,7 +7,7 @@ dependencies:
     module:
         - options
 _core:
-    default_config_hash: AqxMnbvRvfpbaaJ6CRZqe49Bdja1wr2LNLo3BJdikMM
+    default_config_hash: y5m4xHUdjE5PYLS4P--ufYCxjB2TOIACNO1C_l3kalA
 id: node.group.field_week_days
 field_name: field_week_days
 entity_type: node

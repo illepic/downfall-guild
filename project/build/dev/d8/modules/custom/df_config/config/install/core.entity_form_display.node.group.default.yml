@@ -7,9 +7,10 @@ dependencies:
         - field.field.node.group.field_group_active
         - field.field.node.group.field_group_mascot
         - field.field.node.group.field_start_time
-        - field.field.node.group.field_term_downfall
+        - field.field.node.group.field_term_expansion
+        - field.field.node.group.field_term_instance
         - field.field.node.group.field_term_instance_size
-        - field.field.node.group.field_term_wow
+        - field.field.node.group.field_term_pvp
         - field.field.node.group.field_week_days
         - image.style.thumbnail
         - node.type.group
@@ -18,7 +19,7 @@ dependencies:
         - path
         - text
 _core:
-    default_config_hash: qhczz7OyagIWH9ZnsZOJdC4Ro3Hj1F4kmaqftA0G70Y
+    default_config_hash: EminDxG6CE-Q0pzEeb_YavJ6OvGvGyM2tOeR__8zT_g
 id: node.group.default
 targetEntityType: node
 bundle: group
@@ -60,21 +61,35 @@ content:
         settings: {  }
         third_party_settings: {  }
         type: options_select
-    field_term_downfall:
+    field_term_expansion:
         weight: 40
-        settings: {  }
+        settings:
+            match_operator: CONTAINS
+            size: 60
+            placeholder: ''
         third_party_settings: {  }
-        type: options_select
+        type: entity_reference_autocomplete
+    field_term_instance:
+        weight: 39
+        settings:
+            match_operator: CONTAINS
+            size: 60
+            placeholder: ''
+        third_party_settings: {  }
+        type: entity_reference_autocomplete_tags
     field_term_instance_size:
         weight: 38
         settings: {  }
         third_party_settings: {  }
         type: options_select
-    field_term_wow:
-        weight: 39
-        settings: {  }
+    field_term_pvp:
+        weight: 41
+        settings:
+            match_operator: CONTAINS
+            size: 60
+            placeholder: ''
         third_party_settings: {  }
-        type: options_select
+        type: entity_reference_autocomplete
     field_week_days:
         weight: 34
         settings: {  }

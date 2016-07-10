@@ -52,7 +52,7 @@ process:
         map:
           '5-man': 83
           '10-man': 14
-          '15-man': 14 # Here to catch the old 15 tags. 
+          '15-man': 14 # Here to catch the old 15 tags.
           '25-man': 13
   field_week_days:
     plugin: iterator
@@ -71,6 +71,19 @@ process:
         default_value: 0
         map:
           active: 1
+  field_term_expansion:
+    plugin: expansion_lookup
+    source: created
+  field_term_instance:
+    plugin: taxonomy_lookup
+    source: nid
+    source_vocabulary: 5 # WoW
+    destination_vocabulary: wow_instance
+  field_term_pvp:
+    plugin: taxonomy_lookup
+    source: nid
+    source_vocabulary: 5 # WoW
+    destination_vocabulary: wow_pvp
   # OLD FIELDS
   #field_raidroster: field_raidroster
 destination:
