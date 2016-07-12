@@ -8,6 +8,7 @@ dependencies:
         - field.field.node.event.field_group
         - field.field.node.event.field_term_downfall
         - field.field.node.event.field_term_expansion
+        - field.field.node.event.field_term_game
         - field.field.node.event.field_term_gameplay
         - field.field.node.event.field_term_instance
         - field.field.node.event.field_term_instance_size
@@ -65,6 +66,14 @@ content:
         settings: {  }
         third_party_settings: {  }
         type: options_select
+    field_term_game:
+        weight: 26
+        settings:
+            match_operator: CONTAINS
+            size: 60
+            placeholder: ''
+        third_party_settings: {  }
+        type: entity_reference_autocomplete
     field_term_gameplay:
         weight: 13
         settings: {  }

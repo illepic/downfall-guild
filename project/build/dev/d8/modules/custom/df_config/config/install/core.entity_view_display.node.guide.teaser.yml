@@ -10,14 +10,14 @@ dependencies:
         - field.field.node.guide.field_term_game
         - field.field.node.guide.field_term_gameplay
         - field.field.node.guide.field_term_instance
+        - field.field.node.guide.field_term_instance_size
         - field.field.node.guide.field_term_pvp
-        - field.field.node.guide.field_term_ui
         - node.type.guide
     module:
         - text
         - user
 _core:
-    default_config_hash: QCa8QrStaGkr1ZHp3hmA3iUlpWwvuMm1DXbcx0DOK3E
+    default_config_hash: uY91FPdg4GEnpmowP5fYFUVQRaibYDxM4fQkxJ8QUAo
 id: node.guide.teaser
 targetEntityType: node
 bundle: guide
@@ -39,5 +39,5 @@ hidden:
     field_term_game: true
     field_term_gameplay: true
     field_term_instance: true
+    field_term_instance_size: true
     field_term_pvp: true
-    field_term_ui: true

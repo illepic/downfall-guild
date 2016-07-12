@@ -2,16 +2,14 @@ langcode: en
 status: true
 dependencies:
     config:
-        - field.storage.node.field_term_downfall
+        - field.storage.node.field_term_instance_size
         - node.type.guide
-        - taxonomy.vocabulary.downfall
-_core:
-    default_config_hash: SGcP1TKHeguGSnT49IqZWuK6sLlrURxOOn84qzUSMrA
-id: node.guide.field_term_downfall
-field_name: field_term_downfall
+        - taxonomy.vocabulary.wow_group_size
+id: node.guide.field_term_instance_size
+field_name: field_term_instance_size
 entity_type: node
 bundle: guide
-label: 'Downfall Guild'
+label: 'Group Size'
 description: ''
 required: false
 translatable: true
@@ -21,7 +19,7 @@ settings:
     handler: 'default:taxonomy_term'
     handler_settings:
         target_bundles:
-            downfall: downfall
+            wow_group_size: wow_group_size
         sort:
             field: _none
         auto_create: false

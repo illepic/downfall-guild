@@ -9,6 +9,7 @@ dependencies:
         - field.field.node.image.field_term_class
         - field.field.node.image.field_term_downfall
         - field.field.node.image.field_term_expansion
+        - field.field.node.image.field_term_game
         - field.field.node.image.field_term_gameplay
         - field.field.node.image.field_term_instance
         - field.field.node.image.field_term_pvp
@@ -68,6 +69,13 @@ content:
         type: entity_reference_label
     field_term_expansion:
         weight: 108
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_game:
+        weight: 113
         label: above
         settings:
             link: true

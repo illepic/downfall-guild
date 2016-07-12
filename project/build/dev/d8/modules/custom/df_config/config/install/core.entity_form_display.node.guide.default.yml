@@ -9,15 +9,14 @@ dependencies:
         - field.field.node.guide.field_term_game
         - field.field.node.guide.field_term_gameplay
         - field.field.node.guide.field_term_instance
+        - field.field.node.guide.field_term_instance_size
         - field.field.node.guide.field_term_pvp
-        - field.field.node.guide.field_term_ui
-        - field.field.node.guide.field_term_wow
         - node.type.guide
     module:
         - path
         - text
 _core:
-    default_config_hash: e7cjda_XQjdT0ctd3oPBapxgcOlFgjUxp7hc_gv4jtM
+    default_config_hash: Tap6OI_kJYRdWdFgAifPVcn26S0P34igZcT7v791tPI
 id: node.guide.default
 targetEntityType: node
 bundle: guide
@@ -37,47 +36,48 @@ content:
         settings: {  }
         third_party_settings: {  }
     field_term_class:
-        weight: 7
-        settings: {  }
+        weight: 9
+        settings:
+            match_operator: CONTAINS
+            size: 60
+            placeholder: ''
         third_party_settings: {  }
-        type: options_select
+        type: entity_reference_autocomplete
     field_term_downfall:
-        weight: 15
-        settings: {  }
-        third_party_settings: {  }
-        type: options_select
-    field_term_expansion:
-        weight: 8
-        settings: {  }
-        third_party_settings: {  }
-        type: options_select
-    field_term_game:
         weight: 13
         settings: {  }
         third_party_settings: {  }
         type: options_select
+    field_term_expansion:
+        weight: 14
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
+    field_term_game:
+        weight: 15
+        settings: {  }
+        third_party_settings: {  }
+        type: options_select
     field_term_gameplay:
-        weight: 9
+        weight: 7
         settings: {  }
         third_party_settings: {  }
         type: options_select
     field_term_instance:
-        weight: 10
-        settings: {  }
+        weight: 8
+        settings:
+            match_operator: CONTAINS
+            size: 60
+            placeholder: ''
         third_party_settings: {  }
-        type: options_select
-    field_term_pvp:
-        weight: 11
-        settings: {  }
-        third_party_settings: {  }
-        type: options_select
-    field_term_ui:
+        type: entity_reference_autocomplete
+    field_term_instance_size:
         weight: 12
         settings: {  }
         third_party_settings: {  }
         type: options_select
-    field_term_wow:
-        weight: 14
+    field_term_pvp:
+        weight: 10
         settings: {  }
         third_party_settings: {  }
         type: options_select

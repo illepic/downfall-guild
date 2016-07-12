@@ -3,16 +3,14 @@ status: true
 dependencies:
     config:
         - field.storage.node.field_term_game
-        - node.type.guide
+        - node.type.image
         - taxonomy.vocabulary.game
     content:
         - 'taxonomy_term:game:7defbc96-f405-449d-ac97-f87fa32a4dcf'
-_core:
-    default_config_hash: 7-7KPaf2nytoWrjLYIPixcu_RFQJ9KmNgcPpsrtfaHI
-id: node.guide.field_term_game
+id: node.image.field_term_game
 field_name: field_term_game
 entity_type: node
-bundle: guide
+bundle: image
 label: Game
 description: ''
 required: false
