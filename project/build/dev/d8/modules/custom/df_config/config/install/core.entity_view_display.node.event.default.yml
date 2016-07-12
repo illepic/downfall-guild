@@ -3,6 +3,7 @@ status: true
 dependencies:
     config:
         - field.field.node.event.body
+        - field.field.node.event.comment
         - field.field.node.event.field_event_end
         - field.field.node.event.field_event_start
         - field.field.node.event.field_group
@@ -15,6 +16,7 @@ dependencies:
         - field.field.node.event.field_term_pvp
         - node.type.event
     module:
+        - comment
         - datetime
         - text
         - user
@@ -31,6 +33,13 @@ content:
         weight: 101
         settings: {  }
         third_party_settings: {  }
+    comment:
+        weight: 114
+        label: above
+        settings:
+            pager_id: 0
+        third_party_settings: {  }
+        type: comment_default
     field_event_end:
         weight: 103
         label: above

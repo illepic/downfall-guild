@@ -3,6 +3,7 @@ status: true
 dependencies:
     config:
         - field.field.node.image.body
+        - field.field.node.image.comment
         - field.field.node.image.field_df_image
         - field.field.node.image.field_group
         - field.field.node.image.field_image_gallery
@@ -15,6 +16,7 @@ dependencies:
         - field.field.node.image.field_term_pvp
         - node.type.image
     module:
+        - comment
         - image
         - text
         - user
@@ -31,6 +33,13 @@ content:
         weight: 101
         settings: {  }
         third_party_settings: {  }
+    comment:
+        weight: 114
+        label: above
+        settings:
+            pager_id: 0
+        third_party_settings: {  }
+        type: comment_default
     field_df_image:
         weight: 104
         label: above

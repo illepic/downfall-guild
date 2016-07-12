@@ -3,6 +3,7 @@ status: true
 dependencies:
     config:
         - field.field.node.image.body
+        - field.field.node.image.comment
         - field.field.node.image.field_df_image
         - field.field.node.image.field_group
         - field.field.node.image.field_image_gallery
@@ -16,6 +17,7 @@ dependencies:
         - image.style.thumbnail
         - node.type.image
     module:
+        - comment
         - image
         - path
         - text
@@ -34,6 +36,11 @@ content:
             summary_rows: 3
             placeholder: ''
         third_party_settings: {  }
+    comment:
+        weight: 44
+        settings: {  }
+        third_party_settings: {  }
+        type: comment_default
     created:
         type: datetime_timestamp
         weight: 10

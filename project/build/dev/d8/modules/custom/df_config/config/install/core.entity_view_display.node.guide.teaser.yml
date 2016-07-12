@@ -4,6 +4,7 @@ dependencies:
     config:
         - core.entity_view_mode.node.teaser
         - field.field.node.guide.body
+        - field.field.node.guide.comment
         - field.field.node.guide.field_term_class
         - field.field.node.guide.field_term_downfall
         - field.field.node.guide.field_term_expansion
@@ -33,6 +34,7 @@ content:
     links:
         weight: 100
 hidden:
+    comment: true
     field_term_class: true
     field_term_downfall: true
     field_term_expansion: true
