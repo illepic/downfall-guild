@@ -2,26 +2,24 @@ langcode: en
 status: true
 dependencies:
     config:
-        - field.storage.node.field_term_expansion
+        - field.storage.node.field_group
+        - node.type.group
         - node.type.post
-        - taxonomy.vocabulary.wow_expansion
-_core:
-    default_config_hash: J8eUKsur63KH8qYoJ6LzSz5jxpM4v9OQkLmfKKfzUgg
-id: node.post.field_term_expansion
-field_name: field_term_expansion
+id: node.post.field_group
+field_name: field_group
 entity_type: node
 bundle: post
-label: Expansion
+label: Group
 description: ''
 required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-    handler: 'default:taxonomy_term'
+    handler: 'default:node'
     handler_settings:
         target_bundles:
-            wow_expansion: wow_expansion
+            group: group
         sort:
             field: _none
         auto_create: false

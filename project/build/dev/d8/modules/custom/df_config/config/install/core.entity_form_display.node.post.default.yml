@@ -4,40 +4,21 @@ dependencies:
     config:
         - field.field.node.post.body
         - field.field.node.post.comment
+        - field.field.node.post.field_group
         - field.field.node.post.field_term_class
         - field.field.node.post.field_term_downfall
         - field.field.node.post.field_term_expansion
         - field.field.node.post.field_term_game
         - field.field.node.post.field_term_gameplay
         - field.field.node.post.field_term_instance
-        - field.field.node.post.field_term_instance_size
         - field.field.node.post.field_term_pvp
-        - field.field.node.post.field_term_ui
-        - field.field.node.post.field_term_wow
         - node.type.post
     module:
         - comment
-        - field_group
         - path
         - text
-third_party_settings:
-    field_group:
-        group_taxonomy_debug:
-            children:
-                - field_term_wow
-                - field_term_downfall
-            parent_name: ''
-            weight: 20
-            label: 'Taxonomy Debug'
-            format_type: fieldset
-            format_settings:
-                label: 'Taxonomy Debug'
-                id: ''
-                classes: ''
-                required_fields: true
-                description: ''
 _core:
-    default_config_hash: 90-bc-Vb-G4Lk9PevKHs8kZvZ758fwU4IJAE6Q8WqEM
+    default_config_hash: g1GrV63aScjkUJvrehojm0cqmGBuU-j0AeeXPigyGtU
 id: node.post.default
 targetEntityType: node
 bundle: post
@@ -52,7 +33,7 @@ content:
             placeholder: ''
         third_party_settings: {  }
     comment:
-        weight: 7
+        weight: 15
         settings: {  }
         third_party_settings: {  }
         type: comment_default
@@ -61,18 +42,26 @@ content:
         weight: 2
         settings: {  }
         third_party_settings: {  }
+    field_group:
+        weight: 7
+        settings:
+            match_operator: CONTAINS
+            size: 60
+            placeholder: ''
+        third_party_settings: {  }
+        type: entity_reference_autocomplete
     field_term_class:
-        weight: 8
+        weight: 10
         settings: {  }
         third_party_settings: {  }
         type: options_select
     field_term_downfall:
-        weight: 17
+        weight: 12
         settings: {  }
         third_party_settings: {  }
         type: options_select
     field_term_expansion:
-        weight: 9
+        weight: 13
         settings: {  }
         third_party_settings: {  }
         type: options_select
@@ -82,32 +71,17 @@ content:
         third_party_settings: {  }
         type: options_select
     field_term_gameplay:
-        weight: 10
+        weight: 8
         settings: {  }
         third_party_settings: {  }
         type: options_select
     field_term_instance:
-        weight: 11
-        settings: {  }
-        third_party_settings: {  }
-        type: options_select
-    field_term_instance_size:
-        weight: 15
+        weight: 9
         settings: {  }
         third_party_settings: {  }
         type: options_select
     field_term_pvp:
-        weight: 12
-        settings: {  }
-        third_party_settings: {  }
-        type: options_select
-    field_term_ui:
-        weight: 13
-        settings: {  }
-        third_party_settings: {  }
-        type: options_select
-    field_term_wow:
-        weight: 16
+        weight: 11
         settings: {  }
         third_party_settings: {  }
         type: options_select

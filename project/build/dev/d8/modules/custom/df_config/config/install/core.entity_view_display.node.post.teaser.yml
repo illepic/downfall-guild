@@ -5,22 +5,20 @@ dependencies:
         - core.entity_view_mode.node.teaser
         - field.field.node.post.body
         - field.field.node.post.comment
+        - field.field.node.post.field_group
         - field.field.node.post.field_term_class
         - field.field.node.post.field_term_downfall
         - field.field.node.post.field_term_expansion
         - field.field.node.post.field_term_game
         - field.field.node.post.field_term_gameplay
         - field.field.node.post.field_term_instance
-        - field.field.node.post.field_term_instance_size
         - field.field.node.post.field_term_pvp
-        - field.field.node.post.field_term_ui
-        - field.field.node.post.field_term_wow
         - node.type.post
     module:
         - text
         - user
 _core:
-    default_config_hash: OTtcpi-pfzz-aiWWQA6GGl1o3vlpaCObf0tC8qPpyFQ
+    default_config_hash: 5_Py_inIaVKtQwyL0nmvc3O0tG16QVjkH6tbU_tWfV0
 id: node.post.teaser
 targetEntityType: node
 bundle: post
@@ -37,13 +35,11 @@ content:
         weight: 100
 hidden:
     comment: true
+    field_group: true
     field_term_class: true
     field_term_downfall: true
     field_term_expansion: true
     field_term_game: true
     field_term_gameplay: true
     field_term_instance: true
-    field_term_instance_size: true
     field_term_pvp: true
-    field_term_ui: true
-    field_term_wow: true

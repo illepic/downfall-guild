@@ -4,8 +4,9 @@ dependencies:
     config:
         - field.storage.node.field_term_class
         - node.type.post
+        - taxonomy.vocabulary.wow_class
 _core:
-    default_config_hash: n0f8XByjsLLEp7wcjzfaouCnUY-4fFBDT2tVsD8eb7Y
+    default_config_hash: BwNQKcNSB4jrTDGXGxmDASuqr_TJaumfsjFS5A6IqDo
 id: node.post.field_term_class
 field_name: field_term_class
 entity_type: node
@@ -17,11 +18,12 @@ translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-    handler: views
+    handler: 'default:taxonomy_term'
     handler_settings:
-        view:
-            view_name: downfall_taxonomy
-            display_name: entity_reference_1
-            arguments:
-                - '40'
+        target_bundles:
+            wow_class: wow_class
+        sort:
+            field: _none
+        auto_create: false
+        auto_create_bundle: ''
 field_type: entity_reference
