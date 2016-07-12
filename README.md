@@ -179,7 +179,7 @@ From root of project:
     cd drupal-vm && vagrant ssh
     cd /var/www/df/web/d8/web && drupal module:install df_migration
     # DO THIS MANUAL: 
-
+  
 DOCUMENTATION PURPOSES ONLY, NO NEED TO RUN: This was already run, but to config export:
 
     drush migrate-upgrade --legacy-db-url="mysql://dfdbuser:dfdbpass@127.0.0.1/downfall_d6" --legacy-db-prefix="demo_" --legacy-root="http://d6.local.downfallguild.org" --configure-only
