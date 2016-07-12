@@ -117,6 +117,18 @@ source:
       term_name: "Meetups"
       uid: 692
       tid: 132
+    -
+      term_name: "Healing"
+      uid: 694
+      tid: 134
+    -
+      term_name: "Tanking"
+      uid: 695
+      tid: 135
+    -
+      term_name: "DPS"
+      uid: 696
+      tid: 136
   # "uid" is the key on our data that the migration can use for unique identifiers. Drupal still
   # assigns proper tid's based on available tid's in the system
   ids:
@@ -149,6 +161,9 @@ process:
       113: wow_expansion # Legion
       109: wow_class # Demon Hunter
       132: downfall # Meetups
+      134: wow_role # Healing
+      135: wow_role # Tanking
+      136: wow_role # DPS
     default_value: 'wow'
   name: term_name
   tid: tid
@@ -157,6 +172,9 @@ process:
     source: uid
     default_value: 0
     map: {}
+#      694: 133 # Healing parent = Role
+#      695: 133 # Tanking parent = Role
+#      696: 133 # DPS parent = Role
 #      669: 40
 #      670: 108
 #      671: 108

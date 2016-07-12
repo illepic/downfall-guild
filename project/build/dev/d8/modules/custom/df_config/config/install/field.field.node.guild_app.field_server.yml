@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+    config:
+        - field.storage.node.field_server
+        - node.type.guild_app
+    module:
+        - options
+id: node.guild_app.field_server
+field_name: field_server
+entity_type: node
+bundle: guild_app
+label: Server
+description: 'Select the server the character is on.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

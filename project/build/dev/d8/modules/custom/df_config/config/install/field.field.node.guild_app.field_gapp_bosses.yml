@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+    config:
+        - field.storage.node.field_gapp_bosses
+        - node.type.guild_app
+    module:
+        - text
+id: node.guild_app.field_gapp_bosses
+field_name: field_gapp_bosses
+entity_type: node
+bundle: guild_app
+label: 'What are your most and least favorite boss encounters and why'
+description: 'List a couple with details'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

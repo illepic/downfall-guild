@@ -1,0 +1,183 @@
+langcode: en
+status: true
+dependencies:
+    config:
+        - field.field.node.guild_app.field_gapp_bosses
+        - field.field.node.guild_app.field_gapp_class_state
+        - field.field.node.guild_app.field_gapp_describe_playstyle
+        - field.field.node.guild_app.field_gapp_english
+        - field.field.node.guild_app.field_gapp_essential_addons
+        - field.field.node.guild_app.field_gapp_guild_bgs
+        - field.field.node.guild_app.field_gapp_led_to_downfall
+        - field.field.node.guild_app.field_gapp_like_particular_ui
+        - field.field.node.guild_app.field_gapp_name
+        - field.field.node.guild_app.field_gapp_pvp_experience
+        - field.field.node.guild_app.field_gapp_pvp_focus
+        - field.field.node.guild_app.field_gapp_raid_experience
+        - field.field.node.guild_app.field_gapp_specializations
+        - field.field.node.guild_app.field_gapp_term_class
+        - field.field.node.guild_app.field_gapp_timezone
+        - field.field.node.guild_app.field_gapp_ui_image
+        - field.field.node.guild_app.field_gapp_wow_history
+        - field.field.node.guild_app.field_gapp_yourself
+        - field.field.node.guild_app.field_server
+        - field.field.node.guild_app.field_term_race
+        - field.field.node.guild_app.field_term_role
+        - field.field.node.guild_app.field_week_days
+        - node.type.guild_app
+    module:
+        - image
+        - options
+        - text
+        - user
+id: node.guild_app.default
+targetEntityType: node
+bundle: guild_app
+mode: default
+content:
+    field_gapp_bosses:
+        weight: 118
+        label: above
+        settings: {  }
+        third_party_settings: {  }
+        type: text_default
+    field_gapp_class_state:
+        weight: 109
+        label: above
+        settings: {  }
+        third_party_settings: {  }
+        type: text_default
+    field_gapp_describe_playstyle:
+        weight: 116
+        label: above
+        settings: {  }
+        third_party_settings: {  }
+        type: text_default
+    field_gapp_english:
+        weight: 122
+        label: above
+        settings:
+            link_to_entity: false
+        third_party_settings: {  }
+        type: string
+    field_gapp_essential_addons:
+        weight: 113
+        label: above
+        settings: {  }
+        third_party_settings: {  }
+        type: text_default
+    field_gapp_guild_bgs:
+        weight: 121
+        label: above
+        settings:
+            format: default
+            format_custom_false: ''
+            format_custom_true: ''
+        third_party_settings: {  }
+        type: boolean
+    field_gapp_led_to_downfall:
+        weight: 110
+        label: above
+        settings: {  }
+        third_party_settings: {  }
+        type: text_default
+    field_gapp_like_particular_ui:
+        weight: 114
+        label: above
+        settings: {  }
+        third_party_settings: {  }
+        type: text_default
+    field_gapp_name:
+        weight: 102
+        label: above
+        settings:
+            link_to_entity: false
+        third_party_settings: {  }
+        type: string
+    field_gapp_pvp_experience:
+        weight: 119
+        label: above
+        settings: {  }
+        third_party_settings: {  }
+        type: text_default
+    field_gapp_pvp_focus:
+        weight: 120
+        label: above
+        settings: {  }
+        third_party_settings: {  }
+        type: text_default
+    field_gapp_raid_experience:
+        weight: 115
+        label: above
+        settings: {  }
+        third_party_settings: {  }
+        type: text_default
+    field_gapp_specializations:
+        weight: 117
+        label: above
+        settings: {  }
+        third_party_settings: {  }
+        type: text_default
+    field_gapp_term_class:
+        weight: 107
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_gapp_timezone:
+        weight: 123
+        label: above
+        settings:
+            link_to_entity: false
+        third_party_settings: {  }
+        type: string
+    field_gapp_ui_image:
+        weight: 112
+        label: above
+        settings:
+            image_style: ''
+            image_link: ''
+        third_party_settings: {  }
+        type: image
+    field_gapp_wow_history:
+        weight: 108
+        label: above
+        settings: {  }
+        third_party_settings: {  }
+        type: text_default
+    field_gapp_yourself:
+        weight: 124
+        label: above
+        settings: {  }
+        third_party_settings: {  }
+        type: text_default
+    field_server:
+        weight: 103
+        label: above
+        settings: {  }
+        third_party_settings: {  }
+        type: list_default
+    field_term_race:
+        weight: 104
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_role:
+        weight: 106
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_week_days:
+        weight: 111
+        label: above
+        settings: {  }
+        third_party_settings: {  }
+        type: list_default
+    links:
+        weight: 100
+hidden: {  }

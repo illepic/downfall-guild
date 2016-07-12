@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+    config:
+        - core.entity_view_mode.node.teaser
+        - field.field.node.guild_app.field_gapp_name
+        - field.field.node.guild_app.field_server
+        - field.field.node.guild_app.field_term_race
+        - field.field.node.guild_app.field_term_role
+        - node.type.guild_app
+    module:
+        - user
+id: node.guild_app.teaser
+targetEntityType: node
+bundle: guild_app
+mode: teaser
+content:
+    links:
+        weight: 100
+hidden:
+    field_gapp_name: true
+    field_server: true
+    field_term_race: true
+    field_term_role: true

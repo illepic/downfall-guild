@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+    config:
+        - field.storage.node.field_gapp_english
+        - node.type.guild_app
+id: node.guild_app.field_gapp_english
+field_name: field_gapp_english
+entity_type: node
+bundle: guild_app
+label: 'Is English your first language'
+description: 'We have players from around the world, it would be interesting to know if you’re a master of another language.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

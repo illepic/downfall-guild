@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+    config:
+        - field.storage.node.field_gapp_led_to_downfall
+        - node.type.guild_app
+    module:
+        - text
+id: node.guild_app.field_gapp_led_to_downfall
+field_name: field_gapp_led_to_downfall
+entity_type: node
+bundle: guild_app
+label: 'What led you to our guild and what would you like to accomplish with us '
+description: 'Do you have any references in Downfall? What are some of your goals in a guild?'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

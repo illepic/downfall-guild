@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+    config:
+        - field.storage.node.field_gapp_yourself
+        - node.type.guild_app
+    module:
+        - text
+id: node.guild_app.field_gapp_yourself
+field_name: field_gapp_yourself
+entity_type: node
+bundle: guild_app
+label: 'Tell us a little about yourself'
+description: 'Let us know a bit about who you are, and what you do outside of WoW.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

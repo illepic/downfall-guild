@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'WoW - Role'
+vid: wow_role
+description: ''
+hierarchy: 0
+weight: 0

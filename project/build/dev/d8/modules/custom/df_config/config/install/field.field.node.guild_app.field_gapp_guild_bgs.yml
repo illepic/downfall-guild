@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+    config:
+        - field.storage.node.field_gapp_guild_bgs
+        - node.type.guild_app
+id: node.guild_app.field_gapp_guild_bgs
+field_name: field_gapp_guild_bgs
+entity_type: node
+bundle: guild_app
+label: 'Guild rated battlegrounds'
+description: ''
+required: false
+translatable: false
+default_value:
+    -
+        value: 0
+default_value_callback: ''
+settings:
+    on_label: 'I am interested in participating in guild rated battlegrounds.'
+    off_label: 'I am NOT interested in participating in guild rated battlegrounds.'
+field_type: boolean

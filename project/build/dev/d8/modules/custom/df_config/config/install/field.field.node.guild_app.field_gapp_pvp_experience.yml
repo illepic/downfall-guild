@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+    config:
+        - field.storage.node.field_gapp_pvp_experience
+        - node.type.guild_app
+    module:
+        - text
+id: node.guild_app.field_gapp_pvp_experience
+field_name: field_gapp_pvp_experience
+entity_type: node
+bundle: guild_app
+label: 'PvP Experience'
+description: 'Describe your experience for us, what classes you’ve played, and what ratings have you achieved in Arenas and Rated Battlegrounds.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

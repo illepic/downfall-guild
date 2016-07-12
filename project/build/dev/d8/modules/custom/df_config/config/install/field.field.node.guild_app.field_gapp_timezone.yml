@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+    config:
+        - field.storage.node.field_gapp_timezone
+        - node.type.guild_app
+id: node.guild_app.field_gapp_timezone
+field_name: field_gapp_timezone
+entity_type: node
+bundle: guild_app
+label: 'What timezone are you in'
+description: 'If you want, tell us whereabouts in the world you live too.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
