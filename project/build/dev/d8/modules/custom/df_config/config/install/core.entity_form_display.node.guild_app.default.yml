@@ -11,6 +11,7 @@ dependencies:
         - field.field.node.guild_app.field_gapp_led_to_downfall
         - field.field.node.guild_app.field_gapp_like_particular_ui
         - field.field.node.guild_app.field_gapp_name
+        - field.field.node.guild_app.field_gapp_open_closed
         - field.field.node.guild_app.field_gapp_pvp_experience
         - field.field.node.guild_app.field_gapp_pvp_focus
         - field.field.node.guild_app.field_gapp_raid_experience
@@ -37,8 +38,8 @@ third_party_settings:
             children:
                 - field_gapp_name
                 - field_server
-                - field_gapp_term_class
                 - field_term_race
+                - field_gapp_term_class
                 - field_term_role
             parent_name: ''
             weight: 6
@@ -199,6 +200,12 @@ content:
             placeholder: ''
         third_party_settings: {  }
         type: string_textfield
+    field_gapp_open_closed:
+        weight: 43
+        settings:
+            display_label: false
+        third_party_settings: {  }
+        type: boolean_checkbox
     field_gapp_pvp_experience:
         weight: 37
         settings:
@@ -228,7 +235,7 @@ content:
         third_party_settings: {  }
         type: text_textarea
     field_gapp_term_class:
-        weight: 10
+        weight: 11
         settings: {  }
         third_party_settings: {  }
         type: options_select
@@ -266,7 +273,7 @@ content:
         third_party_settings: {  }
         type: options_select
     field_term_race:
-        weight: 11
+        weight: 10
         settings: {  }
         third_party_settings: {  }
         type: options_select
