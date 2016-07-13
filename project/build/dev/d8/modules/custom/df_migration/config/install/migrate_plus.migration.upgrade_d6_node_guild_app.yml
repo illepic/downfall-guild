@@ -173,9 +173,86 @@ process:
         plugin: default_value
         default_value: restricted_html
 
-  field_ui_ss_2:
-    plugin: d6_cck_file
+  field_gapp_ui_image:
+    plugin: extract
     source: field_ui_ss_2
+    index:
+      - fid
+
+  field_gapp_essential_addons:
+    plugin: iterator
+    source: field_raid_addon_feelings
+    process:
+      value: value
+      format:
+        plugin: default_value
+        default_value: restricted_html
+
+  field_gapp_like_particular_ui:
+    plugin: iterator
+    source: field_like_your_ui
+    process:
+      value: value
+      format:
+        plugin: default_value
+        default_value: restricted_html
+
+  field_gapp_raid_experience:
+    plugin: iterator
+    source: field_raid_experience
+    process:
+      value: value
+      format:
+        plugin: default_value
+        default_value: restricted_html
+
+  field_gapp_describe_playstyle:
+    plugin: iterator
+    source: field_play_style
+    process:
+      value: value
+      format:
+        plugin: default_value
+        default_value: restricted_html
+
+  field_gapp_specializations:
+    plugin: iterator
+    source: field_specializations
+    process:
+      value: value
+      format:
+        plugin: default_value
+        default_value: restricted_html
+
+  field_gapp_bosses:
+    plugin: iterator
+    source: field_boss_encounter
+    process:
+      value: value
+      format:
+        plugin: default_value
+        default_value: restricted_html
+
+  field_gapp_pvp_experience:
+    plugin: iterator
+    source: field_response
+    process:
+      value: value
+      format:
+        plugin: default_value
+        default_value: restricted_html
+
+  field_gapp_pvp_focus:
+    plugin: iterator
+    source: field_apply
+    process:
+      value: value
+      format:
+        plugin: default_value
+        default_value: restricted_html
+
+
+
   field_talent_build:
     plugin: iterator
     source: field_talent_build
@@ -206,21 +283,6 @@ process:
         -
           plugin: skip_on_empty
           method: process
-  field_raid_experience:
-    plugin: iterator
-    source: field_raid_experience
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
   field_favorite_encounter:
     plugin: iterator
     source: field_favorite_encounter
@@ -239,21 +301,6 @@ process:
   field_least_favorite_encounter:
     plugin: iterator
     source: field_least_favorite_encounter
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
-  field_raid_addon_feelings:
-    plugin: iterator
-    source: field_raid_addon_feelings
     process:
       value: value
       format:
@@ -627,21 +674,6 @@ process:
         -
           plugin: skip_on_empty
           method: process
-  field_apply:
-    plugin: iterator
-    source: field_apply
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
   field_gem:
     plugin: iterator
     source: field_gem
@@ -675,66 +707,6 @@ process:
   field_interested_pvp:
     plugin: iterator
     source: field_interested_pvp
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
-  field_like_your_ui:
-    plugin: iterator
-    source: field_like_your_ui
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
-  field_play_style:
-    plugin: iterator
-    source: field_play_style
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
-  field_specializations:
-    plugin: iterator
-    source: field_specializations
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
-  field_boss_encounter:
-    plugin: iterator
-    source: field_boss_encounter
     process:
       value: value
       format:
