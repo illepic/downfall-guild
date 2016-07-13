@@ -174,10 +174,22 @@ process:
         default_value: restricted_html
 
   field_gapp_ui_image:
-    plugin: extract
-    source: field_ui_ss_2
-    index:
-      - fid
+    -
+      plugin: extract
+      source: field_ui_ss_2
+      index:
+        - fid
+    -
+      plugin: wat
+    -
+      plugin: static_map
+      bypass: true
+      map:
+        19636: '' # The ui/Ui/UI issue
+        20875: ''
+    -
+      plugin: skip_on_empty
+      method: process
 
   field_gapp_essential_addons:
     plugin: iterator
@@ -259,6 +271,7 @@ process:
         plugin: static_map
         source: value
         bypass: true
+        default_value: 1
         map:
           Yes: 1
           No: 0
@@ -292,6 +305,7 @@ process:
         plugin: static_map
         source: value
         bypass: true
+        default_value: 0
         map:
           Open: 1
           Closed: 0
