@@ -8,7 +8,7 @@ id: node.guild_app.field_gapp_open_closed
 field_name: field_gapp_open_closed
 entity_type: node
 bundle: guild_app
-label: Open/Closed
+label: Status
 description: 'Leave your app Open if you wish it to be viewable by Downfall. Close it and it will disappear.'
 required: false
 translatable: false

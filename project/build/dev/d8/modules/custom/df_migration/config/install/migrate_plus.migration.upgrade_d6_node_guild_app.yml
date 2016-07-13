@@ -251,7 +251,51 @@ process:
         plugin: default_value
         default_value: restricted_html
 
+  field_gapp_guild_bgs:
+    plugin: iterator
+    source: field_interested_rated_bg
+    process:
+      value:
+        plugin: static_map
+        source: value
+        bypass: true
+        map:
+          Yes: 1
+          No: 0
 
+  field_gapp_english:
+    plugin: iterator
+    source: field_language
+    process:
+      value: value
+
+  field_gapp_timezone:
+    plugin: iterator
+    source: field_timezone
+    process:
+      value: value
+
+  field_gapp_yourself:
+    plugin: iterator
+    source: field_about_you
+    process:
+      value: value
+      format:
+        plugin: default_value
+        default_value: restricted_html
+
+  field_gapp_open_closed:
+    plugin: iterator
+    source: field_closed
+    process:
+      value:
+        plugin: static_map
+        source: value
+        bypass: true
+        map:
+          Open: 1
+          Closed: 0
+###############################################
 
   field_talent_build:
     plugin: iterator
@@ -418,21 +462,6 @@ process:
         -
           plugin: skip_on_empty
           method: process
-  field_timezone:
-    plugin: iterator
-    source: field_timezone
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
   field_missing_raid:
     plugin: iterator
     source: field_missing_raid
@@ -526,21 +555,6 @@ process:
   field_age:
     plugin: iterator
     source: field_age
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
-  field_about_you:
-    plugin: iterator
-    source: field_about_you
     process:
       value: value
       format:
@@ -719,36 +733,7 @@ process:
         -
           plugin: skip_on_empty
           method: process
-  field_interested_rated_bg:
-    plugin: iterator
-    source: field_interested_rated_bg
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
-  field_language:
-    plugin: iterator
-    source: field_language
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
+
 destination:
   plugin: 'entity:node'
 migration_dependencies:

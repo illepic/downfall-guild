@@ -106,6 +106,20 @@ third_party_settings:
                 id: ''
                 classes: ''
                 description: ''
+        group_display_gapp_personal:
+            children:
+                - field_gapp_english
+                - field_gapp_timezone
+                - field_gapp_yourself
+            parent_name: ''
+            weight: 6
+            label: Personal
+            format_type: fieldset
+            format_settings:
+                label: Personal
+                id: ''
+                classes: ''
+                description: ''
 id: node.guild_app.default
 targetEntityType: node
 bundle: guild_app
@@ -130,7 +144,7 @@ content:
         third_party_settings: {  }
         type: text_default
     field_gapp_english:
-        weight: 9
+        weight: 7
         label: above
         settings:
             link_to_entity: false
@@ -171,7 +185,7 @@ content:
         third_party_settings: {  }
         type: string
     field_gapp_open_closed:
-        weight: 12
+        weight: 10
         label: above
         settings:
             format: default
@@ -211,7 +225,7 @@ content:
         third_party_settings: {  }
         type: entity_reference_label
     field_gapp_timezone:
-        weight: 10
+        weight: 8
         label: above
         settings:
             link_to_entity: false
@@ -232,7 +246,7 @@ content:
         third_party_settings: {  }
         type: text_default
     field_gapp_yourself:
-        weight: 11
+        weight: 9
         label: above
         settings: {  }
         third_party_settings: {  }
