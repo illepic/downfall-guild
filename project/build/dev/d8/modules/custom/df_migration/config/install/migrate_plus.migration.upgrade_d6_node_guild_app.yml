@@ -13,7 +13,9 @@ source:
 process:
   nid: nid
   vid: vid
-  type: type
+  type:
+    plugin: default_value
+    default_value: guild_app
   langcode:
     plugin: default_value
     source: language
@@ -25,119 +27,152 @@ process:
   changed: changed
   promote: promote
   sticky: sticky
-  body/format:
-    plugin: default_value
-    default_value: basic_html
-  body/value: body
+  # No body tags on gapps
+#  body/format:
+#    plugin: default_value
+#    default_value: basic_html
+#  body/value: body
   revision_uid: revision_uid
   revision_log: log
   revision_timestamp: timestamp
-  field_toon_name:
+
+  field_gapp_name:
     plugin: iterator
     source: field_toon_name
     process:
       value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
-  field_race:
-    plugin: iterator
-    source: field_race
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
-  field_toon_level: field_toon_level
-  field_70_playtime:
-    plugin: iterator
-    source: field_70_playtime
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
-  field_total_play_time:
-    plugin: iterator
-    source: field_total_play_time
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
-  field_average_time_per_week:
-    plugin: iterator
-    source: field_average_time_per_week
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
+#      format:
+#        -
+#          plugin: static_map
+#          bypass: true
+#          source: format
+#          map:
+#            - null
+#        -
+#          plugin: skip_on_empty
+#          method: process
+
   field_server:
     plugin: iterator
     source: field_server
     process:
       value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
-  field_time_on_server:
+
+  field_gapp_term_class:
     plugin: iterator
-    source: field_time_on_server
+    source: field_toon_class
+    process:
+      target_id:
+        plugin: static_map
+        source: value
+        bypass: true
+        map:
+          'Death Knight': 69
+          'Demon Hunter': 109
+          'Druid': 70
+          'Hunter': 77
+          'Mage': 72
+          'Monk': 105
+          'Paladin': 66
+          'Priest': 74
+          'Rogue': 67
+          'Shaman': 73
+          'Warlock': 68
+          'Warrior': 71
+#      format:
+#        -
+#          plugin: static_map
+#          bypass: true
+#          source: format
+#          map:
+#            - null
+#        -
+#          plugin: skip_on_empty
+#          method: process
+
+  field_term_race:
+    plugin: iterator
+    source: field_race
+    process:
+      target_id:
+        plugin: static_map
+        source: value
+        bypass: true
+        map:
+          'Blood Elf': 127
+          'Draenai': 121
+          'Dwarf': 122
+          'Gnome': 123
+          'Goblin': 126
+          'Human': 124
+          'Night Elf': 125
+          'Orc': 128
+          'Pandaren': 119
+          'Tauren': 129
+          'Troll': 130
+          'Undead': 131
+          'Worgen': 120
+
+  field_term_role:
+    plugin: iterator
+    source: field_role
+    process:
+      target_id:
+        plugin: static_map
+        source: value
+        bypass: true
+        map:
+          0: 134 # Healing
+          1: 135 # Tanking
+          2: 136 # DPS
+
+  field_gapp_wow_history:
+    plugin: iterator
+    source: field_history
     process:
       value: value
       format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
+        plugin: default_value
+        default_value: restricted_html
+
+  field_gapp_class_state:
+    plugin: iterator
+    source: field_state_of_class
+    process:
+      value: value
+      format:
+        plugin: default_value
+        default_value: restricted_html
+
+  field_gapp_led_to_downfall:
+    plugin: iterator
+    source: field_led_you_to_guild
+    process:
+      value: value
+      format:
+        plugin: default_value
+        default_value: restricted_html
+
+  field_week_days:
+    plugin: iterator
+    source: field_nights_available
+    process:
+      value:
+        plugin: static_map
+        source: value
+        bypass: true
+        map:
+          0: 'Mon'
+          1: 'Tue'
+          2: 'Wed'
+          3: 'Thu'
+          4: 'Fri'
+          5: 'Sat'
+          6: 'Sun'
+      format:
+        plugin: default_value
+        default_value: restricted_html
+
   field_ui_ss_2:
     plugin: d6_cck_file
     source: field_ui_ss_2
@@ -159,21 +194,6 @@ process:
   field_class_contribution:
     plugin: iterator
     source: field_class_contribution
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
-  field_problem_3_weeks:
-    plugin: iterator
-    source: field_problem_3_weeks
     process:
       value: value
       format:
@@ -351,21 +371,6 @@ process:
         -
           plugin: skip_on_empty
           method: process
-  field_nights_available:
-    plugin: iterator
-    source: field_nights_available
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
   field_timezone:
     plugin: iterator
     source: field_timezone
@@ -414,21 +419,6 @@ process:
   field_loot:
     plugin: iterator
     source: field_loot
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
-  field_toon_class:
-    plugin: iterator
-    source: field_toon_class
     process:
       value: value
       format:
@@ -576,21 +566,7 @@ process:
         -
           plugin: skip_on_empty
           method: process
-  field_role:
-    plugin: iterator
-    source: field_role
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
+
   field_hks:
     plugin: iterator
     source: field_hks
@@ -699,51 +675,6 @@ process:
   field_interested_pvp:
     plugin: iterator
     source: field_interested_pvp
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
-  field_history:
-    plugin: iterator
-    source: field_history
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
-  field_state_of_class:
-    plugin: iterator
-    source: field_state_of_class
-    process:
-      value: value
-      format:
-        -
-          plugin: static_map
-          bypass: true
-          source: format
-          map:
-            - null
-        -
-          plugin: skip_on_empty
-          method: process
-  field_led_you_to_guild:
-    plugin: iterator
-    source: field_led_you_to_guild
     process:
       value: value
       format:

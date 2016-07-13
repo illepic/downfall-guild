@@ -46,7 +46,7 @@ migration_dependencies:
 #    82: upgrade_d6_node_character
     84: upgrade_d6_node_event
     85: upgrade_d6_node_forum
-#    86: upgrade_d6_node_guild_app
+    86: upgrade_d6_node_guild_app
     87: upgrade_d6_node_image
     88: upgrade_d6_node_page
 #    90: upgrade_d6_node_poll
