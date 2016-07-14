@@ -5,6 +5,8 @@ dependencies:
         - field.storage.node.field_group
         - node.type.group
         - node.type.post
+_core:
+    default_config_hash: u3brX5l3SB4GpPyzEpARAiNMWWo7atFS9xlLGlWglO0
 id: node.post.field_group
 field_name: field_group
 entity_type: node

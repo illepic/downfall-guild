@@ -26,9 +26,18 @@ class ExtractImages extends ProcessPluginBase {
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $nid = $value;
+    $mime = $this->configuration['mime'];
 
+    // Lookup on this et
     $results = Database::getConnection('default', 'migrate')
-      ->query('SELECT fid FROM {upload} WHERE nid = :nid', array(':nid' => $nid))
+      ->query('SELECT upload.fid
+        FROM {upload} AS upload
+        JOIN {node} AS node
+          ON node.nid = upload.nid
+        JOIN {files} AS files
+          ON files.fid = upload.fid
+        WHERE node.nid = :nid AND files.filemime LIKE :mime',
+        array(':nid' => $nid, ':mime' => '%' . $mime . '%'))
       ->fetchAll();
 
     // EJECT NOW IF NO RESULTS

@@ -5,7 +5,7 @@ dependencies:
         - node
         - taxonomy
 _core:
-    default_config_hash: KPW0Y_OZhFqL21Jnv2Q9p53aJNvguJQLDX4RXQ542sI
+    default_config_hash: l1nj2cCGfAkryQ_Uy7vqTmTYrQvf7tpsvkYDsYML9co
 id: node.field_term_downfall
 field_name: field_term_downfall
 entity_type: node

@@ -6,7 +6,7 @@ dependencies:
         - node.type.post
         - taxonomy.vocabulary.wow_gameplay
 _core:
-    default_config_hash: QggOWg0GwvuWoNX7cGqNEG1wvbS1iAZ16UpnUHAXxhw
+    default_config_hash: Nh67c3CzXlNi86FNvbMfyQmPK3KLFuFYL_RRBQibJvU
 id: node.post.field_term_gameplay
 field_name: field_term_gameplay
 entity_type: node

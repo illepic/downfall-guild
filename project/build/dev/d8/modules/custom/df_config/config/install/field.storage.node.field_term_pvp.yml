@@ -5,7 +5,7 @@ dependencies:
         - node
         - taxonomy
 _core:
-    default_config_hash: MdjPRcN0kGiLD8DX_iDPpLHgeimZj4CAzgkdqpoQGqk
+    default_config_hash: EXbazcxE4NqSnAi6lbEi8aUOYrn0au4lxN6zOy2wdI8
 id: node.field_term_pvp
 field_name: field_term_pvp
 entity_type: node

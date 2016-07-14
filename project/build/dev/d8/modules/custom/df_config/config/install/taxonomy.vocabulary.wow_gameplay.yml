@@ -1,6 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
+_core:
+    default_config_hash: biLvejn2NgeG6HvtlcWhAFCaI9acoAnDov1YrzcJCgA
 name: 'WoW - Gameplay'
 vid: wow_gameplay
 description: 'World of Warcraft gameplay subjects'

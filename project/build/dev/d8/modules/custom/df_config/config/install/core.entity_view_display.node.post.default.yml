@@ -5,20 +5,24 @@ dependencies:
         - field.field.node.post.body
         - field.field.node.post.comment
         - field.field.node.post.field_group
+        - field.field.node.post.field_post_image_primary
         - field.field.node.post.field_term_class
         - field.field.node.post.field_term_downfall
         - field.field.node.post.field_term_expansion
         - field.field.node.post.field_term_game
         - field.field.node.post.field_term_gameplay
         - field.field.node.post.field_term_instance
+        - field.field.node.post.field_term_instance_size
         - field.field.node.post.field_term_pvp
+        - field.field.node.post.field_term_ui
         - node.type.post
     module:
         - comment
+        - image
         - text
         - user
 _core:
-    default_config_hash: vF05usJYdNoHS8H_mWQINCPGljrZi9dAQKziNoFYSjI
+    default_config_hash: YxKvG150RRlycXaecIYTCEPJKvUp7Awr5MCQM64kaZA
 id: node.post.default
 targetEntityType: node
 bundle: post
@@ -27,67 +31,83 @@ content:
     body:
         label: hidden
         type: text_default
-        weight: 1
+        weight: 2
         settings: {  }
         third_party_settings: {  }
     comment:
-        weight: 10
+        weight: 11
         label: above
         settings:
             pager_id: 0
         third_party_settings: {  }
         type: comment_default
     field_group:
-        weight: 2
-        label: above
-        settings:
-            link: true
-        third_party_settings: {  }
-        type: entity_reference_label
-    field_term_class:
         weight: 3
         label: above
         settings:
             link: true
         third_party_settings: {  }
         type: entity_reference_label
-    field_term_downfall:
-        weight: 9
+    field_post_image_primary:
+        weight: 1
         label: above
         settings:
-            link: true
+            image_style: ''
+            image_link: ''
         third_party_settings: {  }
-        type: entity_reference_label
-    field_term_expansion:
+        type: image
+    field_term_class:
         weight: 4
         label: above
         settings:
             link: true
         third_party_settings: {  }
         type: entity_reference_label
-    field_term_game:
-        weight: 8
+    field_term_downfall:
+        weight: 10
         label: above
         settings:
             link: true
         third_party_settings: {  }
         type: entity_reference_label
-    field_term_gameplay:
+    field_term_expansion:
         weight: 5
         label: above
         settings:
             link: true
         third_party_settings: {  }
         type: entity_reference_label
-    field_term_instance:
+    field_term_game:
+        weight: 9
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_gameplay:
         weight: 6
         label: above
         settings:
             link: true
         third_party_settings: {  }
         type: entity_reference_label
-    field_term_pvp:
+    field_term_instance:
         weight: 7
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_instance_size:
+        type: entity_reference_entity_view
+        weight: 12
+        label: above
+        settings:
+            view_mode: default
+            link: false
+        third_party_settings: {  }
+    field_term_pvp:
+        weight: 8
         label: above
         settings:
             link: true
@@ -97,4 +117,5 @@ content:
         weight: 0
         settings: {  }
         third_party_settings: {  }
-hidden: {  }
+hidden:
+    field_term_ui: true

@@ -48,6 +48,12 @@ process:
   revision_log: log
   revision_timestamp: timestamp
 
+  field_post_image_primary:
+    -
+      source: nid
+      plugin: extract_images
+      mime: 'image'
+
   field_group:
     source: nid
     plugin: og_lookup

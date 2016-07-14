@@ -1,6 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
+_core:
+    default_config_hash: kGiUG6mzvkTSMTlUkg6AWYiaKAhHdOjh07MtP7xv3xg
 name: 'WoW - PvP'
 vid: wow_pvp
 description: 'World of Warcraft PvP subjects'
