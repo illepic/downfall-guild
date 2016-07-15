@@ -30,7 +30,7 @@ class ImgAssist extends ProcessPluginBase {
    */
   protected function findImgAssistTags($value) {
 
-    $pattern = "/\[img_assist(?:\\\\|\\\]|[^\]])*\]/"; // See http://rubular.com/r/gQs5HjGLok
+    $pattern = "/\[img_assist(?:\\\\|\\\]|[^\]])*\]/"; // See http://regexr.com/3dqmc
     preg_match_all($pattern, $value, $matches, PREG_OFFSET_CAPTURE); // The PREG_OFFSET_CAPTURE gives us the offset_in_tmp variable.
     return $matches;
   }
@@ -46,38 +46,32 @@ class ImgAssist extends ProcessPluginBase {
     $matches = self::findImgAssistTags($value);
 
     foreach ($matches[0] as $image_marker) {
-      list($img, $offset_in_tmp) = $image_marker;
+      list($img) = $image_marker;
 
       // Strip off the first and last characters - they are [ and ].
-      $img_pieces = substr($img, 1, -1);
+      $pieces = substr($img, 1, -1);
 
-      // Break the img_assist string into useful bits.
-      // The dollar-underscore variable is a junk collector.
-      // If there's a link on the image to an external URL,
-      // there are 8 pieces in the tag, so we need to adjust variable assignments.
-      if (count($pieces) == 8) {
-        list($_, $nid, $title, $desc, $link, $url, $align, $width, $height) = explode("|", $img_pieces);
-      }
-      else {
-        list($_, $nid, $title, $desc, $link, $align, $width, $height) = explode("|", $img_pieces);
-      }
+      // Array of all pieces, each looks like 'nid=1234'
+      $pieces = explode('|', $pieces);
+      // Remove the 'img_assist' string off the beginning
+      array_shift($pieces);
 
-      list($_, $nid) = explode('=', $nid, 2);
-      list($_, $title) = explode('=', $title, 2);
-      list($_, $desc) = explode('=', $desc, 2);
-      list($_, $link) = explode('=', $link, 2);
-      list($_, $align) = explode('=', $align, 2);
-      list($_, $width) = explode('=', $width, 2);
-      list($_, $height) = explode('=', $height, 2);
+      // Create array that transforms: array('nid=1234', 'title=', 'align=center')
+      // to: array('nid' => '1234', 'title' => '', 'align' => 'center')
+      $attr = [];
+      foreach($pieces as $piece) {
+        list($piece_key, $piece_value) = explode('=', $piece);
+        $attr[$piece_key] = $piece_value;
+      }
 
       // Retrieve the image path from the image node.
-      $image_path = self::getImagePath($nid);
-      $image_tag = "<img alt=\"$desc\" src=\"$image_path\" style=\"width: ". $width ."px; height: ". $height ."px;\" class=\"align-". $align ."\">";
+      $image_path = self::getImagePath($attr['nid']);
+
+      $image_tag = "<img alt=\"{$attr['desc']}\" src=\"{$image_path}\" style=\"width\:{$attr['width']}px;height\:{$attr['height']}px;\" class=\"align-{$attr['align']}\">";
 
       // Add the link if it exists.
-      if ($link && $url) {
-        list($_, $url) = explode('=', $url, 2);
-        $image_tag = '<a href="'. $url .'">' . $image_tag . '</a>';
+      if ($attr['url']) {
+        $image_tag = "<a href=\"{$attr['url']}\">{$image_tag}</a>";
       }
 
       $value = str_replace($img, $image_tag, $value);
@@ -116,9 +110,17 @@ class ImgAssist extends ProcessPluginBase {
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
-    // Nuke those blank lines
-    $value = str_replace('<p>&nbsp;</p>', '', $value);
-    // Now replace images
-    return $this->replaceImgAssistTags($value);
+    $replace = $this->configuration['replace'];
+
+    if ($replace) {
+      // Nuke those blank lines
+      $value = str_replace('<p>&nbsp;</p>', '', $value); // Move this kind of stuff to it's own plugin
+      // Now replace images
+      return $this->replaceImgAssistTags($value);
+    }
+    else {
+      return $value; // Change this to return the fids
+    }
+
   }
 }
