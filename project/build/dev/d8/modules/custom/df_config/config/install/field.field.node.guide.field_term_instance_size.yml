@@ -5,6 +5,8 @@ dependencies:
         - field.storage.node.field_term_instance_size
         - node.type.guide
         - taxonomy.vocabulary.wow_group_size
+_core:
+    default_config_hash: 939_2l_UGOM0GZrx3wB2D4YpizVjD23XzM7R8fWNlW8
 id: node.guide.field_term_instance_size
 field_name: field_term_instance_size
 entity_type: node

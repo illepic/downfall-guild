@@ -6,6 +6,8 @@ dependencies:
         - node.type.guide
     module:
         - comment
+_core:
+    default_config_hash: D-nlftAoHsDMCyjBWNG301CTl-494uDDGHjhJuH5pXU
 id: node.guide.comment
 field_name: comment
 entity_type: node

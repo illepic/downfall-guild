@@ -54,7 +54,7 @@ process:
   revision_log: log
   revision_timestamp: timestamp
 
-  field_post_image_primary:
+  field_image_primary:
     -
       source: nid
       plugin: extract_images
@@ -112,6 +112,7 @@ migration_dependencies:
     - upgrade_d6_node_type
     - upgrade_d6_file
 #    - upgrade_d6_node_settings
+    - upgrade_d6_node_raid
   optional:
     - upgrade_d6_field_instance_widget_settings
     - upgrade_d6_field_formatter_settings

@@ -5,7 +5,8 @@ dependencies:
         - field.field.node.post.body
         - field.field.node.post.comment
         - field.field.node.post.field_group
-        - field.field.node.post.field_post_image_primary
+        - field.field.node.post.field_image_primary
+        - field.field.node.post.field_image_secondary
         - field.field.node.post.field_term_class
         - field.field.node.post.field_term_downfall
         - field.field.node.post.field_term_expansion
@@ -22,7 +23,7 @@ dependencies:
         - text
         - user
 _core:
-    default_config_hash: YxKvG150RRlycXaecIYTCEPJKvUp7Awr5MCQM64kaZA
+    default_config_hash: 7YR5GGfguM30CHvvHGx767hTfEhfpQQOuHtXVV7QqZc
 id: node.post.default
 targetEntityType: node
 bundle: post
@@ -48,8 +49,16 @@ content:
             link: true
         third_party_settings: {  }
         type: entity_reference_label
-    field_post_image_primary:
-        weight: 1
+    field_image_primary:
+        weight: 13
+        label: above
+        settings:
+            image_style: ''
+            image_link: ''
+        third_party_settings: {  }
+        type: image
+    field_image_secondary:
+        weight: 14
         label: above
         settings:
             image_style: ''

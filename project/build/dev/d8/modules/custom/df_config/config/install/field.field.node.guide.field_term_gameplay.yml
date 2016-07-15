@@ -5,7 +5,7 @@ dependencies:
         - field.storage.node.field_term_gameplay
         - node.type.guide
 _core:
-    default_config_hash: KopHJGw-tQP_IWl7boIcerFQl2704gL3CTkzZWutiJ0
+    default_config_hash: zVs38Ru-z0kEt02JZAlKkbS1ZJEPArP_END-CVGn0Zs
 id: node.guide.field_term_gameplay
 field_name: field_term_gameplay
 entity_type: node

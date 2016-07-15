@@ -6,7 +6,6 @@ dependencies:
         - field.field.node.post.body
         - field.field.node.post.comment
         - field.field.node.post.field_group
-        - field.field.node.post.field_post_image_primary
         - field.field.node.post.field_term_class
         - field.field.node.post.field_term_downfall
         - field.field.node.post.field_term_expansion
@@ -21,7 +20,7 @@ dependencies:
         - text
         - user
 _core:
-    default_config_hash: g-t_EGCXRWk_72_lvLEuYV7zTXjj_t-9stGAdnW94E4
+    default_config_hash: 0h9pw7wBxm2WvzAxGl2FaD2MjUdPO0sAMfomPqexYKE
 id: node.post.teaser
 targetEntityType: node
 bundle: post
@@ -39,7 +38,6 @@ content:
 hidden:
     comment: true
     field_group: true
-    field_post_image_primary: true
     field_term_class: true
     field_term_downfall: true
     field_term_expansion: true

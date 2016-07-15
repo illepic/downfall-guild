@@ -37,7 +37,7 @@ process:
   revision_log: log
   revision_timestamp: timestamp
 
-  field_post_image_primary:
+  field_image_primary:
     -
       source: nid
       plugin: extract_images

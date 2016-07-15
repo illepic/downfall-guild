@@ -5,10 +5,8 @@ dependencies:
         - field.storage.node.field_term_game
         - node.type.guide
         - taxonomy.vocabulary.game
-    content:
-        - 'taxonomy_term:game:7defbc96-f405-449d-ac97-f87fa32a4dcf'
 _core:
-    default_config_hash: 7-7KPaf2nytoWrjLYIPixcu_RFQJ9KmNgcPpsrtfaHI
+    default_config_hash: JIhpSaVdSIUXgo6pLt8Up4k7Pm0MBy9XDUvgKOB_lMg
 id: node.guide.field_term_game
 field_name: field_term_game
 entity_type: node

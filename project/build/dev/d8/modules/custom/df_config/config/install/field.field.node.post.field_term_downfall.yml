@@ -6,7 +6,7 @@ dependencies:
         - node.type.post
         - taxonomy.vocabulary.downfall
 _core:
-    default_config_hash: 3fyRIPhU9f40tYo0n8j3S6joDpd1alx2DWEh0NpidZ4
+    default_config_hash: RLM5E4ieTHuE_dZjw7_Mzk-z43xI-Yx0UJ94A9V6ekY
 id: node.post.field_term_downfall
 field_name: field_term_downfall
 entity_type: node
