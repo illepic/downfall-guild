@@ -40,8 +40,27 @@ process:
   field_image_primary:
     -
       source: nid
-      plugin: extract_images
+      plugin: extract_uploads
       mime: 'image'
+      like: 'LIKE'
+    -
+      plugin: iterator
+      process:
+        target_id: fid
+
+  field_attachments:
+    -
+      source: nid
+      plugin: extract_uploads
+      mime: 'image'
+      like: 'NOT LIKE'
+    -
+      plugin: iterator
+      process:
+        target_id: fid
+        display:
+          plugin: default_value
+          default_value: 1
 
   field_group:
     source: nid

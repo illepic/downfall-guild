@@ -27,5 +27,9 @@ bash ./project/scripts/symlinks.sh
 mkdir -p ./project/web/d8/web/sites/default/files/sync
 cp ./project/build/dev/d8/modules/custom/df_config/sync/* ./project/web/d8/web/sites/default/files/sync/
 
+# Permissions needed for import/moving around files
+chmod -R 777 project/web/d8/web/sites/default
+chmod -R 777 project/web/d8/web/sites/default/*
+
 # Build d6
 bash ./project/scripts/d6.sh

@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\df_migration\Plugin\migrate\process\ExtractImages.
+ * Contains \Drupal\df_migration\Plugin\migrate\process\ExtractUploads.
  */
 
 namespace Drupal\df_migration\Plugin\migrate\process;
@@ -16,10 +16,10 @@ use Drupal\migrate\Row;
  * Lookup taxonomy terms by nid and specific vocabulary
  *
  * @MigrateProcessPlugin(
- *   id = "extract_images"
+ *   id = "extract_uploads"
  * )
  */
-class ExtractImages extends ProcessPluginBase {
+class ExtractUploads extends ProcessPluginBase {
 
   /**
    * {@inheritdoc}
@@ -27,6 +27,7 @@ class ExtractImages extends ProcessPluginBase {
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $nid = $value;
     $mime = $this->configuration['mime'];
+    $like = $this->configuration['like'];
 
     // Lookup on this et
     $results = Database::getConnection('default', 'migrate')
@@ -36,7 +37,7 @@ class ExtractImages extends ProcessPluginBase {
           ON node.nid = upload.nid
         JOIN {files} AS files
           ON files.fid = upload.fid
-        WHERE node.nid = :nid AND files.filemime LIKE :mime',
+        WHERE node.nid = :nid AND files.filemime ' . $like . ' :mime',
         array(':nid' => $nid, ':mime' => '%' . $mime . '%'))
       ->fetchAll();
 
@@ -48,11 +49,10 @@ class ExtractImages extends ProcessPluginBase {
     // Make a clean array
     $fids = array();
     foreach($results as $result) {
-      $fids[] = $result->fid;
+      $fids[] = array('fid' => $result->fid);
     }
 
-    var_dump($nid);
-    var_dump($fids);
+//    var_dump('nid:', $nid, 'fids:', $fids);
 
     return $fids;
   }

@@ -4,6 +4,7 @@ dependencies:
     config:
         - field.field.node.post.body
         - field.field.node.post.comment
+        - field.field.node.post.field_attachments
         - field.field.node.post.field_group
         - field.field.node.post.field_image_primary
         - field.field.node.post.field_image_secondary
@@ -15,10 +16,10 @@ dependencies:
         - field.field.node.post.field_term_instance
         - field.field.node.post.field_term_instance_size
         - field.field.node.post.field_term_pvp
-        - field.field.node.post.field_term_ui
         - node.type.post
     module:
         - comment
+        - file
         - image
         - text
         - user
@@ -36,21 +37,27 @@ content:
         settings: {  }
         third_party_settings: {  }
     comment:
-        weight: 11
+        weight: 14
         label: above
         settings:
             pager_id: 0
         third_party_settings: {  }
         type: comment_default
+    field_attachments:
+        weight: 13
+        label: above
+        settings: {  }
+        third_party_settings: {  }
+        type: file_default
     field_group:
-        weight: 3
+        weight: 4
         label: above
         settings:
             link: true
         third_party_settings: {  }
         type: entity_reference_label
     field_image_primary:
-        weight: 13
+        weight: 1
         label: above
         settings:
             image_style: ''
@@ -58,7 +65,7 @@ content:
         third_party_settings: {  }
         type: image
     field_image_secondary:
-        weight: 14
+        weight: 3
         label: above
         settings:
             image_style: ''
@@ -66,42 +73,42 @@ content:
         third_party_settings: {  }
         type: image
     field_term_class:
-        weight: 4
-        label: above
-        settings:
-            link: true
-        third_party_settings: {  }
-        type: entity_reference_label
-    field_term_downfall:
-        weight: 10
-        label: above
-        settings:
-            link: true
-        third_party_settings: {  }
-        type: entity_reference_label
-    field_term_expansion:
         weight: 5
         label: above
         settings:
             link: true
         third_party_settings: {  }
         type: entity_reference_label
-    field_term_game:
-        weight: 9
+    field_term_downfall:
+        weight: 11
         label: above
         settings:
             link: true
         third_party_settings: {  }
         type: entity_reference_label
-    field_term_gameplay:
+    field_term_expansion:
         weight: 6
         label: above
         settings:
             link: true
         third_party_settings: {  }
         type: entity_reference_label
-    field_term_instance:
+    field_term_game:
+        weight: 10
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_gameplay:
         weight: 7
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_instance:
+        weight: 8
         label: above
         settings:
             link: true
@@ -116,7 +123,7 @@ content:
             link: false
         third_party_settings: {  }
     field_term_pvp:
-        weight: 8
+        weight: 9
         label: above
         settings:
             link: true
@@ -126,5 +133,4 @@ content:
         weight: 0
         settings: {  }
         third_party_settings: {  }
-hidden:
-    field_term_ui: true
+hidden: {  }
