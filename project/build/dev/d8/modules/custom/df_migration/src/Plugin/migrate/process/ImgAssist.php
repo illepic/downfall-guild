@@ -29,7 +29,7 @@ class ImgAssist extends ProcessPluginBase {
    * @return array $matches array of matched strings
    */
   protected function findImgAssistTags($value) {
-    dpm($value);
+
     $pattern = "/\[img_assist(?:\\\\|\\\]|[^\]])*\]/"; // See http://rubular.com/r/gQs5HjGLok
     preg_match_all($pattern, $value, $matches, PREG_OFFSET_CAPTURE); // The PREG_OFFSET_CAPTURE gives us the offset_in_tmp variable.
     return $matches;
