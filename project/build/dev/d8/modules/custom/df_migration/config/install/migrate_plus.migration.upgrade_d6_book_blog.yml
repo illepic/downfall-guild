@@ -39,7 +39,9 @@ process:
   body/format:
     plugin: default_value
     default_value: basic_html
-  body/value: body
+  body/value:
+    plugin: remove_strings
+    source: body
   revision_uid: revision_uid
   revision_log: log
   revision_timestamp: timestamp

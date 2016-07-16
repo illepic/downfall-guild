@@ -32,11 +32,14 @@ process:
   status: status
   thread: thread
   comment_body/value:
-    plugin: img_assist
+    plugin: remove_strings
     source: comment
   comment_body/format:
     plugin: default_value
     default_value: basic_html
+  field_comment_image
+    
+
 destination:
   plugin: 'entity:comment'
 migration_dependencies:

@@ -126,6 +126,13 @@ class ImgAssist extends ProcessPluginBase {
 
   }
 
+  /**
+   * Look up uploads on a node. Helps us consolidate all images on a node to the
+   * primary image field
+   *
+   * @param $nid
+   * @return array
+   */
   private function extractUploads($nid) {
     $results = Database::getConnection('default', 'migrate')
       ->query('SELECT upload.fid
@@ -145,7 +152,10 @@ class ImgAssist extends ProcessPluginBase {
     // Make a clean array
     $fids = array();
     foreach($results as $result) {
-      $fids[] = array('fid' => $result->fid);
+
+      if (File::load($result->fid)) {
+        $fids[] = array('fid' => $result->fid);
+      }
     }
 
     return $fids;

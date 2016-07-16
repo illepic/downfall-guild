@@ -53,7 +53,7 @@ class ExtractUploads extends ProcessPluginBase {
       $fids[] = array('fid' => $result->fid);
     }
 
-    var_dump('nid:', $nid, 'fids:', $fids);
+//    var_dump('nid:', $nid, 'fids:', $fids);
 
     return $fids;
   }
