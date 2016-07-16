@@ -39,11 +39,6 @@ process:
     -
       source: nid
       plugin: img_assist
-#    -
-#      source: nid
-#      plugin: extract_uploads
-#      mime: 'image'
-#      like: 'LIKE'
     -
       plugin: iterator
       process:

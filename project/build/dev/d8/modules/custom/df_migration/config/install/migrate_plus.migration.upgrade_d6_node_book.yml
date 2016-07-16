@@ -53,9 +53,7 @@ process:
   body/format:
     plugin: default_value
     default_value: basic_html
-  body/value:
-    plugin: img_assist
-    source: body
+  body/value: body
   revision_uid: revision_uid
   revision_log: log
   revision_timestamp: timestamp
@@ -63,9 +61,7 @@ process:
   field_image_primary:
     -
       source: nid
-      plugin: extract_uploads
-      mime: 'image'
-      like: 'LIKE'
+      plugin: img_assist
     -
       plugin: iterator
       process:

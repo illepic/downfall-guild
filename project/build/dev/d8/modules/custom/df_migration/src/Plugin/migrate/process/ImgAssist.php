@@ -155,25 +155,23 @@ class ImgAssist extends ProcessPluginBase {
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
+    $nid = $value;
     $replace = $this->configuration['replace'];
 
-    /* REPLACE BODY */
+    // Get node body for plugin
+    $node = Database::getConnection('default', 'migrate')
+      ->query('SELECT body FROM {node_revisions} WHERE nid = :nid', array(':nid' => $nid))
+      ->fetchObject();
+
+    /* REPLACE BODY, requires $value = body text */
     if ($replace) {
-      // Nuke those blank lines
-      $value = str_replace('<p>&nbsp;</p>', '', $value); // Move this kind of stuff to it's own plugin
       // Now replace images
-      return $this->replaceImgAssistTags($value);
+      return $this->replaceImgAssistTags($node->body);
     }
     /* LOOKUP FIDS FROM UPLOADS + IMG ASSIST */
     else {
-      $nid = $value;
       // Lookup image upload attachments
       $uploads = self::extractUploads($nid);
-
-      // Get node body for plugin
-      $node = Database::getConnection('default', 'migrate')
-        ->query('SELECT body FROM {node_revisions} WHERE nid = :nid', array(':nid' => $nid))
-        ->fetchObject();
       $images = self::getImageData($node->body);
 
       $fids = array_merge($uploads, $images);

@@ -32,7 +32,8 @@ process:
     default_value: basic_html
   body/value:
     plugin: img_assist
-    source: body
+    source: nid
+    replace: true
   revision_uid: revision_uid
   revision_log: log
   revision_timestamp: timestamp
