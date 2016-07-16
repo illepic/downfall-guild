@@ -7,6 +7,7 @@
 
 namespace Drupal\df_migration\Plugin\migrate\process;
 
+use Drupal\migrate\Annotation\MigrateProcessPlugin;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\Row;

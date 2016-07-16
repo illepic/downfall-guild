@@ -8,6 +8,7 @@
 namespace Drupal\df_migration\Plugin\migrate\process;
 
 use Drupal\Core\Database\Database;
+use Drupal\file\Entity\File;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\Row;
@@ -43,13 +44,40 @@ class ImgAssist extends ProcessPluginBase {
    * @return array $matches array of matched strings
    */
   protected function replaceImgAssistTags($value) {
-    $matches = self::findImgAssistTags($value);
 
+    $images = self::getImageData($value);
+
+    foreach($images as $attr) {
+
+      $image_tag = "<img alt=\"{$attr['desc']}\" src=\"{$attr['path']}\" style=\"width\:{$attr['width']}px;height\:{$attr['height']}px;\" class=\"align-{$attr['align']}\">";
+
+      // Add the link if it exists.
+      if ($attr['url']) {
+        $image_tag = "<a href=\"{$attr['url']}\">{$image_tag}</a>";
+      }
+
+      // Search through entire body, replace original token with new <img/>
+      $value = str_replace($attr['marker'], $image_tag, $value);
+    }
+
+    return $value;
+  }
+
+  /**
+   * Get an associative array of all the matches as keys
+   *
+   * @param $text_search
+   * @return array
+   */
+  protected function getImageData($text_search) {
+    $matches = self::findImgAssistTags($text_search);
+
+    $images = [];
     foreach ($matches[0] as $image_marker) {
-      list($img) = $image_marker;
+      list($original_img_assist_token) = $image_marker;
 
       // Strip off the first and last characters - they are [ and ].
-      $pieces = substr($img, 1, -1);
+      $pieces = substr($original_img_assist_token, 1, -1);
 
       // Array of all pieces, each looks like 'nid=1234'
       $pieces = explode('|', $pieces);
@@ -59,25 +87,19 @@ class ImgAssist extends ProcessPluginBase {
       // Create array that transforms: array('nid=1234', 'title=', 'align=center')
       // to: array('nid' => '1234', 'title' => '', 'align' => 'center')
       $attr = [];
-      foreach($pieces as $piece) {
+      foreach ($pieces as $piece) {
         list($piece_key, $piece_value) = explode('=', $piece);
         $attr[$piece_key] = $piece_value;
       }
-
-      // Retrieve the image path from the image node.
-      $image_path = self::getImagePath($attr['nid']);
-
-      $image_tag = "<img alt=\"{$attr['desc']}\" src=\"{$image_path}\" style=\"width\:{$attr['width']}px;height\:{$attr['height']}px;\" class=\"align-{$attr['align']}\">";
-
-      // Add the link if it exists.
-      if ($attr['url']) {
-        $image_tag = "<a href=\"{$attr['url']}\">{$image_tag}</a>";
-      }
-
-      $value = str_replace($img, $image_tag, $value);
+      // Include the original string for use in replacements later
+      $attr['marker'] = $original_img_assist_token;
+      // Add path and fid to returned array
+      list($attr['path'], $attr['fid']) = self::getImagePath($attr['nid']);
+      $images[] = $attr;
     }
 
-    return $value;
+    // Return array of associative arrays
+    return $images;
   }
 
   /**
@@ -88,22 +110,45 @@ class ImgAssist extends ProcessPluginBase {
    * @return string $image_path
    */
   private function getImagePath($nid) {
-
     // Look up the node referenced by the img_assist tag, then grab the image file ID from that node.
-    $image = Database::getConnection('default', 'migrate')->query('SELECT * FROM {image} WHERE nid=:nid AND image_size=:image_size', array(':nid' => $nid, ':image_size' => '_original'))->fetchObject();
+    $image = Database::getConnection('default', 'migrate')->query('SELECT fid FROM {image} WHERE nid=:nid AND image_size=:image_size', array(':nid' => $nid, ':image_size' => '_original'))->fetchObject();
 
-    // Get the image path from the image file ID.
-    $file = Database::getConnection('default', 'migrate')->query('SELECT * FROM {files} WHERE fid=:fid', array(':fid' => $image->fid))->fetchObject();
+    if ($image->fid) {
+      // public://images/blah.jpg
+      $drupal_file_uri = File::load($image->fid)->getFileUri();
+      // /sites/default/files/images/blah.jpg
+      $image_path = file_url_transform_relative(file_create_url($drupal_file_uri));
 
-    // Remove the 'www.downfallguild.org' sub folder, replace with default
-    $path = str_replace('www.downfallguild.org', 'default', $file->filepath);
+      return array($image_path, $image->fid);
+    }
+    // Sometimes there are entries without a corresponding node
+    return array(null, null);
 
-    // Instead look up public file path here
+  }
 
-    // Add a beginning slash to the path.
-    $image_path = '/' . $path;
+  private function extractUploads($nid) {
+    $results = Database::getConnection('default', 'migrate')
+      ->query('SELECT upload.fid
+        FROM {upload} AS upload
+        JOIN {node} AS node
+          ON node.nid = upload.nid
+        JOIN {files} AS files
+          ON files.fid = upload.fid
+        WHERE node.nid = :nid AND files.filemime LIKE :mime',
+        array(':nid' => $nid, ':mime' => '%image%'))
+      ->fetchAll();
 
-    return $image_path;
+    // EJECT NOW IF NO RESULTS
+    if(empty($results)) {
+      return array();
+    }
+    // Make a clean array
+    $fids = array();
+    foreach($results as $result) {
+      $fids[] = array('fid' => $result->fid);
+    }
+
+    return $fids;
   }
 
   /**
@@ -112,14 +157,28 @@ class ImgAssist extends ProcessPluginBase {
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $replace = $this->configuration['replace'];
 
+    /* REPLACE BODY */
     if ($replace) {
       // Nuke those blank lines
       $value = str_replace('<p>&nbsp;</p>', '', $value); // Move this kind of stuff to it's own plugin
       // Now replace images
       return $this->replaceImgAssistTags($value);
     }
+    /* LOOKUP FIDS FROM UPLOADS + IMG ASSIST */
     else {
-      return $value; // Change this to return the fids
+      $nid = $value;
+      // Lookup image upload attachments
+      $uploads = self::extractUploads($nid);
+
+      // Get node body for plugin
+      $node = Database::getConnection('default', 'migrate')
+        ->query('SELECT body FROM {node_revisions} WHERE nid = :nid', array(':nid' => $nid))
+        ->fetchObject();
+      $images = self::getImageData($node->body);
+
+      $fids = array_merge($uploads, $images);
+
+      return $fids;
     }
 
   }

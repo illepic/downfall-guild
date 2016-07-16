@@ -8,6 +8,7 @@
 namespace Drupal\df_migration\Plugin\migrate\process;
 
 use Drupal\Core\Database\Database;
+use Drupal\migrate\Annotation\MigrateProcessPlugin;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\Row;
@@ -52,7 +53,7 @@ class ExtractUploads extends ProcessPluginBase {
       $fids[] = array('fid' => $result->fid);
     }
 
-//    var_dump('nid:', $nid, 'fids:', $fids);
+    var_dump('nid:', $nid, 'fids:', $fids);
 
     return $fids;
   }
