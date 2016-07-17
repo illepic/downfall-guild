@@ -48,6 +48,7 @@ class ExtractPoll extends ProcessPluginBase {
       $poll_list .= "<li class=\"legacy-poll__item\">
         <p>{$poll_line->chtext}</p>
         <progress value=\"{$poll_line->chvotes}\" max=\"{$poll_vote_total}\">" . round($poll_line->chvotes / $poll_vote_total * 100) . "%</progress>
+        <p>{$poll_line->chvotes} votes / " . round($poll_line->chvotes / $poll_vote_total * 100) . " %</p>
        </li>";
     }
     $poll_body= "<ul class=\"legacy-poll\">{$poll_list}</ul>";
