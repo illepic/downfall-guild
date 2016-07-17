@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-    default_config_hash: _aWmxWLyxRp5IZqhe7_y2YBExEUp-rgibZWeBRFrbRY
+    default_config_hash: cr7s2wps-6vF48S-Q0yMCUk0TT-5378Gy6TM5PJH2BQ
 name: Game
 vid: game
 description: ''

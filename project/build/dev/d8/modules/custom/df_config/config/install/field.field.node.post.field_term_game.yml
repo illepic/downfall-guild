@@ -6,7 +6,7 @@ dependencies:
         - node.type.post
         - taxonomy.vocabulary.game
 _core:
-    default_config_hash: k30Q_yIMUMRmLEHKHmtUT0qZ5ztb8xaAadkj5YouAp8
+    default_config_hash: VK6qVivCTwdR18h6ugE5KfOwTEU02GDlSt3nNgYluco
 id: node.post.field_term_game
 field_name: field_term_game
 entity_type: node

@@ -6,7 +6,7 @@ dependencies:
         - node.type.event
         - taxonomy.vocabulary.wow_pvp
 _core:
-    default_config_hash: g9AbPn0fGECkHLmFWzzEEWt0qEPiSaGm3baRn_Mp7RA
+    default_config_hash: N92x321o2XIEhNGkoMU54yuGgRqJKs3M1UjAA6xYysA
 id: node.event.field_term_pvp
 field_name: field_term_pvp
 entity_type: node

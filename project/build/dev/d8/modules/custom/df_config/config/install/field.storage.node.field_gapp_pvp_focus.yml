@@ -4,6 +4,8 @@ dependencies:
     module:
         - node
         - text
+_core:
+    default_config_hash: nzwVATVAPsdCStp05LCkA5o4gHsh-So-TyYTF5jPqwg
 id: node.field_gapp_pvp_focus
 field_name: field_gapp_pvp_focus
 entity_type: node

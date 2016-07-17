@@ -6,6 +6,8 @@ dependencies:
         - node.type.guild_app
     module:
         - text
+_core:
+    default_config_hash: oQSlZexwM2nkJ7inx-O6DZskPGqqqtaK48U1LhyfJiQ
 id: node.guild_app.field_gapp_essential_addons
 field_name: field_gapp_essential_addons
 entity_type: node

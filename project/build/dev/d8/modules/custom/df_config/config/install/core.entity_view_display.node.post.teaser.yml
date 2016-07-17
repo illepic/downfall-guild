@@ -22,7 +22,7 @@ dependencies:
         - text
         - user
 _core:
-    default_config_hash: 0h9pw7wBxm2WvzAxGl2FaD2MjUdPO0sAMfomPqexYKE
+    default_config_hash: zqnhJ-TPNC_0skLwsy0xXnKMCZm1DynifJJzFMlzIPM
 id: node.post.teaser
 targetEntityType: node
 bundle: post

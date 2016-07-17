@@ -6,6 +6,8 @@ dependencies:
         - node.type.post
     module:
         - image
+_core:
+    default_config_hash: gYIFKqvbWKahoyKuUCZOHd1hy-mGddYMMib5VJtKuP4
 id: node.post.field_image_primary
 field_name: field_image_primary
 entity_type: node

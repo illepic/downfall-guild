@@ -3,6 +3,8 @@ status: true
 dependencies:
     module:
         - node
+_core:
+    default_config_hash: 42dDzk8-rnD0UXtRRC2RApo-2pzxKKrY4E71EAyFyc8
 id: node.field_gapp_open_closed
 field_name: field_gapp_open_closed
 entity_type: node

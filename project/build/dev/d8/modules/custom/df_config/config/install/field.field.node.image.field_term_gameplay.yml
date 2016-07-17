@@ -5,6 +5,8 @@ dependencies:
         - field.storage.node.field_term_gameplay
         - node.type.image
         - taxonomy.vocabulary.wow_gameplay
+_core:
+    default_config_hash: 8EIPB-Q2lgMA5KmCsqMT4Nn4WRS3aVeKpabDcgx3u1s
 id: node.image.field_term_gameplay
 field_name: field_term_gameplay
 entity_type: node

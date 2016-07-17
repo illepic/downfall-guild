@@ -12,7 +12,9 @@ source:
   constants:
     entity_type: node
 process:
-  cid: cid
+  cid:
+    plugin: wat
+    source: cid
   pid:
     plugin: migration
     migration: upgrade_d6_comment
@@ -20,7 +22,9 @@ process:
   entity_id: nid
   entity_type: constants/entity_type
   field_name: field_name
-  comment_type: comment_type
+  comment_type:
+    plugin: default_value
+    default_value: df_comment
   subject: subject
   uid: uid
   name: name
@@ -37,8 +41,17 @@ process:
   comment_body/format:
     plugin: default_value
     default_value: basic_html
-  field_comment_image
-    
+
+  field_comment_image:
+    -
+      source: cid
+      plugin: img_assist
+      comment: true
+    -
+      plugin: iterator
+      process:
+        target_id: fid
+
 
 destination:
   plugin: 'entity:comment'

@@ -7,7 +7,7 @@ dependencies:
     module:
         - text
 _core:
-    default_config_hash: DVzWtWl-z7T9Ht3Ww7Ekvtc6FztQEYGtECOUj5CIh-Y
+    default_config_hash: mPHPc01a-kA9cAvjrb3nu5tptNzl71lFi0K8knly1hY
 id: node.guide.body
 field_name: body
 entity_type: node

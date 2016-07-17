@@ -6,6 +6,8 @@ dependencies:
         - node.type.image
     module:
         - comment
+_core:
+    default_config_hash: OYAasIPdCiuihm9-U8UTaM5hSJInrOObNeVjnbrnWgs
 id: node.image.comment
 field_name: comment
 entity_type: node

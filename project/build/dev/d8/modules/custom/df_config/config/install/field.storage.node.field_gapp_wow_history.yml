@@ -4,6 +4,8 @@ dependencies:
     module:
         - node
         - text
+_core:
+    default_config_hash: i_vnu6lKM5dmgegxFElzf6uqVvcLs0q38q8OOT-072A
 id: node.field_gapp_wow_history
 field_name: field_gapp_wow_history
 entity_type: node

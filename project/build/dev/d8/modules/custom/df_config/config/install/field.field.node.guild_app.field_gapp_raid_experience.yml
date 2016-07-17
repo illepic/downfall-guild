@@ -6,6 +6,8 @@ dependencies:
         - node.type.guild_app
     module:
         - text
+_core:
+    default_config_hash: j9k8KlUhqlYxMV7CCuqxazh5auWuXWpOJ492P-H6gY4
 id: node.guild_app.field_gapp_raid_experience
 field_name: field_gapp_raid_experience
 entity_type: node

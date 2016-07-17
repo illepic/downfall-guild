@@ -24,7 +24,7 @@ dependencies:
         - path
         - text
 _core:
-    default_config_hash: Fm8BO8HC6RgY2DAlh5XXhYATdVg_4Zn-QBPmwdgHHzM
+    default_config_hash: 8mPRg-_Ls8CPzsP5bTxb3Xan2gtV2AM0RvH10Kpw50g
 id: node.guide.default
 targetEntityType: node
 bundle: guide

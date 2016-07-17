@@ -6,7 +6,7 @@ dependencies:
         - node.type.guide
         - taxonomy.vocabulary.wow_instance
 _core:
-    default_config_hash: e3NaYpnDJuGAcXgdVUP23VpLwStA8sMO8o08dD-RH_k
+    default_config_hash: nrkWl0NnicSqtVCLGCsU2A8-mY6yPr7d3tCKpczFA7Y
 id: node.guide.field_term_instance
 field_name: field_term_instance
 entity_type: node

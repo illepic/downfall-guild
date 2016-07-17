@@ -6,6 +6,8 @@ dependencies:
         - node.type.guide
     module:
         - file
+_core:
+    default_config_hash: tKIfl2qK0xuI5DIUpGGFLp2pQiTbq_r0Trx2HzcSyfM
 id: node.guide.field_attachments
 field_name: field_attachments
 entity_type: node

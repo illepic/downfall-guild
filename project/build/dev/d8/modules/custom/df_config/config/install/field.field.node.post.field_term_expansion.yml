@@ -6,7 +6,7 @@ dependencies:
         - node.type.post
         - taxonomy.vocabulary.wow_expansion
 _core:
-    default_config_hash: lYOuW3EH3TsB3df5WQi4UIx70WOUW6rpLGKevzGsWAo
+    default_config_hash: y6xQwnudAro0u5wIhQy4D6sEqrBGhGVcTAWfYxZeqmA
 id: node.post.field_term_expansion
 field_name: field_term_expansion
 entity_type: node

@@ -6,6 +6,8 @@ dependencies:
         - node.type.guild_app
     module:
         - text
+_core:
+    default_config_hash: g8qECYI1cnQJoKJrn_VfwxGGIO_5tsHMTLgMm3WRfwQ
 id: node.guild_app.field_gapp_led_to_downfall
 field_name: field_gapp_led_to_downfall
 entity_type: node

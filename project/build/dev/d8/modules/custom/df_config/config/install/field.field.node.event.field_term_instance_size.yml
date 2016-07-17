@@ -5,6 +5,8 @@ dependencies:
         - field.storage.node.field_term_instance_size
         - node.type.event
         - taxonomy.vocabulary.wow_group_size
+_core:
+    default_config_hash: 8CY8EXRDdA3jMP6CK06kSfZqDmU8R-PYfFZ7AecQC4s
 id: node.event.field_term_instance_size
 field_name: field_term_instance_size
 entity_type: node

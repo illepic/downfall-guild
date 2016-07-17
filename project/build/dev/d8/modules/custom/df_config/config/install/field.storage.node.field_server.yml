@@ -4,6 +4,8 @@ dependencies:
     module:
         - node
         - options
+_core:
+    default_config_hash: roUT4dIJnCXG9-KmEijhPpV-IEi7-Q5U3a1lFbq4TR0
 id: node.field_server
 field_name: field_server
 entity_type: node

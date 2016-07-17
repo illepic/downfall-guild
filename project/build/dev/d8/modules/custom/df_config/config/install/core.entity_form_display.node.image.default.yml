@@ -22,7 +22,7 @@ dependencies:
         - path
         - text
 _core:
-    default_config_hash: IuveFRVhxr3WdorjLzvu8FTIuzIeT8nviZToCyvKOM0
+    default_config_hash: 2L353jU9j_KOdDR883JBSg5k_Ig_2nUVrKwyKXyfzfY
 id: node.image.default
 targetEntityType: node
 bundle: image

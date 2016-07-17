@@ -152,7 +152,7 @@ class ImgAssist extends ProcessPluginBase {
     // Make a clean array
     $fids = array();
     foreach($results as $result) {
-
+      // Verify this is real file
       if (File::load($result->fid)) {
         $fids[] = array('fid' => $result->fid);
       }
@@ -165,29 +165,33 @@ class ImgAssist extends ProcessPluginBase {
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
-    $nid = $value;
-    $replace = $this->configuration['replace'];
+    $id = $value;
 
-    // Get node body for plugin
-    $node = Database::getConnection('default', 'migrate')
-      ->query('SELECT body FROM {node_revisions} WHERE nid = :nid', array(':nid' => $nid))
-      ->fetchObject();
-
-    /* REPLACE BODY, requires $value = body text */
-    if ($replace) {
-      // Now replace images
-      return $this->replaceImgAssistTags($node->body);
+    // Different queries for comments vs nodes
+    if($this->configuration['comment']) {
+      $comment = Database::getConnection('default', 'migrate')
+        ->query('SELECT comment FROM {comments} WHERE cid = :cid', array(':cid' => $id))
+        ->fetchObject();
+      $content = $comment->comment;
+    } else {
+      // Get node body for plugin
+      $node = Database::getConnection('default', 'migrate')
+        ->query('SELECT body FROM {node_revisions} WHERE nid = :nid', array(':nid' => $id))
+        ->fetchObject();
+      $content = $node->body;
     }
-    /* LOOKUP FIDS FROM UPLOADS + IMG ASSIST */
-    else {
-      // Lookup image upload attachments
-      $uploads = self::extractUploads($nid);
-      $images = self::getImageData($node->body);
 
-      $fids = array_merge($uploads, $images);
+    // Now replace images (NOT DOING THIS ANYMORE)
+    //return $this->replaceImgAssistTags($node->body);
 
-      return $fids;
-    }
+    // Lookup image upload attachments
+    $uploads = self::extractUploads($id);
+    // Images in [img_assist] tags
+    $images = self::getImageData($content);
+
+    $fids = array_merge($uploads, $images);
+
+    return $fids;
 
   }
 }

@@ -5,7 +5,7 @@ dependencies:
         - datetime
         - node
 _core:
-    default_config_hash: e6Cj9QpJZpTSSuz_ce42GUzDqdNUfNPzliVBcrKDjBo
+    default_config_hash: u4N9WAVKrzfWbZYmaLvjBd-XVN0hqKH2lA3GRMEOLrs
 id: node.field_event_end
 field_name: field_event_end
 entity_type: node

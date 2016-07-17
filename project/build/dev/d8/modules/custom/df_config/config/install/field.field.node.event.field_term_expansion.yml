@@ -6,7 +6,7 @@ dependencies:
         - node.type.event
         - taxonomy.vocabulary.wow_expansion
 _core:
-    default_config_hash: P5U2J36ZM9UytRw1rGHMcKWBCdu95MRqGJwJRnIHKVs
+    default_config_hash: dSBPbgZAYJVleuNhw9PmZUfdqDWc-nl7QouZk4QFRTY
 id: node.event.field_term_expansion
 field_name: field_term_expansion
 entity_type: node

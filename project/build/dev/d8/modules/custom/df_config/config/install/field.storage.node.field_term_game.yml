@@ -5,7 +5,7 @@ dependencies:
         - node
         - taxonomy
 _core:
-    default_config_hash: vDt0hjsI_yqXaG8RybMOY2TlVYp2LTYmOjs9mwGoltQ
+    default_config_hash: OPKY935-wpd4bgMX-LZLbBTZpY6WHgYGk40lfAw3Nds
 id: node.field_term_game
 field_name: field_term_game
 entity_type: node

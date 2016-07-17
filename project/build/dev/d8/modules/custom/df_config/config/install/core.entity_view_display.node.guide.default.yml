@@ -23,7 +23,7 @@ dependencies:
         - text
         - user
 _core:
-    default_config_hash: Dz5HvkMerZxvcpw_k-ElwqUEKyMTNarQ388TQ6bnK8A
+    default_config_hash: eGbSU4wvAHwiYLfT2Jp5WPgtMoRbrmpUWJvGb9W-Phs
 id: node.guide.default
 targetEntityType: node
 bundle: guide

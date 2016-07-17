@@ -24,6 +24,8 @@ process:
         img_assist_properties: ''
         large: ''
     -
+      plugin: wat
+    -
       plugin: skip_contains
       skip:
         - 'furiousraid'
@@ -43,6 +45,8 @@ process:
       source: fid
       bypass: true
       map:
+        4: '' # Seems to not exist on file import
+        1887: '' # no extension, wowbuntu
         19636: '' # Ui.jpg bullshit
         20875: '' # Same bullshit
     -

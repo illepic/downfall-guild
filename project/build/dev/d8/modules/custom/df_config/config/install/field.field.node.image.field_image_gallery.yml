@@ -6,7 +6,7 @@ dependencies:
         - node.type.image
         - taxonomy.vocabulary.image_galleries
 _core:
-    default_config_hash: 7B5udZ-kbtg0HpolWJR51w8mQ_S_HKIarTqGXt8eFDE
+    default_config_hash: Q_D9dtxLbaTLcDT6VHfRcKIfYQGQHTylRp9N9lCtB1I
 id: node.image.field_image_gallery
 field_name: field_image_gallery
 entity_type: node

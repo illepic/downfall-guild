@@ -5,6 +5,8 @@ dependencies:
         - field.storage.node.field_gapp_term_class
         - node.type.guild_app
         - taxonomy.vocabulary.wow_class
+_core:
+    default_config_hash: uyqvvlbXkvxdz_-cbDmHsctkDHUcImU3UxKkpiEn85U
 id: node.guild_app.field_gapp_term_class
 field_name: field_gapp_term_class
 entity_type: node

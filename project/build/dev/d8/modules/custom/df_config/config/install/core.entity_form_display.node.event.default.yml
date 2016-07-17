@@ -7,6 +7,7 @@ dependencies:
         - field.field.node.event.field_event_end
         - field.field.node.event.field_event_start
         - field.field.node.event.field_group
+        - field.field.node.event.field_term_class
         - field.field.node.event.field_term_downfall
         - field.field.node.event.field_term_expansion
         - field.field.node.event.field_term_game
@@ -21,7 +22,7 @@ dependencies:
         - path
         - text
 _core:
-    default_config_hash: kLSoQu4U-MZrD1CWzcKXFL3gjGXFvg8uyfa3LnUSNp4
+    default_config_hash: BMfjKmsPkr9ZZRV1XW3bKuoa3Wt7sAYNSQaniCm6j1g
 id: node.event.default
 targetEntityType: node
 bundle: event
@@ -133,4 +134,5 @@ content:
             size: 60
             placeholder: ''
         third_party_settings: {  }
-hidden: {  }
+hidden:
+    field_term_class: true

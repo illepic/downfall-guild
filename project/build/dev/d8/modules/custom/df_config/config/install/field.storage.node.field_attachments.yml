@@ -4,6 +4,8 @@ dependencies:
     module:
         - file
         - node
+_core:
+    default_config_hash: rw_g_bgP-jstl-keXHayYwZ-4Uz6tQzqXXU3HqrAIFQ
 id: node.field_attachments
 field_name: field_attachments
 entity_type: node

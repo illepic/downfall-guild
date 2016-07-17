@@ -6,6 +6,8 @@ dependencies:
         - node.type.guide
     module:
         - image
+_core:
+    default_config_hash: chssBRtIeNtHsfsp07SefH8xasfe1USKpgxQliHLROw
 id: node.guide.field_image_secondary
 field_name: field_image_secondary
 entity_type: node

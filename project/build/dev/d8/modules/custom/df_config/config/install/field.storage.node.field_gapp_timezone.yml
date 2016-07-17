@@ -3,6 +3,8 @@ status: true
 dependencies:
     module:
         - node
+_core:
+    default_config_hash: E6RiQg5ohylO2Bb0hDjbd8fSH08F3QYXpuL1pTkN7NE
 id: node.field_gapp_timezone
 field_name: field_gapp_timezone
 entity_type: node

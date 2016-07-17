@@ -5,6 +5,8 @@ dependencies:
         - field.storage.node.field_term_role
         - node.type.guild_app
         - taxonomy.vocabulary.wow_role
+_core:
+    default_config_hash: QXqy6PeSRXHiqrRcPA9Z6L-lvvXknwXQnBHyVQJWGqk
 id: node.guild_app.field_term_role
 field_name: field_term_role
 entity_type: node

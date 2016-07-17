@@ -6,7 +6,7 @@ dependencies:
         - node.type.guide
         - taxonomy.vocabulary.wow_gameplay
 _core:
-    default_config_hash: zVs38Ru-z0kEt02JZAlKkbS1ZJEPArP_END-CVGn0Zs
+    default_config_hash: AGlva4jhzsoJ1ADrNUr4-ZLM1XH5TppIG6OA-WD5tTs
 id: node.guide.field_term_gameplay
 field_name: field_term_gameplay
 entity_type: node

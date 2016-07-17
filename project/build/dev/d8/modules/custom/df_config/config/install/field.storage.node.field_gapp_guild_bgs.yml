@@ -3,6 +3,8 @@ status: true
 dependencies:
     module:
         - node
+_core:
+    default_config_hash: kctXQDhorUcw1ShPMNfE_wJjJtSCAGf_rDeyc34AG84
 id: node.field_gapp_guild_bgs
 field_name: field_gapp_guild_bgs
 entity_type: node

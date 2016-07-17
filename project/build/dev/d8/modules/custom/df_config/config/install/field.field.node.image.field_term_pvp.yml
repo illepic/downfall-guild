@@ -5,6 +5,8 @@ dependencies:
         - field.storage.node.field_term_pvp
         - node.type.image
         - taxonomy.vocabulary.wow_pvp
+_core:
+    default_config_hash: YUKscWiTQxKWs4BnIfeR0IU_WZcLelOOudyO0qWLmdg
 id: node.image.field_term_pvp
 field_name: field_term_pvp
 entity_type: node

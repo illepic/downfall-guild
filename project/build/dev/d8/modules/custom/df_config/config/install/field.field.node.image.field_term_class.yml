@@ -5,6 +5,8 @@ dependencies:
         - field.storage.node.field_term_class
         - node.type.image
         - taxonomy.vocabulary.wow_class
+_core:
+    default_config_hash: cYnC4JxZRO02Mic_cr0xjiWqajZqB77HYW8Hi6zzYSE
 id: node.image.field_term_class
 field_name: field_term_class
 entity_type: node

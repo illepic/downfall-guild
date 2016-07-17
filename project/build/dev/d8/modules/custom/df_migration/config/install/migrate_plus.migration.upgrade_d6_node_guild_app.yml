@@ -180,8 +180,6 @@ process:
       index:
         - fid
     -
-      plugin: wat
-    -
       plugin: static_map
       bypass: true
       map:

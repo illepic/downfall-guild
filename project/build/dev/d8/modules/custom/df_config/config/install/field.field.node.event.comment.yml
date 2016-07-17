@@ -6,6 +6,8 @@ dependencies:
         - node.type.event
     module:
         - comment
+_core:
+    default_config_hash: Qt9ZHvUaohHTvcm3gFEPA32pGLG50JsIfU2LSLYw4JE
 id: node.event.comment
 field_name: comment
 entity_type: node

@@ -4,6 +4,8 @@ dependencies:
     config:
         - field.storage.node.field_gapp_open_closed
         - node.type.guild_app
+_core:
+    default_config_hash: '-B7EHElb5ZpZ84T7wK72VbJwPAxbCL5zFdRZart-tCY'
 id: node.guild_app.field_gapp_open_closed
 field_name: field_gapp_open_closed
 entity_type: node

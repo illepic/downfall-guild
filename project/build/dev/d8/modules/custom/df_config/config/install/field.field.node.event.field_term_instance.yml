@@ -6,7 +6,7 @@ dependencies:
         - node.type.event
         - taxonomy.vocabulary.wow_instance
 _core:
-    default_config_hash: aYI4x_QMhRMBjhCQUTBXGFEGq-euwhTBBE2khMuvh9c
+    default_config_hash: QGIYZUp0Ig3MvgOX_hUv04CITVJWCL2uHMusrl79rrU
 id: node.event.field_term_instance
 field_name: field_term_instance
 entity_type: node

@@ -4,6 +4,8 @@ dependencies:
     module:
         - node
         - text
+_core:
+    default_config_hash: FuotpzY4VbiI9H2Hs9z_QnZdm2Ao6q7kVAMzqXiAnlQ
 id: node.field_gapp_bosses
 field_name: field_gapp_bosses
 entity_type: node

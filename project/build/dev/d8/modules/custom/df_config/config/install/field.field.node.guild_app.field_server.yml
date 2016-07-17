@@ -6,6 +6,8 @@ dependencies:
         - node.type.guild_app
     module:
         - options
+_core:
+    default_config_hash: kMKBY-HLNcrNZp7z2XDwtNJmAgRjFrf_eMcaKjVv5SI
 id: node.guild_app.field_server
 field_name: field_server
 entity_type: node

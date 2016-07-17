@@ -1,6 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
+_core:
+    default_config_hash: 5pDs3eHtAZyl4mikt4-MIhg_oYXPDj2JxlcVHaiz224
 name: 'WoW - Role'
 vid: wow_role
 description: ''

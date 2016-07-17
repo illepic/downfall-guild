@@ -5,8 +5,8 @@ dependencies:
         - field.storage.node.field_term_game
         - node.type.image
         - taxonomy.vocabulary.game
-    content:
-        - 'taxonomy_term:game:7defbc96-f405-449d-ac97-f87fa32a4dcf'
+_core:
+    default_config_hash: s_b1UigLgfG3Doat2win37OC2Mt_e8LXDaJUy6BhN3U
 id: node.image.field_term_game
 field_name: field_term_game
 entity_type: node

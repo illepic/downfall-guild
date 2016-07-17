@@ -5,6 +5,8 @@ dependencies:
         - field.storage.node.field_term_gameplay
         - node.type.event
         - taxonomy.vocabulary.wow_gameplay
+_core:
+    default_config_hash: DPC_x4r_wonifnJdwj8lv3zMLE4pflsfly9YCq7oybE
 id: node.event.field_term_gameplay
 field_name: field_term_gameplay
 entity_type: node

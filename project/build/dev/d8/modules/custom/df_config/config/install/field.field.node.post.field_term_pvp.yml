@@ -6,7 +6,7 @@ dependencies:
         - node.type.post
         - taxonomy.vocabulary.wow_pvp
 _core:
-    default_config_hash: htStlgwSdXjTJr7mfsCkQzGsWykagual9ssxUdXHJKw
+    default_config_hash: DlAsSisEC2732fAU7waH-ewZi1B3AafrZDR_DKoyn3s
 id: node.post.field_term_pvp
 field_name: field_term_pvp
 entity_type: node

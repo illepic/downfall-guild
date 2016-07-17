@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-    default_config_hash: JWBuPKKt1EOZXHQznNNb-wW6DUxAmVxvSo4V_NGdQho
+    default_config_hash: Diaf9tALfYA3e9NfEUkfwhfryVetEA_Qo4YPq6Bz6hM
 name: 'WoW - Instance'
 vid: wow_instance
 description: 'World of Warcraft instances and raids'

@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-    default_config_hash: 1fb-AwCNF0FzFPpaJCeI1OGO4k2nA-zT-wsdM1zghM8
+    default_config_hash: Teh6OkKIo7VDCGC5J3lXpeGtXx9DGUmwV0tvlWBtv4g
 name: 'Image Galleries'
 vid: image_galleries
 description: ''

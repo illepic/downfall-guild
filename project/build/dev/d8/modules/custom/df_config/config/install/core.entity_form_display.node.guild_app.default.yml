@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
     config:
+        - field.field.node.guild_app.comment
         - field.field.node.guild_app.field_gapp_bosses
         - field.field.node.guild_app.field_gapp_class_state
         - field.field.node.guild_app.field_gapp_describe_playstyle
@@ -28,6 +29,7 @@ dependencies:
         - image.style.thumbnail
         - node.type.guild_app
     module:
+        - comment
         - field_group
         - image
         - path
@@ -128,11 +130,18 @@ third_party_settings:
                 required_fields: true
                 id: ''
                 classes: ''
+_core:
+    default_config_hash: e5CQxnmx7O6hIAtIfVv8VSGltIfNZd7Q7DSGbmspeUA
 id: node.guild_app.default
 targetEntityType: node
 bundle: guild_app
 mode: default
 content:
+    comment:
+        weight: 44
+        settings: {  }
+        third_party_settings: {  }
+        type: comment_default
     created:
         type: datetime_timestamp
         weight: 2

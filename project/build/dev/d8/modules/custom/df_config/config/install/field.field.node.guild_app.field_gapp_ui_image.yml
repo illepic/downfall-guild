@@ -6,6 +6,8 @@ dependencies:
         - node.type.guild_app
     module:
         - image
+_core:
+    default_config_hash: NXoUPDUyef86IWQJrmCHus1SCedOffZZkZR-SgiLd0k
 id: node.guild_app.field_gapp_ui_image
 field_name: field_gapp_ui_image
 entity_type: node

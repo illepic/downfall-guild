@@ -4,16 +4,23 @@ dependencies:
     config:
         - core.entity_view_mode.node.teaser
         - field.field.node.image.body
+        - field.field.node.image.comment
         - field.field.node.image.field_df_image
         - field.field.node.image.field_group
         - field.field.node.image.field_image_gallery
+        - field.field.node.image.field_term_class
         - field.field.node.image.field_term_downfall
+        - field.field.node.image.field_term_expansion
+        - field.field.node.image.field_term_game
+        - field.field.node.image.field_term_gameplay
+        - field.field.node.image.field_term_instance
+        - field.field.node.image.field_term_pvp
         - node.type.image
     module:
         - text
         - user
 _core:
-    default_config_hash: ypptJ_QY2rG1-MWb47-SW45ptddHfirdziyjqNp5GlE
+    default_config_hash: bTW7nC-rH4vaYBzgt0wlmDAKZ7wxbziqgCJrTtOnEbU
 id: node.image.teaser
 targetEntityType: node
 bundle: image
@@ -29,7 +36,14 @@ content:
     links:
         weight: 100
 hidden:
+    comment: true
     field_df_image: true
     field_group: true
     field_image_gallery: true
+    field_term_class: true
     field_term_downfall: true
+    field_term_expansion: true
+    field_term_game: true
+    field_term_gameplay: true
+    field_term_instance: true
+    field_term_pvp: true

@@ -5,6 +5,8 @@ dependencies:
         - field.storage.node.field_term_race
         - node.type.guild_app
         - taxonomy.vocabulary.wow_race
+_core:
+    default_config_hash: KKk_UZ4kHtzgQktcP9JZMFacSCqXT8KxRHX8HZFh1T0
 id: node.guild_app.field_term_race
 field_name: field_term_race
 entity_type: node

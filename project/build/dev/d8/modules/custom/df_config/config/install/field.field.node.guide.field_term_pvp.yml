@@ -6,7 +6,7 @@ dependencies:
         - node.type.guide
         - taxonomy.vocabulary.wow_pvp
 _core:
-    default_config_hash: Vxwolx-dD-KNliBH11bbVNdi02E7OtFkjXLeO5Khveo
+    default_config_hash: ruaK6jhX7kD6uktPUo1cK4d166YjQZlX5wogmKeFNBs
 id: node.guide.field_term_pvp
 field_name: field_term_pvp
 entity_type: node

@@ -43,6 +43,8 @@ class RemoveStrings extends ProcessPluginBase {
     $value = str_replace('<p>&nbsp;</p>', '', $value);
     $value = str_replace('<p></p>', '', $value);
     $value = str_replace('&nbsp;', '', $value);
+    $value = str_replace('<p><img src="http://armory.mmo-champion.com.nyud.net:8080/sig.php/1486310TkEWU.png" /></p>', '', $value);
+    $value = preg_replace("/(\r?\n){2,}/", '', $value); // kill the extra breaks
 
     return $value;
   }

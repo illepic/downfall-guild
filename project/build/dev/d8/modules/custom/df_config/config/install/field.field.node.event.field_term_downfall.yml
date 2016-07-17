@@ -6,7 +6,7 @@ dependencies:
         - node.type.event
         - taxonomy.vocabulary.downfall
 _core:
-    default_config_hash: J15z5YHdwUgaE5KeL4wetKlleMd7OYSsqhW4c4viMD8
+    default_config_hash: YuvAllDJNFs9fr8yFERLwcO-UpeOAEPghFqVRkqcUVw
 id: node.event.field_term_downfall
 field_name: field_term_downfall
 entity_type: node

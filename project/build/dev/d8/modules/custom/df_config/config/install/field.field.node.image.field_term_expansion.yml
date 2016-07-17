@@ -5,6 +5,8 @@ dependencies:
         - field.storage.node.field_term_expansion
         - node.type.image
         - taxonomy.vocabulary.wow_expansion
+_core:
+    default_config_hash: MstIWTlv-bZm27WA_LHQrvU1Y_f5Q3EfwAR2Wvd7HMI
 id: node.image.field_term_expansion
 field_name: field_term_expansion
 entity_type: node

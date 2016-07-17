@@ -5,6 +5,8 @@ dependencies:
         - file
         - image
         - node
+_core:
+    default_config_hash: B4KfvuJCaamB0yi59JT2zbIGHxCG_92mzbQcdykJrys
 id: node.field_gapp_ui_image
 field_name: field_gapp_ui_image
 entity_type: node

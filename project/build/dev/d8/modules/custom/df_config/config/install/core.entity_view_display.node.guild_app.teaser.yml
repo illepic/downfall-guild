@@ -29,6 +29,8 @@ dependencies:
         - node.type.guild_app
     module:
         - user
+_core:
+    default_config_hash: 7OWbgVtfYqVBG888pc4MGmyfBx2vxqAHzMCRCmBKRgE
 id: node.guild_app.teaser
 targetEntityType: node
 bundle: guild_app

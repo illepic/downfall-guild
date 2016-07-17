@@ -1,0 +1,35 @@
+uuid: 8353851d-b8b8-4551-9a41-b51d7082aa04
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.df_comment
+    - field.field.comment.df_comment.comment_body
+    - field.field.comment.df_comment.field_comment_image
+  module:
+    - image
+    - text
+id: comment.df_comment.default
+targetEntityType: comment
+bundle: df_comment
+mode: default
+content:
+  comment_body:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+  field_comment_image:
+    weight: 0
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  links:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

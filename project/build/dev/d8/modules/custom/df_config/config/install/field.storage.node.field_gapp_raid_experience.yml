@@ -4,6 +4,8 @@ dependencies:
     module:
         - node
         - text
+_core:
+    default_config_hash: Tt-24tgx8ebhr2_FiFBav92iQl7024HgmYQBD9sd3_Y
 id: node.field_gapp_raid_experience
 field_name: field_gapp_raid_experience
 entity_type: node

@@ -6,6 +6,8 @@ dependencies:
         - node.type.guild_app
     module:
         - options
+_core:
+    default_config_hash: WMxNnLXAr1Mbf0hkrp76dGaCQcR5ILahkq5GneTgzME
 id: node.guild_app.field_week_days
 field_name: field_week_days
 entity_type: node
