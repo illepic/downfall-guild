@@ -40,15 +40,17 @@ class ExtractPoll extends ProcessPluginBase {
     $poll_vote_total = 0;
     foreach($poll_results as $poll_result) {
       $poll_vote_total += $poll_result->chvotes;
-
+    }
+    foreach($poll_results as $key => $poll_result) {
+      $poll_results[$key]->percent = $poll_vote_total > 0 ? round($poll_result->chvotes / $poll_vote_total * 100) : 0;
     }
 
     $poll_list = '';
     foreach($poll_results as $poll_line) {
       $poll_list .= "<li class=\"legacy-poll__item\">
         <p>{$poll_line->chtext}</p>
-        <progress value=\"{$poll_line->chvotes}\" max=\"{$poll_vote_total}\">" . round($poll_line->chvotes / $poll_vote_total * 100) . "%</progress>
-        <p>{$poll_line->chvotes} votes / " . round($poll_line->chvotes / $poll_vote_total * 100) . " %</p>
+        <progress value=\"{$poll_line->chvotes}\" max=\"{$poll_vote_total}\">{$poll_line->percent}%</progress>
+        <p>{$poll_line->chvotes} votes / {$poll_line->percent}%</p>
        </li>";
     }
     $poll_body= "<ul class=\"legacy-poll\">{$poll_list}</ul>";
