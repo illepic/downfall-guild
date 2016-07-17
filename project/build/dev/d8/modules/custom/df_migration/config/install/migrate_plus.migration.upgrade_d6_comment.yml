@@ -12,9 +12,7 @@ source:
   constants:
     entity_type: node
 process:
-  cid:
-    plugin: wat
-    source: cid
+  cid: cid
   pid:
     plugin: migration
     migration: upgrade_d6_comment

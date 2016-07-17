@@ -24,8 +24,6 @@ process:
         img_assist_properties: ''
         large: ''
     -
-      plugin: wat
-    -
       plugin: skip_contains
       skip:
         - 'furiousraid'
