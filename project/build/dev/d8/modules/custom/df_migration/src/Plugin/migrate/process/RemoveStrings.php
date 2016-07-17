@@ -40,10 +40,19 @@ class RemoveStrings extends ProcessPluginBase {
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
 
     $value = self::killImgAssistTags($value);
-    $value = str_replace('<p>&nbsp;</p>', '', $value);
-    $value = str_replace('<p></p>', '', $value);
-    $value = str_replace('&nbsp;', '', $value);
-    $value = str_replace('<p><img src="http://armory.mmo-champion.com.nyud.net:8080/sig.php/1486310TkEWU.png" /></p>', '', $value);
+
+    $replacements = array(
+      '<br />',
+      '<p>&nbsp;</p>',
+      '<p></p>',
+      '&nbsp;',
+      '<p><img src="http://armory.mmo-champion.com.nyud.net:8080/sig.php/1486310TkEWU.png" /></p>',
+      '<p>Ewiges - Absorbing the stupidity of the world for over 20 years.</p>',
+      'And I would lay down my life to birth a new generation of a righteous culture.  To a people I could proudly love and cherish.',
+      'Secretary vice president to the vice president\'s secretary of the department of redundancy department',
+    );
+    $value = str_replace($replacements, '', $value);
+
     $value = preg_replace("/(\r?\n){2,}/", '', $value); // kill the extra breaks
 
     return $value;
