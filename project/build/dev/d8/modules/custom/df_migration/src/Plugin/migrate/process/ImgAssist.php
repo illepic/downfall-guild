@@ -191,6 +191,18 @@ class ImgAssist extends ProcessPluginBase {
     $images = self::getImageData($content);
 
     $fids = array_merge($uploads, $images);
+
+    // Break here if no fids
+    if(!$fids) {
+      return [];
+    }
+
+    // If we just want file ids, return these here
+    if($this->configuration['type'] == 'fid') {
+      return $fids;
+    }
+
+    // Otherwise return media ids
     $fids_reduced = array_column($fids, 'fid');
 
     $query = \Drupal::entityQuery('media')

@@ -67,6 +67,7 @@ process:
     -
       source: nid
       plugin: img_assist
+      type: 'mid'
     -
       plugin: iterator
       process:

@@ -1,0 +1,28 @@
+uuid: daae367b-47c1-4599-b71e-11df4a2cdea4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media_primary
+    - media_entity.bundle.media_image
+    - node.type.post
+id: node.post.field_media_primary
+field_name: field_media_primary
+entity_type: node
+bundle: post
+label: 'Media Primary'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      media_image: media_image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

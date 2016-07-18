@@ -8,6 +8,8 @@ dependencies:
     - media_entity.bundle.media_image
   module:
     - image
+_core:
+  default_config_hash: E1wPo7AKzHNqpGcat4t_v5QzRRSDyTs4HoVvhROZiZY
 id: media.media_image.default
 targetEntityType: media
 bundle: media_image

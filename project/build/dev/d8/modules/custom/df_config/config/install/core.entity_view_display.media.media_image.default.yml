@@ -4,27 +4,27 @@ status: true
 dependencies:
   config:
     - field.field.media.media_image.field_media_image_image
-    - image.style.thumbnail
     - media_entity.bundle.media_image
   module:
     - image
-    - user
+_core:
+  default_config_hash: bejCjhqdCyiAoNM6q4vqo10CsWynZcp_nw6YOah2Sh8
 id: media.media_image.default
 targetEntityType: media
 bundle: media_image
 mode: default
 content:
   created:
-    label: hidden
     type: timestamp
-    weight: 0
+    weight: 2
+    label: above
     settings:
       date_format: medium
       custom_date_format: ''
       timezone: ''
     third_party_settings: {  }
   field_media_image_image:
-    weight: 2
+    weight: 4
     label: above
     settings:
       image_style: ''
@@ -34,22 +34,22 @@ content:
   name:
     label: hidden
     type: string
-    weight: -5
+    weight: 3
     settings:
       link_to_entity: false
     third_party_settings: {  }
   thumbnail:
     type: image
-    weight: 1
-    label: hidden
+    weight: 0
+    label: above
     settings:
-      image_style: thumbnail
+      image_style: ''
       image_link: ''
     third_party_settings: {  }
   uid:
-    label: hidden
-    type: author
-    weight: 0
+    type: entity_reference_entity_id
+    weight: 1
+    label: above
     settings: {  }
     third_party_settings: {  }
 hidden: {  }
