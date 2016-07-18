@@ -32,7 +32,8 @@
     "drupal/tac_lite": "1.0",
     "drupal/bootstrap": "~3.0",
     "drupal/entity_browser": "1.x-dev",
-    "drupal/inline_entity_form": "1.x-dev"
+    "drupal/inline_entity_form": "1.x-dev",
+    "drupal/ctools": "3.x-dev"
   },
   "replace": {
     "drupal/drupal": "*"
