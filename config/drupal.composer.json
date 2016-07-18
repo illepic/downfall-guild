@@ -29,7 +29,8 @@
         "drupal/media_entity_image": "1.1",
         "drupal/video_embed_field": "1.1",
         "drupal/field_group": "1.x-dev",
-        "drupal/tac_lite": "1.0"
+        "drupal/tac_lite": "1.0",
+        "drupal/bootstrap": "~3.0"
     },
     "replace": {
         "drupal/drupal": "*"
