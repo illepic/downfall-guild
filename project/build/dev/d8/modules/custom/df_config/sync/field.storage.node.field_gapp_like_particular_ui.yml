@@ -1,0 +1,21 @@
+uuid: 83386cfe-ea05-49ef-98e6-7913e5f590ce
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+_core:
+  default_config_hash: lAFGHmaLbnjTxRWOO8JN1cjbixQ9625eSwi_-jHRoDU
+id: node.field_gapp_like_particular_ui
+field_name: field_gapp_like_particular_ui
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

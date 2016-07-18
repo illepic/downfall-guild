@@ -1,0 +1,20 @@
+uuid: ff02a0b9-4b25-433a-90ae-1e0636e1e796
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: pnZ_fkPJiKKkD2HhiRaIFD2EU54Eh2sAHJeghP1UN7I
+id: node.field_gapp_guild_bgs
+field_name: field_gapp_guild_bgs
+entity_type: node
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

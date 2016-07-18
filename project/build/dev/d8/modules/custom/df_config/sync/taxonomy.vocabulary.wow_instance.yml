@@ -1,0 +1,11 @@
+uuid: eb58b0fa-efb0-43e0-aa72-fcb4912c581b
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 1-4UyLMy-c_LM7ocsRnamO67VljUncDH0Hy5R3hfZ_g
+name: 'WoW - Instance'
+vid: wow_instance
+description: 'World of Warcraft instances and raids'
+hierarchy: 0
+weight: 0

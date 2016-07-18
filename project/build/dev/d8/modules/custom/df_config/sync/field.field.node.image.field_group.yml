@@ -1,0 +1,30 @@
+uuid: d8e92516-d8b0-4023-9a51-309d7f13ce8c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_group
+    - node.type.group
+    - node.type.image
+_core:
+  default_config_hash: Rb_UR7VZhtd-WeLZkSiknJEINnMQpTrwd6UwKbEwIAY
+id: node.image.field_group
+field_name: field_group
+entity_type: node
+bundle: image
+label: Group
+description: 'To which Raid Group does this belong?'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      group: group
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

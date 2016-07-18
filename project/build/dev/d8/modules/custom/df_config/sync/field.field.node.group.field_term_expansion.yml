@@ -1,0 +1,30 @@
+uuid: 85127b72-fe49-420c-9bed-5a73c33a5dc7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_term_expansion
+    - node.type.group
+    - taxonomy.vocabulary.wow_expansion
+_core:
+  default_config_hash: yu39r0g1ST-JNw-h6ksvX_oZbbH3mxGAGYVt2fxr9w8
+id: node.group.field_term_expansion
+field_name: field_term_expansion
+entity_type: node
+bundle: group
+label: Expansion
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      wow_expansion: wow_expansion
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

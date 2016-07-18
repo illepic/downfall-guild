@@ -1,0 +1,32 @@
+uuid: 6cf7c0c7-8ecb-467e-b9b2-b96026a31094
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - image
+    - node
+_core:
+  default_config_hash: HCZnxXGjJhtQhRbzZ77l6Xb89pgQ7BRz6YP8J-O0VKg
+id: node.field_gapp_ui_image
+field_name: field_gapp_ui_image
+entity_type: node
+type: image
+settings:
+  uri_scheme: public
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  target_type: file
+  display_field: false
+  display_default: false
+module: image
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

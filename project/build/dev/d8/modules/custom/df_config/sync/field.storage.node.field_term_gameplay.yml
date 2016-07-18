@@ -1,0 +1,22 @@
+uuid: c4ba12a6-a69e-4f6b-baf9-ba58bf986eb7
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+_core:
+  default_config_hash: UI_lgjOx60qp6TfKgmsuHsMEsfJzNo3tydeNZV7KlWw
+id: node.field_term_gameplay
+field_name: field_term_gameplay
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

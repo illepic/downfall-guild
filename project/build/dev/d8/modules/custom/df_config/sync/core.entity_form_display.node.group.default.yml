@@ -1,0 +1,142 @@
+uuid: 27f92d88-a2c5-4459-ab0b-efceaf3fdb11
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.group.body
+    - field.field.node.group.field_end_time
+    - field.field.node.group.field_group_active
+    - field.field.node.group.field_group_mascot
+    - field.field.node.group.field_start_time
+    - field.field.node.group.field_term_downfall
+    - field.field.node.group.field_term_expansion
+    - field.field.node.group.field_term_game
+    - field.field.node.group.field_term_instance
+    - field.field.node.group.field_term_instance_size
+    - field.field.node.group.field_term_pvp
+    - field.field.node.group.field_week_days
+    - image.style.thumbnail
+    - node.type.group
+  module:
+    - image
+    - path
+    - text
+_core:
+  default_config_hash: RBf88ICf67a8qb-J_Quf3SeCa89ofGT4INK6z66jEeg
+id: node.group.default
+targetEntityType: node
+bundle: group
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 31
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+  field_end_time:
+    weight: 36
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_group_active:
+    weight: 37
+    settings:
+      display_label: false
+    third_party_settings: {  }
+    type: boolean_checkbox
+  field_group_mascot:
+    weight: 32
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+  field_start_time:
+    weight: 35
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_term_expansion:
+    weight: 40
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_term_game:
+    weight: 42
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_term_instance:
+    weight: 39
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
+  field_term_instance_size:
+    weight: 38
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_term_pvp:
+    weight: 41
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_week_days:
+    weight: 34
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  path:
+    type: path
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 15
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 16
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  field_term_downfall: true

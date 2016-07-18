@@ -1,0 +1,11 @@
+uuid: cb8f83f9-85be-4766-87a4-0dd155b91ac7
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: Hg5WSXLBXhgxTJn9c8rFCschR688ifhcmuZ6GKfwpZc
+name: WoW
+vid: wow
+description: 'Categories related to WoW'
+hierarchy: 0
+weight: -5

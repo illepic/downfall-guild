@@ -1,0 +1,30 @@
+uuid: 6d6cfc73-fe90-4f24-89b3-260da3d6c41e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_term_class
+    - node.type.post
+    - taxonomy.vocabulary.wow_class
+_core:
+  default_config_hash: PeqkCnQqkNAlm9i1RAGec2I69n-ZCpEUebv3Zclwgjg
+id: node.post.field_term_class
+field_name: field_term_class
+entity_type: node
+bundle: post
+label: Class
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      wow_class: wow_class
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

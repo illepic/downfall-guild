@@ -1,0 +1,30 @@
+uuid: 67831727-12f7-437f-9ae4-9e0698c939ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_term_instance
+    - node.type.group
+    - taxonomy.vocabulary.wow_instance
+_core:
+  default_config_hash: rKFQcWUUrKyZHzcW30uBEfnZWF01cskuBxYT0YICA2s
+id: node.group.field_term_instance
+field_name: field_term_instance
+entity_type: node
+bundle: group
+label: Instances
+description: 'What instances will this group focus on? Separate with commas, ie "Naxxramus, Sunwell"'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      wow_instance: wow_instance
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

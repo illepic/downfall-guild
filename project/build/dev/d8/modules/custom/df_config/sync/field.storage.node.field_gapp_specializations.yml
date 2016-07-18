@@ -1,0 +1,21 @@
+uuid: 28875e06-ee89-42d9-947f-9bbc61b803b5
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+_core:
+  default_config_hash: cMSXmYANkCWRbTvEoTrjjei8JOfGxBzTJDkDqN8Hirg
+id: node.field_gapp_specializations
+field_name: field_gapp_specializations
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

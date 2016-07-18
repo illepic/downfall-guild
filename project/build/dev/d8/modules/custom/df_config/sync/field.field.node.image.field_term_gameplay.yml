@@ -1,0 +1,30 @@
+uuid: 4ad9ca6b-a3a7-4e4a-a6e2-0b2d9bc817b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_term_gameplay
+    - node.type.image
+    - taxonomy.vocabulary.wow_gameplay
+_core:
+  default_config_hash: knsmpTYla1MsFVFyQeJbJ9FSIU3f194kHJ7D7GQIfvI
+id: node.image.field_term_gameplay
+field_name: field_term_gameplay
+entity_type: node
+bundle: image
+label: Gameplay
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      wow_gameplay: wow_gameplay
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

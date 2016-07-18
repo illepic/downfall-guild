@@ -1,0 +1,21 @@
+uuid: 39912fa3-5f3f-424c-9c95-f5b46f19d96d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+_core:
+  default_config_hash: u79gQZz93uKnLGfY6V3uwhXeHJXqfKMRDT2DqMcDDSc
+id: node.field_gapp_describe_playstyle
+field_name: field_gapp_describe_playstyle
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

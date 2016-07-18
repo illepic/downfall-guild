@@ -1,0 +1,25 @@
+uuid: 7c112f9e-10d0-4475-b7d0-35cab62b8b8f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_group_active
+    - node.type.group
+_core:
+  default_config_hash: 5XhvffaWTQtgt0aXnEvTkVLAPAVoikYAPME3mICQMuM
+id: node.group.field_group_active
+field_name: field_group_active
+entity_type: node
+bundle: group
+label: 'Group Status'
+description: 'Is this raid group still running? Active groups show in the Raid Hub.'
+required: true
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: Active
+  off_label: Inactive
+field_type: boolean

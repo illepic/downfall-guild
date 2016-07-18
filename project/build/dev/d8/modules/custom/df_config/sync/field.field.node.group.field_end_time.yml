@@ -1,0 +1,25 @@
+uuid: 78b941d7-0e91-4a40-b127-44dd5712e592
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_end_time
+    - node.type.group
+  module:
+    - options
+_core:
+  default_config_hash: BVswNTaAxtnP_Ac9PknFAGHpuRx9akUI1RzNTlr83ZI
+id: node.group.field_end_time
+field_name: field_end_time
+entity_type: node
+bundle: group
+label: 'End Time'
+description: 'What server time does this raid usually end? (In 24-hour time)'
+required: false
+translatable: false
+default_value:
+  -
+    value: 2330
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

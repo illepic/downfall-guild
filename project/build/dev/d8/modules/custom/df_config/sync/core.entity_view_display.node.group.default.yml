@@ -1,0 +1,112 @@
+uuid: 6af92f4c-e303-460b-96f3-239f096c08d1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.group.body
+    - field.field.node.group.field_end_time
+    - field.field.node.group.field_group_active
+    - field.field.node.group.field_group_mascot
+    - field.field.node.group.field_start_time
+    - field.field.node.group.field_term_downfall
+    - field.field.node.group.field_term_expansion
+    - field.field.node.group.field_term_game
+    - field.field.node.group.field_term_instance
+    - field.field.node.group.field_term_instance_size
+    - field.field.node.group.field_term_pvp
+    - field.field.node.group.field_week_days
+    - node.type.group
+  module:
+    - image
+    - options
+    - text
+    - user
+_core:
+  default_config_hash: m9ZzV_kO_xBMV_H0kesMExv1ZPn9xjZND_aMLP8hasQ
+id: node.group.default
+targetEntityType: node
+bundle: group
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+  field_end_time:
+    weight: 106
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+  field_group_active:
+    weight: 107
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+  field_group_mascot:
+    weight: 102
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_start_time:
+    weight: 105
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+  field_term_expansion:
+    weight: 110
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_term_game:
+    weight: 112
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_term_instance:
+    weight: 109
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_term_instance_size:
+    weight: 108
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_term_pvp:
+    weight: 111
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_week_days:
+    weight: 104
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_term_downfall: true

@@ -1,9 +1,0 @@
-uuid: c39eaa9a-3da7-4a01-bbcc-cf00c6b18739
-langcode: en
-status: true
-dependencies: {  }
-id: guildy
-label: Guildy
-weight: 3
-is_admin: null
-permissions: {  }

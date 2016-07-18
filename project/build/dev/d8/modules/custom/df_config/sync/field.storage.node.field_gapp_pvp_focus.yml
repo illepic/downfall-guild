@@ -1,0 +1,21 @@
+uuid: a05c1ce0-b78c-4834-97c4-b6dd4eb3d81b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+_core:
+  default_config_hash: B7rovtGDOrG9SqzMNJeFuWKqCHgPVlebsjZerNu5k3w
+id: node.field_gapp_pvp_focus
+field_name: field_gapp_pvp_focus
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

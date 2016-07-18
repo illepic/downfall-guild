@@ -1,0 +1,30 @@
+uuid: 7112d831-44d6-4947-8fb7-3c7ee20c7a3b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_group
+    - node.type.group
+    - node.type.post
+_core:
+  default_config_hash: 3zltB_e5ARrdks6NWjxc86Mo5pvuozVPCIWE_V3AJmc
+id: node.post.field_group
+field_name: field_group
+entity_type: node
+bundle: post
+label: Group
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      group: group
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

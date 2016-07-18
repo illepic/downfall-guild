@@ -1,0 +1,23 @@
+uuid: 65a157c9-dd7a-444f-814f-c8791edc7f04
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gapp_essential_addons
+    - node.type.guild_app
+  module:
+    - text
+_core:
+  default_config_hash: 1FTOoGbNu1-CK1DaHKhrFdJYgIMyRi9cyQg__siRO_o
+id: node.guild_app.field_gapp_essential_addons
+field_name: field_gapp_essential_addons
+entity_type: node
+bundle: guild_app
+label: 'Which addons do you consider essential and why'
+description: 'List as many as your prefer , and please list your reasons.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

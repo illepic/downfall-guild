@@ -1,0 +1,19 @@
+uuid: 3a0d19d6-3729-40e4-80b4-0624f598f81b
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+_core:
+  default_config_hash: N4T5-xP4JEIha_txeM1dQReS-U13UgLpu7Q-m_qdh1c
+name: Image
+type: image
+description: 'Upload and share an image.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

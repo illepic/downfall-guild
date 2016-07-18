@@ -1,0 +1,150 @@
+uuid: 9b1078e4-0127-47f6-8adf-fd87d969a2e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.guide.body
+    - field.field.node.guide.comment
+    - field.field.node.guide.field_attachments
+    - field.field.node.guide.field_image_primary
+    - field.field.node.guide.field_image_secondary
+    - field.field.node.guide.field_term_class
+    - field.field.node.guide.field_term_downfall
+    - field.field.node.guide.field_term_expansion
+    - field.field.node.guide.field_term_game
+    - field.field.node.guide.field_term_gameplay
+    - field.field.node.guide.field_term_instance
+    - field.field.node.guide.field_term_instance_size
+    - field.field.node.guide.field_term_pvp
+    - image.style.thumbnail
+    - node.type.guide
+  module:
+    - comment
+    - file
+    - image
+    - path
+    - text
+_core:
+  default_config_hash: YdDyVvPkfht3DTSzYH2_9g49-MFvffP1iDklXYZr7_A
+id: node.guide.default
+targetEntityType: node
+bundle: guide
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 7
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  comment:
+    weight: 17
+    settings: {  }
+    third_party_settings: {  }
+    type: comment_default
+  created:
+    type: datetime_timestamp
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+  field_attachments:
+    weight: 26
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+  field_image_primary:
+    weight: 6
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+  field_image_secondary:
+    weight: 8
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+  field_term_class:
+    weight: 11
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_term_downfall:
+    weight: 14
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_term_expansion:
+    weight: 15
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_term_game:
+    weight: 16
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_term_gameplay:
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_term_instance:
+    weight: 10
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_term_instance_size:
+    weight: 13
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_term_pvp:
+    weight: 12
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  path:
+    type: path
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 3
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 4
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

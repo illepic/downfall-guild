@@ -1,0 +1,30 @@
+uuid: 5fe79b03-9871-4d1c-86e7-19fa0eff6cc4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_term_downfall
+    - node.type.event
+    - taxonomy.vocabulary.downfall
+_core:
+  default_config_hash: viT-9vavMJ-LEyP10eS2Itn3dp5WS5FcL-SLA_JOR2A
+id: node.event.field_term_downfall
+field_name: field_term_downfall
+entity_type: node
+bundle: event
+label: 'Downfall Guild'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      downfall: downfall
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

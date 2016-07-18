@@ -1,0 +1,23 @@
+uuid: c66563a2-f239-412c-9dae-402984fa31ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gapp_pvp_focus
+    - node.type.guild_app
+  module:
+    - text
+_core:
+  default_config_hash: kGiiF69MpZIhKCRlBuY6GPxBMmmGCcGr0vb3nngsbao
+id: node.guild_app.field_gapp_pvp_focus
+field_name: field_gapp_pvp_focus
+entity_type: node
+bundle: guild_app
+label: 'Is PvP your primary focus'
+description: 'Or does a PvE raid take priority and PvP is something to do in “off-hours”?'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

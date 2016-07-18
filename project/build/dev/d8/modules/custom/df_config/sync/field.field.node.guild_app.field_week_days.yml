@@ -1,0 +1,23 @@
+uuid: 45bfba16-b1ff-4095-8905-f6e146d84a31
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_week_days
+    - node.type.guild_app
+  module:
+    - options
+_core:
+  default_config_hash: w919-IvahseqZi-v0qsOgOgeRY-BnJH7MiOk4eGn3ok
+id: node.guild_app.field_week_days
+field_name: field_week_days
+entity_type: node
+bundle: guild_app
+label: 'Which days are you available for organized guild events? (Raids, RBGs, etc)'
+description: 'Select all the days you’d be available, CTRL-Click (Windows) or Command+Click (Mac) allows you to select multiple dates.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

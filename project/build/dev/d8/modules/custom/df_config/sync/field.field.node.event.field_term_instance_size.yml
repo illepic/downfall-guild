@@ -1,0 +1,30 @@
+uuid: c76320c4-69a1-4715-a59c-d516368306ce
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_term_instance_size
+    - node.type.event
+    - taxonomy.vocabulary.wow_group_size
+_core:
+  default_config_hash: pZCViP5ppcmKsymWkkGyyashCRDiE1Iw7o7UQi5_ruc
+id: node.event.field_term_instance_size
+field_name: field_term_instance_size
+entity_type: node
+bundle: event
+label: 'Instance Size'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      wow_group_size: wow_group_size
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

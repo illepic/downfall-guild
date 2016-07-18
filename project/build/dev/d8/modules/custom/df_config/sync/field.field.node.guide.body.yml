@@ -1,0 +1,24 @@
+uuid: 460f3d03-db35-4f14-b537-bd778a1d027b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.guide
+  module:
+    - text
+_core:
+  default_config_hash: K0c6xa98W2hfoeC7t3ACty6v5H1ZX0u2oDiC5MsS23k
+id: node.guide.body
+field_name: body
+entity_type: node
+bundle: guide
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

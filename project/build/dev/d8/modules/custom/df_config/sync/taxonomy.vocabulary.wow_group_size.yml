@@ -1,0 +1,11 @@
+uuid: 41407e96-258f-4c01-9038-3086c9a39131
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 7rhwZ7l1YJi_Rt3J4ecXQWMST-E9aUxUgMPX5Cz261s
+name: 'WoW - Group Size'
+vid: wow_group_size
+description: 'World of Warcraft group sizes for raids, instances, battlegrounds, etc'
+hierarchy: 0
+weight: 0

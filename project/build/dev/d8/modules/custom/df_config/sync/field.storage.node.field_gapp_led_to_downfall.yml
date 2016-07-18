@@ -1,0 +1,21 @@
+uuid: 4364bc9d-d702-48e2-9e8b-efe4205a02c8
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+_core:
+  default_config_hash: 9rMSOellE1FNBsyxfD21D1VQ3zsX3_73OBr5-qnxTbg
+id: node.field_gapp_led_to_downfall
+field_name: field_gapp_led_to_downfall
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

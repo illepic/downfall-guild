@@ -1,0 +1,22 @@
+uuid: 4d2747ac-f07b-44cd-9387-26b8abd2f30d
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+_core:
+  default_config_hash: fmYGaVDkavdtyAieLV1RRPb1HXScLCly7G67sOCrce4
+id: node.field_event_end
+field_name: field_event_end
+entity_type: node
+type: datetime
+settings:
+  datetime_type: datetime
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

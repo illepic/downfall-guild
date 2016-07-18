@@ -1,0 +1,52 @@
+uuid: 4ede9eab-4969-44a9-9e74-46110ccb57a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.guide.body
+    - field.field.node.guide.comment
+    - field.field.node.guide.field_attachments
+    - field.field.node.guide.field_image_primary
+    - field.field.node.guide.field_image_secondary
+    - field.field.node.guide.field_term_class
+    - field.field.node.guide.field_term_downfall
+    - field.field.node.guide.field_term_expansion
+    - field.field.node.guide.field_term_game
+    - field.field.node.guide.field_term_gameplay
+    - field.field.node.guide.field_term_instance
+    - field.field.node.guide.field_term_instance_size
+    - field.field.node.guide.field_term_pvp
+    - node.type.guide
+  module:
+    - text
+    - user
+_core:
+  default_config_hash: xS81EO8M0J0t8EFRMRdQ9GValiaV0MRYZDac8AF4pM8
+id: node.guide.teaser
+targetEntityType: node
+bundle: guide
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  links:
+    weight: 100
+hidden:
+  comment: true
+  field_attachments: true
+  field_image_primary: true
+  field_image_secondary: true
+  field_term_class: true
+  field_term_downfall: true
+  field_term_expansion: true
+  field_term_game: true
+  field_term_gameplay: true
+  field_term_instance: true
+  field_term_instance_size: true
+  field_term_pvp: true

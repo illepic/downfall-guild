@@ -1,0 +1,21 @@
+uuid: bbd6f918-8791-4df9-b2a1-36d026ef5419
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+_core:
+  default_config_hash: iBjBZJLcitSSfd8I1ctZQLslJ5zNrUsTwzDjvfkxivw
+id: node.field_gapp_pvp_experience
+field_name: field_gapp_pvp_experience
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

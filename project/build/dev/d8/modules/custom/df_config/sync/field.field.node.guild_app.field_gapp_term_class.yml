@@ -1,0 +1,30 @@
+uuid: cc1538a5-86d9-4c94-9057-3361894f8b74
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gapp_term_class
+    - node.type.guild_app
+    - taxonomy.vocabulary.wow_class
+_core:
+  default_config_hash: U_w2IOIM6e4lEjYP8TDSsHCgyDllZMIP-dRmFQPPQD0
+id: node.guild_app.field_gapp_term_class
+field_name: field_gapp_term_class
+entity_type: node
+bundle: guild_app
+label: Class
+description: 'Select your character''s class.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      wow_class: wow_class
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
