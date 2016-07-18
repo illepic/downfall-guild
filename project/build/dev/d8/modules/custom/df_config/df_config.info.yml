@@ -14,3 +14,4 @@ dependencies:
     - media_entity_image
     - video_embed_field
     - field_group
+    - tac_lite

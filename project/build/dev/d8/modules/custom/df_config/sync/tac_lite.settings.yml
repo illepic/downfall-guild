@@ -1,0 +1,53 @@
+tac_lite_categories:
+  downfall: downfall
+tac_lite_schemes: '2'
+menu_rebuild_needed: true
+_core:
+  default_config_hash: O3rsbjEveBvnof1Hdq3ih8UBqlRN2betEk9OZhaiTPM
+tac_lite_config_scheme_1:
+  name: 'Hide Officer'
+  perms: {  }
+  unpublished: 1
+  term_visibility: 0
+tac_lite_grants_scheme_1:
+  anonymous:
+    downfall:
+      6: '6'
+  authenticated:
+    downfall:
+      6: '6'
+  administrator:
+    downfall: {  }
+  guildy:
+    downfall: {  }
+  webdev:
+    downfall: {  }
+  officer:
+    downfall:
+      6: '6'
+  friend:
+    downfall: {  }
+tac_lite_config_scheme_2:
+  name: 'Show Officer'
+  perms:
+    grant_view: grant_view
+    grant_update: grant_update
+    grant_delete: grant_delete
+  unpublished: 1
+  term_visibility: 0
+tac_lite_grants_scheme_2:
+  anonymous:
+    downfall: {  }
+  authenticated:
+    downfall: {  }
+  administrator:
+    downfall: {  }
+  guildy:
+    downfall: {  }
+  webdev:
+    downfall: {  }
+  officer:
+    downfall:
+      6: '6'
+  friend:
+    downfall: {  }
