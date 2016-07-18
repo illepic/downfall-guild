@@ -1,0 +1,25 @@
+uuid: 2c22931c-3b7a-4f27-bda7-5c19c507fce4
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - downfall_theme
+_core:
+  default_config_hash: NDwadleLD3YVSbDUaakxyYZyINYtkFtOVGShfq4kWy8
+id: downfall_theme_branding
+theme: downfall_theme
+region: navigation_collapsible
+weight: -6
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

@@ -1,0 +1,22 @@
+uuid: 0806cbd5-2e18-47d8-a22c-e289e1ca5bcc
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - downfall_theme
+_core:
+  default_config_hash: jQQUUWN2Uxr5qZtc9zcJKBCxpKY8orN1u2HPqYYRQDI
+id: downfall_theme_powered
+theme: downfall_theme
+region: sidebar_second
+weight: -4
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  provider: system
+  label_display: '0'
+visibility: {  }

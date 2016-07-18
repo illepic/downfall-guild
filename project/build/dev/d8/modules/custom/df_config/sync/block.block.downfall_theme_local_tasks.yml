@@ -1,0 +1,22 @@
+uuid: eeef44b1-9f4d-4ee3-94cb-8efd86b95b34
+langcode: en
+status: true
+dependencies:
+  theme:
+    - downfall_theme
+_core:
+  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
+id: downfall_theme_local_tasks
+theme: downfall_theme
+region: content
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

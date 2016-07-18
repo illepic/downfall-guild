@@ -1,0 +1,20 @@
+favicon:
+  mimetype: image/vnd.microsoft.icon
+  path: ''
+  url: 'http://d8.local.downfallguild.org/themes/custom/downfall_theme/favicon.ico'
+  use_default: true
+schema: '8000'
+breadcrumb_home: 1
+cdn_jsdelivr_theme: bootstrap_theme
+cdn_jsdelivr_version: 3.3.6
+navbar_inverse: 1
+features:
+  comment_user_picture: true
+  comment_user_verification: true
+  favicon: true
+  node_user_picture: true
+logo:
+  path: ''
+  url: ''
+  use_default: true
+table_bordered: 1

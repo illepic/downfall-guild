@@ -7,6 +7,7 @@
 
 namespace Drupal\df_migration\Plugin\migrate\process;
 
+use Drupal\Component\DependencyInjection\Container;
 use Drupal\Core\Database\Database;
 use Drupal\file\Entity\File;
 use Drupal\migrate\ProcessPluginBase;
@@ -190,8 +191,15 @@ class ImgAssist extends ProcessPluginBase {
     $images = self::getImageData($content);
 
     $fids = array_merge($uploads, $images);
+    $fids_reduced = array_column($fids, 'fid');
 
-    return $fids;
+    $query = \Drupal::entityQuery('media')
+        ->condition('field_media_image_image.target_id', $fids_reduced, 'IN');
+    $media = $query->execute();
 
+    $mids = array_map(function($fid) { return array('fid' => $fid); }, array_values($media));
+    var_dump($mids);
+
+    return $mids;
   }
 }
