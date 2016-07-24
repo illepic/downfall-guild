@@ -6,7 +6,7 @@ dependencies:
         - node.type.post
         - taxonomy.vocabulary.wow_group_size
 _core:
-    default_config_hash: eSA4ZDyHpbuyhOK7enVVFgJezdZxGBdAfUA8LJhRduA
+    default_config_hash: Y7r7bigJyYGEJ0pORhe7N07cJ0m85neNaHVUjmh8f38
 id: node.post.field_term_instance_size
 field_name: field_term_instance_size
 entity_type: node

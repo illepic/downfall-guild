@@ -7,7 +7,7 @@ dependencies:
     module:
         - file
 _core:
-    default_config_hash: PTAusdgtB2DiZuL9knSr6T7eExjatQEJ_1NbPf5NITo
+    default_config_hash: ApKyIFAVAUcyKKBCl8D5wPAHilJfziceXusRe4D668k
 id: node.post.field_attachments
 field_name: field_attachments
 entity_type: node

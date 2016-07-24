@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-    default_config_hash: wvOFOA0p_CIDN5x_66JKa2IivGCL3zY8bNZ6YfqXQvU
+    default_config_hash: 8C9jA2XRCwFu5vDo8c7pdwzFQjW9-bXvvPyUugv7Cro
 name: 'WoW - Group Size'
 vid: wow_group_size
 description: 'World of Warcraft group sizes for raids, instances, battlegrounds, etc'

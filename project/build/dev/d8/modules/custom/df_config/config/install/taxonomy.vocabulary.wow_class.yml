@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-    default_config_hash: gsuKV8HoHex43eqdiE9DKSf-Vk04SleZTX8nDlo-Fp8
+    default_config_hash: blrPNNm0CRMqZlwI9RKdpHlbeyYqp9enDAGjQKPaoEc
 name: 'WoW - Class'
 vid: wow_class
 description: 'World of Warcraft player Classes'

@@ -4,7 +4,7 @@ dependencies:
     module:
         - media_entity_image
 _core:
-    default_config_hash: fD6qU2HZfcC4GR6Ae4mi_yPxF938zmbyZMEYuV5_lcA
+    default_config_hash: Ov3ogO8HPIJSflaOs3mzuTSpakdu3psdp9_oUPEQDVQ
 id: media_image
 label: 'Media Image'
 description: ''

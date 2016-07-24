@@ -27,7 +27,7 @@ dependencies:
         - path
         - text
 _core:
-    default_config_hash: 4WDHhim12sWoA8fuV6ZSXPupH1WXgUvQ1rjgwQA-8d8
+    default_config_hash: 4edSG60Fq9ntRKsMr9JBbePEmTcVcTCQgi4GJqyhCaA
 id: node.post.default
 targetEntityType: node
 bundle: post

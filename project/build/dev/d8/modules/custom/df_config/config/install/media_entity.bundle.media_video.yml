@@ -1,0 +1,18 @@
+uuid: 5960244f-4c3b-4711-99e0-adcd048e45f4
+langcode: en
+status: true
+dependencies:
+  module:
+    - video_embed_media
+id: media_video
+label: 'Media Video'
+description: ''
+type: video_embed_field
+queue_thumbnail_downloads: false
+new_revision: false
+type_configuration:
+  source_field: field_media_video_embed_field
+field_map:
+  source_name: name
+  image_local: thumbnail
+  image_local_uri: thumbnail

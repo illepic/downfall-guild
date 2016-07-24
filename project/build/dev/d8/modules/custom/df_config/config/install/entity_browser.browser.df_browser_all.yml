@@ -4,6 +4,9 @@ status: true
 dependencies:
   module:
     - entity_browser_entity_form
+    - views
+_core:
+  default_config_hash: 2gZlfZF4ghGsIdBflJA8CaNzyjfN3XL8CQLetMhdfKw
 name: df_browser_all
 label: df_browser_all
 display: modal
@@ -24,4 +27,20 @@ widgets:
     weight: 1
     label: 'Media Image'
     id: entity_form
+  bc2daa09-7b7e-4e9c-babb-27c8514d4599:
+    settings:
+      entity_type: media
+      bundle: media_video
+    uuid: bc2daa09-7b7e-4e9c-babb-27c8514d4599
+    weight: 2
+    label: 'Media Video'
+    id: entity_form
+  ec280436-0ab8-494b-bfd7-8a781ce1d551:
+    settings:
+      view: df_media_browser
+      view_display: entity_browser_1
+    uuid: ec280436-0ab8-494b-bfd7-8a781ce1d551
+    weight: 3
+    label: 'All Media'
+    id: view
 submit_text: Select
