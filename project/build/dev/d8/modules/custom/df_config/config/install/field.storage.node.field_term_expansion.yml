@@ -1,18 +1,17 @@
-uuid: a5c581d0-4b1e-42b1-866f-db7c81919286
 langcode: en
 status: true
 dependencies:
-  module:
-    - node
-    - taxonomy
+    module:
+        - node
+        - taxonomy
 _core:
-  default_config_hash: Mz1SA_uluKxvlkz_q21fNqP1rrfz13MfrCvjDZlHV6M
+    default_config_hash: bl-qAunr4eqJ9ZJGFRVUsBeNZCvDswzBNxgTEAXgfaU
 id: node.field_term_expansion
 field_name: field_term_expansion
 entity_type: node
 type: entity_reference
 settings:
-  target_type: taxonomy_term
+    target_type: taxonomy_term
 module: core
 locked: false
 cardinality: -1

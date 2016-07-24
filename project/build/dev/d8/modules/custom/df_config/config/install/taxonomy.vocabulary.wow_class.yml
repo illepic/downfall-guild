@@ -1,9 +1,8 @@
-uuid: e42c4a10-77f7-4d03-9369-dfe194016c8b
 langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: bBCJN8duazfhVtoNeCVgXFvPVROpnGaixdkTIXFH8nM
+    default_config_hash: gsuKV8HoHex43eqdiE9DKSf-Vk04SleZTX8nDlo-Fp8
 name: 'WoW - Class'
 vid: wow_class
 description: 'World of Warcraft player Classes'

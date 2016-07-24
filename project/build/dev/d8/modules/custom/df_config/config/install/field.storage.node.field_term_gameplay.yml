@@ -1,18 +1,17 @@
-uuid: c4ba12a6-a69e-4f6b-baf9-ba58bf986eb7
 langcode: en
 status: true
 dependencies:
-  module:
-    - node
-    - taxonomy
+    module:
+        - node
+        - taxonomy
 _core:
-  default_config_hash: UI_lgjOx60qp6TfKgmsuHsMEsfJzNo3tydeNZV7KlWw
+    default_config_hash: EYGQSvQIxSEvrqI5bSjdjGv7ypEZ4nBQpYePpS8JRzs
 id: node.field_term_gameplay
 field_name: field_term_gameplay
 entity_type: node
 type: entity_reference
 settings:
-  target_type: taxonomy_term
+    target_type: taxonomy_term
 module: core
 locked: false
 cardinality: -1

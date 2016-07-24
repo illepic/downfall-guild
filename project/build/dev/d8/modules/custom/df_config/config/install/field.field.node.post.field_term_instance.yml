@@ -1,13 +1,12 @@
-uuid: d0edd280-2754-430b-b36c-7d521440e78b
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.field_term_instance
-    - node.type.post
-    - taxonomy.vocabulary.wow_instance
+    config:
+        - field.storage.node.field_term_instance
+        - node.type.post
+        - taxonomy.vocabulary.wow_instance
 _core:
-  default_config_hash: 8pjcQfnrsW9WV4AZ9B-5AsL5E4p2fMU-Xh9E3beImFU
+    default_config_hash: 4UAiBJnj8H3s3V_TGO8hZM-6ZRWbT-VWUC4SPIZgUlE
 id: node.post.field_term_instance
 field_name: field_term_instance
 entity_type: node
@@ -19,12 +18,12 @@ translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:taxonomy_term'
-  handler_settings:
-    target_bundles:
-      wow_instance: wow_instance
-    sort:
-      field: _none
-    auto_create: false
-    auto_create_bundle: ''
+    handler: 'default:taxonomy_term'
+    handler_settings:
+        target_bundles:
+            wow_instance: wow_instance
+        sort:
+            field: _none
+        auto_create: false
+        auto_create_bundle: ''
 field_type: entity_reference

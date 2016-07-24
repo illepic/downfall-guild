@@ -1,17 +1,16 @@
-uuid: da0f81cf-1077-4f51-bc38-d6b8d8b40e44
 langcode: en
 status: true
 dependencies:
-  module:
-    - node
+    module:
+        - node
 _core:
-  default_config_hash: RfSrduTAhAhSMexF5AYFIclC0MQuNe_xM_d_j8ktYNg
+    default_config_hash: r6CGNS01mOVPC6iWDfkoiXENWTjQDS5PLx2pZIX54K8
 id: node.field_group
 field_name: field_group
 entity_type: node
 type: entity_reference
 settings:
-  target_type: node
+    target_type: node
 module: core
 locked: false
 cardinality: -1

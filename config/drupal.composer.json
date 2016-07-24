@@ -24,16 +24,16 @@
     "drupal/migrate_plus": "2.0.0-beta1",
     "drupal/migrate_tools": "2.0.0-beta1",
     "drupal/config_devel": "1.0.0-rc1",
-    "drupal/entity": "1.x-dev",
-    "drupal/media_entity": "1.2",
-    "drupal/media_entity_image": "1.1",
-    "drupal/video_embed_field": "1.1",
     "drupal/field_group": "1.x-dev",
     "drupal/tac_lite": "1.0",
     "drupal/bootstrap": "~3.0",
-    "drupal/entity_browser": "1.x-dev",
-    "drupal/inline_entity_form": "1.x-dev",
-    "drupal/ctools": "3.x-dev"
+    "drupal/entity": "1.x-dev",
+    "drupal/media_entity": "1.x-dev",
+    "drupal/media_entity_image": "1.x-dev",
+    "drupal/video_embed_field": "1.2",
+    "drupal/ctools": "3.x-dev",
+    "drupal/entity_browser": "1.0-alpha6",
+    "drupal/inline_entity_form": "1.x-dev"
   },
   "replace": {
     "drupal/drupal": "*"

@@ -1,14 +1,13 @@
-uuid: 85166c9d-3d5f-4631-b645-559af1755cf7
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.body
-    - node.type.post
-  module:
-    - text
+    config:
+        - field.storage.node.body
+        - node.type.post
+    module:
+        - text
 _core:
-  default_config_hash: 24U-8WXZun-sfMN0PwOwHrhKIFYiwuEjYn4UNujsx-k
+    default_config_hash: MWiJd-v9Pp_gLBQXFrlqHiRCgyNh2OZ-QZuDHhOYaaU
 id: node.post.body
 field_name: body
 entity_type: node
@@ -20,5 +19,5 @@ translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  display_summary: true
+    display_summary: true
 field_type: text_with_summary

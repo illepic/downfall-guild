@@ -1,13 +1,12 @@
-uuid: fee05bff-5a3b-402c-b516-f196a2815b7a
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.field_term_game
-    - node.type.post
-    - taxonomy.vocabulary.game
+    config:
+        - field.storage.node.field_term_game
+        - node.type.post
+        - taxonomy.vocabulary.game
 _core:
-  default_config_hash: PwxmJza-SpwNWTgzT5zM4jm37n7swSEHFpQ-qBzDtxk
+    default_config_hash: kj3Laslsjz3SVQ7WJF1QcEsAPwIFrqKUd3UPN8-RGvo
 id: node.post.field_term_game
 field_name: field_term_game
 entity_type: node
@@ -17,16 +16,16 @@ description: ''
 required: false
 translatable: true
 default_value:
-  -
-    target_uuid: 7defbc96-f405-449d-ac97-f87fa32a4dcf
+    -
+        target_uuid: 7defbc96-f405-449d-ac97-f87fa32a4dcf
 default_value_callback: ''
 settings:
-  handler: 'default:taxonomy_term'
-  handler_settings:
-    target_bundles:
-      game: game
-    sort:
-      field: _none
-    auto_create: false
-    auto_create_bundle: ''
+    handler: 'default:taxonomy_term'
+    handler_settings:
+        target_bundles:
+            game: game
+        sort:
+            field: _none
+        auto_create: false
+        auto_create_bundle: ''
 field_type: entity_reference

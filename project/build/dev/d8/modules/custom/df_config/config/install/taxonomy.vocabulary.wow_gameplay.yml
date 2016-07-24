@@ -1,9 +1,8 @@
-uuid: f2ad4294-e1f8-4056-a787-3661fa851e45
 langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: VOI_nTiVcno0oFzwam5zhMFeL5mq65Srk4G8StM-2jQ
+    default_config_hash: tlLRaSbaGmV1K5sLXrj5Q4qwqk5ORPV9n2rNUy5St-M
 name: 'WoW - Gameplay'
 vid: wow_gameplay
 description: 'World of Warcraft gameplay subjects'

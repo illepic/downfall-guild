@@ -1,18 +1,17 @@
-uuid: 590255bf-dae1-4067-aee3-a5953acad2a1
 langcode: en
 status: true
 dependencies:
-  module:
-    - node
-    - taxonomy
+    module:
+        - node
+        - taxonomy
 _core:
-  default_config_hash: 5miMYStga63sW8T4QQ2H_I-gZ9LQ30acQsTNYLUf4C8
+    default_config_hash: 3-osXqN-PFDrJl73HeCYFETH-RoMEmXCyGtGCsWcw3U
 id: node.field_term_pvp
 field_name: field_term_pvp
 entity_type: node
 type: entity_reference
 settings:
-  target_type: taxonomy_term
+    target_type: taxonomy_term
 module: core
 locked: false
 cardinality: -1

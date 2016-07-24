@@ -9,12 +9,13 @@ dependencies:
     - book
     - taxonomy
     - user
+    - tac_lite
+    - field_group
     - entity
     - media_entity
     - media_entity_image
     - video_embed_field
-    - field_group
-    - tac_lite
+    - ctools
     - entity_browser
     - inline_entity_form
-    - ctools
+    - entity_browser_entity_form

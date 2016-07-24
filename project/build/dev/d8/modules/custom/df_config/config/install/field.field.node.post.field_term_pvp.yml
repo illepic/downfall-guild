@@ -1,13 +1,12 @@
-uuid: a2f30263-ea46-4ae0-a336-a9e9573fad8c
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.field_term_pvp
-    - node.type.post
-    - taxonomy.vocabulary.wow_pvp
+    config:
+        - field.storage.node.field_term_pvp
+        - node.type.post
+        - taxonomy.vocabulary.wow_pvp
 _core:
-  default_config_hash: BNmT58KDyJUOoXaElw1oqW9wWstMxMKoEkJhfbJfzb4
+    default_config_hash: 1YEJW_dJ42fslBQ3wHIs0vjz0iM7zaGGXnasrJNfoXI
 id: node.post.field_term_pvp
 field_name: field_term_pvp
 entity_type: node
@@ -19,12 +18,12 @@ translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:taxonomy_term'
-  handler_settings:
-    target_bundles:
-      wow_pvp: wow_pvp
-    sort:
-      field: _none
-    auto_create: false
-    auto_create_bundle: ''
+    handler: 'default:taxonomy_term'
+    handler_settings:
+        target_bundles:
+            wow_pvp: wow_pvp
+        sort:
+            field: _none
+        auto_create: false
+        auto_create_bundle: ''
 field_type: entity_reference

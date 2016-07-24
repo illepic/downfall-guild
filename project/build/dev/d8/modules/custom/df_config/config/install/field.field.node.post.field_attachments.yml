@@ -1,14 +1,13 @@
-uuid: 27698104-2da1-472f-8451-6761c2643f8b
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.field_attachments
-    - node.type.post
-  module:
-    - file
+    config:
+        - field.storage.node.field_attachments
+        - node.type.post
+    module:
+        - file
 _core:
-  default_config_hash: vmVgGZqkdNEerYJcmEJw0MvnvMpZ1okROUIGLZkuap0
+    default_config_hash: PTAusdgtB2DiZuL9knSr6T7eExjatQEJ_1NbPf5NITo
 id: node.post.field_attachments
 field_name: field_attachments
 entity_type: node
@@ -20,10 +19,10 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  file_directory: 'post/attachments/[date:custom:Y]-[date:custom:m]'
-  file_extensions: 'txt lua pdf xls zip gz swf'
-  max_filesize: ''
-  description_field: true
-  handler: 'default:file'
-  handler_settings: {  }
+    file_directory: 'post/attachments/[date:custom:Y]-[date:custom:m]'
+    file_extensions: 'txt lua pdf xls zip gz swf'
+    max_filesize: ''
+    description_field: true
+    handler: 'default:file'
+    handler_settings: {  }
 field_type: file
