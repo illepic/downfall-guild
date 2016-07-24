@@ -6,7 +6,7 @@ dependencies:
         - node.type.group
         - node.type.post
 _core:
-    default_config_hash: h0bIKxdfy9LGs1MIf8UBTmO7sdeUt1vo8j-Wi2uYDOA
+    default_config_hash: X3HMGlpK_DAw4iQzPBUI1wnKz691nFN37Koavyq_UnU
 id: node.post.field_group
 field_name: field_group
 entity_type: node

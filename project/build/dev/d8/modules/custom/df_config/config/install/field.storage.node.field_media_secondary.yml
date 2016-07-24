@@ -2,16 +2,14 @@ langcode: en
 status: true
 dependencies:
     module:
+        - media_entity
         - node
-        - taxonomy
-_core:
-    default_config_hash: 1izNB3JAafOipGCpfoiA4piiB79nHHtThVbiVxuBn_Q
-id: node.field_term_downfall
-field_name: field_term_downfall
+id: node.field_media_secondary
+field_name: field_media_secondary
 entity_type: node
 type: entity_reference
 settings:
-    target_type: taxonomy_term
+    target_type: media
 module: core
 locked: false
 cardinality: -1

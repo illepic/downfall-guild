@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-    default_config_hash: w9V_mBTcjpwpKehLFOLYdi3amGT8Ib87a5dOYdnQEWA
+    default_config_hash: Vt0oiuM77dN_WhTnkUVwuxIgkHCwNkcG80gVlB6LG_o
 name: 'WoW - Expansion'
 vid: wow_expansion
 description: 'World of Warcraft expansion and patches'

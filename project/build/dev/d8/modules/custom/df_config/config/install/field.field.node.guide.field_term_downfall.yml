@@ -1,13 +1,12 @@
-uuid: f6f30b78-44f1-4b3e-909d-8e35c5cd0338
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.field_term_downfall
-    - node.type.guide
-    - taxonomy.vocabulary.downfall
+    config:
+        - field.storage.node.field_term_downfall
+        - node.type.guide
+        - taxonomy.vocabulary.downfall
 _core:
-  default_config_hash: jRpmNQ839HZOk2M_EE_1cFG2ykdgmcXGesDD3q27Wlc
+    default_config_hash: pgL-rYCxbPTSyHcH8yMSGyowF7LiGzLmqBmltr3OeiI
 id: node.guide.field_term_downfall
 field_name: field_term_downfall
 entity_type: node
@@ -19,12 +18,12 @@ translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:taxonomy_term'
-  handler_settings:
-    target_bundles:
-      downfall: downfall
-    sort:
-      field: _none
-    auto_create: false
-    auto_create_bundle: ''
+    handler: 'default:taxonomy_term'
+    handler_settings:
+        target_bundles:
+            downfall: downfall
+        sort:
+            field: _none
+        auto_create: false
+        auto_create_bundle: ''
 field_type: entity_reference

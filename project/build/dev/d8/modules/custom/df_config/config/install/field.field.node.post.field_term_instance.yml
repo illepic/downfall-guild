@@ -6,7 +6,7 @@ dependencies:
         - node.type.post
         - taxonomy.vocabulary.wow_instance
 _core:
-    default_config_hash: LUSNnqiLB0oQF0Qws2L53Z41RakO7Hnn_VV64grB08A
+    default_config_hash: dZQQOxWtnhgn-nlxUAKkBg9w3kSsP6lGlVT-UbWaAOI
 id: node.post.field_term_instance
 field_name: field_term_instance
 entity_type: node

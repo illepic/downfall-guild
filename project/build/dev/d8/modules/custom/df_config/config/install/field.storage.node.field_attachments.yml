@@ -5,7 +5,7 @@ dependencies:
         - file
         - node
 _core:
-    default_config_hash: Oq-93d9sg_6li2MLQ1f1tNTQr4MjLCvcPImV7Hi0bDY
+    default_config_hash: 9iaknAQlvGaR-TOTrJMNuNS-XopzDPUGpT7BPZVljsY
 id: node.field_attachments
 field_name: field_attachments
 entity_type: node

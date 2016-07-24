@@ -9,6 +9,7 @@ dependencies:
         - field.field.node.post.field_image_primary
         - field.field.node.post.field_image_secondary
         - field.field.node.post.field_media_primary
+        - field.field.node.post.field_media_secondary
         - field.field.node.post.field_term_class
         - field.field.node.post.field_term_downfall
         - field.field.node.post.field_term_expansion
@@ -21,11 +22,10 @@ dependencies:
     module:
         - comment
         - file
-        - image
         - text
         - user
 _core:
-    default_config_hash: vZPkcNoA2r9EBbacdl41YWK087L4UcdoeMz9oGYzUOY
+    default_config_hash: vNbg7aEucH4BYWNnmqfBQgJwtRC2JB9_h__5h_Hw7XE
 id: node.post.default
 targetEntityType: node
 bundle: post
@@ -34,47 +34,39 @@ content:
     body:
         label: hidden
         type: text_default
-        weight: 3
+        weight: 2
         settings: {  }
         third_party_settings: {  }
     comment:
-        weight: 15
+        weight: 14
         label: above
         settings:
             pager_id: 0
         third_party_settings: {  }
         type: comment_default
     field_attachments:
-        weight: 14
+        weight: 13
         label: above
         settings: {  }
         third_party_settings: {  }
         type: file_default
     field_group:
-        weight: 5
+        weight: 4
         label: above
         settings:
             link: true
         third_party_settings: {  }
         type: entity_reference_label
-    field_image_primary:
+    field_media_primary:
         weight: 1
         label: above
         settings:
-            image_style: ''
-            image_link: ''
+            view_mode: media_full_node
+            link: false
         third_party_settings: {  }
-        type: image
-    field_image_secondary:
-        weight: 4
-        label: above
-        settings:
-            image_style: ''
-            image_link: ''
-        third_party_settings: {  }
-        type: image
-    field_media_primary:
-        weight: 2
+        type: entity_reference_entity_view
+    field_media_secondary:
+        weight: 3
         label: above
         settings:
             view_mode: media_full_node
@@ -82,42 +74,42 @@ content:
         third_party_settings: {  }
         type: entity_reference_entity_view
     field_term_class:
-        weight: 6
+        weight: 5
         label: above
         settings:
             link: true
         third_party_settings: {  }
         type: entity_reference_label
     field_term_downfall:
-        weight: 12
-        label: above
-        settings:
-            link: true
-        third_party_settings: {  }
-        type: entity_reference_label
-    field_term_expansion:
-        weight: 7
-        label: above
-        settings:
-            link: true
-        third_party_settings: {  }
-        type: entity_reference_label
-    field_term_game:
         weight: 11
         label: above
         settings:
             link: true
         third_party_settings: {  }
         type: entity_reference_label
+    field_term_expansion:
+        weight: 6
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_game:
+        weight: 10
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
     field_term_gameplay:
-        weight: 8
+        weight: 7
         label: above
         settings:
             link: true
         third_party_settings: {  }
         type: entity_reference_label
     field_term_instance:
-        weight: 9
+        weight: 8
         label: above
         settings:
             link: true
@@ -125,14 +117,14 @@ content:
         type: entity_reference_label
     field_term_instance_size:
         type: entity_reference_entity_view
-        weight: 13
+        weight: 12
         label: above
         settings:
             view_mode: default
             link: false
         third_party_settings: {  }
     field_term_pvp:
-        weight: 10
+        weight: 9
         label: above
         settings:
             link: true
@@ -142,4 +134,6 @@ content:
         weight: 0
         settings: {  }
         third_party_settings: {  }
-hidden: {  }
+hidden:
+    field_image_primary: true
+    field_image_secondary: true

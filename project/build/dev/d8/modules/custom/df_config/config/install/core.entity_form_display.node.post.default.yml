@@ -9,6 +9,7 @@ dependencies:
         - field.field.node.post.field_image_primary
         - field.field.node.post.field_image_secondary
         - field.field.node.post.field_media_primary
+        - field.field.node.post.field_media_secondary
         - field.field.node.post.field_term_class
         - field.field.node.post.field_term_downfall
         - field.field.node.post.field_term_expansion
@@ -17,17 +18,15 @@ dependencies:
         - field.field.node.post.field_term_instance
         - field.field.node.post.field_term_instance_size
         - field.field.node.post.field_term_pvp
-        - image.style.thumbnail
         - node.type.post
     module:
         - comment
         - entity_browser
         - file
-        - image
         - path
         - text
 _core:
-    default_config_hash: 4edSG60Fq9ntRKsMr9JBbePEmTcVcTCQgi4GJqyhCaA
+    default_config_hash: AdzmF18bjWIcooEkG3JGkQcki4evJFeiXld6xdTrMsk
 id: node.post.default
 targetEntityType: node
 bundle: post
@@ -35,14 +34,14 @@ mode: default
 content:
     body:
         type: text_textarea_with_summary
-        weight: 8
+        weight: 7
         settings:
             rows: 9
             summary_rows: 3
             placeholder: ''
         third_party_settings: {  }
     comment:
-        weight: 20
+        weight: 19
         settings: {  }
         third_party_settings: {  }
         type: comment_default
@@ -52,33 +51,19 @@ content:
         settings: {  }
         third_party_settings: {  }
     field_attachments:
-        weight: 19
+        weight: 18
         settings:
             progress_indicator: throbber
         third_party_settings: {  }
         type: file_generic
     field_group:
-        weight: 10
+        weight: 9
         settings:
             match_operator: CONTAINS
             size: 60
             placeholder: ''
         third_party_settings: {  }
         type: entity_reference_autocomplete
-    field_image_primary:
-        weight: 7
-        settings:
-            progress_indicator: throbber
-            preview_image_style: thumbnail
-        third_party_settings: {  }
-        type: image_image
-    field_image_secondary:
-        weight: 9
-        settings:
-            progress_indicator: throbber
-            preview_image_style: thumbnail
-        third_party_settings: {  }
-        type: image_image
     field_media_primary:
         weight: 6
         settings:
@@ -91,43 +76,55 @@ content:
                 view_mode: media_medium_node
         third_party_settings: {  }
         type: entity_browser_entity_reference
+    field_media_secondary:
+        weight: 8
+        settings:
+            entity_browser: df_browser_all
+            field_widget_display: rendered_entity
+            field_widget_edit: true
+            field_widget_remove: true
+            field_widget_display_settings:
+                view_mode: media_medium_node
+            open: false
+        third_party_settings: {  }
+        type: entity_browser_entity_reference
     field_term_class:
-        weight: 13
+        weight: 12
         settings: {  }
         third_party_settings: {  }
         type: options_select
     field_term_downfall:
-        weight: 15
+        weight: 14
         settings: {  }
         third_party_settings: {  }
         type: options_select
     field_term_expansion:
-        weight: 16
+        weight: 15
         settings: {  }
         third_party_settings: {  }
         type: options_select
     field_term_game:
-        weight: 17
+        weight: 16
         settings: {  }
         third_party_settings: {  }
         type: options_select
     field_term_gameplay:
-        weight: 11
+        weight: 10
         settings: {  }
         third_party_settings: {  }
         type: options_select
     field_term_instance:
-        weight: 12
+        weight: 11
         settings: {  }
         third_party_settings: {  }
         type: options_select
     field_term_instance_size:
         type: options_select
-        weight: 18
+        weight: 17
         settings: {  }
         third_party_settings: {  }
     field_term_pvp:
-        weight: 14
+        weight: 13
         settings: {  }
         third_party_settings: {  }
         type: options_select
@@ -163,4 +160,6 @@ content:
             size: 60
             placeholder: ''
         third_party_settings: {  }
-hidden: {  }
+hidden:
+    field_image_primary: true
+    field_image_secondary: true

@@ -6,7 +6,7 @@ dependencies:
         - image
         - node
 _core:
-    default_config_hash: yqyUYUuwHpC1lpm7UDth5z3htBMyeGW_ysBo6zyPwMA
+    default_config_hash: vyUD90hr-HPccgZwUi5y_1j_myU1igHQJH-aAG2S46A
 id: node.field_image_primary
 field_name: field_image_primary
 entity_type: node

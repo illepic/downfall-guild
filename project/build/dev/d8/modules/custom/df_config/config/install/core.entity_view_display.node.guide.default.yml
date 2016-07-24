@@ -1,128 +1,130 @@
-uuid: d25d66be-4f5e-4ab3-874d-906414524824
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.field.node.guide.body
-    - field.field.node.guide.comment
-    - field.field.node.guide.field_attachments
-    - field.field.node.guide.field_image_primary
-    - field.field.node.guide.field_image_secondary
-    - field.field.node.guide.field_term_class
-    - field.field.node.guide.field_term_downfall
-    - field.field.node.guide.field_term_expansion
-    - field.field.node.guide.field_term_game
-    - field.field.node.guide.field_term_gameplay
-    - field.field.node.guide.field_term_instance
-    - field.field.node.guide.field_term_instance_size
-    - field.field.node.guide.field_term_pvp
-    - node.type.guide
-  module:
-    - comment
-    - file
-    - image
-    - text
-    - user
+    config:
+        - field.field.node.guide.body
+        - field.field.node.guide.comment
+        - field.field.node.guide.field_attachments
+        - field.field.node.guide.field_image_primary
+        - field.field.node.guide.field_image_secondary
+        - field.field.node.guide.field_media_primary
+        - field.field.node.guide.field_media_secondary
+        - field.field.node.guide.field_term_class
+        - field.field.node.guide.field_term_downfall
+        - field.field.node.guide.field_term_expansion
+        - field.field.node.guide.field_term_game
+        - field.field.node.guide.field_term_gameplay
+        - field.field.node.guide.field_term_instance
+        - field.field.node.guide.field_term_instance_size
+        - field.field.node.guide.field_term_pvp
+        - node.type.guide
+    module:
+        - comment
+        - file
+        - text
+        - user
 _core:
-  default_config_hash: yaVbxjPJ7QVia42zoCIO1ngW8FxNzwI8WOq4VOAmktY
+    default_config_hash: ZoM_kgIwXKMwiOkI_RfRM8hpf2X-vQRSrmRiAdrHHmI
 id: node.guide.default
 targetEntityType: node
 bundle: guide
 mode: default
 content:
-  body:
-    label: hidden
-    type: text_default
-    weight: 2
-    settings: {  }
-    third_party_settings: {  }
-  comment:
-    weight: 13
-    label: above
-    settings:
-      pager_id: 0
-    third_party_settings: {  }
-    type: comment_default
-  field_attachments:
-    weight: 12
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: file_default
-  field_image_primary:
-    weight: 1
-    label: above
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
-  field_image_secondary:
-    weight: 3
-    label: above
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
-  field_term_class:
-    weight: 5
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  field_term_downfall:
-    weight: 8
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  field_term_expansion:
-    weight: 10
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  field_term_game:
-    weight: 11
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  field_term_gameplay:
-    weight: 4
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  field_term_instance:
-    weight: 6
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  field_term_instance_size:
-    weight: 9
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  field_term_pvp:
-    weight: 7
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  links:
-    weight: 0
-    settings: {  }
-    third_party_settings: {  }
-hidden: {  }
+    body:
+        label: hidden
+        type: text_default
+        weight: 2
+        settings: {  }
+        third_party_settings: {  }
+    comment:
+        weight: 13
+        label: above
+        settings:
+            pager_id: 0
+        third_party_settings: {  }
+        type: comment_default
+    field_attachments:
+        weight: 12
+        label: above
+        settings: {  }
+        third_party_settings: {  }
+        type: file_default
+    field_media_primary:
+        weight: 1
+        label: above
+        settings:
+            view_mode: media_full_node
+            link: false
+        third_party_settings: {  }
+        type: entity_reference_entity_view
+    field_media_secondary:
+        weight: 3
+        label: above
+        settings:
+            view_mode: media_full_node
+            link: false
+        third_party_settings: {  }
+        type: entity_reference_entity_view
+    field_term_class:
+        weight: 5
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_downfall:
+        weight: 8
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_expansion:
+        weight: 10
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_game:
+        weight: 11
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_gameplay:
+        weight: 4
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_instance:
+        weight: 6
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_instance_size:
+        weight: 9
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_pvp:
+        weight: 7
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    links:
+        weight: 0
+        settings: {  }
+        third_party_settings: {  }
+hidden:
+    field_image_primary: true
+    field_image_secondary: true

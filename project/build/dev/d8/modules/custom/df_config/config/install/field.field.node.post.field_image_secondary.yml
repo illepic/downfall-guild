@@ -7,7 +7,7 @@ dependencies:
     module:
         - image
 _core:
-    default_config_hash: SoaE6vSJIVeavF_iwHdOxaHa6ydsCA7goToy6xnrw-4
+    default_config_hash: raXgdNzidt_aY2MNf6ID1JNo3nSygUifZ9U_RrG4odE
 id: node.post.field_image_secondary
 field_name: field_image_secondary
 entity_type: node

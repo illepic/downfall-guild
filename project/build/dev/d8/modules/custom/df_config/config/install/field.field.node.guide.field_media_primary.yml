@@ -5,17 +5,15 @@ dependencies:
         - field.storage.node.field_media_primary
         - media_entity.bundle.media_image
         - media_entity.bundle.media_video
-        - node.type.post
-_core:
-    default_config_hash: AhC-MlFBXpHwbLNKb9L6uIFw_HmeU-N0QuvRzIbENxA
-id: node.post.field_media_primary
+        - node.type.guide
+id: node.guide.field_media_primary
 field_name: field_media_primary
 entity_type: node
-bundle: post
+bundle: guide
 label: 'Media Primary'
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
