@@ -8,7 +8,7 @@ dependencies:
   module:
     - image
 _core:
-  default_config_hash: xKjVdGL-q4NOlDIAjPA9PuPlCvbbhIdzedAHdYYQC7E
+  default_config_hash: w2_ZiUuB9a5afBFIFT7nRNA63l5FAeRDWFMFx2eVUqc
 id: comment.df_comment.field_comment_image
 field_name: field_comment_image
 entity_type: comment

@@ -53,15 +53,25 @@ process:
   revision_timestamp: timestamp
 
 
-  field_image_primary:
+#  field_image_primary:
+#    -
+#      source: nid
+#      plugin: img_assist
+##    -
+##      source: nid
+##      plugin: extract_uploads
+##      mime: 'image'
+##      like: 'LIKE'
+#    -
+#      plugin: iterator
+#      process:
+#        target_id: fid
+
+  field_media_primary:
     -
       source: nid
       plugin: img_assist
-#    -
-#      source: nid
-#      plugin: extract_uploads
-#      mime: 'image'
-#      like: 'LIKE'
+      type: 'mid'
     -
       plugin: iterator
       process:

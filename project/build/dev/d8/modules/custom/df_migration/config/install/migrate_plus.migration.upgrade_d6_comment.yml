@@ -40,16 +40,26 @@ process:
     plugin: default_value
     default_value: basic_html
 
-  field_comment_image:
+#  field_comment_image:
+#    -
+#      source: cid
+#      plugin: img_assist
+#      comment: true
+#    -
+#      plugin: iterator
+#      process:
+#        target_id: fid
+
+  field_comment_media:
     -
       source: cid
       plugin: img_assist
       comment: true
+      type: 'mid'
     -
       plugin: iterator
       process:
         target_id: fid
-
 
 destination:
   plugin: 'entity:comment'

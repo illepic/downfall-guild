@@ -6,12 +6,12 @@ dependencies:
     - comment.type.df_comment
     - field.field.comment.df_comment.comment_body
     - field.field.comment.df_comment.field_comment_image
-    - image.style.thumbnail
+    - field.field.comment.df_comment.field_comment_media
   module:
-    - image
+    - entity_browser
     - text
 _core:
-  default_config_hash: z2TZvgPLMqHLqwkxezyAumdwqlsAkTwVvxb3s3Vspqg
+  default_config_hash: Tx2oAMrOSAbJeHgKHYj4WSBmjfLOKjiSwRFeWBhL6ls
 id: comment.df_comment.default
 targetEntityType: comment
 bundle: df_comment
@@ -28,13 +28,18 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-  field_comment_image:
+  field_comment_media:
     weight: 2
     settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+      entity_browser: df_browser_all
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      field_widget_display_settings:
+        view_mode: media_medium_node
+      open: false
     third_party_settings: {  }
-    type: image_image
+    type: entity_browser_entity_reference
   subject:
     type: string_textfield
     weight: 1
@@ -42,4 +47,5 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_comment_image: true

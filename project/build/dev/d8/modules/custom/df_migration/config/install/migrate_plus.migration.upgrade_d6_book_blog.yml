@@ -46,10 +46,20 @@ process:
   revision_log: log
   revision_timestamp: timestamp
 
-  field_image_primary:
+#  field_image_primary:
+#    -
+#      source: nid
+#      plugin: img_assist
+#    -
+#      plugin: iterator
+#      process:
+#        target_id: fid
+
+  field_media_primary:
     -
       source: nid
       plugin: img_assist
+      type: 'mid'
     -
       plugin: iterator
       process:

@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: IC32PBCKzEqq0D0MPvJ4RFYe01AUPIdHmqesIeBWTP0
+  default_config_hash: 4o3Pk0iJsRDNHaaMkERIfhh2Dz1mMurwhq6-emhzWpg
 id: df_comment
 label: 'DF Comment'
 target_entity_type_id: node
