@@ -1,0 +1,115 @@
+langcode: en
+status: true
+dependencies:
+    config:
+        - field.field.node.downfall_media.body
+        - field.field.node.downfall_media.comment
+        - field.field.node.downfall_media.field_group
+        - field.field.node.downfall_media.field_image_gallery
+        - field.field.node.downfall_media.field_media_primary
+        - field.field.node.downfall_media.field_term_class
+        - field.field.node.downfall_media.field_term_downfall
+        - field.field.node.downfall_media.field_term_expansion
+        - field.field.node.downfall_media.field_term_game
+        - field.field.node.downfall_media.field_term_gameplay
+        - field.field.node.downfall_media.field_term_instance
+        - field.field.node.downfall_media.field_term_pvp
+        - node.type.downfall_media
+    module:
+        - comment
+        - text
+        - user
+id: node.downfall_media.default
+targetEntityType: node
+bundle: downfall_media
+mode: default
+content:
+    body:
+        label: hidden
+        type: text_default
+        weight: 2
+        settings: {  }
+        third_party_settings: {  }
+    comment:
+        weight: 12
+        label: above
+        settings:
+            pager_id: 0
+        third_party_settings: {  }
+        type: comment_default
+    field_group:
+        weight: 4
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_image_gallery:
+        weight: 3
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_media_primary:
+        weight: 1
+        label: above
+        settings:
+            view_mode: media_full_node
+            link: false
+        third_party_settings: {  }
+        type: entity_reference_entity_view
+    field_term_class:
+        weight: 9
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_downfall:
+        weight: 5
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_expansion:
+        weight: 10
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_game:
+        weight: 11
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_gameplay:
+        weight: 6
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_instance:
+        weight: 7
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    field_term_pvp:
+        weight: 8
+        label: above
+        settings:
+            link: true
+        third_party_settings: {  }
+        type: entity_reference_label
+    links:
+        weight: 0
+        settings: {  }
+        third_party_settings: {  }
+hidden: {  }

@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+    config:
+        - field.storage.node.field_term_class
+        - node.type.downfall_media
+        - taxonomy.vocabulary.wow_class
+id: node.downfall_media.field_term_class
+field_name: field_term_class
+entity_type: node
+bundle: downfall_media
+label: Class
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+    handler: 'default:taxonomy_term'
+    handler_settings:
+        target_bundles:
+            wow_class: wow_class
+        sort:
+            field: _none
+        auto_create: false
+        auto_create_bundle: ''
+field_type: entity_reference

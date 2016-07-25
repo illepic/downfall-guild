@@ -1,18 +1,17 @@
-uuid: 97f5f73c-8c5f-4ecf-84d6-fc988c264592
 langcode: en
 status: true
 dependencies:
-  module:
-    - node
-    - taxonomy
+    module:
+        - node
+        - taxonomy
 _core:
-  default_config_hash: '-F_XwhWc0MGbq_TfeMQAm3jWeN1l5GbFWyi41p6qO5c'
+    default_config_hash: O8uxv01sRdI22gtYz-EpV6s2b3tix035x9T0-77ZRAU
 id: node.field_image_gallery
 field_name: field_image_gallery
 entity_type: node
 type: entity_reference
 settings:
-  target_type: taxonomy_term
+    target_type: taxonomy_term
 module: core
 locked: false
 cardinality: 1

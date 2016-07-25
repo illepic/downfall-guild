@@ -1,9 +1,8 @@
-uuid: bed90412-a733-44e2-9f30-3b7c1282b006
 langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: lYf9S5x3LugYzlepJpI7SdFe0Lk1V6NR_gwFtmEMhNI
+    default_config_hash: dJYOWEafyC8SnlgS8p0oc75JmIw0WIVkNmPZMFLHZuc
 name: 'Image Galleries'
 vid: image_galleries
 description: ''

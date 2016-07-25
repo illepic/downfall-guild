@@ -210,7 +210,7 @@ class ImgAssist extends ProcessPluginBase {
     $media = $query->execute();
 
     $mids = array_map(function($fid) { return array('fid' => $fid); }, array_values($media));
-    var_dump($mids);
+//    var_dump($mids);
 
     return $mids;
   }
