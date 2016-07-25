@@ -1,11 +1,10 @@
-uuid: 572da6b5-f3aa-4549-8f4b-3c7a28baa924
 langcode: en
 status: true
 dependencies:
-  module:
-    - node
+    module:
+        - node
 _core:
-  default_config_hash: 77R0kxl9-tOvTKpTfbzW9oajCmtdgFp0K2-PIT68ILM
+    default_config_hash: 8NH-Ii84dfSW-2F3Em1NudXVIu8n7SVxS6c4kK1chOQ
 id: node.field_gapp_open_closed
 field_name: field_gapp_open_closed
 entity_type: node

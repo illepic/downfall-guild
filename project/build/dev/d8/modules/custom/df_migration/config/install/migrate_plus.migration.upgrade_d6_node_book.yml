@@ -139,7 +139,7 @@ migration_dependencies:
   required:
     - upgrade_d6_user
 #    - upgrade_d6_node_type
-    - upgrade_d6_file
+    - upgrade_d6_file_media
     - upgrade_d6_book_blog
     - upgrade_d6_book_forum
 #    - upgrade_d6_node_settings

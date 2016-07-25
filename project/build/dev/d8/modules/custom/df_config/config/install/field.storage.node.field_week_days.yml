@@ -1,40 +1,39 @@
-uuid: d7d25b4c-fa3c-4a6c-8a3b-083125a74930
 langcode: en
 status: true
 dependencies:
-  module:
-    - node
-    - options
+    module:
+        - node
+        - options
 _core:
-  default_config_hash: ngAEpzF5w8C32pbDQcFGTwhD5BTDD8vnlPB8HlDvzfw
+    default_config_hash: aWy0ONosM6pcLNnHu96VJGG1lytlJKbfhD0vzRbnxrs
 id: node.field_week_days
 field_name: field_week_days
 entity_type: node
 type: list_string
 settings:
-  allowed_values:
-    -
-      value: Mon
-      label: Monday
-    -
-      value: Tue
-      label: Tuesday
-    -
-      value: Wed
-      label: Wednesday
-    -
-      value: Thu
-      label: Thursday
-    -
-      value: Fri
-      label: Friday
-    -
-      value: Sat
-      label: Saturday
-    -
-      value: Sun
-      label: Sunday
-  allowed_values_function: ''
+    allowed_values:
+        -
+            value: Mon
+            label: Monday
+        -
+            value: Tue
+            label: Tuesday
+        -
+            value: Wed
+            label: Wednesday
+        -
+            value: Thu
+            label: Thursday
+        -
+            value: Fri
+            label: Friday
+        -
+            value: Sat
+            label: Saturday
+        -
+            value: Sun
+            label: Sunday
+    allowed_values_function: ''
 module: options
 locked: false
 cardinality: -1

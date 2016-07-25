@@ -1,12 +1,11 @@
-uuid: 6ca475bb-5708-47b4-8dbd-4f02e6100f06
 langcode: en
 status: true
 dependencies:
-  module:
-    - node
-    - text
+    module:
+        - node
+        - text
 _core:
-  default_config_hash: 5gA8AUBIch5Q7ZxY2gPl-zoiiPaVvVjZqRi_0gW1nh4
+    default_config_hash: n2yTlv83jA393GdhK0xukCpFZsbODzeWd7Y4uriI0Z4
 id: node.field_gapp_class_state
 field_name: field_gapp_class_state
 entity_type: node

@@ -1,9 +1,8 @@
-uuid: a45ee9bb-21dc-4e75-9990-7b0001ce3f76
 langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: wKSui_g3j_1ovK6VN_Sj-m3Y77-ln6Ce7xhw7UlsE_4
+    default_config_hash: AxcTT50mL93tAWb8qcygOMag6uKP7qpsnJcxqkjqtlQ
 name: 'WoW - Race'
 vid: wow_race
 description: 'World of Warcraft player Races'

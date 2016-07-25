@@ -131,7 +131,7 @@ migration_dependencies:
   required:
     - upgrade_d6_user
     - upgrade_d6_node_type
-    - upgrade_d6_file
+    - upgrade_d6_file_media
 #    - upgrade_d6_node_settings
   optional:
     - upgrade_d6_field_instance_widget_settings

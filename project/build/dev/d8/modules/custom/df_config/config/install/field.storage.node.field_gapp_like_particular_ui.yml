@@ -1,12 +1,11 @@
-uuid: 83386cfe-ea05-49ef-98e6-7913e5f590ce
 langcode: en
 status: true
 dependencies:
-  module:
-    - node
-    - text
+    module:
+        - node
+        - text
 _core:
-  default_config_hash: lAFGHmaLbnjTxRWOO8JN1cjbixQ9625eSwi_-jHRoDU
+    default_config_hash: shKCmIfGMIjSDTM5brc23Go63jBpPJaiJ0M15s467_U
 id: node.field_gapp_like_particular_ui
 field_name: field_gapp_like_particular_ui
 entity_type: node

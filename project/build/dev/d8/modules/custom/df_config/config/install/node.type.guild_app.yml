@@ -1,15 +1,14 @@
-uuid: 5da2ef62-caac-4490-bd82-a32658a35477
 langcode: en
 status: true
 dependencies:
-  module:
-    - menu_ui
+    module:
+        - menu_ui
 third_party_settings:
-  menu_ui:
-    available_menus: {  }
-    parent: ''
+    menu_ui:
+        available_menus: {  }
+        parent: ''
 _core:
-  default_config_hash: 5_dTsiun3lSbzqWofWxj-Yb3Lix6x1YkPZQtFGbtntY
+    default_config_hash: u6Qqr_L_y9eLImfNRDT06oqPnqS9iuV2ibsVXkIEFqA
 name: 'Guild App'
 type: guild_app
 description: 'Registered members can apply to <Downfall>.'

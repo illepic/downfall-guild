@@ -1,14 +1,13 @@
-uuid: b5ff014b-2dff-4515-a550-652e49f434ea
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.field_gapp_pvp_experience
-    - node.type.guild_app
-  module:
-    - text
+    config:
+        - field.storage.node.field_gapp_pvp_experience
+        - node.type.guild_app
+    module:
+        - text
 _core:
-  default_config_hash: d-jayqRXx5H7K0wVbcb6WmCXWo1CXODBsEAVRUZQnXE
+    default_config_hash: 9QgUpzV8jTFA0Mkhd6hZU0yh89cxIsg4tH5M_CQGWIE
 id: node.guild_app.field_gapp_pvp_experience
 field_name: field_gapp_pvp_experience
 entity_type: node

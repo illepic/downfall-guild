@@ -1,12 +1,11 @@
-uuid: 9f12ecbf-5909-47a7-a158-2e214c2069de
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.field_gapp_timezone
-    - node.type.guild_app
+    config:
+        - field.storage.node.field_gapp_timezone
+        - node.type.guild_app
 _core:
-  default_config_hash: qNlMzIGRyewi0t6Cbvlt9bEd3b7vTr3Hvb5j_gZnb2E
+    default_config_hash: v6cOYMsyCvfQdugJpfUuVq5GG1HwxG8AIWjY-D1az6A
 id: node.guild_app.field_gapp_timezone
 field_name: field_gapp_timezone
 entity_type: node

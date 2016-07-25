@@ -1,14 +1,13 @@
-uuid: 46c31669-377f-4c26-a1c9-6efb75ed2f71
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.field_gapp_ui_image
-    - node.type.guild_app
-  module:
-    - image
+    config:
+        - field.storage.node.field_gapp_ui_image
+        - node.type.guild_app
+    module:
+        - image
 _core:
-  default_config_hash: WB-vpzxyntddph7UYhe4M-36Jtp6npwufyAOgwE7puk
+    default_config_hash: z6YSmZWsh0flzSCfHHavh_110cTrd8V-cEqZ60Ecno8
 id: node.guild_app.field_gapp_ui_image
 field_name: field_gapp_ui_image
 entity_type: node
@@ -20,21 +19,21 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  file_directory: '[date:custom:Y]-[date:custom:m]'
-  file_extensions: 'png gif jpg jpeg'
-  max_filesize: ''
-  max_resolution: ''
-  min_resolution: ''
-  alt_field: true
-  alt_field_required: false
-  title_field: false
-  title_field_required: false
-  default_image:
-    uuid: ''
-    alt: ''
-    title: ''
-    width: null
-    height: null
-  handler: 'default:file'
-  handler_settings: {  }
+    file_directory: '[date:custom:Y]-[date:custom:m]'
+    file_extensions: 'png gif jpg jpeg'
+    max_filesize: ''
+    max_resolution: ''
+    min_resolution: ''
+    alt_field: true
+    alt_field_required: false
+    title_field: false
+    title_field_required: false
+    default_image:
+        uuid: ''
+        alt: ''
+        title: ''
+        width: null
+        height: null
+    handler: 'default:file'
+    handler_settings: {  }
 field_type: image

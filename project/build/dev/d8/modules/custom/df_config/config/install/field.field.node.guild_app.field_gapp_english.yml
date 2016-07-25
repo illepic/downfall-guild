@@ -1,12 +1,11 @@
-uuid: e297cae7-5f44-48f5-9d64-d25727b406f0
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.field_gapp_english
-    - node.type.guild_app
+    config:
+        - field.storage.node.field_gapp_english
+        - node.type.guild_app
 _core:
-  default_config_hash: AO1WpQ79xVoOBIIVNEJW4_ExyrLVU_zC6btV3iQXd0g
+    default_config_hash: mQysECAC7c4PHuxS7d9Ju6GMklRJVte-dreYhDc6wZI
 id: node.guild_app.field_gapp_english
 field_name: field_gapp_english
 entity_type: node

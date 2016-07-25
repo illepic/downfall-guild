@@ -1,14 +1,13 @@
-uuid: 225c85bb-3baf-44bf-bb60-d5099731192c
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.field_gapp_wow_history
-    - node.type.guild_app
-  module:
-    - text
+    config:
+        - field.storage.node.field_gapp_wow_history
+        - node.type.guild_app
+    module:
+        - text
 _core:
-  default_config_hash: 7n_5ObQdlypv_O58c8ZiEl5iFhzoDu-1brsaB8XZI8s
+    default_config_hash: mTH6D1aScU4Nz1_8A3OAp2He5Wn6xcUBHqSPuBboiaI
 id: node.guild_app.field_gapp_wow_history
 field_name: field_gapp_wow_history
 entity_type: node

@@ -1,12 +1,11 @@
-uuid: 94d7ec48-04be-439b-a7f3-9d5ea1a2c4a9
 langcode: en
 status: true
 dependencies:
-  module:
-    - node
-    - text
+    module:
+        - node
+        - text
 _core:
-  default_config_hash: n4zuW13RfJsW8YQ4HcqvzQ6kppQs7ycRSv_TyML9S18
+    default_config_hash: gZej8GUrGixkj3SmE1HEkiUxwJsr4cpkd76aO0fsyTQ
 id: node.field_gapp_wow_history
 field_name: field_gapp_wow_history
 entity_type: node

@@ -1,14 +1,13 @@
-uuid: 1699a421-e9b6-481a-be4f-255c1064c050
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.field_gapp_raid_experience
-    - node.type.guild_app
-  module:
-    - text
+    config:
+        - field.storage.node.field_gapp_raid_experience
+        - node.type.guild_app
+    module:
+        - text
 _core:
-  default_config_hash: 5Kqa-d6ddHWOX0k4qAFURaZmGcvCi1K6zYZH-kVN11k
+    default_config_hash: x_ewEIfVNinRkrpr-Aw7ks_lR-f4dGdzYFxECxSih_E
 id: node.guild_app.field_gapp_raid_experience
 field_name: field_gapp_raid_experience
 entity_type: node

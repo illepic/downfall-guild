@@ -4,7 +4,7 @@ dependencies:
     module:
         - video_embed_media
 _core:
-    default_config_hash: JwSW70X5tyXkiCHN8rqQKBaytxAOmdXv9H5q4QpCXoM
+    default_config_hash: q1pzn-sLkLEmPfr_7bz1zywW3UpWxluUxdnxaxaIFOs
 id: media_video
 label: 'Media Video'
 description: ''

@@ -1,14 +1,13 @@
-uuid: d779f441-705e-4cc5-b830-30ee0f83a2d8
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.comment
-    - node.type.guild_app
-  module:
-    - comment
+    config:
+        - field.storage.node.comment
+        - node.type.guild_app
+    module:
+        - comment
 _core:
-  default_config_hash: 5SbsgjnsGFyDDguJg6Bz94u3IMJ89eUjNH2YN1D6cbU
+    default_config_hash: rVBzUV2wyhViO8PQefxBFkzJVq8_prWQDYGfB4ap6Yw
 id: node.guild_app.comment
 field_name: comment
 entity_type: node
@@ -18,18 +17,18 @@ description: ''
 required: false
 translatable: true
 default_value:
-  -
-    status: 2
-    cid: 0
-    last_comment_timestamp: 0
-    last_comment_name: null
-    last_comment_uid: 0
-    comment_count: 0
+    -
+        status: 2
+        cid: 0
+        last_comment_timestamp: 0
+        last_comment_name: null
+        last_comment_uid: 0
+        comment_count: 0
 default_value_callback: ''
 settings:
-  default_mode: 1
-  per_page: 50
-  form_location: true
-  anonymous: 0
-  preview: 1
+    default_mode: 1
+    per_page: 50
+    form_location: true
+    anonymous: 0
+    preview: 1
 field_type: comment

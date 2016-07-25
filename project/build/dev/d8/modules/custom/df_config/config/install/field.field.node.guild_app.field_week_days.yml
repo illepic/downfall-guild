@@ -1,14 +1,13 @@
-uuid: 45bfba16-b1ff-4095-8905-f6e146d84a31
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.field_week_days
-    - node.type.guild_app
-  module:
-    - options
+    config:
+        - field.storage.node.field_week_days
+        - node.type.guild_app
+    module:
+        - options
 _core:
-  default_config_hash: w919-IvahseqZi-v0qsOgOgeRY-BnJH7MiOk4eGn3ok
+    default_config_hash: JcKAtSvk4vDQdPeBeW4XiHnjfovFHAfPw3Akue5m8kY
 id: node.guild_app.field_week_days
 field_name: field_week_days
 entity_type: node

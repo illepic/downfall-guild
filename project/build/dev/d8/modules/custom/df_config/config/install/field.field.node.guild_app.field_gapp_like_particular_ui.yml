@@ -1,14 +1,13 @@
-uuid: 5fa06b1e-70f4-42e7-b287-77f22474f891
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.field_gapp_like_particular_ui
-    - node.type.guild_app
-  module:
-    - text
+    config:
+        - field.storage.node.field_gapp_like_particular_ui
+        - node.type.guild_app
+    module:
+        - text
 _core:
-  default_config_hash: K-S4BrBbNBQCOrBtRr2vTYRg-tMn3XzVXErJepEbozY
+    default_config_hash: KUknMl8ZbTV3hH4K9Kw18oPVk-758bN9WTpuFFchryk
 id: node.guild_app.field_gapp_like_particular_ui
 field_name: field_gapp_like_particular_ui
 entity_type: node

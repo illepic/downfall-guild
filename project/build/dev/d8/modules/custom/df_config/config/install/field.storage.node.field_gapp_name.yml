@@ -1,19 +1,18 @@
-uuid: e6021666-7d15-4f55-be3e-b9fb220a7162
 langcode: en
 status: true
 dependencies:
-  module:
-    - node
+    module:
+        - node
 _core:
-  default_config_hash: 2LjaJSR512gJ6OdpjBlNTQJ20D2RQYiJck7Gnn0G3So
+    default_config_hash: mVXSQoNvx08GFelG-loat7Gce1LL6Kg9cf_B5fwlylw
 id: node.field_gapp_name
 field_name: field_gapp_name
 entity_type: node
 type: string
 settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
+    max_length: 255
+    is_ascii: false
+    case_sensitive: false
 module: core
 locked: false
 cardinality: 1

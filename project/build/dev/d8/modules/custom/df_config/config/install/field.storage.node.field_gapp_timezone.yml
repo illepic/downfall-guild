@@ -1,19 +1,18 @@
-uuid: e6cbf7e3-70fa-497e-8b31-f5048a0439d0
 langcode: en
 status: true
 dependencies:
-  module:
-    - node
+    module:
+        - node
 _core:
-  default_config_hash: Vp3zAXE0vHf0_Ok6F3c1CNxUesswBt34NK7ZQtMA71Y
+    default_config_hash: rqAGIh1wojId1uCo8HzZt_VHtj80HIn2n-LvskD6cw8
 id: node.field_gapp_timezone
 field_name: field_gapp_timezone
 entity_type: node
 type: string
 settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
+    max_length: 255
+    is_ascii: false
+    case_sensitive: false
 module: core
 locked: false
 cardinality: 1

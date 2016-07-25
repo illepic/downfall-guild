@@ -1,12 +1,11 @@
-uuid: a009ad3c-5c1c-4a49-b7ac-286e09ac7dbc
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.field_gapp_open_closed
-    - node.type.guild_app
+    config:
+        - field.storage.node.field_gapp_open_closed
+        - node.type.guild_app
 _core:
-  default_config_hash: Ui5K2YFk_YJZrrW6roMiu7E80MhzvHTWogdjfniVOLo
+    default_config_hash: xS6VBgnHBS8w2XG2G73IPoKdfFSIel_l2WkIP9UDbB8
 id: node.guild_app.field_gapp_open_closed
 field_name: field_gapp_open_closed
 entity_type: node
@@ -16,10 +15,10 @@ description: 'Leave your app Open if you wish it to be viewable by Downfall. Clo
 required: false
 translatable: false
 default_value:
-  -
-    value: 1
+    -
+        value: 1
 default_value_callback: ''
 settings:
-  on_label: Open
-  off_label: Closed
+    on_label: Open
+    off_label: Closed
 field_type: boolean

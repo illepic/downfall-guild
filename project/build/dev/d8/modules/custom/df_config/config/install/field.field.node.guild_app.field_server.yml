@@ -1,14 +1,13 @@
-uuid: a7866a5b-aecb-4563-a2e6-0c9ccc8d2810
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.field_server
-    - node.type.guild_app
-  module:
-    - options
+    config:
+        - field.storage.node.field_server
+        - node.type.guild_app
+    module:
+        - options
 _core:
-  default_config_hash: ZNNQ_t_nGN4iEnOWXbczRbeysWXN0qAwSjNUK7pdknU
+    default_config_hash: UBV_xLNNSlf6kG76Az_ENzslyq5mXD50ardUolmJK2k
 id: node.guild_app.field_server
 field_name: field_server
 entity_type: node

@@ -173,21 +173,47 @@ process:
         plugin: default_value
         default_value: restricted_html
 
-  field_gapp_ui_image:
+  field_media_primary/target_id:
+#    -
+#      plugin: default_value
+#      default_value: 3483
     -
       plugin: extract
       source: field_ui_ss_2
       index:
         - fid
+#    -
+#      plugin: static_map
+#      bypass: true
+#      map:
+#        19636: '' # The ui/Ui/UI issue
+#        20875: ''
+#    -
+#      plugin: skip_on_empty
+#      method: process
+
     -
-      plugin: static_map
-      bypass: true
-      map:
-        19636: '' # The ui/Ui/UI issue
-        20875: ''
-    -
-      plugin: skip_on_empty
-      method: process
+      plugin: fid_to_media
+#    -
+#      plugin: iterator
+#      process:
+#        target_id: mid
+
+#  field_gapp_ui_image:
+#    -
+#      plugin: extract
+#      source: field_ui_ss_2
+#      index:
+#        - fid
+#    -
+#      plugin: static_map
+#      bypass: true
+#      map:
+#        19636: '' # The ui/Ui/UI issue
+#        20875: ''
+#    -
+#      plugin: skip_on_empty
+#      method: process
 
   field_gapp_essential_addons:
     plugin: iterator

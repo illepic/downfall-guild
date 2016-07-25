@@ -1,18 +1,17 @@
-uuid: 70e76dbd-fdca-451f-a103-7c5394ba3f84
 langcode: en
 status: true
 dependencies:
-  module:
-    - node
-    - taxonomy
+    module:
+        - node
+        - taxonomy
 _core:
-  default_config_hash: cOD22jI3Jr7dmRVw28EfrqzWV8VxdUd68YxEQmOU8bU
+    default_config_hash: pFHDd6HQZHsfhjdUrGt59_eKCSq5qfPRFDWb0rfwCPw
 id: node.field_gapp_term_class
 field_name: field_gapp_term_class
 entity_type: node
 type: entity_reference
 settings:
-  target_type: taxonomy_term
+    target_type: taxonomy_term
 module: core
 locked: false
 cardinality: 1

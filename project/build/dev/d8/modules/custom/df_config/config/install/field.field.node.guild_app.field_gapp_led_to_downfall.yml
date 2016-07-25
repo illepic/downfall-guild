@@ -1,14 +1,13 @@
-uuid: 34fddfd0-925e-4f8c-a34a-a2322bd8d5fa
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.field_gapp_led_to_downfall
-    - node.type.guild_app
-  module:
-    - text
+    config:
+        - field.storage.node.field_gapp_led_to_downfall
+        - node.type.guild_app
+    module:
+        - text
 _core:
-  default_config_hash: IfriHjRWhww0QLFQQ5SnTNzn6u84RiRSRLth3LeZlzU
+    default_config_hash: OCLy2Uu-efeHSUvNWq-y1hUKKaqjiv6BuiJPhZs55po
 id: node.guild_app.field_gapp_led_to_downfall
 field_name: field_gapp_led_to_downfall
 entity_type: node

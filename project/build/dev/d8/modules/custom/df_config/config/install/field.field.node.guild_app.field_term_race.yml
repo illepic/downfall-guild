@@ -1,13 +1,12 @@
-uuid: 13cc5815-41e7-4418-8812-b06e0a2aa7f8
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.field_term_race
-    - node.type.guild_app
-    - taxonomy.vocabulary.wow_race
+    config:
+        - field.storage.node.field_term_race
+        - node.type.guild_app
+        - taxonomy.vocabulary.wow_race
 _core:
-  default_config_hash: hQX1DYMB_X1ZKdzmroQ_crekRAo1t8za32HDQFFEwX8
+    default_config_hash: ypkjkXhUsDfJbMg0exrsVUL6ry4fYPwlL_tmSVgPD0k
 id: node.guild_app.field_term_race
 field_name: field_term_race
 entity_type: node
@@ -19,12 +18,12 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:taxonomy_term'
-  handler_settings:
-    target_bundles:
-      wow_race: wow_race
-    sort:
-      field: _none
-    auto_create: false
-    auto_create_bundle: ''
+    handler: 'default:taxonomy_term'
+    handler_settings:
+        target_bundles:
+            wow_race: wow_race
+        sort:
+            field: _none
+        auto_create: false
+        auto_create_bundle: ''
 field_type: entity_reference

@@ -1,18 +1,17 @@
-uuid: 7b6a94ee-a5b1-42d9-b39d-e7671636b070
 langcode: en
 status: true
 dependencies:
-  module:
-    - node
-    - taxonomy
+    module:
+        - node
+        - taxonomy
 _core:
-  default_config_hash: _xB1DBgrEGLWrcx4MuMCiS3tf7Urv4omkJ447P4CoTs
+    default_config_hash: Dj1rahqxxeyHnq6imTrsHIhzY9KcOUo3mx_aU17zdLQ
 id: node.field_term_race
 field_name: field_term_race
 entity_type: node
 type: entity_reference
 settings:
-  target_type: taxonomy_term
+    target_type: taxonomy_term
 module: core
 locked: false
 cardinality: 1

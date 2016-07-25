@@ -1,12 +1,11 @@
-uuid: d123dad5-7b5c-44cb-ad13-978e6ade6300
 langcode: en
 status: true
 dependencies:
-  module:
-    - node
-    - text
+    module:
+        - node
+        - text
 _core:
-  default_config_hash: 4hu0LQKi5U9LucXBgfgqqiAMi5r0wGAT_vHA_Ik2O7U
+    default_config_hash: fcABFBTkCrOpgMpyECI99oBVrdLUms9sGl6rPboqGCs
 id: node.field_gapp_raid_experience
 field_name: field_gapp_raid_experience
 entity_type: node
