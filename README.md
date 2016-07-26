@@ -106,6 +106,12 @@ Rollback stuck migration:
 drush php-eval 'var_dump(Drupal::keyValue("migrate_status")->set('your_migration_name', 0))'
 ````
 
+Helpful wipe-out-and-start-over command
+
+````shell
+drush sql-query "TRUNCATE migrate_map_upgrade_d6_node_guild_app" && drush mr upgrade_d6_node_guild_app && drush cdi1 modules/custom/df_migration/config/install/migrate_plus.migration.upgrade_d6_node_guild_app.yml && drupal cr all && drush mi upgrade_d6_node_guild_app --idlist="12331"
+````
+
 ### Drupal 8
 
 Drupal 8 is built completely from scratch if and only if the `project/web/d8` folder does not exist.

@@ -27,11 +27,6 @@ process:
   changed: changed
   promote: promote
   sticky: sticky
-  # No body tags on gapps
-#  body/format:
-#    plugin: default_value
-#    default_value: basic_html
-#  body/value: body
   revision_uid: revision_uid
   revision_log: log
   revision_timestamp: timestamp
@@ -41,16 +36,6 @@ process:
     source: field_toon_name
     process:
       value: value
-#      format:
-#        -
-#          plugin: static_map
-#          bypass: true
-#          source: format
-#          map:
-#            - null
-#        -
-#          plugin: skip_on_empty
-#          method: process
 
   field_server:
     plugin: iterator
@@ -79,16 +64,6 @@ process:
           'Shaman': 73
           'Warlock': 68
           'Warrior': 71
-#      format:
-#        -
-#          plugin: static_map
-#          bypass: true
-#          source: format
-#          map:
-#            - null
-#        -
-#          plugin: skip_on_empty
-#          method: process
 
   field_term_race:
     plugin: iterator
@@ -173,31 +148,28 @@ process:
         plugin: default_value
         default_value: restricted_html
 
-  field_media_primary/target_id:
-#    -
-#      plugin: default_value
-#      default_value: 3483
+  field_media_primary:
     -
       plugin: extract
       source: field_ui_ss_2
       index:
         - fid
-#    -
-#      plugin: static_map
-#      bypass: true
-#      map:
-#        19636: '' # The ui/Ui/UI issue
-#        20875: ''
-#    -
-#      plugin: skip_on_empty
-#      method: process
-
+    -
+      plugin: static_map
+      bypass: true
+      map:
+        19636: '' # The ui/Ui/UI issue
+        20875: ''
+    -
+      plugin: skip_on_empty
+      method: process
     -
       plugin: fid_to_media
-#    -
-#      plugin: iterator
-#      process:
-#        target_id: mid
+    -
+      plugin: iterator
+      key: '@target_id'
+      process:
+        target_id: mid
 
 #  field_gapp_ui_image:
 #    -

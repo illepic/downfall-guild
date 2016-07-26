@@ -27,19 +27,17 @@ class FidToMedia extends ProcessPluginBase {
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
 
-    var_dump($value);
+//    var_dump($value);
 
     // Otherwise return media ids
     $fids_reduced = array($value);
-    var_dump($fids_reduced);
 
     $query = \Drupal::entityQuery('media')
       ->condition('field_media_image_image.target_id', $fids_reduced, 'IN');
     $media = $query->execute();
 
     $mids = array_map(function($mid) { return array('mid' => $mid); }, array_values($media));
-    var_dump($mids[0]['mid']);
 
-    return array($mids[0]['mid']);
+    return $mids[0]; // Just grab the first one for now, iterator seems to wrap in extra arrays
   }
 }
