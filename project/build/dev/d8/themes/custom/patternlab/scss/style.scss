@@ -1,10 +1,10 @@
 @import "00-config/**/*.scss";
 @import "10-base/**/*.scss";
-@import "20-global/**/*.scss";
-@import "30-layouts/**/*.scss";
+@import "20-vendor/**/*.scss";
+@import "30-global/**/*.scss";
 @import "40-components/**/*.scss";
+@import "50-layouts/**/*.scss";
 @import "60-pages/**/*.scss";
-@import "70-utilities/**/*.scss";
 @import "90-shame/**/*.scss";
 
 @import "../source/_patterns/00-base/**/*.scss";

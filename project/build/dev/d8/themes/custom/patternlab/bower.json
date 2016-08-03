@@ -21,6 +21,7 @@
     "drupal8": "http://cgit.drupalcode.org/drupal/plain/core/misc/drupal.js?h=8.1.x"
   },
   "dependencies": {
+    "bootstrap-sass": "^3.3.7"
   },
   "devDependencies": {
     "domready": "^1.0.8",
