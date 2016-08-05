@@ -5,6 +5,9 @@
   "text": "Text",
   "site_title": "Site Title",
   "site_slogan": "Site Slogan",
+  "paths": {
+    "images": "../../../../images"
+  },
   "img": {
     "avatar": "../../../../images/material-kit/faces/avatar.jpg",
     "square": "http://placeimg.com/600/600/nature",

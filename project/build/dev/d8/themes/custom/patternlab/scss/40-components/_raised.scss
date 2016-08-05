@@ -1,0 +1,14 @@
+$main-raised-margin: 30px;
+.main-raised {
+  .container {
+    @include respond-to('sm') {
+      width: $container-sm - $main-raised-margin * 2;
+    }
+    @include respond-to('md') {
+      width: $container-md - $main-raised-margin * 2;
+    }
+    @include respond-to('lg') {
+      width: $container-lg - $main-raised-margin * 2;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+.logo {
+  transform: translateY(-3px);
+  &::before {
+    font-size: 130%;
+  }
+}

@@ -1,6 +1,6 @@
 @import "00-config/**/*.scss";
-@import "10-base/**/*.scss";
-@import "20-vendor/*.scss"; // first level only
+@import "10-vendor/*.scss"; // first level only
+@import "20-base/**/*.scss";
 @import "30-global/**/*.scss";
 @import "40-components/**/*.scss";
 @import "50-layouts/**/*.scss";
@@ -13,4 +13,3 @@
 @import "../source/_patterns/03-organisms/**/*.scss";
 @import "../source/_patterns/04-templates/**/*.scss";
 @import "../source/_patterns/05-pages/**/*.scss";
-
