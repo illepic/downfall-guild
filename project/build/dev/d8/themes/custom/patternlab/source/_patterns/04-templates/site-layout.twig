@@ -1,8 +1,19 @@
 {% include "@organisms/site/site-header/site-header.twig" %}
-<main class="site-content">
-  {% block content %}
-    <h2>Site Content Here</h2>
-    <p>Testing content here.</p>
-  {% endblock %}
-</main>
+
+{% block header %}
+  <h1>Header block goes here.</h1>
+{% endblock %}
+
+<div class="main main-raised">
+  <div class="container">
+    {% block content %}
+      <h2>Site Content Here</h2>
+    {% endblock %}
+  </div> <!-- /.container -->
+</div> <!-- /.main -->
+
+{% block sub %}
+  <h1>Sub block here</h1>
+{% endblock %}
+
 {% include "@organisms/site/site-footer/site-footer.twig" %}
