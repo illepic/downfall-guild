@@ -1,7 +1,7 @@
 {% include "@organisms/site/site-header/site-header.twig" %}
 
 {% block header %}
-  <h1>Header block goes here.</h1>
+  {% include "@molecules/header-block/header-block.twig" %}
 {% endblock %}
 
 <div class="main main-raised">
@@ -13,14 +13,16 @@
 </div> <!-- /.main -->
 
  <div class="container">
-   {% block sub %}
-     <div class="row">
-      <div class="col-sm-12">
-        <h2>Sub section</h2>
-        <p>sub section</p>
+   <div class="section">
+     {% block sub %}
+       <div class="row">
+        <div class="col-sm-12">
+          <h2>Sub section</h2>
+          <p>sub section</p>
+        </div>
       </div>
-    </div>
-   {% endblock %}
+     {% endblock %}
+   </div>
  </div>
 
 {% include "@organisms/site/site-footer/site-footer.twig" %}

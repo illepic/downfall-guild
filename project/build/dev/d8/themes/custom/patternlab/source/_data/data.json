@@ -6,7 +6,7 @@
   "site_title": "Site Title",
   "site_slogan": "Site Slogan",
   "img": {
-    "avatar": "http://placeimg.com/600/600/people",
+    "avatar": "../../../../images/material-kit/faces/avatar.jpg",
     "square": "http://placeimg.com/600/600/nature",
     "rectangle": "http://placeimg.com/1200/900/tech",
     "landscape": "http://placeimg.com/1200/900/tech",
