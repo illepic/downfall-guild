@@ -1,6 +1,6 @@
 @import "00-config/**/*.scss";
 @import "10-base/**/*.scss";
-@import "20-vendor/**/*.scss";
+@import "20-vendor/*.scss"; // first level only
 @import "30-global/**/*.scss";
 @import "40-components/**/*.scss";
 @import "50-layouts/**/*.scss";

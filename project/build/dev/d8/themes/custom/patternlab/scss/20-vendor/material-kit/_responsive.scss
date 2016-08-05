@@ -1,0 +1,115 @@
+@media (min-width: $screen-md-min){
+    .navbar{
+        .navbar-collapse{
+            text-align: center;
+        }
+
+        .navbar-center{
+            display: inline-block;
+            float: none;
+        }
+    }
+}
+@media (max-width: $screen-sm-max){
+    .navbar{
+        .navbar-nav {
+            > li > a {
+                padding-left: 0px;
+                padding-right: 0px;
+            }
+
+            > li{
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+        }
+    }
+    .page-header{
+        height: auto;
+        min-height: 100vh;
+
+        .iframe-container{
+            padding: 30px 0;
+        }
+    }
+    .card-form-horizontal .form-group{
+        padding-bottom: 20px;
+    }
+    .contactus-2 .card-contact{
+        margin: 530px 0 0;
+    }
+    .carousel{
+        .page-header{
+            padding: 0 30px;
+        }
+        .buttons{
+            margin-bottom: 100px;
+        }
+    }
+
+    .btn.btn-simple,
+    .navbar .navbar-nav > li > a.btn.btn-simple {
+        padding-left: 0;
+        padding-right: 0;
+        text-align: left;
+    }
+
+    .presentation-page,
+    .index-page{
+        .section-components .image-container{
+            height: 400px;
+
+            img{
+                max-width: 410px;
+                height: auto;
+            }
+        }
+
+        .section-cards{
+            .image-container{
+                height: 300px;
+                margin-top: -100px;
+
+                img{
+                    max-width: 500px;
+                }
+            }
+        }
+        .section-content{
+            padding-top: 0;
+        }
+
+        .section-overview{
+            .card .content{
+                text-align: center;
+            }
+            .card-image{
+                max-width: 60px;
+                margin: 0 auto 20px;
+            }
+        }
+    }
+
+}
+@media (max-width: $screen-xs-max){
+    h1,
+    .h1,
+    .presentation-page .brand h1{
+        font-size: 3em;
+    }
+
+    .presentation-page .pro-badge{
+        font-size: 14px;
+        margin-right: 0;
+        right: -47px;
+        padding: 4px 8px;
+        top: -4px;
+        display: inline-block;
+    }
+    .subscribe-line{
+        .btn{
+            margin-top: 15px;
+        }
+    }
+
+}
