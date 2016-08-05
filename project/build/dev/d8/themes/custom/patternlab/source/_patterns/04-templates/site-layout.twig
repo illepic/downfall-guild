@@ -12,8 +12,15 @@
   </div> <!-- /.container -->
 </div> <!-- /.main -->
 
-{% block sub %}
-  <h1>Sub block here</h1>
-{% endblock %}
+ <div class="container">
+   {% block sub %}
+     <div class="row">
+      <div class="col-sm-12">
+        <h2>Sub section</h2>
+        <p>sub section</p>
+      </div>
+    </div>
+   {% endblock %}
+ </div>
 
 {% include "@organisms/site/site-footer/site-footer.twig" %}

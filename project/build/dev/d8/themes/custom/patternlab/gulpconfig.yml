@@ -33,7 +33,7 @@ css:
 js:
   enabled: true
   src:
-    - js/**/*.js
+    - js/*.js
   dest: dest/
   destName: script.js
   sourceMapEmbed: false
@@ -60,7 +60,7 @@ patternLab:
 #    - source/styleguide/styleguide.js
 #    - source/styleguide/custom-styleguide-specific.css
  #   - ../../modules/**/*.css
-  injectBower: true
+  injectBower: false
   scssToJson:
     -
       src: source/_patterns/00-base/01-colors/_color-vars.scss
