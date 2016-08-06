@@ -24,59 +24,9 @@
 
       <div class="news__list">
 
-          <div class="card card-plain card-blog">
-            <div class="card-image">
-              <a href="#pablo">
-                <img class="img img-raised" src="{{ paths.images }}/1920x1080/header1.jpeg">
-              </a>
-              <div class="ripple-container"></div></div>
-
-            <h6 class="category text-info">Boss Kill, Legion, Instance Name</h6>
-
-            <h3 class="card-title">
-              <a href="#pablo">Raid: Awkward Name kills some stuff!</a>
-            </h3>
-
-            <h5 class="card-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla egestas blandit dictum. Cras justo augue, laoreet laoreet iaculis nec, scelerisque id justo. Sed commodo elit non tincidunt malesuada. Etiam non iaculis elit.
-            </h5>
-
-            <a href="#pablo" class="btn btn-primary btn-round"> Read More</a>
-          </div>
-
-          <div class="card card-plain card-blog">
-            <h6 class="category text-info">Instance Name</h6>
-
-            <h3 class="card-title">
-              <a href="#pablo">A post without an image!</a>
-            </h3>
-
-            <h5 class="card-description">
-              Cras justo augue, laoreet laoreet iaculis nec, scelerisque id justo. Sed commodo elit non tincidunt malesuada. Etiam non iaculis elit.
-            </h5>
-
-            <a href="#pablo" class="btn btn-primary btn-round"> Read More</a>
-          </div>
-
-          <div class="card card-plain card-blog">
-            <div class="card-image">
-              <a href="#pablo">
-                <img class="img img-raised" src="{{ paths.images }}/1920x1080/header1.jpeg">
-              </a>
-              <div class="ripple-container"></div></div>
-
-            <h6 class="category text-info">Boss Kill, Legion, Instance Name</h6>
-
-            <h3 class="card-title">
-              <a href="#pablo">Raid: Awkward Name kills some stuff!</a>
-            </h3>
-
-            <h5 class="card-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla egestas blandit dictum. Cras justo augue, laoreet laoreet iaculis nec, scelerisque id justo. Sed commodo elit non tincidunt malesuada. Etiam non iaculis elit.
-            </h5>
-
-            <a href="#pablo" class="btn btn-primary btn-round"> Read More</a>
-          </div>
+        {% for news_item in news %}
+          {% include "@molecules/cards/card-plain.twig" with news_item %}
+        {% endfor %}
 
       </div>
     </div>
