@@ -33,22 +33,5 @@
 {% endblock %}
 
 {% block sidebar %}
-  <div class="card card-profile card-plain">
-    <div class="card-avatar">
-      <a href="#pablo">
-        <img class="img" src="{{ img.avatar }}">
-      </a>
-    </div>
-
-    <div class="content">
-      <h6 class="category text-gray">Guildy, Site Admin</h6>
-
-      <h4 class="card-title">Garreth</h4>
-
-      <p class="card-description">
-        Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-      </p>
-      <a href="#pablo" class="btn btn-info btn-round">Follow</a>
-    </div>
-  </div>
+  {% include "@molecules/profiles/profile-medium.twig" %}
 {% endblock %}

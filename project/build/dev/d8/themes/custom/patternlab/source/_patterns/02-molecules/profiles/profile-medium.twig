@@ -1,0 +1,17 @@
+<div class="card card-profile card-plain">
+  <div class="card-avatar">
+    <a href="#pablo">
+      <img class="img" src="{{ img.avatar }}">
+    </a>
+  </div>
+
+  <div class="content">
+    <h6 class="category text-gray">{{ user.roles|join(', ') }}</h6>
+
+
+    <h4 class="card-title">{{ user.name }}</h4>
+
+    <p class="card-description">{{ user.about }}</p>
+    <a href="{{ user.url }}" class="btn btn-info"><i class="material-icons">mode_edit</i> Edit</a>
+  </div>
+</div>

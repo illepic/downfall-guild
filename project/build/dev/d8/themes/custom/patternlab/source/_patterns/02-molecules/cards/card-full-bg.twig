@@ -1,8 +1,6 @@
 <div class="card card-raised card-background" style="background-image: url('{{ img.landscape_medium }}')">
   <div class="content">
-    <h6 class="category text-info">
-      {% for tag in tags %}{{ tag }} {% endfor %}
-    </h6>
+    <h6 class="category text-info">{{ tags|join(', ') }}</h6>
     <a href="{{ url }}">
       <h3 class="card-title">{{ title }}</h3>
     </a>
