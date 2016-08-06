@@ -6,9 +6,22 @@
 
 <div class="main main-raised">
   <div class="container">
-    {% block content %}
-      <h2>Site Content Here</h2>
-    {% endblock %}
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="section">
+          {% block content %}
+            <h2>Site Content Here</h2>
+          {% endblock %}
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="section">
+          {% block sidebar %}
+            <h1>Sidebar content here</h1>
+          {% endblock %}
+        </div>
+      </div>
+    </div>
   </div> <!-- /.container -->
 </div> <!-- /.main -->
 

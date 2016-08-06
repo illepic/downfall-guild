@@ -5,46 +5,108 @@
 {% endblock %}
 
 {% block content %}
-  <div class="section text-center">
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <h2 class="title">Let's talk product</h2>
-        <h5 class="description">This is the paragraph where you can write more details about your product. Keep you user engaged by providing meaningful information. Remember that by this time, the user is curious, otherwise he wouldn't scroll to get here. Add a button if you want the user to see more.</h5>
-      </div>
-    </div>
+    <div class="newsm text-center">
 
-    <div class="features">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="info">
-            <div class="icon icon-info">
-              <i class="material-icons">chat</i>
-            </div>
-            <h4 class="info-title">Free Chat</h4>
-            <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="info">
-            <div class="icon icon-success">
-              <i class="material-icons">verified_user</i>
-            </div>
-            <h4 class="info-title">Verified Users</h4>
-            <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="info">
-            <div class="icon icon-danger">
-              <i class="material-icons">fingerprint</i>
-            </div>
-            <h4 class="info-title">Fingerprint</h4>
-            <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
-          </div>
+      <div class="news__top row">
+        <div class="col-sm-12">
+          <h2 class="title news__title">Downfall News</h2>
+          <h5 class="news__description">Latest posts, events, and raid kills. Make sure to check out full <a href="#">Posts</a> page for much more.</h5>
         </div>
       </div>
+
+      <div class="news__pinned row">
+        <div class="col-sm-6">
+          <div class="card card-raised card-background" style="background-image: url('{{ paths.images }}/1920x1080/WoWScrnShot_073116_121145.jpg')">
+            <div class="content">
+              <h6 class="category text-info">Announcement</h6>
+              <a href="#pablo">
+                <h3 class="card-title">Legendary Legion Weapons</h3>
+              </a>
+              <p class="card-description">
+                This is your guide to absolutely rocking out the entire questline for your legendary weapon in Legion.
+              </p>
+              <a href="#pablo" class="btn btn-primary btn-round">
+                <i class="material-icons">format_align_left</i> Read Article
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card card-raised card-background" style="background-image: url('{{ paths.images }}/1920x1080/WoWScrnShot_073116_121145.jpg')">
+            <div class="content">
+              <h6 class="category text-info">Announcement</h6>
+              <a href="#pablo">
+                <h3 class="card-title">Raid Signups Happening Sept 1 - 15!</h3>
+              </a>
+              <p class="card-description">
+                Don't miss out on your chance to raid with Downfall in the Legion expansion. Information after the jump.
+              </p>
+              <a href="#pablo" class="btn btn-danger btn-round">
+                <i class="material-icons">format_align_left</i> Read Article
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="news__list row">
+        <div class="col-sm-12">
+
+          <div class="card card-plain card-blog">
+            <div class="card-image">
+              <a href="#pablo">
+                <img class="img img-raised" src="{{ paths.images }}/1920x1080/header1.jpeg">
+              </a>
+              <div class="ripple-container"></div></div>
+
+            <h6 class="category text-info">Boss Kill, Legion, Instance Name</h6>
+
+            <h3 class="card-title">
+              <a href="#pablo">Raid: Awkward Name kills some stuff!</a>
+            </h3>
+
+            <h5 class="card-description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla egestas blandit dictum. Cras justo augue, laoreet laoreet iaculis nec, scelerisque id justo. Sed commodo elit non tincidunt malesuada. Etiam non iaculis elit.
+            </h5>
+
+            <a href="#pablo" class="btn btn-primary btn-round"> Read More</a>
+          </div>
+
+          <div class="card card-plain card-blog">
+            <h6 class="category text-info">Instance Name</h6>
+
+            <h3 class="card-title">
+              <a href="#pablo">A post without an image!</a>
+            </h3>
+
+            <h5 class="card-description">
+              Cras justo augue, laoreet laoreet iaculis nec, scelerisque id justo. Sed commodo elit non tincidunt malesuada. Etiam non iaculis elit.
+            </h5>
+
+            <a href="#pablo" class="btn btn-primary btn-round"> Read More</a>
+          </div>
+
+          <div class="card card-plain card-blog">
+            <div class="card-image">
+              <a href="#pablo">
+                <img class="img img-raised" src="{{ paths.images }}/1920x1080/header1.jpeg">
+              </a>
+              <div class="ripple-container"></div></div>
+
+            <h6 class="category text-info">Boss Kill, Legion, Instance Name</h6>
+
+            <h3 class="card-title">
+              <a href="#pablo">Raid: Awkward Name kills some stuff!</a>
+            </h3>
+
+            <h5 class="card-description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla egestas blandit dictum. Cras justo augue, laoreet laoreet iaculis nec, scelerisque id justo. Sed commodo elit non tincidunt malesuada. Etiam non iaculis elit.
+            </h5>
+
+            <a href="#pablo" class="btn btn-primary btn-round"> Read More</a>
+          </div>
+
+        </div>
+      </div>
     </div>
-  </div>
 {% endblock %}
