@@ -5,52 +5,24 @@
 {% endblock %}
 
 {% block content %}
-    <div class="newsm text-center">
+    <div class="news text-center">
 
-      <div class="news__top row">
-        <div class="col-sm-12">
+      <div class="news__top">
           <h2 class="title news__title">Downfall News</h2>
           <h5 class="news__description">Latest posts, events, and raid kills. Make sure to check out full <a href="#">Posts</a> page for much more.</h5>
-        </div>
       </div>
 
       <div class="news__pinned row">
-        <div class="col-sm-6">
-          <div class="card card-raised card-background" style="background-image: url('{{ paths.images }}/1920x1080/WoWScrnShot_073116_121145.jpg')">
-            <div class="content">
-              <h6 class="category text-info">Announcement</h6>
-              <a href="#pablo">
-                <h3 class="card-title">Legendary Legion Weapons</h3>
-              </a>
-              <p class="card-description">
-                This is your guide to absolutely rocking out the entire questline for your legendary weapon in Legion.
-              </p>
-              <a href="#pablo" class="btn btn-primary btn-round">
-                <i class="material-icons">format_align_left</i> Read Article
-              </a>
-            </div>
+
+        {% for pinned in newsPinned %}
+          <div class="col-md-6">
+            {% include "@molecules/cards/card-full-bg.twig" with pinned %}
           </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card card-raised card-background" style="background-image: url('{{ paths.images }}/1920x1080/WoWScrnShot_073116_121145.jpg')">
-            <div class="content">
-              <h6 class="category text-info">Announcement</h6>
-              <a href="#pablo">
-                <h3 class="card-title">Raid Signups Happening Sept 1 - 15!</h3>
-              </a>
-              <p class="card-description">
-                Don't miss out on your chance to raid with Downfall in the Legion expansion. Information after the jump.
-              </p>
-              <a href="#pablo" class="btn btn-danger btn-round">
-                <i class="material-icons">format_align_left</i> Read Article
-              </a>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
+
       </div>
 
-      <div class="news__list row">
-        <div class="col-sm-12">
+      <div class="news__list">
 
           <div class="card card-plain card-blog">
             <div class="card-image">
@@ -106,7 +78,27 @@
             <a href="#pablo" class="btn btn-primary btn-round"> Read More</a>
           </div>
 
-        </div>
       </div>
     </div>
+{% endblock %}
+
+{% block sidebar %}
+  <div class="card card-profile card-plain">
+    <div class="card-avatar">
+      <a href="#pablo">
+        <img class="img" src="{{ img.avatar }}">
+      </a>
+    </div>
+
+    <div class="content">
+      <h6 class="category text-gray">Guildy, Site Admin</h6>
+
+      <h4 class="card-title">Garreth</h4>
+
+      <p class="card-description">
+        Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+      </p>
+      <a href="#pablo" class="btn btn-info btn-round">Follow</a>
+    </div>
+  </div>
 {% endblock %}

@@ -1,0 +1,16 @@
+<div class="card card-raised card-background" style="background-image: url('{{ img.landscape_medium }}')">
+  <div class="content">
+    <h6 class="category text-info">
+      {% for tag in tags %}
+        {{ tag }}
+      {% endfor %}
+    </h6>
+    <a href="#pablo">
+      <h3 class="card-title">{{ title }}</h3>
+    </a>
+    <p class="card-description">{{ teaser }}</p>
+    <a href="#pablo" class="btn btn-primary btn-round">
+      <i class="material-icons">format_align_left</i> {{ ctaText }}
+    </a>
+  </div>
+</div>

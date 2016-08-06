@@ -17,4 +17,8 @@ node_modules
 .idea
 atlassian-ide-plugin.xml
 
+# Errors
+npm-debug.log
+php_errors.log
+
 source/styleguide/css
