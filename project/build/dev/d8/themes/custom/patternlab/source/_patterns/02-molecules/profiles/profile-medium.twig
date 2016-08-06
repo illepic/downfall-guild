@@ -12,6 +12,9 @@
     <h4 class="card-title">{{ user.name }}</h4>
 
     <p class="card-description">{{ user.about }}</p>
+
+    {#{% include "@atoms/navs/edit-bar.twig" %}#}
+
     <a href="{{ user.url }}" class="btn btn-info"><i class="material-icons">mode_edit</i> Edit</a>
   </div>
 </div>
