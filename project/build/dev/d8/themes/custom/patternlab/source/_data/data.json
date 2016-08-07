@@ -157,5 +157,20 @@
     {
       "type": "event"
     }
+  ],
+  "thumbs": [
+    {"src": "../../../../images/thumbs/kill-1-thumb.png"},
+    {"src": "../../../../images/thumbs/kill-2-thumb.png"},
+    {"src": "../../../../images/thumbs/kill-4-thumb.png"},
+    {"src": "../../../../images/thumbs/kill-1-thumb.png"},
+    {"src": "../../../../images/thumbs/kill-1-thumb.png"},
+    {"src": "../../../../images/thumbs/kill-2-thumb.png"},
+    {"src": "../../../../images/thumbs/kill-4-thumb.png"},
+    {"src": "../../../../images/thumbs/kill-1-thumb.png"},
+    {"src": "../../../../images/thumbs/kill-1-thumb.png"},
+    {"src": "../../../../images/thumbs/kill-1-thumb.png"},
+    {"src": "../../../../images/thumbs/kill-2-thumb.png"},
+    {"src": "../../../../images/thumbs/kill-4-thumb.png"},
+    {"src": "../../../../images/thumbs/kill-1-thumb.png"}
   ]
 }

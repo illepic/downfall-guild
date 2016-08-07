@@ -2,9 +2,9 @@
 
 {%  block content %}
   <div class="row">
-    {% for image in images %}
+    {% for thumb in thumbs[:4] %}
       <div class="col-sm-6 thumb">
-        <a href="#" class="thumbnail"><img class="img-responsive" src="{{ image.src }}"/></a>
+        <a href="#" class="thumbnail"><img class="img-responsive" src="{{ thumb.src }}"/></a>
       </div>
     {% endfor %}
   </div>
