@@ -1,7 +1,7 @@
-{% include "@organisms/site/site-header/site-header.twig" %}
+{% include "@organisms/site/site-nav/site-nav.twig" %}
 
 {% block header %}
-  {% include "@molecules/header-block/header-block.twig" %}
+  {% include "@molecules/headers/header.twig" %}
 {% endblock %}
 
 <div class="main main-raised">
@@ -25,7 +25,7 @@
   </div> <!-- /.container -->
 </div> <!-- /.main -->
 
- <div class="container">
+ <div class="container subsection">
    <div class="section">
      {% block sub %}
        <div class="row">

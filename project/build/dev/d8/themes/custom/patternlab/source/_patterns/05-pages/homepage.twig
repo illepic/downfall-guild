@@ -1,11 +1,11 @@
 {% extends "@templates/site-layout.twig" %}
 
 {% block header %}
-  {% include "@molecules/header-block/header-block.twig" %}
+  {% include "@molecules/headers/header.twig" with header %}
 {% endblock %}
 
 {% block content %}
-  {% include "@organisms/sections/news.twig" with { "posts": posts } %}
+  {% include "@organisms/sections/news.twig" with news %}
 {% endblock %}
 
 {% block sidebar %}
