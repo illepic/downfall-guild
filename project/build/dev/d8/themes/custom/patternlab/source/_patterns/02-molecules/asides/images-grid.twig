@@ -1,0 +1,11 @@
+{% extends "@molecules/asides/aside.twig" %}
+
+{%  block content %}
+  <div class="row">
+    {% for image in images %}
+      <div class="col-sm-6 thumb">
+        <a href="#" class="thumbnail"><img class="img-responsive" src="{{ image.src }}"/></a>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

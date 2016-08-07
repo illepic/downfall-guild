@@ -49,5 +49,23 @@
       },
       {}
     ]
+  },
+  "sidebar": {
+    "content_list": {
+      "title": "New Stuff",
+      "icon": "timeline",
+      "cta_text": "All Stuff"
+    },
+    "images_grid": {
+      "title": "Latest Media",
+      "icon": "image",
+      "cta_text": "All Media",
+      "images": [
+        {"src": "../../../../images/thumbs/kill-1-thumb.png"},
+        {"src": "../../../../images/thumbs/kill-2-thumb.png"},
+        {"src": "../../../../images/thumbs/kill-4-thumb.png"},
+        {"src": "../../../../images/thumbs/kill-1-thumb.png"}
+      ]
+    }
   }
 }

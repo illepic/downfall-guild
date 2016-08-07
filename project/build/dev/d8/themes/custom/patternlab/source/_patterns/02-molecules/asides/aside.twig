@@ -1,0 +1,15 @@
+<div class="info content-list">
+  <div class="icon icon-primary text-center">
+    <i class="material-icons">{{ icon }}</i>
+  </div>
+  <h4 class="info-title text-center">{{ title }}</h4>
+
+  {% block content %}
+    <p>Aside content.</p>
+  {% endblock %}
+
+  <div class="text-center">
+    <a href="#" class="btn btn-primary btn-round"><i class="material-icons">{{ icon }}</i> {{ cta_text }}</a>
+  </div>
+
+</div>
