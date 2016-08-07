@@ -5,43 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="news text-center">
-
-      <div class="news__top">
-          <h2 class="title news__title">Downfall News</h2>
-          <h5 class="news__description">Latest posts, events, and raid kills. Make sure to check out full <a href="#">Posts</a> page for much more.</h5>
-      </div>
-
-      <div class="news__pinned row">
-
-        {% for pinned in newsPinned %}
-          <div class="col-md-6">
-            {% include "@molecules/cards/card-full-bg.twig" with pinned %}
-          </div>
-        {% endfor %}
-
-      </div>
-
-      <div class="news__list">
-
-        {% for news_item in news %}
-          {% include "@molecules/cards/card-plain.twig" with news_item %}
-        {% endfor %}
-
-        <div class="pagination-area text-center">
-          <ul class="pagination">
-            <li><a href="#pablo">«</a></li>
-            <li><a href="#pablo">1</a></li>
-            <li><a href="#pablo">2</a></li>
-            <li class="active"><a href="#pablo">3</a></li>
-            <li><a href="#pablo">4</a></li>
-            <li><a href="#pablo">5</a></li>
-            <li><a href="#pablo">»</a></li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
+  {% include "@organisms/sections/news.twig" with { "posts": posts } %}
 {% endblock %}
 
 {% block sidebar %}

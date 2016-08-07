@@ -1,0 +1,26 @@
+<div class="news text-center">
+
+  <div class="news__top">
+    <h2 class="title news__title">{% trans %}Downfall News{% endtrans %}</h2>
+    <h5 class="news__description">{% trans %}Latest posts, events, and raid kills. Make sure to check out full <a href="#">Posts</a> page for much more.{% endtrans %}</h5>
+  </div>
+
+  <div class="news__pinned row">
+    {% for post in posts if post.pinned %}
+      <div class="col-md-6">
+        {% include "@molecules/cards/card-full-bg.twig" with post %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="news__list row">
+    <div class="col-sm-12">
+      {% for post in posts if not post.pinned %}
+        {% include "@molecules/cards/card-plain.twig" with post %}
+      {% endfor %}
+
+      {% include "@atoms/navs/pagination.twig" %}
+    </div>
+  </div>
+
+</div>

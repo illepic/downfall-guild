@@ -1,5 +1,5 @@
 {
-  "newsPinned": [
+  "posts": [
     {
 
       "tags": ["Pinned"],
@@ -15,9 +15,7 @@
       "title": "Raid Signups Happening Sept 1 - 15!",
       "teaser": "Don't miss out on your chance to raid with Downfall in the Legion expansion. Information after the jump.",
       "pinned": true
-    }
-  ],
-  "news": [
+    },
     {
       "img": {
         "landscape_medium": "../../../../images/960x540/WoWScrnShot_012416_195350.jpg"
