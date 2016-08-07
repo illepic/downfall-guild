@@ -107,6 +107,11 @@
       "width": 1980
     }
   ],
+  "icons": {
+    "post": "line_style",
+    "media": "collections",
+    "event": "event_note"
+  },
   "posts": [
     {
       "pinned": true
@@ -119,5 +124,37 @@
     {},
     {},
     {}
+  ],
+  "latest_posts": [
+    {
+      "type": "post"
+    },
+    {
+      "type": "media"
+    },
+    {
+      "type": "event"
+    },
+    {
+      "type": "post"
+    },
+    {
+      "type": "post"
+    },
+    {
+      "type": "post"
+    },
+    {
+      "type": "event"
+    },
+    {
+      "type": "media"
+    },
+    {
+      "type": "post"
+    },
+    {
+      "type": "event"
+    }
   ]
 }

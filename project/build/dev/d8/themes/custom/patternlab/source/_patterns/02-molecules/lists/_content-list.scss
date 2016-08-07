@@ -1,3 +1,37 @@
-.sidebar-list__item {
-  margin: $padding-base 0;
+.content-list {
+  padding-top: $padding-base * 2;
+
+  .info-title {
+    margin: $padding-base 0 $padding-base * 2;
+  }
+  .icon {
+    color: $black-color;
+  }
+  .icon > i {
+    font-size: 3.5em;
+  }
+}
+
+.card-list {
+  //margin: $padding-base 0;
+
+  .card-description {
+    display: flex;
+    //align-items: center;
+    //text-align: justify;
+
+    a {
+      color: $gray-color;
+    }
+    a:hover {
+      color: $purple;
+    }
+    a {
+      display: block;
+      margin-left: $padding-base;
+    }
+  }
+  .author {
+    margin-bottom: 0;
+  }
 }

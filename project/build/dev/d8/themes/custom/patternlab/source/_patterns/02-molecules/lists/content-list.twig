@@ -1,12 +1,17 @@
 <div class="info content-list">
   <div class="icon icon-primary text-center">
-    <i class="material-icons">subject</i>
+    <i class="material-icons">timeline</i>
   </div>
-  <h4 class="info-title text-center">Recent Posts</h4>
-  <ul class="list-unstyled sidebar-list">
-    <li class="sidebar-list__item"><h4><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></h4></li>
-    <li class="sidebar-list__item">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
-    <li class="sidebar-list__item">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
-    <li class="sidebar-list__item">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
-  </ul>
+  <h4 class="info-title text-center">New Stuff</h4>
+
+  {% for post in latest_posts %}
+  <div class="content-list__item">
+    {% include "@molecules/cards/card-list.twig" with post %}
+  </div>
+  {% endfor %}
+
+  <div class="text-center">
+    <a href="#" class="btn btn-primary btn-round"><i class="material-icons">view_list</i> All Posts</a>
+  </div>
+
 </div>
