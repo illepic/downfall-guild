@@ -5,8 +5,12 @@
       <h3 class="card-title">{{ title }}</h3>
     </a>
     <p class="card-description">{{ teaser }}</p>
-    <a href="{{ url }}" class="btn btn-primary btn-round">
-      <i class="material-icons">format_align_left</i> {{ cta_text }}
-    </a>
+
+    {% include "@atoms/buttons/button.twig" with {
+      'button_icon': 'post',
+      'button_round': true,
+      'button_text': 'Read More'|t
+    } %}
+
   </div>
 </div>

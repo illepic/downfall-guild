@@ -121,7 +121,7 @@
   },
   "icon": "recent",
   "icons": {
-    "post": "line_style",
+    "post": "format_align_left",
     "media": "collections",
     "event": "event_note",
     "play": "play_arrow",
@@ -135,6 +135,10 @@
     {
       "pinned": true
     },
+    {},
+    {},
+    {},
+    {},
     {},
     {},
     {},

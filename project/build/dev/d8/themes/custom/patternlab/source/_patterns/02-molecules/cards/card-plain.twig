@@ -12,5 +12,11 @@
     <a href="{{ url }}">{{ title }}</a>
   </h3>
   <h5 class="card-description">{{ teaser }}</h5>
-  <a href="{{ url }}" class="btn btn-primary btn-round"> {{ cta_text }}</a>
+
+  {% include "@atoms/buttons/button.twig" with {
+    'button_icon': 'post',
+    'button_round': true,
+    'button_text': 'Read More'|t
+  } %}
+
 </div>
