@@ -9,10 +9,11 @@
   {% endblock %}
 
   <div class="text-center">
-    {% include "@atoms/buttons/button.twig" with button|default({
+    {% include "@atoms/buttons/button.twig" with {
       'button_icon': icon,
       'button_round': true,
-    })%}
+      'button_text': button.button_text|default('More Stuff')
+    } %}
   </div>
 
 </div>

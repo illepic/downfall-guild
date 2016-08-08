@@ -55,14 +55,15 @@
       "title": "New Stuff",
       "icon": "recent",
       "button": {
-        "button_text": "All Stuff",
-        "button_round": true
+        "button_text": "All Stuff"
       }
     },
-    "images_grid": {
+    "thumbs_grid": {
       "title": "Latest Media",
-      "icon": "image",
-      "cta_text": "All Media"
+      "icon": "media",
+      "button": {
+        "button_text": "All Media"
+      }
     }
   }
 }
