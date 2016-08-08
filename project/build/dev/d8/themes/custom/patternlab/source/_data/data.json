@@ -107,11 +107,25 @@
       "width": 1980
     }
   ],
-  "icon": "timeline",
+  "button_styles": {
+    "color": {
+      "primary": "btn-primary",
+      "info": "btn-info",
+      "rose": "btn-rose"
+    },
+    "size": {
+      "xsmall": "btn-xs",
+      "small": "btn-sm",
+      "large": "btn-lg"
+    }
+  },
+  "icon": "recent",
   "icons": {
     "post": "line_style",
     "media": "collections",
-    "event": "event_note"
+    "event": "event_note",
+    "play": "play_arrow",
+    "recent": "timeline"
   },
   "posts": [
     {

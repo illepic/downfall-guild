@@ -1,15 +1,18 @@
 <div class="info content-list">
   <div class="icon icon-primary text-center">
-    <i class="material-icons">{{ icon }}</i>
+    <i class="material-icons">{{ attribute(icons, icon) }}</i>
   </div>
   <h4 class="info-title text-center">{{ title }}</h4>
 
   {% block content %}
-    <p>Aside content.</p>
+    <p>Aside content. Aside content. Aside content. Aside content.</p>
   {% endblock %}
 
   <div class="text-center">
-    <a href="#" class="btn btn-primary btn-round"><i class="material-icons">{{ icon }}</i> {{ cta_text }}</a>
+    {% include "@atoms/buttons/button.twig" with button|default({
+      'button_icon': icon,
+      'button_round': true,
+    })%}
   </div>
 
 </div>

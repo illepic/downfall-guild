@@ -1,1 +1,10 @@
-<a href="#" class="button" contenteditable>{{ text }}</a>
+{% set classes = [
+  attribute(button_styles.color, button_color)|default('btn-primary'),
+  attribute(button_styles.size, button_size),
+  button_round ? 'btn-round',
+] %}
+
+<a href="#" class="btn {{ classes|join(' ') }}" contenteditable>
+  {% if button_icon %}<i class="material-icons">{{ attribute(icons, button_icon) }}</i>{% endif %}
+  {{ button_text|default('Button Text') }}
+</a>
