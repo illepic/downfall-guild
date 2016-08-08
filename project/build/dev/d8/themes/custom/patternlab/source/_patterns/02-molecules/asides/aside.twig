@@ -12,7 +12,7 @@
     {% include "@atoms/buttons/button.twig" with {
       'button_icon': icon,
       'button_round': true,
-      'button_text': button.button_text|default('More Stuff')
+      'button_text': cta|default('More Stuff')
     } %}
   </div>
 

@@ -54,16 +54,17 @@
     "content_list": {
       "title": "New Stuff",
       "icon": "recent",
-      "button": {
-        "button_text": "All Stuff"
-      }
+      "cta": "All Stuff"
     },
     "thumbs_grid": {
       "title": "Latest Media",
       "icon": "media",
-      "button": {
-        "button_text": "All Media"
-      }
+      "cta": "All Media"
+    },
+    "comment_list": {
+      "title": "Recent Comments",
+      "icon": "comment",
+      "cta": "All Posts"
     }
   }
 }

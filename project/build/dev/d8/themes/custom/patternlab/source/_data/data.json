@@ -125,7 +125,8 @@
     "media": "collections",
     "event": "event_note",
     "play": "play_arrow",
-    "recent": "timeline"
+    "recent": "timeline",
+    "comment": "comment"
   },
   "posts": [
     {
