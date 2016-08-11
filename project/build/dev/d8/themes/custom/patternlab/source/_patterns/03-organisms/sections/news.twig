@@ -6,7 +6,7 @@
   </div>
 
   <div class="news__pinned row">
-    {% for post in posts if post.pinned %}
+    {% for post in posts_pinned %}
       <div class="col-md-6">
         {% include "@molecules/cards/card-full-bg.twig" with post %}
       </div>
@@ -15,7 +15,7 @@
 
   <div class="news__list row">
     <div class="col-sm-12">
-      {% for post in posts if not post.pinned %}
+      {% for post in posts_recent %}
         {% include "@molecules/cards/card-plain.twig" with post %}
       {% endfor %}
 
