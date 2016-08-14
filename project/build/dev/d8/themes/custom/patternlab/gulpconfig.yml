@@ -19,7 +19,7 @@ css:
     - ./node_modules
     - ./bower_components
   sassdoc: # http://sassdoc.com
-    enabled: true
+    enabled: false
     dest: dest/sassdoc
     verbose: false
     basePath: https://github.com/phase2/pattern-lab-starter/blob/master/scss
@@ -67,26 +67,26 @@ patternLab:
       dest: source/_patterns/00-base/01-colors/colors.json
       lineStartsWith: $c-
       allowVarValues: false
-    -
-      src: source/_patterns/01-atoms/01-typography/fonts/_fonts.scss
-      dest: source/_patterns/01-atoms/01-typography/fonts/font-sizes.json
-      lineStartsWith: $fs--
-      allowVarValues: false
-    -
-      src: source/_patterns/01-atoms/01-typography/fonts/_fonts.scss
-      dest: source/_patterns/01-atoms/01-typography/fonts/font-families.json
-      lineStartsWith: $ff--
-      allowVarValues: false
+#    -
+#      src: source/_patterns/01-atoms/01-typography/fonts/_fonts.scss
+#      dest: source/_patterns/01-atoms/01-typography/fonts/font-sizes.json
+#      lineStartsWith: $fs--
+#      allowVarValues: false
+#    -
+#      src: source/_patterns/01-atoms/01-typography/fonts/_fonts.scss
+#      dest: source/_patterns/01-atoms/01-typography/fonts/font-families.json
+#      lineStartsWith: $ff--
+#      allowVarValues: false
 #    -
 #      src: source/_patterns/00-base/breakpoints/_breakpoints.scss
 #      dest: source/_patterns/00-base/breakpoints/breakpoints.json
 #      lineStartsWith: $bp--
 #      allowVarValues: false
-    -
-      src: source/_patterns/00-base/spacing/_spacing.scss
-      dest: source/_patterns/00-base/spacing/spacing.json
-      lineStartsWith: $spacing--
-      allowVarValues: false
+#    -
+#      src: source/_patterns/00-base/spacing/_spacing.scss
+#      dest: source/_patterns/00-base/spacing/spacing.json
+#      lineStartsWith: $spacing--
+#      allowVarValues: false
 icons:
   enabled: true
   src: images/icons/src/*.svg

@@ -62,10 +62,46 @@
       "icon": "recent",
       "cta": "All Stuff",
       "posts": [
-        {},
-        {},
-        {},
-        {}
+        {
+          "type": "post",
+          "user": { "name": "Elapsed" }
+        },
+        {
+          "type": "media",
+          "user": { "name": "Garreth" }
+        },
+        {
+          "type": "event",
+          "user": { "name": "Saedo" }
+        },
+        {
+          "type": "post",
+          "user": { "name": "Elapsed" }
+        },
+        {
+          "type": "post",
+          "user": { "name": "Elapsed" }
+        },
+        {
+          "type": "post",
+          "user": { "name": "Garreth" }
+        },
+        {
+          "type": "event",
+          "user": { "name": "Kognus" }
+        },
+        {
+          "type": "media",
+          "user": { "name": "Elapsed" }
+        },
+        {
+          "type": "post",
+          "user": { "name": "Garreth" }
+        },
+        {
+          "type": "event",
+          "user": { "name": "Saedo" }
+        }
       ]
     },
     "thumbs_grid": {

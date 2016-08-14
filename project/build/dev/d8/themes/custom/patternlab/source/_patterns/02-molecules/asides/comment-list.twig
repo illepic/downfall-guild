@@ -3,7 +3,7 @@
 {% block content %}
   {% for post in latest_posts %}
     <div class="content-list__item">
-    {% include "@molecules/cards/card-list.twig" with post %}
+      {% include "@molecules/cards/card-list.twig" with post %}
     </div>
   {% endfor %}
 {% endblock %}

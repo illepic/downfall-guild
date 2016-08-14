@@ -35,7 +35,8 @@
     "name": "Saedo",
     "roles": ["Guildy", "Admin"],
     "about": "Duis aute irure dolor in reprehenderit in voluptate velit esse.",
-    "url": "http://www.google.com"
+    "url": "http://www.google.com",
+    "avatar": {"img": "../../../../images/avatars/picture-44.jpg"}
   },
   "device_widths": [
     {

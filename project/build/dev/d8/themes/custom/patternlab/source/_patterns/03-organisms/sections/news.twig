@@ -5,24 +5,26 @@
     <h5 class="news__description">{{ 'Latest posts, events, and raid kills. Make sure to check out full <a href="#">Posts</a> page for much more.'|t }}</h5>
   </div>
 
-  {# MAKE THIS A BLOCK REGION SO WE HAVE THE POTENTIAL TO REUSE THIS WHOLE TEMPLATE IN DRUPAL #}
   <div class="news__pinned row">
-    {% for post in posts_pinned %}
-      <div class="col-md-6">
-        {% include "@molecules/cards/card-full-bg.twig" with post %}
-      </div>
-    {% endfor %}
+    {% block news_pinned %}
+      {% for post in posts_pinned %}
+        <div class="col-md-6">
+          {% include "@molecules/cards/card-full-bg.twig" with post %}
+        </div>
+      {% endfor %}
+    {% endblock %}
   </div>
 
-  {# MAKE THIS A BLOCK REGION SO WE HAVE THE POTENTIAL TO REUSE THIS WHOLE TEMPLATE IN DRUPAL #}
   <div class="news__list row">
-    <div class="col-sm-12">
-      {% for post in posts_recent %}
-        {% include "@molecules/cards/card-plain.twig" with post %}
-      {% endfor %}
+    {% block news_list %}
+      <div class="col-sm-12">
+        {% for post in posts_recent %}
+          {% include "@molecules/cards/card-plain.twig" with post %}
+        {% endfor %}
 
-      {% include "@atoms/navs/pagination.twig" %}
-    </div>
+        {% include "@atoms/navs/pagination.twig" %}
+      </div>
+    {% endblock %}
   </div>
 
 </div>
