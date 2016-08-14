@@ -5,6 +5,7 @@
     <h5 class="news__description">{{ 'Latest posts, events, and raid kills. Make sure to check out full <a href="#">Posts</a> page for much more.'|t }}</h5>
   </div>
 
+  {# MAKE THIS A BLOCK REGION SO WE HAVE THE POTENTIAL TO REUSE THIS WHOLE TEMPLATE IN DRUPAL #}
   <div class="news__pinned row">
     {% for post in posts_pinned %}
       <div class="col-md-6">
@@ -13,6 +14,7 @@
     {% endfor %}
   </div>
 
+  {# MAKE THIS A BLOCK REGION SO WE HAVE THE POTENTIAL TO REUSE THIS WHOLE TEMPLATE IN DRUPAL #}
   <div class="news__list row">
     <div class="col-sm-12">
       {% for post in posts_recent %}

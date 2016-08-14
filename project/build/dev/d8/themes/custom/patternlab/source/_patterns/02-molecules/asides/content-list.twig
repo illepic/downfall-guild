@@ -1,7 +1,7 @@
 {% extends "@molecules/asides/aside.twig" %}
 
 {% block content %}
-  {% for post in latest_posts %}
+  {% for post in posts %}
     <div class="content-list__item">
     {% include "@molecules/cards/card-list.twig" with post %}
     </div>

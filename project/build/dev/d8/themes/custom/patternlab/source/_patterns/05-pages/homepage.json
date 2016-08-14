@@ -27,24 +27,28 @@
     ],
     "posts_recent": [
       {
+        "promoted": true,
         "img": {
           "landscape_medium": "../../../../images/960x540/WoWScrnShot_012416_195350.jpg"
         },
         "title": "Raid: Awkward Name kills some stuff!"
       },
       {
+        "promoted": true,
         "img": {
           "landscape_medium": ""
         },
         "title": "A post without an image!"
       },
       {
+        "promoted": true,
         "img": {
           "landscape_medium": "../../../../images/960x540/header1.jpeg"
         },
         "title": "Raid Slightly More Appropriate Name Stomps Raid Monsterface"
       },
       {
+        "promoted": true,
         "img": {
           "landscape_medium": ""
         }
@@ -56,7 +60,13 @@
     "content_list": {
       "title": "New Stuff",
       "icon": "recent",
-      "cta": "All Stuff"
+      "cta": "All Stuff",
+      "posts": [
+        {},
+        {},
+        {},
+        {}
+      ]
     },
     "thumbs_grid": {
       "title": "Latest Media",
