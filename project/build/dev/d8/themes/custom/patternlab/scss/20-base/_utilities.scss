@@ -118,3 +118,13 @@ $breakpoints: (
         + "Please make sure it is defined in `$breakpoints` map.";
   }
 }
+
+@mixin link-muted() {
+  a {
+    color: $gray-color;
+    font-weight: 400;
+  }
+  a:hover {
+    color: $purple;
+  }
+}

@@ -1,0 +1,27 @@
+.card-list {
+  //margin: $padding-base 0;
+
+  .card-description {
+    @include link-muted();
+
+    display: flex;
+    a {
+      display: block;
+      margin-left: $padding-base;
+    }
+  }
+  .author {
+    margin-bottom: 0;
+  }
+}
+
+.card-comment {
+  display: flex;
+}
+.card-comment__left {
+  flex: 0 0 $padding-base * 3;
+  margin-right: $padding-base;
+}
+.card-comment__comment {
+  @include link-muted();
+}

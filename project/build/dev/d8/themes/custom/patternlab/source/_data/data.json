@@ -131,52 +131,49 @@
   },
   "posts": [
     {
-      "pinned": true
+      "pinned": true,
+      "type": "post"
     },
     {
-      "pinned": true
+      "pinned": true,
+      "type": "post"
     },
-    {},
-    {},
-    {},
+    {
+      "type": "post"
+    },
+    {
+      "type": "post"
+    },
+    {
+      "type": "post"
+    },
+    {
+      "type": "post"
+    },
+    {
+      "type": "post"
+    },
+    {
+      "type": "post"
+    },
+    {
+      "type": "post"
+    },
+    {
+      "type": "post"
+    },
+    {
+      "type": "post"
+    }
+  ],
+  "node_title": "Node title for comment",
+  "comments": [
     {},
     {},
     {},
     {},
     {},
     {}
-  ],
-  "latest_posts": [
-    {
-      "type": "post"
-    },
-    {
-      "type": "media"
-    },
-    {
-      "type": "event"
-    },
-    {
-      "type": "post"
-    },
-    {
-      "type": "post"
-    },
-    {
-      "type": "post"
-    },
-    {
-      "type": "event"
-    },
-    {
-      "type": "media"
-    },
-    {
-      "type": "post"
-    },
-    {
-      "type": "event"
-    }
   ],
   "thumbs": [
     {"src": "../../../../images/thumbs/kill-1-thumb.png"},

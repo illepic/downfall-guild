@@ -1,9 +1,9 @@
 {% extends "@molecules/asides/aside.twig" %}
 
 {% block content %}
-  {% for post in latest_posts %}
+  {% for comment in comments %}
     <div class="content-list__item">
-      {% include "@molecules/cards/card-list.twig" with post %}
+      {% include "@molecules/cards/card-comment.twig" with comment %}
     </div>
   {% endfor %}
 {% endblock %}

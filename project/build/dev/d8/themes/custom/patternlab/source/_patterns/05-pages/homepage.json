@@ -63,44 +63,24 @@
       "cta": "All Stuff",
       "posts": [
         {
-          "type": "post",
+          "icon": "post",
           "user": { "name": "Elapsed" }
         },
         {
-          "type": "media",
+          "icon": "media",
           "user": { "name": "Garreth" }
         },
         {
-          "type": "event",
+          "icon": "event",
           "user": { "name": "Saedo" }
         },
         {
-          "type": "post",
+          "icon": "post",
           "user": { "name": "Elapsed" }
         },
         {
-          "type": "post",
+          "icon": "post",
           "user": { "name": "Elapsed" }
-        },
-        {
-          "type": "post",
-          "user": { "name": "Garreth" }
-        },
-        {
-          "type": "event",
-          "user": { "name": "Kognus" }
-        },
-        {
-          "type": "media",
-          "user": { "name": "Elapsed" }
-        },
-        {
-          "type": "post",
-          "user": { "name": "Garreth" }
-        },
-        {
-          "type": "event",
-          "user": { "name": "Saedo" }
         }
       ]
     },
@@ -112,7 +92,40 @@
     "comment_list": {
       "title": "Recent Comments",
       "icon": "comment",
-      "cta": "All Posts"
+      "cta": "All Posts",
+      "comments": [
+        {
+          "title": "Lorem ipsum dolor sit amet, consectetur. Adipisicing elit, sed do eiusmod. Adipisicing elit, sed do eiusmod sed do eiusmod ...",
+          "node_title": "Raid Slightly More Appropriate Name Stomps Raid Monsterface"
+        },
+        {
+          "node_title": "Raid: Awkward Name kills some stuff!"
+        },
+        {
+          "node_title": "Raid Slightly More Appropriate Name Stomps Raid Monsterface"
+        },
+        {
+          "node_title": "Raid: Awkward Name kills some stuff!"
+        },
+        {
+          "node_title": "Raid Slightly More Appropriate Name Stomps Raid Monsterface"
+        },
+        {
+          "node_title": "Raid: Awkward Name kills some stuff!"
+        },
+        {
+          "node_title": "Raid Slightly More Appropriate Name Stomps Raid Monsterface"
+        },
+        {
+          "node_title": "Raid: Awkward Name kills some stuff!"
+        },
+        {
+          "node_title": "Raid Slightly More Appropriate Name Stomps Raid Monsterface"
+        },
+        {
+          "node_title": "Raid: Awkward Name kills some stuff!"
+        }
+      ]
     }
   }
 }

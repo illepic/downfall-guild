@@ -1,0 +1,21 @@
+{#<div class="card card-plain card-list">#}
+  {#<p class="card-description">#}
+    {#<i class="material-icons card-list__icon">{{ attribute(icons, icon) }}</i>#}
+    {#<a href="#">Comment: {{ title }}</a>#}
+  {#</p>#}
+  {#<p class="author">#}
+    {#about 2 days ago by <a href="#"><b>{{ user.name }}</b></a> in <span class="text-default">Priest</span>, <span class="text-success">Guild</span>#}
+  {#</p>#}
+{#</div>#}
+
+<div class="card card-plain card-comment">
+  <div class="card-comment__left">
+    <div class="card-comment__avatar">
+      {% include "@atoms/users/user-avatar-small.twig" %}
+    </div>
+  </div>
+  <div class="card-comment__right">
+    <p class="card-comment__info small">about 2 days ago in <a href="{{ node_link }}">{{ node_title }}</a></p>
+    <p class="card-comment__comment"><a href="{{ comment_link }}">{{ title }}</a></p>
+  </div>
+</div>
