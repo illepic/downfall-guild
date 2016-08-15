@@ -1,0 +1,23 @@
+{% extends "@templates/site-layout.twig" %}
+
+{% block header %}
+  {% include "@molecules/headers/header.twig" with header %}
+{% endblock %}
+
+{% block content %}
+  <ul class="nav nav-pills nav-pills-primary">
+    <li class="active"><a href="#pill1" data-toggle="tab">All</a></li>
+    <li><a href="#pill2" data-toggle="tab">Posts</a></li>
+    <li><a href="#pill3" data-toggle="tab">Events</a></li>
+    <li><a href="#pill4" data-toggle="tab">Articles</a></li>
+    <li><a href="#pill5" data-toggle="tab">Images</a></li>
+    <li><a href="#pill5" data-toggle="tab">Videos</a></li>
+  </ul>
+  <div class="tab-space"></div>
+  <h1>tracker content</h1>
+{% endblock %}
+
+{% block sidebar %}
+  {% include "@molecules/asides/comment-list.twig" with sidebar.comment_list %}
+  {% include "@molecules/asides/thumbs-grid.twig" with sidebar.thumbs_grid %}
+{% endblock %}
