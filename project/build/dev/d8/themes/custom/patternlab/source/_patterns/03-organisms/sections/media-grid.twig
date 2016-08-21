@@ -1,0 +1,12 @@
+
+<div class="row">
+  {% include "@molecules/navs/nav-tabs.twig" %}
+
+  {% for thumb in thumbs %}
+    <div class="col-sm-3 thumb">
+      <a href="#" class="thumbnail"><img class="img-responsive" src="{{ thumb.src }}"/></a>
+    </div>
+  {% endfor %}
+
+  {% include "@atoms/navs/pagination.twig" %}
+</div>
