@@ -1,82 +1,82 @@
-var gulp = require('gulp')
-  ,symlink = require('gulp-symlink')
-  ,runSequence = require('run-sequence')
-  ,git = require('gulp-git')
-  ,browserSync = require('browser-sync')
-  ,reload = browserSync.reload
-  ,sass = require('gulp-sass')
-  ,exec = require('gulp-exec');
+//var gulp = require('gulp')
+//  ,symlink = require('gulp-symlink')
+//  ,runSequence = require('run-sequence')
+//  ,git = require('gulp-git')
+//  ,browserSync = require('browser-sync')
+//  ,reload = browserSync.reload
+//  ,sass = require('gulp-sass')
+//  ,exec = require('gulp-exec');
 
 gulp.task('default', function() {
 
 });
 
 // Check for and cloen the Drupal VM repo
-gulp.task('drupalVM:repo', function() {
-
-  var config = ['config/config.yml', 'config/drupal.make.yml'];
-  var dest = 'drupal-vm';
-
-  git.clone('git@github.com:geerlingguy/drupal-vm.git', function (err) {
-    if (err == null) {
-
-      console.log('Clone successful, copying config');
-
-      return gulp.src(config)
-        .pipe(gulp.dest(dest));
-
-    } else {
-
-      console.log('Folder exists, updating repo, copying config');
-
-      git.pull('origin', 'master', {cwd: 'drupal-vm'}, function(err) {
-
-        //if (err) throw err;
-
-        return gulp.src(config)
-          .pipe(gulp.dest(dest));
-
-      });
-    }
-  });
-
-});
+//gulp.task('drupalVM:repo', function() {
+//
+//  var config = ['config/config.yml', 'config/drupal.make.yml'];
+//  var dest = 'drupal-vm';
+//
+//  git.clone('git@github.com:geerlingguy/drupal-vm.git', function (err) {
+//    if (err == null) {
+//
+//      console.log('Clone successful, copying config');
+//
+//      return gulp.src(config)
+//        .pipe(gulp.dest(dest));
+//
+//    } else {
+//
+//      console.log('Folder exists, updating repo, copying config');
+//
+//      git.pull('origin', 'master', {cwd: 'drupal-vm'}, function(err) {
+//
+//        //if (err) throw err;
+//
+//        return gulp.src(config)
+//          .pipe(gulp.dest(dest));
+//
+//      });
+//    }
+//  });
+//
+//});
 
 // Symlink into the Drupal VM repo our custom config files
-gulp.task('drupalVM:copy:VMConfig', function() {
-  console.log('Writing config to vm');
-  return gulp.src(['config/config.yml', 'config/drupal.make.yml'])
-    .pipe(gulp.dest('drupal-vm'));
-});
+//gulp.task('drupalVM:copy:VMConfig', function() {
+//  console.log('Writing config to vm');
+//  return gulp.src(['config/config.yml', 'config/drupal.make.yml'])
+//    .pipe(gulp.dest('drupal-vm'));
+//});
 
 // Restart vagrant: this changes the server AND rebuilds drupal if we've deleted it
-var vagrantoptions = {
-  cwd: __dirname + '/drupal-vm',
-  continueOnError: false,
-  pipeStdout: false
-};
-gulp.task('drupalVM:vagrantUp', function() {
-  return gulp.src('')
-    .pipe(exec('vagrant halt && vagrant up --provision', vagrantoptions)
-    );
-});
+//var vagrantoptions = {
+//  cwd: __dirname + '/drupal-vm',
+//  continueOnError: false,
+//  pipeStdout: false
+//};
+//gulp.task('drupalVM:vagrantUp', function() {
+//  return gulp.src('')
+//    .pipe(exec('vagrant halt && vagrant up --provision', vagrantoptions)
+//    );
+//});
 
 // Symlink our local custom drupal module dev work
-gulp.task('d8:symlink:D8Modules', function() {
-  return gulp.src('project/build/dev/d8/modules/custom')
-    .pipe(symlink('project/web/d8/modules/custom', {force: true}));
-});
+//gulp.task('d8:symlink:D8Modules', function() {
+//  return gulp.src('project/build/dev/d8/modules/custom')
+//    .pipe(symlink('project/web/d8/modules/custom', {force: true}));
+//});
 
 // Run each task consecutively
-gulp.task('d8:rebuild', function(callback) {
-  runSequence(
-    'drupalVM:repo',
-    'drupalVM:copy:VMConfig',
-    'drupalVM:vagrantUp',
-    'd8:symlink:D8Modules',
-    callback
-  );
-});
+//gulp.task('d8:rebuild', function(callback) {
+//  runSequence(
+//    'drupalVM:repo',
+//    'drupalVM:copy:VMConfig',
+//    'drupalVM:vagrantUp',
+//    'd8:symlink:D8Modules',
+//    callback
+//  );
+//});
 
 // PL stuff
 //gulp.task('pl:gulp:package', function() {
@@ -93,69 +93,6 @@ gulp.task('d8:rebuild', function(callback) {
 //    .pipe(symlink('node_modules/patternlab-node/source', {force: true}));
 //});
 
-var ploptions = {
-  cwd: __dirname + '/redesign/pl',
-  continueOnError: false,
-  pipeStdout: false
-};
-
-// First, full build of PL. Only needs to run once
-gulp.task('pl:build', function() {
-  return gulp.src('')
-    .pipe(
-      exec('gulp lab', ploptions)
-    );
-});
-
-//var exec = require('child_process').exec;
-
-// Rebuild patterns
-gulp.task('pl:patternlab', function() {
-  return gulp.src('')
-    .pipe(exec('gulp lab', ploptions));
-});
-gulp.task('watch-pl:patternlab', ['pl:patternlab'], reload);
-
-// Sass
-gulp.task('browser-sync', function() {
-  browserSync({
-      startPath: 'redesign/pl/public',
-      server: {
-        baseDir: './'
-      }
-  });
-});
-gulp.task('sass', function() {
-  return gulp.src('redesign/assets/src/sass/style.scss')
-    .pipe(sass({
-      sourceMap: true,
-      outputStyle: 'expanded',
-      includePaths: ['redesign/assets/src/sass']
-    }))
-    .pipe(gulp.dest('redesign/assets/compiled/css'))
-    .pipe(reload({stream: true}));
-});
-
-gulp.task('proto:reload', reload);
-
-// Prototype watch
-gulp.task('proto', ['sass', 'pl:build', 'browser-sync'], function() {
-  gulp.watch('redesign/assets/src/sass/**/*.scss', ['sass']);
-
-  gulp.watch([
-    'redesign/pl/source/_patterns/**/*.mustache',
-    'redesign/pl/source/_patterns/**/*.json',
-    'redesign/pl/source/_data/*.json'], ['watch-pl:patternlab']);
-
-  gulp.watch('redesign/assets/src/js/**/*.js', ['proto:reload']);
-
-});
-
-// D6 Work
-//gulp.task('d6:sync', function() {
-//  return gulp.src('')
-//    .pipe(shell(['rsync -zvrP ' + argv.user + '@direct.illepic.com:webapps/downfall_drupal/ d6/'], {cwd: 'project/web'}));
-//});
 
 // ====================== OLD BELOW ================================
 
