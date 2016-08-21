@@ -6,6 +6,9 @@
         <a href="{{ url }}">
           <img class="img img-rounded img-raised hidden-xs" src="{{ img.square }}">
           <img class="img img-rounded img-raised visible-xs-block" src="{{ img.landscape_medium }}">
+          {% if type == 'video' %}
+            {% include "@atoms/images/play.twig" %}
+          {% endif %}
         </a>
       </div>
     </div>

@@ -4,3 +4,8 @@
     font-size: 130%;
   }
 }
+
+// Material Kit override
+.navbar .navbar-nav > li > a .material-icons {
+  max-width: none;
+}

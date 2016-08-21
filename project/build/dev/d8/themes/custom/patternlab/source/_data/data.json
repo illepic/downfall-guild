@@ -244,6 +244,7 @@
     {
       "type": "image",
       "title": "Big ass demon invasion guy",
+      "teaser": "This dude ain't screwing around",
       "img": {
         "landscape_medium": "../../../../images/960x540/bh0UYQx.png"
       },
@@ -253,6 +254,14 @@
     },
     {
       "type": "post",
+      "img": false,
+      "comments": {
+        "count": 5
+      }
+    },
+    {
+      "type": "post",
+      "img": false,
       "comments": {
         "count": 5
       }
@@ -271,12 +280,7 @@
     },
     {
       "type": "post",
-      "comments": {
-        "count": 5
-      }
-    },
-    {
-      "type": "post",
+      "img": false,
       "comments": {
         "count": 5
       }

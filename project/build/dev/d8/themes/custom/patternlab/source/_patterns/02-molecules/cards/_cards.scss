@@ -75,6 +75,7 @@
   }
 }
 
+// Overrides for Material-Kit defaults
 .card-background {
     .author {
       a {
@@ -85,5 +86,10 @@
     .stats {
       color: $white-transparent;
     }
+  }
+}
+.card-image {
+  a {
+    display: block;
   }
 }
