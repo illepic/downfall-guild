@@ -1,0 +1,57 @@
+<div class="card card-plain card-blog card-tracker">
+
+  {% if img %}
+  <div class="card-tracker__left">
+    <div class="card-image">
+        <a href="{{ url }}">
+          <img class="img img-rounded img-raised hidden-xs" src="{{ img.square }}">
+          <img class="img img-rounded img-raised visible-xs-block" src="{{ img.landscape_medium }}">
+          {% if type == 'video' %}
+            {% include "@atoms/images/play.twig" %}
+          {% endif %}
+        </a>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if type == 'event' %}
+    <div class="card-tracker__left content-info content text-center card-tracker__event-block">
+
+      <h3 class="card-title">Saturday</h3>
+      <h4 class="card-title">9/12 </h4>
+      <h4 class="card-title">@ 9:30pm PST</h4>
+      <a href="#" class="btn btn-white btn-round">Sign Up</a>
+
+    </div>
+  {% endif %}
+
+  <div class="card-tracker__right">
+    <h6 class="category text-info">
+      <span><i class="material-icons card-tracker__type">{{ attribute(icons, type) }}</i> {{ type }} | </span>
+      <span class="card__tags">{{ tags|join(', ') }}</span>
+      <span class="card-tracker__timestamp">{{ timestamp|date('m/d/Y \\@ g:i a') }}</span>
+    </h6>
+    <h4 class="card-title">
+      <a href="{{ url }}"> {{ title|escape }}</a>
+    </h4>
+
+    <p class="card-description">{{ teaser }}</p>
+
+    <div class="footer">
+      <div class="author">
+        <a href="#">
+          <img src="{{ user.avatar.img }}" alt="..." class="avatar img-raised">
+          <span>{{ user.name }}</span>
+        </a>
+      </div>
+      <div class="stats">
+        {% if comments %}
+          <span><i class="material-icons">comment</i> {{ comments.count }} comments</span>
+          {% if comments.new %}<span class="label label-success">New</span>{% endif %} |
+        {% endif %}
+        <span><i class="material-icons">timeline</i> 1,291 views</span>
+      </div>
+    </div>
+  </div>
+
+</div> <!-- /.card-tracker -->

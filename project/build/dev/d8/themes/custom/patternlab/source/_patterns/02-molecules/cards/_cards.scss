@@ -25,3 +25,71 @@
 .card-comment__comment {
   @include link-muted();
 }
+
+.card-tracker {
+  @include respond-to('sm') {
+    display: flex;
+    justify-content: center;
+    //align-items: center;
+  }
+
+  .card-image {
+    height: auto;
+  }
+}
+.card-tracker__left,
+.card-tracker__right {
+  @include respond-to('sm') {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    //flex: 1 0 25%;
+    //margin-right: $padding-base * 2;
+  }
+}
+.card-tracker__left {
+
+  @include respond-to('sm') {
+    flex: 0 0 33%;
+    margin-right: $padding-base *2;
+  }
+}
+
+.card-tracker__event-block {
+  .card-plain & {
+    padding: $padding-base $padding-base * 2;
+  }
+}
+
+.card-tracker__timestamp {
+  float: right;
+}
+.card-tracker__type {
+  font-size: 19px;
+}
+
+.card-tracker--image {
+  margin-top: $padding-base * 2;
+  .card-title a {
+    color: $white;
+  }
+}
+
+// Overrides for Material-Kit defaults
+.card-background {
+    .author {
+      a {
+        color: $white-transparent;
+      }
+    }
+  .footer {
+    .stats {
+      color: $white-transparent;
+    }
+  }
+}
+.card-image {
+  a {
+    display: block;
+  }
+}

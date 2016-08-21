@@ -1,12 +1,20 @@
 {
   "items": [
     {
-      "name": "$spacing--sm",
-      "value": "5px"
+      "name": "$spacing",
+      "value": "15px"
     },
     {
-      "name": "$spacing--l",
-      "value": "20px"
+      "name": "$spacing--double",
+      "value": "30px"
+    },
+    {
+      "name": "$spacing--triple",
+      "value": "45px"
+    },
+    {
+      "name": "$spacing--quadruple",
+      "value": "60px"
     }
   ],
   "meta": {

@@ -1,0 +1,26 @@
+<div class="tracker">
+  <div class="tracker__top row filter-top">
+    <div class="col-sm-12">
+      <div class="tracker__left pull-left">
+        {% include "@molecules/navs/nav-tabs.twig" %}
+      </div>
+      <div class="tracker__right pull-right">
+        {% include "@molecules/navs/dropdown.twig" %}
+      </div>
+    </div>
+  </div>
+
+  <div class="tracker__content row">
+    <div class="col-sm-12">
+      {% for node in nodes %}
+        {% set type = node.type == 'image' ? 'image' : 'default' %}
+        <div class="tracker__content-item">
+          {% include "@molecules/cards/card-tracker-" ~ type ~ ".twig" with node %}
+          {% include "@atoms/elements/df-hr.twig" %}
+        </div>
+      {% endfor %}
+
+      {% include "@atoms/navs/pagination.twig" %}
+    </div>
+  </div>
+</div>

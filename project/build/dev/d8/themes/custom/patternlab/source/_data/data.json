@@ -18,7 +18,8 @@
   "img": {
     "avatar": "../../../../images/avatars/picture-44.jpg",
     "landscape_large": "../../../../images/1920x1080/1920x1080.jpg",
-    "landscape_medium": "../../../../images/960x540/960x540.jpg"
+    "landscape_medium": "../../../../images/960x540/960x540.jpg",
+    "square": "../../../../images/thumbs/kill-1-thumb.png"
   },
   "headline": {
     "short": "Lorem ipsum dolor sit amet, consectetur",
@@ -126,6 +127,8 @@
     "media": "collections",
     "event": "event_note",
     "play": "play_arrow",
+    "video": "movie",
+    "image": "collections",
     "recent": "timeline",
     "comment": "comment"
   },
@@ -188,6 +191,99 @@
     {"src": "../../../../images/thumbs/kill-1-thumb.png"},
     {"src": "../../../../images/thumbs/kill-2-thumb.png"},
     {"src": "../../../../images/thumbs/kill-4-thumb.png"},
+    {"src": "../../../../images/thumbs/kill-1-thumb.png"},
+    {"src": "../../../../images/thumbs/kill-4-thumb.png"},
+    {"src": "../../../../images/thumbs/kill-1-thumb.png"},
+    {"src": "../../../../images/thumbs/kill-1-thumb.png"},
+    {"src": "../../../../images/thumbs/kill-1-thumb.png"},
+    {"src": "../../../../images/thumbs/kill-2-thumb.png"},
+    {"src": "../../../../images/thumbs/kill-4-thumb.png"},
     {"src": "../../../../images/thumbs/kill-1-thumb.png"}
+  ],
+  "nodes": [
+    {
+      "pinned": true,
+      "type": "post",
+      "title": "Random title that is possibly long",
+      "img": false,
+      "timestamp": "2016-05-21T17:02:39+00:00",
+      "comments": {
+        "count": 17,
+        "new": true
+      }
+    },
+    {
+      "pinned": true,
+      "type": "post",
+      "title": "Another random title that is long and maybe has special <chars>",
+      "comments": {
+        "count": 23,
+        "new": true
+      }
+    },
+    {
+      "type": "event",
+      "img": false,
+      "comments": {
+        "count": 5
+      }
+    },
+    {
+      "type": "image",
+      "teaser": "Images probably don't have a lot of description",
+      "comments": {
+        "count": 5
+      }
+    },
+    {
+      "type": "video",
+      "comments": {
+        "count": 5
+      }
+    },
+    {
+      "type": "image",
+      "title": "Big ass demon invasion guy",
+      "teaser": "This dude ain't screwing around",
+      "img": {
+        "landscape_medium": "../../../../images/960x540/bh0UYQx.png"
+      },
+      "comments": {
+        "count": 10
+      }
+    },
+    {
+      "type": "post",
+      "img": false,
+      "comments": {
+        "count": 5
+      }
+    },
+    {
+      "type": "post",
+      "img": false,
+      "comments": {
+        "count": 5
+      }
+    },
+    {
+      "type": "post",
+      "comments": {
+        "count": 5
+      }
+    },
+    {
+      "type": "post",
+      "comments": {
+        "count": 5
+      }
+    },
+    {
+      "type": "post",
+      "img": false,
+      "comments": {
+        "count": 5
+      }
+    }
   ]
 }

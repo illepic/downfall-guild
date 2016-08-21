@@ -1,5 +1,46 @@
 {
-  "items": [],
+  "items": [
+    {
+      "name": "$c-brand-primary",
+      "value": "#9c27b0",
+      "comment": "material-kit/_variables.scss"
+    },
+    {
+      "name": "$c-brand-success",
+      "value": "#4caf50",
+      "comment": "material-kit/_variables.scss"
+    },
+    {
+      "name": "$c-brand-danger",
+      "value": "#f44336",
+      "comment": "material-kit/_variables.scss"
+    },
+    {
+      "name": "$c-brand-warning",
+      "value": "#ff9800",
+      "comment": "material-kit/_variables.scss"
+    },
+    {
+      "name": "$c-brand-info",
+      "value": "#00bcd4",
+      "comment": "material-kit/_variables.scss"
+    },
+    {
+      "name": "$c-brand-rose",
+      "value": "#e91e63",
+      "comment": "material-kit/_variables.scss"
+    },
+    {
+      "name": "$c-text-color-light",
+      "value": "#ffffff",
+      "comment": ""
+    },
+    {
+      "name": "$c-text-color-primary",
+      "value": "#3C4858",
+      "comment": ""
+    }
+  ],
   "meta": {
     "description": "To add to these items, use Sass variables that start with <code>$c-</code> in <code>source/_patterns/00-base/01-colors/_color-vars.scss</code>"
   }

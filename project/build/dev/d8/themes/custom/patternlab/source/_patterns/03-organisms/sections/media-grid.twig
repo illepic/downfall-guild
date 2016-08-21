@@ -1,0 +1,16 @@
+
+<div class="media-grid">
+  <div class="media-grid__top filter-top">
+    {% include "@molecules/navs/nav-tabs.twig" %}
+  </div>
+
+  <div class="media-grid__content row">
+    {% for thumb in thumbs %}
+      <div class="col-sm-3 thumb">
+        <a href="#" class="thumbnail"><img class="img-responsive" src="{{ thumb.src }}"/></a>
+      </div>
+    {% endfor %}
+
+    {% include "@atoms/navs/pagination.twig" %}
+  </div>
+</div>
