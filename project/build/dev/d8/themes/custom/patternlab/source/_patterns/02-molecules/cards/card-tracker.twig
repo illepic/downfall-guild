@@ -1,6 +1,6 @@
 <div class="card card-plain card-blog card-tracker">
 
-  {% if img.square %}
+  {% if img %}
   <div class="card-tracker__left">
     <div class="card-image">
         <a href="{{ url }}">
@@ -14,7 +14,7 @@
   <div class="card-tracker__right">
     <h6 class="category text-info">{{ tags|join(', ') }}</h6>
     <h4 class="card-title">
-      <a href="{{ url }}">{{ title }}</a>
+      <a href="{{ url }}">{{ title|escape }}</a>
     </h4>
 
     <p class="card-description">{{ teaser }}</p>
@@ -27,9 +27,13 @@
         </a>
       </div>
       <div class="stats">
-        <span><i class="material-icons">comment</i> 17 comments</span> | <span><i class="material-icons">timeline</i> 1,291 views</span></span>
+        {% if comments %}
+          <span><i class="material-icons">comment</i> {{ comments.count }} comments</span>
+          {% if comments.new %}<span class="label label-success">New</span>{% endif %} |
+        {% endif %}
+        <span><i class="material-icons">timeline</i> 1,291 views</span>
       </div>
     </div>
   </div>
 
-</div>
+</div> <!-- /.card-tracker -->

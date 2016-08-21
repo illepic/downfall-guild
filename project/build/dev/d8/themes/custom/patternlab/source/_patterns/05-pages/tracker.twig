@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-  {% embed "@organisms/sections/tracker.twig" %}{% endembed %}
+  {% include "@organisms/sections/tracker.twig" with { 'nodes': nodes } %}
 {% endblock %}
 
 {% block sidebar %}

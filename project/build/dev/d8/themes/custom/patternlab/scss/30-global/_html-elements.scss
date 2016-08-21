@@ -25,7 +25,30 @@
 //.nav-pills-icons {
 //  margin-bottom: $padding-base * 3;
 //}
-
+svg:not(:root) {
+  overflow: hidden;
+}
+svg {
+  fill: currentColor;
+}
 .button-lineup-tabs {
   margin: 3px 0 0;
+}
+.filter-top {
+  margin-bottom: $padding-base * 3;
+}
+
+.df-hr {
+  padding: $padding-base * 3 20%;
+  color: $gray-lighter;
+  text-align: center;
+  position: relative;
+  hr {
+    margin: 0;
+    border-color: $gray-lighter;
+  }
+}
+.df-hr__logo {
+  font-size: $padding-base * 3;
+  transform: translateY(-50%);
 }
