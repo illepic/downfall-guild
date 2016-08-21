@@ -25,3 +25,21 @@
 .card-comment__comment {
   @include link-muted();
 }
+
+.card-tracker {
+
+  @include respond-to('sm') {
+    display: flex;
+    align-items: center;
+  }
+
+  .card-image {
+    height: auto;
+  }
+}
+.card-tracker__left {
+  @include respond-to('sm') {
+    flex: 0 0 25%;
+    margin-right: $padding-base * 2;
+  }
+}

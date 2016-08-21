@@ -1,0 +1,35 @@
+<div class="card card-plain card-blog card-tracker">
+
+  {% if img.square %}
+  <div class="card-tracker__left">
+    <div class="card-image">
+        <a href="{{ url }}">
+          <img class="img img-rounded img-raised hidden-xs" src="{{ img.square }}">
+          <img class="img img-rounded img-raised visible-xs-block" src="{{ img.landscape_medium }}">
+        </a>
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="card-tracker__right">
+    <h6 class="category text-info">{{ tags|join(', ') }}</h6>
+    <h4 class="card-title">
+      <a href="{{ url }}">{{ title }}</a>
+    </h4>
+
+    <p class="card-description">{{ teaser }}</p>
+
+    <div class="footer">
+      <div class="author">
+        <a href="#pablo">
+          <img src="{{ user.avatar.img }}" alt="..." class="avatar img-raised">
+          <span>{{ user.name }}</span>
+        </a>
+      </div>
+      <div class="stats">
+        <span><i class="material-icons">comment</i> 17 comments</span> | <span><i class="material-icons">timeline</i> 1,291 views</span></span>
+      </div>
+    </div>
+  </div>
+
+</div>

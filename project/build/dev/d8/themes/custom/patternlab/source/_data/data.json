@@ -18,7 +18,8 @@
   "img": {
     "avatar": "../../../../images/avatars/picture-44.jpg",
     "landscape_large": "../../../../images/1920x1080/1920x1080.jpg",
-    "landscape_medium": "../../../../images/960x540/960x540.jpg"
+    "landscape_medium": "../../../../images/960x540/960x540.jpg",
+    "square": "../../../../images/thumbs/kill-1-thumb.png"
   },
   "headline": {
     "short": "Lorem ipsum dolor sit amet, consectetur",
@@ -196,5 +197,16 @@
     {"src": "../../../../images/thumbs/kill-2-thumb.png"},
     {"src": "../../../../images/thumbs/kill-4-thumb.png"},
     {"src": "../../../../images/thumbs/kill-1-thumb.png"}
+  ],
+  "nodes": [
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
   ]
 }

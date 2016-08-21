@@ -1,12 +1,13 @@
 <div class="card card-plain card-blog">
+
   {% if img.landscape_medium %}
   <div class="card-image">
     <a href="{{ url }}">
       <img class="img img-raised" src="{{ img.landscape_medium }}">
     </a>
-    <div class="ripple-container"></div>
   </div>
   {% endif %}
+
   <h6 class="category text-info">{{ tags|join(', ') }}</h6>
   <h3 class="card-title">
     <a href="{{ url }}">{{ title }}</a>
