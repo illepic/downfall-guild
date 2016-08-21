@@ -11,17 +11,28 @@
     </div>
   {% endif %}
 
+  {% if type == 'event' %}
+    <div class="card-tracker__left content-info content text-center card-tracker__event-block">
+
+      <h3 class="card-title">Saturday</h3>
+      <h4 class="card-title">9/12 </h4>
+      <h4 class="card-title">@ 9:30pm PST</h4>
+      <a href="#" class="btn btn-white btn-round">Sign Up</a>
+
+    </div>
+  {% endif %}
+
   <div class="card-tracker__right">
-    <h6 class="category text-info">{{ tags|join(', ') }}</h6>
+    <h6 class="category text-info"><span class="card__tags">{{ tags|join(', ') }}</span></h6>
     <h4 class="card-title">
-      <a href="{{ url }}">{{ title|escape }}</a>
+      <a href="{{ url }}"><i class="material-icons card__type">{{ attribute(icons, type) }}</i> {{ title|escape }}</a>
     </h4>
 
     <p class="card-description">{{ teaser }}</p>
 
     <div class="footer">
       <div class="author">
-        <a href="#pablo">
+        <a href="#">
           <img src="{{ user.avatar.img }}" alt="..." class="avatar img-raised">
           <span>{{ user.name }}</span>
         </a>

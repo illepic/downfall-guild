@@ -127,6 +127,8 @@
     "media": "collections",
     "event": "event_note",
     "play": "play_arrow",
+    "video": "movie",
+    "image": "collections",
     "recent": "timeline",
     "comment": "comment"
   },
@@ -219,21 +221,20 @@
       }
     },
     {
-      "type": "post",
+      "type": "event",
       "img": false,
       "comments": {
         "count": 5
       }
     },
     {
-      "type": "post",
-      "img": false,
+      "type": "image",
       "comments": {
         "count": 5
       }
     },
     {
-      "type": "post",
+      "type": "video",
       "comments": {
         "count": 5
       }
