@@ -1,0 +1,33 @@
+&lt;div class=&quot;card card-raised card-background card-tracker card-tracker--image&quot; style=&quot;background-image: url({{ img.landscape_medium }})&quot;&gt;
+
+  &lt;div class=&quot;content&quot;&gt;
+    &lt;h6 class=&quot;category text-info&quot;&gt;
+      &lt;span&gt;&lt;i class=&quot;material-icons card-tracker__type&quot;&gt;{{ attribute(icons, type) }}&lt;/i&gt; {{ type }} | &lt;/span&gt;
+      &lt;span class=&quot;card__tags&quot;&gt;{{ tags|join(', ') }}&lt;/span&gt;
+      &lt;span class=&quot;card-tracker__timestamp&quot;&gt;{{ timestamp|date('m/d/Y \\@ g:i a') }}&lt;/span&gt;
+    &lt;/h6&gt;
+    &lt;h4 class=&quot;card-title&quot;&gt;
+      &lt;a href=&quot;{{ url }}&quot;&gt; {{ title|escape }}&lt;/a&gt;
+
+    &lt;/h4&gt;
+
+    &lt;p class=&quot;card-description&quot;&gt;{{ teaser }}&lt;/p&gt;
+
+    &lt;div class=&quot;footer&quot;&gt;
+      &lt;div class=&quot;author&quot;&gt;
+        &lt;a href=&quot;#&quot;&gt;
+          &lt;img src=&quot;{{ user.avatar.img }}&quot; alt=&quot;...&quot; class=&quot;avatar img-raised&quot;&gt;
+          &lt;span&gt;{{ user.name }}&lt;/span&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;stats&quot;&gt;
+        {% if comments %}
+          &lt;span&gt;&lt;i class=&quot;material-icons&quot;&gt;comment&lt;/i&gt; {{ comments.count }} comments&lt;/span&gt;
+          {% if comments.new %}&lt;span class=&quot;label label-success&quot;&gt;New&lt;/span&gt;{% endif %} |
+        {% endif %}
+        &lt;span&gt;&lt;i class=&quot;material-icons&quot;&gt;timeline&lt;/i&gt; 1,291 views&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt; &lt;!-- /.card-tracker --&gt;

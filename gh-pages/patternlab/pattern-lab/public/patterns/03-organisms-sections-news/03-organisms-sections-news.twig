@@ -1,0 +1,30 @@
+&lt;div class=&quot;news text-center&quot;&gt;
+
+  &lt;div class=&quot;news__top&quot;&gt;
+    &lt;h2 class=&quot;title news__title&quot;&gt;{{ 'Downfall News'|t }}&lt;/h2&gt;
+    &lt;h5 class=&quot;news__description&quot;&gt;{{ 'Latest posts, events, and raid kills. Make sure to check out full &lt;a href=&quot;#&quot;&gt;Posts&lt;/a&gt; page for much more.'|t }}&lt;/h5&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;news__pinned row&quot;&gt;
+    {% block news_pinned %}
+      {% for post in posts_pinned %}
+        &lt;div class=&quot;col-md-6&quot;&gt;
+          {% include &quot;@molecules/cards/card-full-bg.twig&quot; with post %}
+        &lt;/div&gt;
+      {% endfor %}
+    {% endblock %}
+  &lt;/div&gt;
+
+  &lt;div class=&quot;news__list row&quot;&gt;
+    {% block news_list %}
+      &lt;div class=&quot;col-sm-12&quot;&gt;
+        {% for post in posts_recent %}
+          {% include &quot;@molecules/cards/card-plain.twig&quot; with post %}
+        {% endfor %}
+
+        {% include &quot;@atoms/navs/pagination.twig&quot; %}
+      &lt;/div&gt;
+    {% endblock %}
+  &lt;/div&gt;
+
+&lt;/div&gt;

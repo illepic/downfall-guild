@@ -1,0 +1,9 @@
+&lt;ul style=&quot;list-style: none;&quot;&gt;
+  {% for item in items %}
+    &lt;p&gt;
+      &lt;div style=&quot;font-size: {{ item.value }};&quot;&gt;{{ headline.short }}&lt;/div&gt;
+      &lt;div&gt;{{item.value}}: &lt;code&gt;{{item.name}}&lt;/code&gt;&lt;/div&gt;
+    &lt;/p&gt;
+
+  {% endfor %}
+&lt;/ul&gt;

@@ -1,0 +1,23 @@
+{% for item in items %}
+  &lt;div&gt;
+    &lt;div style=&quot;font-family: {{ item.value }};&quot;&gt;{{ item.value }}&lt;/div&gt;
+    &lt;div&gt;
+      &lt;pre&gt;&lt;code&gt;
+.class {
+  font-family: {{ item.name }};
+}
+      &lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;h6&gt;Normal&lt;/h6&gt;
+    &lt;div style=&quot;font-family: {{ item.value }}; font-size: 2em;&quot;&gt;{{ excerpt.short }}&lt;/div&gt;
+
+    &lt;h6&gt;Bold&lt;/h6&gt;
+    &lt;div style=&quot;font-family: {{ item.value }}; font-size: 2em; font-weight: bold;&quot;&gt;{{ excerpt.short }}&lt;/div&gt;
+
+    &lt;h6&gt;Italic&lt;/h6&gt;
+    &lt;div style=&quot;font-family: {{ item.value }}; font-size: 2em; font-style: italic;&quot;&gt;{{ excerpt.short }}&lt;/div&gt;
+
+  &lt;/div&gt;
+  &lt;hr&gt;
+{% endfor %}

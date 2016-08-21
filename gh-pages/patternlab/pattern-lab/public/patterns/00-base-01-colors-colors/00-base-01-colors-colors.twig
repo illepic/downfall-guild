@@ -1,0 +1,14 @@
+&lt;ul class=&quot;sg-colors&quot;&gt;
+  {% for item in items %}
+    &lt;li&gt;
+      &lt;div class=&quot;sg-swatch&quot; style=&quot;background: {{item.value}};&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;sg-info&quot;&gt;
+        &lt;span&gt;{{item.value}}&lt;/span&gt; &lt;br/&gt;
+        &lt;code&gt;{{item.name}}&lt;/code&gt;
+      &lt;/div&gt;
+    &lt;/li&gt;
+  {% endfor %}
+&lt;/ul&gt;
+{% if meta %}
+  &lt;p&gt; &lt;small&gt;{{ meta.description }}&lt;/small&gt; &lt;/p&gt;
+{% endif %}

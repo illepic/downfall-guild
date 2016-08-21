@@ -1,0 +1,16 @@
+{% extends &quot;@templates/site-layout.twig&quot; %}
+
+{% block header %}
+  {% include &quot;@molecules/headers/header.twig&quot; with header %}
+{% endblock %}
+
+{% block content %}
+  {% embed &quot;@organisms/sections/news.twig&quot; with news %}{% endembed %}
+{% endblock %}
+
+{% block sidebar %}
+  {% include &quot;@molecules/profiles/profile-medium.twig&quot; %}
+  {% include &quot;@molecules/asides/content-list.twig&quot; with sidebar.content_list %}
+  {% include &quot;@molecules/asides/thumbs-grid.twig&quot; with sidebar.thumbs_grid %}
+  {% include &quot;@molecules/asides/comment-list.twig&quot; with sidebar.comment_list %}
+{% endblock %}
