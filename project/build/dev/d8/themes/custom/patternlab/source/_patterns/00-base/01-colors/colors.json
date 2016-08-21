@@ -29,6 +29,16 @@
       "name": "$c-brand-rose",
       "value": "#e91e63",
       "comment": "material-kit/_variables.scss"
+    },
+    {
+      "name": "$c-text-color-light",
+      "value": "#ffffff",
+      "comment": ""
+    },
+    {
+      "name": "$c-text-color-primary",
+      "value": "#3C4858",
+      "comment": ""
     }
   ],
   "meta": {
