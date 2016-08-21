@@ -23,9 +23,13 @@
   {% endif %}
 
   <div class="card-tracker__right">
-    <h6 class="category text-info"><span class="card__tags">{{ tags|join(', ') }}</span></h6>
+    <h6 class="category text-info">
+      <span><i class="material-icons card-tracker__type">{{ attribute(icons, type) }}</i> {{ type }} | </span>
+      <span class="card__tags">{{ tags|join(', ') }}</span>
+      <span class="card-tracker__timestamp">{{ timestamp|date('m/d/Y \\@ g:i a') }}</span>
+    </h6>
     <h4 class="card-title">
-      <a href="{{ url }}"><i class="material-icons card__type">{{ attribute(icons, type) }}</i> {{ title|escape }}</a>
+      <a href="{{ url }}"> {{ title|escape }}</a>
     </h4>
 
     <p class="card-description">{{ teaser }}</p>

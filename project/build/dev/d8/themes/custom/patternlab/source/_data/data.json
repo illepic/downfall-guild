@@ -206,6 +206,7 @@
       "type": "post",
       "title": "Random title that is possibly long",
       "img": false,
+      "timestamp": "2016-05-21T17:02:39+00:00",
       "comments": {
         "count": 17,
         "new": true
@@ -229,6 +230,7 @@
     },
     {
       "type": "image",
+      "teaser": "Images probably don't have a lot of description",
       "comments": {
         "count": 5
       }
@@ -240,9 +242,13 @@
       }
     },
     {
-      "type": "post",
+      "type": "image",
+      "title": "Big ass demon invasion guy",
+      "img": {
+        "landscape_medium": "../../../../images/960x540/bh0UYQx.png"
+      },
       "comments": {
-        "count": 5
+        "count": 10
       }
     },
     {

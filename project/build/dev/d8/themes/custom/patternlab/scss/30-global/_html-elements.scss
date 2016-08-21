@@ -39,7 +39,7 @@ svg {
 }
 
 .df-hr {
-  padding: $padding-base * 3 20%;
+  padding: $padding-base 20%;
   color: $gray-lighter;
   text-align: center;
   position: relative;
@@ -50,5 +50,8 @@ svg {
 }
 .df-hr__logo {
   font-size: $padding-base * 3;
-  transform: translateY(-50%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }

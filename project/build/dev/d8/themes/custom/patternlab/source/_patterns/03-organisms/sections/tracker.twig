@@ -13,9 +13,10 @@
   <div class="tracker__content row">
     <div class="col-sm-12">
       {% for node in nodes %}
+        {% set type = node.type == 'image' ? 'image' : 'default' %}
         <div class="tracker__content-item">
-          {% include "@molecules/cards/card-tracker.twig" with node %}
-          {#{% include "@atoms/elements/df-hr.twig" %}#}
+          {% include "@molecules/cards/card-tracker-" ~ type ~ ".twig" with node %}
+          {% include "@atoms/elements/df-hr.twig" %}
         </div>
       {% endfor %}
 

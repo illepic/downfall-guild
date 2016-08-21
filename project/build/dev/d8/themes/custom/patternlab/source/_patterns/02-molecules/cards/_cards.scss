@@ -27,7 +27,6 @@
 }
 
 .card-tracker {
-
   @include respond-to('sm') {
     display: flex;
     justify-content: center;
@@ -59,5 +58,32 @@
 .card-tracker__event-block {
   .card-plain & {
     padding: $padding-base $padding-base * 2;
+  }
+}
+
+.card-tracker__timestamp {
+  float: right;
+}
+.card-tracker__type {
+  font-size: 19px;
+}
+
+.card-tracker--image {
+  margin-top: $padding-base * 2;
+  .card-title a {
+    color: $white;
+  }
+}
+
+.card-background {
+    .author {
+      a {
+        color: $white-transparent;
+      }
+    }
+  .footer {
+    .stats {
+      color: $white-transparent;
+    }
   }
 }
