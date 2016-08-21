@@ -1,6 +1,11 @@
-//$c-red: hsl(352, 92%, 38%);
-//$c-blue: hsl(208, 100%, 50%);
-//
+// Hard coding these strictly for show, will actually use Material Kit vars
+$c-brand-primary: #9c27b0; // material-kit/_variables.scss:$brand-primary
+$c-brand-success: #4caf50; // material-kit/_variables.scss:$brand-success
+$c-brand-danger: #f44336; // material-kit/_variables.scss:$brand-danger
+$c-brand-warning: #ff9800; // material-kit/_variables.scss:$brand-warning
+$c-brand-info: #00bcd4; // material-kit/_variables.scss:$brand-info
+$c-brand-rose: #e91e63; // material-kit/_variables.scss:$brand-rose
+
 //$c-white: white;
 //$c-gray--lightest: hsl(0, 0%, 89%);
 //$c-gray--lighter: hsl(0, 0%, 80%);
