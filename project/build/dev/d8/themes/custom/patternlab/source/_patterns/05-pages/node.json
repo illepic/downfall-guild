@@ -1,0 +1,105 @@
+{
+  "header": {
+    "title": "PMS for Legion! Lorem ipsum dolor sit amet.",
+    "teaser": false,
+    "img": {
+      "landscape_large": "../../../../images/1920x1080/bh0UYQx.png"
+    }
+  },
+  "sidebar": {
+    "content_list": {
+      "title": "New Stuff",
+      "icon": "recent",
+      "cta": "All Stuff",
+      "posts": [
+        {
+          "icon": "post",
+          "user": { "name": "Elapsed" }
+        },
+        {
+          "icon": "media",
+          "user": { "name": "Garreth" }
+        },
+        {
+          "icon": "event",
+          "user": { "name": "Saedo" }
+        },
+        {
+          "icon": "post",
+          "user": { "name": "Elapsed" }
+        },
+        {
+          "icon": "post",
+          "user": { "name": "Elapsed" }
+        }
+      ]
+    },
+    "thumbs_grid": {
+      "title": "Latest Media",
+      "icon": "media",
+      "cta": "All Media"
+    },
+    "comment_list": {
+      "title": "Recent Comments",
+      "icon": "comment",
+      "cta": "All Posts",
+      "comments": [
+        {
+          "title": "Lorem ipsum dolor sit amet, consectetur. Adipisicing elit, sed do eiusmod. Adipisicing elit, sed do eiusmod sed do eiusmod ...",
+          "node_title": "Raid Slightly More Appropriate Name Stomps Raid Monsterface"
+        },
+        {
+          "node_title": "Raid: Awkward Name kills some stuff!",
+          "user": {
+            "user": {
+              "name": "Elapsed",
+              "avatar": {
+                "img": "../../../../images/avatars/avatar-3.jpg"
+              }
+            }
+          }
+        },
+        {
+          "node_title": "Raid Slightly More Appropriate Name Stomps Raid Monsterface"
+        },
+        {
+          "node_title": "Raid: Awkward Name kills some stuff!",
+          "user": {
+            "user": {
+              "name": "Elapsed",
+              "avatar": {
+                "img": "../../../../images/avatars/avatar-3.jpg"
+              }
+            }
+          }
+        },
+        {
+          "node_title": "Raid Slightly More Appropriate Name Stomps Raid Monsterface"
+        },
+        {
+          "node_title": "Raid: Awkward Name kills some stuff!"
+        },
+        {
+          "node_title": "Raid Slightly More Appropriate Name Stomps Raid Monsterface",
+          "user": {
+            "user": {
+              "name": "Elapsed",
+              "avatar": {
+                "img": "../../../../images/avatars/avatar-3.jpg"
+              }
+            }
+          }
+        },
+        {
+          "node_title": "Raid: Awkward Name kills some stuff!"
+        },
+        {
+          "node_title": "Raid Slightly More Appropriate Name Stomps Raid Monsterface"
+        },
+        {
+          "node_title": "Raid: Awkward Name kills some stuff!"
+        }
+      ]
+    }
+  }
+}

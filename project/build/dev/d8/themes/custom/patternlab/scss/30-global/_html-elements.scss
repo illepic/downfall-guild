@@ -56,3 +56,18 @@ svg {
 .play-button {
   @include center($absolute: true);
 }
+
+.node-full {
+  img {
+    width: 100%;
+    height: auto;
+    margin-bottom: $padding-base * 2;
+  }
+}
+
+.pull-out-body {
+  @include respond-to('md') {
+    margin-left: -8.33%;
+    margin-right: -8.33%;
+  }
+}
