@@ -1,9 +1,5 @@
 {% extends "@templates/site-layout-no-sidebars.twig" %}
 
-{% block header %}
-  {% include "@molecules/headers/header.twig" with header %}
-{% endblock %}
-
 {% block content %}
   {% embed "@organisms/sections/media-grid.twig" %}{% endembed %}
 {% endblock %}

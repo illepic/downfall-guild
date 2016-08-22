@@ -1,8 +1,10 @@
 {% include "@organisms/site/site-nav/site-nav.twig" %}
 
-{# Big image 100% background #}
+{# This can probably actually extend from a same base wrapper #}
+
+
 {% block header %}
-  {% include "@molecules/headers/header.twig" %}
+  {% include "@molecules/headers/header.twig" with header %}
 {% endblock %}
 
 <div class="main main-raised">
