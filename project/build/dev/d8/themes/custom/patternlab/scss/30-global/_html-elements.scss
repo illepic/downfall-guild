@@ -58,16 +58,27 @@ svg {
 }
 
 .node-full {
+  //img {
+  //  width: 100%;
+  //  height: auto;
+  //  margin-bottom: $padding-base * 2;
+  //}
+}
+
+.node-full__body {
   img {
-    width: 100%;
-    height: auto;
-    margin-bottom: $padding-base * 2;
+
   }
 }
 
 .pull-out-body {
+  margin-bottom: $padding-base * 2;
   @include respond-to('md') {
     margin-left: -8.33%;
     margin-right: -8.33%;
   }
+}
+
+.image-wysiwyg {
+  //margin-bottom: $padding-base * 2;
 }
