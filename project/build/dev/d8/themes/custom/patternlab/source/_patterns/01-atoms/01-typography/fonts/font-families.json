@@ -1,5 +1,16 @@
 {
-  "items": [],
+  "items": [
+    {
+      "name": "$ff--regular",
+      "value": "'Roboto', 'Helvetica', 'Arial', sans-serif",
+      "comment": ""
+    },
+    {
+      "name": "$ff--slab",
+      "value": "'Roboto Slab', 'Times New Roman', serif",
+      "comment": ""
+    }
+  ],
   "meta": {
     "description": "To add to these items, use Sass variables that start with <code>$ff--</code> in <code>source/_patterns/01-atoms/01-typography/fonts/_fonts.scss</code>"
   }
