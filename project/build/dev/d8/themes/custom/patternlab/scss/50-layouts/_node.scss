@@ -8,5 +8,9 @@
     margin-bottom: 30px;
   }
 }
-
-
+.banner {
+  padding-bottom: 0;
+}
+.banner__caption {
+  margin-top: $padding-base * 2;
+}

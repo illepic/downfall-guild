@@ -6,10 +6,7 @@
       "landscape_large": "../../../../images/1920x1080/bh0UYQx.png"
     }
   },
-  "banner": {
-    "img": "../../../../images/1920x1080/WoWScrnShot_120913_094517.jpg",
-    "caption": "A really, really big image should show up here."
-  },
+  "banner": false,
   "node": {
     "fields": {
       "image_top": false
