@@ -1,25 +1,28 @@
 &lt;p&gt;&lt;b&gt;Paragraph One&lt;/b&gt; {{ excerpt.short }}&lt;/p&gt;
+&lt;div class=&quot;node-full__body&quot;&gt;&lt;p&gt;&lt;b&gt;Paragraph One - Full Node Body&lt;/b&gt; {{ excerpt.short }}&lt;/p&gt;&lt;/div&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;b&gt;Paragraph Two&lt;/b&gt; after an &lt;code&gt;hr&lt;/code&gt; {{ excerpt.medium }}&lt;/p&gt;
-
+&lt;div class=&quot;node-full__body&quot;&gt;&lt;p&gt;&lt;b&gt;Paragraph Two - Full Node Body&lt;/b&gt; after an &lt;code&gt;hr&lt;/code&gt; {{ excerpt.medium }}&lt;/p&gt;
+&lt;/div&gt;
 &lt;h1&gt;Header 1&lt;/h1&gt;
-&lt;p&gt;&lt;b&gt;Paragraph&lt;/b&gt; following an &lt;code&gt;h1&lt;/code&gt; {{ description }}&lt;/p&gt;
+&lt;div class=&quot;node-full__body&quot;&gt;&lt;p&gt;&lt;b&gt;Paragraph&lt;/b&gt; following an &lt;code&gt;h1&lt;/code&gt; {{ description }}&lt;/p&gt;&lt;/div&gt;
 
 &lt;h2&gt;Header 2&lt;/h2&gt;
-&lt;p&gt;&lt;b&gt;Paragraph&lt;/b&gt; following an &lt;code&gt;h2&lt;/code&gt; {{ description }}&lt;/p&gt;
+&lt;div class=&quot;node-full__body&quot;&gt;&lt;p&gt;&lt;b&gt;Paragraph&lt;/b&gt; following an &lt;code&gt;h2&lt;/code&gt; {{ description }}&lt;/p&gt;&lt;/div&gt;
 
 &lt;h3&gt;Header 3&lt;/h3&gt;
-&lt;p&gt;&lt;b&gt;Paragraph&lt;/b&gt; following an &lt;code&gt;h3&lt;/code&gt; {{ description }}&lt;/p&gt;
+&lt;div class=&quot;node-full__body&quot;&gt;&lt;p&gt;&lt;b&gt;Paragraph&lt;/b&gt; following an &lt;code&gt;h3&lt;/code&gt; {{ description }}&lt;/p&gt;&lt;/div&gt;
 
 &lt;h4&gt;Header 4&lt;/h4&gt;
-&lt;p&gt;&lt;b&gt;Paragraph&lt;/b&gt; following an &lt;code&gt;h4&lt;/code&gt; {{ description }}&lt;/p&gt;
+&lt;div class=&quot;node-full__body&quot;&gt;&lt;p&gt;&lt;b&gt;Paragraph&lt;/b&gt; following an &lt;code&gt;h4&lt;/code&gt; {{ description }}&lt;/p&gt;&lt;/div&gt;
 
 &lt;h5&gt;Header 5&lt;/h5&gt;
-&lt;p&gt;&lt;b&gt;Paragraph&lt;/b&gt; following an &lt;code&gt;h5&lt;/code&gt; {{ description }}&lt;/p&gt;
+&lt;div class=&quot;node-full__body&quot;&gt;&lt;p&gt;&lt;b&gt;Paragraph&lt;/b&gt; following an &lt;code&gt;h5&lt;/code&gt; {{ description }}&lt;/p&gt;&lt;/div&gt;
 
 &lt;h6&gt;Header 6&lt;/h6&gt;
-&lt;p&gt;&lt;b&gt;Paragraph&lt;/b&gt; following an &lt;code&gt;h6&lt;/code&gt; {{ description }}&lt;/p&gt;
+&lt;div class=&quot;node-full__body&quot;&gt;&lt;p&gt;&lt;b&gt;Paragraph&lt;/b&gt; following an &lt;code&gt;h6&lt;/code&gt; {{ description }}&lt;/p&gt;&lt;/div&gt;
 
+&lt;h1&gt;Text elements not within a node body &lt;/h1&gt;
 &lt;p&gt;&lt;a href=&quot;#&quot;&gt;This is a text link.&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;i&gt;Italic text is used for stylistic purposes&lt;/i&gt; in &lt;code&gt;i&lt;/code&gt;&lt;/p&gt;
@@ -37,3 +40,26 @@
 &lt;blockquote&gt;
   &lt;p&gt;A block quotation (also known as a long quotation or extract) is a quotation in a written document, that is set off from the main text as a paragraph, or block of text, and typically distinguished visually using indentation and a different typeface or smaller size quotation.&lt;/p&gt;
 &lt;/blockquote&gt;
+
+
+&lt;h1&gt;Text elements within a node body&lt;/h1&gt;
+&lt;div class=&quot;node-full__body&quot;&gt;
+  &lt;p&gt;&lt;a href=&quot;#&quot;&gt;This is a text link.&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;i&gt;Italic text is used for stylistic purposes&lt;/i&gt; in &lt;code&gt;i&lt;/code&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;em&gt;This text has added emphasis&lt;/em&gt; in &lt;code&gt;em&lt;/code&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;b&gt;Bolded text is used for stylistic purposes&lt;/b&gt; in &lt;code&gt;b&lt;/code&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;strong&gt;Strong is used to indicate strong importance&lt;/strong&gt; in &lt;code&gt;strong&lt;/code&gt;&lt;/p&gt;
+
+  &lt;p&gt;This text is &lt;sup&gt;superscript&lt;/sup&gt;&lt;/p&gt;
+
+  &lt;p&gt;This text is &lt;sub&gt;subscript&lt;/sub&gt;&lt;/p&gt;
+
+  &lt;blockquote&gt;
+    &lt;p&gt;A block quotation (also known as a long quotation or extract) is a quotation in a written document, that is set off from the main text as a paragraph, or block of text, and typically distinguished visually using indentation and a different typeface or smaller size quotation.&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/div&gt;
+

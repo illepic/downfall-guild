@@ -1,9 +1,5 @@
 {% extends &quot;@templates/site-layout.twig&quot; %}
 
-{% block header %}
-  {% include &quot;@molecules/headers/header.twig&quot; with header %}
-{% endblock %}
-
 {% block content %}
   {% embed &quot;@organisms/sections/news.twig&quot; with news %}{% endembed %}
 {% endblock %}

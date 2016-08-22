@@ -1,0 +1,11 @@
+{% extends &quot;@templates/site-layout.twig&quot; %}
+
+{% block content %}
+  {% include &quot;@organisms/sections/node.twig&quot; with node %}
+{% endblock %}
+
+{% block sidebar %}
+  {% include &quot;@molecules/profiles/profile-medium.twig&quot; %}
+  {#{% include &quot;@molecules/asides/comment-list.twig&quot; with sidebar.comment_list %}#}
+  {% include &quot;@molecules/asides/thumbs-grid.twig&quot; with sidebar.thumbs_grid %}
+{% endblock %}

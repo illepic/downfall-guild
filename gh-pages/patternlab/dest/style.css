@@ -7636,6 +7636,7 @@ svg {
 }
 
 .df-hr {
+  margin: 30px;
   padding: 15px 20%;
   color: #eeeeee;
   text-align: center;
@@ -7664,6 +7665,25 @@ svg {
   top: 50%;
   -ms-transform: translateX(-50%) translateY(-50%);
       transform: translateX(-50%) translateY(-50%);
+}
+
+.pull-out-body {
+  margin-bottom: 30px;
+}
+
+@media screen and (min-width: 992px) {
+  .pull-out-body {
+    margin-left: -8.33%;
+    margin-right: -8.33%;
+  }
+}
+
+.node-full__comments {
+  margin-top: 45px;
+}
+
+.comments__title {
+  margin-bottom: 45px;
 }
 
 .navbar.navbar-transparent.edit-bar {
@@ -7706,6 +7726,26 @@ svg {
   }
 }
 
+.node-full__body {
+  font-size: 18px;
+  line-height: 1.5em;
+  color: #555555;
+}
+
+.node-full__body p,
+.node-full__body ul,
+.node-full__body ol {
+  margin-bottom: 30px;
+}
+
+.banner {
+  padding-bottom: 0;
+}
+
+.banner__caption {
+  margin-top: 30px;
+}
+
 /*------------------------------------*    $PATTERN LAB-SPECIFIC STYLES
 \*------------------------------------*/
 /**
@@ -7716,6 +7756,12 @@ svg {
  */
 pre {
   margin-top: 0;
+}
+
+.sg-main {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 .sg-colors {
