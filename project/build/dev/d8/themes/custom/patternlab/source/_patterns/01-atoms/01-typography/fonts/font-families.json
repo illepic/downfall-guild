@@ -2,12 +2,12 @@
   "items": [
     {
       "name": "$ff--regular",
-      "value": "'Roboto', 'Helvetica', 'Arial', sans-serif",
+      "value": "'source-sans-pro', 'Helvetica', 'Arial', sans-serif",
       "comment": ""
     },
     {
-      "name": "$ff--slab",
-      "value": "'Roboto Slab', 'Times New Roman', serif",
+      "name": "$ff--Heading",
+      "value": "'modesto-condensed', 'Times New Roman', serif",
       "comment": ""
     }
   ],
