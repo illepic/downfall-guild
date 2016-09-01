@@ -34,7 +34,8 @@
     "drupal/ctools": "3.x-dev",
     "drupal/entity_browser": "1.0-alpha6",
     "drupal/inline_entity_form": "1.x-dev",
-    "drupal/components": "^1.0"
+    "drupal/components": "^1.0",
+    "drupal/group": "1.x-dev"
   },
   "replace": {
     "drupal/drupal": "*"

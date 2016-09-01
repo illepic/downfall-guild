@@ -21,3 +21,5 @@ dependencies:
     - inline_entity_form
     - entity_browser_entity_form
     - components
+    - group
+    - gnode
