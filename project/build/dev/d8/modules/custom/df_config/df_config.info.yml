@@ -9,7 +9,6 @@ dependencies:
     - book
     - taxonomy
     - user
-    - tac_lite
     - field_group
     - entity
     - media_entity
@@ -21,5 +20,3 @@ dependencies:
     - inline_entity_form
     - entity_browser_entity_form
     - components
-    - group
-    - gnode

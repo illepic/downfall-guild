@@ -1,0 +1,16 @@
+uuid: dba3a7dc-1785-41a6-bb8f-591ab484575f
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.raid_group
+    - node.type.article
+  module:
+    - gnode
+_core:
+  default_config_hash: bQJWzXz_DxmaOuvWov_NC79B4b2NpX-gzYKPI3taDwk
+id: raid_group-group_node-article
+label: 'Raid Group: Group node (Article)'
+description: 'Adds <em class="placeholder">Article</em> content to groups both publicly and privately.'
+group_type: raid_group
+content_plugin: 'group_node:article'

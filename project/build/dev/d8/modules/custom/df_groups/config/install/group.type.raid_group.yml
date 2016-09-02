@@ -1,0 +1,10 @@
+uuid: 97ed3852-2c82-4000-b684-e3923448b022
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: nRR4DDbEhWnsyC5h_wuj470-DzC37G8Q7NUmEUD5CPM
+id: raid_group
+label: 'Raid Group'
+description: ''
+content: null

@@ -1,0 +1,21 @@
+uuid: 9519d3b8-6bcb-4b82-a3b7-9c050eb48dde
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.content_type.raid_group-group_node-event
+id: group_content.raid_group-group_node-event.default
+targetEntityType: group_content
+bundle: raid_group-group_node-event
+mode: default
+content:
+  entity_id:
+    type: entity_reference_entity_view
+    weight: 0
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+hidden:
+  uid: true

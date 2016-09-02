@@ -1,0 +1,40 @@
+uuid: e907aa22-9666-435c-867c-5a435ab495f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.group.field_raid_group_mascot
+    - group.type.raid_group
+  module:
+    - image
+_core:
+  default_config_hash: 41pf9qS6ymtR6Ow6F2EKMytaplmP6GcG5V--D3edXGU
+id: group.raid_group.field_raid_group_mascot
+field_name: field_raid_group_mascot
+entity_type: group
+bundle: raid_group
+label: 'Raid Group Mascot'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: false
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image
