@@ -1,0 +1,66 @@
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_group_raid
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'Group (raid_group)'
+source:
+  plugin: d6_node
+  node_type: raid
+process:
+  label: title
+  type:
+    plugin: default_value
+    default_value: raid_group
+  uid: node_uid
+  created: created
+#  bundle:
+#    plugin: default_value
+#    default_value: media_image
+#  name:
+#    -
+#      plugin: static_map
+#      source: filename
+#      bypass: true
+#      map:
+#        'gallery grid': ''
+#        preview: ''
+#        thumbnail: ''
+#        img_assist_properties: ''
+#        large: ''
+#    -
+#      plugin: skip_contains
+#      skip:
+#        - 'furiousraid'
+#    -
+#      plugin: skip_on_empty
+#      method: row
+#    -
+#      plugin: callback
+#      callable: basename
+#      source: filepath
+#  status:
+#    plugin: default_value
+#    default_value: 1
+#  'field_media_image_image/target_id':
+#    -
+#      plugin: static_map
+#      source: fid
+#      bypass: true
+#      map:
+#        4: '' # Seems to not exist on file import
+#        1887: '' # no extension, wowbuntu
+#        19636: '' # Ui.jpg bullshit
+#        20875: '' # Same bullshit
+#    -
+#      plugin: skip_on_empty
+#      method: row
+#  uid: uid
+#  changed: timestamp
+destination:
+  plugin: 'entity:group'
+migration_dependencies:
+  required: { }
+  optional: { }

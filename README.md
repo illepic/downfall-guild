@@ -198,23 +198,10 @@ Run all dependencies up to a specific migration
 
     drush mi migration_name --execute-dependencies --feedback="100 items"
     
+Migration tip: Rollback, reload config for migration, clear cache, run upgrade
+
+    drush mr upgrade_d6_node_guild_app && drush cdi1 modules/custom/df_migration/config/install/migrate_plus.migration.upgrade_d6_node_guild_app.yml && drupal cr all && drush mi upgrade_d6_node_guild_app
+
+
+    
 ## Prototyping redesign
-
-NOTE: Windows users: Install Visual Studio Community Edition 2015. Open it, create a Visual C++ project. You'll see an option to:
-
-    "Install Visual C++ 2015 Tools for Windows Desktop"
-
-Do the above, then run:
-
-    npm install -g browser-sync --msvs_version=2015
-
-The following sets up PatternLab for first use, should only be done once or when starting over:
-
-```shell
-cd redesign/pl && npm install
-```
-You may see an error on Windows regarding utf-8-validate not compiling. This doesn't affect us.
-
-Temp: Run `cd redesign/pl && gulp` at least once to do an initial PL build.
-
-Temp: Run `cd redesign/pl && gulp serve` to compile assets and refresh the prototype.
