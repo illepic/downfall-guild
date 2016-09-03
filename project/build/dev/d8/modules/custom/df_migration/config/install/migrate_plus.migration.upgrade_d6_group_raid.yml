@@ -16,28 +16,17 @@ process:
     default_value: raid_group
   uid: node_uid
   created: created
-#  'field_raid_group_mascot/target_id':
-#    -
-#      plugin: default_value
-#      default_value: 21949
-#    -
-##      plugin: wat
-#    -
-#      plugin: extract
-#      source: field_mascot
-#      index:
-#        - fid
-#    -
-#      plugin: migration
-#      migration: upgrade_d6_file
-#      no_stub: true
-#    -
-#      plugin: wat
-#    -
-#      plugin: callback
-#      callable: intval
-#    -
-#      plugin: wat
+
+  # Apparently lots of magic here
+  field_raid_group_mascot:
+    -
+      plugin: extract
+      source: field_mascot
+      index:
+        - fid
+    -
+      plugin: migration
+      migration: upgrade_d6_file
 
 #  bundle:
 #    plugin: default_value
