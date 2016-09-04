@@ -46,6 +46,15 @@ process:
         map:
           active: 1
 
+  field_raid_group_start_time: field_raidstart
+  field_raid_group_end_time: field_raidend
+
+  field_raid_group_raid_days:
+    plugin: iterator
+    source: field_raiddays
+    process:
+      value: value
+
   field_raid_group_term_expansion:
     plugin: expansion_lookup
     source: created
