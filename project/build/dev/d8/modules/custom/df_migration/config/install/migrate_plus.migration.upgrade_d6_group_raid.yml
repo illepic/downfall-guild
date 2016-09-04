@@ -17,7 +17,7 @@ process:
   uid: node_uid
   created: created
 
-  # Apparently lots of magic here
+  # Apparently lots of magic here. target_id handled just by being an image field
   field_raid_group_mascot:
     -
       plugin: extract
@@ -27,6 +27,17 @@ process:
     -
       plugin: migration
       migration: upgrade_d6_file
+
+  field_raid_group_active:
+    plugin: iterator
+    source: field_raid_status
+    process:
+      value:
+        plugin: static_map
+        source: value
+        default_value: 0
+        map:
+          active: 1
 
 #  bundle:
 #    plugin: default_value
