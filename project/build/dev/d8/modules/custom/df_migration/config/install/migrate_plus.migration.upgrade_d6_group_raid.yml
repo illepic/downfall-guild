@@ -17,6 +17,13 @@ process:
   uid: node_uid
   created: created
 
+  field_raid_group_description/format:
+    plugin: default_value
+    default_value: basic_html
+  field_raid_group_description/value:
+    plugin: remove_strings
+    source: body
+
   # Apparently lots of magic here. target_id handled just by being an image field
   field_raid_group_mascot:
     -
@@ -38,6 +45,10 @@ process:
         default_value: 0
         map:
           active: 1
+
+  field_raid_group_term_expansion:
+    plugin: expansion_lookup
+    source: created
 
 #  bundle:
 #    plugin: default_value
