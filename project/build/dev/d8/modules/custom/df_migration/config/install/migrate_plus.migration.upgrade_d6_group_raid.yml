@@ -59,6 +59,22 @@ process:
     plugin: expansion_lookup
     source: created
 
+  field_raid_group_term_instances:
+    plugin: taxonomy_lookup
+    source: nid
+    source_vocabulary: 5 # WoW
+    destination_vocabulary: wow_instance
+
+  field_raid_group_term_pvp:
+    plugin: taxonomy_lookup
+    source: nid
+    source_vocabulary: 5 # WoW
+    destination_vocabulary: wow_pvp
+
+  field_raid_group_term_game:
+    plugin: default_value
+    default_value: 115 # "World of Warcraft"
+
 #  bundle:
 #    plugin: default_value
 #    default_value: media_image
