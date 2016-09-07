@@ -19,14 +19,50 @@ process:
 
   # Will actually use migration lookup or OG node ids and what Group gid they became
   gid:
-    plugin: default_value
-    default_value: 215
+    -
+      source: nid
+      plugin: og_lookup
+    -
+      plugin: skip_on_empty
+      method: row
+    -
+      plugin: migration
+      migration: upgrade_d6_group_raid
+      no_stub: true
+    -
+      plugin: skip_on_empty
+      method: row
+
 
   # Will actually use migration lookup
-  entity_id: nid
+  entity_id:
+    # These are all nids skipped specifically in node_forum migration
+    -
+      plugin: static_map
+      source: nid
+      bypass: true
+      map:
+        5725: ''
+        5460: ''
+        5869: ''
+        10723: ''
+        10719: ''
+        10720: ''
+        10721: ''
+        10722: ''
+    -
+      plugin: skip_on_empty
+      method: row
+    -
+      plugin: migration
+      migration: upgrade_d6_node_forum
+      source: nid
+      no_stub: true
 
 destination:
   plugin: 'entity:group_content'
 migration_dependencies:
-  required: { }
+  required:
+    - upgrade_d6_node_forum
+    - upgrade_d6_group_raid
   optional: { }
