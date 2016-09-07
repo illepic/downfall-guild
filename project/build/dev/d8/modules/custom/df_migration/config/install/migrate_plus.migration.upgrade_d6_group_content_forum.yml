@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_group_content_forum
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'Group Content entities (forum)'
+source:
+  plugin: d6_node
+  node_type: forum
+process:
+  label: title
+  type:
+    plugin: default_value
+    default_value: raid_group-group_node-post
+  created: created
+  uid: node_uid
+
+  # Will actually use migration lookup or OG node ids and what Group gid they became
+  gid:
+    plugin: default_value
+    default_value: 215
+
+  # Will actually use migration lookup
+  entity_id: nid
+
+destination:
+  plugin: 'entity:group_content'
+migration_dependencies:
+  required: { }
+  optional: { }
