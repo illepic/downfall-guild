@@ -5,19 +5,18 @@ id: upgrade_d6_group_content_forum
 migration_tags:
   - 'Drupal 6'
 migration_group: migrate_drupal_6
-label: 'Group Content entities (forum)'
+label: 'Group Content entities (event)'
 source:
   plugin: d6_node
-  node_type: forum
+  node_type: event
 process:
   label: title
   type:
     plugin: default_value
-    default_value: raid_group-group_node-post
+    default_value: raid_group-group_node-event
   created: created
   uid: node_uid
 
-  # Will actually use migration lookup or OG node ids and what Group gid they became
   gid:
     -
       source: nid
@@ -29,38 +28,16 @@ process:
       plugin: migration
       migration: upgrade_d6_group_raid
       no_stub: true
-#    -
-#      plugin: wat
     -
       plugin: skip_on_empty
       method: row
 
-  # Will actually use migration lookup
   entity_id:
-    # These are all nids skipped specifically in node_forum migration
-    -
-      plugin: static_map
-      source: nid
-      bypass: true
-      map:
-        5725: ''
-        5460: ''
-        5869: ''
-        10723: ''
-        10719: ''
-        10720: ''
-        10721: ''
-        10722: ''
-    -
-      plugin: skip_on_empty
-      method: row
     -
       plugin: migration
-      migration: upgrade_d6_node_forum
+      migration: upgrade_d6_node_event
       source: nid
       no_stub: true
-#    -
-#      plugin: wat
 
 destination:
   plugin: 'entity:group_content'

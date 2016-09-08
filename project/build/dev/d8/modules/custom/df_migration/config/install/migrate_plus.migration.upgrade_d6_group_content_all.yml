@@ -1,33 +1,41 @@
 langcode: en
 status: true
 dependencies: {  }
-id: upgrade_d6_group_content_forum
+id: upgrade_d6_group_content_all
 migration_tags:
   - 'Drupal 6'
 migration_group: migrate_drupal_6
-label: 'Group Content entities (forum)'
+label: 'Group Content entities (all)'
 source:
-  plugin: d6_node
-  node_type: forum
+  plugin: og_content
+#  node_type: forum
 process:
-  label: title
+  label:
+    -
+      plugin: wat
+      source: title
+  created: created
+  uid: uid
+
   type:
     plugin: default_value
     default_value: raid_group-group_node-post
-  created: created
-  uid: node_uid
-
-  # Will actually use migration lookup or OG node ids and what Group gid they became
+#    plugin: static_map
+#    source: type
+#    bypass: true
+#    map:
+#      forum: raid_group-group_node-post
+#      event: raid_group-group_node-event
+#      raidevent: raid_group-group_node-event
+#      story: raid_group-group_node-post
+#      page: raid_group-group_node-post
+#      blog: raid_group-group_node-post
+#      image: raid_group-group_node-post # figure this one out
   gid:
-    -
-      source: nid
-      plugin: og_lookup
-    -
-      plugin: skip_on_empty
-      method: row
     -
       plugin: migration
       migration: upgrade_d6_group_raid
+      source: group_nid
       no_stub: true
 #    -
 #      plugin: wat
@@ -35,7 +43,7 @@ process:
       plugin: skip_on_empty
       method: row
 
-  # Will actually use migration lookup
+#  # Will actually use migration lookup
   entity_id:
     # These are all nids skipped specifically in node_forum migration
     -
@@ -54,11 +62,11 @@ process:
     -
       plugin: skip_on_empty
       method: row
-    -
-      plugin: migration
-      migration: upgrade_d6_node_forum
-      source: nid
-      no_stub: true
+#    -
+#      plugin: migration
+#      migration: upgrade_d6_node_forum
+#      source: nid
+#      no_stub: true
 #    -
 #      plugin: wat
 
