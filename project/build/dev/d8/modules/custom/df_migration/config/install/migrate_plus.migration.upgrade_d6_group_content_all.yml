@@ -8,42 +8,42 @@ migration_group: migrate_drupal_6
 label: 'Group Content entities (all)'
 source:
   plugin: og_content
-#  node_type: forum
+  node_types:
+    - blog
+    - event
+    - forum
+    - image
+    - page
+    - poll
+    - raidevent
+    - story
 process:
-  label:
-    -
-      plugin: wat
-      source: title
+  label: title
   created: created
   uid: uid
-
   type:
-    plugin: default_value
-    default_value: raid_group-group_node-post
-#    plugin: static_map
-#    source: type
-#    bypass: true
-#    map:
-#      forum: raid_group-group_node-post
-#      event: raid_group-group_node-event
-#      raidevent: raid_group-group_node-event
-#      story: raid_group-group_node-post
-#      page: raid_group-group_node-post
-#      blog: raid_group-group_node-post
-#      image: raid_group-group_node-post # figure this one out
+    -
+      plugin: static_map
+      source: type
+      map:
+        blog: raid_group-group_node-post
+        event: raid_group-group_node-event
+        forum: raid_group-group_node-post
+        image: raid_group-group_node-post # figure this one out
+        page: raid_group-group_node-post
+        poll: raid_group-group_node-post
+        raidevent: raid_group-group_node-event
+        story: raid_group-group_node-post
   gid:
     -
       plugin: migration
       migration: upgrade_d6_group_raid
       source: group_nid
       no_stub: true
-#    -
-#      plugin: wat
     -
       plugin: skip_on_empty
       method: row
 
-#  # Will actually use migration lookup
   entity_id:
     # These are all nids skipped specifically in node_forum migration
     -
@@ -62,18 +62,19 @@ process:
     -
       plugin: skip_on_empty
       method: row
-#    -
-#      plugin: migration
-#      migration: upgrade_d6_node_forum
-#      source: nid
-#      no_stub: true
-#    -
-#      plugin: wat
 
 destination:
   plugin: 'entity:group_content'
 migration_dependencies:
   required:
     - upgrade_d6_node_forum
+    - upgrade_d6_node_blog
+    - upgrade_d6_node_event
+    - upgrade_d6_node_raidevent
+    - upgrade_d6_node_book
+    - upgrade_d6_node_image
+    - upgrade_d6_node_page
+    - upgrade_d6_node_story
+    - upgrade_d6_node_poll
     - upgrade_d6_group_raid
   optional: { }

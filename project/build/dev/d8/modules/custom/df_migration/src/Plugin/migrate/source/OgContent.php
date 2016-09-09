@@ -23,11 +23,18 @@ class OgContent extends SqlBase {
    * {@inheritdoc}
    */
   public function query() {
+    $node_types = $this->configuration['node_types'] ?? false;
+
     $query = $this->select('og_ancestry', 'a');
     $query->join('node', 'n', 'a.nid = n.nid');
     $query
       ->fields('a', ['nid', 'group_nid'])
       ->fields('n', ['type', 'title', 'created', 'uid']);
+
+    if ($node_types) {
+      $query->condition('n.type', $node_types, 'IN');
+    }
+
     return $query;
   }
 
