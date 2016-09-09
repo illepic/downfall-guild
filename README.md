@@ -156,7 +156,7 @@ To pull down all files from the D6 site and restore the database locally:
     rsync -zvrP USERNAME@direct.illepic.com:dfmigrate/ project/dfmigrate/
     ```
 
-  Or simply grab a provided archive from Dropbox and restore it to `project/dfmigrate` so that the path to the archive is `project/dfmigrate/df.tar.gz`
+Or simply grab a provided archive from Dropbox and restore it to `project/dfmigrate` so that the path to the archive is `project/dfmigrate/df.tar.gz`
 
 3. `drush archive-restore` the entire site from within the Vagrant box. This will take a long time. Run the following **from the root of the repo**:
 

@@ -3,13 +3,13 @@ status: true
 dependencies:
     config:
         - field.storage.node.comment
-        - node.type.downfall_media
+        - node.type.df_media
     module:
         - comment
-id: node.downfall_media.comment
+id: node.df_media.comment
 field_name: comment
 entity_type: node
-bundle: downfall_media
+bundle: df_media
 label: Comments
 description: ''
 required: false

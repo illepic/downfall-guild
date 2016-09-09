@@ -2,26 +2,26 @@ langcode: en
 status: true
 dependencies:
     config:
-        - field.field.node.downfall_media.body
-        - field.field.node.downfall_media.comment
-        - field.field.node.downfall_media.field_group
-        - field.field.node.downfall_media.field_image_gallery
-        - field.field.node.downfall_media.field_media_primary
-        - field.field.node.downfall_media.field_term_class
-        - field.field.node.downfall_media.field_term_downfall
-        - field.field.node.downfall_media.field_term_expansion
-        - field.field.node.downfall_media.field_term_game
-        - field.field.node.downfall_media.field_term_gameplay
-        - field.field.node.downfall_media.field_term_instance
-        - field.field.node.downfall_media.field_term_pvp
-        - node.type.downfall_media
+        - field.field.node.df_media.body
+        - field.field.node.df_media.comment
+        - field.field.node.df_media.field_group
+        - field.field.node.df_media.field_image_gallery
+        - field.field.node.df_media.field_media_primary
+        - field.field.node.df_media.field_term_class
+        - field.field.node.df_media.field_term_downfall
+        - field.field.node.df_media.field_term_expansion
+        - field.field.node.df_media.field_term_game
+        - field.field.node.df_media.field_term_gameplay
+        - field.field.node.df_media.field_term_instance
+        - field.field.node.df_media.field_term_pvp
+        - node.type.df_media
     module:
         - comment
         - text
         - user
-id: node.downfall_media.default
+id: node.df_media.default
 targetEntityType: node
-bundle: downfall_media
+bundle: df_media
 mode: default
 content:
     body:

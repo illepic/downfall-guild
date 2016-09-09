@@ -5,11 +5,11 @@ dependencies:
         - field.storage.node.field_media_primary
         - media_entity.bundle.media_image
         - media_entity.bundle.media_video
-        - node.type.downfall_media
-id: node.downfall_media.field_media_primary
+        - node.type.df_media
+id: node.df_media.field_media_primary
 field_name: field_media_primary
 entity_type: node
-bundle: downfall_media
+bundle: df_media
 label: 'Media Primary'
 description: ''
 required: false

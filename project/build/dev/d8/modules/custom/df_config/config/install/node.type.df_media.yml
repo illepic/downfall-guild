@@ -8,7 +8,7 @@ third_party_settings:
         available_menus: {  }
         parent: ''
 name: 'Downfall Media'
-type: downfall_media
+type: df_media
 description: 'Images and video upload'
 help: ''
 new_revision: false

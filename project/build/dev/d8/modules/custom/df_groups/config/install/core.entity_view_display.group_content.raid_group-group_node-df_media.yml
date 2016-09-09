@@ -3,10 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - group.content_type.group_content_type_e49584ec9834d
-id: group_content.group_content_type_e49584ec9834d.default
+    - group.content_type.raid_group-group_node-df_media
+id: group_content.raid_group-group_node-df_media.default
 targetEntityType: group_content
-bundle: group_content_type_e49584ec9834d
+bundle: raid_group-group_node-df_media
 mode: default
 content:
   entity_id:

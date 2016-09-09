@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
     config:
-        - field.storage.node.field_term_game
-        - node.type.downfall_media
-        - taxonomy.vocabulary.game
-id: node.downfall_media.field_term_game
-field_name: field_term_game
+        - field.storage.node.field_term_downfall
+        - node.type.df_media
+        - taxonomy.vocabulary.downfall
+id: node.df_media.field_term_downfall
+field_name: field_term_downfall
 entity_type: node
-bundle: downfall_media
-label: Game
+bundle: df_media
+label: 'Downfall Guild'
 description: ''
 required: false
 translatable: true
@@ -19,7 +19,7 @@ settings:
     handler: 'default:taxonomy_term'
     handler_settings:
         target_bundles:
-            game: game
+            downfall: downfall
         sort:
             field: _none
         auto_create: false

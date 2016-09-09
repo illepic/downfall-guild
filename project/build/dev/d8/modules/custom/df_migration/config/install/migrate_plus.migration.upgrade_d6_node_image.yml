@@ -15,7 +15,7 @@ process:
   vid: vid
   type:
     plugin: default_value
-    default_value: downfall_media
+    default_value: df_media
   langcode:
     plugin: default_value
     source: language

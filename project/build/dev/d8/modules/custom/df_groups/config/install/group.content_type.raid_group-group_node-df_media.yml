@@ -4,13 +4,13 @@ status: true
 dependencies:
   config:
     - group.type.raid_group
-    - node.type.downfall_media
+    - node.type.df_media
   module:
     - gnode
 _core:
   default_config_hash: 7vEv641afamTB3deL8XQcE3f-7yeOX8l6BRD6WwgLFs
-id: group_content_type_e49584ec9834d
+id: raid_group-group_node-df_media
 label: 'Raid Group: Group node (Downfall Media)'
 description: 'Adds <em class="placeholder">Downfall Media</em> content to groups both publicly and privately.'
 group_type: raid_group
-content_plugin: 'group_node:downfall_media'
+content_plugin: 'group_node:df_media'

@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
     config:
-        - field.storage.node.field_term_class
-        - node.type.downfall_media
-        - taxonomy.vocabulary.wow_class
-id: node.downfall_media.field_term_class
-field_name: field_term_class
+        - field.storage.node.field_term_instance
+        - node.type.df_media
+        - taxonomy.vocabulary.wow_instance
+id: node.df_media.field_term_instance
+field_name: field_term_instance
 entity_type: node
-bundle: downfall_media
-label: Class
+bundle: df_media
+label: Instance
 description: ''
 required: false
 translatable: true
@@ -19,7 +19,7 @@ settings:
     handler: 'default:taxonomy_term'
     handler_settings:
         target_bundles:
-            wow_class: wow_class
+            wow_instance: wow_instance
         sort:
             field: _none
         auto_create: false

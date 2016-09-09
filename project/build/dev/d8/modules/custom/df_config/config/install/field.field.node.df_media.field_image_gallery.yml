@@ -2,24 +2,24 @@ langcode: en
 status: true
 dependencies:
     config:
-        - field.storage.node.field_group
-        - node.type.downfall_media
-        - node.type.group
-id: node.downfall_media.field_group
-field_name: field_group
+        - field.storage.node.field_image_gallery
+        - node.type.df_media
+        - taxonomy.vocabulary.image_galleries
+id: node.df_media.field_image_gallery
+field_name: field_image_gallery
 entity_type: node
-bundle: downfall_media
-label: Group
+bundle: df_media
+label: 'Image Gallery'
 description: ''
 required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-    handler: 'default:node'
+    handler: 'default:taxonomy_term'
     handler_settings:
         target_bundles:
-            group: group
+            image_galleries: image_galleries
         sort:
             field: _none
         auto_create: false
