@@ -11,7 +11,9 @@ source:
   plugin: d6_node
   node_type: guild_app
 process:
-  nid: nid
+  nid:
+    plugin: wat
+    source: nid
   vid: vid
   type:
     plugin: default_value
