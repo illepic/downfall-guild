@@ -37,20 +37,20 @@ class OgLookup extends ProcessPluginBase {
 
     // Lookup old taxonomy terms for old raids and match to group ids
     $termgroup = array(
-      '3' => '12359', // Hamfist
+      '3' => '12359', # Hamfist
       '4' => '12360', # LF1M, Group Ref: 12360
+      '15' => '12359', # Hamfist tag, Group Ref: 12359
+      '16' => '12360', # LF1M, Group Ref: 12360
       '60' => '7393', # Lava Crab, Group Ref: 7393
       '62' => '10671', # GPS, Group Ref: 10671
       '78' => '8056', # mALT, Group Ref: 8056
       '89' => '7365', # Kitten Brigade, Group Ref: 7365
       '90' => '6593', # Salmon, Group Ref: 6593
-      '100' => '12361', # PMS, Group Ref: 12361
-      '101' => '9406', # Happy Ending, Group Ref: 9406
-      '15' => '12359', # Hamfist tag, Group Ref: 12359
-      '16' => '12360', # LF1M, Group Ref: 12360
       '96' => '7365', # Kitten Brigade, group ref: 7365
       '97' => '6593', # Salmon, group ref: 6593
       '98' => '7393', # Lava Crab, group ref: 7393
+      '100' => '12361', # PMS, Group Ref: 12361
+      '101' => '9406', # Happy Ending, Group Ref: 9406
     );
 
     // If our nid has any of the above tid's, then tag with associated Group (dedupe groups)

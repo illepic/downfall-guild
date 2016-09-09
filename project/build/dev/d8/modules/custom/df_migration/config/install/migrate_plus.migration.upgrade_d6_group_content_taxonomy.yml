@@ -1,22 +1,28 @@
 langcode: en
 status: true
 dependencies: {  }
-id: upgrade_d6_group_content_all
+id: upgrade_d6_group_content_taxonomy
 migration_tags:
   - 'Drupal 6'
 migration_group: migrate_drupal_6
-label: 'Group Content entities (all)'
+label: 'Group Content entities (by taxonomy)'
 source:
-  plugin: og_content
-  node_types:
-    - blog
-    - event
-    - forum
-    - image
-    - page
-    - poll
-    - raidevent
-    - story
+  plugin: group_content_taxonomy
+  tids:
+    - 3
+    - 4
+    - 15
+    - 16
+    - 60
+    - 62
+    - 78
+    - 89
+    - 90
+    - 96
+    - 97
+    - 98
+    - 100
+    - 101
 process:
   label: title
   created: created
@@ -36,9 +42,26 @@ process:
         story: raid_group-group_node-post
   gid:
     -
+      plugin: static_map
+      source: tid
+      map:
+        3: 12359 # Hamfist
+        4: 12360 # LF1M, Group Ref: 12360
+        15: 12359 # Hamfist tag, Group Ref: 12359
+        16: 12360 # LF1M, Group Ref: 12360
+        60: 7393 # Lava Crab, Group Ref: 7393
+        62: 10671 # GPS, Group Ref: 10671
+        78: 8056 # mALT, Group Ref: 8056
+        89: 7365 # Kitten Brigade, Group Ref: 7365
+        90: 6593 # Salmon, Group Ref: 6593
+        96: 7365 # Kitten Brigade, group ref: 7365
+        97: 6593 # Salmon, group ref: 6593
+        98: 7393 # Lava Crab, group ref: 7393
+        100: 12361 # PMS, Group Ref: 12361
+        101: 9406 # Happy Ending, Group Ref: 9406
+    -
       plugin: migration
       migration: upgrade_d6_group_raid
-      source: group_nid
       no_stub: true
     -
       plugin: skip_on_empty

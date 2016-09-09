@@ -47,31 +47,15 @@ process:
         1887: '' # no extension, wowbuntu
         19636: '' # Ui.jpg bullshit
         20875: '' # Same bullshit
+        22163: '' # Same UI bullshit
     -
       plugin: skip_on_empty
       method: row
+    -
+      plugin: wat
   uid: uid
   changed: timestamp
 #  fid: fid
-#  filename: filename
-#  filename:
-#    -
-#      plugin: static_map
-#      source: filename
-#      bypass: true
-#      map:
-#        'gallery grid': ''
-#        preview: ''
-#        thumbnail: ''
-#        img_assist_properties: ''
-#        large: ''
-#    -
-#      plugin: skip_on_empty
-#      method: row
-#    -
-#      plugin: callback
-#      callable: basename
-#      source: filepath
 #  uri:
 #    plugin: file_uri
 #    source:
