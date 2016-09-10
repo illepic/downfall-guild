@@ -7,7 +7,6 @@ dependencies:
     - field.field.node.event.comment
     - field.field.node.event.field_event_end
     - field.field.node.event.field_event_start
-    - field.field.node.event.field_group
     - field.field.node.event.field_term_class
     - field.field.node.event.field_term_downfall
     - field.field.node.event.field_term_expansion
@@ -57,14 +56,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
-  field_group:
-    weight: 9
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: 'Separate multiple groups with commas'
-    third_party_settings: {  }
-    type: entity_reference_autocomplete_tags
   field_term_downfall:
     weight: 14
     settings: {  }

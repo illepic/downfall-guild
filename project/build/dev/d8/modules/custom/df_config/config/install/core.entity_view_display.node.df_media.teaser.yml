@@ -5,7 +5,6 @@ dependencies:
         - core.entity_view_mode.node.teaser
         - field.field.node.df_media.body
         - field.field.node.df_media.comment
-        - field.field.node.df_media.field_group
         - field.field.node.df_media.field_image_gallery
         - field.field.node.df_media.field_media_primary
         - field.field.node.df_media.field_term_class
@@ -35,7 +34,6 @@ content:
         weight: 100
 hidden:
     comment: true
-    field_group: true
     field_image_gallery: true
     field_media_primary: true
     field_term_class: true

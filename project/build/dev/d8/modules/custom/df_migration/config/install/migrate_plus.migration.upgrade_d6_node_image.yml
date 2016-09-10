@@ -53,12 +53,6 @@ process:
       process:
         target_id: fid
 
-  # Convert OG to node reference
-  field_group:
-    -
-      source: nid
-      plugin: og_lookup
-
   field_image_gallery:
     -
       plugin: taxonomy_lookup

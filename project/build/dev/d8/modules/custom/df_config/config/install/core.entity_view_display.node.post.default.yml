@@ -5,7 +5,6 @@ dependencies:
         - field.field.node.post.body
         - field.field.node.post.comment
         - field.field.node.post.field_attachments
-        - field.field.node.post.field_group
         - field.field.node.post.field_image_primary
         - field.field.node.post.field_image_secondary
         - field.field.node.post.field_media_primary
@@ -50,13 +49,6 @@ content:
         settings: {  }
         third_party_settings: {  }
         type: file_default
-    field_group:
-        weight: 4
-        label: above
-        settings:
-            link: true
-        third_party_settings: {  }
-        type: entity_reference_label
     field_media_primary:
         weight: 1
         label: above

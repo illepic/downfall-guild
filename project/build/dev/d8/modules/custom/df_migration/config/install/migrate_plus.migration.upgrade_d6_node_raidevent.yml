@@ -53,11 +53,6 @@ process:
     -
       plugin: event_new
 
-  # Convert OG to node reference
-  field_group:
-    source: nid
-    plugin: og_lookup
-
   # New fields
   field_term_downfall:
     plugin: taxonomy_lookup

@@ -70,10 +70,6 @@ process:
           plugin: default_value
           default_value: 1
 
-  field_group:
-    source: nid
-    plugin: og_lookup
-
   field_term_gameplay:
     plugin: taxonomy_lookup
     source: nid

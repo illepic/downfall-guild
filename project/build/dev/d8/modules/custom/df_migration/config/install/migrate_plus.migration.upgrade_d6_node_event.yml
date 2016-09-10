@@ -44,10 +44,6 @@ process:
     plugin: event_old
     source: nid
     startend: end
-  # Convert OG to node reference
-  field_group:
-    source: nid
-    plugin: og_lookup
 
   # New fields
   field_term_downfall:

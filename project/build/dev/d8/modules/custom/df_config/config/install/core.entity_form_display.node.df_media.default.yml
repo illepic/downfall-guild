@@ -4,7 +4,6 @@ dependencies:
     config:
         - field.field.node.df_media.body
         - field.field.node.df_media.comment
-        - field.field.node.df_media.field_group
         - field.field.node.df_media.field_image_gallery
         - field.field.node.df_media.field_media_primary
         - field.field.node.df_media.field_term_class
@@ -43,14 +42,6 @@ content:
         weight: 2
         settings: {  }
         third_party_settings: {  }
-    field_group:
-        weight: 9
-        settings:
-            match_operator: CONTAINS
-            size: 60
-            placeholder: ''
-        third_party_settings: {  }
-        type: entity_reference_autocomplete
     field_image_gallery:
         weight: 7
         settings: {  }

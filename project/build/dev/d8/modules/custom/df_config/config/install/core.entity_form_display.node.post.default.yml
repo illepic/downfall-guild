@@ -5,7 +5,6 @@ dependencies:
         - field.field.node.post.body
         - field.field.node.post.comment
         - field.field.node.post.field_attachments
-        - field.field.node.post.field_group
         - field.field.node.post.field_image_primary
         - field.field.node.post.field_image_secondary
         - field.field.node.post.field_media_primary
@@ -56,14 +55,6 @@ content:
             progress_indicator: throbber
         third_party_settings: {  }
         type: file_generic
-    field_group:
-        weight: 9
-        settings:
-            match_operator: CONTAINS
-            size: 60
-            placeholder: ''
-        third_party_settings: {  }
-        type: entity_reference_autocomplete
     field_media_primary:
         weight: 6
         settings:
