@@ -73,8 +73,7 @@ migration_dependencies:
     86: upgrade_d6_node_guild_app
     87: upgrade_d6_node_image
     88: upgrade_d6_node_page
-#    90: upgrade_d6_node_poll
-    91: upgrade_d6_node_raid
+    90: upgrade_d6_node_poll
     92: upgrade_d6_node_raidevent
     93: upgrade_d6_node_story
 #    94: upgrade_d6_comment_type

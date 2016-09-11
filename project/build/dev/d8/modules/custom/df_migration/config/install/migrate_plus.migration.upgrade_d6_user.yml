@@ -72,7 +72,7 @@ migration_dependencies:
 #    - upgrade_d6_user_role
     - upgrade_d6_system_site
     - upgrade_d6_user_picture_file
-    - upgrade_user_picture_entity_display
-    - upgrade_user_picture_entity_form_display
+#    - upgrade_user_picture_entity_display
+#    - upgrade_user_picture_entity_form_display
   optional: {}
 

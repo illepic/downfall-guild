@@ -134,7 +134,6 @@ migration_dependencies:
     - upgrade_d6_user
 #    - upgrade_d6_node_type
     - upgrade_d6_file_media
-    - upgrade_d6_node_raid
     - upgrade_d6_taxonomy_term
     - upgrade_d6_taxonomy_term_new
 #    - upgrade_d6_node_settings

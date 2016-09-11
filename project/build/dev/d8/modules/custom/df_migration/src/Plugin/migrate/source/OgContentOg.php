@@ -13,11 +13,11 @@ use Drupal\migrate\Plugin\migrate\source\SqlBase;
  * Source plugin for OG content
  *
  * @MigrateSource(
- *   id = "og_content"
+ *   id = "og_content_og"
  * )
  */
 
-class OgContent extends SqlBase {
+class OgContentOg extends SqlBase {
 
   /**
    * {@inheritdoc}
@@ -28,8 +28,8 @@ class OgContent extends SqlBase {
     $query = $this->select('og_ancestry', 'a');
     $query->join('node', 'n', 'a.nid = n.nid');
     $query
-      ->fields('a', ['nid', 'group_nid'])
-      ->fields('n', ['type', 'title', 'created', 'uid']);
+      ->fields('a', ['group_nid'])
+      ->fields('n', ['nid', 'type', 'title', 'created', 'uid']);
 
     if ($node_types) {
       $query->condition('n.type', $node_types, 'IN');

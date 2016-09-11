@@ -23,16 +23,20 @@ class GroupContentTaxonomy extends SqlBase {
    * {@inheritdoc}
    */
   public function query() {
+    $node_types = $this->configuration['node_types'] ?? false;
     $tids = $this->configuration['tids'] ?? false;
 
     $query = $this->select('term_node', 't');
     $query->join('node', 'n', 't.nid = n.nid');
     $query
-      ->fields('t', ['nid', 'tid'])
-      ->fields('n', ['type', 'title', 'created', 'uid']);
+      ->fields('t', ['tid'])
+      ->fields('n', ['nid', 'type', 'title', 'created', 'uid']);
 
     if ($tids) {
       $query->condition('t.tid', $tids, 'IN');
+    }
+    if ($node_types) {
+      $query->condition('n.type', $node_types, 'IN');
     }
 
     return $query;

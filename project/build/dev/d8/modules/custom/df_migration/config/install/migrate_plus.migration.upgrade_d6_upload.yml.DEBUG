@@ -41,7 +41,6 @@ migration_dependencies:
     88: upgrade_d6_node_page
     89: upgrade_d6_node_panel
     90: upgrade_d6_node_poll
-    91: upgrade_d6_node_raid
     92: upgrade_d6_node_raidevent
     93: upgrade_d6_node_story
     94: upgrade_d6_upload_field_instance

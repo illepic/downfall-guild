@@ -23,6 +23,15 @@ source:
     - 98
     - 100
     - 101
+  node_types:
+    - blog
+    - event
+    - forum
+    - image
+    - page
+    - poll
+    - raidevent
+    - story
 process:
   label: title
   created: created
@@ -68,10 +77,20 @@ process:
       method: row
 
   entity_id:
-    # These are all nids skipped specifically in node_forum migration
+    -
+      plugin: migration
+      migration: upgrade_d6_group_content_og
+      no_stub: true
+      source: nid
+    # If found above, return '' otherwise return nid
+    -
+      plugin: reject_found
+      return: nid
+    -
+      plugin: skip_on_empty
+      method: row
     -
       plugin: static_map
-      source: nid
       bypass: true
       map:
         5725: ''
