@@ -23,31 +23,47 @@ class OgContentDf extends SqlBase {
    * {@inheritdoc}
    */
   public function query() {
-//    // 'blog', 'event', etc
-//    $node_types = $this->configuration['node_types'] ?? false;
-//    // tid: 3, gid: 12359
-//    $tid_gid_map = $this->configuration['tid_gid_map'] ?? false;
-//
-//    // Start nid -> gid lookup (OG)
+    // 'blog', 'event', etc
+    $node_types = $this->configuration['node_types'] ?? false;
+    // tid: 3, gid: 12359
+    $tid_gid_map = $this->configuration['tid_gid_map'] ?? false;
+    $tids_string = implode(',', array_keys($tid_gid_map));
+
+    $query = $this->select('node', 'n');
+    $query->fields('n', ['nid', 'type', 'title', 'created', 'uid']);
+
+    $query->addField('o', 'group_nid', 'group_nid');
+    $query->addField('t', 'tid', 'tid');
+
+    $query->leftJoin('og_ancestry', 'o', 'o.nid = n.nid');
+
+    // We have to evaluate the tids here due to needing to join early
+    $query->leftJoin('term_node', 't', "t.nid = n.nid AND t.tid IN ({$tids_string}) AND o.group_nid IS NULL");
+
+    $query->condition('n.type', $node_types, 'IN');
+    $query->where('(o.group_nid IS NOT NULL OR t.tid IS NOT NULL)');
+
+    // Start nid -> gid lookup (OG)
 //    $og_query = $this->select('og_ancestry', 'a');
 //    $og_query->join('node', 'n', 'a.nid = n.nid');
 //
-//    $og_query
-//      ->fields('n', ['nid', 'type', 'title', 'created', 'uid'])
-//      ->addField('a', 'group_nid', 'group_nid');
-//
+//    $og_query->addField('a', 'nid');
+//    $og_query->fields('n', ['type', 'title', 'created', 'uid']);
+//    $og_query->addField('a', 'group_nid', 'group_nid');
+
+
 //    if ($node_types) {
 //      $og_query->condition('n.type', $node_types, 'IN');
 //    }
-////    return $og_query;
-//    // End nid -> gid lookup (OG)
-//
-//    // Start tid -> gid lookup (taxonomy)
+    // End nid -> gid lookup (OG)
+
+    // Start tid -> gid lookup (taxonomy)
 //    $term_query = $this->select('term_node', 't');
 //    $term_query->join('node', 'n', 't.nid = n.nid');
 //
-//    $term_query->fields('n', ['nid', 'type', 'title', 'created', 'uid']);
-//
+//    $term_query->addField('t', 'nid');
+//    $term_query->fields('n', ['type', 'title', 'created', 'uid']);
+
 //    if ($tid_gid_map) {
 //      // Build up sql CASE switch statement to return proper group_nid
 //      $case = 'CASE';
@@ -60,16 +76,17 @@ class OgContentDf extends SqlBase {
 //      // Only select specific term nodes
 //      $term_query->condition('t.tid', array_keys($tid_gid_map), 'IN');
 //    }
-//
+
 //    if ($node_types) {
 //      $term_query->condition('n.type', $node_types, 'IN');
 //    }
-////    return $term_query;
-//    // End tid->gid lookup (taxonomy)
-//
+    // End tid->gid lookup (taxonomy)
 
+//    $query = $term_query->union($og_query);
+//    var_dump($query->execute()->fetchAll());
 
-    $query = $this->select('node', 'n');
+//    $query = $term_query;
+//    $query = $this->select('node', 'n');
     return $query;
   }
 
@@ -96,11 +113,11 @@ class OgContentDf extends SqlBase {
     return [
       'nid' => [
         'type' => 'integer',
-//        'alias' => 'nid_ogdf',
+//        'alias' => 'a',
       ],
       'group_nid' => [
         'type' => 'integer',
-//        'alias' => 'gid_ogdf',
+//        'alias' => 'a',
       ],
     ];
   }
