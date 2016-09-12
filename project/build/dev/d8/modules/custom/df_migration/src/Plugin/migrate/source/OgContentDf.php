@@ -25,23 +25,32 @@ class OgContentDf extends SqlBase {
   public function query() {
     // 'blog', 'event', etc
     $node_types = $this->configuration['node_types'] ?? false;
+    $types_string = implode(', ', $node_types);
+    var_dump($types_string);
+
     // tid: 3, gid: 12359
     $tid_gid_map = $this->configuration['tid_gid_map'] ?? false;
-    $tids_string = implode(',', array_keys($tid_gid_map));
+    $tids_string = implode(', ', array_keys($tid_gid_map));
+    var_dump($tids_string);
 
     $query = $this->select('node', 'n');
     $query->fields('n', ['nid', 'type', 'title', 'created', 'uid']);
 
     $query->addField('o', 'group_nid', 'group_nid');
     $query->addField('t', 'tid', 'tid');
+    $query->distinct();
 
     $query->leftJoin('og_ancestry', 'o', 'o.nid = n.nid');
 
     // We have to evaluate the tids here due to needing to join early
-    $query->leftJoin('term_node', 't', "t.nid = n.nid AND t.tid IN ({$tids_string}) AND o.group_nid IS NULL");
+    $query->leftJoin('term_node', 't', 't.nid = n.nid AND o.group_nid IS NULL');
+//    $query->leftJoin('term_node', 't', "t.nid = n.nid AND t.tid IN ({$tids_string}) AND o.group_nid IS NULL");
 
     $query->condition('n.type', $node_types, 'IN');
     $query->where('(o.group_nid IS NOT NULL OR t.tid IS NOT NULL)');
+    $query->where('(t.tid IN (3, 4, 15, 16, 60, 62, 78, 89, 90, 96, 97, 98, 100, 101) OR t.tid IS NULL)');
+//    var_dump($query);
+//    $query->where('(t.tid IN (:tids) OR t.tid IS NULL)', array(':tids' => $tids_string));
 
     // Start nid -> gid lookup (OG)
 //    $og_query = $this->select('og_ancestry', 'a');
