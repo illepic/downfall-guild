@@ -78,20 +78,9 @@ process:
 
   entity_id:
     -
-      plugin: migration
-      migration: upgrade_d6_group_content_og
-      no_stub: true
-      source: nid
-    # If found above, return '' otherwise return nid
-    -
-      plugin: reject_found
-      return: nid
-    -
-      plugin: skip_on_empty
-      method: row
-    -
       plugin: static_map
       bypass: true
+      source: nid
       map:
         5725: ''
         5460: ''

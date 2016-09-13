@@ -27,11 +27,16 @@ class GroupContentTaxonomy extends SqlBase {
     $tids = $this->configuration['tids'] ?? false;
 
     $query = $this->select('term_node', 't');
-    $query->join('node', 'n', 't.nid = n.nid');
+    $query->join('node', 'n', 'n.nid = t.nid');
+    $query->leftJoin('og_ancestry', 'o', 'n.nid = o.nid');
     $query
       ->fields('t', ['tid'])
-      ->fields('n', ['nid', 'type', 'title', 'created', 'uid']);
+      ->fields('n', ['nid', 'type', 'title', 'created', 'uid'])
+      ->fields('o', ['group_nid']);
 
+    $query->distinct();
+
+    $query->isNull('o.group_nid');
     if ($tids) {
       $query->condition('t.tid', $tids, 'IN');
     }
@@ -47,8 +52,8 @@ class GroupContentTaxonomy extends SqlBase {
    */
   public function fields() {
     $fields = [
-      'nid' => $this->t('NID of content node'),
       'tid' => $this->t('Term ID of the node'),
+      'nid' => $this->t('NID of content node'),
       'type' => $this->t('Type of content node'),
       'title' => $this->t('Title of content node'),
       'created' => $this->t('Creation date of content node'),
@@ -65,7 +70,7 @@ class GroupContentTaxonomy extends SqlBase {
     return [
       'nid' => [
         'type' => 'integer',
-        'alias' => 't',
+        'alias' => 'n',
       ],
       'tid' => [
         'type' => 'integer',
