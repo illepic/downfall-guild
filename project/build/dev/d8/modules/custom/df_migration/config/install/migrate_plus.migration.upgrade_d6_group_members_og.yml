@@ -1,0 +1,54 @@
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_group_members_og
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'Group member entities (OG)'
+source:
+  plugin: og_members_og
+process:
+  label: name
+  created: created
+  uid:
+    -
+      plugin: migration
+      migration: upgrade_d6_user
+      source: uid
+      no_stub: true
+    -
+      plugin: skip_on_empty
+      method: row
+  type:
+    -
+      plugin: default_value
+      default_value: raid_group-group_membership
+  gid:
+    -
+      plugin: migration
+      migration: upgrade_d6_group_raid
+      source: nid
+      no_stub: true
+    -
+      plugin: skip_on_empty
+      method: row
+
+  entity_id: uid
+
+destination:
+  plugin: 'entity:group_content'
+migration_dependencies:
+  required:
+    - upgrade_d6_node_forum
+    - upgrade_d6_node_blog
+    - upgrade_d6_node_event
+    - upgrade_d6_node_raidevent
+    - upgrade_d6_node_book
+    - upgrade_d6_node_image
+    - upgrade_d6_node_page
+    - upgrade_d6_node_story
+    - upgrade_d6_node_poll
+    - upgrade_d6_group_raid
+    - upgrade_d6_group_content_og
+  optional: { }
