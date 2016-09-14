@@ -24,10 +24,13 @@ class OgMembersOg extends SqlBase {
    */
   public function query() {
     $query = $this->select('og_uid', 'm');
-    $query->join('users', 'u', 'm.uid = u.uid');
+    $query->join('users', 'u', 'u.uid = m.uid');
+    $query->join('node', 'n', 'n.nid = m.nid');
+
     $query
       ->fields('m', ['nid', 'uid', 'created'])
       ->fields('u', ['name']);
+    $query->addField('n', 'uid', 'node_creator');
 
     return $query;
   }
@@ -41,6 +44,7 @@ class OgMembersOg extends SqlBase {
       'uid' => $this->t('User ID of group member'),
       'created' => $this->t('Creation date of content node'),
       'name' => $this->t('Name of user member'),
+      'node_creator' => $this->t('Original node creator'),
     ];
 
     return $fields;

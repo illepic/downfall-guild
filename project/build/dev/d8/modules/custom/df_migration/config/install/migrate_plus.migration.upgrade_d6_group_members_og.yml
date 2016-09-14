@@ -15,8 +15,8 @@ process:
     -
       plugin: migration
       migration: upgrade_d6_user
-      source: uid
       no_stub: true
+      source: uid
     -
       plugin: skip_on_empty
       method: row
@@ -34,7 +34,24 @@ process:
       plugin: skip_on_empty
       method: row
 
-  entity_id: uid
+  # All group creators are automatic members, so we don't want to double-add them to the Group
+  # If our node creator is also in this member list, then skip the node creator
+  entity_id:
+    -
+      plugin: empty_if_matches
+      source:
+        - uid
+        - node_creator
+    -
+      plugin: skip_on_empty
+      method: row
+    -
+      plugin: migration
+      migration: upgrade_d6_user
+      no_stub: true
+    -
+      plugin: skip_on_empty
+      method: row
 
 destination:
   plugin: 'entity:group_content'
