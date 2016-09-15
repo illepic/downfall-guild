@@ -20,9 +20,9 @@ process:
     -
       plugin: get
       source: login
-    -
-      plugin: skip_on_empty
-      method: row
+#    -
+#      plugin: skip_on_empty
+#      method: row
   status:
     -
       plugin: get
