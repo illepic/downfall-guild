@@ -7,7 +7,7 @@ migration_tags:
 migration_group: migrate_drupal_6
 label: 'Group Content entities (by taxonomy)'
 source:
-  plugin: group_content_taxonomy
+  plugin: og_content_taxonomy
   tids:
     - 3
     - 4

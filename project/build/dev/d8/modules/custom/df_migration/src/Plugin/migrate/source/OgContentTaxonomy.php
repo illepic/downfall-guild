@@ -13,11 +13,11 @@ use Drupal\migrate\Plugin\migrate\source\SqlBase;
  * Source plugin for OG content
  *
  * @MigrateSource(
- *   id = "group_content_taxonomy"
+ *   id = "og_content_taxonomy"
  * )
  */
 
-class GroupContentTaxonomy extends SqlBase {
+class OgContentTaxonomy extends SqlBase {
 
   /**
    * {@inheritdoc}
