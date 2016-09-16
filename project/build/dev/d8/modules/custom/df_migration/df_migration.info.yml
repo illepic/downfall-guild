@@ -12,3 +12,4 @@ dependencies:
   - kint
   - config_devel
   - df_config
+  - df_groups

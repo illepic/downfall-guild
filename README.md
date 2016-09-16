@@ -202,6 +202,8 @@ Migration tip: Rollback, reload config for migration, clear cache, run upgrade
 
     drush mr upgrade_d6_node_guild_app && drush cdi1 modules/custom/df_migration/config/install/migrate_plus.migration.upgrade_d6_node_guild_app.yml && drupal cr all && drush mi upgrade_d6_node_guild_app
 
+Install to clean starting point:
 
+    drupal module:install df_migration && drupal config:import --directory=modules/custom/df_config/sync && drupal config:import --directory=modules/df_groups/sync
     
 ## Prototyping redesign

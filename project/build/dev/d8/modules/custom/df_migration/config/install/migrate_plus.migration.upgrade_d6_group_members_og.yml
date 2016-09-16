@@ -68,4 +68,5 @@ migration_dependencies:
     - upgrade_d6_node_poll
     - upgrade_d6_group_raid
     - upgrade_d6_group_content_og
+    - upgrade_d6_group_content_taxonomy
   optional: { }

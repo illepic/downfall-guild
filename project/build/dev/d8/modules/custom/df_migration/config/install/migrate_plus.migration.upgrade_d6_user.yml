@@ -20,6 +20,7 @@ process:
     -
       plugin: get
       source: login
+# This was here to allow us to nuke people that never logged in. Let's not do this.
 #    -
 #      plugin: skip_on_empty
 #      method: row
