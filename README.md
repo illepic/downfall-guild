@@ -207,3 +207,10 @@ Install to clean starting point:
     drupal module:install df_migration && drupal config:import --directory=modules/custom/df_config/sync && drupal config:import --directory=modules/df_groups/sync
     
 ## Prototyping redesign
+
+## Groups
+
+In regards to Group permissions:
+
+- Group node (Post): edit/view/create/delete is ONLY about that intermediary relationship entity
+- Post: edit/view/create/delete is full node privvies
