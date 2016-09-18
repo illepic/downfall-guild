@@ -1,9 +1,6 @@
-uuid: 01961a28-fe5f-41fb-be7c-79397ddcc3ad
 langcode: en
 status: true
 dependencies: {  }
-_core:
-  default_config_hash: mABqt6wrCLJJ3uK3p3UmNTxXqJENQkKbIYdVlU1rRZk
 id: upgrade_d6_group_members_og
 migration_tags:
   - 'Drupal 6'
@@ -36,6 +33,9 @@ process:
     -
       plugin: skip_on_empty
       method: row
+
+  # All group creators are automatic members, so we don't want to double-add them to the Group
+  # If our node creator is also in this member list, then skip the node creator
   entity_id:
     -
       plugin: empty_if_matches
@@ -52,19 +52,10 @@ process:
     -
       plugin: skip_on_empty
       method: row
+
 destination:
   plugin: 'entity:group_content'
 migration_dependencies:
   required:
-    - upgrade_d6_node_forum
-    - upgrade_d6_node_blog
-    - upgrade_d6_node_event
-    - upgrade_d6_node_raidevent
-    - upgrade_d6_node_book
-    - upgrade_d6_node_image
-    - upgrade_d6_node_page
-    - upgrade_d6_node_story
-    - upgrade_d6_node_poll
     - upgrade_d6_group_raid
-    - upgrade_d6_group_content_og
-  optional: {  }
+  optional: { }
