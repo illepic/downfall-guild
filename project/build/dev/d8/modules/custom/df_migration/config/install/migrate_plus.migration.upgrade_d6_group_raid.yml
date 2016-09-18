@@ -11,9 +11,15 @@ source:
   node_type: raid
 process:
   label: title
+
+  # Map nid so Private Group gets private_group type
   type:
-    plugin: default_value
+    plugin: static_map
+    source: nid
+    map:
+      12373: private_group
     default_value: raid_group
+
   uid: node_uid
   created: created
 

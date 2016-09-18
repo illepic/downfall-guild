@@ -23,6 +23,8 @@ source:
     - 98
     - 100
     - 101
+    - 61 # Guild officer
+    - 6 # Raid officer
   node_types:
     - blog
     - event
@@ -68,6 +70,9 @@ process:
         98: 7393 # Lava Crab, group ref: 7393
         100: 12361 # PMS, Group Ref: 12361
         101: 9406 # Happy Ending, Group Ref: 9406
+        # Taxonomy (forum) terms should all go to Private Group 12373
+        61: 12373 # Guild officer: Officer Group
+        6: 12373 # Raid officer: Officer Group
     -
       plugin: migration
       migration: upgrade_d6_group_raid
