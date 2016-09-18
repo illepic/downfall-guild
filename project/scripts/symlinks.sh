@@ -9,8 +9,9 @@ ln -sf ../../../../build/dev/d8/themes/custom
 cd ../sites/default/files
 ln -sf ../../../../../../build/dev/d8/sync
 
-cd ../sites/default
+cd ../
 sudo ln -sf ../../../../../build/dev/d8/sites/default/settings.local.php
+sudo ln -sf ../../../../../build/dev/d8/sites/default/settings.php
 
 # Back to root of project
 cd ../../../../../../../
