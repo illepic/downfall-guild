@@ -12,6 +12,7 @@ module:
   config_devel: 0
   contact: 0
   contextual: 0
+  courier: 0
   ctools: 0
   datetime: 0
   dblog: 0
@@ -19,6 +20,7 @@ module:
   df_config: 0
   df_groups: 0
   df_migration: 0
+  dynamic_entity_reference: 0
   dynamic_page_cache: 0
   editor: 0
   entity: 0
@@ -51,6 +53,8 @@ module:
   path: 0
   quickedit: 0
   rdf: 0
+  rng: 0
+  rng_views: 0
   search: 0
   shortcut: 0
   system: 0
@@ -58,10 +62,13 @@ module:
   text: 0
   toolbar: 0
   tour: 0
+  unlimited_number: 0
   update: 0
   user: 0
+  veoa: 0
   video_embed_field: 0
   video_embed_media: 0
+  views_advanced_routing: 0
   views_ui: 0
   menu_link_content: 1
   views: 10

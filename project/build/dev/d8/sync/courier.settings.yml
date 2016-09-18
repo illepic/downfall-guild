@@ -1,0 +1,6 @@
+skip_queue: false
+channel_preferences:
+  user:
+    - courier_email
+_core:
+  default_config_hash: wipm9PWJP6WzWZQFHa1G5YoTpDXtwsopVaOzz9sUi6Q

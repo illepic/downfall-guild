@@ -1,0 +1,21 @@
+uuid: a2ff3de7-3b2c-4a43-b864-7d73d87c2573
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.registrant.registrant.field_registrant_text_field
+  module:
+    - rng
+id: registrant.registrant.default
+targetEntityType: registrant
+bundle: registrant
+mode: default
+content:
+  field_registrant_text_field:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+hidden: {  }

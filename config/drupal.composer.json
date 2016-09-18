@@ -35,7 +35,10 @@
     "drupal/inline_entity_form": "1.x-dev",
     "drupal/components": "^1.0",
     "drupal/group": "1.x-dev",
-    "drupal/config_installer": "~1.0"
+    "drupal/config_installer": "~1.0",
+    "drupal/rng": "^1.2",
+    "drupal/views_advanced_routing": "1.x-dev",
+    "drupal/veoa": "1.x-dev"
   },
   "replace": {
     "drupal/drupal": "*"

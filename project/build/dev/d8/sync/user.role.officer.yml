@@ -8,4 +8,10 @@ id: officer
 label: Officer
 weight: 5
 is_admin: null
-permissions: {  }
+permissions:
+  - 'rng register role administrator'
+  - 'rng register role friend'
+  - 'rng register role guildy'
+  - 'rng register role officer'
+  - 'rng register role webdev'
+  - 'rng register role authenticated'

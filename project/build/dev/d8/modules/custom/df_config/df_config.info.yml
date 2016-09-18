@@ -20,3 +20,8 @@ dependencies:
     - inline_entity_form
     - entity_browser_entity_form
     - components
+    - group
+    - gnode
+    - rng
+    - views_advanced_routing
+    - veoa

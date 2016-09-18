@@ -1,0 +1,19 @@
+uuid: 6c3b9eed-0768-4d58-b4b8-4d3b078a77b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.registration.field_registration_type_signup_f
+    - rng.registration_type.signup
+id: registration.signup.field_registration_type_signup_f
+field_name: field_registration_type_signup_f
+entity_type: registration
+bundle: signup
+label: 'Registration type: Signup field'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

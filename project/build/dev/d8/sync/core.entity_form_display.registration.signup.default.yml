@@ -1,0 +1,20 @@
+uuid: 3edf08f5-8fa8-471e-9eaa-8a491fe25b2e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.registration.signup.field_registration_type_signup_f
+    - rng.registration_type.signup
+id: registration.signup.default
+targetEntityType: registration
+bundle: signup
+mode: default
+content:
+  field_registration_type_signup_f:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+hidden: {  }

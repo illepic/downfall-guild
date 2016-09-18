@@ -1,0 +1,21 @@
+uuid: 09de1eb6-2b2d-4ef2-afe6-fd746aff5c47
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.rng_status
+    - node.type.event
+id: node.event.rng_status
+field_name: rng_status
+entity_type: node
+bundle: event
+label: 'Accept new registrations'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'Accepting new registrations'
+  off_label: 'Not accepting new registrations'
+field_type: boolean

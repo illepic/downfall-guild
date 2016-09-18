@@ -189,3 +189,4 @@ permissions:
   - 'view uploaded files'
   - 'access user profiles'
   - 'change own username'
+  - 'rng register self'
