@@ -1,3 +1,4 @@
+uuid: 511edaca-9016-4f54-ac8e-3d7586e204cf
 langcode: en
 status: true
 dependencies: {  }
@@ -43,9 +44,7 @@ process:
     -
       plugin: skip_on_empty
       method: row
-
   entity_id:
-    # These are all nids skipped specifically in node_forum migration
     -
       plugin: static_map
       source: nid
@@ -62,10 +61,9 @@ process:
     -
       plugin: skip_on_empty
       method: row
-
 destination:
   plugin: 'entity:group_content'
 migration_dependencies:
   required:
     - upgrade_d6_group_raid
-  optional: { }
+  optional: {  }

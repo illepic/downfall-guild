@@ -1,3 +1,4 @@
+uuid: 2b614903-ef27-44b9-bb48-a4f6b8d1cae3
 langcode: en
 status: true
 dependencies: {  }
@@ -23,8 +24,8 @@ source:
     - 98
     - 100
     - 101
-    - 61 # Guild officer
-    - 6 # Raid officer
+    - 61
+    - 6
   node_types:
     - blog
     - event
@@ -56,23 +57,22 @@ process:
       plugin: static_map
       source: tid
       map:
-        3: 12359 # Hamfist
-        4: 12360 # LF1M, Group Ref: 12360
-        15: 12359 # Hamfist tag, Group Ref: 12359
-        16: 12360 # LF1M, Group Ref: 12360
-        60: 7393 # Lava Crab, Group Ref: 7393
-        62: 10671 # GPS, Group Ref: 10671
-        78: 8056 # mALT, Group Ref: 8056
-        89: 7365 # Kitten Brigade, Group Ref: 7365
-        90: 6593 # Salmon, Group Ref: 6593
-        96: 7365 # Kitten Brigade, group ref: 7365
-        97: 6593 # Salmon, group ref: 6593
-        98: 7393 # Lava Crab, group ref: 7393
-        100: 12361 # PMS, Group Ref: 12361
-        101: 9406 # Happy Ending, Group Ref: 9406
-        # Taxonomy (forum) terms should all go to Private Group 12373
-        61: 12373 # Guild officer: Officer Group
-        6: 12373 # Raid officer: Officer Group
+        3: 12359
+        4: 12360
+        15: 12359
+        16: 12360
+        60: 7393
+        62: 10671
+        78: 8056
+        89: 7365
+        90: 6593
+        96: 7365
+        97: 6593
+        98: 7393
+        100: 12361
+        101: 9406
+        61: 12373
+        6: 12373
     -
       plugin: migration
       migration: upgrade_d6_group_raid
@@ -80,7 +80,6 @@ process:
     -
       plugin: skip_on_empty
       method: row
-
   entity_id:
     -
       plugin: static_map
@@ -98,10 +97,9 @@ process:
     -
       plugin: skip_on_empty
       method: row
-
 destination:
   plugin: 'entity:group_content'
 migration_dependencies:
   required:
     - upgrade_d6_group_raid
-  optional: { }
+  optional: {  }
