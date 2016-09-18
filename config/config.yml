@@ -273,7 +273,7 @@ post_provision_scripts:
 mysql_root_password: root
 mysql_slow_query_log_enabled: true
 mysql_slow_query_time: 2
-mysql_wait_timeout: 300
+mysql_wait_timeout: 3000
 adminer_install_filename: index.php
 
 # Node.js configuration (if enabled above).

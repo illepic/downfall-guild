@@ -99,5 +99,14 @@ process:
 destination:
   plugin: 'entity:group'
 migration_dependencies:
-  required: { }
+  required:
+    - upgrade_d6_node_forum
+    - upgrade_d6_node_blog
+    - upgrade_d6_node_event
+    - upgrade_d6_node_raidevent
+    - upgrade_d6_node_book
+    - upgrade_d6_node_image
+    - upgrade_d6_node_page
+    - upgrade_d6_node_story
+    - upgrade_d6_node_poll
   optional: { }
