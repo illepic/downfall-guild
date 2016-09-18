@@ -1,0 +1,56 @@
+uuid: 1821af8d-c992-4b30-a5ea-4c1ee8fc4161
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 3V8ibVMvrAn8_QV7DJ4INjIMKeYwO6ltSbrNJdu7-iw
+id: upgrade_d6_file
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: Files
+source:
+  plugin: d6_file
+process:
+  fid: fid
+  filename:
+    -
+      plugin: static_map
+      source: filename
+      bypass: true
+      map:
+        'gallery grid': ''
+        preview: ''
+        thumbnail: ''
+        img_assist_properties: ''
+        large: ''
+    -
+      plugin: skip_contains
+      skip:
+        - furiousraid
+    -
+      plugin: skip_on_empty
+      method: row
+    -
+      plugin: callback
+      callable: basename
+      source: filepath
+  uri:
+    plugin: file_uri
+    source:
+      - filepath
+      - file_directory_path
+      - temp_directory_path
+      - is_public
+  filemime: filemime
+  filesize: filesize
+  status: status
+  changed: timestamp
+  uid: uid
+destination:
+  plugin: 'entity:file'
+  urlencode: true
+  source_base_path: 'http://d6.local.downfallguild.org/'
+migration_dependencies:
+  required: {  }
+  optional: {  }

@@ -1,0 +1,23 @@
+uuid: c2d184e8-82a6-4964-94a6-99fd042512cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gapp_describe_playstyle
+    - node.type.guild_app
+  module:
+    - text
+_core:
+  default_config_hash: 0DlRCfWyPDHZuIQGK3d3gd830OUw7F9ngr0ALOk7WAE
+id: node.guild_app.field_gapp_describe_playstyle
+field_name: field_gapp_describe_playstyle
+entity_type: node
+bundle: guild_app
+label: 'Describe your playstyle'
+description: 'What is your typical rotation? Healers, how do you prioritize your heals and cooldowns? Please give us details.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

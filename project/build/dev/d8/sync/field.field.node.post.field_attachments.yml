@@ -1,0 +1,29 @@
+uuid: 3ce4a529-d09e-44d6-82c1-0f8938201d18
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_attachments
+    - node.type.post
+  module:
+    - file
+_core:
+  default_config_hash: jsNQPKUFcky1TMkI8Hhnaj2WoaQaWQGOVBvyEqkU9h8
+id: node.post.field_attachments
+field_name: field_attachments
+entity_type: node
+bundle: post
+label: Attachments
+description: 'Attach non-media files here like addon config, zip files, pdfs, etc.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: 'post/attachments/[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt lua pdf xls zip gz swf'
+  max_filesize: ''
+  description_field: true
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

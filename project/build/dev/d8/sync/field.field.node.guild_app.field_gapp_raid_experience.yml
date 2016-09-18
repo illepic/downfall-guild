@@ -1,0 +1,23 @@
+uuid: e04373f7-dbaf-4e54-817e-6cd1ec44f338
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gapp_raid_experience
+    - node.type.guild_app
+  module:
+    - text
+_core:
+  default_config_hash: AFK97_iBzvcXbI7IfDQS4405zEKHF2EksEgEGnPcqQg
+id: node.guild_app.field_gapp_raid_experience
+field_name: field_gapp_raid_experience
+entity_type: node
+bundle: guild_app
+label: 'Raid Experience'
+description: 'Tell us what raids you have experienced and at what difficulties?'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

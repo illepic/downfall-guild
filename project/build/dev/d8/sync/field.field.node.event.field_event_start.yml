@@ -1,0 +1,26 @@
+uuid: 9e932917-58cb-4bf8-8bb9-575f51e7eba4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_event_start
+    - node.type.event
+  module:
+    - datetime
+_core:
+  default_config_hash: A2vQbVzG_DsqNr9oEoiDeJzkElYGSFqGn9-yoOwuQIA
+id: node.event.field_event_start
+field_name: field_event_start
+entity_type: node
+bundle: event
+label: 'Event Start'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

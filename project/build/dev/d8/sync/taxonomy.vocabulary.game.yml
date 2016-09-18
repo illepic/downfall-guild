@@ -1,0 +1,11 @@
+uuid: 83882b4a-72e4-42a2-a3ab-3156d63b40bc
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: SzzcyS5MyYlD9ZQvNk0I_MkvZe36eQIZiNnifKkUpL0
+name: Game
+vid: game
+description: ''
+hierarchy: 0
+weight: 0

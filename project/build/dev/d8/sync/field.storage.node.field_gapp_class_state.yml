@@ -1,0 +1,21 @@
+uuid: 15d40617-2164-48c7-b5b0-39ac7c03143d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+_core:
+  default_config_hash: inS0WfZc6ZeAGQvR9Z1PNdS2S7JKnkzhPI1TxSAhxpQ
+id: node.field_gapp_class_state
+field_name: field_gapp_class_state
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

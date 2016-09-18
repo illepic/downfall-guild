@@ -1,0 +1,21 @@
+uuid: 6cc5bc39-2cc7-4086-b98b-8685a5a85cc2
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+_core:
+  default_config_hash: FtqT1n9uqChOXM5j6KL7lhHxXlILbIIxs22ItF9dJ08
+id: node.field_gapp_wow_history
+field_name: field_gapp_wow_history
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

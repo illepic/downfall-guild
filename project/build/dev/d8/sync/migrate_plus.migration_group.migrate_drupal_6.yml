@@ -1,0 +1,22 @@
+uuid: 063dfaaa-ae70-43ea-9502-9341a30e2632
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: yjM6j_MUwYZ6wGW5fPE2yYxPaIqXCg3VoQ1mJcyJ5VY
+id: migrate_drupal_6
+label: 'Import from Drupal 6'
+description: 'Migrations originally generated from drush migrate-upgrade --configure-only'
+source_type: 'Drupal 6'
+module: null
+shared_configuration:
+  source:
+    key: drupal_6
+    database:
+      driver: mysql
+      username: dfdbuser
+      password: dfdbpass
+      host: localhost
+      port: ''
+      database: downfall_d6
+      prefix: demo_

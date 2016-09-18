@@ -1,0 +1,20 @@
+uuid: 74fef2ac-b62a-4e6b-8cd0-7289a17f83f3
+langcode: en
+status: true
+dependencies:
+  module:
+    - video_embed_media
+_core:
+  default_config_hash: pwDNNPA_9yz17daVFcpAsJOx-2xJPmUMlqxX5bsGMbU
+id: media_video
+label: 'Media Video'
+description: ''
+type: video_embed_field
+queue_thumbnail_downloads: false
+new_revision: false
+type_configuration:
+  source_field: field_media_video_embed_field
+field_map:
+  source_name: name
+  image_local: thumbnail
+  image_local_uri: thumbnail

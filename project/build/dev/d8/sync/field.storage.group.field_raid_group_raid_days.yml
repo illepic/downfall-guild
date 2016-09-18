@@ -1,0 +1,44 @@
+uuid: 25d67a3f-bd4f-4f78-a810-f59f39bc2710
+langcode: en
+status: true
+dependencies:
+  module:
+    - group
+    - options
+_core:
+  default_config_hash: yxpplHrDGi8noZwLU2D78QeqYt2QcTGEgUk5RSAATgw
+id: group.field_raid_group_raid_days
+field_name: field_raid_group_raid_days
+entity_type: group
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: Mon
+      label: Monday
+    -
+      value: Tue
+      label: Tuesday
+    -
+      value: Wed
+      label: Wednesday
+    -
+      value: Thu
+      label: Thursday
+    -
+      value: Fri
+      label: Friday
+    -
+      value: Sat
+      label: Saturday
+    -
+      value: Sun
+      label: Sunday
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

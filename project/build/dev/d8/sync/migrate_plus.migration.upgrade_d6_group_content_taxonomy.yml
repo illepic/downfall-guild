@@ -1,0 +1,110 @@
+uuid: 2b614903-ef27-44b9-bb48-a4f6b8d1cae3
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_group_content_taxonomy
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'Group Content entities (by taxonomy)'
+source:
+  plugin: og_content_taxonomy
+  tids:
+    - 3
+    - 4
+    - 15
+    - 16
+    - 60
+    - 62
+    - 78
+    - 89
+    - 90
+    - 96
+    - 97
+    - 98
+    - 100
+    - 101
+  node_types:
+    - blog
+    - event
+    - forum
+    - image
+    - page
+    - poll
+    - raidevent
+    - story
+process:
+  label: title
+  created: created
+  uid: uid
+  type:
+    -
+      plugin: static_map
+      source: type
+      map:
+        blog: raid_group-group_node-post
+        event: raid_group-group_node-event
+        forum: raid_group-group_node-post
+        image: raid_group-group_node-df_media
+        page: raid_group-group_node-post
+        poll: raid_group-group_node-post
+        raidevent: raid_group-group_node-event
+        story: raid_group-group_node-post
+  gid:
+    -
+      plugin: static_map
+      source: tid
+      map:
+        3: 12359
+        4: 12360
+        15: 12359
+        16: 12360
+        60: 7393
+        62: 10671
+        78: 8056
+        89: 7365
+        90: 6593
+        96: 7365
+        97: 6593
+        98: 7393
+        100: 12361
+        101: 9406
+    -
+      plugin: migration
+      migration: upgrade_d6_group_raid
+      no_stub: true
+    -
+      plugin: skip_on_empty
+      method: row
+  entity_id:
+    -
+      plugin: static_map
+      bypass: true
+      source: nid
+      map:
+        5725: ''
+        5460: ''
+        5869: ''
+        10723: ''
+        10719: ''
+        10720: ''
+        10721: ''
+        10722: ''
+    -
+      plugin: skip_on_empty
+      method: row
+destination:
+  plugin: 'entity:group_content'
+migration_dependencies:
+  required:
+    - upgrade_d6_node_forum
+    - upgrade_d6_node_blog
+    - upgrade_d6_node_event
+    - upgrade_d6_node_raidevent
+    - upgrade_d6_node_book
+    - upgrade_d6_node_image
+    - upgrade_d6_node_page
+    - upgrade_d6_node_story
+    - upgrade_d6_node_poll
+    - upgrade_d6_group_raid
+  optional: {  }

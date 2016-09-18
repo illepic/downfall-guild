@@ -1,0 +1,14 @@
+uuid: a9076cb2-72ac-4c33-a0c5-137fb0f9ad14
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.webdev
+  module:
+    - user
+id: user_add_role_action.webdev
+label: 'Add the WebDev role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: webdev

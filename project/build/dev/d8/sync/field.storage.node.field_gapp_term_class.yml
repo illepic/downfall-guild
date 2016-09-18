@@ -1,0 +1,22 @@
+uuid: 33364972-dfad-481a-8ed1-ae5e5d07b878
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+_core:
+  default_config_hash: j93W97sJyPtlvUXrJK697kxyK3C8imxyQGCzVeoaUgc
+id: node.field_gapp_term_class
+field_name: field_gapp_term_class
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

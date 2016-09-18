@@ -1,0 +1,10 @@
+uuid: 0163ef5c-8cbd-41f7-9802-5ae3518c7722
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: CWX8wrDEr8Gkwv9cYwb4A8I7PvA78YZhPDPU_9AqpgU
+id: df_comment
+label: 'DF Comment'
+target_entity_type_id: node
+description: ''

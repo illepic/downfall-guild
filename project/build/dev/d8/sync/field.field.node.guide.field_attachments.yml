@@ -1,0 +1,29 @@
+uuid: 6ed73fd2-5818-478b-a3fc-4a711c50f871
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_attachments
+    - node.type.guide
+  module:
+    - file
+_core:
+  default_config_hash: NzgMMRj6CkzqwQdg_wVYEsXzqUo4Cmfu18hV5J8IwTk
+id: node.guide.field_attachments
+field_name: field_attachments
+entity_type: node
+bundle: guide
+label: Attachments
+description: 'Attach non-media files here like lua addon files, zip, pdf, etc.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: 'guide/attachments/[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt xls pdf lua zip gz swf'
+  max_filesize: ''
+  description_field: true
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

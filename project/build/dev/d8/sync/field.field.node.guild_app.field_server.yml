@@ -1,0 +1,23 @@
+uuid: 36ac4fc6-e485-4418-93a4-920b2bb910c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_server
+    - node.type.guild_app
+  module:
+    - options
+_core:
+  default_config_hash: a8_qKjxxR2nz0Ks6gOYCk7yctXsi7O3GI11Ctdd7-OY
+id: node.guild_app.field_server
+field_name: field_server
+entity_type: node
+bundle: guild_app
+label: Server
+description: 'Select the server the character is on.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

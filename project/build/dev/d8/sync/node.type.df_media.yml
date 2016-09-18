@@ -1,0 +1,19 @@
+uuid: 630ec6f8-2081-40b9-87e9-561988b2b406
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+_core:
+  default_config_hash: ZxUUACK6917k-hM8k3VVVgXExczshuPq4omiVsa07Js
+name: 'Downfall Media'
+type: df_media
+description: 'Images and video upload'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

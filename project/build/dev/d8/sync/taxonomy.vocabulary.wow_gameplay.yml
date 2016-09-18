@@ -1,0 +1,11 @@
+uuid: e45341fd-ec6f-4d25-8409-72cd41dbce43
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 2DbeP3S6rWD2rN-BYY2mO_MkV3d-wcxY7oWY7eZEjfA
+name: 'WoW - Gameplay'
+vid: wow_gameplay
+description: 'World of Warcraft gameplay subjects'
+hierarchy: 1
+weight: 0

@@ -1,0 +1,23 @@
+uuid: f58af429-9b49-41cd-9248-30c918d86101
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gapp_pvp_experience
+    - node.type.guild_app
+  module:
+    - text
+_core:
+  default_config_hash: GuhLRnT29KrhHRS1S8b8yYbqT8ODfw1d9Ir5M4f-lF0
+id: node.guild_app.field_gapp_pvp_experience
+field_name: field_gapp_pvp_experience
+entity_type: node
+bundle: guild_app
+label: 'PvP Experience'
+description: 'Describe your experience for us, what classes you’ve played, and what ratings have you achieved in Arenas and Rated Battlegrounds.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

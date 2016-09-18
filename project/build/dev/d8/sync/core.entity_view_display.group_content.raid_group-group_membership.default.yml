@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.group_content.raid_group-group_membership.group_roles
+    - group.content_type.raid_group-group_membership
+_core:
+  default_config_hash: rDqFWqipy8oY9XuDObse37osZyT3VQGbH7bmRtZDwDg
+id: group_content.raid_group-group_membership.default
+targetEntityType: group_content
+bundle: raid_group-group_membership
+mode: default
+content:
+  group_roles:
+    label: above
+    type: entity_reference_label
+    settings:
+      link: false
+    weight: -4
+    third_party_settings: {  }
+hidden:
+  entity_id: true
+  uid: true

@@ -1,0 +1,32 @@
+uuid: 9ec17c56-912c-48f1-9c0a-e74aba78ea48
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media_primary
+    - media_entity.bundle.media_image
+    - media_entity.bundle.media_video
+    - node.type.df_media
+_core:
+  default_config_hash: TefMchpeYRMtg2oOGbbIjsXgz1dxAxr0tHtLKufKHLg
+id: node.df_media.field_media_primary
+field_name: field_media_primary
+entity_type: node
+bundle: df_media
+label: 'Media Primary'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      media_image: media_image
+      media_video: media_video
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: media_image
+field_type: entity_reference

@@ -1,0 +1,11 @@
+uuid: c39eaa9a-3da7-4a01-bbcc-cf00c6b18739
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: ZmnQgUAUZYIv5sVpifZU2rekzo7VqICtj1jttM4OTTk
+id: guildy
+label: Guildy
+weight: 3
+is_admin: null
+permissions: {  }

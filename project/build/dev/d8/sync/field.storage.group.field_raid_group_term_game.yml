@@ -1,0 +1,22 @@
+uuid: 8b1c361f-f05b-4ee9-bce0-87fbfe6b1e2f
+langcode: en
+status: true
+dependencies:
+  module:
+    - group
+    - taxonomy
+_core:
+  default_config_hash: VJhI6CLRwx0w5h-ZcYz0sfW4hLQNX3BBGRTBXYZCG3I
+id: group.field_raid_group_term_game
+field_name: field_raid_group_term_game
+entity_type: group
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

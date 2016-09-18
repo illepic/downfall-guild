@@ -1,0 +1,50 @@
+uuid: acb7adb3-6318-469a-b7aa-3f8353a059e7
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: haKyQIiNCKn8xN6TzQ1uHblKgOdjre59qQRI5377mO4
+id: upgrade_d6_node_poll
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'Nodes (poll)'
+source:
+  plugin: d6_node
+  node_type: poll
+process:
+  nid: nid
+  vid: vid
+  type:
+    plugin: default_value
+    default_value: post
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  body/format:
+    plugin: default_value
+    default_value: basic_html
+  body/value:
+    -
+      plugin: extract_poll
+      source: nid
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+destination:
+  plugin: 'entity:node'
+migration_dependencies:
+  required:
+    - upgrade_d6_user
+    - upgrade_d6_file
+    - upgrade_d6_taxonomy_term
+    - upgrade_d6_taxonomy_term_new
+  optional: {  }

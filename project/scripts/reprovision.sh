@@ -1,28 +1,12 @@
 #!/usr/bin/env bash
 
-cd drupal-vm
-
-# Symlink `config.yml` and `drupal.make.yml` from `config/` into `drupal-vm/`
-ln -sf ../config/config.yml
-ln -sf ../config/drupal.composer.json
-
-# Move back to root of repo
-cd ../
-
-# DELETE the D8 folder and kick off Vagrant.
-sudo rm -rf project/web/d8
-cd drupal-vm
-vagrant provision
-
-# Back to root
-cd ../
+# Reinstall drupal via drupalvm
+bash ./project/scripts/drupalvm.sh
 
 # Symlinks
 bash ./project/scripts/symlinks.sh
 
-# Copy config
-mkdir -p ./project/web/d8/web/sites/default/files/sync
-cp ./project/build/dev/d8/modules/custom/df_config/sync/* ./project/web/d8/web/sites/default/files/sync/
+sudo bash -c 'cat project/build/dev/d8/sites/default/enable_local_settings.txt >> project/web/d8/web/sites/default/settings.php'
 
 # Permissions needed for import/moving around files
 chmod -R 777 project/web/d8/web/sites/default && chmod -R 777 project/web/d8/web/sites/default/*

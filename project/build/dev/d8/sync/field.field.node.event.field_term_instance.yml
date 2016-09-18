@@ -1,0 +1,30 @@
+uuid: ba29100b-8d7c-4744-aa4a-771b502acf05
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_term_instance
+    - node.type.event
+    - taxonomy.vocabulary.wow_instance
+_core:
+  default_config_hash: rlCNaroRKQb3L7vzm_oNwFHj2Uhmwcfk0ro2ZJjttJo
+id: node.event.field_term_instance
+field_name: field_term_instance
+entity_type: node
+bundle: event
+label: Instance
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      wow_instance: wow_instance
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

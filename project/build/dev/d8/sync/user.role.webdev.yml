@@ -1,0 +1,11 @@
+uuid: 751684dd-6c40-4e6f-b871-1cac00977c98
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: v_hE2tGLEhsGliRzkZQkhEMMVMjpScjHWz_hHmxoII0
+id: webdev
+label: WebDev
+weight: 4
+is_admin: null
+permissions: {  }

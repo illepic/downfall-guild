@@ -1,0 +1,11 @@
+uuid: ff011b6d-6cd8-4d2a-bf58-6006a1a45712
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: hVWAhsMU15hkxQrukJFkelxptVK4zFth-p3XvO-30vo
+name: 'WoW - Role'
+vid: wow_role
+description: ''
+hierarchy: 0
+weight: 0

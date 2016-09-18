@@ -1,0 +1,11 @@
+uuid: c7b63ba3-3704-4157-9355-4852a3923a88
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 58W5yqm-cKBXvhYCns5ojvl8z6gzqojLFBSYPoj7e_4
+name: 'WoW - Class'
+vid: wow_class
+description: 'World of Warcraft player Classes'
+hierarchy: 0
+weight: 0

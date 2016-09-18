@@ -1,0 +1,32 @@
+uuid: cacbded5-9701-482e-a90c-cf52ad8f7afa
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - group
+    - image
+_core:
+  default_config_hash: cKOsX2PVd7X4Ta_7uUFg3YBI9435KcpkXbYbeFulCJ4
+id: group.field_raid_group_mascot
+field_name: field_raid_group_mascot
+entity_type: group
+type: image
+settings:
+  uri_scheme: public
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  target_type: file
+  display_field: false
+  display_default: false
+module: image
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

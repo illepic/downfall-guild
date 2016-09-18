@@ -1,0 +1,32 @@
+uuid: 295fb739-31ab-4dc2-9ed6-970f33ec4c63
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media_secondary
+    - media_entity.bundle.media_image
+    - media_entity.bundle.media_video
+    - node.type.post
+_core:
+  default_config_hash: B2RMcLEV5PpUPP-1R6juOPMbhpNx3Hsc2Q_Dy6wjDDA
+id: node.post.field_media_secondary
+field_name: field_media_secondary
+entity_type: node
+bundle: post
+label: 'Media Secondary'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      media_image: media_image
+      media_video: media_video
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: media_image
+field_type: entity_reference

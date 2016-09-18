@@ -1,0 +1,26 @@
+uuid: 6972c19e-391e-4a2b-96e1-49950c112f7c
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.raid_group
+id: raid_group-leader
+label: Leader
+weight: -99
+internal: false
+audience: member
+group_type: raid_group
+permissions_ui: true
+permissions:
+  0: 'edit group'
+  1: 'access content overview'
+  2: 'administer group'
+  3: 'administer members'
+  4: 'delete group'
+  5: 'delete any df_media node'
+  6: 'edit any df_media node'
+  7: 'edit any event node'
+  8: 'delete any post node'
+  9: 'edit any post node'
+  10: 'access group_node overview'
+  18: 'delete any event node'

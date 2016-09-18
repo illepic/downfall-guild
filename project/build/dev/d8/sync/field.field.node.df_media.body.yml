@@ -1,0 +1,24 @@
+uuid: 19f75273-9336-43f0-bb04-88db0f684b43
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.df_media
+  module:
+    - text
+_core:
+  default_config_hash: D60W_HJc3NKXnGPEHK8VsOZSsya0Ee2JT9ZK-F4U7jI
+id: node.df_media.body
+field_name: body
+entity_type: node
+bundle: df_media
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

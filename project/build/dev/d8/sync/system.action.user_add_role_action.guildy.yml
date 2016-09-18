@@ -1,0 +1,14 @@
+uuid: e5fecc3a-1b96-4e17-a485-caf6c323b227
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.guildy
+  module:
+    - user
+id: user_add_role_action.guildy
+label: 'Add the Guildy role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: guildy

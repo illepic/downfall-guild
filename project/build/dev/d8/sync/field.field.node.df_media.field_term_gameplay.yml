@@ -1,0 +1,30 @@
+uuid: 29656928-237f-4617-a035-729e1a9ebfb7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_term_gameplay
+    - node.type.df_media
+    - taxonomy.vocabulary.wow_gameplay
+_core:
+  default_config_hash: JjxBGwu1QqIr_Y5cTv547TiW4pDzxG2kzsmyJcxkig4
+id: node.df_media.field_term_gameplay
+field_name: field_term_gameplay
+entity_type: node
+bundle: df_media
+label: Gameplay
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      wow_gameplay: wow_gameplay
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

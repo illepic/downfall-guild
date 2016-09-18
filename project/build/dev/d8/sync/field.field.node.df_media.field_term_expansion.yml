@@ -1,0 +1,30 @@
+uuid: 236666cd-1513-40a6-b734-5bd046c96b36
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_term_expansion
+    - node.type.df_media
+    - taxonomy.vocabulary.wow_expansion
+_core:
+  default_config_hash: 5gjdUpLh8k2pwFeyCCrzVskseUo_sb5dGl4h1YOUQQA
+id: node.df_media.field_term_expansion
+field_name: field_term_expansion
+entity_type: node
+bundle: df_media
+label: Expansion
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      wow_expansion: wow_expansion
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

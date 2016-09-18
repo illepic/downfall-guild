@@ -112,6 +112,13 @@ Helpful wipe-out-and-start-over command
 drush sql-query "TRUNCATE migrate_map_upgrade_d6_node_guild_app" && drush mr upgrade_d6_node_guild_app && drush cdi1 modules/custom/df_migration/config/install/migrate_plus.migration.upgrade_d6_node_guild_app.yml && drupal cr all && drush mi upgrade_d6_node_guild_app --idlist="12331"
 ````
 
+Site reinstall using our new install profile
+
+````shell
+chmod 777 sites/default/settings.php && drush si config_installer --account-name=admin --account-pass=test
+````
+
+
 ### Drupal 8
 
 Drupal 8 is built completely from scratch if and only if the `project/web/d8` folder does not exist.

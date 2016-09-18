@@ -1,0 +1,11 @@
+uuid: 9ed44cf7-317e-4894-b88c-9621446301b5
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: '-zN3DpgFgU2fUFcFAsvk3UIVn9w0D-e-xb5E_jj0Nz4'
+name: 'WoW - Expansion'
+vid: wow_expansion
+description: 'World of Warcraft expansion and patches'
+hierarchy: 0
+weight: 0

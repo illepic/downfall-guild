@@ -1,0 +1,21 @@
+uuid: da1a2e3f-7d92-49a6-a9de-4b82f3b486bf
+langcode: en
+status: true
+dependencies:
+  module:
+    - group
+    - text
+_core:
+  default_config_hash: gmD-qJ0Wg-hieLKV6t1eZInwHcZ8xp7Sf36PYmGbiXo
+id: group.field_raid_group_description
+field_name: field_raid_group_description
+entity_type: group
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,24 @@
+uuid: e0469083-c2ff-40ed-826a-5e050e8a2920
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.guide
+  module:
+    - text
+_core:
+  default_config_hash: fy8-MjFsuBXi-qD_vccK0IYutM2CKvX1oXqRgj4JOOo
+id: node.guide.body
+field_name: body
+entity_type: node
+bundle: guide
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

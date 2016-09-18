@@ -1,0 +1,23 @@
+uuid: b823c6b2-6fef-4de9-ac1d-63c8855dcd40
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.group.field_raid_group_description
+    - group.type.raid_group
+  module:
+    - text
+_core:
+  default_config_hash: OdqZzkxts0Zhg0ciRMqPnqDgUN9EUF8rTcrnBIk4wGQ
+id: group.raid_group.field_raid_group_description
+field_name: field_raid_group_description
+entity_type: group
+bundle: raid_group
+label: 'Raid Group Description'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -6,7 +6,11 @@ cd project/web/d8/web/modules
 ln -sf ../../../../build/dev/d8/modules/custom
 cd ../themes
 ln -sf ../../../../build/dev/d8/themes/custom
+cd ../sites/default/files
+ln -sf ../../../../../../build/dev/d8/sync
 
 cd ../sites/default
 sudo ln -sf ../../../../../build/dev/d8/sites/default/settings.local.php
-sudo bash -c 'cat ../../../../../build/dev/d8/sites/default/enable_local_settings.txt >> settings.php'
+
+# Back to root of project
+cd ../../../../../../../

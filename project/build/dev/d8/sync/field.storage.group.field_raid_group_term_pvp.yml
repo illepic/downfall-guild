@@ -1,0 +1,22 @@
+uuid: d9e25d89-64ea-4446-8cec-f89fefb1dcbf
+langcode: en
+status: true
+dependencies:
+  module:
+    - group
+    - taxonomy
+_core:
+  default_config_hash: 569uHKlt-rWXufwZSl5rH2znoUFNhNpWcLhmEM-fdtU
+id: group.field_raid_group_term_pvp
+field_name: field_raid_group_term_pvp
+entity_type: group
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

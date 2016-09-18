@@ -1,0 +1,30 @@
+uuid: 36087cd8-af02-4f99-9a3d-81a62fe67f93
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_term_pvp
+    - node.type.df_media
+    - taxonomy.vocabulary.wow_pvp
+_core:
+  default_config_hash: JDXfpm8plkPrhVBeDXoORKDnl-DeI52xvrhW76ceZaw
+id: node.df_media.field_term_pvp
+field_name: field_term_pvp
+entity_type: node
+bundle: df_media
+label: PvP
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      wow_pvp: wow_pvp
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,23 @@
+uuid: 8f0ccba3-c778-4fb0-a215-58e540eef467
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gapp_class_state
+    - node.type.guild_app
+  module:
+    - text
+_core:
+  default_config_hash: RgzULtekwOo9_chjYXrKM8-ZB4TlX3haKJ1c-XU6wgI
+id: node.guild_app.field_gapp_class_state
+field_name: field_gapp_class_state
+entity_type: node
+bundle: guild_app
+label: 'How do you feel about the state of your class in the game'
+description: 'Do you like how it currently is? Are there things that could use changing?'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

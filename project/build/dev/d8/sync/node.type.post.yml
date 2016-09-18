@@ -1,0 +1,19 @@
+uuid: 1957bbdc-e5c1-489e-98a9-2d28be38c89f
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+_core:
+  default_config_hash: yZ0fFj31SZQvaVwdmGPeh1BhAX6EzFbm1TDfZRPSVHE
+name: Post
+type: post
+description: 'A post on the Downfall site. Use this to say hello, make announcements, kick off discussion.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

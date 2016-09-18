@@ -1,0 +1,22 @@
+uuid: ff8b8fe1-f7bf-4300-a68a-65a74ace3b08
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+_core:
+  default_config_hash: FmJYhLkTrZl3YuSYEJhoj60jVUCk1dv8bp_ckOHmS78
+id: node.field_term_pvp
+field_name: field_term_pvp
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

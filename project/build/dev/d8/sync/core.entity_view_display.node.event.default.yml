@@ -1,0 +1,114 @@
+uuid: 93bf63d0-74cd-4f54-8237-cdaaa17c03f1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.event.body
+    - field.field.node.event.comment
+    - field.field.node.event.field_event_end
+    - field.field.node.event.field_event_start
+    - field.field.node.event.field_term_class
+    - field.field.node.event.field_term_downfall
+    - field.field.node.event.field_term_expansion
+    - field.field.node.event.field_term_game
+    - field.field.node.event.field_term_gameplay
+    - field.field.node.event.field_term_instance
+    - field.field.node.event.field_term_instance_size
+    - field.field.node.event.field_term_pvp
+    - node.type.event
+  module:
+    - comment
+    - datetime
+    - text
+    - user
+_core:
+  default_config_hash: JkVfU2mRbnid22QR_WXM-P-7rgruoM1DC7eBYBNTm-I
+id: node.event.default
+targetEntityType: node
+bundle: event
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+  comment:
+    weight: 114
+    label: above
+    settings:
+      pager_id: 0
+    third_party_settings: {  }
+    type: comment_default
+  field_event_end:
+    weight: 103
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    type: datetime_default
+  field_event_start:
+    weight: 102
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    type: datetime_default
+  field_term_downfall:
+    weight: 110
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_term_expansion:
+    weight: 106
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_term_game:
+    weight: 113
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_term_gameplay:
+    weight: 112
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_term_instance:
+    weight: 108
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_term_instance_size:
+    weight: 111
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_term_pvp:
+    weight: 109
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_term_class: true

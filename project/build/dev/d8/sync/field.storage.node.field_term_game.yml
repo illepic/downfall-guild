@@ -1,0 +1,22 @@
+uuid: 9f6aff87-8551-4084-9265-7ab7d8c63810
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+_core:
+  default_config_hash: Dh-W4u8fP0gmTeayDxl_g7xrLgIFHLdBgBf1cVjw9t8
+id: node.field_term_game
+field_name: field_term_game
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

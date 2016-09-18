@@ -1,0 +1,11 @@
+uuid: 88ddc440-0d9b-46c9-a253-0258ddcd1193
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: VdAtjf6dU5kaQVu5nd-VSeXP8EAFKNZ4hWBP-sAj3Is
+name: 'WoW - PvP'
+vid: wow_pvp
+description: 'World of Warcraft PvP subjects'
+hierarchy: 0
+weight: 0

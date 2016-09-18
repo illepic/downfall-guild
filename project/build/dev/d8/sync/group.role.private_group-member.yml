@@ -1,0 +1,26 @@
+uuid: 37a6079b-50e3-49fa-990f-6891dd3f67cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.private_group
+id: private_group-member
+label: Member
+weight: -100
+internal: true
+audience: member
+group_type: private_group
+permissions_ui: true
+permissions:
+  0: 'edit own group_membership content'
+  1: 'leave group'
+  2: 'view group'
+  3: 'view group_membership content'
+  8: 'create group_node:post content'
+  9: 'delete own group_node:post content'
+  10: 'edit own group_node:post content'
+  11: 'view group_node:post content'
+  12: 'create post node'
+  13: 'delete own post node'
+  14: 'edit own post node'
+  15: 'view post node'

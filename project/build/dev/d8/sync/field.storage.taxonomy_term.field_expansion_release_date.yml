@@ -1,0 +1,22 @@
+uuid: c028e0f1-e270-47f1-b343-6ad0acc4b2cd
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - taxonomy
+_core:
+  default_config_hash: Z-cBma5JVoE_t2HlYpBWH1cgMFO2SBoIPL5V_oqfLkQ
+id: taxonomy_term.field_expansion_release_date
+field_name: field_expansion_release_date
+entity_type: taxonomy_term
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,21 @@
+uuid: 969dd4ce-fd5e-42f3-b5dd-afefa2e4078f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gapp_name
+    - node.type.guild_app
+_core:
+  default_config_hash: ScAQhTtfnYb4zD78LyNcG3rejeiQen5Bwl38dUDDOC4
+id: node.guild_app.field_gapp_name
+field_name: field_gapp_name
+entity_type: node
+bundle: guild_app
+label: Name
+description: 'The toon with whom you are applying.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

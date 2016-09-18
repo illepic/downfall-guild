@@ -1,0 +1,14 @@
+uuid: 5a63d8fe-439d-4e6e-b530-fc59e19a67bb
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.friend
+  module:
+    - user
+id: user_remove_role_action.friend
+label: 'Remove the Friend role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: friend

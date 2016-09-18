@@ -1,0 +1,22 @@
+uuid: 39c93146-576b-42c1-afa3-1e41f1f0de44
+langcode: en
+status: true
+dependencies:
+  module:
+    - group
+    - taxonomy
+_core:
+  default_config_hash: OeNrMlO11eNedPOeh0ZK0TFOzvnTJZwbIKyctTioLgY
+id: group.field_raid_group_term_expansion
+field_name: field_raid_group_term_expansion
+entity_type: group
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,21 @@
+uuid: f2bd9032-8dbc-4203-9f5d-1f8941ddf52e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.group.field_raid_group_slogan
+    - group.type.raid_group
+_core:
+  default_config_hash: EOhRhXzIxHOgkMF_1tw20ih_TppHRoOdUpsNexOAwik
+id: group.raid_group.field_raid_group_slogan
+field_name: field_raid_group_slogan
+entity_type: group
+bundle: raid_group
+label: 'Raid Group Slogan'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

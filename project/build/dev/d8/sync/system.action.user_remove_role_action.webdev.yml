@@ -1,0 +1,14 @@
+uuid: 7f2a98f6-ba2b-41f1-9de6-4488b506c9e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.webdev
+  module:
+    - user
+id: user_remove_role_action.webdev
+label: 'Remove the WebDev role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: webdev

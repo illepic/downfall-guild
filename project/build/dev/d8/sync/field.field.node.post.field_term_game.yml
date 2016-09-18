@@ -1,0 +1,32 @@
+uuid: 08a466aa-7aa3-4ea7-9b36-408da0d617a9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_term_game
+    - node.type.post
+    - taxonomy.vocabulary.game
+_core:
+  default_config_hash: J-L6UtUfSNjHIgxtnAMApRwZsM-HeUe5ZXq-dRrmecE
+id: node.post.field_term_game
+field_name: field_term_game
+entity_type: node
+bundle: post
+label: Game
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    target_uuid: 7defbc96-f405-449d-ac97-f87fa32a4dcf
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      game: game
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

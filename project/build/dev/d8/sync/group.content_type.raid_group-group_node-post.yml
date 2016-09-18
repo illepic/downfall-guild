@@ -1,0 +1,17 @@
+uuid: 8a94e740-db8d-47a1-897c-c1af802f6fb0
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.raid_group
+    - node.type.post
+  module:
+    - gnode
+_core:
+  default_config_hash: 2fq3Wzp0eL5PR-MoWbW235ZzFEZ5myPvA6X9wIVvFiI
+id: raid_group-group_node-post
+label: 'Raid Group: Group node (Post)'
+description: 'Adds <em class="placeholder">Post</em> content to groups both publicly and privately.'
+group_type: raid_group
+content_plugin: 'group_node:post'
+plugin_config: {  }

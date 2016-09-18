@@ -1,0 +1,21 @@
+uuid: bc10e472-344b-4028-a6f4-9befcfce0126
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+_core:
+  default_config_hash: rGPah9nqcXpCnAriPTqRl4LHMmPSIB2GrFuF5CVojLU
+id: node.field_gapp_yourself
+field_name: field_gapp_yourself
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

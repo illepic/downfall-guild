@@ -1,0 +1,21 @@
+uuid: 7ee4aaf3-9674-4d36-ae2c-1fc7e93b7a35
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+_core:
+  default_config_hash: Nch5mgTtBu3qNEtSnXzZ8ZMUxVjUKdFvLBeZs62-x7I
+id: node.field_gapp_raid_experience
+field_name: field_gapp_raid_experience
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

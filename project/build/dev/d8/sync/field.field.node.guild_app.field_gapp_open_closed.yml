@@ -1,0 +1,25 @@
+uuid: e00138ff-00a1-40ac-b9b2-002816505812
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gapp_open_closed
+    - node.type.guild_app
+_core:
+  default_config_hash: QM4Fyhexqe_StqtGg6t1kwbm3OuaZZvJv65_dmYW8TQ
+id: node.guild_app.field_gapp_open_closed
+field_name: field_gapp_open_closed
+entity_type: node
+bundle: guild_app
+label: Status
+description: 'Leave your app Open if you wish it to be viewable by Downfall. Close it and it will disappear.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: Open
+  off_label: Closed
+field_type: boolean

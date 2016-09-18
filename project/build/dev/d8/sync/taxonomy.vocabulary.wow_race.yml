@@ -1,0 +1,11 @@
+uuid: 86523ba4-bc7b-48af-88ee-94d190000f30
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: M3GXVWY2qS95amyMHRBs4BI8ievzcrIQnubPUcM3phI
+name: 'WoW - Race'
+vid: wow_race
+description: 'World of Warcraft player Races'
+hierarchy: 0
+weight: 0

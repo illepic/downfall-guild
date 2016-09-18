@@ -1,0 +1,11 @@
+uuid: 9554b5fc-029d-485d-b6a5-59db40ea5567
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: SMQhh4-4u57k2mWEzEgLfUbBqWKDLt3EBUGRt0QQ1fc
+name: 'Image Galleries'
+vid: image_galleries
+description: ''
+hierarchy: 0
+weight: 0

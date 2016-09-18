@@ -1,0 +1,18 @@
+uuid: null
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.raid_group
+id: raid_group-anonymous
+label: Anonymous
+weight: -102
+internal: true
+audience: anonymous
+group_type: raid_group
+permissions_ui: true
+permissions:
+  0: 'view group'
+  1: 'view post node'
+  3: 'view df_media node'
+  4: 'view event node'

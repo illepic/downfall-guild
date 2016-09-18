@@ -1,0 +1,25 @@
+uuid: 866fa28f-45c9-4a97-9e92-34d17b645bf4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.group.field_raid_group_start_time
+    - group.type.raid_group
+  module:
+    - options
+_core:
+  default_config_hash: w_T5fWgGnw5RR81QW0AqdpTEcG5W1IYD0X2o-O4gS9c
+id: group.raid_group.field_raid_group_start_time
+field_name: field_raid_group_start_time
+entity_type: group
+bundle: raid_group
+label: 'Raid Group Start Time'
+description: 'What server time does this raid usually end? (In 24-hour time)'
+required: false
+translatable: false
+default_value:
+  -
+    value: 1800
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

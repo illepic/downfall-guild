@@ -1,0 +1,30 @@
+uuid: 10d38ff2-6880-40dc-a67d-1d970f90ed06
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_image_gallery
+    - node.type.df_media
+    - taxonomy.vocabulary.image_galleries
+_core:
+  default_config_hash: 9DmpKO6JYlPiHttmZEuJbLfYV0kGiKmWBA-ZRJP7LtM
+id: node.df_media.field_image_gallery
+field_name: field_image_gallery
+entity_type: node
+bundle: df_media
+label: 'Image Gallery'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      image_galleries: image_galleries
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,35 @@
+uuid: 3671deb8-4ded-42ac-b932-bd95d9c831ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.comment
+    - node.type.df_media
+  module:
+    - comment
+_core:
+  default_config_hash: 2Pt-8NNuYxlwV1PNUEg3xfzGvfdv_7VwWdbLqojZCkE
+id: node.df_media.comment
+field_name: comment
+entity_type: node
+bundle: df_media
+label: Comments
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    status: 2
+    cid: 0
+    last_comment_timestamp: 0
+    last_comment_name: null
+    last_comment_uid: 0
+    comment_count: 0
+default_value_callback: ''
+settings:
+  default_mode: 1
+  per_page: 50
+  anonymous: 0
+  form_location: true
+  preview: 1
+field_type: comment

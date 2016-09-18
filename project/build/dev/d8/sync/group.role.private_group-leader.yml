@@ -1,0 +1,24 @@
+uuid: f067a159-df08-42ff-b279-9d50d6244c87
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.private_group
+id: private_group-leader
+label: Leader
+weight: -98
+internal: false
+audience: member
+group_type: private_group
+permissions_ui: true
+permissions:
+  0: 'access content overview'
+  1: 'administer group'
+  2: 'administer members'
+  3: 'delete group'
+  4: 'edit group'
+  5: 'access group_node overview'
+  11: 'delete any group_node:post content'
+  12: 'edit any group_node:post content'
+  13: 'delete any post node'
+  14: 'edit any post node'

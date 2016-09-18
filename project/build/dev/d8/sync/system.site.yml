@@ -1,0 +1,14 @@
+uuid: 432dc9aa-ea8d-4d17-ae54-e8aeef77253a
+name: Downfall
+mail: web-monkey@downfallguild.org
+slogan: '"Droppin bombs since ''04"'
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI

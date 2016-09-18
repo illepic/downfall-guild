@@ -1,0 +1,22 @@
+uuid: 76d261f6-2e7a-49bb-b01f-d1b1b42a13da
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+_core:
+  default_config_hash: OHEPu7_AYc3b51_mlAB9POGmmPKUN1HYzSZPQ5x_HCU
+id: node.field_term_downfall
+field_name: field_term_downfall
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

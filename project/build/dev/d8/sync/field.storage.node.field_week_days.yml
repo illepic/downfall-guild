@@ -1,0 +1,44 @@
+uuid: 03f225b4-9bc6-47ee-8442-f890cd6b188d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+_core:
+  default_config_hash: 3N9EPj7IhEIOuIUnrDux7xqan7Z9rtopmaS1TLnW7qQ
+id: node.field_week_days
+field_name: field_week_days
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: Mon
+      label: Monday
+    -
+      value: Tue
+      label: Tuesday
+    -
+      value: Wed
+      label: Wednesday
+    -
+      value: Thu
+      label: Thursday
+    -
+      value: Fri
+      label: Friday
+    -
+      value: Sat
+      label: Saturday
+    -
+      value: Sun
+      label: Sunday
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

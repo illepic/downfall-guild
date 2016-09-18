@@ -1,0 +1,32 @@
+uuid: d2a43d8a-0ccc-431f-be8a-ecb5bc5adfdb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media_primary
+    - media_entity.bundle.media_image
+    - media_entity.bundle.media_video
+    - node.type.guild_app
+_core:
+  default_config_hash: MKgKa86uFrTLcA4XoD0O8Mut5YikPDtjY3pozYAPu7A
+id: node.guild_app.field_media_primary
+field_name: field_media_primary
+entity_type: node
+bundle: guild_app
+label: 'Attach UI'
+description: 'Either upload a screenshot of your UI or include a link to a video of your UI in action.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      media_image: media_image
+      media_video: media_video
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: media_image
+field_type: entity_reference

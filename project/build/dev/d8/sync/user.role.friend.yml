@@ -1,0 +1,11 @@
+uuid: 3a429b61-4a74-4ccd-b9e5-b7479511efcb
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 9Qh_aISS-k1Kc9s1d6h9idDWk8hFn5QYsHwkwG5BE5M
+id: friend
+label: Friend
+weight: 6
+is_admin: null
+permissions: {  }

@@ -1,0 +1,21 @@
+uuid: e5a893a3-5325-4fb3-8057-b44e40d5f065
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+_core:
+  default_config_hash: uhtvSJmPSvlgjZbPRM1DYUqSZJtxQjENXwup0lt3_qU
+id: node.field_gapp_essential_addons
+field_name: field_gapp_essential_addons
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

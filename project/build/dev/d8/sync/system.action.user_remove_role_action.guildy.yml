@@ -1,0 +1,14 @@
+uuid: 26c11179-a79f-44a3-b29d-200c80967012
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.guildy
+  module:
+    - user
+id: user_remove_role_action.guildy
+label: 'Remove the Guildy role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: guildy

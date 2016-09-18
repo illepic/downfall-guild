@@ -1,0 +1,32 @@
+uuid: c7a6c925-77e1-468b-9bf6-996db528c7a9
+langcode: en
+status: true
+dependencies:
+  module:
+    - comment
+    - file
+    - image
+_core:
+  default_config_hash: hGMViTmQAr49KLNys-F6nCWAmKhtVltldXdRaFz1XGo
+id: comment.field_comment_image
+field_name: field_comment_image
+entity_type: comment
+type: image
+settings:
+  uri_scheme: public
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  target_type: file
+  display_field: false
+  display_default: false
+module: image
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,40 @@
+uuid: abf9a180-2d17-4c12-83c9-f2922187b6ba
+langcode: en
+status: true
+dependencies:
+  module:
+    - entity_browser_entity_form
+_core:
+  default_config_hash: UY97LFERsbYbjCR16DCg8LJPX2s56wWLJmhWkTlZUzE
+name: df_browser_limited
+label: df_browser_limited
+display: modal
+display_configuration:
+  width: '650'
+  height: '500'
+  link_text: 'Select entities'
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: tabs
+widget_selector_configuration: {  }
+widgets:
+  eb3250f7-461c-4e06-bf9c-573b94954217:
+    settings:
+      entity_type: media
+      bundle: media_image
+      form_mode: default
+      submit_text: 'Save entity'
+    uuid: eb3250f7-461c-4e06-bf9c-573b94954217
+    weight: 1
+    label: 'Media Image'
+    id: entity_form
+  5489b15a-3765-42af-8829-d1972a72d071:
+    settings:
+      entity_type: media
+      bundle: media_video
+      form_mode: default
+      submit_text: 'Save entity'
+    uuid: 5489b15a-3765-42af-8829-d1972a72d071
+    weight: 2
+    label: 'Media Video'
+    id: entity_form

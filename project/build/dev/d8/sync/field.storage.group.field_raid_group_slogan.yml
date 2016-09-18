@@ -1,0 +1,23 @@
+uuid: 742d0784-9b88-409b-8653-bedea2a091a8
+langcode: en
+status: true
+dependencies:
+  module:
+    - group
+_core:
+  default_config_hash: Ev5_G7BLS8KzEytsaryK0fwBklF55KpIetQ4WSGoN78
+id: group.field_raid_group_slogan
+field_name: field_raid_group_slogan
+entity_type: group
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

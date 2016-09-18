@@ -1,0 +1,63 @@
+uuid: 41cea692-bdf4-4c14-994e-1ee4cc550a1e
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: l-uWg9dSLTdIujwtewdasskvkOTGKVGUYZIcg8BJn0M
+id: upgrade_d6_user
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'User accounts'
+source:
+  plugin: d6_user
+process:
+  uid: uid
+  name: name
+  pass: pass
+  mail: mail
+  created: created
+  access: access
+  login:
+    -
+      plugin: get
+      source: login
+  status:
+    -
+      plugin: get
+      source: status
+    -
+      plugin: skip_on_empty
+      method: row
+  timezone:
+    plugin: user_update_7002
+    source: timezone
+  preferred_langcode: language
+  init: init
+  roles:
+    plugin: static_map
+    source: roles
+    bypass: true
+    map:
+      8: guildy
+      7: guildy
+      5: guildy
+      9: guildy
+      3: officer
+      6: guildy
+      11: guildy
+      4: officer
+      10: webdev
+  user_picture:
+    plugin: migration
+    migration: upgrade_d6_user_picture_file
+    source: uid
+    no_stub: true
+destination:
+  plugin: 'entity:user'
+  md5_passwords: true
+migration_dependencies:
+  required:
+    - upgrade_d6_system_site
+    - upgrade_d6_user_picture_file
+  optional: {  }

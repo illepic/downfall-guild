@@ -1,0 +1,22 @@
+uuid: e425a50f-a1a1-4380-95fa-0c7a8ddcd445
+langcode: en
+status: true
+dependencies:
+  module:
+    - group
+    - taxonomy
+_core:
+  default_config_hash: eNlv-ENKujWZuQx_QjE1Y3tUy3JaFEJmSxkwXeSmRvQ
+id: group.field_raid_group_term_instances
+field_name: field_raid_group_term_instances
+entity_type: group
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

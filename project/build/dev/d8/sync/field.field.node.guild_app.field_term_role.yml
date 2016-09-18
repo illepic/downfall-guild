@@ -1,0 +1,30 @@
+uuid: 9e4bda18-74b4-411f-b5bd-789cc5fe9a3d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_term_role
+    - node.type.guild_app
+    - taxonomy.vocabulary.wow_role
+_core:
+  default_config_hash: h5mERFiJ_DwxRBIP0TUlG2ZOKV6JEa1o0z48ih5HYC8
+id: node.guild_app.field_term_role
+field_name: field_term_role
+entity_type: node
+bundle: guild_app
+label: Role
+description: 'Select the roles you **prefer** to play on this character. '
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      wow_role: wow_role
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
