@@ -24,6 +24,8 @@ source:
     - 98
     - 100
     - 101
+    - 61
+    - 6
   node_types:
     - blog
     - event
@@ -69,6 +71,8 @@ process:
         98: 7393
         100: 12361
         101: 9406
+        61: 12373
+        6: 12373
     -
       plugin: migration
       migration: upgrade_d6_group_raid

@@ -1,3 +1,4 @@
+uuid: 2693614a-0790-4ec3-b7f1-32f167a02589
 langcode: en
 status: true
 dependencies:
@@ -12,3 +13,4 @@ label: 'Raid Group: Group membership'
 description: 'Adds users to groups as members.'
 group_type: raid_group
 content_plugin: group_membership
+plugin_config: {  }
