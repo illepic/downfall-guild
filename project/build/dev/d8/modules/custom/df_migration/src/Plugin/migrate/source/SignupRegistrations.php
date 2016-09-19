@@ -24,7 +24,13 @@ class SignupRegistrations extends SqlBase {
    */
   public function query() {
     $query = $this->select('signup_log', 's');
-    $query->fields('s', ['uid', 'nid', 'signup_time', 'form_data']);
+    $query->join('node', 'n', 'n.nid = s.nid');
+    $query
+      ->fields('s', ['uid', 'nid', 'signup_time', 'form_data'])
+      ->fields('n', ['type'])
+      ->condition('n.type', ['event', 'raidevent'], 'IN');
+
+    $query->orderBy('s.nid');
 
     return $query;
   }
@@ -38,6 +44,7 @@ class SignupRegistrations extends SqlBase {
       'nid' => $this->t('Node id user is signing up for'),
       'signup_time' => $this->t('Time of signup'),
       'form_data' => $this->t('Blob of data associated with signup, like name and phone'),
+      'type' => $this->t('Node type'),
     ];
 
     return $fields;
