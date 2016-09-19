@@ -1,0 +1,19 @@
+uuid: 71149f77-ee95-4236-8818-aa525e29fcf5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.registration.field_signup_message
+    - rng.registration_type.raid_signup
+id: registration.raid_signup.field_signup_message
+field_name: field_signup_message
+entity_type: registration
+bundle: raid_signup
+label: 'Signup Message'
+description: 'Any notes on your signup for this Event?'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

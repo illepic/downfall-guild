@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.registration.field_registration_type_signup_f
+    - field.storage.registration.field_signup_message
   module:
     - node
     - rng
@@ -256,14 +256,14 @@ display:
           entity_type: registration
           entity_field: created
           plugin_id: field
-        field_registration_type_signup_f:
-          id: field_registration_type_signup_f
-          table: registration__field_registration_type_signup_f
-          field: field_registration_type_signup_f
+        field_signup_message:
+          id: field_signup_message
+          table: registration__field_signup_message
+          field: field_signup_message
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Registration type: Signup field'
+          label: 'Signup Message'
           exclude: false
           alter:
             alter_text: false
@@ -455,7 +455,7 @@ display:
       cacheable: false
       max-age: 0
       tags:
-        - 'config:field.storage.registration.field_registration_type_signup_f'
+        - 'config:field.storage.registration.field_signup_message'
   page_1:
     display_plugin: page
     id: page_1
@@ -492,4 +492,4 @@ display:
       cacheable: false
       max-age: 0
       tags:
-        - 'config:field.storage.registration.field_registration_type_signup_f'
+        - 'config:field.storage.registration.field_signup_message'

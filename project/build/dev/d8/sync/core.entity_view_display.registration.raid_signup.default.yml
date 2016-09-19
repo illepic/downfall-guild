@@ -1,0 +1,20 @@
+uuid: 4872884c-7e19-4bd4-af35-ca5ad0ac4a83
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.registration.raid_signup.field_signup_message
+    - rng.registration_type.raid_signup
+id: registration.raid_signup.default
+targetEntityType: registration
+bundle: raid_signup
+mode: default
+content:
+  field_signup_message:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden: {  }

@@ -1,0 +1,7 @@
+uuid: 8145ad74-72df-4726-a164-4c49697de009
+langcode: en
+status: true
+dependencies: {  }
+label: 'Raid Signup'
+id: raid_signup
+description: 'Signup for a raid includes a message and possibly a character reference.'

@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.rng_registration_type
     - node.type.event
+    - rng.registration_type.raid_signup
 id: node.event.rng_registration_type
 field_name: rng_registration_type
 entity_type: node
@@ -13,9 +14,13 @@ label: 'Registration type'
 description: 'Select which registration types are valid for this event.'
 required: false
 translatable: true
-default_value: {  }
+default_value:
+  -
+    target_uuid: 8145ad74-72df-4726-a164-4c49697de009
 default_value_callback: ''
 settings:
   handler: 'default:registration_type'
-  handler_settings: {  }
+  handler_settings:
+    target_bundles: null
+    auto_create: false
 field_type: entity_reference
