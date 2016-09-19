@@ -50,6 +50,7 @@ class RemoveStrings extends ProcessPluginBase {
       '<p>Ewiges - Absorbing the stupidity of the world for over 20 years.</p>',
       'And I would lay down my life to birth a new generation of a righteous culture.  To a people I could proudly love and cherish.',
       'Secretary vice president to the vice president\'s secretary of the department of redundancy department',
+      ' dir="ltr"',
     );
     $value = str_replace($replacements, '', $value);
 
