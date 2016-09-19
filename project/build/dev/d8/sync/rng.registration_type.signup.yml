@@ -1,7 +1,0 @@
-uuid: db8cc888-18bc-4664-9e63-80d3947be9f3
-langcode: en
-status: true
-dependencies: {  }
-label: Signup
-id: signup
-description: 'Signup for an event.'
