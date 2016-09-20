@@ -77,24 +77,28 @@ If vagrant did not already add these entries to your hosts file, add the followi
 
 ## Working in the Vagrant box
 
-Jump into the Drupal 8 site by (from root of project on host):
+Jump into the Drupal 8 site by (from project root on host):
 
-    cd drupal-vm
-    vagrant ssh
+    cd drupal-vm && vagrant ssh
     
 Everything under `project/` in your local shows at `/var/www/df` in the VirtualBox.
 
     cd /var/www/df/web/d8/web
 
-Now all `drush` and `drupal` commands work. For instance, enabling a module:
-
+Now all `drush` and `drupal` commands work. For instance:
+	
+	 # Migrate status
     drush ms
+    # Install df_migration module
     drupal module:install df_migration
+    # Import all config from sync directory
     drupal config:import
 
 Site reinstall using our new install profile (from within Vagrant)
 
-    chmod 777 sites/default/settings.php && drush si config_installer --account-name=admin --account-pass=admin
+    cd /var/www/df/web/d8/web
+    chmod 777 sites/default/settings.php
+    drush si config_installer --account-name=admin --account-pass=admin
 
 Sometimes Vagrant gets REALLY stuck. In these cases, the following steps will allow you to rebuild again. Run from root of repo:
 
@@ -116,7 +120,7 @@ To pull down all files from the D6 site and restore the database locally (this i
 
         rsync -zvrP USERNAME@direct.illepic.com:dfmigrate/ project/dfmigrate/
 
-Or simply grab a provided archive from Dropbox and restore it to `project/dfmigrate` so that the path to the archive is `project/dfmigrate/df.tar.gz`
+    Or simply grab a provided archive from Dropbox and restore it to `project/dfmigrate` so that the path to the archive is `project/dfmigrate/df.tar.gz`
 
 3. `drush archive-restore` the entire site from within the Vagrant box. This will take a long time. Run the following **from the root of the repo**  (see: `start.sh`):
 
