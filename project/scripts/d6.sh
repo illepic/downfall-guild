@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # drush dump site up on webfaction
-echo "drush archive-dump is running up on WebFaction. Get comfy, this will take a LONG time!"
+echo "You may be asked for the WebFaction password here. drush archive-dump is running up on WebFaction. Get comfy, this will take a LONG time!"
 ssh illepic@direct.illepic.com "cd webapps/downfall_drupal/sites/www.downfallguild.org && drush -v archive-dump www.downfallguild.org --destination=/home/illepic/dfmigrate/df.tar.gz --overwrite && exit"
 
 # Pull down d6 site

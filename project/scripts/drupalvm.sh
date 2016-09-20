@@ -10,6 +10,7 @@ ln -sf ../config/config.yml
 ln -sf ../config/drupal.composer.json
 
 # DELETE the D8 folder and kick off Vagrant.
+echo "You'll probably be asked for your local admin password here."
 sudo rm -rf ../project/web/d8
 vagrant halt
 vagrant up --provision
