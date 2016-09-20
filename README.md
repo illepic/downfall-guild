@@ -112,7 +112,7 @@ Helpful wipe-out-and-start-over command
 drush sql-query "TRUNCATE migrate_map_upgrade_d6_node_guild_app" && drush mr upgrade_d6_node_guild_app && drush cdi1 modules/custom/df_migration/config/install/migrate_plus.migration.upgrade_d6_node_guild_app.yml && drupal cr all && drush mi upgrade_d6_node_guild_app --idlist="12331"
 ````
 
-Site reinstall using our new install profile
+Site reinstall using our new install profile (from within Vagrant)
 
 ````shell
 chmod 777 sites/default/settings.php && drush si config_installer --account-name=admin --account-pass=test
@@ -191,8 +191,8 @@ From root of project:
 
     cd drupal-vm && vagrant ssh
     cd /var/www/df/web/d8/web && drupal module:install df_migration
-    # DO THIS MANUAL: 
-  
+    # DO THIS MANUAL:
+
 DOCUMENTATION PURPOSES ONLY, NO NEED TO RUN: This was already run, but to config export:
 
     drush migrate-upgrade --legacy-db-url="mysql://dfdbuser:dfdbpass@127.0.0.1/downfall_d6" --legacy-db-prefix="demo_" --legacy-root="http://d6.local.downfallguild.org" --configure-only
@@ -204,7 +204,7 @@ Run ALL the migrations:
 Run all dependencies up to a specific migration
 
     drush mi migration_name --execute-dependencies --feedback="100 items"
-    
+
 Migration tip: Rollback, reload config for migration, clear cache, run upgrade
 
     drush mr upgrade_d6_node_guild_app && drush cdi1 modules/custom/df_migration/config/install/migrate_plus.migration.upgrade_d6_node_guild_app.yml && drupal cr all && drush mi upgrade_d6_node_guild_app
@@ -212,7 +212,7 @@ Migration tip: Rollback, reload config for migration, clear cache, run upgrade
 Install to clean starting point:
 
     drupal module:install df_migration && drupal config:import --directory=modules/custom/df_config/sync && drupal config:import --directory=modules/df_groups/sync
-    
+
 ## Prototyping redesign
 
 ## Groups
