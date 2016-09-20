@@ -9,3 +9,5 @@ drush -v archive-restore dfmigrate/df.tar.gz --destination=web/d6 --db-url=mysql
 
 # Copy over d6 settings
 cp -R build/dev/d6 web/d6
+
+exit

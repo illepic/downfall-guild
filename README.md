@@ -1,75 +1,63 @@
 # Downfall Redesign and Migration
 
-A Migrate and Features implementation to pull content and structure for Drupal 6 downfallguild.org to a clean Drupal 8 site. A full redesign is involved.
+A migration and design overhaul of downfallguild.org. Content and structure from the live Drupal 6 version of downfallguild.org will be migrated into a newly redesigned Drupal 8 site.
 
-Full details here: https://github.com/illepic/downfall-guild/wiki
+## The Project
+
+The goals of this project are as follows:
+
+* Install Drupal 8 locally using Drupal VM (including all composer dependencies)
+* Backup the production Drupal 6 site locally (files and database)
+* Migrate files and data from the local Drupal 6 to the local Drupal 8
+* Build out the features/config of the Drupal 8 site
+* Local development of the Pattern Lab/Drupal theme
 
 ## Local Host Environment Requirements
 
-* [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-* [Vagrant](https://www.vagrantup.com/downloads.html)
-  * Install Vagrant plugin: vagrant-hostsupdater: `vagrant plugin install vagrant-hostsupdater`
-  * Install Vagrant plugin: vagrant-cachier: `vagrant plugin install vagrant-cachier`
-* [https://git-scm.com/downloads](Git)
-* [Node >= 4.2.3/NPM >= 2.14.7](https://nodejs.org/en/download/)
-  * Install gulp globally and install all project packages: `npm install gulp -g && npm install`
-* [https://docs.ansible.com/ansible/intro_installation.html](Ansible)
-  * OSX: `brew install ansible`, Ubuntu: `sudo apt install ansible`, Windows: LOL
+* [VirtualBox 5](https://www.virtualbox.org/wiki/Downloads)
+* [Vagrant 1.8](https://www.vagrantup.com/downloads.html)
+	* Install Vagrant plugin: vagrant-hostsupdater: `vagrant plugin install vagrant-hostsupdater`
+	* Install Vagrant plugin: vagrant-cachier: `vagrant plugin install vagrant-cachier`
+* [Git](https://git-scm.com/downloads)
+* [Node v6](https://nodejs.org/en/download/)
+* [Ansible](https://docs.ansible.com/ansible/intro_installation.html)
+	* OSX: `brew install ansible`
+	* Ubuntu: `sudo apt install ansible`
+	* Windows: LOL
 
-### Windows-specific:
-
-WARNING: As of 2016/01/01 this box is simply not working on Windows. Will investigate further at a later date.
-
-* [Symlinks enabled for Windows](http://blog.puphpet.com/blog/2015/06/25/windows-symlinks/)
-* (Optional) [Cmder](http://cmder.net/) running as administrator
-* (Optional) [HeidiSQL](http://www.heidisql.com/) for GUI database access
-
-### OSX-specific
-
-* [SequelPro](http://www.sequelpro.com/) for GUI database access
+I've given up supporting Windows on this project, maybe Windows 10 Bash can help?
 
 ### Ubuntu-specific
 
-* `sudo apt install nfs-common nfs-kernel-server`
+NFS filesystem makes syncing changes back and forth to Vagrant much faster:
 
-All commands listed are assumed to be run from the root of the project unless otherwise noted.
+	sudo apt install nfs-common nfs-kernel-server`
 
-## Initialize: D8 + VM
+### Recommended Tools
 
-To initialize the project, from the root of the project run (warning, takes a long time):
+* Database GUI
+	* Mac: [SequelPro](http://www.sequelpro.com/)
+	* Linux: [MySQL Workbench](https://www.mysql.com/products/workbench/)
+
+## Getting started
+
+To start fresh after a `git clone` of this project, run the following from the root of the project (warning, takes a long time):
 
     bash ./project/scripts/start.sh
+    
+This needs to be run at least once! This also depends on the remote D6 site having been backed up, which you can do by hand here (link here).
 
-To reset and build D8 again, run from root of project:
+## Reprovision
+
+It's often best to just restart while working locally. To reset and build D8 again, run from root of project:
 
     bash ./project/scripts/reprovision.sh
 
-This will attempt to run the following:
+This should wipe out the D8 site, reprovision the VM, and install Drupal back to a fresh profile install.
 
+## Things to ensure
 
-Clone the drupal-vm repo into the root of our project if it does not exist already. Run from root of repo:
-
-````shell
-git clone git@github.com:geerlingguy/drupal-vm.git && bash ./project/scripts/start.sh
-````
-
-Symlink `config.yml` and `drupal.make.yml` from `config/` into `drupal-vm/`. Run from root of repo:
-
-````shell
-cd drupal-vm && ln -sf ../config/config.yml && ln -sf ../config/drupal.composer.json
-````
-
-DELETE the D8 folder and kick off Vagrant. Run from root of folder (you'll need to `cd ..` if you just ran the prior command):
-
-````shell
-sudo rm -rf project/web/d8 && cd drupal-vm && vagrant provision
-````
-
-Symlink our customizations. Run from root of repo:
-
-````shell
-cd project/web/d8/web/modules && ln -sf ../../../../build/dev/d8/modules/custom && cd ../sites/default && sudo ln -sf ../../../../../build/dev/d8/sites/default/settings.local.php && sudo bash -c 'cat ../../../../../config/enable_local_settings.txt >> settings.php'
-````
+Both of the Drupal VM config files ( `config.yml` and `drupal.make.yml`) must be symlinked from `config/` into `drupal-vm/`. 
 
 Ensure this line is **uncommented** in `project/web/d8/sites/default/settings.php`:
 
@@ -79,7 +67,7 @@ if (file_exists(__DIR__ . '/settings.local.php')) {
 }
 ````
 
-If vagrant did not already add these entries to your hosts file, add the following to `\Windows\System32\drivers\etc\hosts` on Windows or `/etc/hosts` on OSX/Linux:
+If vagrant did not already add these entries to your hosts file, add the following to `/etc/hosts` on OSX/Linux:
 
 ````text
 192.168.88.88  d8.local.downfallguild.org
@@ -87,57 +75,26 @@ If vagrant did not already add these entries to your hosts file, add the followi
 192.168.88.88  adminer.local.downfallguild.org
 ````
 
-Enable our modules by ssh'ing into the Vagrant box first. Run from root of repo:
+## Working in the Vagrant box
 
-````shell
-cd drupal-vm && vagrant ssh
-cd /var/www/df/web/d8/web
-drupal module:install df_migration
-drupal config:import
+Jump into the Drupal 8 site by (from root of project on host):
 
-OR, if we need everything and it wasn't enabled on a fresh provision (ie you've run drush site-install to blow everything away and start over):
+    cd drupal-vm
+    vagrant ssh
+    
+Everything under `project/` in your local shows at `/var/www/df` in the VirtualBox.
 
-drupal module:install df_migration
-````
+    cd /var/www/df/web/d8/web
 
-Rollback stuck migration:
+Now all `drush` and `drupal` commands work. For instance, enabling a module:
 
-````shell
-drush php-eval 'var_dump(Drupal::keyValue("migrate_status")->set('your_migration_name', 0))'
-````
-
-Helpful wipe-out-and-start-over command
-
-````shell
-drush sql-query "TRUNCATE migrate_map_upgrade_d6_node_guild_app" && drush mr upgrade_d6_node_guild_app && drush cdi1 modules/custom/df_migration/config/install/migrate_plus.migration.upgrade_d6_node_guild_app.yml && drupal cr all && drush mi upgrade_d6_node_guild_app --idlist="12331"
-````
+    drush ms
+    drupal module:install df_migration
+    drupal config:import
 
 Site reinstall using our new install profile (from within Vagrant)
 
-````shell
-chmod 777 sites/default/settings.php && drush si config_installer --account-name=admin --account-pass=test
-````
-
-
-### Drupal 8
-
-Drupal 8 is built completely from scratch if and only if the `project/web/d8` folder does not exist.
-
-## Vagrant:
-
-Enter the Vagrant box:
-
-```shell
-cd drupal-vm && vagrant ssh
-```
-
-Everything under `project/` in your local shows at `/var/www/df` in the VirtualBox
-
-Halt the Vagrant box by `cd drupal-vm && vagrant halt`. Halting is highly recommended while not actively working on the project and very much recommended before shutting down your OS.
-
-A Vagrant box can be started right up from where you left off with `cd drupal-vm && vagrant up`. This is the recommended way to come back to work on the project.
-
-#### Nuke it
+    chmod 777 sites/default/settings.php && drush si config_installer --account-name=admin --account-pass=admin
 
 Sometimes Vagrant gets REALLY stuck. In these cases, the following steps will allow you to rebuild again. Run from root of repo:
 
@@ -146,44 +103,44 @@ Sometimes Vagrant gets REALLY stuck. In these cases, the following steps will al
 
 ## Initialize: D6
 
-To pull down all files from the D6 site and restore the database locally:
+To pull down all files from the D6 site and restore the database locally (this is done as part of `start.sh` script):
 
 1. `ssh` into webfaction and archive-dump the whole site. Run the following from root of repo:
 
-    ```shell
-    ssh USERNAME@direct.illepic.com
-    cd webapps/downfall_drupal/sites/www.downfallguild.org
-    drush -v archive-dump www.downfallguild.org --destination=/home/illepic/dfmigrate/df.tar.gz --overwrite
-    exit
-    ```
+        ssh USERNAME@direct.illepic.com
+        cd webapps/downfall_drupal/sites/www.downfallguild.org
+        drush -v archive-dump www.downfallguild.org --destination=/home/illepic/dfmigrate/df.tar.gz --overwrite
+        exit
 
-2. `rsync` down the dfmigrate folder from webfaction. Run the following from root of repo:
+2. `rsync` down the dfmigrate folder from webfaction. Run the following from root of repo (see: `start.sh`):
 
-    ```shell
-    rsync -zvrP USERNAME@direct.illepic.com:dfmigrate/ project/dfmigrate/
-    ```
+        rsync -zvrP USERNAME@direct.illepic.com:dfmigrate/ project/dfmigrate/
 
 Or simply grab a provided archive from Dropbox and restore it to `project/dfmigrate` so that the path to the archive is `project/dfmigrate/df.tar.gz`
 
-3. `drush archive-restore` the entire site from within the Vagrant box. This will take a long time. Run the following **from the root of the repo**:
+3. `drush archive-restore` the entire site from within the Vagrant box. This will take a long time. Run the following **from the root of the repo**  (see: `start.sh`):
 
-    ```shell
-    cd drupal-vm
-    vagrant ssh
-    cd /var/www/df
-    echo "Go make coffee. This is going to take awhile."
-    drush -v archive-restore dfmigrate/df.tar.gz --destination=web/d6 --db-url=mysql://dfdbuser:dfdbpass@localhost/downfall_d6 --db-prefix=demo_ --overwrite
-    exit
-    ```
+        cd drupal-vm
+        vagrant ssh
+        cd /var/www/df
+        echo "Go make coffee. This is going to take awhile."
+        drush -v archive-restore dfmigrate/df.tar.gz --destination=web/d6 --db-url=mysql://dfdbuser:dfdbpass@localhost/downfall_d6 --db-prefix=demo_ --overwrite
+        exit
 
-4. Copy over our local d6.local.downfallguild.org site settings file. Run the following from the root of the repo:
+4. Copy over our local d6.local.downfallguild.org site settings file. Run the following from the root of the repo  (see: `start.sh`):
 
-    ```shell
-    echo "Are you at the root of the repo right now?"
-    cp -R config/d6/ project/web/d6
-    ```
+        echo "Are you at the root of the repo right now?"
+        cp -R config/d6/ project/web/d6
 
-## Migration to Drupal 8
+## Migration to Drupal 8 (clean up below)
+
+Rollback stuck migration (in Vagrant):
+
+    drush mrs your_migration_name
+
+Helpful wipe-out-and-start-over command (in Vagrant):
+
+    drush mr upgrade_d6_node_guild_app && drush cdi1 modules/custom/df_migration/config/install/migrate_plus.migration.upgrade_d6_node_guild_app.yml && drupal cr all && drush mi upgrade_d6_node_guild_app
 
 See this article for most details: https://drupalize.me/blog/201605/custom-drupal-drupal-migrations-migrate-tools.
 
