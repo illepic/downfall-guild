@@ -1,6 +1,6 @@
 {
   "name": "PatternLabStarter",
-  "version": "8.0.0",
+  "version": "8.2.1",
   "description": "Pattern Lab Starter",
   "main": "gulpfile.js",
   "author": {
@@ -31,7 +31,7 @@
     "gulp-help": "^1.6.1",
     "js-yaml": "^3.6.0",
     "lodash.merge": "^4.3.5",
-    "p2-theme-core": "^8.0.3"
+    "p2-theme-core": "^8.1.0"
   },
   "devDependencies": {
     "lodash.includes": "^4.1.3",
