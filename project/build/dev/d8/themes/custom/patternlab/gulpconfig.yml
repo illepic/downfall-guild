@@ -22,7 +22,7 @@ css:
     enabled: false
     dest: dest/sassdoc
     verbose: false
-    basePath: https://github.com/phase2/pattern-lab-starter/blob/master/scss
+    basePath: https://github.com/phase2/pattern-lab-starter/blob/master/source/_patterns
 #    exclude:
 #      - file.scss
     theme: default
@@ -33,7 +33,7 @@ css:
 js:
   enabled: true
   src:
-    - js/*.js
+    - js/**/*.js
   dest: dest/
   destName: script.js
   sourceMapEmbed: false
