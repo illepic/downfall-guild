@@ -3,6 +3,16 @@
     width: 80%;
   }
 }
+// Solve vert centering with flex
+.modal {
+  //display: flex;
+  //align-items: center;
+  //
+  //.modal-dialog {
+  //  margin: 0;
+  //}
+}
+
 .modal-body {
   min-height: 30px;
   background: url(../images/ajax-loader.gif) 50% 50% no-repeat;
