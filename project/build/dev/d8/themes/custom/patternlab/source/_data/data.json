@@ -180,26 +180,106 @@
     {}
   ],
   "thumbs": [
-    {"src": "../../../../images/thumbs/kill-1-thumb.png"},
-    {"src": "../../../../images/thumbs/kill-2-thumb.png"},
-    {"src": "../../../../images/thumbs/kill-4-thumb.png"},
-    {"src": "../../../../images/thumbs/kill-1-thumb.png"},
-    {"src": "../../../../images/thumbs/kill-1-thumb.png"},
-    {"src": "../../../../images/thumbs/kill-2-thumb.png"},
-    {"src": "../../../../images/thumbs/kill-4-thumb.png"},
-    {"src": "../../../../images/thumbs/kill-1-thumb.png"},
-    {"src": "../../../../images/thumbs/kill-1-thumb.png"},
-    {"src": "../../../../images/thumbs/kill-1-thumb.png"},
-    {"src": "../../../../images/thumbs/kill-2-thumb.png"},
-    {"src": "../../../../images/thumbs/kill-4-thumb.png"},
-    {"src": "../../../../images/thumbs/kill-1-thumb.png"},
-    {"src": "../../../../images/thumbs/kill-4-thumb.png"},
-    {"src": "../../../../images/thumbs/kill-1-thumb.png"},
-    {"src": "../../../../images/thumbs/kill-1-thumb.png"},
-    {"src": "../../../../images/thumbs/kill-1-thumb.png"},
-    {"src": "../../../../images/thumbs/kill-2-thumb.png"},
-    {"src": "../../../../images/thumbs/kill-4-thumb.png"},
-    {"src": "../../../../images/thumbs/kill-1-thumb.png"}
+    {
+      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "full": "../../../../images/1920x1080/header1.jpeg",
+      "title": "kill-1-thumb.png"
+    },
+    {
+      "src": "../../../../images/thumbs/kill-2-thumb.png",
+      "full": "../../../../images/1920x1080/1920x1080.jpg",
+      "title": "kill-2-thumb.png"
+    },
+    {
+      "src": "../../../../images/thumbs/kill-4-thumb.png",
+      "full": "../../../../images/1920x1080/WoWScrnShot_012416_195350.jpg",
+      "title": ""
+    },
+    {
+      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "full": "../../../../images/1920x1080/header1.jpeg",
+      "title": "kill-1-thumb.png"
+    },
+    {
+      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "full": "../../../../images/1920x1080/header1.jpeg",
+      "title": "kill-1-thumb.png"
+    },
+    {
+      "src": "../../../../images/thumbs/kill-2-thumb.png",
+      "full": "../../../../images/1920x1080/1920x1080.jpg",
+      "title": "kill-2-thumb.png"
+    },
+    {
+      "src": "../../../../images/thumbs/kill-4-thumb.png",
+      "full": "../../../../images/1920x1080/WoWScrnShot_012416_195350.jpg",
+      "title": ""
+    },
+    {
+      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "full": "../../../../images/1920x1080/header1.jpeg",
+      "title": "kill-1-thumb.png"
+    },
+    {
+      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "full": "../../../../images/1920x1080/header1.jpeg",
+      "title": "kill-1-thumb.png"
+    },
+    {
+      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "full": "../../../../images/1920x1080/header1.jpeg",
+      "title": "kill-1-thumb.png"
+    },
+    {
+      "src": "../../../../images/thumbs/kill-2-thumb.png",
+      "full": "../../../../images/1920x1080/1920x1080.jpg",
+      "title": "kill-2-thumb.png"
+    },
+    {
+      "src": "../../../../images/thumbs/kill-4-thumb.png",
+      "full": "../../../../images/1920x1080/WoWScrnShot_012416_195350.jpg",
+      "title": ""
+    },
+    {
+      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "full": "../../../../images/1920x1080/header1.jpeg",
+      "title": "kill-1-thumb.png"
+    },
+    {
+      "src": "../../../../images/thumbs/kill-4-thumb.png",
+      "full": "../../../../images/1920x1080/WoWScrnShot_012416_195350.jpg",
+      "title": ""
+    },
+    {
+      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "full": "../../../../images/1920x1080/header1.jpeg",
+      "title": "kill-1-thumb.png"
+    },
+    {
+      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "full": "../../../../images/1920x1080/header1.jpeg",
+      "title": "kill-1-thumb.png"
+    },
+    {
+      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "full": "../../../../images/1920x1080/header1.jpeg",
+      "title": "kill-1-thumb.png"
+    },
+    {
+      "src": "../../../../images/thumbs/kill-2-thumb.png",
+      "full": "../../../../images/1920x1080/1920x1080.jpg",
+      "title": "kill-2-thumb.png"
+    },
+    {
+      "src": "../../../../images/thumbs/kill-4-thumb.png",
+      "full": "../../../../images/1920x1080/WoWScrnShot_012416_195350.jpg",
+      "title": ""
+    },
+    {
+      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "full": "../../../../images/1920x1080/header1.jpeg",
+      "title": "kill-1-thumb.png"
+    }
   ],
   "node": {
     "title": "Test title",

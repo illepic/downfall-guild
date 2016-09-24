@@ -1,0 +1,9 @@
+.modal-dialog {
+  @include respond-to('sm') {
+    width: 80%;
+  }
+}
+.modal-body {
+  min-height: 30px;
+  background: url(../images/ajax-loader.gif) 50% 50% no-repeat;
+}
