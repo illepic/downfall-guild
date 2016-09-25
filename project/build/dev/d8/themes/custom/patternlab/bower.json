@@ -22,12 +22,13 @@
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
-    "bootstrap-material-design": "0.5.10"
+    "bootstrap-material-design": "0.5.10",
+    "lodash": "^4.16.1",
+    "isInViewport": "^2.4.2"
   },
   "devDependencies": {
     "domready": "^1.0.8",
     "jquery": "^2.2.3",
-    "underscore": "^1.8.3",
     "drupal": "http://cgit.drupalcode.org/drupal/plain/core/misc/drupal.js?h=8.1.7"
   }
 }
