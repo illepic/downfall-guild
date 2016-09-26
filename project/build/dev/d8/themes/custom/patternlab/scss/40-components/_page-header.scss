@@ -12,4 +12,9 @@
   .container {
     padding-top: 0; // override material-kit
   }
+  &.header-small {
+    .container {
+      padding-top: 0; // override material-kit
+    }
+  }
 }
