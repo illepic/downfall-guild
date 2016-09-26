@@ -1,9 +1,0 @@
-{% extends &quot;@molecules/asides/aside.twig&quot; %}
-
-{% block content %}
-  {% for comment in comments %}
-    &lt;div class=&quot;content-list__item&quot;&gt;
-      {% include &quot;@molecules/cards/card-comment.twig&quot; with comment %}
-    &lt;/div&gt;
-  {% endfor %}
-{% endblock %}
