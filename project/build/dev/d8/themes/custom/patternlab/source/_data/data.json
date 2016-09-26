@@ -13,7 +13,10 @@
   "site_title": "Site Title",
   "site_slogan": "Site Slogan",
   "paths": {
-    "images": "../../../../images"
+    "root": "../../../..",
+    "images": "../../../../images",
+    "bower": "../../../../bower_components",
+    "js": "../../../../js"
   },
   "img": {
     "avatar": "../../../../images/avatars/picture-44.jpg",
