@@ -1,7 +1,15 @@
 .page-header {
   transform: translate3d(0, 0, 0);
-  //@mixin trans($property: all, $duration: $animation-duration, $function: ease, $delay: 0s) {
-  //  transition: all $duration ease $delay;
-  //}
+
+  // Consider these techniques to make this smoother
+  //transition: all 0.1s;
   //position: fixed;
+
+  display: flex;
+  //justify-content: center;
+  align-items: center;
+
+  .container {
+    padding-top: 0; // override material-kit
+  }
 }

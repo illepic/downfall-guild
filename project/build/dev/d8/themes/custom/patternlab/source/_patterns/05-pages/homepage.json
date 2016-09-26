@@ -2,7 +2,7 @@
   "header": {
     "tall": true,
     "title": "Welcome back to <Downfall>",
-    "teaser": "The site relaunch is live. Look around and try out some of the features like <a class='text-rose' href='#'>Media</a>, <a class='text-rose' href='#'>Posts</a>, or <a class='text-rose' href='#'>the new Raid Hub</a>. New guild applicants <a class='text-rose'>apply here</a>!<br /><a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' target='_blank' class='btn btn-rose btn-raised btn-lg'><i class='material-icons'>play_arrow</i> Watch the Intro</a><a href='#' class='btn btn-rose btn-raised btn-lg'>Apply</a><a href='#' class='btn btn-rose btn-raised btn-lg'>Register</a>",
+    "teaser": "<p>The site relaunch is live! Look around and try out some of the features like <a class='text-rose' href='#'>Media</a>, <a class='text-rose' href='#'>Posts</a>, or <a class='text-rose' href='#'>the new Raid Hub</a>. New applicants <a class='text-rose'>apply here</a>!</p><a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' target='_blank' class='btn btn-rose btn-raised btn-lg'><i class='material-icons'>play_arrow</i> Watch the Intro</a><a href='#' class='btn btn-rose btn-raised btn-lg'><i class='material-icons'>error_outline</i> What's New</a>",
     "img": {
       "landscape_large": "../../../../images/1920x1080/legion.jpg"
     }

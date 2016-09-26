@@ -9,7 +9,7 @@
     },
     parallax: function($element) {
       var offset = ($(window).scrollTop() / 3).toFixed();
-      $element.isInViewport().css({transform: 'translate3d(0, ' + offset + 'px, 0'});
+      $element.css({transform: 'translate3d(0, ' + offset + 'px, 0'});
     }
   };
 
@@ -39,13 +39,18 @@
       // Only do this for tablet+ or no header
       if ($(window).width() < df.breakpoints.sm || $parallaxElement.length === 0) { return; }
 
+      var lax = function() {
+        if (!$parallaxElement.is(':in-viewport')) { return; }
+        console.log('Running lax');
 
-
-      $(window).on('scroll', function() {
         window.requestAnimationFrame(function() {
           df.parallax($parallaxElement);
         });
-      });
+      };
+
+      // Consider this if current 'lax is to resource intense
+      // $(window).on('scroll', _.throttle(lax, 100));
+      $(window).on('scroll', lax);
     }
   };
 
