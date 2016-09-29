@@ -1,4 +1,4 @@
-(function($, Drupal) {
+(function mainThemeScript($, Drupal) {
   'use strict';
 
   var df = {

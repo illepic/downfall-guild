@@ -3,6 +3,7 @@ css:
   src:
     - scss/**/*.scss
     - source/_patterns/**/*.scss
+    - source/styleguide/*.scss
   dest: dest/
   flattenDestOutput: true
   lint:
@@ -34,6 +35,7 @@ js:
   enabled: true
   src:
     - js/**/*.js
+    - source/_patterns/**/*.js
   dest: dest/
   destName: script.js
   sourceMapEmbed: false
@@ -43,7 +45,9 @@ js:
     enabled: true
     src:
       - js/**/*.js
-      - gulpfile.js
+      - source/_patterns/**/*.js
+      - .eslintrc.js
+      - .stylelintrc.js
 patternLab:
   enabled: true
   configFile: pattern-lab/config/config.yml
@@ -61,32 +65,32 @@ patternLab:
 #    - source/styleguide/custom-styleguide-specific.css
  #   - ../../modules/**/*.css
   injectBower: false
+  bowerBasePath: ./
   scssToJson:
-    -
-      src: source/_patterns/00-base/01-colors/_color-vars.scss
+    - src: source/_patterns/00-base/01-colors/_color-vars.scss
       dest: source/_patterns/00-base/01-colors/colors.json
       lineStartsWith: $c-
-      allowVarValues: true
-    -
-      src: source/_patterns/01-atoms/01-typography/fonts/_fonts.scss
+      allowVarValues: false
+    - src: source/_patterns/01-atoms/01-typography/fonts/_fonts.scss
       dest: source/_patterns/01-atoms/01-typography/fonts/font-sizes.json
       lineStartsWith: $fs--
       allowVarValues: false
-    -
-      src: source/_patterns/01-atoms/01-typography/fonts/_fonts.scss
+    - src: source/_patterns/01-atoms/01-typography/fonts/_fonts.scss
       dest: source/_patterns/01-atoms/01-typography/fonts/font-families.json
       lineStartsWith: $ff--
       allowVarValues: false
-#    -
-#      src: source/_patterns/00-base/breakpoints/_breakpoints.scss
+#    - src: source/_patterns/00-base/breakpoints/_breakpoints.scss
 #      dest: source/_patterns/00-base/breakpoints/breakpoints.json
 #      lineStartsWith: $bp--
 #      allowVarValues: false
-#    -
-#      src: source/_patterns/00-base/spacing/_spacing.scss
-#      dest: source/_patterns/00-base/spacing/spacing.json
-#      lineStartsWith: $spacing--
-#      allowVarValues: false
+    - src: source/_patterns/00-base/spacing/_spacing.scss
+      dest: source/_patterns/00-base/spacing/spacing.json
+      lineStartsWith: $spacing--
+      allowVarValues: false
+#    - src: source/_patterns/00-base/animations/01-transitions/_transitions.scss
+#      dest: source/_patterns/00-base/animations/01-transitions/transitions.json
+#      lineStartsWith: $trans-
+#      allowVarValues: true
 icons:
   enabled: true
   src: images/icons/src/*.svg
@@ -99,7 +103,7 @@ icons:
     enabled: true
     css:
       src: images/icons/templates/_icons.scss
-      dest: scss/00-config/
+      dest: source/_patterns/01-atoms/images/
     demo:
       src: images/icons/templates/icons.twig
       dest: source/_patterns/01-atoms/images/

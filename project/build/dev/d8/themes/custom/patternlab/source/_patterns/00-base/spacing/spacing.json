@@ -1,22 +1,5 @@
 {
-  "items": [
-    {
-      "name": "$spacing",
-      "value": "15px"
-    },
-    {
-      "name": "$spacing--double",
-      "value": "30px"
-    },
-    {
-      "name": "$spacing--triple",
-      "value": "45px"
-    },
-    {
-      "name": "$spacing--quadruple",
-      "value": "60px"
-    }
-  ],
+  "items": [],
   "meta": {
     "description": "To add to these items, use Sass variables that start with <code>$spacing--</code> in <code>source/_patterns/00-base/spacing/_spacing.scss</code>"
   }

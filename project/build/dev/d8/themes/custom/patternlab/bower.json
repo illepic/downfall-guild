@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "domready": "^1.0.8",
-    "jquery": "^2.2.3",
-    "drupal": "http://cgit.drupalcode.org/drupal/plain/core/misc/drupal.js?h=8.1.7"
+    "drupal": "http://cgit.drupalcode.org/drupal/plain/core/misc/drupal.js?h=8.1.7",
+    "jquery": "^2.2.3"
   }
 }
