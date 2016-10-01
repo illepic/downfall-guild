@@ -63,7 +63,7 @@ patternLab:
 #  injectFiles:
 #    - source/styleguide/styleguide.js
 #    - source/styleguide/custom-styleguide-specific.css
- #   - ../../modules/**/*.css
+#    - ../../modules/**/*.css
   injectBower: false
   bowerBasePath: ./
   scssToJson:
@@ -136,6 +136,6 @@ drupal:
   command: drush cc all
   # in this directory
   dir: ./
-  inject:
-    bower: true
-    file: patternlab.info.yml
+  inject: false # false here (and comment out below) to disable asset injection into Drupal
+#    bower: true
+#    file: patternlab.info.yml
