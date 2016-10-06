@@ -136,6 +136,6 @@ drupal:
   command: drush cc all
   # in this directory
   dir: ./
-  inject: false # false here (and comment out below) to disable asset injection into Drupal
-#    bower: true
-#    file: patternlab.info.yml
+  inject: # false here (and comment out below) to disable asset injection into Drupal
+    bower: true
+    file: patternlab.info.yml
