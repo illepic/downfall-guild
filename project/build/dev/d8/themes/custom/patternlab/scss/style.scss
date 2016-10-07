@@ -1,18 +1,15 @@
+//
+// Raw scss. Try to keep scss near the components they affect/demo
+//
 @import "00-config/**/*.scss";
 @import "10-vendor/*.scss";
-@import "20-base/**/*.scss";
-@import "30-global/**/*.scss";
-@import "40-components/**/*.scss";
-@import "50-layouts/**/*.scss";
-@import "60-pages/**/*.scss";
-@import "90-shame/**/*.scss";
 
-//@import "../source/_patterns/00-base/**/*.scss";
-//@import "../source/_patterns/01-atoms/**/*.scss";
-//@import "../source/_patterns/02-molecules/**/*.scss";
-//@import "../source/_patterns/03-organisms/**/*.scss";
-//@import "../source/_patterns/04-templates/**/*.scss";
-//@import "../source/_patterns/05-pages/**/*.scss";
-
+//
+// Pattern Lab patterns down here, where components should really live
+//
 @import "../source/**/*.scss";
 
+//
+// Never forget shame.scss
+//
+@import "90-shame/**/*.scss";

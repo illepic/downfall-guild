@@ -106,12 +106,12 @@ module.exports = {
       //   lineStartsWith: '$bp--',
       //   allowVarValues: false,
       // },
-      {
-        src: 'source/_patterns/00-base/spacing/_spacing.scss',
-        dest: 'source/_patterns/00-base/spacing/spacing.json',
-        lineStartsWith: '$spacing--',
-        allowVarValues: false,
-      },
+      // {
+      //   src: 'source/_patterns/00-base/spacing/_spacing.scss',
+      //   dest: 'source/_patterns/00-base/spacing/spacing.json',
+      //   lineStartsWith: '$spacing--',
+      //   allowVarValues: false,
+      // },
       // {
       //   src: 'source/_patterns/00-base/animations/01-transitions/_transitions.scss',
       //   dest: 'source/_patterns/00-base/animations/01-transitions/transitions.json',

@@ -12,6 +12,12 @@ pre {
   margin-top: 0;
 }
 
+.sg-main {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 $padding-base;
+}
+
 // Style Guide color swatches
 .sg-colors {
   overflow: hidden;
