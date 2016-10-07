@@ -2,6 +2,8 @@
 
 A migration and design overhaul of downfallguild.org. Content and structure from the live Drupal 6 version of downfallguild.org will be migrated into a newly redesigned Drupal 8 site.
 
+[![Build Status](https://travis-ci.org/illepic/downfall-guild.svg?branch=master)](https://travis-ci.org/illepic/downfall-guild)
+
 ## The Project
 
 The goals of this project are as follows:
