@@ -11,10 +11,10 @@ before_install:
   - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
   - phpenv config-rm xdebug.ini
 install:
-  - cd $TRAVIS_BUILD_DIR/project/build/dev/d8/themes/custom/patternlab && npm install
+  - cd $TRAVIS_BUILD_DIR/$DFTHEME && npm install
 before_script:
   - php --version
   - node --version
   - npm --version
 script:
-  - cd $TRAVIS_BUILD_DIR/project/build/dev/d8/themes/custom/patternlab && npm run compile && npm test
+  - cd $TRAVIS_BUILD_DIR/$DFTHEME && npm run compile && npm test
