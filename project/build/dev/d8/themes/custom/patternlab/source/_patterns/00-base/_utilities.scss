@@ -1,3 +1,8 @@
+/// Strip unit
+//@function strip-unit($value) {
+//  @return $value / ($value * 0 + 1);
+//}
+
 /// Mixin - Fluid Type
 /// PRECISE CONTROL OVER RESPONSIVE TYPOGRAPHY FOR SASS
 /// Indrek Paas @indrekpaas
@@ -8,30 +13,25 @@
 /// @param $max-vw
 /// @param $min-value
 /// @param $max-value
-@mixin fluid-type($properties, $min-vw, $max-vw, $min-value, $max-value) {
-  & {
-    @each $property in $properties {
-      #{$property}: $min-value;
-    }
-
-    @media screen and (min-width: $min-vw) {
-      @each $property in $properties {
-        #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
-      }
-    }
-
-    @media screen and (min-width: $max-vw) {
-      @each $property in $properties {
-        #{$property}: $max-value;
-      }
-    }
-  }
-}
-
-/// Strip unit
-@function strip-unit($value) {
-  @return $value / ($value * 0 + 1);
-}
+//@mixin fluid-type($properties, $min-vw, $max-vw, $min-value, $max-value) {
+//
+//  @each $property in $properties {
+//    #{$property}: $min-value;
+//  }
+//
+//  @media screen and (min-width: $min-vw) {
+//    @each $property in $properties {
+//      #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
+//    }
+//  }
+//
+//  @media screen and (min-width: $max-vw) {
+//    @each $property in $properties {
+//      #{$property}: $max-value;
+//    }
+//  }
+//
+//}
 
 /// Center.
 /// Center an element vertically or horizontally in its container,
@@ -110,15 +110,13 @@ $breakpoints: (
     @media screen and (min-width: #{inspect(map-get($breakpoints, $name))}) {
       @content;
     }
-  }
-
+  } @else {
     // If the key doesn't exist in the map
-  @else {
-    @warn "Unfortunately, no value could be retrieved from `#{$name}`. "
-        + "Please make sure it is defined in `$breakpoints` map.";
+    @warn "No value could be retrieved from `#{$name}`. Make sure it is in `$breakpoints` map.";
   }
 }
 
+// Where is this used?
 @mixin link-muted() {
   a {
     color: $gray-color;

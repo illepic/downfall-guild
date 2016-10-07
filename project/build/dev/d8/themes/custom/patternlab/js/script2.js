@@ -1,6 +1,6 @@
 (function secondaryThemeScript($, Drupal) {
   Drupal.behaviors.demo2 = {
-    attach(context) {
+    attach: function demo2Test(context) {
       $('html', context).addClass('js2');
     },
   };

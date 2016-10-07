@@ -7,6 +7,7 @@ module.exports = {
     jQuery: true,
     _: true,
     domready: true,
+    window: true,
   },
   rules: {
     'no-param-reassign': [1, {
