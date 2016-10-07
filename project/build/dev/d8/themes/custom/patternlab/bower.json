@@ -20,12 +20,14 @@
     "drupal7": "http://cgit.drupalcode.org/drupal/plain/misc/drupal.js?h=7.x",
     "drupal8": "http://cgit.drupalcode.org/drupal/plain/core/misc/drupal.js?h=8.1.x"
   },
+  "dependencies Note": "All dependencies here will likely make it clientside in both Drupal and PL",
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
     "bootstrap-material-design": "0.5.10",
     "lodash": "^4.16.1",
     "isInViewport": "^2.4.2"
   },
+  "devDependencies Note": "All dev dependencies below are here to 'fake' Drupal js behavior in PL",
   "devDependencies": {
     "domready": "^1.0.8",
     "drupal": "http://cgit.drupalcode.org/drupal/plain/core/misc/drupal.js?h=8.1.7",
