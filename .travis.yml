@@ -4,19 +4,16 @@ php:
   - 5.5
   - 7.0
 env:
-  - THEME="project/build/dev/d8/themes/custom/patternlab"
   - TRAVIS_NODE_VERSION="4"
   - TRAVIS_NODE_VERSION="6"
 before_install:
 #  - composer clear-cache
   - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
 install:
-  - cd $THEME
-  - npm install
+  - cd project/build/dev/d8/themes/custom/patternlab && npm install
 before_script:
   - php --version
   - node --version
   - npm --version
 script:
-  - cd $THEME
-  - 'npm run compile && npm test'
+  - cd project/build/dev/d8/themes/custom/patternlab && npm run compile && npm test
