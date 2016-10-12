@@ -32,6 +32,7 @@
       <span class="card-tracker__timestamp">{{ timestamp|date('m/d/Y \\@ g:i a') }}</span>
     </h6>
     <h4 class="card-title">
+      {% set url = url ? url : link['pages-node'] %}
       <a href="{{ url }}"> {{ title|escape }}</a>
     </h4>
 

@@ -18,10 +18,12 @@
    */
   Drupal.behaviors.mediaModal = {
     attach: (context) => {
-      $('#media-modal', context).on('show.bs.modal', (event) => {
+      $('#media-modal', context).on('show.bs.modal', function modalContent(event) {
         const $trigger = $(event.relatedTarget);
         $(this)
-          .find('#modal-media').attr('src', $trigger.data('modal-media')).end()
+          .find('#modal-media')
+            .attr('src', $trigger.data('modal-media'))
+            .end()
           .find('#modal-title')
             .html($trigger.data('modal-title'));
       });
