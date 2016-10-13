@@ -6,9 +6,7 @@ module.exports = {
   plugins: [
     "stylelint-scss",
   ],
-  ignoreFiles: [
-    // See .stylelintignore
-  ],
+  ignoreFiles: [],
   rules: {
     "declaration-colon-space-after": "always",
     "declaration-no-important": true,
