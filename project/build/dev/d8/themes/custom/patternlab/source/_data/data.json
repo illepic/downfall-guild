@@ -182,10 +182,14 @@
     {}
   ],
   "thumb": {
-    
+    "src": "../../../../images/thumbs/kill-1-thumb.png",
+    "full": "../../../../images/1920x1080/header1.jpeg",
+    "title": "kill-1-thumb.png",
+    "caption": "This is a caption."
   },
   "thumbs": [
     {
+      "url": "http://www.google.com",
       "src": "../../../../images/thumbs/kill-1-thumb.png",
       "full": "../../../../images/1920x1080/header1.jpeg",
       "title": "kill-1-thumb.png"

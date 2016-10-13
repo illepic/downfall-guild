@@ -1,4 +1,6 @@
-<a href="#media-modal" data-toggle="modal" data-modal-media="{{ thumb.full }}" data-modal-title="{{ thumb.title }}" class="thumbnail">
+{% set modal = thumb.url ? false : true %}
+
+<a href="{% if modal %}#media-modal{% else %}{{ thumb.url }}{% endif %}" data-toggle="modal" data-modal-media="{{ thumb.full }}" data-modal-title="{{ thumb.title }}" class="thumbnail">
   <img class="img-responsive" src="{{ thumb.src }}"/>
   {#<p>Truncated caption goes here ...</p>#}
 </a>
