@@ -1,11 +1,12 @@
 {% extends "@templates/site-layout.twig" %}
 
 {% block content %}
-  {% include "@organisms/sections/node.twig" with node %}
+  {#<pre>{{ dump() }}</pre>#}
+  {% include "@organisms/sections/node/node.twig" with { 'node': node } %}
 {% endblock %}
 
 {% block sidebar %}
-  {% include "@molecules/profiles/profile-medium.twig" %}
+  {#{% include "@molecules/profiles/profile-medium.twig" %}#}
   {#{% include "@molecules/asides/comment-list.twig" with sidebar.comment_list %}#}
-  {% include "@molecules/asides/thumbs-grid.twig" with sidebar.thumbs_grid %}
+  {#{% include "@molecules/asides/thumbs-grid.twig" with sidebar.thumbs_grid %}#}
 {% endblock %}

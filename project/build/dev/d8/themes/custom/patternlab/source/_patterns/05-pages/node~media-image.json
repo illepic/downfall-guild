@@ -8,11 +8,43 @@
   },
   "banner": {
     "img": "../../../../images/1920x1080/WoWScrnShot_032616_212547.jpg",
-    "caption": "A really, really big image should show up here."
+    "caption": "A really, really big image should show up here.",
+    "thumbs": [
+      {
+        "src": "../../../../images/thumbs/kill-4-thumb.png",
+        "full": "../../../../images/1920x1080/header1.jpeg",
+        "title": "kill-1-thumb.png"
+      },
+      {
+        "src": "../../../../images/thumbs/kill-1-thumb.png",
+        "full": "../../../../images/1920x1080/header1.jpeg",
+        "title": "kill-1-thumb.png"
+      },
+      {
+        "src": "../../../../images/thumbs/kill-2-thumb.png",
+        "full": "../../../../images/1920x1080/1920x1080.jpg",
+        "title": "kill-2-thumb.png"
+      },
+      {
+        "src": "../../../../images/thumbs/kill-4-thumb.png",
+        "full": "../../../../images/1920x1080/WoWScrnShot_012416_195350.jpg",
+        "title": ""
+      },
+      {
+        "src": "../../../../images/thumbs/kill-1-thumb.png",
+        "full": "../../../../images/1920x1080/header1.jpeg",
+        "title": "kill-1-thumb.png"
+      },
+      {
+        "src": "../../../../images/thumbs/kill-2-thumb.png",
+        "full": "../../../../images/1920x1080/header1.jpeg",
+        "title": "kill-1-thumb.png"
+      }
+    ]
   },
   "node": {
     "fields": {
-      "image_top": false
+
     }
   },
   "sidebar": {

@@ -1,0 +1,4 @@
+<a href="#media-modal" data-toggle="modal" data-modal-media="{{ thumb.full }}" data-modal-title="{{ thumb.title }}" class="thumbnail">
+  {% include "@atoms/images/image-square.twig" with { img: { square: thumb.src } } %}
+  {#<p>Truncated caption goes here ...</p>#}
+</a>

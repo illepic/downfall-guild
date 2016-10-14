@@ -1,0 +1,52 @@
+<div class="row node node-full">
+
+  <div class="col-md-8 col-md-offset-2">
+    <div class="card card-plain node-full__info">
+      <div class="footer">
+        <div class="author">
+          <a href="#">
+            <img src="../../../../images/avatars/picture-44.jpg" alt="..." class="avatar img-raised">
+            <span>Saedo</span>
+          </a>
+        </div>
+        <div class="stats">
+          <a href="#comments">{{ node.comments.count }} comments</a> |
+          <span> {{ timestamp|date('l, F j, Y \\a\\t g:i a') }}</span>
+        </div>
+      </div>
+    </div> <!-- /.node-full__info -->
+  </div> <!-- /.col-md-10.col-md-offset-1 -->
+
+
+  {% if node.fields.image_top %}
+    <div class="col-sm-12">
+      <div class="banner text-center">
+        <img class="banner__image img-rounded img-responsive img-raised" src="{{ node.fields.image_top.src }}">
+
+        {% if banner.thumbs %}
+          <div class="banner__supplemental row">
+            {% for thumb in banner.thumbs %}
+              <div class="col-sm-2 thumb">{% include "@molecules/thumbs/thumbnail-link.twig" with { 'thumb': thumb }%}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="col-md-8 col-md-offset-2">
+    <div class="node-full__body">
+      {{ node.body }}
+    </div>
+
+    <div class="node-full__actions">
+      {% include "@molecules/navs/actions.twig" %}
+    </div>
+
+    <div id="comments" class="node-full__comments">
+      {% include "@organisms/sections/comments.twig" %}
+    </div>
+
+  </div>
+</div> <!-- /row.node-full -->

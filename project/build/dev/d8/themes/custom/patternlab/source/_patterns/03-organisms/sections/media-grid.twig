@@ -6,13 +6,7 @@
   <div class="media-grid__content row">
     {% for thumb in thumbs %}
       <div class="col-sm-3 thumb">
-
-        {% include "@atoms/images/thumbnail.twig" with { 'thumb': thumb } %}
-
-        {#<a href="#media-modal" data-toggle="modal" data-modal-media="{{ thumb.full }}" data-modal-title="{{ thumb.title }}" class="thumbnail">#}
-          {#<img class="img-responsive" src="{{ thumb.src }}"/>#}
-          {#<p>Truncated caption goes here ...</p>#}
-        {#</a>#}
+        {% include "@molecules/thumbs/thumbnail-modal.twig" with { 'thumb': thumb } %}
       </div>
     {% endfor %}
 

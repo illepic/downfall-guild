@@ -1,0 +1,14 @@
+.node-full__body {
+  //font-size: $font-size-large;
+  //line-height: 1.5rem;
+  color: $gray;
+  p,
+  ul,
+  ol {
+    margin-bottom: 30px;
+  }
+}
+
+.banner {
+  margin-bottom: $padding-base * 4;
+}
