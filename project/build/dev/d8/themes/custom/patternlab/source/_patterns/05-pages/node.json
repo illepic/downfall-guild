@@ -6,13 +6,5 @@
       "landscape_large": "../../../../images/1920x1080/bh0UYQx.png"
     }
   },
-  "node": {
-    "fields": {
-      "image_top": {
-        "src": "../../../../images/1920x1080/WoWScrnShot_070216_205829.jpg",
-        "alt": "Alt text for top image"
-      }
-    }
-  },
   "sidebar": false
 }

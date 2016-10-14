@@ -1,13 +1,20 @@
 {
   "type": "media_node",
   "header": {
-    "title": "PMS for Legion! Lorem ipsum dolor sit amet.",
+    "title": "An image media node, note the thumbs to navigate through other images",
     "teaser": false,
     "img": {
       "landscape_large": "../../../../images/1920x1080/bh0UYQx.png"
     }
   },
-  "banner": {
+  "node": {
+    "body": "<p>Some more body text below an image where the title is likely to already be up in the header.</p>",
+    "fields": {
+      "media_top": {
+        "src": "../../../../images/1920x1080/WoWScrnShot_070216_205829.jpg",
+        "alt": "Alt text for top image"
+      }
+    },
     "thumbs": [
       {
         "src": "../../../../images/thumbs/kill-4-thumb.png",
@@ -40,12 +47,6 @@
         "title": "kill-1-thumb.png"
       }
     ]
-  },
-  "node": {
-    "body": "<p>Some more body text below an image where the title is likely to already be up in the header.</p>",
-    "fields": {
-
-    }
   },
   "sidebar": false
 }

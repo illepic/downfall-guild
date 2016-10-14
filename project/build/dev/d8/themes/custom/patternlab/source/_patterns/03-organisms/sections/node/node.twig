@@ -34,10 +34,12 @@
           </div>
         {% endif %}
 
-        {% if banner.thumbs %}
+        {% if node.thumbs %}
           <div class="banner__supplemental row">
-            {% for thumb in banner.thumbs %}
-              <div class="col-sm-2 thumb">{% include "@molecules/thumbs/thumbnail-link.twig" with { 'thumb': thumb }%}</div>
+            {% for thumb in node.thumbs %}
+              <div class="col-sm-2 thumb">
+                {% include "@molecules/thumbs/thumbnail-link.twig" with { 'thumb': thumb }%}
+              </div>
             {% endfor %}
           </div>
         {% endif %}
@@ -53,6 +55,13 @@
       {{ node.body }}
     </div>
     {% endif %}
+
+    <div class="node-full__tags">
+      Tags:
+      <span class="label label-info">Raids</span>
+      <span class="label label-default">Priest</span>
+      <span class="label label-rose">Event</span>
+    </div>
 
     <div class="node-full__actions">
       {% include "@molecules/navs/actions.twig" %}
