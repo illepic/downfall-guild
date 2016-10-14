@@ -1,4 +1,3 @@
-'use strict';
 const gulp = require('gulp');
 // `rc` allows all config options to be overridden with CLI flags like `--js.enabled=''` or in `~/.p2-theme-corerc` files, among many others: https://www.npmjs.com/package/rc
 const config = require('rc')('p2-theme-core', require('./gulpconfig.js'));

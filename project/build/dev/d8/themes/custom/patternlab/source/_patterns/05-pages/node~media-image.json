@@ -42,7 +42,7 @@
     ]
   },
   "node": {
-    "body": "Some more body text below an image where the title is likely to already be up in the header.",
+    "body": "<p>Some more body text below an image where the title is likely to already be up in the header.</p>",
     "fields": {
 
     }
