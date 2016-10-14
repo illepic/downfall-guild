@@ -8,7 +8,7 @@
   },
   "node": {
     "fields": {
-      "image_top": false
+      "media_top": false
     }
   },
   "sidebar": false

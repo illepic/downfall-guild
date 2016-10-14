@@ -10,5 +10,12 @@
 }
 
 .banner {
-  margin-bottom: $padding-base * 4;
+  margin-bottom: $padding-base * 3;
+
+  &__media {
+    margin-bottom: $padding-base * 3;
+  }
+  &__body-text {
+    margin-bottom: $padding-base * 2;
+  }
 }
