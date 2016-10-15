@@ -3,7 +3,7 @@
   {% if img.landscape_medium %}
   <div class="card-image">
     <a href="{{ url }}">
-      <img class="img img-raised" src="{{ img.landscape_medium }}">
+      {% include "@atoms/images/image-landscape-medium.twig" with {'img': img } %}
     </a>
   </div>
   {% endif %}
