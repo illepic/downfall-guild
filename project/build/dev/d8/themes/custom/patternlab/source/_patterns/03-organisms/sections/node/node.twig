@@ -1,75 +1,82 @@
-<div class="row node node-full">
+<div {{ node.node_attributes }}> <!-- /.node -->
+  <div class="row">
 
-  <div class="col-md-8 col-md-offset-2 node-top-8">
-    <div class="card card-plain node-full__info">
-      <div class="footer">
-        <div class="author">
-          <a href="#">
-            <img src="../../../../images/avatars/picture-44.jpg" alt="..." class="avatar img-raised">
-            <span>Saedo</span>
-          </a>
+    <div class="col-md-8 col-md-offset-2 node-top-8">
+      <div class="card card-plain node-full__info">
+        <div class="footer">
+          <div class="author">
+            <a href="#">
+              <img src="../../../../images/avatars/picture-44.jpg" alt="..." class="avatar img-raised">
+              <span>Saedo</span>
+            </a>
+          </div>
+          <div class="stats">
+            <a href="#comments">{{ node.comments.count }} comments</a> |
+            <span> {{ timestamp|date('l, F j, Y \\a\\t g:i a') }}</span>
+          </div>
         </div>
-        <div class="stats">
-          <a href="#comments">{{ node.comments.count }} comments</a> |
-          <span> {{ timestamp|date('l, F j, Y \\a\\t g:i a') }}</span>
-        </div>
-      </div>
-    </div> <!-- /.node-full__info -->
-  </div> <!-- /.col-md-10.col-md-offset-1 -->
+      </div> <!-- /.node-full__info -->
+    </div> <!-- /.col-md-10.col-md-offset-1 -->
 
 
-  {% if node.fields.media_top %}
-    <div class="col-sm-12 node-top-12">
-      <div class="banner text-center">
-        {#This will likely be a rendered atom#}
-        <img class="banner__media img-rounded img-responsive img-raised" src="{{ node.fields.media_top.src }}">
+    {% if node.fields.media_top %}
+      <div class="col-sm-12 node-top-12">
+        <div class="banner text-center">
+          {#This will likely be a rendered atom#}
+          <div class="banner__media">
+            <img class="img-rounded img-responsive img-raised" src="{{ node.fields.media_top.src }}">
+          </div>
 
-        {% if type == 'media_node' %}
-          <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-              <div class="node-full__body banner__body-text">
-                {{ node.body }}
+          <h1>test pattern here</h1>
+          {{ node.test_pattern }}
+
+          {% if type == 'media_node' %}
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <div class="node-full__body banner__body-text">
+                  {{ node.body }}
+                </div>
               </div>
             </div>
-          </div>
-        {% endif %}
+          {% endif %}
 
-        {% if node.thumbs %}
-          <div class="banner__supplemental row">
-            {% for thumb in node.thumbs %}
-              <div class="col-sm-2 thumb">
-                {% include "@molecules/thumbs/thumbnail-link.twig" with { 'thumb': thumb }%}
-              </div>
-            {% endfor %}
-          </div>
-        {% endif %}
+          {% if node.thumbs %}
+            <div class="banner__supplemental row">
+              {% for thumb in node.thumbs %}
+                <div class="col-sm-2 thumb">
+                  {% include "@molecules/thumbs/thumbnail-link.twig" with { 'thumb': thumb }%}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
 
+        </div>
       </div>
-    </div>
-  {% endif %}
-
-  <div class="col-md-8 col-md-offset-2">
-
-    {% if type != 'media_node' %}
-    <div class="node-full__body">
-      {{ node.body }}
-    </div>
     {% endif %}
 
-    <div class="node-full__tags">
-      Tags:
-      <span class="label label-info">Raids</span>
-      <span class="label label-default">Priest</span>
-      <span class="label label-rose">Event</span>
-    </div>
+    <div class="col-md-8 col-md-offset-2">
 
-    <div class="node-full__actions">
-      {% include "@molecules/navs/actions.twig" %}
-    </div>
+      {% if type != 'media_node' %}
+      <div class="node-full__body">
+        {{ node.body }}
+      </div>
+      {% endif %}
 
-    <div id="comments" class="node-full__comments">
-      {% include "@organisms/sections/comments.twig" %}
-    </div>
+      <div class="node-full__tags">
+        Tags:
+        <span class="label label-info">Raids</span>
+        <span class="label label-default">Priest</span>
+        <span class="label label-rose">Event</span>
+      </div>
 
-  </div>
-</div> <!-- /row.node-full -->
+      <div class="node-full__actions">
+        {% include "@molecules/navs/actions.twig" %}
+      </div>
+
+      <div id="comments" class="node-full__comments">
+        {% include "@organisms/sections/comments.twig" %}
+      </div>
+
+    </div>
+  </div> <!-- /.row -->
+</div> <!-- /.node-full -->

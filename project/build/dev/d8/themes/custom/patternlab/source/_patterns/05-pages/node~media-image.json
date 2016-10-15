@@ -8,7 +8,18 @@
     }
   },
   "node": {
+    "node_attributes": {
+      "Attribute()": {
+        "class": [
+          "node",
+          "node-full",
+          "node-media",
+          "node-media--image"
+        ]
+      }
+    },
     "body": "<p>Some more body text below an image where the title is likely to already be up in the header.</p>",
+    "test_pattern": "molecules-card-full-bg",
     "fields": {
       "media_top": {
         "src": "../../../../images/1920x1080/WoWScrnShot_070216_205829.jpg",
@@ -17,32 +28,32 @@
     },
     "thumbs": [
       {
-        "src": "../../../../images/thumbs/kill-4-thumb.png",
+        "src": "../../../../images/300x300/kill-4-thumb.png",
         "full": "../../../../images/1920x1080/header1.jpeg",
         "title": "kill-1-thumb.png"
       },
       {
-        "src": "../../../../images/thumbs/kill-1-thumb.png",
+        "src": "../../../../images/300x300/kill-1-thumb.png",
         "full": "../../../../images/1920x1080/header1.jpeg",
         "title": "kill-1-thumb.png"
       },
       {
-        "src": "../../../../images/thumbs/kill-2-thumb.png",
+        "src": "../../../../images/300x300/kill-2-thumb.png",
         "full": "../../../../images/1920x1080/1920x1080.jpg",
         "title": "kill-2-thumb.png"
       },
       {
-        "src": "../../../../images/thumbs/kill-4-thumb.png",
-        "full": "../../../../images/1920x1080/WoWScrnShot_012416_195350.jpg",
+        "src": "../../../../images/300x300/300x300.png",
+        "full": "../../../../images/1920x1080/1920x1080.jpg",
         "title": ""
       },
       {
-        "src": "../../../../images/thumbs/kill-1-thumb.png",
+        "src": "../../../../images/300x300/kill-1-thumb.png",
         "full": "../../../../images/1920x1080/header1.jpeg",
         "title": "kill-1-thumb.png"
       },
       {
-        "src": "../../../../images/thumbs/kill-2-thumb.png",
+        "src": "../../../../images/300x300/kill-2-thumb.png",
         "full": "../../../../images/1920x1080/header1.jpeg",
         "title": "kill-1-thumb.png"
       }

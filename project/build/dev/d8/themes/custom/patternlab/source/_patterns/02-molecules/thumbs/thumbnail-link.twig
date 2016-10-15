@@ -1,4 +1,11 @@
 <a href="{{ thumb.url }}" class="thumbnail">
-  {% include "@atoms/images/image-square.twig" with { img: { square: thumb.src } } %}
+  {% include "@atoms/images/image-thumb.twig" with {
+    img: {
+      thumb: {
+        src: thumb.src,
+        alt: thumb.alt
+      }
+    }
+  } %}
   {#<p>Truncated caption goes here ...</p>#}
 </a>

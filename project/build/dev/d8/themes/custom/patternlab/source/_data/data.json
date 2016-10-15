@@ -20,9 +20,18 @@
   },
   "img": {
     "avatar": "../../../../images/avatars/picture-44.jpg",
+    "landscape_full": {
+      "src": "../../../../images/1080x608/1080x608.jpg",
+      "alt": "A full width image",
+      "note": "Fills entire Bootstrap 12 column full width"
+    },
     "landscape_large": "../../../../images/1920x1080/1920x1080.jpg",
     "landscape_medium": "../../../../images/960x540/960x540.jpg",
-    "square": "../../../../images/thumbs/kill-1-thumb.png"
+    "thumb": {
+      "src": "../../../../images/300x300/300x300.png",
+      "alt": "A square image",
+      "note": "300x300x image used for various thumbnail needs"
+    }
   },
   "header": {},
   "headline": {
@@ -183,104 +192,104 @@
   ],
   "thumb": {
     "url": "http://www.google.com",
-    "src": "../../../../images/thumbs/kill-1-thumb.png",
-    "full": "../../../../images/1920x1080/header1.jpeg",
-    "title": "kill-1-thumb.png",
+    "src": "../../../../images/300x300/300x300.png",
+    "full": "../../../../images/1920x1080/1920x1080.jpg",
+    "title": "Example 1920x1080 image",
     "caption": "This is a caption."
   },
   "thumbs": [
     {
-      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "src": "../../../../images/300x300/kill-1-thumb.png",
       "full": "../../../../images/1920x1080/header1.jpeg",
       "title": "kill-1-thumb.png"
     },
     {
-      "src": "../../../../images/thumbs/kill-2-thumb.png",
+      "src": "../../../../images/300x300/kill-2-thumb.png",
       "full": "../../../../images/1920x1080/1920x1080.jpg",
       "title": "kill-2-thumb.png"
     },
     {
-      "src": "../../../../images/thumbs/kill-4-thumb.png",
+      "src": "../../../../images/300x300/kill-4-thumb.png",
       "full": "../../../../images/1920x1080/WoWScrnShot_012416_195350.jpg",
       "title": ""
     },
     {
-      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "src": "../../../../images/300x300/kill-1-thumb.png",
       "full": "../../../../images/1920x1080/header1.jpeg",
       "title": "kill-1-thumb.png"
     },
     {
-      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "src": "../../../../images/300x300/kill-1-thumb.png",
       "full": "../../../../images/1920x1080/header1.jpeg",
       "title": "kill-1-thumb.png"
     },
     {
-      "src": "../../../../images/thumbs/kill-2-thumb.png",
+      "src": "../../../../images/300x300/kill-2-thumb.png",
       "full": "../../../../images/1920x1080/1920x1080.jpg",
       "title": "kill-2-thumb.png"
     },
     {
-      "src": "../../../../images/thumbs/kill-4-thumb.png",
+      "src": "../../../../images/300x300/kill-4-thumb.png",
       "full": "../../../../images/1920x1080/WoWScrnShot_012416_195350.jpg",
       "title": ""
     },
     {
-      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "src": "../../../../images/300x300/kill-1-thumb.png",
       "full": "../../../../images/1920x1080/header1.jpeg",
       "title": "kill-1-thumb.png"
     },
     {
-      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "src": "../../../../images/300x300/kill-1-thumb.png",
       "full": "../../../../images/1920x1080/header1.jpeg",
       "title": "kill-1-thumb.png"
     },
     {
-      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "src": "../../../../images/300x300/kill-1-thumb.png",
       "full": "../../../../images/1920x1080/header1.jpeg",
       "title": "kill-1-thumb.png"
     },
     {
-      "src": "../../../../images/thumbs/kill-2-thumb.png",
+      "src": "../../../../images/300x300/kill-2-thumb.png",
       "full": "../../../../images/1920x1080/1920x1080.jpg",
       "title": "kill-2-thumb.png"
     },
     {
-      "src": "../../../../images/thumbs/kill-4-thumb.png",
+      "src": "../../../../images/300x300/kill-4-thumb.png",
       "full": "../../../../images/1920x1080/WoWScrnShot_012416_195350.jpg",
       "title": ""
     },
     {
-      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "src": "../../../../images/300x300/kill-1-thumb.png",
       "full": "../../../../images/1920x1080/header1.jpeg",
       "title": "kill-1-thumb.png"
     },
     {
-      "src": "../../../../images/thumbs/kill-4-thumb.png",
+      "src": "../../../../images/300x300/kill-4-thumb.png",
       "full": "../../../../images/1920x1080/WoWScrnShot_012416_195350.jpg",
       "title": ""
     },
     {
-      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "src": "../../../../images/300x300/kill-1-thumb.png",
       "full": "../../../../images/1920x1080/header1.jpeg",
       "title": "kill-1-thumb.png"
     },
     {
-      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "src": "../../../../images/300x300/kill-1-thumb.png",
       "full": "../../../../images/1920x1080/header1.jpeg",
       "title": "kill-1-thumb.png"
     },
     {
-      "src": "../../../../images/thumbs/kill-1-thumb.png",
+      "src": "../../../../images/300x300/kill-1-thumb.png",
       "full": "../../../../images/1920x1080/header1.jpeg",
       "title": "kill-1-thumb.png"
     },
     {
-      "src": "../../../../images/thumbs/kill-2-thumb.png",
+      "src": "../../../../images/300x300/kill-2-thumb.png",
       "full": "../../../../images/1920x1080/1920x1080.jpg",
       "title": "kill-2-thumb.png"
     },
     {
-      "src": "../../../../images/thumbs/kill-4-thumb.png",
+      "src": "../../../../images/300x300/kill-4-thumb.png",
       "full": "../../../../images/1920x1080/WoWScrnShot_012416_195350.jpg",
       "title": ""
     }
