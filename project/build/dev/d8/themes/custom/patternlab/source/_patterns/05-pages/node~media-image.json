@@ -24,8 +24,17 @@
     "test_pattern": "molecules-card-full-bg",
     "fields": {
       "media_top": {
-        "src": "../../../../images/1920x1080/WoWScrnShot_070216_205829.jpg",
-        "alt": "Alt text for top image"
+        "include()": {
+          "pattern": "atoms-image-landscape-full",
+          "with": {
+            "img": {
+              "landscape_full": {
+                "src": "../../../../images/1080x608/WoWScrnShot_120913_094517.jpg",
+                "alt": "BALLOON TURTLE"
+              }
+            }
+          }
+        }
       }
     },
     "thumbs": [

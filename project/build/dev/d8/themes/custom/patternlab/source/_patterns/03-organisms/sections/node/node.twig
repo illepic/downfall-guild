@@ -24,11 +24,9 @@
         <div class="banner text-center">
           {#This will likely be a rendered atom#}
           <div class="banner__media">
-            <img class="img-rounded img-responsive img-raised" src="{{ node.fields.media_top.src }}">
+            {{ node.fields.media_top }}
+            {#<img class="img-rounded img-responsive img-raised" src="{{ node.fields.media_top.src }}">#}
           </div>
-
-          <h1>test pattern here</h1>
-          {{ node.test_pattern }}
 
           {% if type == 'media_node' %}
             <div class="row">
