@@ -21,7 +21,7 @@
       }
     },
 
-    "body": "<p>Some more body text below an image where the title is likely to already be up in the header.</p>",
+    "body": "<p>Some more body text below a video where the title is likely to already be up in the header. Lorem ipsum dolor sit amet.</p>",
     "test_pattern": "molecules-card-full-bg",
     "fields": {
       "media_top": "atoms-video"

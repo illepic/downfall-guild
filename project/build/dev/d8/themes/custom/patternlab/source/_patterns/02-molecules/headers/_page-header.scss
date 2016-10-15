@@ -12,6 +12,11 @@
   .container {
     padding-top: 0; // override material-kit
   }
+  .title {
+    &::first-letter {
+      text-transform: capitalize;
+    }
+  }
   &.header-small {
     .container {
       padding-top: 0; // override material-kit

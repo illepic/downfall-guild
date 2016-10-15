@@ -1,12 +1,10 @@
 {
-  "key": "value",
-  "key2": "use this for variables you want to load globally",
-  "title": "Lorem ipsum dolor sit amet, consectetur. Adipisicing elit, sed do eiusmod.",
-  "teaser": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.",
+  "title": "Faker.sentence()",
+  "teaser": "Faker.paragraph()",
   "tags": [
-    "Tag 1",
-    "Tag 2",
-    "Tag 3"
+    "Faker.words(1)",
+    "Faker.words(1)",
+    "Faker.words(1)"
   ],
   "cta_text": "Read More",
   "text": "Text",
