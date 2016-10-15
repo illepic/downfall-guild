@@ -4,8 +4,8 @@
   <div class="card-tracker__left">
     <div class="card-image">
         <a href="{{ url }}">
-          <img class="img img-rounded img-raised hidden-xs" src="{{ img.square }}">
-          <img class="img img-rounded img-raised visible-xs-block" src="{{ img.landscape_medium }}">
+          <div class="hidden-xs">{% include "@atoms/images/image-thumb.twig" with { 'img': img } %}</div>
+          <div class="visible-xs-block">{% include "@atoms/images/image-landscape-medium.twig" with { 'img': img } %}</div>
           {% if type == 'video' %}
             {% include "@atoms/images/play.twig" %}
           {% endif %}
