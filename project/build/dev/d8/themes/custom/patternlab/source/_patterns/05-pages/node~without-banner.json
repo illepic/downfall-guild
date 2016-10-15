@@ -3,7 +3,9 @@
     "title": "A node with with no large, full width banner image up top",
     "teaser": false,
     "img": {
-      "landscape_large": "../../../../images/1920x1080/bh0UYQx.png"
+      "landscape_large": {
+        "src": "../../../../images/1920x1080/bh0UYQx.png"
+      }
     }
   },
   "node": {

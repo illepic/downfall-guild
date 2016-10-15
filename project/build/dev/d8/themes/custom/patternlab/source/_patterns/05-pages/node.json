@@ -3,7 +3,9 @@
     "title": "LFM has an epic raiding night and kills a bunch of stuff",
     "teaser": false,
     "img": {
-      "landscape_large": "../../../../images/1920x1080/bh0UYQx.png"
+      "landscape_large": {
+        "src": "../../../../images/1920x1080/bh0UYQx.png"
+      }
     }
   },
   "sidebar": false

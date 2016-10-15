@@ -25,7 +25,11 @@
       "alt": "A full width image",
       "note": "Fills entire Bootstrap 12 column full width"
     },
-    "landscape_large": "../../../../images/1920x1080/1920x1080.jpg",
+    "landscape_large": {
+      "src": "../../../../images/1920x1080/1920x1080.jpg",
+      "alt": "A very large image",
+      "note": "Effectively full screen (1920x1080)"
+    },
     "landscape_medium": "../../../../images/960x540/960x540.jpg",
     "thumb": {
       "src": "../../../../images/300x300/300x300.png",

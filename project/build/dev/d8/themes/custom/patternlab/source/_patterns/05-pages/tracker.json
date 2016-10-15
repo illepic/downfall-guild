@@ -3,7 +3,9 @@
     "title": "<Downfall> Tracker",
     "teaser": "All the latest content in one place.",
     "img": {
-      "landscape_large": "../../../../images/1920x1080/bh0UYQx.png"
+      "landscape_large": {
+        "src": "../../../../images/1920x1080/bh0UYQx.png"
+      }
     }
   },
   "sidebar": {

@@ -4,7 +4,9 @@
     "title": "An image media node, note the thumbs to navigate through other images",
     "teaser": false,
     "img": {
-      "landscape_large": "../../../../images/1920x1080/bh0UYQx.png"
+      "landscape_large": {
+        "src": "../../../../images/1920x1080/bh0UYQx.png"
+      }
     }
   },
   "node": {
