@@ -1,5 +1,5 @@
 {
-  "title": "Faker.sentence()",
+  "title": "Faker.sentence",
   "teaser": "Faker.paragraph()",
   "tags": [
     "Faker.words(1, true)",
@@ -325,49 +325,55 @@
     {
       "pinned": true,
       "type": "post",
-      "title": "Faker.sentence()",
+      "title": "Faker.sentence",
       "img": false,
       "timestamp": "Faker.unixTime",
+      "tags": "Faker.words(3)",
       "comments": {
-        "count": 17,
+        "count": "Faker.randomDigitNotNull",
         "new": true
       }
     },
     {
       "pinned": true,
       "type": "post",
+      "tags": "Faker.words(3)",
       "title": "Another random title that is long and maybe has special <chars>",
       "comments": {
-        "count": 23,
+        "count": "Faker.randomDigitNotNull",
         "new": true
       }
     },
     {
       "type": "event",
       "title": "Faker.sentence",
+      "tags": "Faker.words(3)",
       "timestamp": "Faker.unixTime",
       "img": false,
       "comments": {
-        "count": 5
+        "count": "Faker.randomDigitNotNull"
       }
     },
     {
       "type": "image",
-      "title": "Faker.sentence()",
+      "title": "Faker.sentence",
+      "tags": "Faker.words(3)",
       "teaser": "Faker.paragraph",
       "comments": {
-        "count": 5
+        "count": "Faker.randomDigitNotNull"
       }
     },
     {
       "type": "video",
-      "title": "Faker.sentence()",
+      "tags": "Faker.words(3)",
+      "title": "Faker.sentence",
       "comments": {
-        "count": 5
+        "count": "Faker.randomDigitNotNull"
       }
     },
     {
       "type": "image",
+      "tags": "Faker.words(3)",
       "title": "Big ass demon invasion guy",
       "teaser": "This dude ain't screwing around",
       "img": {
@@ -376,45 +382,50 @@
         }
       },
       "comments": {
-        "count": 10
+        "count": "Faker.randomDigitNotNull"
       }
     },
     {
       "type": "post",
-      "title": "Faker.sentence()",
+      "tags": "Faker.words(3)",
+      "title": "Faker.sentence",
       "img": false,
       "comments": {
-        "count": 5
+        "count": "Faker.randomDigitNotNull"
       }
     },
     {
       "type": "post",
-      "title": "Faker.sentence()",
+      "tags": "Faker.words(3)",
+      "title": "Faker.sentence",
       "img": false,
       "comments": {
-        "count": 5
+        "count": "Faker.randomDigitNotNull"
       }
     },
     {
       "type": "post",
-      "title": "Faker.sentence()",
+      "tags": "Faker.words(3)",
+      "title": "Faker.sentence",
       "comments": {
-        "count": 5
+        "count": "Faker.randomDigitNotNull"
       }
     },
     {
       "type": "post",
-      "title": "Faker.sentence()",
+      "tags": "Faker.words(3)",
+      "title": "Faker.sentence",
       "comments": {
-        "count": 5
+        "count": "Faker.randomDigitNotNull"
       }
     },
     {
       "type": "post",
-      "title": "Faker.sentence()",
+      "tags": "Faker.words(3)",
+      "title": "Faker.sentence",
       "img": false,
       "comments": {
-        "count": 5
+        "count": "Faker.randomDigitNotNull"
       }
     }
   ]
