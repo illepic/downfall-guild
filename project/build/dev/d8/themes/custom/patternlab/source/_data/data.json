@@ -194,6 +194,9 @@
     {},
     {}
   ],
+  "video": {
+    "src": "https://www.youtube.com/embed/nnjGw9ZL3QQ"
+  },
   "thumb": {
     "url": "http://www.google.com",
     "src": "../../../../images/300x300/300x300.png",
