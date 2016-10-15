@@ -428,5 +428,37 @@
         "count": "Faker.randomDigitNotNull"
       }
     }
-  ]
+  ],
+  "subsection": {
+    "left": {
+      "type": "media",
+      "title": "Latest Raid Image",
+      "subtitle": "Downfall kicks major ass",
+      "img": {
+        "landscape_medium": {
+          "src": "../../../../images/960x540/WoWScrnShot_073116_121145.jpg"
+        }
+      }
+    },
+    "middle": {
+      "type": "video",
+      "title": "Latest Raid Video",
+      "subtitle": "Faker.sentence",
+      "img": {
+        "landscape_medium": {
+          "src": "../../../../images/960x540/WoWScrnShot_073116_121145.jpg"
+        }
+      }
+    },
+    "right": {
+      "type": "media",
+      "title": "(Put a Raid Group here)",
+      "subtitle": "Faker.sentence",
+      "img": {
+        "landscape_medium": {
+          "src": "../../../../images/960x540/WoWScrnShot_073116_121145.jpg"
+        }
+      }
+    }
+  }
 }

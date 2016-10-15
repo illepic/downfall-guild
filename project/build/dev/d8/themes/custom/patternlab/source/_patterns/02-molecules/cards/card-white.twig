@@ -1,0 +1,29 @@
+<div class="card card-blog">
+  <div class="card-image">
+    <a href="#pablo">
+      {% include "@atoms/images/image-landscape-medium.twig" with { 'img': img } %}
+      {% if type == 'video' %}
+        {% include "@atoms/images/play.twig" %}
+      {% endif %}
+    </a>
+  </div>
+  <div class="content">
+    <h6 class="category text-danger">
+      <i class="material-icons">{{ attribute(icons, type) }}</i> {{ title }}
+    </h6>
+    <h4 class="card-title">
+      <a href="#pablo">{{ subtitle }}</a>
+    </h4>
+    <div class="footer">
+      <div class="author">
+        <a href="#pablo">
+          <img src="../../../..//images/avatars/picture-44.jpg" alt="..." class="avatar img-raised">
+          <span>Saedo</span>
+        </a>
+      </div>
+      <div class="stats">
+        <i class="material-icons">schedule</i> Mar 5, 2016
+      </div>
+    </div>
+  </div>
+</div>

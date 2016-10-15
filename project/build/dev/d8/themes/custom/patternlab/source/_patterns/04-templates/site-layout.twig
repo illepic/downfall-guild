@@ -39,66 +39,14 @@
         </div>
 
         <div class="col-sm-4">
-
-          <div class="card card-blog">
-            <div class="card-image">
-              <a href="#pablo">
-                <img class="img" src="../../../../images/960x540/960x540.jpg">
-              </a>
-            </div>
-            <div class="content">
-              <h6 class="category text-danger">
-                <i class="material-icons">trending_up</i> Latest Raid Image
-              </h6>
-              <h4 class="card-title">
-                <a href="#pablo">Downfall kicks some ass</a>
-              </h4>
-              <div class="footer">
-                <div class="author">
-                  <a href="#pablo">
-                    <img src="../../../..//images/avatars/picture-44.jpg" alt="..." class="avatar img-raised">
-                    <span>Saedo</span>
-                  </a>
-                </div>
-                <div class="stats">
-                  <i class="material-icons">schedule</i> 5 min read
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div> <!-- /.col-sm-4 -->
-
+          {% include "@molecules/cards/card-white.twig" with subsection.left %}
+        </div>
         <div class="col-sm-4">
-
-          <div class="card card-blog">
-            <div class="card-image">
-              <a href="#pablo">
-                <img class="img" src="../../../../images/960x540/WoWScrnShot_073116_121145.jpg">
-              </a>
-            </div>
-            <div class="content">
-              <h6 class="category text-danger">
-                <i class="material-icons">ondemand_video</i> Latest Raid Video
-              </h6>
-              <h4 class="card-title">
-                <a href="#pablo">Downfall kicks some ass</a>
-              </h4>
-              <div class="footer">
-                <div class="author">
-                  <a href="#pablo">
-                    <img src="../../../..//images/avatars/picture-44.jpg" alt="..." class="avatar img-raised">
-                    <span>Saedo</span>
-                  </a>
-                </div>
-                <div class="stats">
-                  <i class="material-icons">schedule</i> 5 min read
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div> <!-- /.col-sm-4 -->
+          {% include "@molecules/cards/card-white.twig" with subsection.middle %}
+        </div>
+        <div class="col-sm-4">
+          {% include "@molecules/cards/card-white.twig" with subsection.right %}
+        </div>
 
       </div>
     {% endblock %}
