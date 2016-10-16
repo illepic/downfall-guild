@@ -1,0 +1,27 @@
+<div class="card card-raised card-background raid-card" style="background-image: url('{{ img.landscape_medium.src }}')">
+  <div class="content">
+    <div class="raid-card__icon">
+      <img src="{{ paths.wow_icon }}/{{ icon }}.jpg" class="raid-card__icon-img img-circle img-raised"/>
+    </div>
+    <h6 class="category text-info">{{ tags|join(', ') }}</h6>
+    <a href="{{ url }}">
+      <h3 class="card-title">{{ title }}</h3>
+    </a>
+    <p class="card-description">{{ teaser }}</p>
+
+    {% include "@atoms/buttons/button.twig" with {
+      'button_icon': 'post',
+      'button_round': true,
+      'button_text': 'Join'|t
+    } %}
+    <div class="clearfix"></div>
+
+    <a href="#pablo" class="btn btn-white btn-simple">
+      <i class="material-icons">group</i> {{ member_count }}
+    </a>
+    <a href="#pablo" class="btn btn-white btn-simple">
+      <i class="material-icons">watch_later</i> Thing
+    </a>
+
+  </div>
+</div>

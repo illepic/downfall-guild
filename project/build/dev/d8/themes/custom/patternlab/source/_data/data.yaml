@@ -13,6 +13,7 @@ paths:
   images: "../../../../images"
   bower: "../../../../bower_components"
   js: "../../../../js"
+  wow_icon: "//wow.zamimg.com/images/wow/icons/large/"
 img:
   avatar: "../../../../images/avatars/picture-44.jpg"
   thumb:
@@ -248,21 +249,46 @@ nodes:
     count: Faker.randomDigitNotNull
 raids:
   -
-    title: Raid 1
+    title: Faker.words(3, true)
+    slogan: Faker.sentence
+    icon: ability_throw
+    member_count: Faker.numberBetween(1, 50)
+    member_count: Faker.numberBetween(1, 50)
   -
-    title: Raid 2
+    title: Faker.words(5, true)
+    slogan: Faker.paragraph
+    icon: inv_axe_22
+    member_count: Faker.numberBetween(1, 50)
   -
-    title: Raid 3
+    title: Faker.words(3, true)
+    slogan: Faker.sentence
+    icon: inv_axe_1h_blacksmithing_03
+    member_count: Faker.numberBetween(1, 50)
   -
-    title: Raid 4
+    title: Faker.words(3, true)
+    slogan: Faker.sentence
+    icon: inv_gizmo_thebiggerone
+    member_count: Faker.numberBetween(1, 50)
   -
-    title: Raid 5
+    title: Faker.words(3, true)
+    slogan: Faker.sentence
+    icon: boss_odunrunes_purple
+    member_count: Faker.numberBetween(1, 50)
   -
-    title: Raid 6
+    title: Faker.words(3, true)
+    slogan: Faker.sentence
+    icon: boss_odunrunes_green
+    member_count: Faker.numberBetween(1, 50)
   -
-    title: Raid 7
+    title: Faker.words(3, true)
+    slogan: Faker.sentence
+    icon: inv_glaive_1h_npc_d_01
+    member_count: Faker.numberBetween(1, 50)
   -
-    title: Raid 8
+    title: Faker.words(3, true)
+    slogan: Faker.sentence
+    icon: inv_hand_1h_artifactskywall_d_01
+    member_count: Faker.numberBetween(1, 50)
 subsection:
   left:
     type: media

@@ -1,42 +1,40 @@
 <div class="raids-grid">
-  <div class="raids-grid__top filter-top">
+  <div class="raids-grid__top filter-top clearfix">
     <div class="col-sm-12">
       <h2 class="title text-center">Downfall Raids</h2>
       <br>
     </div>
 
-    {% include "@molecules/navs/nav-tabs.twig" with {
-      links: [
-        {url: '#', text: 'Active'},
-        {url: '#', text: 'Retired'},
-        {url: '#', text: 'All'},
-      ]
-    }%}
+    <div class="pull-left">
+      {% include "@molecules/navs/nav-tabs.twig" with {
+        links: [
+          {url: '#', text: 'Active'},
+          {url: '#', text: 'Retired'},
+          {url: '#', text: 'All'},
+        ]
+      }%}
+    </div>
+    <div class="pull-right">
+      {% include "@molecules/navs/dropdown.twig" %}
+    </div>
+
   </div>
 
   <div class="raids-grid__content row">
 
     {% for raid in raids %}
       <div class="col-sm-4 thumb">
-        <div class="card card-background" style="background-image: url({{ img.landscape_medium.src }})">
-
-          <div class="content">
-            <h6 class="category text-info">Productivy Apps</h6>
-            <a href="#pablo">
-              <h3 class="card-title">The Best Productivity Apps on Market</h3>
-            </a>
-            <p class="card-description">
-              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-            </p>
-            <a href="#pablo" class="btn btn-white btn-simple">
-              <i class="material-icons">subject</i> Read Article
-            </a>
-            <a href="#pablo" class="btn btn-white btn-simple">
-              <i class="material-icons">watch_later</i> Watch Later
-            </a>
-          </div>
-        </div>
+        {% include "@molecules/cards/card-full-bg-raid.twig" with {
+          title: raid.title,
+          teaser: raid.slogan,
+          icon: raid.icon,
+          member_count: raid.member_count
+        }%}
       </div>
+      {% if loop.index is divisible by(3) %}
+        <div class="clearfix"></div>
+      {% endif %}
+
     {% endfor %}
   </div>
   {% include "@atoms/navs/pagination.twig" %}
