@@ -1,0 +1,15 @@
+{% extends "@templates/site-layout.twig" %}
+
+{% block content %}
+  {#{% include "@organisms/sections/tracker.twig" with { 'nodes': nodes } %}#}
+  <h1>raids go here</h1>
+{% endblock %}
+
+{% block sub %}
+
+{% endblock %}
+
+{% block sidebar %}
+  {% include "@molecules/profiles/profile-medium.twig" %}
+  {% include "@molecules/asides/thumbs-grid.twig" with sidebar.thumbs_grid %}
+{% endblock %}
