@@ -1,53 +1,67 @@
 {% extends "@templates/site-layout.twig" %}
 
 {% block content %}
-  {#<div class="text-center">#}
+  <div class="text-center raid-hub">
     {#<div class="row">#}
-      {#<div class="col-md-12 col-md-offset-2">#}
+      {#<div class="col-md-8 col-md-offset-2">#}
         {#<h2 class="title">Let's talk product</h2>#}
-        {#<h5 class="description">This is the paragraph where you can write more details about your product. Keep you user engaged by providing meaningful information. Remember that by this time, the user is curious, otherwise he wouldn't scroll to get here. Add a button if you want the user to see more.</h5>#}
+        {#<h5 class="description">Add a WoW character to your account below. Join Raid Groups. Sign up for Raid Events.</h5>#}
       {#</div>#}
     {#</div>#}
 
-    {#<div class="features">#}
-      {#<div class="row">#}
-        {#<div class="col-md-4">#}
-          {#<div class="info">#}
-            {#<div class="icon icon-info">#}
-              {#<i class="material-icons">chat</i>#}
-            {#</div>#}
-            {#<h4 class="info-title">Free Chat</h4>#}
-            {#<p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>#}
-          {#</div>#}
-        {#</div>#}
+    <div class="features">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="info">
+            <div class="icon">
+              <i class="material-icons">person_add</i>
+            </div>
+            <h4 class="info-title">Add Character</h4>
+            <p>Add a WoW character to your account that can sign up for <a href="#">Raids Groups</a> and Raid Events.</p>
+            <p>{% include "@atoms/buttons/button.twig" with {
+                'button_color': 'success',
+                'button_text': 'Add Toon',
+                'button_size': 'large',
+              }%}</p>
+          </div>
+        </div>
 
-        {#<div class="col-md-4">#}
-          {#<div class="info">#}
-            {#<div class="icon icon-success">#}
-              {#<i class="material-icons">verified_user</i>#}
-            {#</div>#}
-            {#<h4 class="info-title">Verified Users</h4>#}
-            {#<p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>#}
-          {#</div>#}
-        {#</div>#}
+        <div class="col-md-4">
+          <div class="info">
+            <div class="icon">
+              <i class="material-icons">group</i>
+            </div>
+            <h4 class="info-title">Join Raid Groups</h4>
+            <p>Add your WoW character to Downfall raid groups by clicking "Join" on any of the groups below.</p>
+            <p>{% include "@atoms/buttons/button.twig" with {
+              'button_color': 'primary',
+              'button_text': 'Example Raid',
+              'button_size': 'large',
+              }%}</p>
+          </div>
+        </div>
 
-        {#<div class="col-md-4">#}
-          {#<div class="info">#}
-            {#<div class="icon icon-danger">#}
-              {#<i class="material-icons">fingerprint</i>#}
-            {#</div>#}
-            {#<h4 class="info-title">Fingerprint</h4>#}
-            {#<p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>#}
-          {#</div>#}
-        {#</div>#}
-      {#</div>#}
-    {#</div>#}
-  {#</div>#}
-  {% include "@organisms/sections/raid-grid.twig" with { 'raids': raids }%}
+        <div class="col-md-4">
+          <div class="info">
+            <div class="icon">
+              <i class="material-icons">event</i>
+            </div>
+            <h4 class="info-title">Signup for Events</h4>
+            <p>Navigate to any Raid Group to see and sign up for upcoming Raid Events.</p>
+            <p>{% include "@atoms/buttons/button.twig" with {
+              'button_color': 'primary',
+              'button_text': 'Example Event',
+              'button_size': 'large',
+              }%}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
 
 {% block sub %}
-  <h2>raids: sub</h2>
+  {% include "@organisms/sections/raid-grid.twig" with { 'raids': raids }%}
 {% endblock %}
 
 {% block sidebar %}

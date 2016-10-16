@@ -39,56 +39,25 @@ excerpt:
   medium: Faker.sentence(3)
   long: Faker.sentence(7)
 description: Faker.sentence(5)
+# Note: users array in users.yaml
 user:
   name: Faker.name
   roles:
+  - Officer
   - Guildy
   - Admin
   about: Faker.sentence
-  url: http://www.google.com
+  url: Faker.url
   avatar:
     img:
       src: Faker.imageUrl(300, 300, 'people')
-device_widths:
-- name: iPhone Portrait
-  width: 320
-- name: Galaxy Nexus Portrait
-  width: 360
-- name: iPhone 6 Portrait
-  width: 375
-- name: iPhone 6 Plus Portrait
-  width: 414
-- name: Galaxy Note 3 Portrait
-  width: 540
-- name: iPhone Landscape
-  width: 568
-- name: Google Nexus 7 Portrait
-  width: 604
-- name: Galaxy Nexus Landscape
-  width: 640
-- name: iPhone 6 Landscape
-  width: 667
-- name: iPhone 6 Plus Landscape
-  width: 738
-- name: iPad Portrait
-  width: 768
-- name: Galaxy Note 3 Landscape
-  width: 960
-- name: Google Nexus 7 Landscape
-  width: 966
-- name: iPad Landscape
-  width: 1024
-- name: 11" MacBook Air
-  width: 1366
-- name: 13" MacBook Air
-  width: 1440
-- name: 21.5" iMac
-  width: 1980
 button_styles:
   color:
     primary: btn-primary
     info: btn-info
     rose: btn-rose
+    success: btn-success
+    danger: btn-danger
   size:
     xsmall: btn-xs
     small: btn-sm
@@ -103,6 +72,7 @@ icons:
   image: collections
   recent: timeline
   comment: comment
+  add_character: person_add
 posts:
 - pinned: true
   type: post
@@ -291,6 +261,8 @@ raids:
     title: Raid 6
   -
     title: Raid 7
+  -
+    title: Raid 8
 subsection:
   left:
     type: media

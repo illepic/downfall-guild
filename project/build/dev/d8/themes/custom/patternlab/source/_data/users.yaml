@@ -1,0 +1,107 @@
+users:
+  -
+    name: Faker.name
+    roles:
+      - Officer
+      - Guildy
+      - Admin
+    about: Faker.sentence
+    url: Faker.url
+    avatar:
+      img:
+        src: Faker.imageUrl(300, 300, 'people')
+  -
+    name: Faker.name
+    roles:
+      - Guildy
+      - Admin
+    about: Faker.sentence
+    url: Faker.url
+    avatar:
+      img:
+        src: Faker.imageUrl(300, 300, 'people')
+  -
+    name: Faker.name
+    roles:
+      - Officer
+      - Guildy
+      - Admin
+    about: Faker.sentence
+    url: Faker.url
+    avatar:
+      img:
+        src: Faker.imageUrl(300, 300, 'people')
+  -
+    name: Faker.name
+    roles:
+      - Guildy
+      - Admin
+    about: Faker.sentence
+    url: Faker.url
+    avatar:
+      img:
+        src: Faker.imageUrl(300, 300, 'people')
+  -
+    name: Faker.name
+    roles:
+      - Officer
+      - Guildy
+      - Admin
+    about: Faker.sentence
+    url: Faker.url
+    avatar:
+      img:
+        src: Faker.imageUrl(300, 300, 'people')
+  -
+    name: Faker.name
+    roles:
+      - Guildy
+      - Admin
+    about: Faker.sentence
+    url: Faker.url
+    avatar:
+      img:
+        src: Faker.imageUrl(300, 300, 'people')
+  -
+    name: Faker.name
+    roles:
+      - Officer
+      - Guildy
+      - Admin
+    about: Faker.sentence
+    url: Faker.url
+    avatar:
+      img:
+        src: Faker.imageUrl(300, 300, 'people')
+  -
+    name: Faker.name
+    roles:
+      - Officer
+      - Guildy
+      - Admin
+    about: Faker.sentence
+    url: Faker.url
+    avatar:
+      img:
+        src: Faker.imageUrl(300, 300, 'people')
+  -
+    name: Faker.name
+    roles:
+      - Guildy
+      - Admin
+    about: Faker.sentence
+    url: Faker.url
+    avatar:
+      img:
+        src: Faker.imageUrl(300, 300, 'people')
+  -
+    name: Faker.name
+    roles:
+      - Officer
+      - Guildy
+      - Admin
+    about: Faker.sentence
+    url: Faker.url
+    avatar:
+      img:
+        src: Faker.imageUrl(300, 300, 'people')
