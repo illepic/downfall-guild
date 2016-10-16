@@ -1,6 +1,7 @@
 <ul class="nav nav-pills nav-pills-primary">
-  <li class="active"><a href="#pill1" data-toggle="tab">All</a></li>
-  <li><a href="#pill2" data-toggle="tab">Posts</a></li>
-  <li><a href="#pill3" data-toggle="tab">Events</a></li>
-  <li><a href="#pill4" data-toggle="tab">Articles</a></li>
+  {% for link in links  %}
+    <li {% if loop.index == 1 %}class="active"{% endif %}>
+      <a href="#" data-toggle="tab" >{{ link.text }}</a>
+    </li>
+  {% endfor %}
 </ul>

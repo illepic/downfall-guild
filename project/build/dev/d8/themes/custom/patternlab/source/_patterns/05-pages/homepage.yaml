@@ -78,29 +78,42 @@ sidebar:
     icon: comment
     cta: All Posts
     comments:
-    - title: Lorem ipsum dolor sit amet, consectetur. Adipisicing elit, sed do eiusmod. Adipisicing elit, sed do eiusmod sed do eiusmod ...
+    -
+      title: Lorem ipsum dolor sit amet, consectetur. Adipisicing elit, sed do eiusmod. Adipisicing elit, sed do eiusmod sed do eiusmod ...
       node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
-    - node_title: 'Raid: Awkward Name kills some stuff!'
+    -
+      node_title: 'Raid: Awkward Name kills some stuff!'
       user:
         user:
           name: Elapsed
           avatar:
-            img: "../../../../images/avatars/avatar-3.jpg"
-    - node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
-    - node_title: 'Raid: Awkward Name kills some stuff!'
+            img:
+              src: "../../../../images/avatars/avatar-3.jpg"
+    -
+      node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
+    -
+      node_title: 'Raid: Awkward Name kills some stuff!'
       user:
         user:
           name: Elapsed
           avatar:
-            img: "../../../../images/avatars/avatar-3.jpg"
-    - node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
-    - node_title: 'Raid: Awkward Name kills some stuff!'
-    - node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
+            img:
+              src: "../../../../images/avatars/avatar-3.jpg"
+    -
+      node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
+    -
+      node_title: 'Raid: Awkward Name kills some stuff!'
+    -
+      node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
       user:
         user:
           name: Elapsed
           avatar:
-            img: "../../../../images/avatars/avatar-3.jpg"
-    - node_title: 'Raid: Awkward Name kills some stuff!'
-    - node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
-    - node_title: 'Raid: Awkward Name kills some stuff!'
+            img:
+              src: "../../../../images/avatars/avatar-3.jpg"
+    -
+      node_title: 'Raid: Awkward Name kills some stuff!'
+    -
+      node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
+    -
+      node_title: 'Raid: Awkward Name kills some stuff!'

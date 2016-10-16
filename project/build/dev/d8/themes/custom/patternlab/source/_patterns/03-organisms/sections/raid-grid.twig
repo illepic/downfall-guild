@@ -1,0 +1,19 @@
+<div class="raids-grid">
+  <div class="raids-grid__top filter-top">
+    {% include "@molecules/navs/nav-tabs.twig" with {
+      links: [
+        {url: '#', text: 'Filter 1'},
+        {url: '#', text: 'Filter 2'},
+      ]
+    }%}
+  </div>
+
+  <div class="raids-grid__content row">
+    {% for raid in raids %}
+      <div class="col-sm-6 thumb">
+        {{ raid.title }}
+      </div>
+    {% endfor %}
+  </div>
+  {% include "@atoms/navs/pagination.twig" %}
+</div>

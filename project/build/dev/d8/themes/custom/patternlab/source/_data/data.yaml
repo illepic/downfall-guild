@@ -40,14 +40,15 @@ excerpt:
   long: Faker.sentence(7)
 description: Faker.sentence(5)
 user:
-  name: Saedo
+  name: Faker.name
   roles:
   - Guildy
   - Admin
-  about: Faker.sentence(2)
+  about: Faker.sentence
   url: http://www.google.com
   avatar:
-    img: "../../../../images/avatars/picture-44.jpg"
+    img:
+      src: Faker.imageUrl(300, 300, 'people')
 device_widths:
 - name: iPhone Portrait
   width: 320
@@ -275,6 +276,21 @@ nodes:
   img: false
   comments:
     count: Faker.randomDigitNotNull
+raids:
+  -
+    title: Raid 1
+  -
+    title: Raid 2
+  -
+    title: Raid 3
+  -
+    title: Raid 4
+  -
+    title: Raid 5
+  -
+    title: Raid 6
+  -
+    title: Raid 7
 subsection:
   left:
     type: media

@@ -1,13 +1,12 @@
 <div class="card card-profile card-plain">
   <div class="card-avatar">
     <a href="#pablo">
-      <img class="img" src="{{ img.avatar }}">
+      <img class="img" src="{{ user.avatar.img.src }}">
     </a>
   </div>
 
   <div class="content">
     <h6 class="category text-gray">{{ user.roles|join(', ') }}</h6>
-
 
     <h4 class="card-title">{{ user.name }}</h4>
 
