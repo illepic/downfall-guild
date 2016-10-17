@@ -15,7 +15,8 @@ paths:
   js: "../../../../js"
   wow_icon: "//wow.zamimg.com/images/wow/icons/large/"
 img:
-  avatar: "../../../../images/avatars/saedo.jpg"
+  avatar:
+    src: "../../../../images/avatars/saedo.png"
   thumb:
     src: "../../../../images/300x300/300x300.png"
     alt: A square image
