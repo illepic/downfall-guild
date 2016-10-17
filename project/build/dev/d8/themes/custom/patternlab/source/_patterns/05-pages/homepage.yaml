@@ -6,25 +6,25 @@ header:
     landscape_large:
       src: "../../../../images/1920x1080/legion.jpg"
 news:
-  posts_pinned:
-  -
-    tags:
-    - Pinned
-    title: Legendary Legion weapons
-    teaser: This is your guide to absolutely rocking out the entire questline for your legendary weapon in Legion.
-    pinned: true
-    img:
-      landscape_medium:
-        src: "../../../../images/960x540/WoWScrnShot_070216_205829.jpg"
-  -
-    tags:
-    - Pinned
-    title: Raid Signups Happening Sept 1 - 15!
-    teaser: Dont miss out on your chance to raid with Downfall in the Legion expansion. Information after the jump.
-    pinned: true
-    img:
-      landscape_medium:
-        src: "../../../../images/960x540/WoWScrnShot_032616_212547.jpg"
+#  posts_pinned:
+#  -
+#    tags:
+#      - Pinned
+#    title: Legendary Legion weapons
+#    teaser: This is your guide to absolutely rocking out the entire questline for your legendary weapon in Legion.
+#    pinned: true
+#    img:
+#      landscape_medium:
+#        src: "../../../../images/960x540/WoWScrnShot_070216_205829.jpg"
+#  -
+#    tags:
+#      - Pinned
+#    title: Raid Signups Happening Sept 1 - 15!
+#    teaser: Dont miss out on your chance to raid with Downfall in the Legion expansion. Information after the jump.
+#    pinned: true
+#    img:
+#      landscape_medium:
+#        src: "../../../../images/960x540/WoWScrnShot_032616_212547.jpg"
   posts_recent:
   -
     promoted: true

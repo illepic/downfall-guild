@@ -15,7 +15,7 @@ paths:
   js: "../../../../js"
   wow_icon: "//wow.zamimg.com/images/wow/icons/large/"
 img:
-  avatar: "../../../../images/avatars/picture-44.jpg"
+  avatar: "../../../../images/avatars/saedo.jpg"
   thumb:
     src: "../../../../images/300x300/300x300.png"
     alt: A square image
@@ -40,18 +40,6 @@ excerpt:
   medium: Faker.sentence(3)
   long: Faker.sentence(7)
 description: Faker.sentence(5)
-# Note: users array in users.yaml
-user:
-  name: Faker.name
-  roles:
-  - Officer
-  - Guildy
-  - Admin
-  about: Faker.sentence
-  url: Faker.url
-  avatar:
-    img:
-      src: Faker.imageUrl(300, 300, 'people')
 button_styles:
   color:
     primary: btn-primary
@@ -77,20 +65,6 @@ icons:
   add_character: person_add
   add: add
   check: check
-posts:
-- pinned: true
-  type: post
-- pinned: true
-  type: post
-- type: post
-- type: post
-- type: post
-- type: post
-- type: post
-- type: post
-- type: post
-- type: post
-- type: post
 node_title: Node title for comment
 comments:
 - {}
@@ -165,91 +139,6 @@ thumbs:
 - src: "../../../../images/300x300/kill-4-thumb.png"
   full: "../../../../images/1920x1080/WoWScrnShot_012416_195350.jpg"
   title: ''
-node:
-  node_attributes:
-    Attribute():
-      class:
-      - node
-      - node-full
-  title: Faker.sentence
-  body: '<p>We are here to make life better. New loot: <a href="http://www.wowhead.com/item=17182/sulfuras-hand-of-ragnaros">Sulfuras</a>! Test spell: <a href="http://www.wowhead.com/spell=20473/holy-shock">SHOCK!</a>. And now I look and look around and there’s so many Kanyes (<a href=\"http://www.wowhead.com/item=137076/obsidian-stone-spaulders\">Obsidian Stone Spaulder</a>) I''ve been trying to figure out the bed design for the master bedroom at our Hidden Hills compound...and thank you for turning my personal jean jacket into a couture piece. <a href=\"http://www.wowhead.com/spell=183997/mastery-lightbringer\">Mastery: Lightbringer</a></p><div class="pull-out-body"><img class="img-raised img-rounded img-responsive image-wysiwyg" src="../../../../images/960x540/WoWScrnShot_073116_121145.jpg"/></div><p> I speak yell scream directly at the old guard on behalf of the future. daytime All respect prayers and love to Phife’s family Thank you for so much inspiration. </p><p>Thank you Anna for the invite thank you to the whole Vogue team And I love you like Kanye loves Kanye Pand Pand Panda I''ve been trying to figure out the bed design for the master bedroom at our Hidden Hills compound...The Pablo pop up was almost a pop up of influence. All respect prayers and love to Phife’s family Thank you for so much inspiration daytime I love this new Ferg album! The Life of Pablo is now available for purchase I have a dream. Thank you to everybody who made The Life of Pablo the number 1 album in the world! I''m so proud of thenr #1 song in the country. Panda! Good music 2016!</p><ul><li>A list item here</li><li>A list item here</li><li>A list item here</li><li>A list item here</li></ul><p>I love this new Ferg album! The Life of Pablo is now available for purchase I have a dream. Thank you to everybody who made The Life of Pablo the number 1 album in the world! I''m so proud of the nr #1 song in the country. Panda! Good music 2016!</p><div class="pull-out-body"><div class="img-raised embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/nnjGw9ZL3QQ" allowfullscreen></iframe></div></div><p> I love this new Ferg album! The Life of Pablo is now available for purchase I have a dream. Thank you to everybody who made The Life of Pablo the number 1 album in the world! I''m so proud of the nr #1 song in the country. Panda! Good music 2016!</p>'
-  type: post
-  fields:
-    media_top: atoms-image-landscape-full
-  comments:
-    count: 22
-nodes:
-- pinned: true
-  type: post
-  title: Faker.sentence
-  img: false
-  timestamp: Faker.unixTime
-  tags: Faker.words(3)
-  comments:
-    count: Faker.randomDigitNotNull
-    new: true
-- pinned: true
-  type: post
-  tags: Faker.words(3)
-  title: Another random title that is long and maybe has special <chars>
-  comments:
-    count: Faker.randomDigitNotNull
-    new: true
-- type: event
-  title: Faker.sentence
-  tags: Faker.words(3)
-  timestamp: Faker.unixTime
-  img: false
-  comments:
-    count: Faker.randomDigitNotNull
-- type: image
-  title: Faker.sentence
-  tags: Faker.words(3)
-  teaser: Faker.paragraph
-  comments:
-    count: Faker.randomDigitNotNull
-- type: video
-  tags: Faker.words(3)
-  title: Faker.sentence
-  comments:
-    count: Faker.randomDigitNotNull
-- type: image
-  tags: Faker.words(3)
-  title: Big ass demon invasion guy
-  teaser: This dude ain't screwing around
-  img:
-    landscape_medium:
-      src: "../../../../images/960x540/bh0UYQx.png"
-  comments:
-    count: Faker.randomDigitNotNull
-- type: post
-  tags: Faker.words(3)
-  title: Faker.sentence
-  img: false
-  comments:
-    count: Faker.randomDigitNotNull
-- type: post
-  tags: Faker.words(3)
-  title: Faker.sentence
-  img: false
-  comments:
-    count: Faker.randomDigitNotNull
-- type: post
-  tags: Faker.words(3)
-  title: Faker.sentence
-  comments:
-    count: Faker.randomDigitNotNull
-- type: post
-  tags: Faker.words(3)
-  title: Faker.sentence
-  comments:
-    count: Faker.randomDigitNotNull
-- type: post
-  tags: Faker.words(3)
-  title: Faker.sentence
-  img: false
-  comments:
-    count: Faker.randomDigitNotNull
 raids:
   -
     title: "Raid: Awesomepants"

@@ -1,11 +1,27 @@
 {% extends "@templates/site-layout.twig" %}
 
 {% block content %}
-  {% embed "@organisms/sections/news.twig" with news %}{% endembed %}
+
+  {# Pull pinned off posts #}
+  {% set posts_pinned = [] %}
+  {% for node in nodes if node.pinned and node.promoted %}
+    {% set posts_pinned = posts_pinned|merge([node]) %}
+  {% endfor %}
+
+  {# Grab all non-pinned promoted posts for homepage #}
+  {% set posts_recent = [] %}
+  {% for node in nodes if not node.pinned and node.promoted %}
+    {% set posts_recent =  posts_recent|merge([node]) %}
+  {% endfor %}
+
+  {% embed "@organisms/sections/news.twig" with {
+    'posts_pinned': posts_pinned,
+    'posts_recent': posts_recent,
+  } %}{% endembed %}
 {% endblock %}
 
 {% block sidebar %}
-  {% include "@molecules/profiles/profile-medium.twig" %}
+  {% include "@molecules/profiles/profile-medium.twig" with { 'user': users|first } %}
   {% include "@molecules/asides/content-list.twig" with sidebar.content_list %}
   {% include "@molecules/asides/thumbs-grid.twig" with sidebar.thumbs_grid %}
   {% include "@molecules/asides/comment-list.twig" with sidebar.comment_list %}

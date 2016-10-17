@@ -1,6 +1,29 @@
+# Note: users array in users.yaml
+user:
+  name: Single User
+  roles:
+  - Officer
+  - Guildy
+  - Admin
+  about: Faker.sentence
+  url: Faker.url
+  avatar:
+    img:
+      src: ../../../../images/avatars/saedo.png
 users:
   -
-    name: Faker.name
+    name: Saedo
+    roles:
+    - Officer
+    - Guildy
+    - Admin
+    about: Faker.sentence
+    url: Faker.url
+    avatar:
+      img:
+        src: ../../../../images/avatars/saedo.png
+  -
+    name: Elapsed
     roles:
       - Officer
       - Guildy
@@ -9,9 +32,9 @@ users:
     url: Faker.url
     avatar:
       img:
-        src: Faker.imageUrl(300, 300, 'people')
+        src: ../../../../images/avatars/elapsed.png
   -
-    name: Faker.name
+    name: Garreth
     roles:
       - Guildy
       - Admin
@@ -19,9 +42,9 @@ users:
     url: Faker.url
     avatar:
       img:
-        src: Faker.imageUrl(300, 300, 'people')
+        src: ../../../../images/avatars/garreth.png
   -
-    name: Faker.name
+    name: Painhax
     roles:
       - Officer
       - Guildy
@@ -30,7 +53,7 @@ users:
     url: Faker.url
     avatar:
       img:
-        src: Faker.imageUrl(300, 300, 'people')
+        src: ../../../../images/avatars/painhax.png
   -
     name: Faker.name
     roles:
