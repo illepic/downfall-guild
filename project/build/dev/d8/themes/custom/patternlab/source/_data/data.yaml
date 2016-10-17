@@ -280,6 +280,9 @@ raids:
     icon: inv_axe_1h_blacksmithing_03
     member_count: Faker.numberBetween(1, 50)
     joined: true
+    latest_content:
+      type: event
+      title: "Raid Event: Monday, December 11 2016"
   -
     title: Faker.words(3, true)
     info: M,T 9pm-11pm PST
@@ -303,6 +306,9 @@ raids:
     icon: boss_odunrunes_green
     member_count: Faker.numberBetween(1, 50)
     joined: false
+    latest_content:
+      type: event
+      title: "Raid Event: Monday, December 11 2016"
   -
     title: Faker.words(3, true)
     info: M,T 9pm-11pm PST
@@ -318,6 +324,9 @@ raids:
     icon: inv_hand_1h_artifactskywall_d_01
     member_count: Faker.numberBetween(1, 50)
     joined: false
+    latest_content:
+      type: event
+      title: "Raid Event: Monday, December 11 2016"
 subsection:
   left:
     type: media
