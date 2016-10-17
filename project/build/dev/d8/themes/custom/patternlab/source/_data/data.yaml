@@ -59,6 +59,7 @@ button_styles:
     rose: btn-rose
     success: btn-success
     danger: btn-danger
+    default: btn-default
   size:
     xsmall: btn-xs
     small: btn-sm
@@ -74,6 +75,8 @@ icons:
   recent: timeline
   comment: comment
   add_character: person_add
+  add: add
+  check: check
 posts:
 - pinned: true
   type: post
@@ -249,46 +252,72 @@ nodes:
     count: Faker.randomDigitNotNull
 raids:
   -
-    title: Faker.words(3, true)
+    title: "Raid: Awesomepants"
+    info: M,W,F 6pm-11pm PST
     slogan: Faker.sentence
     icon: ability_throw
     member_count: Faker.numberBetween(1, 50)
-    member_count: Faker.numberBetween(1, 50)
+    joined: true
+    latest_content:
+      type: post
+      title: Faker.sentence
   -
-    title: Faker.words(5, true)
+    title: "Raid: Perpetual Motion Squad"
+    info: M,T 9pm-11pm PST
+    image: Faker.imageUrl(960, 540, 'abstract')
     slogan: Faker.paragraph
     icon: inv_axe_22
     member_count: Faker.numberBetween(1, 50)
+    joined: false
+    latest_content:
+      type: event
+      title: "Raid Event: Monday, December 11 2016"
   -
     title: Faker.words(3, true)
+    info: M,T 9pm-11pm PST
+    image: Faker.imageUrl(960, 540, 'abstract')
     slogan: Faker.sentence
     icon: inv_axe_1h_blacksmithing_03
     member_count: Faker.numberBetween(1, 50)
+    joined: true
   -
     title: Faker.words(3, true)
+    info: M,T 9pm-11pm PST
+    image: Faker.imageUrl(960, 540, 'abstract')
     slogan: Faker.sentence
     icon: inv_gizmo_thebiggerone
     member_count: Faker.numberBetween(1, 50)
+    joined: false
   -
     title: Faker.words(3, true)
+    info: M,T 9pm-11pm PST
     slogan: Faker.sentence
     icon: boss_odunrunes_purple
     member_count: Faker.numberBetween(1, 50)
+    joined: false
   -
     title: Faker.words(3, true)
+    info: M,T 9pm-11pm PST
+    image: Faker.imageUrl(960, 540, 'abstract')
     slogan: Faker.sentence
     icon: boss_odunrunes_green
     member_count: Faker.numberBetween(1, 50)
+    joined: false
   -
     title: Faker.words(3, true)
+    info: M,T 9pm-11pm PST
     slogan: Faker.sentence
     icon: inv_glaive_1h_npc_d_01
     member_count: Faker.numberBetween(1, 50)
+    joined: false
   -
     title: Faker.words(3, true)
+    info: Th,F 6pm-11pm PST
+    image: Faker.imageUrl(960, 540, 'abstract')
     slogan: Faker.sentence
     icon: inv_hand_1h_artifactskywall_d_01
     member_count: Faker.numberBetween(1, 50)
+    joined: false
 subsection:
   left:
     type: media

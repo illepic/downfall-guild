@@ -3,16 +3,23 @@
     <div class="raid-card__icon">
       <img src="{{ paths.wow_icon }}/{{ icon }}.jpg" class="raid-card__icon-img img-circle img-raised"/>
     </div>
-    <h6 class="category text-info">{{ tags|join(', ') }}</h6>
+    <h6 class="category text-info">{{ info }}</h6>
     <a href="{{ url }}">
       <h3 class="card-title">{{ title }}</h3>
     </a>
-    <p class="card-description">{{ teaser }}</p>
+
+    {% if latest %}
+    <p class="card-description">
+      <strong>Latest:</strong><br>
+      <i class="material-icons raid-card__latest-icon">{{ attribute(icons, latest.type)|default('post') }}</i> <span>{{ latest.title }}</span>
+    </p>
+    {% endif %}
 
     {% include "@atoms/buttons/button.twig" with {
-      'button_icon': 'post',
+      'button_color': (joined) ? 'default',
+      'button_icon': (joined) ? 'check' : 'add',
       'button_round': true,
-      'button_text': 'Join'|t
+      'button_text': (joined) ? 'Joined!'|t : 'Join'|t
     } %}
     <div class="clearfix"></div>
 

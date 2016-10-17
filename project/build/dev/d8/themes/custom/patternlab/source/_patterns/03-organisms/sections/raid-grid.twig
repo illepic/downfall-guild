@@ -26,9 +26,17 @@
       <div class="col-sm-4 thumb">
         {% include "@molecules/cards/card-full-bg-raid.twig" with {
           title: raid.title,
+          img: {
+            landscape_medium: {
+              src: (raid.image) ? raid.image : img.landscape_medium.src
+            }
+          },
+          info: raid.info,
           teaser: raid.slogan,
           icon: raid.icon,
-          member_count: raid.member_count
+          member_count: raid.member_count,
+          joined: raid.joined,
+          latest: raid.latest_content
         }%}
       </div>
       {% if loop.index is divisible by(3) %}

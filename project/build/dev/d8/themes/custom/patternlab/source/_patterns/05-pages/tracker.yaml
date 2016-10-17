@@ -44,7 +44,8 @@ sidebar:
         user:
           name: Elapsed
           avatar:
-            img: "../../../../images/avatars/avatar-3.jpg"
+            img:
+              src: "../../../../images/avatars/avatar-3.jpg"
     -
       node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
     -
@@ -53,7 +54,8 @@ sidebar:
         user:
           name: Elapsed
           avatar:
-            img: "../../../../images/avatars/avatar-3.jpg"
+            img:
+              src: "../../../../images/avatars/avatar-3.jpg"
     -
       node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
     -
@@ -64,7 +66,8 @@ sidebar:
         user:
           name: Elapsed
           avatar:
-            img: "../../../../images/avatars/avatar-3.jpg"
+            img:
+              src: "../../../../images/avatars/avatar-3.jpg"
     -
       node_title: 'Raid: Awkward Name kills some stuff!'
     -
