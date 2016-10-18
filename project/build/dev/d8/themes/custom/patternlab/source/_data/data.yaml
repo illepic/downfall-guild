@@ -1,4 +1,4 @@
-title: Faker.sentence
+title: Default data.yaml title key value
 teaser: Faker.paragraph()
 tags:
 - Faker.words(1, true)

@@ -1,23 +1,30 @@
-<div {{ node.node_attributes }}> <!-- /.node -->
+{# Let's us demo this standalone, pulls first node off global #}
+{% set node = node ? node : nodes|first %}
 
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2 node-top-8">
-      <div class="card card-plain node-full__info">
-        <div class="footer">
-          <div class="author">
-            <a href="#">
-              <img src="../../../../images/avatars/saedo.png" alt="..." class="avatar img-raised">
-              <span>Saedo</span>
-            </a>
+<div {{ node.node_attributes }}>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 node-top-8">
+        <div class="card card-plain node-full__info">
+
+          <h1 class="hidden">{{ node.title }}</h1>
+
+          <div class="footer">
+            <div class="author">
+              <a href="#">
+                <img src="../../../../images/avatars/saedo.png" alt="..."
+                     class="avatar img-raised">
+                <span>Saedo</span>
+              </a>
+            </div>
+            <div class="stats">
+              <a href="#comments">{{ node.comments.count }} comments</a> |
+              <span> {{ node.timestamp|date('l, F j, Y \\a\\t g:i a') }}</span>
+            </div>
           </div>
-          <div class="stats">
-            <a href="#comments">{{ node.comments.count }} comments</a> |
-            <span> {{ timestamp|date('l, F j, Y \\a\\t g:i a') }}</span>
-          </div>
-        </div>
-      </div> <!-- /.node-full__info -->
-    </div> <!-- /.col-md-10.col-md-offset-1 -->
-  </div> <!-- /.row -->
+        </div> <!-- /.node-full__info -->
+      </div> <!-- /.col-md-10.col-md-offset-1 -->
+    </div> <!-- /.row -->
 
     {% if node.fields.media_top %}
       <div class="row">
@@ -45,31 +52,31 @@
       <div class="banner__supplemental row">
         {% for thumb in node.thumbs %}
           <div class="col-sm-2 thumb">
-            {% include "@molecules/thumbs/thumbnail-link.twig" with { 'thumb': thumb }%}
+            {% include "@molecules/thumbs/thumbnail-link.twig" with { 'thumb': thumb } %}
           </div>
         {% endfor %}
       </div>
     {% endif %}
 
-  <div class="row node-bottom">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="row node-bottom">
+      <div class="col-md-8 col-md-offset-2">
 
-      <div class="node-full__tags">
-        Tags:
-        <span class="label label-info">Raids</span>
-        <span class="label label-default">Priest</span>
-        <span class="label label-rose">Event</span>
+        <div class="node-full__tags">
+          Tags:
+          <span class="label label-info">Raids</span>
+          <span class="label label-default">Priest</span>
+          <span class="label label-rose">Event</span>
+        </div>
+
+        <div class="node-full__actions">
+          {% include "@molecules/navs/actions.twig" %}
+        </div>
+
+        <div id="comments" class="node-full__comments">
+          {% include "@organisms/sections/comments.twig" %}
+        </div>
+
       </div>
-
-      <div class="node-full__actions">
-        {% include "@molecules/navs/actions.twig" %}
-      </div>
-
-      <div id="comments" class="node-full__comments">
-        {% include "@organisms/sections/comments.twig" %}
-      </div>
-
     </div>
-  </div>
-
+  </div> <!-- /.container -->
 </div> <!-- /.node-full -->
