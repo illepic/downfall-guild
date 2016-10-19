@@ -1,3 +1,35 @@
+node:
+  pinned: true
+  promoted: true
+  type: post
+  title: Legendary Legion weapons
+  teaser: This is your guide to absolutely rocking out the entire questline for your legendary weapon in Legion.
+  body:
+    - '<p>We are here to make life better. New loot: <a href="http://www.wowhead.com/item=17182/sulfuras-hand-of-ragnaros">Sulfuras</a>! Test spell: <a href="http://www.wowhead.com/spell=20473/holy-shock">SHOCK!</a>. And now I look and look around and there’s so many Kanyes (<a href=\"http://www.wowhead.com/item=137076/obsidian-stone-spaulders\">Obsidian Stone Spaulder</a>) I''ve been trying to figure out the bed design for the master bedroom at our Hidden Hills compound...and thank you for turning my personal jean jacket into a couture piece. <a href=\"http://www.wowhead.com/spell=183997/mastery-lightbringer\">Mastery: Lightbringer</a></p>'
+    - '<div class="pull-out-body"><img class="img-raised img-rounded img-responsive image-wysiwyg" src="../../../../images/960x540/WoWScrnShot_073116_121145.jpg"/></div>'
+    - '<p> I speak yell scream directly at the old guard on behalf of the future. daytime All respect prayers and love to Phife’s family Thank you for so much inspiration.</p>'
+    - '<p>Thank you Anna for the invite thank you to the whole Vogue team And I love you like Kanye loves Kanye Pand Pand Panda I''ve been trying to figure out the bed design for the master bedroom at our Hidden Hills compound...The Pablo pop up was almost a pop up of influence. All respect prayers and love to Phife’s family Thank you for so much inspiration daytime I love this new Ferg album! The Life of Pablo is now available for purchase I have a dream. Thank you to everybody who made The Life of Pablo the number 1 album in the world! I''m so proud of the #1 song in the country. Panda! Good music 2016!</p>'
+    - '<ul><li>A list item here</li><li>A list item here</li><li>A list item here</li><li>A list item here</li></ul>'
+    - '<p>I love this new Ferg album! The Life of Pablo is now available for purchase I have a dream. Thank you to everybody who made The Life of Pablo the number 1 album in the world! I''m so proud of the nr #1 song in the country. Panda! Good music 2016!</p>'
+    - '<div class="pull-out-body"><div class="img-raised embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/nnjGw9ZL3QQ" allowfullscreen></iframe></div></div>'
+    - '<p> I love this new Ferg album! The Life of Pablo is now available for purchase I have a dream. Thank you to everybody who made The Life of Pablo the number 1 album in the world! I''m so proud of the nr #1 song in the country. Panda! Good music 2016!</p>'
+  timestamp: Faker.unixTime
+  tags:
+    - Pinned
+  img:
+    landscape_medium:
+      src: nd2y0abtea1k3ks/WoWScrnShot_073116_121145.jpg
+  comments:
+    count: Faker.randomDigitNotNull
+    new: true
+  node_attributes:
+    Attribute():
+      class:
+      - node
+      - node--full
+      - node--post
+  fields:
+    media_top: atoms-image-landscape-full
 nodes:
   -
     pinned: true
@@ -7,7 +39,7 @@ nodes:
     teaser: This is your guide to absolutely rocking out the entire questline for your legendary weapon in Legion.
     body:
       - '<p>We are here to make life better. New loot: <a href="http://www.wowhead.com/item=17182/sulfuras-hand-of-ragnaros">Sulfuras</a>! Test spell: <a href="http://www.wowhead.com/spell=20473/holy-shock">SHOCK!</a>. And now I look and look around and there’s so many Kanyes (<a href=\"http://www.wowhead.com/item=137076/obsidian-stone-spaulders\">Obsidian Stone Spaulder</a>) I''ve been trying to figure out the bed design for the master bedroom at our Hidden Hills compound...and thank you for turning my personal jean jacket into a couture piece. <a href=\"http://www.wowhead.com/spell=183997/mastery-lightbringer\">Mastery: Lightbringer</a></p>'
-      - '<div class="pull-out-body"><img class="img-raised img-rounded img-responsive image-wysiwyg" src="../../../../images/960x540/WoWScrnShot_073116_121145.jpg"/></div>'
+      - '<div class="pull-out-body"><img class="img-raised img-rounded img-responsive image-wysiwyg" src="https://www.dropbox.com/s/nd2y0abtea1k3ks/WoWScrnShot_073116_121145.jpg"/></div>'
       - '<p> I speak yell scream directly at the old guard on behalf of the future. daytime All respect prayers and love to Phife’s family Thank you for so much inspiration.</p>'
       - '<p>Thank you Anna for the invite thank you to the whole Vogue team And I love you like Kanye loves Kanye Pand Pand Panda I''ve been trying to figure out the bed design for the master bedroom at our Hidden Hills compound...The Pablo pop up was almost a pop up of influence. All respect prayers and love to Phife’s family Thank you for so much inspiration daytime I love this new Ferg album! The Life of Pablo is now available for purchase I have a dream. Thank you to everybody who made The Life of Pablo the number 1 album in the world! I''m so proud of the #1 song in the country. Panda! Good music 2016!</p>'
       - '<ul><li>A list item here</li><li>A list item here</li><li>A list item here</li><li>A list item here</li></ul>'
@@ -19,7 +51,7 @@ nodes:
       - Pinned
     img:
       landscape_medium:
-        src: ../../../../images/960x540/WoWScrnShot_073116_121145.jpg
+        src: nd2y0abtea1k3ks/WoWScrnShot_073116_121145.jpg
     comments:
       count: Faker.randomDigitNotNull
       new: true
@@ -42,7 +74,7 @@ nodes:
       - Pinned
     img:
       landscape_medium:
-        src: ../../../../images/960x540/WoWScrnShot_012416_195350.jpg
+        src: 61zvq10hh4x3js5/WoWScrnShot_012416_195350.jpg
     comments:
       count: Faker.randomDigitNotNull
       new: true
@@ -53,7 +85,7 @@ nodes:
     title: 'Raid: Awkward Name kills some stuff!'
     img:
       landscape_medium:
-        src: "../../../../images/960x540/WoWScrnShot_012416_195350.jpg"
+        src: 61zvq10hh4x3js5/WoWScrnShot_012416_195350.jpg
     comments:
       count: Faker.randomDigitNotNull
   -
@@ -68,7 +100,7 @@ nodes:
     promoted: true
     img:
       landscape_medium:
-        src: "../../../../images/960x540/header1.jpeg"
+        src: hqc02zt73qmv4zu/header1.jpeg
     title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
   -
     promoted: true
@@ -103,7 +135,7 @@ nodes:
     teaser: This dude ain't screwing around
     img:
       landscape_medium:
-        src: "../../../../images/960x540/bh0UYQx.png"
+        src: c5qgvrowzjb298p/bh0UYQx.png
     comments:
       count: Faker.randomDigitNotNull
   -

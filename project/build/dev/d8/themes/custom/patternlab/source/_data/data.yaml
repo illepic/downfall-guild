@@ -1,3 +1,4 @@
+pl: true # Let our patterns do a little customization for PL only
 title: Default data.yaml title key value
 teaser: Faker.paragraph()
 tags:
@@ -16,20 +17,20 @@ paths:
   wow_icon: "//wow.zamimg.com/images/wow/icons/large/"
 img:
   avatar:
-    src: "../../../../images/avatars/saedo.png"
+    src: e7o61g4ek2igg83/saedo.png
   thumb:
-    src: "../../../../images/300x300/300x300.png"
+    src: mmox1x0af7cmwhm/300x300.png
     alt: A square image
     note: 300x300x image used for various thumbnail needs
   landscape_medium:
-    src: "../../../../images/960x540/960x540.jpg"
+    src: 481n7i77gacd58o/960x540.jpg
     alt: A 960x540 image.
   landscape_full:
-    src: "../../../../images/1080x608/1080x608.jpg"
+    src: 3yohty80q4a4kxi/1080x608.jpg
     alt: A full width image
     note: Fills entire Bootstrap 12 column full width
   landscape_large:
-    src: "../../../../images/1920x1080/1920x1080.jpg"
+    src: 8nw45xkwnc37wwb/1920x1080.jpg
     alt: A very large image
     note: Effectively full screen (1920x1080)
 header: {}
@@ -144,6 +145,7 @@ raids:
   -
     title: "Raid: Awesomepants"
     info: M,W,F 6pm-11pm PST
+    image: https://dl.dropboxusercontent.com/s/481n7i77gacd58o/960x540.jpg
     slogan: Faker.sentence
     icon: ability_throw
     member_count: Faker.numberBetween(1, 50)
@@ -154,7 +156,7 @@ raids:
   -
     title: "Raid: Perpetual Motion Squad"
     info: M,T 9pm-11pm PST
-    image: Faker.imageUrl(960, 540, 'abstract')
+    image: ../../../../images/960x540/abstract1.jpg
     slogan: Faker.paragraph
     icon: inv_axe_22
     member_count: Faker.numberBetween(1, 50)
@@ -165,7 +167,7 @@ raids:
   -
     title: Faker.words(3, true)
     info: M,T 9pm-11pm PST
-    image: Faker.imageUrl(960, 540, 'abstract')
+    image: ../../../../images/960x540/abstract2.jpg
     slogan: Faker.sentence
     icon: inv_axe_1h_blacksmithing_03
     member_count: Faker.numberBetween(1, 50)
@@ -176,7 +178,7 @@ raids:
   -
     title: Faker.words(3, true)
     info: M,T 9pm-11pm PST
-    image: Faker.imageUrl(960, 540, 'abstract')
+    image: ../../../../images/960x540/abstract4.jpg
     slogan: Faker.sentence
     icon: inv_gizmo_thebiggerone
     member_count: Faker.numberBetween(1, 50)
@@ -224,18 +226,18 @@ subsection:
     subtitle: Downfall kicks major ass
     img:
       landscape_medium:
-        src: "../../../../images/960x540/WoWScrnShot_073116_121145.jpg"
+        src: nd2y0abtea1k3ks/WoWScrnShot_073116_121145.jpg
   middle:
     type: video
     title: Latest Raid Video
     subtitle: Faker.sentence
     img:
       landscape_medium:
-        src: "../../../../images/960x540/WoWScrnShot_073116_121145.jpg"
+        src: c5qgvrowzjb298p/bh0UYQx.png
   right:
     type: media
     title: "(Put a Raid Group here)"
     subtitle: Faker.sentence
     img:
       landscape_medium:
-        src: "../../../../images/960x540/WoWScrnShot_073116_121145.jpg"
+        src: 8hoss9mfcps58hu/WoWScrnShot_120913_094517.jpg

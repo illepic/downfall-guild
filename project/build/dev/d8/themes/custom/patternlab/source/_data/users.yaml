@@ -9,7 +9,7 @@ user:
   url: Faker.url
   avatar:
     img:
-      src: ../../../../images/avatars/saedo.png
+      src: e7o61g4ek2igg83/saedo.png
 users:
   -
     name: Saedo
@@ -21,7 +21,7 @@ users:
     url: Faker.url
     avatar:
       img:
-        src: ../../../../images/avatars/saedo.png
+        src: e7o61g4ek2igg83/saedo.png
   -
     name: Elapsed
     roles:
@@ -32,17 +32,18 @@ users:
     url: Faker.url
     avatar:
       img:
-        src: ../../../../images/avatars/elapsed.png
+        src: ic6usrmfro9oyn2/elapsed.png
   -
     name: Garreth
     roles:
+      - Officer
       - Guildy
       - Admin
     about: Faker.sentence
     url: Faker.url
     avatar:
       img:
-        src: ../../../../images/avatars/garreth.png
+        src: 29be7bb25jnuvgf/garreth.png
   -
     name: Painhax
     roles:
@@ -53,19 +54,9 @@ users:
     url: Faker.url
     avatar:
       img:
-        src: ../../../../images/avatars/painhax.png
+        src: lvqset0zdhj8vd5/painhax.png
   -
-    name: Faker.name
-    roles:
-      - Guildy
-      - Admin
-    about: Faker.sentence
-    url: Faker.url
-    avatar:
-      img:
-        src: Faker.imageUrl(300, 300, 'people')
-  -
-    name: Faker.name
+    name: Kaluu
     roles:
       - Officer
       - Guildy
@@ -74,19 +65,9 @@ users:
     url: Faker.url
     avatar:
       img:
-        src: Faker.imageUrl(300, 300, 'people')
+        src: 06fj5m3fxgbv85r/kaluu.png
   -
-    name: Faker.name
-    roles:
-      - Guildy
-      - Admin
-    about: Faker.sentence
-    url: Faker.url
-    avatar:
-      img:
-        src: Faker.imageUrl(300, 300, 'people')
-  -
-    name: Faker.name
+    name: Fjork
     roles:
       - Officer
       - Guildy
@@ -95,9 +76,9 @@ users:
     url: Faker.url
     avatar:
       img:
-        src: Faker.imageUrl(300, 300, 'people')
+        src: kq1o7k6kmu4ztpr/fjork.png
   -
-    name: Faker.name
+    name: Badpenny
     roles:
       - Officer
       - Guildy
@@ -106,7 +87,7 @@ users:
     url: Faker.url
     avatar:
       img:
-        src: Faker.imageUrl(300, 300, 'people')
+        src: a9bzxt5iglvbscm/penny.png?dl=0
   -
     name: Faker.name
     roles:
@@ -116,15 +97,31 @@ users:
     url: Faker.url
     avatar:
       img:
-        src: Faker.imageUrl(300, 300, 'people')
+        src: ''
   -
     name: Faker.name
     roles:
-      - Officer
       - Guildy
-      - Admin
     about: Faker.sentence
     url: Faker.url
     avatar:
       img:
-        src: Faker.imageUrl(300, 300, 'people')
+        src: ''
+  -
+    name: Faker.name
+    roles:
+      - Guildy
+    about: Faker.sentence
+    url: Faker.url
+    avatar:
+      img:
+        src: ''
+  -
+    name: Faker.name
+    roles:
+      - Guildy
+    about: Faker.sentence
+    url: Faker.url
+    avatar:
+      img:
+        src: ''
