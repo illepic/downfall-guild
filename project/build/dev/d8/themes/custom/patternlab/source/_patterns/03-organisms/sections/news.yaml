@@ -7,7 +7,7 @@ posts_pinned:
     pinned: true
     img:
       landscape_medium:
-        src: "../../../../images/960x540/WoWScrnShot_070216_205829.jpg"
+        src: 8pkrckosg3htgmu/WoWScrnShot_070216_205829.jpg
   -
     tags:
       - Pinned
@@ -16,13 +16,13 @@ posts_pinned:
     pinned: true
     img:
       landscape_medium:
-        src: "../../../../images/960x540/960x540.jpg"
+        src: 481n7i77gacd58o/960x540.jpg
 posts_recent:
   -
     promoted: true
     img:
       landscape_medium:
-        src: "../../../../images/960x540/WoWScrnShot_012416_195350.jpg"
+        src: 61zvq10hh4x3js5/WoWScrnShot_012416_195350.jpg
     title: 'Raid: Awkward Name kills some stuff!'
   -
     promoted: true
@@ -33,7 +33,7 @@ posts_recent:
     promoted: true
     img:
       landscape_medium:
-        src: "../../../../images/960x540/header1.jpeg"
+        src: 8hoss9mfcps58hu/WoWScrnShot_120913_094517.jpg
     title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
   -
     promoted: true
