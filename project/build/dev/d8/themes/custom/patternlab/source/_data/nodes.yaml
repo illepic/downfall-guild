@@ -85,13 +85,17 @@ nodes:
       count: Faker.randomDigitNotNull
       new: true
   -
-    type: post
+    type: media
     promoted: true
     tags: Faker.words(3)
     title: 'Raid: Awkward Name kills some stuff!'
     img:
+      thumb:
+        src: sx3lfqx3nuvztbh/WoWScrnShot_012416_195350.png
       landscape_medium:
         src: 61zvq10hh4x3js5/WoWScrnShot_012416_195350.jpg
+      landscape_large:
+        src: ibatpn4847q1hso/WoWScrnShot_012416_195350.jpg
     comments:
       count: Faker.randomDigitNotNull
   -
@@ -104,34 +108,19 @@ nodes:
       count: Faker.randomDigitNotNull
   -
     promoted: true
+    type: post
     img:
       landscape_medium:
         src: hqc02zt73qmv4zu/header1.jpeg
     title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
   -
     promoted: true
+    title: Faker.sentence
+    type: event
     img: false
   -
     title: Faker.sentence
-  -
-    type: post
-    tags: Faker.words(3)
-    title: Faker.sentence
-    img: false
-    comments:
-      count: Faker.randomDigitNotNull
-  -
-    type: post
-    tags: Faker.words(3)
-    title: Faker.sentence
-    comments:
-      count: Faker.randomDigitNotNull
-  -
-    type: post
-    tags: Faker.words(3)
-    title: Faker.sentence
-    comments:
-      count: Faker.randomDigitNotNull
+    type: event
   -
     type: post
     tags: Faker.words(3)
@@ -139,7 +128,25 @@ nodes:
     img: false
     comments:
       count: Faker.randomDigitNotNull
-# EVENT
+  -
+    type: post
+    tags: Faker.words(3)
+    title: Faker.sentence
+    comments:
+      count: Faker.randomDigitNotNull
+  -
+    type: post
+    tags: Faker.words(3)
+    title: Faker.sentence
+    comments:
+      count: Faker.randomDigitNotNull
+  -
+    type: event
+    tags: Faker.words(3)
+    title: Faker.sentence
+    img: false
+    comments:
+      count: Faker.randomDigitNotNull
   -
     type: event
     title: Faker.sentence

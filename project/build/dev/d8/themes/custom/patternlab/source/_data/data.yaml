@@ -162,6 +162,60 @@ raids:
     latest_content:
       type: event
       title: "Raid Event: Monday, December 11 2016"
+sidebar:
+  content_list:
+    title: New Stuff
+    icon: recent
+    cta: All Stuff
+  thumbs_grid:
+    title: Latest Media
+    icon: media
+    cta: All Media
+  comment_list:
+    title: Recent Comments
+    icon: comment
+    cta: All Posts
+    comments:
+    -
+      title: Lorem ipsum dolor sit amet, consectetur. Adipisicing elit, sed do eiusmod. Adipisicing elit, sed do eiusmod sed do eiusmod ...
+      node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
+    -
+      node_title: 'Raid: Awkward Name kills some stuff!'
+      user:
+        user:
+          name: Elapsed
+          avatar:
+            img:
+              src: ic6usrmfro9oyn2/elapsed.png
+    -
+      node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
+    -
+      node_title: 'Raid: Awkward Name kills some stuff!'
+      user:
+        user:
+          name: Elapsed
+          avatar:
+            img:
+              src: ic6usrmfro9oyn2/elapsed.png
+    -
+      node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
+    -
+      node_title: 'Raid: Awkward Name kills some stuff!'
+    -
+      node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
+      user:
+        user:
+          name: Elapsed
+          avatar:
+            img:
+              src: ic6usrmfro9oyn2/elapsed.png
+    -
+      node_title: 'Raid: Awkward Name kills some stuff!'
+    -
+      node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
+    -
+      node_title: 'Raid: Awkward Name kills some stuff!'
+
 subsection:
   left:
     type: media

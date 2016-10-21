@@ -22,7 +22,24 @@
 
 {% block sidebar %}
   {% include "@molecules/profiles/profile-medium.twig" with { 'user': users|first } %}
-  {% include "@molecules/asides/content-list.twig" with sidebar.content_list %}
-  {% include "@molecules/asides/thumbs-grid.twig" with sidebar.thumbs_grid %}
+
+  {# Take 6 posts off and merge with sidebar values #}
+  {% set content_list = sidebar.content_list|merge({'posts': nodes[:6]}) %}
+  {% include "@molecules/asides/content-list.twig" with content_list %}
+
+  {# Grab all media nodes (only for demo purposes) #}
+  {% set thumbs = [] %}
+  {% for node in nodes if node.type == 'media' %}
+    {% set thumb = {
+      src: node.img.thumb.src,
+      full: node.img.landscape_large.src,
+      title: node.title,
+    } %}
+    {% set thumbs = thumbs|merge([thumb]) %}
+  {% endfor %}
+  {# Grab just six of the thumbs and pull in thumb_grid values #}
+  {% set thumbs_grid = sidebar.thumbs_grid|merge({ 'thumbs': thumbs[:6] }) %}
+  {% include "@molecules/asides/thumbs-grid.twig" with thumbs_grid %}
+
   {% include "@molecules/asides/comment-list.twig" with sidebar.comment_list %}
 {% endblock %}

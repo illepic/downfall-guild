@@ -2,9 +2,10 @@
 
 {%  block content %}
   <div class="row">
-    {% for thumb in thumbs[:4] %}
+    {% for thumb in thumbs %}
       <div class="col-sm-6 thumb">
-        <a href="#" class="thumbnail"><img class="img-responsive" src="{{ thumb.src }}"/></a>
+        {% include "@molecules/thumbs/thumbnail-modal.twig" with { 'thumb': thumb } %}
+
       </div>
     {% endfor %}
   </div>
