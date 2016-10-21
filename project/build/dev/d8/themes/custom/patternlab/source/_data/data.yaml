@@ -18,21 +18,28 @@ paths:
 img:
   avatar:
     src: e7o61g4ek2igg83/saedo.png
+    alt: This is an avatar image
+  # 300x300x image used for various thumbnail needs
   thumb:
     src: mmox1x0af7cmwhm/300x300.png
-    alt: A square image
-    note: 300x300x image used for various thumbnail needs
+    alt: A square thumb image
   landscape_medium:
     src: 481n7i77gacd58o/960x540.jpg
     alt: A 960x540 image.
+  # Fills entire Bootstrap 12 column full width
   landscape_full:
     src: 3yohty80q4a4kxi/1080x608.jpg
     alt: A full width image
-    note: Fills entire Bootstrap 12 column full width
+  # Effectively full screen (1920x1080)
   landscape_large:
     src: 8nw45xkwnc37wwb/1920x1080.jpg
     alt: A very large image
-    note: Effectively full screen (1920x1080)
+thumb:
+  url: http://www.google.com
+  src: "mmox1x0af7cmwhm/300x300.png"
+  full: "../../../../images/1920x1080/1920x1080.jpg"
+  title: Example 1920x1080 image
+  caption: This is a caption.
 header: {}
 headline:
   short: Lorem ipsum dolor sit amet, consectetur

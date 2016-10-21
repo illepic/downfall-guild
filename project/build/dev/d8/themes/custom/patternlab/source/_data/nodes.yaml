@@ -17,8 +17,14 @@ node:
   tags:
     - Pinned
   img:
+    thumb:
+      src: mmox1x0af7cmwhm/300x300.png
     landscape_medium:
-      src: nd2y0abtea1k3ks/WoWScrnShot_073116_121145.jpg
+      src: 481n7i77gacd58o/960x540.jpg
+    landscape_full:
+      src: 3yohty80q4a4kxi/1080x608.jpg
+    landscape_large:
+      src: 8nw45xkwnc37wwb/1920x1080.jpg
   comments:
     count: Faker.randomDigitNotNull
     new: true
@@ -108,6 +114,33 @@ nodes:
   -
     title: Faker.sentence
   -
+    type: post
+    tags: Faker.words(3)
+    title: Faker.sentence
+    img: false
+    comments:
+      count: Faker.randomDigitNotNull
+  -
+    type: post
+    tags: Faker.words(3)
+    title: Faker.sentence
+    comments:
+      count: Faker.randomDigitNotNull
+  -
+    type: post
+    tags: Faker.words(3)
+    title: Faker.sentence
+    comments:
+      count: Faker.randomDigitNotNull
+  -
+    type: post
+    tags: Faker.words(3)
+    title: Faker.sentence
+    img: false
+    comments:
+      count: Faker.randomDigitNotNull
+# EVENT
+  -
     type: event
     title: Faker.sentence
     tags: Faker.words(3)
@@ -115,52 +148,157 @@ nodes:
     img: false
     comments:
       count: Faker.randomDigitNotNull
+# Media
   -
-    type: image
-    title: Faker.sentence
+    type: media
+    tags: Faker.words(3)
+    title: Media Node 1
+    url: http://www.downfallguild.org
+    img:
+      thumb:
+        src: mmox1x0af7cmwhm/300x300.png
+      landscape_large:
+        src: 8nw45xkwnc37wwb/1920x1080.jpg
+    comments:
+      count: Faker.randomDigitNotNull
+  -
+    type: media
+    tags: Faker.words(3)
+    title: Media Node 2
+    teaser: This dude ain't screwing around
+    url: http://www.downfallguild.org
+    img:
+      thumb:
+        src: a9wtoe71pd6ljfp/kill-1-thumb.png
+      landscape_large:
+        src: x2rmiphk4wiq7fo/kill-1.jpeg
+    comments:
+      count: Faker.randomDigitNotNull
+  -
+    type: media
+    title: Media Node 3
     tags: Faker.words(3)
     teaser: Faker.paragraph
-    comments:
-      count: Faker.randomDigitNotNull
-  -
-    type: video
-    tags: Faker.words(3)
-    title: Faker.sentence
-    comments:
-      count: Faker.randomDigitNotNull
-  -
-    type: image
-    tags: Faker.words(3)
-    title: Big ass demon invasion guy
-    teaser: This dude ain't screwing around
+    url: http://www.downfallguild.org
     img:
-      landscape_medium:
-        src: c5qgvrowzjb298p/bh0UYQx.png
+      thumb:
+        src: 1z7dwj2c6cl2mj2/kill-2-thumb.png
+      landscape_large:
+        src: zrxw6ort8uudlp0/kill-2.jpeg
     comments:
       count: Faker.randomDigitNotNull
   -
-    type: post
+    type: media
+    title: Media Node 3
     tags: Faker.words(3)
-    title: Faker.sentence
-    img: false
+    teaser: Faker.paragraph
+    url: http://www.downfallguild.org
+    img:
+      thumb:
+        src: 1ha4bfj3uylelj2/kill-3-thumb.png
+      landscape_large:
+        src: 8g3l38pw4vejsj6/kill-3.jpeg
     comments:
       count: Faker.randomDigitNotNull
   -
-    type: post
+    type: media
+    title: Media Node 3
     tags: Faker.words(3)
-    title: Faker.sentence
+    teaser: Faker.paragraph
+    url: http://www.downfallguild.org
+    img:
+      thumb:
+        src: sylg7qafyxaqoz9/kill-4-thumb.png
+      landscape_large:
+        src: y3fefc8t1qpj9xx/kill-4.jpeg?
     comments:
       count: Faker.randomDigitNotNull
   -
-    type: post
+    type: media
     tags: Faker.words(3)
-    title: Faker.sentence
+    title: Media Node 1
+    url: http://www.downfallguild.org
+    img:
+      thumb:
+        src: mmox1x0af7cmwhm/300x300.png
+      landscape_large:
+        src: 8nw45xkwnc37wwb/1920x1080.jpg
     comments:
       count: Faker.randomDigitNotNull
   -
-    type: post
+    type: media
     tags: Faker.words(3)
-    title: Faker.sentence
-    img: false
+    title: Media Node 2
+    teaser: This dude ain't screwing around
+    url: http://www.downfallguild.org
+    img:
+      thumb:
+        src: a9wtoe71pd6ljfp/kill-1-thumb.png
+      landscape_large:
+        src: x2rmiphk4wiq7fo/kill-1.jpeg
+    comments:
+      count: Faker.randomDigitNotNull
+  -
+    type: media
+    title: Media Node 3
+    tags: Faker.words(3)
+    teaser: Faker.paragraph
+    url: http://www.downfallguild.org
+    img:
+      thumb:
+        src: 1z7dwj2c6cl2mj2/kill-2-thumb.png
+      landscape_large:
+        src: zrxw6ort8uudlp0/kill-2.jpeg
+    comments:
+      count: Faker.randomDigitNotNull
+  -
+    type: media
+    title: Media Node 3
+    tags: Faker.words(3)
+    teaser: Faker.paragraph
+    url: http://www.downfallguild.org
+    img:
+      thumb:
+        src: 1ha4bfj3uylelj2/kill-3-thumb.png
+      landscape_large:
+        src: 8g3l38pw4vejsj6/kill-3.jpeg
+    comments:
+      count: Faker.randomDigitNotNull
+  -
+    type: media
+    title: Media Node 3
+    tags: Faker.words(3)
+    teaser: Faker.paragraph
+    url: http://www.downfallguild.org
+    img:
+      thumb:
+        src: sylg7qafyxaqoz9/kill-4-thumb.png
+      landscape_large:
+        src: y3fefc8t1qpj9xx/kill-4.jpeg?
+    comments:
+      count: Faker.randomDigitNotNull
+  -
+    type: media
+    tags: Faker.words(3)
+    title: Media Node 1
+    url: http://www.downfallguild.org
+    img:
+      thumb:
+        src: mmox1x0af7cmwhm/300x300.png
+      landscape_large:
+        src: 8nw45xkwnc37wwb/1920x1080.jpg
+    comments:
+      count: Faker.randomDigitNotNull
+  -
+    type: media
+    tags: Faker.words(3)
+    title: Media Node 2
+    teaser: This dude ain't screwing around
+    url: http://www.downfallguild.org
+    img:
+      thumb:
+        src: a9wtoe71pd6ljfp/kill-1-thumb.png
+      landscape_large:
+        src: x2rmiphk4wiq7fo/kill-1.jpeg
     comments:
       count: Faker.randomDigitNotNull

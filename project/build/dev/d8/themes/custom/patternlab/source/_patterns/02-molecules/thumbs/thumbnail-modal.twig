@@ -1,4 +1,4 @@
-<a href="#media-modal" data-toggle="modal" data-modal-media="{{ thumb.full }}" data-modal-title="{{ thumb.title }}" class="thumbnail">
+<a href="#media-modal" data-toggle="modal" data-modal-media="{{ img_path(thumb.full, pl) }}" data-modal-title="{{ thumb.title }}" class="thumbnail">
   {% include "@atoms/images/image-thumb.twig" with {
     img: {
       thumb: {
