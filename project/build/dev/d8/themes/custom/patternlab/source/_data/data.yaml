@@ -74,14 +74,100 @@ icons:
   add_character: person_add
   add: add
   check: check
-node_title: Node title for comment
+comment:
+  node_title: Node title for comment
+  node_link: '#'
+  comment_link: '#'
+  title: Faker.sentence
+  user:
+    name: Elapsed
+    avatar:
+      img:
+        src: ic6usrmfro9oyn2/elapsed.png
 comments:
-- {}
-- {}
-- {}
-- {}
-- {}
-- {}
+-
+  title: Faker.sentence
+  node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
+  user:
+    name: Saedo
+    url: Faker.url
+    avatar:
+      img:
+        src: e7o61g4ek2igg83/saedo.png
+-
+  node_title: 'Raid: Awkward Name kills some stuff!'
+  user:
+    name: Elapsed
+    avatar:
+      img:
+        src: ic6usrmfro9oyn2/elapsed.png
+-
+  node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
+  title: Faker.sentence
+  user:
+    name: Garreth
+    url: Faker.url
+    avatar:
+      img:
+        src: 29be7bb25jnuvgf/garreth.png
+-
+  node_title: 'Raid: Awkward Name kills some stuff!'
+  user:
+    name: Elapsed
+    avatar:
+      img:
+        src: ic6usrmfro9oyn2/elapsed.png
+-
+  node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
+  title: Faker.sentenc
+  user:
+    name: Fjork
+    url: Faker.url
+    avatar:
+      img:
+        src: kq1o7k6kmu4ztpr/fjork.png
+-
+  node_title: 'Raid: Awkward Name kills some stuff!'
+  title: Faker.sentence
+  user:
+    name: Fjork
+    url: Faker.url
+    avatar:
+      img:
+        src: kq1o7k6kmu4ztpr/fjork.png
+-
+  node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
+  user:
+    name: Elapsed
+    avatar:
+      img:
+        src: ic6usrmfro9oyn2/elapsed.png
+-
+  node_title: 'Raid: Awkward Name kills some stuff!'
+  title: Faker.sentence
+  user:
+    name: Garreth
+    url: Faker.url
+    avatar:
+      img:
+        src: 29be7bb25jnuvgf/garreth.png
+-
+  node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
+  user:
+    name: Kaluu
+    url: Faker.url
+    avatar:
+      img:
+        src: 06fj5m3fxgbv85r/kaluu.png
+-
+  node_title: 'Raid: Awkward Name kills some stuff!'
+  user:
+    name: Kaluu
+    url: Faker.url
+    avatar:
+      img:
+        src: 06fj5m3fxgbv85r/kaluu.png
+
 video:
   src: https://www.youtube.com/embed/nnjGw9ZL3QQ
 raids:
@@ -175,47 +261,6 @@ sidebar:
     title: Recent Comments
     icon: comment
     cta: All Posts
-    comments:
-    -
-      title: Lorem ipsum dolor sit amet, consectetur. Adipisicing elit, sed do eiusmod. Adipisicing elit, sed do eiusmod sed do eiusmod ...
-      node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
-    -
-      node_title: 'Raid: Awkward Name kills some stuff!'
-      user:
-        user:
-          name: Elapsed
-          avatar:
-            img:
-              src: ic6usrmfro9oyn2/elapsed.png
-    -
-      node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
-    -
-      node_title: 'Raid: Awkward Name kills some stuff!'
-      user:
-        user:
-          name: Elapsed
-          avatar:
-            img:
-              src: ic6usrmfro9oyn2/elapsed.png
-    -
-      node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
-    -
-      node_title: 'Raid: Awkward Name kills some stuff!'
-    -
-      node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
-      user:
-        user:
-          name: Elapsed
-          avatar:
-            img:
-              src: ic6usrmfro9oyn2/elapsed.png
-    -
-      node_title: 'Raid: Awkward Name kills some stuff!'
-    -
-      node_title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
-    -
-      node_title: 'Raid: Awkward Name kills some stuff!'
-
 subsection:
   left:
     type: media

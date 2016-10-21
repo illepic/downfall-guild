@@ -3,7 +3,7 @@
 {% block content %}
   {% for comment in comments %}
     <div class="content-list__item">
-      {% include "@molecules/cards/card-comment.twig" with comment %}
+      {% include "@molecules/cards/card-comment.twig" with { 'comment': comment } %}
     </div>
   {% endfor %}
 {% endblock %}

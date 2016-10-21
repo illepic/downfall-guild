@@ -11,11 +11,11 @@
 <div class="card card-plain card-comment">
   <div class="card-comment__left">
     <div class="card-comment__avatar">
-      {% include "@atoms/users/user-avatar-small.twig" with user %}
+      {% include "@atoms/users/user-avatar-small.twig" with { 'user': comment.user } %}
     </div>
   </div>
   <div class="card-comment__right">
-    <p class="card-comment__info small">about 2 days ago in <a href="{{ node_link }}">{{ node_title }}</a></p>
-    <p class="card-comment__comment"><a href="{{ comment_link }}">{{ title }}</a></p>
+    <p class="card-comment__info small">about 2 days ago in <a href="{{ comment.node_link }}">{{ comment.node_title }}</a></p>
+    <p class="card-comment__comment"><a href="{{ comment.comment_link }}">{{ comment.title }}</a></p>
   </div>
 </div>
