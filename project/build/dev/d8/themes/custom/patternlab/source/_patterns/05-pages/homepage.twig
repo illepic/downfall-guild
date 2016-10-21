@@ -41,5 +41,6 @@
   {% set thumbs_grid = sidebar.thumbs_grid|merge({ 'thumbs': thumbs[:6] }) %}
   {% include "@molecules/asides/thumbs-grid.twig" with thumbs_grid %}
 
-  {% include "@molecules/asides/comment-list.twig" with sidebar.comment_list %}
+  {% set comment_list = sidebar.comment_list|merge({ 'comments': comments[:7]}) %}
+  {% include "@molecules/asides/comment-list.twig" with comment_list %}
 {% endblock %}

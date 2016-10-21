@@ -121,6 +121,7 @@ nodes:
   -
     title: Faker.sentence
     type: event
+    promoted: true
   -
     type: post
     tags: Faker.words(3)
