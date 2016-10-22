@@ -1,3 +1,19 @@
+{% if pl and not posts_pinned %}
+  {# Pull pinned off posts #}
+  {% set posts_pinned = [] %}
+  {% for node in nodes if node.pinned and node.promoted %}
+    {% set posts_pinned = posts_pinned|merge([node]) %}
+  {% endfor %}
+{% endif %}
+
+{% if pl and no posts_recent %}
+  {# Grab all non-pinned promoted posts for homepage #}
+  {% set posts_recent = [] %}
+  {% for node in nodes if not node.pinned and node.promoted %}
+    {% set posts_recent =  posts_recent|merge([node]) %}
+  {% endfor %}
+{% endif %}
+
 <div class="news text-center">
 
   <div class="news__top">
