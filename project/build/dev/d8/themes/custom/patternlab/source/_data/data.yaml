@@ -174,7 +174,7 @@ raids:
   -
     title: "Raid: Awesomepants"
     info: M,W,F 6pm-11pm PST
-    image: https://dl.dropboxusercontent.com/s/481n7i77gacd58o/960x540.jpg
+    image: 481n7i77gacd58o/960x540.jpg
     slogan: Faker.sentence
     icon: ability_throw
     member_count: Faker.numberBetween(1, 50)
@@ -185,7 +185,7 @@ raids:
   -
     title: "Raid: Perpetual Motion Squad"
     info: M,T 9pm-11pm PST
-    image: ../../../../images/960x540/abstract1.jpg
+    image: lml1n5pndzfwkl3/abstract1.jpg
     slogan: Faker.paragraph
     icon: inv_axe_22
     member_count: Faker.numberBetween(1, 50)
@@ -196,7 +196,7 @@ raids:
   -
     title: Faker.words(3, true)
     info: M,T 9pm-11pm PST
-    image: ../../../../images/960x540/abstract2.jpg
+    image: cvys2phmazuwlac/abstract2.jpg
     slogan: Faker.sentence
     icon: inv_axe_1h_blacksmithing_03
     member_count: Faker.numberBetween(1, 50)
@@ -207,7 +207,7 @@ raids:
   -
     title: Faker.words(3, true)
     info: M,T 9pm-11pm PST
-    image: ../../../../images/960x540/abstract4.jpg
+    image: peei76hd4r1rgiv/abstract3.jpg
     slogan: Faker.sentence
     icon: inv_gizmo_thebiggerone
     member_count: Faker.numberBetween(1, 50)
@@ -215,6 +215,7 @@ raids:
   -
     title: Faker.words(3, true)
     info: M,T 9pm-11pm PST
+    image: kjog6wxw46k51yc/abstract4.jpg
     slogan: Faker.sentence
     icon: boss_odunrunes_purple
     member_count: Faker.numberBetween(1, 50)
@@ -222,7 +223,7 @@ raids:
   -
     title: Faker.words(3, true)
     info: M,T 9pm-11pm PST
-    image: Faker.imageUrl(960, 540, 'abstract')
+    image: 0hoaw28lc9682zl/kill-1.jpeg
     slogan: Faker.sentence
     icon: boss_odunrunes_green
     member_count: Faker.numberBetween(1, 50)
@@ -233,6 +234,7 @@ raids:
   -
     title: Faker.words(3, true)
     info: M,T 9pm-11pm PST
+    image: 8hoss9mfcps58hu/WoWScrnShot_120913_094517.jpg
     slogan: Faker.sentence
     icon: inv_glaive_1h_npc_d_01
     member_count: Faker.numberBetween(1, 50)
@@ -240,7 +242,7 @@ raids:
   -
     title: Faker.words(3, true)
     info: Th,F 6pm-11pm PST
-    image: Faker.imageUrl(960, 540, 'abstract')
+    image: c5qgvrowzjb298p/bh0UYQx.png
     slogan: Faker.sentence
     icon: inv_hand_1h_artifactskywall_d_01
     member_count: Faker.numberBetween(1, 50)
