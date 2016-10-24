@@ -56,6 +56,8 @@ nodes:
     tags:
       - Pinned
     img:
+      thumb:
+        src: 6sxbnxro1z1jha9/WoWScrnShot_073116_121145.jpg
       landscape_medium:
         src: nd2y0abtea1k3ks/WoWScrnShot_073116_121145.jpg
     comments:
@@ -79,8 +81,10 @@ nodes:
     tags:
       - Pinned
     img:
+      thumb:
+        src: a9wtoe71pd6ljfp/kill-1-thumb.png
       landscape_medium:
-        src: 61zvq10hh4x3js5/WoWScrnShot_012416_195350.jpg
+        src: 0hoaw28lc9682zl/kill-1.jpeg
     comments:
       count: Faker.randomDigitNotNull
       new: true
@@ -110,9 +114,11 @@ nodes:
     promoted: true
     type: post
     img:
+      thumb:
+        src: 771my153foz1eaf/header1.jpeg
       landscape_medium:
         src: hqc02zt73qmv4zu/header1.jpeg
-    title: Raid Slightly More Appropriate Name Stomps Raid Monsterface
+    title: "Raid: Slightly More Appropriate Name Stomps Raid Monsterface"
   -
     promoted: true
     title: Faker.sentence
