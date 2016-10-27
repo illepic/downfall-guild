@@ -34,6 +34,11 @@ img:
   landscape_large:
     src: 8nw45xkwnc37wwb/1920x1080.jpg
     alt: A very large image
+class:
+  deathknight:
+    elaborate: oii4tv2dpgfn10a/Death_knight_crest.png
+  paladin:
+    elaborate: tp7t48g73gi1ux2/Paladin_crest.png
 thumb:
   url: http://www.google.com
   src: "mmox1x0af7cmwhm/300x300.png"

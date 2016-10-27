@@ -1,23 +1,61 @@
 {% extends "@templates/site-layout.twig" %}
 
 {% block content %}
-  <div class="text-center raid-hub">
+  <div class="text-center raid">
 
-    <div class="features">
+    <div class="raid-top row">
+      <div class="col-sm-12">
+        <h2 class="title">37 Members</h2>
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-2">
+          <div class="raid-member">
+            <img src="{{ img_path(class.deathknight.elaborate, pl) }}" class="img-responsive"/>
+
+            {% include "@atoms/users/user-avatar-hover.twig" %}
+
+            <img class="raid-member__user-img img-circle img-raised" src="https://dl.dropboxusercontent.com/s/e7o61g4ek2igg83/saedo.png">
+          </div>
+        </div>
+
+        <div class="col-sm-2">
+          <div class="raid-member">
+            <img src="https://dl.dropboxusercontent.com/s/f5xs2ein2zuqe80/Demon_hunter_crest-250x271.png" class="img-responsive"/>
+            <img class="raid-member__user-img img-circle img-raised" src="https://dl.dropboxusercontent.com/s/ic6usrmfro9oyn2/elapsed.png">
+          </div>
+        </div>
+
+        <div class="col-sm-2">
+          <div class="raid-member">
+            <img src="https://dl.dropboxusercontent.com/s/oii4tv2dpgfn10a/Death_knight_crest.png" class="img-responsive"/>
+            <img class="raid-member__user-img img-circle img-raised" src="https://dl.dropboxusercontent.com/s/e7o61g4ek2igg83/saedo.png">
+          </div>
+        </div>
+
+      </div> <!-- /.row -->
+
+
+    </div>
+
+    <div class="features text-center">
+
       <div class="row">
         <div class="col-md-4">
-          <div class="info">
-            <div class="icon">
-              <i class="material-icons">person_add</i>
-            </div>
-            <h4 class="info-title">Add Character</h4>
-            <p>Add a WoW character to your account that can sign up for <a href="#">Raids Groups</a> and Raid Events.</p>
-            <p>{% include "@atoms/buttons/button.twig" with {
-                'button_color': 'success',
-                'button_text': 'Add Toon',
-                'button_size': 'large',
-              }%}</p>
-          </div>
+
+          {#<div class="info">#}
+            {#<h1 class="title">37</h1>#}
+
+            {#<h4 class="info-title"><i class="material-icons">person_add</i> members</h4>#}
+
+            {#<p>{% include "@atoms/buttons/button.twig" with {#}
+                {#'button_color': 'success',#}
+                {#'button_text': 'Join',#}
+                {#'button_size': 'large',#}
+              {#}%}</p>#}
+          {#</div>#}
+
         </div>
 
         <div class="col-md-4">
@@ -40,7 +78,7 @@
             <div class="icon">
               <i class="material-icons">event</i>
             </div>
-            <h4 class="info-title">Signup for Events</h4>
+            <h4 class="info-title">6 Upcoming Events</h4>
             <p>Navigate to any Raid Group to see and sign up for upcoming Raid Events.</p>
             <p>{% include "@atoms/buttons/button.twig" with {
               'button_color': 'primary',
