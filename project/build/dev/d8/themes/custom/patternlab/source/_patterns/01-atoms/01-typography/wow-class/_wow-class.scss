@@ -14,7 +14,8 @@ $wow-classes: (
 );
 
 .wow-class {
-  font-weight: $font-weight-bold;
+  font-weight: $font-weight-extra-bold;
+  text-shadow: 0 2px 5px rgba(33, 33, 33, 0.2);
   //$font-weight-bold:    500 !default;
   //$font-weight-extra-bold: 700 !default;
 }
@@ -26,5 +27,5 @@ $wow-classes: (
 }
 
 .wow-class--priest {
-  // Something here specifically so priest shows on white bg
+  //text-shadow: 0 2px 5px rgba(33, 33, 33, 0.5);
 }

@@ -4,11 +4,19 @@
 }
 .raid-member__graphics {
   position: relative;
+  height: 160px;
+  margin: 0 $padding-base;
+  //margin: 0 30px;
 }
-.raid-member__user-img,
-.raid-member__avatar {
+.raid-member__df-avatar,
+.raid-member__character-avatar {
   width: 50px;
   position: absolute;
-  right: 0;
   bottom: 0;
+}
+.raid-member__df-avatar {
+  right: 0;
+}
+.raid-member__character-avatar {
+  left: 0;
 }

@@ -12,37 +12,11 @@
 
         {% for character in characters %}
           <div class="col-sm-2">
-            {{ character.name }}
-            {{ character.class }}
-
             {% include "@molecules/character/raid-member/raid-member.twig" with {
-
+              'character': character
             } %}
-
           </div>
         {% endfor %}
-
-        <div class="col-sm-2">
-
-          {% include "@molecules/character/raid-member/raid-member.twig" with {
-
-          } %}
-
-        </div>
-
-        <div class="col-sm-2">
-          <div class="raid-member">
-            <img src="https://dl.dropboxusercontent.com/s/f5xs2ein2zuqe80/Demon_hunter_crest-250x271.png" class="img-responsive"/>
-            <img class="raid-member__user-img img-circle img-raised" src="https://dl.dropboxusercontent.com/s/ic6usrmfro9oyn2/elapsed.png">
-          </div>
-        </div>
-
-        <div class="col-sm-2">
-          <div class="raid-member">
-            <img src="https://dl.dropboxusercontent.com/s/oii4tv2dpgfn10a/Death_knight_crest.png" class="img-responsive"/>
-            <img class="raid-member__user-img img-circle img-raised" src="https://dl.dropboxusercontent.com/s/e7o61g4ek2igg83/saedo.png">
-          </div>
-        </div>
 
       </div> <!-- /.row -->
 

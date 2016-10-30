@@ -9,21 +9,134 @@ characters:
     level: 110
     role: DPS
     spec: Blood
+    avatar: 3ryj6aiec8pdt9m/dk.jpg
+    server: Gorgonnash
     user:
       name: Saedo
+      roles:
+        - Officer
+        - Guildy
+        - Admin
+      url: Faker.url
+      avatar:
+        img:
+          src: e7o61g4ek2igg83/saedo.png
   -
     name: RandoHunter
     class: Hunter
     level: 105
     role: DPS
     spec: Survival
+    avatar: kjphzmimiw4xjan/hunter.jpg
+    server: Gorgonnash
     user:
       name: Elapsed
+      roles:
+        - Officer
+        - Guildy
+        - Admin
+      url: Faker.url
+      avatar:
+        img:
+          src: ic6usrmfro9oyn2/elapsed.png
   -
     name: BlerpPally
     class: Paladin
     level: 110
     role: Healing
     spec: Holy
+    server: Gorgonnash
+    avatar: n6o1ovxh5bv85c4/paladin.jpg
     user:
       name: Garreth
+      roles:
+        - Officer
+        - Guildy
+        - Admin
+      url: Faker.url
+      avatar:
+        img:
+          src: 29be7bb25jnuvgf/garreth.png
+  -
+    name: DemonFace
+    class: Demon Hunter
+    level: 110
+    role: DPS
+    spec: Vengeance
+    avatar: sa5josh9e18o3pa/dh.jpg
+    user:
+      name: Painhax
+      roles:
+        - Guildy
+      url: Faker.url
+      avatar:
+        img:
+          src: lvqset0zdhj8vd5/painhax.png
+  -
+    name: UglyPriest
+    class: Priest
+    level: 110
+    role: DPS
+    spec: Shadow
+    avatar: eik2shl7yag247r/priest.jpg
+    server: Gorgonnash
+    user:
+      name: Kaluu
+      roles:
+        - Officer
+        - Guildy
+        - Admin
+      url: Faker.url
+      avatar:
+        img:
+          src: e7o61g4ek2igg83/saedo.png
+  -
+    name: DerpDruid
+    class: Druid
+    level: 105
+    role: Tank
+    spec: Guardian
+    avatar: 76r0wah9m34ihyu/druid.jpg
+    server: Gorgonnash
+    user:
+      name: Fjork
+      roles:
+        - Guildy
+        - Admin
+      url: Faker.url
+      avatar:
+        img:
+          src: kq1o7k6kmu4ztpr/fjork.png
+  -
+    name: BlerpPally
+    class: Paladin
+    level: 110
+    role: Healing
+    spec: Holy
+    server: Gorgonnash
+    avatar: n6o1ovxh5bv85c4/paladin.jpg
+    user:
+      name: Garreth
+      roles:
+        - Officer
+        - Guildy
+        - Admin
+      url: Faker.url
+      avatar:
+        img:
+          src: 29be7bb25jnuvgf/garreth.png
+  -
+    name: DemonFace
+    class: Demon Hunter
+    level: 110
+    role: DPS
+    spec: Vengeance
+    avatar: sa5josh9e18o3pa/dh.jpg
+    user:
+      name: Painhax
+      roles:
+        - Guildy
+      url: Faker.url
+      avatar:
+        img:
+          src: lvqset0zdhj8vd5/painhax.png

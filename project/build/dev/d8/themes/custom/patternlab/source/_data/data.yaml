@@ -40,16 +40,29 @@ wow_classes:
     img:
       simple: ''
       elaborate: oii4tv2dpgfn10a/Death_knight_crest.png
-  Demon Hunter: {}
-  Druid: {}
-  Hunter: {}
+  Demon Hunter:
+    spec: {}
+    img:
+      simple: ''
+      elaborate: f5xs2ein2zuqe80/Demon_hunter_crest-250x271.png
+  Druid:
+    img:
+      simple: ''
+      elaborate: pa50vq23261m14y/Druid_crest.png
+  Hunter:
+    img:
+      simple: ''
+      elaborate: hte4c3488mwfsh4/Hunter_crest.png
   Mage: {}
   Monk: {}
   Paladin:
     img:
       simple: ''
       elaborate: tp7t48g73gi1ux2/Paladin_crest.png
-  Priest: {}
+  Priest:
+    img:
+      simple: ''
+      elaborate: sfhfxjq2z1y9dza/Priest_crest.png
   Rogue: {}
   Shaman: {}
   Warlock: {}

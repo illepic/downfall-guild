@@ -3,12 +3,17 @@
     <div class="raid-member__class">
       {% include "@atoms/wow-class/wow-class-elaborate.twig" with { 'class_name': character.class } %}
     </div>
-    <div class="raid-member__avatar">
-      {% include "@atoms/users/user-avatar-hover.twig" with { 'user': user } %}
+    <div class="raid-member__character-avatar">
+      <a href="http://us.battle.net/wow/en/character/{{ character.server|lower }}/{{ character.name }}/advanced">
+        <img src="{{ img_path(character.avatar, pl) }}" class="img-responsive img-raised"/>
+      </a>
+    </div>
+    <div class="raid-member__df-avatar">
+      {% include "@atoms/users/user-avatar-hover.twig" with { 'user': character.user } %}
     </div>
     <div class="raid-member__spec">
       {#<div>Spec here</div>#}
     </div>
   </div>
-  <h4 class="raid-member__name wow-class wow-class--{{ character.class|replace(' ', '-')|lower }}">{{ character.name }}</h4>
+  <h3 class="small raid-member__name wow-class wow-class--{{ character.class|replace(' ', '-')|lower }}">{{ character.name }}</h3>
 </div>
