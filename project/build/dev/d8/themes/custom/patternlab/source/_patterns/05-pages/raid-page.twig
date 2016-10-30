@@ -11,13 +11,16 @@
       <div class="row">
 
         <div class="col-sm-2">
-          <div class="raid-member">
-            <img src="{{ img_path(class.deathknight.elaborate, pl) }}" class="img-responsive"/>
 
+          <div class="raid-member">
+            {#<img src="{{ img_path(class.deathknight.elaborate, pl) }}" class="img-responsive"/>#}
+
+            {% include "@atoms/wow-class/wow-class-elaborate.twig" %}
             {% include "@atoms/users/user-avatar-hover.twig" %}
 
-            <img class="raid-member__user-img img-circle img-raised" src="https://dl.dropboxusercontent.com/s/e7o61g4ek2igg83/saedo.png">
+            {#<img class="raid-member__user-img img-circle img-raised" src="https://dl.dropboxusercontent.com/s/e7o61g4ek2igg83/saedo.png">#}
           </div>
+
         </div>
 
         <div class="col-sm-2">

@@ -36,8 +36,10 @@ img:
     alt: A very large image
 class:
   deathknight:
+    simple: ''
     elaborate: oii4tv2dpgfn10a/Death_knight_crest.png
   paladin:
+    simple: ''
     elaborate: tp7t48g73gi1ux2/Paladin_crest.png
 thumb:
   url: http://www.google.com
