@@ -1,0 +1,30 @@
+$wow-classes: (
+  death-knight $c-wowclass-death-knight,
+  demon-hunter $c-wowclass-demon-hunter,
+  druid $c-wowclass-druid,
+  hunter $c-wowclass-hunter,
+  mage $c-wowclass-mage,
+  monk $c-wowclass-monk,
+  paladin $c-wowclass-paladin,
+  priest $c-wowclass-priest,
+  rogue $c-wowclass-rogue,
+  shaman $c-wowclass-shaman,
+  warlock $c-wowclass-warlock,
+  warrior $c-wowclass-warrior,
+);
+
+.wow-class {
+  font-weight: $font-weight-bold;
+  //$font-weight-bold:    500 !default;
+  //$font-weight-extra-bold: 700 !default;
+}
+
+@each $wow-class, $color in $wow-classes {
+  .wow-class--#{$wow-class} {
+    color: $color;
+  }
+}
+
+.wow-class--priest {
+  // Something here specifically so priest shows on white bg
+}

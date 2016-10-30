@@ -1,0 +1,3 @@
+{% for wow_class_name, wow_class in wow_classes %}
+ <p class="wow-class wow-class--{{ wow_class_name|replace(' ', '-')|lower }}">{{ wow_class_name }}</p>
+{% endfor %}

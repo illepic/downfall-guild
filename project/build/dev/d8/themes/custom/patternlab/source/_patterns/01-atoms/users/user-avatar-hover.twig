@@ -1,4 +1,4 @@
-<div class="user user-avatar-hover">
-  <img src="{{ img_path(user.avatar.img.src, pl) }}" class="img-circle img-raised user-avatar-hover__img"/>
+<div class="user user-avatar-hover" data-toggle="tooltip" data-placement="top" title="{{ user.name }} | {{ user.roles|join(', ') }}">
+  <img src="{{ img_path(user.avatar.img.src, pl) }}" class="img-circle img-raised img-responsive user-avatar-hover__img"/>
   {#<p class="user-avatar-small__name"><a href="{{ user.url }}">{{ user.name }}</a></p>#}
 </div>

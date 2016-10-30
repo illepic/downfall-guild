@@ -1,0 +1,29 @@
+character:
+  name: PunchfaceDK
+  class: Death Knight
+  spec: Blood
+characters:
+  -
+    name: DudefaceDK
+    class: Death Knight
+    level: 110
+    role: DPS
+    spec: Blood
+    user:
+      name: Saedo
+  -
+    name: RandoHunter
+    class: Hunter
+    level: 105
+    role: DPS
+    spec: Survival
+    user:
+      name: Elapsed
+  -
+    name: BlerpPally
+    class: Paladin
+    level: 110
+    role: Healing
+    spec: Holy
+    user:
+      name: Garreth

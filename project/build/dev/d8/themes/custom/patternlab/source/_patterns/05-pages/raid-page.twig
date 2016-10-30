@@ -10,16 +10,23 @@
 
       <div class="row">
 
+        {% for character in characters %}
+          <div class="col-sm-2">
+            {{ character.name }}
+            {{ character.class }}
+
+            {% include "@molecules/character/raid-member/raid-member.twig" with {
+
+            } %}
+
+          </div>
+        {% endfor %}
+
         <div class="col-sm-2">
 
-          <div class="raid-member">
-            {#<img src="{{ img_path(class.deathknight.elaborate, pl) }}" class="img-responsive"/>#}
+          {% include "@molecules/character/raid-member/raid-member.twig" with {
 
-            {% include "@atoms/wow-class/wow-class-elaborate.twig" %}
-            {% include "@atoms/users/user-avatar-hover.twig" %}
-
-            {#<img class="raid-member__user-img img-circle img-raised" src="https://dl.dropboxusercontent.com/s/e7o61g4ek2igg83/saedo.png">#}
-          </div>
+          } %}
 
         </div>
 

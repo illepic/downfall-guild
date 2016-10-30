@@ -1,0 +1,14 @@
+<div class="character raid-member">
+  <div class="raid-member__graphics">
+    <div class="raid-member__class">
+      {% include "@atoms/wow-class/wow-class-elaborate.twig" with { 'class_name': character.class } %}
+    </div>
+    <div class="raid-member__avatar">
+      {% include "@atoms/users/user-avatar-hover.twig" with { 'user': user } %}
+    </div>
+    <div class="raid-member__spec">
+      {#<div>Spec here</div>#}
+    </div>
+  </div>
+  <h4 class="raid-member__name wow-class wow-class--{{ character.class|replace(' ', '-')|lower }}">{{ character.name }}</h4>
+</div>

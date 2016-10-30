@@ -39,6 +39,66 @@
       "name": "$c-text-color-primary",
       "value": "#3C4858",
       "comment": ""
+    },
+    {
+      "name": "$c-wowclass-death-knight",
+      "value": "#C41F3B",
+      "comment": ""
+    },
+    {
+      "name": "$c-wowclass-demon-hunter",
+      "value": "#A330C9",
+      "comment": ""
+    },
+    {
+      "name": "$c-wowclass-druid",
+      "value": "#FF7D0A",
+      "comment": ""
+    },
+    {
+      "name": "$c-wowclass-hunter",
+      "value": "#ABD473",
+      "comment": ""
+    },
+    {
+      "name": "$c-wowclass-mage",
+      "value": "#69CCF0",
+      "comment": ""
+    },
+    {
+      "name": "$c-wowclass-monk",
+      "value": "#00FF96",
+      "comment": ""
+    },
+    {
+      "name": "$c-wowclass-paladin",
+      "value": "#F58CBA",
+      "comment": ""
+    },
+    {
+      "name": "$c-wowclass-priest",
+      "value": "#FFFFFF",
+      "comment": ""
+    },
+    {
+      "name": "$c-wowclass-rogue",
+      "value": "#FFF569",
+      "comment": ""
+    },
+    {
+      "name": "$c-wowclass-shaman",
+      "value": "#0070DE",
+      "comment": ""
+    },
+    {
+      "name": "$c-wowclass-warlock",
+      "value": "#9482C9",
+      "comment": ""
+    },
+    {
+      "name": "$c-wowclass-warrior",
+      "value": "#C79C6E",
+      "comment": ""
     }
   ],
   "meta": {
