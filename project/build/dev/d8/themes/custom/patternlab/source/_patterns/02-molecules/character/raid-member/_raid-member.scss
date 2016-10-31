@@ -8,6 +8,12 @@
   margin: 0 $padding-base;
   //margin: 0 30px;
 }
+.raid-member__class {
+  opacity: 0.5;
+  &:hover {
+    opacity: 1;
+  }
+}
 .raid-member__df-avatar,
 .raid-member__character-avatar {
   width: 50%;

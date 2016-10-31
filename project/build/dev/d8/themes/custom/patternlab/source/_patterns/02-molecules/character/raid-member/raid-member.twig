@@ -22,11 +22,13 @@
       </div>
       {% include "@atoms/wow-icons/wow-avatar.twig" with { 'character': character } %}
     </div>
+    {% if character.user %}
     <div class="raid-member__df-avatar">
       <a href="{{ character.user.url }}">
         {% include "@atoms/users/user-avatar-hover.twig" with { 'user': character.user } %}
       </a>
     </div>
+    {% endif %}
   </div>
   <h3 class="small raid-member__name wow-class wow-class--{{ wow_class|replace(' ', '-')|lower }}">{{ character.name }}</h3>
 </div>
