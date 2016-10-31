@@ -1,5 +1,5 @@
 .raid-member {
-  margin: 0 auto;
+  margin: 0 auto $padding-base;
   max-width: 250px;
 }
 .raid-member__graphics {
@@ -10,7 +10,8 @@
 }
 .raid-member__df-avatar,
 .raid-member__character-avatar {
-  width: 50px;
+  width: 50%;
+  padding: 0 5%;
   position: absolute;
   bottom: 0;
 }
@@ -19,4 +20,14 @@
 }
 .raid-member__character-avatar {
   left: 0;
+}
+.raid-member__spec {
+  width: 66%;
+  margin-bottom: 5px;
+  position: relative;
+}
+.raid-member__role {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }

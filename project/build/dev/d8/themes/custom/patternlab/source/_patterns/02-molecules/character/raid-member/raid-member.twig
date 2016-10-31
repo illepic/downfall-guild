@@ -1,19 +1,32 @@
+{# Convert WoW class from id to name #}
+{% set wow_class = wow_class_lookup(character.class, classes) %}
+
+{# Have to search for spec #}
+{% set wow_spec = 'DPS' %}
+{% for spec in character.talents if spec.selected  %}
+  {#{{ dump(spec.spec) }}#}
+  {% set wow_spec = spec.spec %}
+{% endfor %}
+
 <div class="character raid-member">
   <div class="raid-member__graphics">
     <div class="raid-member__class">
-      {% include "@atoms/wow-class/wow-class-elaborate.twig" with { 'class_name': character.class } %}
+      {% include "@atoms/wow-icons/wow-class-elaborate.twig" with { 'class_name': wow_class } %}
     </div>
     <div class="raid-member__character-avatar">
-      <a href="http://us.battle.net/wow/en/character/{{ character.server|lower }}/{{ character.name }}/advanced">
-        <img src="{{ img_path(character.avatar, pl) }}" class="img-responsive img-raised"/>
-      </a>
+      <div class="raid-member__spec">
+        {% include "@atoms/wow-icons/wow-spec.twig" with { 'spec': wow_spec } %}
+        <div class="raid-member__role">
+          {% include "@atoms/wow-icons/wow-role/wow-role.twig" with { 'role': wow_spec.role } %}
+        </div>
+      </div>
+      {% include "@atoms/wow-icons/wow-avatar.twig" with { 'character': character } %}
     </div>
     <div class="raid-member__df-avatar">
-      {% include "@atoms/users/user-avatar-hover.twig" with { 'user': character.user } %}
-    </div>
-    <div class="raid-member__spec">
-      {#<div>Spec here</div>#}
+      <a href="{{ character.user.url }}">
+        {% include "@atoms/users/user-avatar-hover.twig" with { 'user': character.user } %}
+      </a>
     </div>
   </div>
-  <h3 class="small raid-member__name wow-class wow-class--{{ character.class|replace(' ', '-')|lower }}">{{ character.name }}</h3>
+  <h3 class="small raid-member__name wow-class wow-class--{{ wow_class|replace(' ', '-')|lower }}">{{ character.name }}</h3>
 </div>

@@ -1,0 +1,14 @@
+.icon-role {
+  width: 16px;
+  height: 16px;
+  background: url(../images/roles.png) no-repeat;
+}
+.icon-role--dps {
+  background-position: 0 0;
+}
+.icon-role--healing {
+  background-position: -16px 0;
+}
+.icon-role--tank {
+  background-position: -32px 0;
+}

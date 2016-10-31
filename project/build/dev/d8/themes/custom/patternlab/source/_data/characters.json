@@ -1,0 +1,1211 @@
+{
+  "character": {
+    "name": "Punchface",
+    "class": "Death Knight",
+    "spec": "Blood"
+  },
+  "characters": [
+    {
+      "lastModified": 1477843820000,
+      "name": "Elapsed",
+      "realm": "Gorgonnash",
+      "battlegroup": "Ruin",
+      "class": 2,
+      "race": 3,
+      "gender": 0,
+      "level": 110,
+      "achievementPoints": 21290,
+      "thumbnail": "gorgonnash/132/123613316-avatar.jpg",
+      "calcClass": "b",
+      "faction": 0,
+      "talents": [
+        {
+          "selected": true,
+          "talents": [
+            {
+              "tier": 0,
+              "column": 1,
+              "spell": {
+                "id": 204019,
+                "name": "Blessed Hammer",
+                "icon": "paladin_retribution",
+                "description": "Throws a Blessed Hammer that spirals outward, dealing 12,537 Holy damage to enemies that it hits, and causing them to deal 15% less damage to you on their next auto attack.",
+                "castTime": "Instant"
+              },
+              "spec": {
+                "name": "Protection",
+                "role": "TANK",
+                "backgroundImage": "bg-paladin-protection",
+                "icon": "ability_paladin_shieldofthetemplar",
+                "description": "Uses Holy magic to shield himself and defend allies from attackers.",
+                "order": 1
+              }
+            },
+            {
+              "tier": 2,
+              "column": 2,
+              "spell": {
+                "id": 115750,
+                "name": "Blinding Light",
+                "icon": "ability_paladin_blindinglight",
+                "description": "Emits dazzling light in all directions, blinding enemies within 10 yards, dealing 16,217 Holy damage and causing them to wander disoriented for 6 sec. Non-Holy damage will break the disorient effect.",
+                "powerCost": "8% of base mana",
+                "castTime": "Instant",
+                "cooldown": "1.5 min cooldown"
+              }
+            },
+            {
+              "tier": 3,
+              "column": 1,
+              "spell": {
+                "id": 230332,
+                "name": "Cavalier",
+                "icon": "ability_paladin_divinesteed",
+                "description": "Divine Steed now has 2 charges.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Protection",
+                "role": "TANK",
+                "backgroundImage": "bg-paladin-protection",
+                "icon": "ability_paladin_shieldofthetemplar",
+                "description": "Uses Holy magic to shield himself and defend allies from attackers.",
+                "order": 1
+              }
+            },
+            {
+              "tier": 4,
+              "column": 2,
+              "spell": {
+                "id": 204077,
+                "name": "Final Stand",
+                "icon": "spell_holy_crusade",
+                "description": "When you use Divine Shield, you also taunt all targets within 15 yards for 8 sec.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Protection",
+                "role": "TANK",
+                "backgroundImage": "bg-paladin-protection",
+                "icon": "ability_paladin_shieldofthetemplar",
+                "description": "Uses Holy magic to shield himself and defend allies from attackers.",
+                "order": 1
+              }
+            },
+            {
+              "tier": 1,
+              "column": 2,
+              "spell": {
+                "id": 204023,
+                "name": "Crusader's Judgment",
+                "icon": "ability_paladin_enlightenedjudgements",
+                "description": "Judgment now has 2 charges, and Grand Crusader now also grants a charge of Judgment.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Protection",
+                "role": "TANK",
+                "backgroundImage": "bg-paladin-protection",
+                "icon": "ability_paladin_shieldofthetemplar",
+                "description": "Uses Holy magic to shield himself and defend allies from attackers.",
+                "order": 1
+              }
+            },
+            {
+              "tier": 5,
+              "column": 1,
+              "spell": {
+                "id": 183778,
+                "name": "Judgment of Light",
+                "icon": "spell_holy_divineprovidence",
+                "description": "Judgment now applies Judgment of Light to the target, causing the next 40 successful attacks against the target to heal the attacker for 1,201. This effect can only occur once per 1 sec on each target.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Protection",
+                "role": "TANK",
+                "backgroundImage": "bg-paladin-protection",
+                "icon": "ability_paladin_shieldofthetemplar",
+                "description": "Uses Holy magic to shield himself and defend allies from attackers.",
+                "order": 1
+              }
+            },
+            {
+              "tier": 6,
+              "column": 2,
+              "spell": {
+                "id": 203791,
+                "name": "Last Defender",
+                "icon": "spell_holy_divinepurpose",
+                "description": "Each enemy within 8 yards reduces the damage that you take and increases the damage that you deal by 3%. This effect has diminishing returns.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Protection",
+                "role": "TANK",
+                "backgroundImage": "bg-paladin-protection",
+                "icon": "ability_paladin_shieldofthetemplar",
+                "description": "Uses Holy magic to shield himself and defend allies from attackers.",
+                "order": 1
+              }
+            }
+          ],
+          "spec": {
+            "name": "Protection",
+            "role": "TANK",
+            "backgroundImage": "bg-paladin-protection",
+            "icon": "ability_paladin_shieldofthetemplar",
+            "description": "Uses Holy magic to shield himself and defend allies from attackers.",
+            "order": 1
+          },
+          "calcTalent": "1221212",
+          "calcSpec": "Z"
+        },
+        {
+          "talents": [
+            {
+              "tier": 6,
+              "column": 0,
+              "spell": {
+                "id": 156910,
+                "name": "Beacon of Faith",
+                "icon": "ability_paladin_beaconsoflight",
+                "description": "Mark a second target as a Beacon, mimicking the effects of Beacon of Light. Your heals will now heal both of your Beacons, but at 20% reduced effectiveness.",
+                "range": "60 yd range",
+                "powerCost": "3.12% of base mana",
+                "castTime": "Instant",
+                "cooldown": "3 sec cooldown"
+              },
+              "spec": {
+                "name": "Holy",
+                "role": "HEALING",
+                "backgroundImage": "bg-paladin-holy",
+                "icon": "spell_holy_holybolt",
+                "description": "Invokes the power of the Light to protect and to heal.",
+                "order": 0
+              }
+            },
+            {
+              "tier": 1,
+              "column": 2,
+              "spell": {
+                "id": 214202,
+                "name": "Rule of Law",
+                "icon": "ability_paladin_longarmofthelaw",
+                "description": "Increase the range of your heals by 50% for 10 sec.",
+                "castTime": "Instant",
+                "cooldown": "1.5 sec cooldown"
+              },
+              "spec": {
+                "name": "Holy",
+                "role": "HEALING",
+                "backgroundImage": "bg-paladin-holy",
+                "icon": "spell_holy_holybolt",
+                "description": "Invokes the power of the Light to protect and to heal.",
+                "order": 0
+              }
+            },
+            {
+              "tier": 2,
+              "column": 0,
+              "spell": {
+                "id": 198054,
+                "name": "Fist of Justice",
+                "icon": "spell_holy_fistofjustice",
+                "description": "Judgment reduces the remaining cooldown on Hammer of Justice by 10 sec.",
+                "castTime": "Passive"
+              }
+            },
+            {
+              "tier": 3,
+              "column": 0,
+              "spell": {
+                "id": 183425,
+                "name": "Devotion Aura",
+                "icon": "spell_holy_devotionaura",
+                "description": "Allies within 10 yards take 20% reduced damage, split over the number of allies in the aura.\n\n\n\nWhile Aura Mastery is active, all affected allies gain the full damage reduction.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Holy",
+                "role": "HEALING",
+                "backgroundImage": "bg-paladin-holy",
+                "icon": "spell_holy_holybolt",
+                "description": "Invokes the power of the Light to protect and to heal.",
+                "order": 0
+              }
+            },
+            {
+              "tier": 0,
+              "column": 1,
+              "spell": {
+                "id": 114158,
+                "name": "Light's Hammer",
+                "icon": "spell_paladin_lightshammer",
+                "description": "Hurls a Light-infused hammer into the ground, where it blasts a 10 yard radius every 2 sec for 14 sec. Each blast deals 6,200 Holy damage to enemies and heals up to 6 allies for 3,003.",
+                "range": "40 yd range",
+                "powerCost": "35% of base mana",
+                "castTime": "Instant",
+                "cooldown": "1 min cooldown"
+              },
+              "spec": {
+                "name": "Holy",
+                "role": "HEALING",
+                "backgroundImage": "bg-paladin-holy",
+                "icon": "spell_holy_holybolt",
+                "description": "Invokes the power of the Light to protect and to heal.",
+                "order": 0
+              }
+            },
+            {
+              "tier": 5,
+              "column": 0,
+              "spell": {
+                "id": 196923,
+                "name": "Fervent Martyr",
+                "icon": "ability_paladin_selflesshealer",
+                "description": "Casting Holy Light or Flash of Light on your Beacon of Light reduces the cost of your next Light of the Martyr by 50%, stacking.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Holy",
+                "role": "HEALING",
+                "backgroundImage": "bg-paladin-holy",
+                "icon": "spell_holy_holybolt",
+                "description": "Invokes the power of the Light to protect and to heal.",
+                "order": 0
+              }
+            },
+            {
+              "tier": 4,
+              "column": 2,
+              "spell": {
+                "id": 114165,
+                "name": "Holy Prism",
+                "icon": "spell_paladin_holyprism",
+                "description": "A beam of light turns the target into a Holy Prism.\n\n\n\nAn enemy target takes 18,020 Holy damage and radiates 12,012 healing to 5 nearby allies within 15 yards.\n\n\n\nA friendly target is healed for 24,024 and radiates 13,513 Holy damage to 5 nearby enemies within 15 yards.",
+                "range": "40 yd range",
+                "powerCost": "17% of base mana",
+                "castTime": "Instant",
+                "cooldown": "20 sec cooldown"
+              },
+              "spec": {
+                "name": "Holy",
+                "role": "HEALING",
+                "backgroundImage": "bg-paladin-holy",
+                "icon": "spell_holy_holybolt",
+                "description": "Invokes the power of the Light to protect and to heal.",
+                "order": 0
+              }
+            }
+          ],
+          "spec": {
+            "name": "Holy",
+            "role": "HEALING",
+            "backgroundImage": "bg-paladin-holy",
+            "icon": "spell_holy_holybolt",
+            "description": "Invokes the power of the Light to protect and to heal.",
+            "order": 0
+          },
+          "calcTalent": "1200200",
+          "calcSpec": "a"
+        },
+        {
+          "talents": [
+            {
+              "tier": 4,
+              "column": 1,
+              "spell": {
+                "id": 205191,
+                "name": "Eye for an Eye",
+                "icon": "spell_paladin_inquisition",
+                "description": "Reduces Physical damage you take by 35%, and instantly counterattacks any enemy that strikes you in melee combat for 43,707 Physical damage.  Lasts 10 sec.",
+                "castTime": "Instant",
+                "cooldown": "1 min cooldown"
+              },
+              "spec": {
+                "name": "Retribution",
+                "role": "DPS",
+                "backgroundImage": "bg-paladin-retribution",
+                "icon": "spell_holy_auraoflight",
+                "description": "A righteous crusader who judges and punishes opponents with weapons and Holy magic.",
+                "order": 2
+              }
+            },
+            {
+              "tier": 1,
+              "column": 0,
+              "spell": {
+                "id": 203316,
+                "name": "The Fires of Justice",
+                "icon": "spell_holy_crusaderstrike",
+                "description": "Reduces the cooldown of Crusader Strike by 1.0 sec and gives it a 15% chance to reduce the cost of your next damaging or healing Holy Power ability by 1.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Retribution",
+                "role": "DPS",
+                "backgroundImage": "bg-paladin-retribution",
+                "icon": "spell_holy_auraoflight",
+                "description": "A righteous crusader who judges and punishes opponents with weapons and Holy magic.",
+                "order": 2
+              }
+            },
+            {
+              "tier": 2,
+              "column": 0,
+              "spell": {
+                "id": 198054,
+                "name": "Fist of Justice",
+                "icon": "spell_holy_fistofjustice",
+                "description": "Judgment reduces the remaining cooldown on Hammer of Justice by 10 sec.",
+                "castTime": "Passive"
+              }
+            },
+            {
+              "tier": 0,
+              "column": 2,
+              "spell": {
+                "id": 205228,
+                "name": "Consecration",
+                "icon": "spell_holy_innerfire",
+                "description": "Consecrates the land beneath you, causing 71,729 Holy damage over 10.9 sec to enemies who enter the area.",
+                "castTime": "Instant",
+                "cooldown": "12 sec cooldown"
+              },
+              "spec": {
+                "name": "Retribution",
+                "role": "DPS",
+                "backgroundImage": "bg-paladin-retribution",
+                "icon": "spell_holy_auraoflight",
+                "description": "A righteous crusader who judges and punishes opponents with weapons and Holy magic.",
+                "order": 2
+              }
+            },
+            {
+              "tier": 3,
+              "column": 2,
+              "spell": {
+                "id": 198034,
+                "name": "Divine Hammer",
+                "icon": "classicon_paladin",
+                "description": "Divine Hammers spin around you, damaging enemies within 8 yds for 11,569 Holy damage instantly and every 2 sec for 10.9 sec.\n\n\n\nGenerates 2 Holy Power.",
+                "castTime": "Instant",
+                "cooldown": "12 sec cooldown"
+              },
+              "spec": {
+                "name": "Retribution",
+                "role": "DPS",
+                "backgroundImage": "bg-paladin-retribution",
+                "icon": "spell_holy_auraoflight",
+                "description": "A righteous crusader who judges and punishes opponents with weapons and Holy magic.",
+                "order": 2
+              }
+            },
+            {
+              "tier": 5,
+              "column": 1,
+              "spell": {
+                "id": 230332,
+                "name": "Cavalier",
+                "icon": "ability_paladin_divinesteed",
+                "description": "Divine Steed now has 2 charges.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Retribution",
+                "role": "DPS",
+                "backgroundImage": "bg-paladin-retribution",
+                "icon": "spell_holy_auraoflight",
+                "description": "A righteous crusader who judges and punishes opponents with weapons and Holy magic.",
+                "order": 2
+              }
+            },
+            {
+              "tier": 6,
+              "column": 2,
+              "spell": {
+                "id": 210220,
+                "name": "Holy Wrath",
+                "icon": "spell_holy_vindication",
+                "description": "Deals 200% of your missing health in Holy damage to 4 nearby enemies, up to 120% of your maximum health.\n\n\n\nDeals 50% of missing health against enemy players.",
+                "castTime": "Instant",
+                "cooldown": "3 min cooldown"
+              },
+              "spec": {
+                "name": "Retribution",
+                "role": "DPS",
+                "backgroundImage": "bg-paladin-retribution",
+                "icon": "spell_holy_auraoflight",
+                "description": "A righteous crusader who judges and punishes opponents with weapons and Holy magic.",
+                "order": 2
+              }
+            }
+          ],
+          "spec": {
+            "name": "Retribution",
+            "role": "DPS",
+            "backgroundImage": "bg-paladin-retribution",
+            "icon": "spell_holy_auraoflight",
+            "description": "A righteous crusader who judges and punishes opponents with weapons and Holy magic.",
+            "order": 2
+          },
+          "calcTalent": "2002112",
+          "calcSpec": "b"
+        },
+        {
+          "talents": [],
+          "calcTalent": "",
+          "calcSpec": ""
+        }
+      ],
+      "totalHonorableKills": 10814,
+      "user": {
+        "name": "Elapsed",
+        "roles": [
+          "Officer",
+          "Guildy",
+          "Admin"
+        ],
+        "avatar": {
+          "img": {
+            "src": "ic6usrmfro9oyn2/elapsed.png"
+          }
+        }
+      }
+    },
+    {
+      "lastModified": 1477865789000,
+      "name": "Aeolyn",
+      "realm": "Gorgonnash",
+      "battlegroup": "Ruin",
+      "class": 3,
+      "race": 4,
+      "gender": 1,
+      "level": 110,
+      "achievementPoints": 22260,
+      "thumbnail": "gorgonnash/118/123613302-avatar.jpg",
+      "calcClass": "Y",
+      "faction": 0,
+      "talents": [
+        {
+          "selected": true,
+          "talents": [
+            {
+              "tier": 1,
+              "column": 0,
+              "spell": {
+                "id": 199530,
+                "name": "Stomp",
+                "icon": "warrior_talent_icon_thunderstruck",
+                "description": "When your Dire Beasts charge in, they will stomp the ground, dealing 176,997 Physical damage to all nearby enemies.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Beast Mastery",
+                "role": "DPS",
+                "backgroundImage": "bg-hunter-beastmaster",
+                "icon": "ability_hunter_bestialdiscipline",
+                "description": "A master of the wild who can tame a wide variety of beasts to assist her in combat.",
+                "order": 0
+              }
+            },
+            {
+              "tier": 6,
+              "column": 1,
+              "spell": {
+                "id": 199532,
+                "name": "Killer Cobra",
+                "icon": "ability_hunter_snaketrap",
+                "description": "While Bestial Wrath is active, Cobra Shot resets the cooldown on Kill Command.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Beast Mastery",
+                "role": "DPS",
+                "backgroundImage": "bg-hunter-beastmaster",
+                "icon": "ability_hunter_bestialdiscipline",
+                "description": "A master of the wild who can tame a wide variety of beasts to assist her in combat.",
+                "order": 0
+              }
+            },
+            {
+              "tier": 3,
+              "column": 1,
+              "spell": {
+                "id": 194306,
+                "name": "Bestial Fury",
+                "icon": "ability_hunter_fervor",
+                "description": "Increase the damage bonus of Bestial Wrath by 15%.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Beast Mastery",
+                "role": "DPS",
+                "backgroundImage": "bg-hunter-beastmaster",
+                "icon": "ability_hunter_bestialdiscipline",
+                "description": "A master of the wild who can tame a wide variety of beasts to assist her in combat.",
+                "order": 0
+              }
+            },
+            {
+              "tier": 4,
+              "column": 2,
+              "spell": {
+                "id": 19577,
+                "name": "Intimidation",
+                "icon": "ability_devour",
+                "description": "Commands your pet to intimidate the target, stunning it for 5 sec.",
+                "castTime": "Instant",
+                "cooldown": "1 min cooldown"
+              },
+              "spec": {
+                "name": "Beast Mastery",
+                "role": "DPS",
+                "backgroundImage": "bg-hunter-beastmaster",
+                "icon": "ability_hunter_bestialdiscipline",
+                "description": "A master of the wild who can tame a wide variety of beasts to assist her in combat.",
+                "order": 0
+              }
+            },
+            {
+              "tier": 0,
+              "column": 2,
+              "spell": {
+                "id": 193532,
+                "name": "Dire Stable",
+                "icon": "ability_hunter_sickem",
+                "description": "Dire Beast generates 12 additional Focus over its duration.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Beast Mastery",
+                "role": "DPS",
+                "backgroundImage": "bg-hunter-beastmaster",
+                "icon": "ability_hunter_bestialdiscipline",
+                "description": "A master of the wild who can tame a wide variety of beasts to assist her in combat.",
+                "order": 0
+              }
+            },
+            {
+              "tier": 5,
+              "column": 0,
+              "spell": {
+                "id": 131894,
+                "name": "A Murder of Crows",
+                "icon": "ability_hunter_murderofcrows",
+                "description": "Summons a flock of crows to attack your target, dealing 1,195,744 Physical damage over 15 sec. When a target dies while affected by this ability, its cooldown will reset.",
+                "range": "40 yd range",
+                "powerCost": "30 Focus",
+                "castTime": "Instant",
+                "cooldown": "1 min cooldown"
+              }
+            },
+            {
+              "tier": 2,
+              "column": 2,
+              "spell": {
+                "id": 199921,
+                "name": "Trailblazer",
+                "icon": "ability_hunter_aspectmastery",
+                "description": "Your movement speed is increased by 30% anytime you have not attacked for 3 seconds.",
+                "castTime": "Passive"
+              }
+            }
+          ],
+          "spec": {
+            "name": "Beast Mastery",
+            "role": "DPS",
+            "backgroundImage": "bg-hunter-beastmaster",
+            "icon": "ability_hunter_bestialdiscipline",
+            "description": "A master of the wild who can tame a wide variety of beasts to assist her in combat.",
+            "order": 0
+          },
+          "calcTalent": "2021201",
+          "calcSpec": "a"
+        },
+        {
+          "talents": [
+            {
+              "tier": 2,
+              "column": 1,
+              "spell": {
+                "id": 199523,
+                "name": "Farstrider",
+                "icon": "ability_hunter_pet_chimera",
+                "description": "Your ability critical strikes have a 10% chance to reset the remaining cooldown on Disengage.",
+                "castTime": "Passive"
+              }
+            },
+            {
+              "tier": 3,
+              "column": 1,
+              "spell": {
+                "id": 199518,
+                "name": "Improved Traps",
+                "icon": "inv_pet_pettrap",
+                "description": "Reduces the cooldown of Freezing Trap by 15% and the cooldown of Explosive Trap and Tar Trap by 50%.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Survival",
+                "role": "DPS",
+                "backgroundImage": "bg-hunter-survival",
+                "icon": "ability_hunter_camouflage",
+                "description": "A rugged tracker who favors using animal venom, explosives and traps as deadly weapons.",
+                "order": 2
+              }
+            },
+            {
+              "tier": 4,
+              "column": 1,
+              "spell": {
+                "id": 200108,
+                "name": "Ranger's Net",
+                "icon": "inv_misc_net_01",
+                "description": "Hurls a net at the enemy, rooting the target for 3 sec and reducing movement speed by 50% for 15 sec. Damage may break the effect.",
+                "range": "40 yd range",
+                "powerCost": "30 Focus",
+                "castTime": "Instant",
+                "cooldown": "1 sec cooldown"
+              },
+              "spec": {
+                "name": "Survival",
+                "role": "DPS",
+                "backgroundImage": "bg-hunter-survival",
+                "icon": "ability_hunter_camouflage",
+                "description": "A rugged tracker who favors using animal venom, explosives and traps as deadly weapons.",
+                "order": 2
+              }
+            },
+            {
+              "tier": 5,
+              "column": 1,
+              "spell": {
+                "id": 194855,
+                "name": "Dragonsfire Grenade",
+                "icon": "spell_fire_incinerate",
+                "description": "Hurls a dragonsfire grenade at the target that explodes into flames, inflicting 279,563 Fire damage over 8 sec and reducing movement speed by 20%. The volatile flames on the target also scorch nearby enemies.",
+                "range": "40 yd range",
+                "castTime": "Instant",
+                "cooldown": "30 sec cooldown"
+              },
+              "spec": {
+                "name": "Survival",
+                "role": "DPS",
+                "backgroundImage": "bg-hunter-survival",
+                "icon": "ability_hunter_camouflage",
+                "description": "A rugged tracker who favors using animal venom, explosives and traps as deadly weapons.",
+                "order": 2
+              }
+            },
+            {
+              "tier": 6,
+              "column": 1,
+              "spell": {
+                "id": 199543,
+                "name": "Expert Trapper",
+                "icon": "inv_pet_pettrap02",
+                "description": "All of your traps are improved in the following ways:\n\n\n\nFreezing Trap\n\nWhen Freezing Trap's incapacitate effect ends, the victim and all neaby enemies' movement speed is reduced by 50% for 4 sec.\n\n\n\nExplosive Trap\n\nIncreases Explosive Trap's damage to the triggering enemy by 75%.\n\n\n\nTar Trap\n\nEnemies moving through the tar have a chance to be rooted in place for 4 sec.\n\n\n\nSteel Trap\n\nYour Steel Trap also deals an immediate 109,205 Bleed damage when triggered.\n\n\n\nCaltrops\n\nIncreases Caltrops damage by 50%.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Survival",
+                "role": "DPS",
+                "backgroundImage": "bg-hunter-survival",
+                "icon": "ability_hunter_camouflage",
+                "description": "A rugged tracker who favors using animal venom, explosives and traps as deadly weapons.",
+                "order": 2
+              }
+            },
+            {
+              "tier": 1,
+              "column": 2,
+              "spell": {
+                "id": 201078,
+                "name": "Snake Hunter",
+                "icon": "achievement_boss_epochhunter",
+                "description": "Instantly grants you 3 charges of Mongoose Bite.",
+                "castTime": "Instant",
+                "cooldown": "1.5 min cooldown"
+              },
+              "spec": {
+                "name": "Survival",
+                "role": "DPS",
+                "backgroundImage": "bg-hunter-survival",
+                "icon": "ability_hunter_camouflage",
+                "description": "A rugged tracker who favors using animal venom, explosives and traps as deadly weapons.",
+                "order": 2
+              }
+            },
+            {
+              "tier": 0,
+              "column": 1,
+              "spell": {
+                "id": 200163,
+                "name": "Throwing Axes",
+                "icon": "inv_throwingaxepvp320_07",
+                "description": "Tosses 3 axes at an enemy, each dealing 68,253 Physical damage.",
+                "range": "30 yd range",
+                "powerCost": "15 Focus",
+                "castTime": "Instant"
+              },
+              "spec": {
+                "name": "Survival",
+                "role": "DPS",
+                "backgroundImage": "bg-hunter-survival",
+                "icon": "ability_hunter_camouflage",
+                "description": "A rugged tracker who favors using animal venom, explosives and traps as deadly weapons.",
+                "order": 2
+              }
+            }
+          ],
+          "spec": {
+            "name": "Survival",
+            "role": "DPS",
+            "backgroundImage": "bg-hunter-survival",
+            "icon": "ability_hunter_camouflage",
+            "description": "A rugged tracker who favors using animal venom, explosives and traps as deadly weapons.",
+            "order": 2
+          },
+          "calcTalent": "1211111",
+          "calcSpec": "b"
+        },
+        {
+          "talents": [],
+          "spec": {
+            "name": "Marksmanship",
+            "role": "DPS",
+            "backgroundImage": "bg-hunter-marksman",
+            "icon": "ability_hunter_focusedaim",
+            "description": "A master archer or sharpshooter who excels in bringing down enemies from afar.",
+            "order": 1
+          },
+          "calcTalent": "",
+          "calcSpec": "Z"
+        },
+        {
+          "talents": [],
+          "calcTalent": "",
+          "calcSpec": ""
+        }
+      ],
+      "totalHonorableKills": 58236,
+      "user": {
+        "name": "Aeolyn",
+        "roles": [
+          "Officer",
+          "Guildy",
+          "Admin"
+        ],
+        "avatar": {
+          "img": {
+            "src": "lvqset0zdhj8vd5/painhax.png"
+          }
+        }
+      }
+    },
+    {
+      "lastModified": 1477863467000,
+      "name": "Talisdar",
+      "realm": "Gorgonnash",
+      "battlegroup": "Ruin",
+      "class": 5,
+      "race": 1,
+      "gender": 0,
+      "level": 110,
+      "achievementPoints": 22205,
+      "thumbnail": "gorgonnash/14/123622158-avatar.jpg",
+      "calcClass": "X",
+      "faction": 0,
+      "talents": [
+        {
+          "talents": [
+            {
+              "tier": 1,
+              "column": 1,
+              "spell": {
+                "id": 64129,
+                "name": "Body and Soul",
+                "icon": "spell_holy_symbolofhope",
+                "description": "Power Word: Shield and Leap of Faith increase your target's movement speed by 40% for 3 sec.",
+                "castTime": "Passive"
+              }
+            },
+            {
+              "tier": 0,
+              "column": 0,
+              "spell": {
+                "id": 109142,
+                "name": "Twist of Fate",
+                "icon": "spell_shadow_mindtwisting",
+                "description": "After healing a target below 35% health, you deal 20% increased damage and 20% increased healing for 10 sec.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Shadow",
+                "role": "DPS",
+                "backgroundImage": "bg-priest-shadow",
+                "icon": "spell_shadow_shadowwordpain",
+                "description": "Uses sinister Shadow magic, especially damage-over-time spells, to eradicate enemies.",
+                "order": 2
+              }
+            },
+            {
+              "tier": 4,
+              "column": 2,
+              "spell": {
+                "id": 162452,
+                "name": "Shadowy Insight",
+                "icon": "spell_shadow_possession",
+                "description": "Shadow Word: Pain periodic damage has a 10% chance to reset the remaining cooldown on Mind Blast and cause your next Mind Blast to be instant.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Shadow",
+                "role": "DPS",
+                "backgroundImage": "bg-priest-shadow",
+                "icon": "spell_shadow_shadowwordpain",
+                "description": "Uses sinister Shadow magic, especially damage-over-time spells, to eradicate enemies.",
+                "order": 2
+              }
+            },
+            {
+              "tier": 2,
+              "column": 1,
+              "spell": {
+                "id": 196704,
+                "name": "Psychic Voice",
+                "icon": "spell_shadow_psychichorrors",
+                "description": "Reduces the cooldown of Psychic Scream by 30 sec.",
+                "castTime": "Passive"
+              }
+            },
+            {
+              "tier": 3,
+              "column": 1,
+              "spell": {
+                "id": 199853,
+                "name": "Reaper of Souls",
+                "icon": "ability_warlock_soulswap",
+                "description": "Shadow Word: Death is now castable on targets below 35% health, and always generates Insanity as though it killed the target.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Shadow",
+                "role": "DPS",
+                "backgroundImage": "bg-priest-shadow",
+                "icon": "spell_shadow_shadowwordpain",
+                "description": "Uses sinister Shadow magic, especially damage-over-time spells, to eradicate enemies.",
+                "order": 2
+              }
+            },
+            {
+              "tier": 6,
+              "column": 0,
+              "spell": {
+                "id": 193225,
+                "name": "Legacy of the Void",
+                "icon": "inv_enchant_voidcrystal",
+                "description": "Voidform may be activated anytime your Insanity level is 70 or higher.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Shadow",
+                "role": "DPS",
+                "backgroundImage": "bg-priest-shadow",
+                "icon": "spell_shadow_shadowwordpain",
+                "description": "Uses sinister Shadow magic, especially damage-over-time spells, to eradicate enemies.",
+                "order": 2
+              }
+            },
+            {
+              "tier": 5,
+              "column": 0,
+              "spell": {
+                "id": 10060,
+                "name": "Power Infusion",
+                "icon": "spell_holy_powerinfusion",
+                "description": "Infuses you with power for 20 sec, increasing haste by 25% and reducing the mana cost of all spells by 20%.",
+                "castTime": "Instant",
+                "cooldown": "2 min cooldown"
+              },
+              "spec": {
+                "name": "Shadow",
+                "role": "DPS",
+                "backgroundImage": "bg-priest-shadow",
+                "icon": "spell_shadow_shadowwordpain",
+                "description": "Uses sinister Shadow magic, especially damage-over-time spells, to eradicate enemies.",
+                "order": 2
+              }
+            }
+          ],
+          "spec": {
+            "name": "Shadow",
+            "role": "DPS",
+            "backgroundImage": "bg-priest-shadow",
+            "icon": "spell_shadow_shadowwordpain",
+            "description": "Uses sinister Shadow magic, especially damage-over-time spells, to eradicate enemies.",
+            "order": 2
+          },
+          "calcTalent": "0111200",
+          "calcSpec": "b"
+        },
+        {
+          "selected": true,
+          "talents": [
+            {
+              "tier": 2,
+              "column": 0,
+              "spell": {
+                "id": 204263,
+                "name": "Shining Force",
+                "icon": "ability_paladin_blindinglight2",
+                "description": "Creates a burst of light around a friendly target, knocking away nearby enemies and slowing their movement speed by 70% for 3 sec.",
+                "range": "40 yd range",
+                "powerCost": "2.5% of base mana",
+                "castTime": "Instant",
+                "cooldown": "1 min cooldown"
+              }
+            },
+            {
+              "tier": 1,
+              "column": 0,
+              "spell": {
+                "id": 121536,
+                "name": "Angelic Feather",
+                "icon": "ability_priest_angelicfeather",
+                "description": "Places a feather at the target location, granting the first ally to walk through it 40% increased movement speed for 5 sec. Only 3 feathers can be placed at one time.  Maximum 3 charges.",
+                "range": "40 yd range",
+                "castTime": "Instant"
+              }
+            },
+            {
+              "tier": 3,
+              "column": 0,
+              "spell": {
+                "id": 196985,
+                "name": "Light of the Naaru",
+                "icon": "inv_pet_naaru",
+                "description": "Serendipity reduces the remaining cooldown on the appropriate Holy Word by an additional 2 sec.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Holy",
+                "role": "HEALING",
+                "backgroundImage": "bg-priest-holy",
+                "icon": "spell_holy_guardianspirit",
+                "description": "A versatile healer who can reverse damage on individuals or groups and even heal from beyond the grave.",
+                "order": 1
+              }
+            },
+            {
+              "tier": 4,
+              "column": 0,
+              "spell": {
+                "id": 109186,
+                "name": "Surge of Light",
+                "icon": "spell_holy_surgeoflight",
+                "description": "Your healing spells and Smite have a 8% chance to make your next Flash Heal instant and cost no mana. Maximum 2 charges.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Holy",
+                "role": "HEALING",
+                "backgroundImage": "bg-priest-holy",
+                "icon": "spell_holy_guardianspirit",
+                "description": "A versatile healer who can reverse damage on individuals or groups and even heal from beyond the grave.",
+                "order": 1
+              }
+            },
+            {
+              "tier": 5,
+              "column": 0,
+              "spell": {
+                "id": 197031,
+                "name": "Divinity",
+                "icon": "ability_priest_ascendance",
+                "description": "When you heal with a Holy Word spell, your healing is increased by 15% for 6 sec.",
+                "castTime": "Passive"
+              }
+            },
+            {
+              "tier": 0,
+              "column": 2,
+              "spell": {
+                "id": 193155,
+                "name": "Enlightenment",
+                "icon": "spell_arcane_mindmastery",
+                "description": "You regenerate mana 10% faster.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Holy",
+                "role": "HEALING",
+                "backgroundImage": "bg-priest-holy",
+                "icon": "spell_holy_guardianspirit",
+                "description": "A versatile healer who can reverse damage on individuals or groups and even heal from beyond the grave.",
+                "order": 1
+              }
+            },
+            {
+              "tier": 6,
+              "column": 1,
+              "spell": {
+                "id": 193157,
+                "name": "Benediction",
+                "icon": "spell_monk_diffusemagic",
+                "description": "Your Prayer of Mending has a 50% chance to leave a Renew on each target it heals.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Holy",
+                "role": "HEALING",
+                "backgroundImage": "bg-priest-holy",
+                "icon": "spell_holy_guardianspirit",
+                "description": "A versatile healer who can reverse damage on individuals or groups and even heal from beyond the grave.",
+                "order": 1
+              }
+            }
+          ],
+          "spec": {
+            "name": "Holy",
+            "role": "HEALING",
+            "backgroundImage": "bg-priest-holy",
+            "icon": "spell_holy_guardianspirit",
+            "description": "A versatile healer who can reverse damage on individuals or groups and even heal from beyond the grave.",
+            "order": 1
+          },
+          "calcTalent": "2000001",
+          "calcSpec": "Z"
+        },
+        {
+          "talents": [
+            {
+              "tier": 5,
+              "column": 1,
+              "spell": {
+                "id": 110744,
+                "name": "Divine Star",
+                "icon": "spell_priest_divinestar",
+                "description": "Throw a Divine Star forward 24 yds, healing allies in its path for 5,406 and dealing 8,710 Holy damage to enemies. After reaching its destination, the Divine Star returns to you, healing allies and damaging enemies in its path again.",
+                "range": "30 yd range",
+                "powerCost": "2.5% of base mana",
+                "castTime": "Instant",
+                "cooldown": "15 sec cooldown"
+              }
+            },
+            {
+              "tier": 1,
+              "column": 0,
+              "spell": {
+                "id": 121536,
+                "name": "Angelic Feather",
+                "icon": "ability_priest_angelicfeather",
+                "description": "Places a feather at the target location, granting the first ally to walk through it 40% increased movement speed for 5 sec. Only 3 feathers can be placed at one time.  Maximum 3 charges.",
+                "range": "40 yd range",
+                "castTime": "Instant"
+              }
+            },
+            {
+              "tier": 0,
+              "column": 0,
+              "spell": {
+                "id": 200347,
+                "name": "The Penitent",
+                "icon": "spell_priest_finalprayer",
+                "description": "Penance may be cast on a friendly target, healing them for 54,054 over 1.8 sec.",
+                "castTime": "Passive"
+              },
+              "spec": {
+                "name": "Discipline",
+                "role": "HEALING",
+                "backgroundImage": "bg-priest-discipline",
+                "icon": "spell_holy_powerwordshield",
+                "description": "Uses magic to shield allies from taking damage as well as heal their wounds.",
+                "order": 0
+              }
+            },
+            {
+              "tier": 6,
+              "column": 1,
+              "spell": {
+                "id": 200309,
+                "name": "Grace",
+                "subtext": "Passive",
+                "icon": "spell_holy_hopeandgrace",
+                "description": "Increases your non-Atonement healing and absorption by 30% on targets with Atonement.",
+                "castTime": "Passive"
+              }
+            },
+            {
+              "tier": 2,
+              "column": 1,
+              "spell": {
+                "id": 196704,
+                "name": "Psychic Voice",
+                "icon": "spell_shadow_psychichorrors",
+                "description": "Reduces the cooldown of Psychic Scream by 30 sec.",
+                "castTime": "Passive"
+              }
+            },
+            {
+              "tier": 3,
+              "column": 2,
+              "spell": {
+                "id": 123040,
+                "name": "Mindbender",
+                "icon": "spell_shadow_soulleech_3",
+                "description": "Summons a Mindbender to attack the target for 12 sec. You regenerate 0.50% of maximum mana each time the Mindbender attacks.",
+                "range": "40 yd range",
+                "castTime": "Instant",
+                "cooldown": "1 min cooldown"
+              }
+            },
+            {
+              "tier": 4,
+              "column": 1,
+              "spell": {
+                "id": 10060,
+                "name": "Power Infusion",
+                "icon": "spell_holy_powerinfusion",
+                "description": "Infuses you with power for 20 sec, increasing haste by 25% and reducing the mana cost of all spells by 20%.",
+                "castTime": "Instant",
+                "cooldown": "2 min cooldown"
+              }
+            }
+          ],
+          "spec": {
+            "name": "Discipline",
+            "role": "HEALING",
+            "backgroundImage": "bg-priest-discipline",
+            "icon": "spell_holy_powerwordshield",
+            "description": "Uses magic to shield allies from taking damage as well as heal their wounds.",
+            "order": 0
+          },
+          "calcTalent": "0012111",
+          "calcSpec": "a"
+        },
+        {
+          "talents": [],
+          "calcTalent": "",
+          "calcSpec": ""
+        }
+      ],
+      "totalHonorableKills": 92677,
+      "user": {
+        "name": "Talisdar",
+        "roles": [
+          "Officer",
+          "Guildy",
+          "Admin"
+        ],
+        "avatar": {
+          "img": {
+            "src": "kq1o7k6kmu4ztpr/fjork.png"
+          }
+        }
+      }
+    }
+  ]
+}

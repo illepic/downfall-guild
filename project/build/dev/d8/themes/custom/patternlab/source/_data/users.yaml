@@ -87,7 +87,7 @@ users:
     url: Faker.url
     avatar:
       img:
-        src: a9bzxt5iglvbscm/penny.png?dl=0
+        src: a9bzxt5iglvbscm/penny.png
   -
     name: Faker.name
     roles:
