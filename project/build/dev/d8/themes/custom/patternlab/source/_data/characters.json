@@ -1,1 +1,142 @@
-[{"lastModified":1480745078000,"name":"Elapsed","realm":"Gorgonnash","battlegroup":"Ruin","class":2,"race":3,"gender":0,"level":110,"achievementPoints":21410,"thumbnail":"gorgonnash\/132\/123613316-avatar.jpg","calcClass":"b","faction":0,"totalHonorableKills":10939,"spec":{"name":"Protection","role":"TANK","backgroundImage":"bg-paladin-protection","icon":"ability_paladin_shieldofthetemplar","description":"Uses Holy magic to shield himself and defend allies from attackers.","order":1}},{"lastModified":1480796376000,"name":"Hackman","realm":"Gorgonnash","battlegroup":"Ruin","class":2,"race":3,"gender":0,"level":110,"achievementPoints":23435,"thumbnail":"gorgonnash\/183\/123612343-avatar.jpg","calcClass":"b","faction":0,"totalHonorableKills":42899,"spec":{"name":"Retribution","role":"DPS","backgroundImage":"bg-paladin-retribution","icon":"spell_holy_auraoflight","description":"A righteous crusader who judges and punishes opponents with weapons and Holy magic.","order":2}},{"lastModified":1480815276000,"name":"Talisdar","realm":"Gorgonnash","battlegroup":"Ruin","class":5,"race":1,"gender":0,"level":110,"achievementPoints":22385,"thumbnail":"gorgonnash\/14\/123622158-avatar.jpg","calcClass":"X","faction":0,"totalHonorableKills":93059,"spec":{"name":"Holy","role":"HEALING","backgroundImage":"bg-priest-holy","icon":"spell_holy_guardianspirit","description":"A versatile healer who can reverse damage on individuals or groups and even heal from beyond the grave.","order":1}},{"lastModified":1479328460000,"name":"Valphie","realm":"Gorgonnash","battlegroup":"Ruin","class":1,"race":3,"gender":1,"level":65,"achievementPoints":22430,"thumbnail":"gorgonnash\/61\/123417149-avatar.jpg","calcClass":"Z","faction":0,"totalHonorableKills":3,"spec":{"name":"Protection","role":"TANK","backgroundImage":"bg-warrior-protection","icon":"ability_warrior_defensivestance","description":"A stalwart protector who uses a shield to safeguard himself and his allies.","order":2}},{"lastModified":1480737965000,"name":"Shadowind","realm":"Gorgonnash","battlegroup":"Ruin","class":3,"race":4,"gender":1,"level":110,"achievementPoints":21775,"thumbnail":"gorgonnash\/243\/123622899-avatar.jpg","calcClass":"Y","faction":0,"totalHonorableKills":75992,"spec":{"name":"Marksmanship","role":"DPS","backgroundImage":"bg-hunter-marksman","icon":"ability_hunter_focusedaim","description":"A master archer or sharpshooter who excels in bringing down enemies from afar.","order":1}},{"lastModified":1477833100000,"name":"Taladoor","realm":"Gorgonnash","battlegroup":"Ruin","class":12,"race":4,"gender":0,"level":100,"achievementPoints":22385,"thumbnail":"gorgonnash\/104\/178245992-avatar.jpg","calcClass":"g","faction":0,"totalHonorableKills":78,"spec":{"name":"Vengeance","role":"TANK","backgroundImage":"bg-warlock-demonology","icon":"ability_demonhunter_spectank","description":"Embraces the demon within to incinerate enemies and protect their allies.","order":1}}]
+{
+  "characters": [
+    {
+      "lastModified": 1480745078000,
+      "name": "Elapsed",
+      "realm": "Gorgonnash",
+      "battlegroup": "Ruin",
+      "class": 2,
+      "race": 3,
+      "gender": 0,
+      "level": 110,
+      "achievementPoints": 21410,
+      "thumbnail": "gorgonnash\/132\/123613316-avatar.jpg",
+      "calcClass": "b",
+      "faction": 0,
+      "totalHonorableKills": 10939,
+      "spec": {
+        "name": "Protection",
+        "role": "TANK",
+        "backgroundImage": "bg-paladin-protection",
+        "icon": "ability_paladin_shieldofthetemplar",
+        "description": "Uses Holy magic to shield himself and defend allies from attackers.",
+        "order": 1
+      }
+    },
+    {
+      "lastModified": 1480796376000,
+      "name": "Hackman",
+      "realm": "Gorgonnash",
+      "battlegroup": "Ruin",
+      "class": 2,
+      "race": 3,
+      "gender": 0,
+      "level": 110,
+      "achievementPoints": 23435,
+      "thumbnail": "gorgonnash\/183\/123612343-avatar.jpg",
+      "calcClass": "b",
+      "faction": 0,
+      "totalHonorableKills": 42899,
+      "spec": {
+        "name": "Retribution",
+        "role": "DPS",
+        "backgroundImage": "bg-paladin-retribution",
+        "icon": "spell_holy_auraoflight",
+        "description": "A righteous crusader who judges and punishes opponents with weapons and Holy magic.",
+        "order": 2
+      }
+    },
+    {
+      "lastModified": 1480815276000,
+      "name": "Talisdar",
+      "realm": "Gorgonnash",
+      "battlegroup": "Ruin",
+      "class": 5,
+      "race": 1,
+      "gender": 0,
+      "level": 110,
+      "achievementPoints": 22385,
+      "thumbnail": "gorgonnash\/14\/123622158-avatar.jpg",
+      "calcClass": "X",
+      "faction": 0,
+      "totalHonorableKills": 93059,
+      "spec": {
+        "name": "Holy",
+        "role": "HEALING",
+        "backgroundImage": "bg-priest-holy",
+        "icon": "spell_holy_guardianspirit",
+        "description": "A versatile healer who can reverse damage on individuals or groups and even heal from beyond the grave.",
+        "order": 1
+      }
+    },
+    {
+      "lastModified": 1479328460000,
+      "name": "Valphie",
+      "realm": "Gorgonnash",
+      "battlegroup": "Ruin",
+      "class": 1,
+      "race": 3,
+      "gender": 1,
+      "level": 65,
+      "achievementPoints": 22430,
+      "thumbnail": "gorgonnash\/61\/123417149-avatar.jpg",
+      "calcClass": "Z",
+      "faction": 0,
+      "totalHonorableKills": 3,
+      "spec": {
+        "name": "Protection",
+        "role": "TANK",
+        "backgroundImage": "bg-warrior-protection",
+        "icon": "ability_warrior_defensivestance",
+        "description": "A stalwart protector who uses a shield to safeguard himself and his allies.",
+        "order": 2
+      }
+    },
+    {
+      "lastModified": 1480737965000,
+      "name": "Shadowind",
+      "realm": "Gorgonnash",
+      "battlegroup": "Ruin",
+      "class": 3,
+      "race": 4,
+      "gender": 1,
+      "level": 110,
+      "achievementPoints": 21775,
+      "thumbnail": "gorgonnash\/243\/123622899-avatar.jpg",
+      "calcClass": "Y",
+      "faction": 0,
+      "totalHonorableKills": 75992,
+      "spec": {
+        "name": "Marksmanship",
+        "role": "DPS",
+        "backgroundImage": "bg-hunter-marksman",
+        "icon": "ability_hunter_focusedaim",
+        "description": "A master archer or sharpshooter who excels in bringing down enemies from afar.",
+        "order": 1
+      }
+    },
+    {
+      "lastModified": 1477833100000,
+      "name": "Taladoor",
+      "realm": "Gorgonnash",
+      "battlegroup": "Ruin",
+      "class": 12,
+      "race": 4,
+      "gender": 0,
+      "level": 100,
+      "achievementPoints": 22385,
+      "thumbnail": "gorgonnash\/104\/178245992-avatar.jpg",
+      "calcClass": "g",
+      "faction": 0,
+      "totalHonorableKills": 78,
+      "spec": {
+        "name": "Vengeance",
+        "role": "TANK",
+        "backgroundImage": "bg-warlock-demonology",
+        "icon": "ability_demonhunter_spectank",
+        "description": "Embraces the demon within to incinerate enemies and protect their allies.",
+        "order": 1
+      }
+    }
+  ]
+}

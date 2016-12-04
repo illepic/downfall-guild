@@ -1,23 +1,25 @@
 {
-  "lastModified": 1480745078000,
-  "name": "Elapsed",
-  "realm": "Gorgonnash",
-  "battlegroup": "Ruin",
-  "class": 2,
-  "race": 3,
-  "gender": 0,
-  "level": 110,
-  "achievementPoints": 21410,
-  "thumbnail": "gorgonnash\/132\/123613316-avatar.jpg",
-  "calcClass": "b",
-  "faction": 0,
-  "totalHonorableKills": 10939,
-  "spec": {
-    "name": "Protection",
-    "role": "TANK",
-    "backgroundImage": "bg-paladin-protection",
-    "icon": "ability_paladin_shieldofthetemplar",
-    "description": "Uses Holy magic to shield himself and defend allies from attackers.",
-    "order": 1
+  "character": {
+    "lastModified": 1480745078000,
+    "name": "Elapsed",
+    "realm": "Gorgonnash",
+    "battlegroup": "Ruin",
+    "class": 2,
+    "race": 3,
+    "gender": 0,
+    "level": 110,
+    "achievementPoints": 21410,
+    "thumbnail": "gorgonnash\/132\/123613316-avatar.jpg",
+    "calcClass": "b",
+    "faction": 0,
+    "totalHonorableKills": 10939,
+    "spec": {
+      "name": "Protection",
+      "role": "TANK",
+      "backgroundImage": "bg-paladin-protection",
+      "icon": "ability_paladin_shieldofthetemplar",
+      "description": "Uses Holy magic to shield himself and defend allies from attackers.",
+      "order": 1
+    }
   }
 }
