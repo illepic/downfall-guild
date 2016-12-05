@@ -1,0 +1,3 @@
+{% for role in ['TANK', 'DPS', 'HEALING'] %}
+  {% include "@atoms/wow-role/wow-role.twig" with { "role": role } only %}
+{% endfor %}

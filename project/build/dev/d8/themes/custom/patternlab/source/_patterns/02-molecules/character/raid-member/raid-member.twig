@@ -1,30 +1,26 @@
-{# Convert WoW class from id to name #}
-{% set wow_class = wow_class_lookup(character.class, classes) %}
+{#
+Full WoW Character object, merged with a Drupal User object
+{
+  "character": {
+    "class": 2
+  }
+}
+#}
 
-{# Have to search for spec #}
-{% set wow_spec = 'DPS' %}
-{% for spec in character.talents if spec.selected  %}
-  {#{{ dump(spec.spec) }}#}
-  {% set wow_spec = spec.spec %}
-{% endfor %}
-
-<pre>
-{#{{ dump(_context) }}#}
-</pre>
 <div class="character raid-member">
   <div class="raid-member__graphics">
     <div class="raid-member__class">
-
-      {% include "@atoms/character/wow-class-elaborate.twig" with { 'class_name': wow_class } %}
-
+      {% include "@atoms/wow-class/wow-class-elaborate.twig" with { 'class_id': character.class } %}
     </div>
     <div class="raid-member__character-avatar">
       <div class="raid-member__spec">
-        {% include "@atoms/character/wow-spec.twig" with { 'spec': wow_spec } %}
+
+        {% include "@atoms/wow-spec/wow-spec.twig" with { 'spec': character.spec } %}
+
         <div class="raid-member__role">
 
           {% set role = "TANK" %}
-          {% include "@atoms/character/wow-role/_wow-role.twig" with { 'role': wow_spec.role } %}
+          {% include "@atoms/wow-role/wow-role.twig" with { 'role': character.spec.role } %}
 
         </div>
       </div>
@@ -38,5 +34,5 @@
     </div>
     {% endif %}
   </div>
-  <h3 class="small raid-member__name wow-class wow-class--{{ wow_class|replace(' ', '-')|lower }}">{{ character.name }}</h3>
+  <h3 class="small raid-member__name wow-class wow-class--{{ wow_classes[character.class].name|replace(' ', '-')|lower }}">{{ character.name }}</h3>
 </div>
