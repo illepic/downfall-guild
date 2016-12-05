@@ -1,3 +1,12 @@
-{% for class_id, class_attributes in wow_classes %}
-  {% include "@atoms/character/wow-class/_wow-class.twig" with { 'class_name': class_attributes.name } %}
-{% endfor %}
+<div class="container">
+  <div class="row">
+    {% for class_id, class_attributes in wow_classes %}
+    <div class="col-md-3" {% if loop.index0 is divisible by(4) %}style="clear: left;"{% endif %}>
+      <pre>wow-class-simple.twig</pre>
+      {% include "@atoms/wow-class/wow-class-simple.twig" with { 'class_id': class_id } %}
+      <pre>wow-class-elaborate.twig</pre>
+      {% include "@atoms/wow-class/wow-class-elaborate.twig" with { 'class_id': class_id } %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
