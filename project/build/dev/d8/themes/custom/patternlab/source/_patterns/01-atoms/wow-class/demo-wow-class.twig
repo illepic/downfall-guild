@@ -1,0 +1,3 @@
+{% for class_id, class_attributes in wow_classes %}
+  {% include "@atoms/character/wow-class/_wow-class.twig" with { 'class_name': class_attributes.name } %}
+{% endfor %}

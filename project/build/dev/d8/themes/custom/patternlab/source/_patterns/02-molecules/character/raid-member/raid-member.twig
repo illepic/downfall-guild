@@ -8,19 +8,27 @@
   {% set wow_spec = spec.spec %}
 {% endfor %}
 
+<pre>
+{#{{ dump(_context) }}#}
+</pre>
 <div class="character raid-member">
   <div class="raid-member__graphics">
     <div class="raid-member__class">
-      {% include "@atoms/wow-icons/wow-class-elaborate.twig" with { 'class_name': wow_class } %}
+
+      {% include "@atoms/character/wow-class-elaborate.twig" with { 'class_name': wow_class } %}
+
     </div>
     <div class="raid-member__character-avatar">
       <div class="raid-member__spec">
-        {% include "@atoms/wow-icons/wow-spec.twig" with { 'spec': wow_spec } %}
+        {% include "@atoms/character/wow-spec.twig" with { 'spec': wow_spec } %}
         <div class="raid-member__role">
-          {% include "@atoms/wow-icons/wow-role/wow-role.twig" with { 'role': wow_spec.role } %}
+
+          {% set role = "TANK" %}
+          {% include "@atoms/character/wow-role/_wow-role.twig" with { 'role': wow_spec.role } %}
+
         </div>
       </div>
-      {% include "@atoms/wow-icons/wow-avatar.twig" with { 'character': character } %}
+      {% include "@atoms/character/wow-avatar.twig" with { 'character': character } %}
     </div>
     {% if character.user %}
     <div class="raid-member__df-avatar">

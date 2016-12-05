@@ -1,0 +1,18 @@
+{#
+Found in wow_classes, ie
+{
+  class_id: 1,
+  elaborate: true|false
+}
+Depends on folder structure in images folder, ie
+images/wow-class/elaborate|simple/class-name.png
+#}
+
+{% set class_name = wow_classes[class_id].name %}
+{% set image_variation = elaborate ? 'elaborate' : 'simple' %}
+
+<img
+  src="{{ paths.images }}/wow-class/{{ image_variation }}/{{ class_name|lower|replace(' ', '-') }}.png"
+  alt="{{ class_name }}"
+  class="img-responsive wow-class wow-class-img--{{ image_variation }}"
+/>

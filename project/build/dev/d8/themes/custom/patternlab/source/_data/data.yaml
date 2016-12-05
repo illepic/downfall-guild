@@ -10,7 +10,7 @@ text: Text
 site_title: Site Title
 site_slogan: Site Slogan
 paths:
-  root: "../../../.."
+  root: "../../../../"
   images: "../../../../images"
   bower: "../../../../bower_components"
   js: "../../../../js"
@@ -36,6 +36,61 @@ img:
     alt: A very large image
 api_classes: ''
 wow_classes:
+  0:
+    name: Example WoW Class
+    img:
+      simple: ''
+      elaborate: ''
+    spec:
+      DPS:
+        name: ''
+        icon: ''
+      TANK:
+        name: ''
+        icon: ''
+      HEALING:
+        name: ''
+        icon: ''
+  1:
+    name: Warrior
+    img:
+      simple: ''
+      elaborate: ''
+    spec:
+      DPS:
+        name: ''
+        icon: ''
+      TANK:
+        name: ''
+        icon: ''
+      HEALING:
+        name: ''
+        icon: ''
+  2:
+    name: Paladin
+    img:
+      simple: wow-class/simple/Ui-charactercreate-classes_paladin.png
+      elaborate: tp7t48g73gi1ux2/Paladin_crest.png
+    spec:
+      DPS:
+        name: ''
+        icon: ''
+      TANK:
+        name: ''
+        icon: ''
+      HEALING:
+        name: ''
+        icon: ''
+  3:
+  4:
+  5:
+  6:
+  7:
+  8:
+  9:
+  10:
+  11:
+  12:
   Death Knight:
     spec:
       Unholy:
