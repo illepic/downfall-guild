@@ -3,6 +3,10 @@ Full WoW Character object, merged with a Drupal User object
 {
   "character": {
     "class": 2
+    "spec": {
+      "icon": "path/to/icon",
+      "role": "TANK/DPS/HEAL"
+    }
   }
 }
 #}
@@ -34,5 +38,5 @@ Full WoW Character object, merged with a Drupal User object
     </div>
     {% endif %}
   </div>
-  <h3 class="small raid-member__name wow-class wow-class--{{ wow_classes[character.class].name|replace(' ', '-')|lower }}">{{ character.name }}</h3>
+  <h3 class="small text-center raid-member__name wow-class wow-class--{{ wow_classes[character.class].name|replace(' ', '-')|lower }}">{{ character.name }}</h3>
 </div>

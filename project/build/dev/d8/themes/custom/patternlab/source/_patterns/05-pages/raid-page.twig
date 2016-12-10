@@ -1,31 +1,46 @@
-{% extends "@templates/site-layout.twig" %}
+{% extends "@templates/site-layout--no-container.twig" %}
 
 {% block content %}
-  <div class="text-center raid">
+  <div class="raid">
 
-    <div class="raid-top row">
-
-      <div class="col-sm-12">
-        <h2 class="title">{{ characters|length }} Members</h2>
-      </div>
-
-      {% for character in characters %}
-        <div class="col-sm-2">
-          {% include "@molecules/character/raid-member/raid-member.twig" with {
-            'character': character
-          } %}
+    <div class="raid-top section">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 class="text-center">Various raid bits up here.</h1>
+          </div>
         </div>
-      {% endfor %}
+      </div>
+    </div>
 
-    </div> <!-- /.raid-top.row -->
+
+    <div class="raid-members section section-image" style="background-image: url({{ paths.images }}/backgrounds/priest-hall.jpg)">
+
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 class="title text-center">{{ characters|length }} {{ 'Members'|t }}</h2>
+          </div>
+        </div>
+
+        <div class="row">
+          {% for character in characters %}
+            <div class="col-sm-2">
+              {% include "@molecules/character/raid-member/raid-member.twig" with {
+              'character': character
+              } %}
+            </div>
+          {% endfor %}
+        </div>
+
+      </div> <!-- /.container -->
+
+    </div> <!-- /.raid-members -->
   </div> <!-- /.raid -->
 {% endblock %}
 
 {% block sub %}
   {#{% include "@organisms/sections/raid-grid.twig" with { 'raids': raids }%}#}
-{% endblock %}
-
-{% block sidebar %}
-  {% include "@molecules/profiles/profile-medium.twig" %}
-  {#{% include "@molecules/asides/thumbs-grid.twig" with sidebar.thumbs_grid %}#}
+  <h2>Sub stuff here.</h2>
 {% endblock %}
