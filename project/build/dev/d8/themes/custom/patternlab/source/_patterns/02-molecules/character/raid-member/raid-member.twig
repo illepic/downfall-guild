@@ -9,6 +9,8 @@ Full WoW Character object, merged with a Drupal User object
     }
   }
 }
+
+NOTE: This only looks good on a dark bg.
 #}
 
 <div class="character raid-member">
@@ -22,13 +24,11 @@ Full WoW Character object, merged with a Drupal User object
         {% include "@atoms/wow-spec/wow-spec.twig" with { 'spec': character.spec } %}
 
         <div class="raid-member__role">
-
-          {% set role = "TANK" %}
           {% include "@atoms/wow-role/wow-role.twig" with { 'role': character.spec.role } %}
+        </div> <!-- /.raid-member__role -->
 
-        </div>
       </div>
-      {% include "@atoms/character/wow-avatar.twig" with { 'character': character } %}
+      {% include "@atoms/wow-avatar/wow-avatar.twig" with { 'character': character } %}
     </div>
     {% if character.user %}
     <div class="raid-member__df-avatar">

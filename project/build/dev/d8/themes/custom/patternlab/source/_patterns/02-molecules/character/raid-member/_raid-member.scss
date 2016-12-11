@@ -1,6 +1,8 @@
 .raid-member {
   margin: 0 auto $padding-base;
   max-width: 250px;
+  height: 200px;
+  position: relative;
 }
 .raid-member__graphics {
   position: relative;
@@ -9,10 +11,14 @@
   //margin: 0 30px;
 }
 .raid-member__class {
-  //opacity: 0.5;
-  //&:hover {
-  //  opacity: 1;
-  //}
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  opacity: 0.75;
+  &:hover {
+    opacity: 1;
+  }
 }
 .raid-member__df-avatar,
 .raid-member__character-avatar {
