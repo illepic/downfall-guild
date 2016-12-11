@@ -19,16 +19,9 @@ NOTE: This only looks good on a dark bg.
       {% include "@atoms/wow-class/wow-class-elaborate.twig" with { 'class_id': character.class } %}
     </div>
     <div class="raid-member__character-avatar">
-      <div class="raid-member__spec">
-
-        {% include "@atoms/wow-spec/wow-spec.twig" with { 'spec': character.spec } %}
-
-        <div class="raid-member__role">
-          {% include "@atoms/wow-role/wow-role.twig" with { 'role': character.spec.role } %}
-        </div> <!-- /.raid-member__role -->
-
+      <div class="raid-member__wow-avatar">
+        {% include "@atoms/wow-avatar/wow-avatar.twig" with { 'character': character } %}
       </div>
-      {% include "@atoms/wow-avatar/wow-avatar.twig" with { 'character': character } %}
     </div>
     {% if character.user %}
     <div class="raid-member__df-avatar">
@@ -39,4 +32,13 @@ NOTE: This only looks good on a dark bg.
     {% endif %}
   </div>
   <h3 class="small text-center raid-member__name wow-class wow-class--{{ wow_classes[character.class].name|replace(' ', '-')|lower }}">{{ character.name }}</h3>
+  <div class="raid-member__spec">
+      <div class="raid-member__spec-icon">
+        {% include "@atoms/wow-spec/wow-spec.twig" with { 'spec': character.spec } %}
+        <div class="raid-member__role">
+          {% include "@atoms/wow-role/wow-role.twig" with { 'role': character.spec.role } %}
+        </div>
+      </div>
+    <div class="raid-member__spec-name">{{ character.spec.name }}</div>
+  </div>
 </div>

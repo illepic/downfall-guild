@@ -1,8 +1,8 @@
 .raid-member {
   margin: 0 auto $padding-base;
   max-width: 250px;
-  height: 200px;
-  position: relative;
+  //height: 200px;
+  //position: relative;
 }
 .raid-member__graphics {
   position: relative;
@@ -22,8 +22,8 @@
 }
 .raid-member__df-avatar,
 .raid-member__character-avatar {
-  width: 50%;
-  padding: 0 5%;
+  //width: 50%;
+  //padding: 0 5%;
   position: absolute;
   bottom: 0;
 }
@@ -32,11 +32,24 @@
 }
 .raid-member__character-avatar {
   left: 0;
+  width: 56px;
 }
 .raid-member__spec {
-  width: 66%;
-  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+}
+.raid-member__spec-icon {
+  //width: 66%;
+  //margin-bottom: 5px;
   position: relative;
+  width: 26px;
+  margin-right: 5px;
+}
+.raid-member__spec-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: rgba(255, 255, 255, 0.5);
 }
 .raid-member__role {
   position: absolute;
