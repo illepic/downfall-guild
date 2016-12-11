@@ -8,9 +8,11 @@ its own .section .container, .rows, .col-'s.
 {% include "@molecules/headers/header.twig" with header %}
 
 <div class="main main-raised">
-  {% block content %}
-    <h2>Site Content Here</h2>
-  {% endblock %}
+  {#<div class="section">#}
+    {% block content %}
+      <h2>Site Content Here</h2>
+    {% endblock %}
+  {#</div>#}
 </div> <!-- /.main -->
 
 <div class="container subsection">

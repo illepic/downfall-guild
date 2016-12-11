@@ -1,4 +1,4 @@
-pl: true # Let our patterns do a little customization for PL only
+#pl: true # Let our patterns do a little customization for PL only
 is_pl: true # Better than above, use this and refactor out the above
 title: Default data.yaml title key value
 teaser: Faker.paragraph()

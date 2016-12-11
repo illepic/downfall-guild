@@ -1,0 +1,7 @@
+<div class="{{ name }} full-bg full-bg--{{ name }} section section-image" style="background-image: url({{ image_path }});">
+  <div class="container">
+    {% block full_bg_content %}
+      <h1>Content here will exist inside container, but have a full bg.</h1>
+    {% endblock %}
+  </div>
+</div>

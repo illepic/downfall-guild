@@ -1,45 +1,54 @@
-{% extends "@templates/site-layout--no-container.twig" %}
+{% extends "@templates/site-layout.twig" %}
 
 {% block content %}
-  <div class="raid">
 
-    <div class="raid-top section">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <h1 class="text-center">Various raid bits up here.</h1>
-          </div>
+  {% embed "@organisms/layouts/section.twig" with {
+    name: 'raid-top',
+  } %}
+    {% block section_content %}
+      <div class="row">
+        <div class="col-sm-12">
+          <h1 class="text-center">Various raid bits up here.</h1>
         </div>
       </div>
-    </div>
+    {% endblock %}
+  {% endembed %}
 
-
-    <div class="raid-members section section-image" style="background-image: url({{ paths.images }}/backgrounds/priest-hall.jpg)">
-
-      <div class="container">
-
-        <div class="row">
-          <div class="col-sm-12">
-            <h2 class="title text-center">{{ characters|length }} {{ 'Members'|t }}</h2>
-          </div>
+  {% embed "@organisms/layouts/full-bg.twig" with {
+    name: 'raid-members',
+    image_path: paths.images ~ '/backgrounds/priest-hall.jpg',
+  } %}
+    {% block full_bg_content %}
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 class="title text-center">{{ characters|length }} {{ 'Members'|t }}</h2>
         </div>
+      </div>
 
-        <div class="row">
-          {% for character in characters %}
-            <div class="col-sm-2">
-              {% include "@molecules/character/raid-member/raid-member.twig" with {
+      <div class="row">
+        {% for character in characters %}
+          <div class="col-sm-2">
+            {% include "@molecules/character/raid-member/raid-member.twig" with {
               'character': character
-              } %}
-            </div>
-          {% endfor %}
+            } %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endblock %}
+  {% endembed %}
+
+  {% embed "@organisms/layouts/section.twig" with {
+    name: 'raid-bottom',
+  } %}
+    {% block section_content %}
+      <div class="row">
+        <div class="col-sm-12">
+          <h1 class="text-center">Raid bottom down here.</h1>
         </div>
+      </div>
+    {% endblock %}
+  {% endembed %}
 
-      </div> <!-- /.container -->
-
-    </div> <!-- /.raid-members -->
-
-    <div class="section"></div>
-  </div> <!-- /.raid -->
 {% endblock %}
 
 {% block sub %}
