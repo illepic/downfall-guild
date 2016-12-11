@@ -18,11 +18,6 @@ NOTE: This only looks good on a dark bg.
     <div class="raid-member__class">
       {% include "@atoms/wow-class/wow-class-elaborate.twig" with { 'class_id': character.class } %}
     </div>
-    <div class="raid-member__character-avatar">
-      <div class="raid-member__wow-avatar">
-        {% include "@atoms/wow-avatar/wow-avatar.twig" with { 'character': character } %}
-      </div>
-    </div>
     {% if character.user %}
     <div class="raid-member__df-avatar">
       <a href="{{ character.user.url }}">
@@ -31,14 +26,23 @@ NOTE: This only looks good on a dark bg.
     </div>
     {% endif %}
   </div>
-  <h3 class="small text-center raid-member__name wow-class wow-class--{{ wow_classes[character.class].name|replace(' ', '-')|lower }}">{{ character.name }}</h3>
-  <div class="raid-member__spec">
-      <div class="raid-member__spec-icon">
+
+  <div class="raid-member__details">
+    <div class="raid-member__details-left">
+      <div class="raid-member__character-avatar">
+        <div class="raid-member__wow-avatar">
+          {% include "@atoms/wow-avatar/wow-avatar.twig" with { 'character': character } %}
+        </div>
+      </div>
+    </div>
+    <div class="raid-member__details-right">
+      <div class="raid-member__spec" data-toggle="tooltip" data-placement="top" title="{{ character.spec.name }}">
         {% include "@atoms/wow-spec/wow-spec.twig" with { 'spec': character.spec } %}
         <div class="raid-member__role">
           {% include "@atoms/wow-role/wow-role.twig" with { 'role': character.spec.role } %}
         </div>
       </div>
-    <div class="raid-member__spec-name">{{ character.spec.name }}</div>
+      <p class="text-center raid-member__name wow-class wow-class--{{ wow_classes[character.class].name|replace(' ', '-')|lower }}">{{ character.name }}</p>
+    </div>
   </div>
 </div>
