@@ -29,10 +29,8 @@ NOTE: This only looks good on a dark bg.
 
   <div class="raid-member__details">
     <div class="raid-member__details-left">
-      <div class="raid-member__character-avatar">
-        <div class="raid-member__wow-avatar">
-          {% include "@atoms/wow-avatar/wow-avatar.twig" with { 'character': character } %}
-        </div>
+      <div class="raid-member__wow-avatar">
+        {% include "@atoms/wow-avatar/wow-avatar.twig" with { 'character': character } %}
       </div>
     </div>
     <div class="raid-member__details-right">

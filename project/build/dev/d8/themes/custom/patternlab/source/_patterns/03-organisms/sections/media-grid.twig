@@ -11,23 +11,34 @@
   {% endfor %}
 {% endif %}
 
-<div class="media-grid">
-  <div class="media-grid__top filter-top">
-    {% include "@molecules/navs/nav-tabs.twig" with {
-      links: [
-        {url: '#', text: 'All'},
-        {url: '#', text: 'Images'},
-        {url: '#', text: 'Videos'},
-      ]
-    }%}
-  </div>
-
-  <div class="media-grid__content row">
-    {% for thumb in thumbs %}
-      <div class="col-sm-3 thumb">
-        {% include "@molecules/thumbs/thumbnail-modal.twig" with { 'thumb': thumb } %}
+<div class="section media-grid">
+  <div class="container">
+    <div class="row media-grid__top">
+      <div class="col-sm-12">
+        <div class="filter-top">
+          {% include "@molecules/navs/nav-tabs.twig" with {
+            links: [
+              {url: '#', text: 'All'},
+              {url: '#', text: 'Images'},
+              {url: '#', text: 'Videos'},
+              ]
+          }%}
+        </div>
       </div>
-    {% endfor %}
+    </div>
+
+    <div class="media-grid__content row">
+      {% for thumb in thumbs %}
+        <div class="col-sm-3 thumb">
+          {% include "@molecules/thumbs/thumbnail-modal.twig" with { 'thumb': thumb } %}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        {% include "@atoms/navs/pagination.twig" %}
+      </div>
+    </div>
+
   </div>
-  {% include "@atoms/navs/pagination.twig" %}
 </div>

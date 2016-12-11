@@ -6,15 +6,14 @@ Found in wow_classes, ie
 }
 Depends on folder structure in images folder, ie
 images/wow-class/elaborate|simple/class-name.png
-
-I want this to also be able to take name of classes not id.
 #}
 
-{% set class_name = wow_classes[class_id].name %}
+{# If class_name is passed in, use it. Otherwise, look it up. Clean it. #}
+{% set class_name = (class_name ? class_name : wow_classes[class_id].name)|lower|replace(' ', '-') %}
 {% set image_variation = elaborate ? 'elaborate' : 'simple' %}
 
 <img
-  src="{{ paths.images }}/wow-class/{{ image_variation }}/{{ class_name|lower|replace(' ', '-') }}.png"
+  src="{{ paths.images }}/wow-class/{{ image_variation }}/{{ class_name }}.png"
   alt="{{ class_name }}"
   class="img-responsive wow-class wow-class-img--{{ image_variation }}"
 />
