@@ -1,22 +1,31 @@
 {% extends "@templates/site-layout.twig" %}
 
 {% block content %}
-  {% include "@organisms/sections/tracker/tracker.twig" with { 'nodes': nodes } %}
+
+  {% embed '@organisms/layouts/sidebar.twig' with { name: 'tracker' } %}
+
+    {% block sidebar_content %}
+      {% include "@organisms/sections/tracker/tracker.twig" with { 'nodes': nodes } %}
+    {% endblock %}
+
+    {% block sidebar_sidebar %}
+      {% include "@molecules/asides/comment-list.twig" with sidebar.comment_list %}
+       {#Grab all media nodes (only for demo purposes)#}
+      {% set thumbs = [] %}
+      {% for node in nodes if node.type == 'media' %}
+        {% set thumb = {
+        src: node.img.thumb.src,
+        full: node.img.landscape_large.src,
+        title: node.title,
+        } %}
+        {% set thumbs = thumbs|merge([thumb]) %}
+      {% endfor %}
+       {#Grab just six of the thumbs and pull in thumb_grid values#}
+      {% set thumbs_grid = sidebar.thumbs_grid|merge({ 'thumbs': thumbs[:6] }) %}
+      {% include "@molecules/asides/thumbs-grid.twig" with thumbs_grid %}
+    {% endblock %}
+  {% endembed %}
+
 {% endblock %}
 
-{% block sidebar %}
-  {% include "@molecules/asides/comment-list.twig" with sidebar.comment_list %}
-  {# Grab all media nodes (only for demo purposes) #}
-  {% set thumbs = [] %}
-  {% for node in nodes if node.type == 'media' %}
-    {% set thumb = {
-    src: node.img.thumb.src,
-    full: node.img.landscape_large.src,
-    title: node.title,
-    } %}
-    {% set thumbs = thumbs|merge([thumb]) %}
-  {% endfor %}
-  {# Grab just six of the thumbs and pull in thumb_grid values #}
-  {% set thumbs_grid = sidebar.thumbs_grid|merge({ 'thumbs': thumbs[:6] }) %}
-  {% include "@molecules/asides/thumbs-grid.twig" with thumbs_grid %}
-{% endblock %}
+

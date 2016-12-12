@@ -1,0 +1,16 @@
+<div class="{{ name }} section sidebar-layout">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        {% block sidebar_content %}
+          <h1>Sidebar content area</h1>
+        {% endblock %}
+      </div>
+      <div class="col-sm-4">
+        {% block sidebar_sidebar %}
+          <h1>Sidebar sidebar area</h1>
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+</div>
