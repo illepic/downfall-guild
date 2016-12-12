@@ -1,5 +1,5 @@
 {# Demo this in PL #}
-{% if pl and not thumbs %}
+{% if is_pl and not thumbs %}
   {% set thumbs = [] %}
   {% for node in nodes if node.type == 'media' %}
     {% set thumb = {
@@ -11,8 +11,8 @@
   {% endfor %}
 {% endif %}
 
-<div class="section media-grid">
-  <div class="container">
+<div class="media-grid">
+
     <div class="row media-grid__top">
       <div class="col-sm-12">
         <div class="filter-top">
@@ -40,5 +40,4 @@
       </div>
     </div>
 
-  </div>
 </div>

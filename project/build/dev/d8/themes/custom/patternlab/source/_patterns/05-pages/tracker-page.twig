@@ -6,7 +6,7 @@
 
     {% block sidebar_content %}
       {% include "@organisms/sections/tracker/tracker.twig" with { 'nodes': nodes } %}
-    {% endblock %}
+    {% endblock %} {# sidebar_content #}
 
     {% block sidebar_sidebar %}
       {% include "@molecules/asides/comment-list.twig" with sidebar.comment_list %}
@@ -23,9 +23,10 @@
        {#Grab just six of the thumbs and pull in thumb_grid values#}
       {% set thumbs_grid = sidebar.thumbs_grid|merge({ 'thumbs': thumbs[:6] }) %}
       {% include "@molecules/asides/thumbs-grid.twig" with thumbs_grid %}
-    {% endblock %}
-  {% endembed %}
+    {% endblock %} {# sidebar_sidebar #}
 
-{% endblock %}
+  {% endembed %} {# sidebar.twig #}
+
+{% endblock %} {# content #}
 
 

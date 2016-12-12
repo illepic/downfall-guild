@@ -1,36 +1,11 @@
 {% include "@organisms/site/site-nav/site-nav.twig" %}
-
 {% include "@molecules/headers/header.twig" with header %}
-
-{#{% set content_cols = sidebar ? 8 : 12 %}#}
 
 <div class="main main-raised">
 
   {% block content %}
     <h2>Site Content Here</h2>
   {% endblock %}
-
-  {#<div class="container">#}
-
-  {#<div class="row">#}
-  {#<div class="col-sm-{{ content_cols }}">#}
-  {#<div class="section">#}
-  {#{% block content %}#}
-  {#<h2>Site Content Here</h2>#}
-  {#{% endblock %}#}
-  {#</div>#}
-  {#</div>#}
-  {#{% if sidebar %}#}
-  {#<div class="col-sm-4">#}
-  {#<div class="section">#}
-  {#{% block sidebar %}#}
-  {#<h1>Sidebar content here</h1>#}
-  {#{% endblock %}#}
-  {#</div>#}
-  {#</div>#}
-  {#{% endif %}#}
-  {#</div> <!-- /.row -->#}
-  {#</div> <!-- /.container -->#}
 </div> <!-- /.main -->
 
 <div class="subsection">

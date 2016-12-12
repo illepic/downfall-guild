@@ -1,27 +1,27 @@
 {% extends "@templates/site-layout.twig" %}
 
 {% block content %}
-  <div class="text-center raid-hub">
 
-    <div class="features">
+  {% embed '@organisms/layouts/sidebar.twig' with {name: 'raid-hub-actions'} %}
+    {% block sidebar_content %}
       <div class="row">
         <div class="col-md-4">
-          <div class="info">
+          <div class="info text-center">
             <div class="icon">
               <i class="material-icons">person_add</i>
             </div>
             <h4 class="info-title">Add Character</h4>
             <p>Add a WoW character to your account that can sign up for <a href="#">Raids Groups</a> and Raid Events.</p>
             <p>{% include "@atoms/buttons/button.twig" with {
-                'button_color': 'success',
-                'button_text': 'Add Toon',
-                'button_size': 'large',
+              'button_color': 'success',
+              'button_text': 'Add Toon',
+              'button_size': 'large',
               }%}</p>
           </div>
         </div>
 
         <div class="col-md-4">
-          <div class="info">
+          <div class="info text-center">
             <div class="icon">
               <i class="material-icons">group</i>
             </div>
@@ -36,7 +36,7 @@
         </div>
 
         <div class="col-md-4">
-          <div class="info">
+          <div class="info text-center">
             <div class="icon">
               <i class="material-icons">event</i>
             </div>
@@ -50,15 +50,21 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    {% endblock %}
+
+    {% block sidebar_sidebar %}
+      {% include "@molecules/profiles/profile-medium.twig" %}
+    {% endblock %}
+  {% endembed %}
+
 {% endblock %}
 
 {% block sub %}
-  {% include "@organisms/sections/raid-grid.twig" with { 'raids': raids }%}
-{% endblock %}
 
-{% block sidebar %}
-  {% include "@molecules/profiles/profile-medium.twig" %}
-  {#{% include "@molecules/asides/thumbs-grid.twig" with sidebar.thumbs_grid %}#}
+  {% embed '@organisms/layouts/section.twig' with {name: 'raids'} %}
+    {% block section_content %}
+      {% include "@organisms/sections/raid-grid.twig" with { 'raids': raids }%}
+    {% endblock %}
+  {% endembed %}
+
 {% endblock %}
