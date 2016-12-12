@@ -28,14 +28,9 @@ node:
   comments:
     count: Faker.randomDigitNotNull
     new: true
-  node_attributes:
-    Attribute():
-      class:
-      - node
-      - node--full
-      - node--post
   fields:
-    media_top: atoms-image-landscape-full
+    media_top:
+      src: 3yohty80q4a4kxi/1080x608.jpg
 nodes:
   -
     pinned: true
@@ -63,12 +58,7 @@ nodes:
     comments:
       count: Faker.randomDigitNotNull
       new: true
-    node_attributes:
-      Attribute():
-        class:
-        - node
-        - node--full
-        - node--post
+      new: true
     fields:
       media_top: atoms-image-landscape-full
   -

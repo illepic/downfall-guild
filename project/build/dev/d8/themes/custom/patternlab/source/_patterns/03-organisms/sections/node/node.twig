@@ -1,4 +1,4 @@
-<div {{ node.node_attributes }}>
+<div class="node node--full node--post">
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 node-top-8">
@@ -22,14 +22,23 @@
       </div> <!-- /.col-md-10.col-md-offset-1 -->
     </div> <!-- /.row -->
 
+    {# This sucks, fix it. #}
     {% if node.fields.media_top %}
       <div class="row">
         <div class="col-sm-12 node-top-12">
           <div class="banner text-center">
             {#This will likely be a rendered atom#}
             <div class="banner__media">
-              {{ node.fields.media_top }}
-              {#<img class="img-rounded img-responsive img-raised" src="{{ node.fields.media_top.src }}">#}
+              {% block media_top %}
+                {% include '@atoms/images/image-landscape-full.twig' with {
+                  img: {
+                    landscape_full: {
+                      src: node.fields.media_top.src,
+                      alt: 'Image representing the title of this image'|t,
+                    }
+                  },
+                } %}
+              {% endblock %}
             </div>
           </div>
         </div>
