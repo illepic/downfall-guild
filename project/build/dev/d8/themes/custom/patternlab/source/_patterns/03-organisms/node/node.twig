@@ -22,12 +22,13 @@
       </div> <!-- /.col-md-10.col-md-offset-1 -->
     </div> <!-- /.row -->
 
+    {% if node.node_top %}
     <div class="row">
       <div class="col-sm-12 node-top__full">
 
         <div class="banner text-center">
           <div class="banner__media">
-            {% block media_top %}
+            {% block node_top %}
 
               {% include '@atoms/images/image-landscape-full.twig' with {
                 img: {
@@ -43,6 +44,7 @@
 
       </div>
     </div> <!-- /.row -->
+    {% endif %}
 
     <div class="node-body row">
       <div class="col-md-8 col-md-offset-2">
@@ -52,8 +54,9 @@
       </div>
     </div>
 
+    {% if node_supplemental %}
     <div class="banner__supplemental row">
-      {% block banner_supplemental %}
+      {% block node_supplemental %}
         {% for thumb in node.thumbs %}
           <div class="col-sm-2 thumb">
             {% include "@molecules/thumbs/thumbnail-link.twig" with { 'thumb': thumb } %}
@@ -61,6 +64,7 @@
         {% endfor %}
       {% endblock %}
     </div>
+    {% endif %}
 
     <div class="row node-bottom">
       <div class="col-md-8 col-md-offset-2">

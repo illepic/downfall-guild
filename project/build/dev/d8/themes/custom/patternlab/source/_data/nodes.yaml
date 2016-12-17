@@ -31,6 +31,8 @@ node:
   fields:
     media_top:
       src: 3yohty80q4a4kxi/1080x608.jpg
+  # Custom preprocess assumptions here
+  node_top: true
 nodes:
   -
     pinned: true
