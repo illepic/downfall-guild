@@ -12,7 +12,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ link['pages-homepage'] }}"><i class="icon--dflogo logo"></i> Downfall Guild</a>
+      <a class="navbar-brand" href="{{ link['pages-homepage'] }}">
+        <div class="navbar-brand__logo">{% include '@atoms/images/logo.twig' %}</div>
+        <div class="navbar-brand__site-name">{{ 'Downfall Guild'|t }}</div>
+      </a>
     </div>
 
     <div class="collapse navbar-collapse" id="navigation-example">

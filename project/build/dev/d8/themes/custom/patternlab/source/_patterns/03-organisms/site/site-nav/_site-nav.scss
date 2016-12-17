@@ -1,0 +1,18 @@
+.logo {
+  //transform: translateY(-3px);
+  //&::before {
+  //  font-size: 130%;
+  //}
+}
+.navbar-brand {
+  display: flex;
+}
+.navbar-brand__logo {
+  width: 25px;
+  margin-right: 5px;
+}
+
+// Material Kit override
+.navbar .navbar-nav > li > a .material-icons {
+  max-width: none;
+}
