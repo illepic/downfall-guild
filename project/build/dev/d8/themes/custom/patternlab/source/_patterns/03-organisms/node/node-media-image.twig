@@ -1,0 +1,20 @@
+{% embed '@organisms/node/node.twig' %}
+  {% block media_top %}
+    {% include '@atoms/images/image-landscape-full.twig' with {
+      img: {
+        landscape_full: {
+        src: node.fields.media_top.src,
+        alt: 'Image representing the title of this image'|t,
+        }
+      },
+    } %}
+  {% endblock %}
+
+  {% block banner_supplemental %}
+    {% for thumb in node.thumbs %}
+      <div class="col-sm-2 thumb">
+        {% include "@molecules/thumbs/thumbnail-link.twig" with { 'thumb': thumb } %}
+      </div>
+    {% endfor %}
+  {% endblock %}
+{% endembed %}

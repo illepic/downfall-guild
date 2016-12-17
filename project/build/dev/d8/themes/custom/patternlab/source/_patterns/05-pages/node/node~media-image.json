@@ -10,33 +10,9 @@
     }
   },
   "node": {
-    "node_attributes": {
-      "Attribute()": {
-        "class": [
-          "node",
-          "node-full",
-          "node-media",
-          "node-media--image"
-        ]
-      }
-    },
-
     "body": "<p>Some more body text below an image where the title is likely to already be up in the header.</p>",
     "test_pattern": "molecules-card-full-bg",
     "fields": {
-      "media_top": {
-        "include()": {
-          "pattern": "atoms-image-landscape-full",
-          "with": {
-            "img": {
-              "landscape_full": {
-                "src": "../../../../images/1080x608/WoWScrnShot_120913_094517.jpg",
-                "alt": "BALLOON TURTLE"
-              }
-            }
-          }
-        }
-      }
     },
     "thumbs": [
       {
@@ -70,6 +46,5 @@
         "title": "kill-1-thumb.png"
       }
     ]
-  },
-  "sidebar": false
+  }
 }

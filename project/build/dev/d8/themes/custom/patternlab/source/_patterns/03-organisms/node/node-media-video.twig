@@ -1,0 +1,13 @@
+{% embed '@organisms/node/node.twig' %}
+  {% block media_top %}
+    {% include '@atoms/video/video.twig' %}
+  {% endblock %}
+
+  {% block banner_supplemental %}
+    {% for thumb in node.thumbs %}
+      <div class="col-sm-2 thumb">
+        {% include "@molecules/thumbs/thumbnail-link.twig" with { 'thumb': thumb } %}
+      </div>
+    {% endfor %}
+  {% endblock %}
+{% endembed %}
