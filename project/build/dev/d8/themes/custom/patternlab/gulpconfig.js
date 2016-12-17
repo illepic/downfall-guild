@@ -89,14 +89,14 @@ module.exports = {
         allowVarValues: false,
       },
       {
-        src: 'source/_patterns/01-atoms/01-typography/fonts/_fonts.scss',
-        dest: 'source/_patterns/01-atoms/01-typography/fonts/font-sizes.json',
+        src: 'source/_patterns/00-base/02-typography/fonts/_fonts.scss',
+        dest: 'source/_patterns/00-base/02-typography/fonts/font-sizes.json',
         lineStartsWith: '$fs--',
         allowVarValues: false,
       },
       {
-        src: 'source/_patterns/01-atoms/01-typography/fonts/_fonts.scss',
-        dest: 'source/_patterns/01-atoms/01-typography/fonts/font-families.json',
+        src: 'source/_patterns/00-base/02-typography/fonts/_fonts.scss',
+        dest: 'source/_patterns/00-base/02-typography/fonts/font-families.json',
         lineStartsWith: '$ff--',
         allowVarValues: false,
       },
