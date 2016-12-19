@@ -9,24 +9,12 @@
   }
 }
 
-.banner {
+.node-full__top {
   margin-bottom: $padding-base * 3;
 
-  &__media {
-    margin-bottom: $padding-base * 3;
-
-    > .image-full {
-      margin: 0 auto;
-    }
+  .image-full {
+    margin: 0 auto;
   }
-  &__body-text {
-    margin-bottom: $padding-base * 2;
-  }
-  //&__supplemental {
-  //  .thumbnail {
-  //    margin-bottom: $padding-base;
-  //  }
-  //}
 }
 
 .node-full__actions {

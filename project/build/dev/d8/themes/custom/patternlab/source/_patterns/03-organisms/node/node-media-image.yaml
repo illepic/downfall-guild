@@ -1,5 +1,8 @@
 node:
   body: "<p>Some more body text below an image where the title is likely to already be up in the header.</p>"
+  fields:
+    media_top:
+      src: 3yohty80q4a4kxi/1080x608.jpg
   thumbs:
     -
       src: sylg7qafyxaqoz9/kill-4-thumb.png,

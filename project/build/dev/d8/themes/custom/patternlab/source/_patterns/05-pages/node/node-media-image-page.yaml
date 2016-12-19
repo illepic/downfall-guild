@@ -1,0 +1,29 @@
+header:
+  title: An image media node, note the thumbs to navigate through other images
+  teaser: false
+  img:
+    landscape_large:
+      src: uaiif9plzoewdim/bh0UYQx.png
+node:
+  body: "<p>Some more body text below an image where the title is likely to already be up in the header.</p>"
+  test_pattern: molecules-card-full-bg
+  fields: {}
+  thumbs:
+  - src: sylg7qafyxaqoz9/kill-4-thumb.png
+    full: 6nx70vg1fjjcytq/WoWScrnShot_070216_205829.jpg
+    title: kill-1-thumb.png
+  - src: a9wtoe71pd6ljfp/kill-1-thumb.png
+    full: 6nx70vg1fjjcytq/WoWScrnShot_070216_205829.jpg
+    title: kill-1-thumb.png
+  - src: 1z7dwj2c6cl2mj2/kill-2-thumb.png
+    full: 6nx70vg1fjjcytq/WoWScrnShot_070216_205829.jpg
+    title: kill-2-thumb.png
+  - src: mmox1x0af7cmwhm/300x300.png
+    full: 6nx70vg1fjjcytq/WoWScrnShot_070216_205829.jpg
+    title: ''
+  - src: 6sxbnxro1z1jha9/WoWScrnShot_073116_121145.jpg
+    full: 6nx70vg1fjjcytq/WoWScrnShot_070216_205829.jpg
+    title: kill-1-thumb.png
+  - src: 1ha4bfj3uylelj2/kill-3-thumb.png
+    full: 6nx70vg1fjjcytq/WoWScrnShot_070216_205829.jpg
+    title: kill-1-thumb.png

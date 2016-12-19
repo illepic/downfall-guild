@@ -1,0 +1,9 @@
+{% extends '@templates/site-layout.twig' %}
+
+{% block content %}
+  {% embed '@organisms/layouts/section.twig' with { 'name': 'node-page' } %}
+    {% block section_content %}
+      {% include '@organisms/node/node--text-only.twig' with { 'node': node }%}
+    {% endblock %}
+  {% endembed %}
+{% endblock %}

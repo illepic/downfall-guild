@@ -1,13 +1,18 @@
-{% embed '@organisms/node/node.twig' %}
-  {% block media_top %}
+{% embed '@organisms/node/_node.twig' with {
+'node': node|merge({ 'layout': { 'top': true, 'bottom': true } })
+}%}
+  {% block node_top %}
+    {# Need to get this dynamic, obviously #}
     {% include '@atoms/video/video.twig' %}
   {% endblock %}
 
-  {% block banner_supplemental %}
-    {% for thumb in node.thumbs %}
-      <div class="col-sm-2 thumb">
-        {% include "@molecules/thumbs/thumbnail-link.twig" with { 'thumb': thumb } %}
-      </div>
-    {% endfor %}
+  {% block node_bottom %}
+    <div class="row">
+      {% for thumb in node.thumbs %}
+        <div class="col-sm-2 thumb">
+          {% include "@molecules/thumbs/thumbnail-link.twig" with { 'thumb': thumb } %}
+        </div>
+      {% endfor %}
+    </div>
   {% endblock %}
 {% endembed %}

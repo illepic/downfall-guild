@@ -1,0 +1,13 @@
+{% embed '@organisms/node/_node.twig' with {
+  'node': node|merge({ 'layout': { 'top': true } })
+} %}
+
+  {% block node_top %}
+    {% include '@atoms/images/image-landscape-full.twig' with {
+      img: {
+        landscape_full: { src: node.fields.media_top.src, alt: node.title ~ ' image'|t, }
+      },
+    } %}
+  {% endblock %}
+
+{% endembed %}
