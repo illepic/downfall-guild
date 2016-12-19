@@ -3,7 +3,7 @@
 }%}
   {% block node_top %}
     {# Need to get this dynamic, obviously #}
-    {% include '@atoms/video/video.twig' %}
+    {% include '@atoms/video/video.twig' with { 'video': { 'src': node.video } } %}
   {% endblock %}
 
   {% block node_bottom %}

@@ -6,6 +6,7 @@ header:
       src: uaiif9plzoewdim/bh0UYQx.png
 node:
   body: "<p>Some more body text below a video where the title is likely to already be up in the header. Lorem ipsum dolor sit amet.</p>"
+  video: https://www.youtube.com/embed/eYNCCu0y-Is
   thumbs:
   - src: sylg7qafyxaqoz9/kill-4-thumb.png
     full: 6nx70vg1fjjcytq/WoWScrnShot_070216_205829.jpg

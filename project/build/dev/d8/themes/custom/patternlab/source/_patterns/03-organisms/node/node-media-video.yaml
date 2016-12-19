@@ -1,5 +1,6 @@
 node:
   body: "<p>Some more body text below an image where the title is likely to already be up in the header.</p>"
+  video: https://www.youtube.com/embed/MnSpispAP0M
   thumbs:
     -
       src: sylg7qafyxaqoz9/kill-4-thumb.png,
