@@ -4,10 +4,10 @@
   {% embed '@atoms/layout/section-container.twig' with { name : 'raid-hub-actions'} %}
 
     {% block section_container_content %}
-      {% embed '@atoms/layout/eight-four.twig' with { name: 'raid-hub-action' } %}
+      {% embed '@atoms/layout/columns-8-4.twig' with { name: 'raid-hub-action' } %}
 
         {% block first %}
-          {% embed '@atoms/layout/three-three-three.twig' with { name: 'raid-hub-action' } %}
+          {% embed '@atoms/layout/columns-4-4-4.twig' with { name: 'raid-hub-action' } %}
 
             {% block first %}
               {% include '@molecules/asides/info-block.twig' with {

@@ -135,10 +135,10 @@
     <div class="col-sm-12">
 
       <div class="sg-pattern-desc">
-        <p>Using our simple layouts now, we can start to mix and match. Here is three-three-three.twig</p>
+        <p>Using our simple layouts now, we can start to mix and match. Here is columns-4-4-4.twig</p>
         <pre>
 {% verbatim %}
-{% embed '@atoms/layout/three-three-three.twig' %}
+{% embed '@atoms/layout/columns-4-4-4.twig' %}
   {% block first %}
     test
   {% endblock %}
@@ -158,7 +158,7 @@
   </div>
 </div>
 
-{% embed '@atoms/layout/three-three-three.twig' %}
+{% embed '@atoms/layout/columns-4-4-4.twig' %}
   {% block first %}
     <div class="demo-column">First</div>
   {% endblock %}
@@ -180,7 +180,7 @@
 {% verbatim %}
 {% embed '@atoms/layout/container.twig' with { 'name': 'demo'} %}
   {% block container_content %}
-    {% embed '@atoms/layout/three-three-three.twig' %}
+    {% embed '@atoms/layout/columns-4-4-4.twig' %}
       {% block first %}
         First
       {% endblock %}
@@ -204,7 +204,7 @@
 
 {% embed '@atoms/layout/container.twig' with { 'name': 'demo'} %}
   {% block container_content %}
-    {% embed '@atoms/layout/three-three-three.twig' %}
+    {% embed '@atoms/layout/columns-4-4-4.twig' %}
       {% block first %}
         <div class="demo-column">First</div>
       {% endblock %}
@@ -223,12 +223,12 @@
     <div class="col-sm-12">
 
       <div class="sg-pattern-desc">
-        <p>The eight-four.twig layout. The classic "sidebar". </p>
+        <p>The columns-8-4.twig layout. The classic "sidebar". </p>
         <pre>
 {% verbatim %}
 {% embed '@atoms/layout/container.twig' with { 'name': 'demo'} %}
   {% block container_content %}
-    {% embed '@atoms/layout/eight-four.twig' %}
+    {% embed '@atoms/layout/columns-8-4.twig' %}
       {% block first %}
         First
       {% endblock %}
@@ -249,7 +249,7 @@
 
 {% embed '@atoms/layout/container.twig' with { 'name': 'demo'} %}
   {% block container_content %}
-    {% embed '@atoms/layout/eight-four.twig' with {'name': 'demo' } %}
+    {% embed '@atoms/layout/columns-8-4.twig' with {'name': 'demo' } %}
       {% block first %}
         <div class="demo-column">First</div>
       {% endblock %}

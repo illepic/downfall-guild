@@ -1,78 +1,105 @@
 <div class="node-full">
 
-  <div class="node-full__info row">
-    <div class="col-md-8 col-md-offset-2 node-top-8">
+  <div class="node-full__info">
+    {% embed '@atoms/layout/columns-8-offset-2.twig' with { name: 'node-full-info' } %}
+      {% block content %}
 
-      <div class="card card-plain">
-        <h1 class="hidden">{{ node.title }}</h1>
-        <div class="footer">
-          <div class="author">
-            <a href="#">
-              <img src="../../../../images/avatars/saedo.png" alt="..." class="avatar img-raised">
-              <span>Saedo</span>
-            </a>
+        <div class="card card-plain">
+          <h1 class="hidden">{{ node.title }}</h1>
+          <div class="footer">
+            <div class="author">
+              <a href="#">
+                <img src="../../../../images/avatars/saedo.png" alt="..." class="avatar img-raised">
+                <span>Saedo</span>
+              </a>
+            </div>
+            <div class="stats">
+              <a href="#comments">{{ node.comments.count }} comments</a> |
+              <span> {{ node.timestamp|date('l, F j, Y \\a\\t g:i a') }}</span>
+            </div>
           </div>
-          <div class="stats">
-            <a href="#comments">{{ node.comments.count }} comments</a> |
-            <span> {{ node.timestamp|date('l, F j, Y \\a\\t g:i a') }}</span>
-          </div>
-        </div>
-      </div> <!-- /.node-full__info -->
+        </div> <!-- /.node-full__info -->
 
-    </div> <!-- /.col-md-8.col-md-offset-2 -->
-  </div> <!-- /.node-full__info.row -->
+      {% endblock content %}
+    {% endembed %}
+  </div> <!-- /.node-full__info -->
 
   {% if node.layout.top %}
-    <div class="node-full__top row text-center">
-      <div class="col-sm-12">
+    <div class="node-full__top text-center">
 
+      {# This is required since we're double embedding from things like media node #}
+      {% set node_top_content %}
         {% block node_top %}
           {# Include any atoms/image-landscape-full or atoms/video here #}
         {% endblock %}
+      {% endset %}
+
+      {% embed '@atoms/layout/columns-12.twig' with { name: 'node-full-top' } %}
+        {% block content %}
+
+          {{ node_top_content }}
+
+        {% endblock content %}
+      {% endembed %}
+
+      <div class="col-sm-12">
 
       </div> <!-- /.col-sm-12 -->
     </div> <!-- /.node-full__top.row -->
   {% endif %}
 
-  <div class="node-full__body row">
-    <div class="col-md-8 col-md-offset-2">
-      {{ node.body|join }}
-    </div>
+  <div class="node-full__body">
+    {% embed '@atoms/layout/columns-8-offset-2.twig' with { name: 'node-full-body' } %}
+      {% block content %}
+
+        {{ node.body|join }}
+
+      {% endblock content %}
+    {% endembed %}
   </div>
 
   {% if node.layout.bottom %}
-    <div class="node-full__bottom row">
-      <div class="row">
-        <div class="col-sm-12">
+    <div class="node-full__bottom">
 
-          {% block node_bottom %}
-            {# Anything here, usually image thumbs #}
-          {% endblock %}
+      {# This is required since we're double embedding from things like media node #}
+      {% set node_bottom_content %}
+        {% block node_bottom %}
+          {# Anything here, usually image thumbs #}
+        {% endblock %}
+      {% endset %}
 
-        </div>
-      </div>
+      {% embed '@atoms/layout/columns-12.twig' with { name: 'node-full-bottom' } %}
+        {% block content %}
+
+          {{ node_bottom_content }}
+
+        {% endblock %}
+      {% endembed %}
+
     </div>
   {% endif %}
 
-    <div class="node-full__supplemental row">
-      <div class="col-md-8 col-md-offset-2">
+    <div class="node-full__supplemental">
+      {% embed '@atoms/layout/columns-8-offset-2.twig' with { name: 'node-full-supplemental' } %}
+        {% block content %}
 
-        <div class="node-full__tags">
-          {{ 'Tags'|t }}:
-          <span class="label label-info">Raids</span>
-          <span class="label label-default">Priest</span>
-          <span class="label label-rose">Event</span>
-        </div>
+          <div class="node-full__tags">
+            {{ 'Tags'|t }}:
+            <span class="label label-info">Raids</span>
+            <span class="label label-default">Priest</span>
+            <span class="label label-rose">Event</span>
+          </div>
 
-        <div class="node-full__actions">
-          {% include "@molecules/navs/actions.twig" %}
-        </div>
+          <div class="node-full__actions">
+            {% include "@molecules/navs/actions.twig" %}
+          </div>
 
-        <div id="comments" class="node-full__comments">
-          {% include "@organisms/sections/comments.twig" %}
-        </div>
+          <div id="comments" class="node-full__comments">
+            {% include "@organisms/sections/comments.twig" %}
+          </div>
 
-      </div>
+        {% endblock content %}
+      {% endembed %}
     </div>
 
 </div> <!-- /.node-full -->
