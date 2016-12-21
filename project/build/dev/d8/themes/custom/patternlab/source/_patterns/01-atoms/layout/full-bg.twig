@@ -1,0 +1,18 @@
+{# We have to send over custom content this way due to double embeds #}
+{% set full_bg_var %}
+  {% block full_bg_content %}
+    <h1>Full BG Content goes here </h1>
+  {% endblock %}
+{% endset %}
+
+{% embed '@atoms/layout/section.twig' with { 'name': name, 'image_path': image_path } %}
+  {% block section_content %}
+    {% embed '@atoms/layout/container.twig' with { 'name': name } %}
+      {% block container_content %}
+
+        {{ full_bg_var }}
+
+      {% endblock container_content %}
+    {% endembed %}
+  {% endblock section_content %}
+{% endembed %}

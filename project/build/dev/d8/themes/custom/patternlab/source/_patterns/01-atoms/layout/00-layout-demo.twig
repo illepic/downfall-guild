@@ -1,0 +1,127 @@
+<style>
+  .demo-container {
+    margin-bottom: 15px;
+  }
+  .demo-column {
+    background: lightgrey;
+    min-height: 100px;
+    border: 1px solid grey;
+  }
+</style>
+
+<div class="container section">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <div class="sg-pattern-desc">
+        <p>container.twig is **required** to add the wrapper .container class needed for Bootstrap</p>
+        <p>There can be only one .container class wrapper.</p>
+<pre>
+{% verbatim %}
+  {% embed '@atoms/layout/container.twig' with { 'name': 'demo' %}
+    {% block container_content %}
+      Include your patterns here that are wrapped in .row, usually another layout
+    {% endblock %}
+  {% endembed %}
+{% endverbatim %}
+</pre>
+        <p>Demo below:</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% embed '@atoms/layout/container.twig' with { 'name': 'demo' }%}
+  {% block container_content %}
+    <div class="demo-column">I am in a .container right now, but do not yet have a .row or .col-x-n</div>
+  {% endblock %}
+{% endembed %}
+
+{% embed '@atoms/layout/container.twig' with { 'name': 'demo' }%}
+  {% block container_content %}
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="demo-column">I am in a .container right now, but have been wrapped in .row > .col-sm-4</div>
+      </div>
+      <div class="col-sm-4">
+        <div class="demo-column">I am in a .container right now, but have been wrapped in .row > .col-sm-4</div>
+      </div>
+      <div class="col-sm-4">
+        <div class="demo-column">I am in a .container right now, but have been wrapped in .row > .col-sm-4</div>
+      </div>
+    </div>
+  {% endblock %}
+{% endembed %}
+
+<div class="container section">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <div class="sg-pattern-desc">
+        <p>section.twig just adds a bunch of padding to the top and bottom of a block</p>
+        <p>Sections and containers can contain each other.</p>
+        <pre>
+{% verbatim %}
+  {% embed '@atoms/layout/section.twig' with { 'name': 'demo' %}
+    {% block section_content %}
+      Section content goes here.
+    {% endblock %}
+  {% endembed %}
+{% endverbatim %}
+</pre>
+        <p>Demo below:</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% embed '@atoms/layout/section.twig' with { 'name': 'demo' }%}
+  {% block section_content %}
+    <div class="demo-column">
+      I am in a section. Notice the 70px of padding top.
+    </div>
+    {% embed '@atoms/layout/container.twig' with { 'name': 'demo'} %}
+      {% block container_content %}
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="demo-column">And I am a .row > .col-sm-12 embedded in a container within a section</div>
+          </div>
+        </div>
+      {% endblock %}
+    {% endembed %}
+  {% endblock %}
+{% endembed %}
+
+<div class="container section">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <div class="sg-pattern-desc">
+        <p>full-bg.twig gives us the 100% background image within a container utilizing the two layouts we just defined.</p>
+        <pre>
+{% verbatim %}
+  {% embed '@atoms/layout/section.twig' with { 'name': 'demo' %}
+    {% block section_content %}
+      Section content goes here.
+    {% endblock %}
+  {% endembed %}
+{% endverbatim %}
+</pre>
+        <p>Demo below:</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% embed '@atoms/layout/full-bg.twig' with {
+    'name': 'demo',
+    'image_path': paths.images ~ '/backgrounds/priest-hall.jpg'
+  }
+%}
+  {% block full_bg_content %}
+    <h1>Custom content within a Full BG Background, but not yet in a row+column</h1>
+  {% endblock %}
+
+{% endembed %}
