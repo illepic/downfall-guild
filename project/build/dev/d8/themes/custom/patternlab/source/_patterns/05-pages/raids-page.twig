@@ -1,70 +1,57 @@
 {% extends "@templates/site-layout.twig" %}
 
 {% block content %}
+  {% embed '@atoms/layout/section-container.twig' with { name : 'raid-hub-actions'} %}
 
-  {% embed '@organisms/layouts/sidebar.twig' with {name: 'raid-hub-actions'} %}
-    {% block sidebar_content %}
-      <div class="row">
-        <div class="col-md-4">
-          {# MAKE INFO BLOCK A MOLECULE #}
-          <div class="info text-center">
-            <div class="icon">
-              <i class="material-icons">person_add</i>
-            </div>
-            <h4 class="info-title">Add Character</h4>
-            <p>Add a WoW character to your account that can sign up for <a href="#">Raids Groups</a> and Raid Events.</p>
-            <p>{% include "@atoms/buttons/button.twig" with {
-              'button_color': 'success',
-              'button_text': 'Add Toon',
-              'button_size': 'large',
-              }%}</p>
-          </div>
-        </div>
+    {% block section_container_content %}
+      {% embed '@atoms/layout/eight-four.twig' with { name: 'raid-hub-action' } %}
 
-        <div class="col-md-4">
-          <div class="info text-center">
-            <div class="icon">
-              <i class="material-icons">group</i>
-            </div>
-            <h4 class="info-title">Join Raid Groups</h4>
-            <p>Add your WoW character to Downfall raid groups by clicking "Join" on any of the groups below.</p>
-            <p>{% include "@atoms/buttons/button.twig" with {
-              'button_color': 'primary',
-              'button_text': 'Example Raid',
-              'button_size': 'large',
-              }%}</p>
-          </div>
-        </div>
+        {% block first %}
+          {% embed '@atoms/layout/three-three-three.twig' with { name: 'raid-hub-action' } %}
 
-        <div class="col-md-4">
-          <div class="info text-center">
-            <div class="icon">
-              <i class="material-icons">event</i>
-            </div>
-            <h4 class="info-title">Signup for Events</h4>
-            <p>Navigate to any Raid Group to see and sign up for upcoming Raid Events.</p>
-            <p>{% include "@atoms/buttons/button.twig" with {
-              'button_color': 'primary',
-              'button_text': 'Example Event',
-              'button_size': 'large',
-              }%}</p>
-          </div>
-        </div>
-      </div>
-    {% endblock %}
+            {% block first %}
+              {% include '@molecules/asides/info-block.twig' with {
+                icon: 'add_character',
+                title: 'Add Character'|t,
+                byline: 'Add a WoW character to your account that can sign up for <a href="#">Raids Groups</a> and Raid Events.'|t,
+                button: { text: 'Add Toon'|t, color: 'success' }
+              } %}
+            {% endblock first %}
 
-    {% block sidebar_sidebar %}
-      {% include "@molecules/profiles/profile-medium.twig" %}
-    {% endblock %}
+            {% block second %}
+              {% include '@molecules/asides/info-block.twig' with {
+                icon: 'raid_group',
+                title: 'Join Raid Groups'|t,
+                byline: 'Add your WoW character to Downfall raid groups by clicking "Join" on any of the groups below.'|t,
+                button: { text: 'Example Raid'|t, color: 'primary' }
+              } %}
+            {% endblock %}
+            {% block third %}
+              {% include '@molecules/asides/info-block.twig' with {
+                icon: 'event_calendar',
+                title: 'Signup for Events'|t,
+                byline: 'Navigate to any Raid Group to see and sign up for upcoming Raid Events.'|t,
+                button: { text: 'Example Event'|t, color: 'primary' }
+              } %}
+            {% endblock %}
+          {% endembed %}
+        {% endblock first %}
+
+        {% block second %}
+          {% include "@molecules/profiles/profile-medium.twig" %}
+        {% endblock second %}
+
+      {% endembed %}
+    {% endblock section_container_content %}
   {% endembed %}
 
 {% endblock %}
 
 {% block sub %}
 
-  {% embed '@organisms/layouts/section.twig' with {name: 'raids'} %}
-    {% block section_content %}
-      {% include "@organisms/sections/raid-grid.twig" with { 'raids': raids }%}
+  {% embed '@atoms/layout/section-container.twig' with { name: 'raids' } %}
+    {% block section_container_content %}
+      {% include "@organisms/sections/raid-grid.twig" with { raids: raids }%}
     {% endblock %}
   {% endembed %}
 

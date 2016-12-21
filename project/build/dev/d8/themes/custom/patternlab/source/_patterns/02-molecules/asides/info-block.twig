@@ -1,0 +1,12 @@
+<div class="info text-center">
+  <div class="icon">
+    <i class="material-icons">{{ attribute(icons, icon) }}</i>
+  </div>
+  <h4 class="info-title">{{ title }}</h4>
+  <p>{{ byline }}</p>
+  <p>{% include "@atoms/buttons/button.twig" with {
+    'button_color': button.color,
+    'button_text': button.text,
+    'button_size': 'large',
+    }%}</p>
+</div>

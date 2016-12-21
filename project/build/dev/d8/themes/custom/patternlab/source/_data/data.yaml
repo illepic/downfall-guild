@@ -93,6 +93,7 @@ icons:
   post: format_align_left
   media: collections
   event: event_note
+  event_calendar: event
   play: play_arrow
   video: movie
   image: collections
@@ -101,6 +102,7 @@ icons:
   add_character: person_add
   add: add
   check: check
+  raid_group: group
 video:
   src: https://www.youtube.com/embed/nnjGw9ZL3QQ
 raids:
