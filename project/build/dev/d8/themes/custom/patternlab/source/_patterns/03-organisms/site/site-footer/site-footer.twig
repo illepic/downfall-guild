@@ -37,7 +37,7 @@
           <div class="officers-grid row">
 
             {% for user in users if 'Officer' in user.roles %}
-              <div class="col-md-3">
+              <div class="col-xs-3">
                 <a class="thumbnail" href="{{ user.url }}" data-toggle="tooltip" data-placement="top" title="{{ user.name }} | {{ user.roles|join(', ') }}">
                   <img src="{{ img_path(user.avatar.img.src, is_pl) }}" alt="{{ user.name }}" class="img img-responsive img-raised img-rounded"/>
                 </a>

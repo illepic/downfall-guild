@@ -3,7 +3,7 @@
 {% block content %}
 
   {# Top stats/actions for a raid page #}
-  {% embed "@organisms/layouts/section.twig" with {
+  {% embed "@atoms/layout/section.twig" with {
     name: 'raid-top',
   } %}
     {% block section_content %}
@@ -16,7 +16,7 @@
   {% endembed %}
 
   {# Raid member grid #}
-  {% embed "@organisms/layouts/full-bg.twig" with {
+  {% embed "@atoms/layout/full-bg.twig" with {
     name: 'raid-members',
     image_path: paths.images ~ '/backgrounds/priest-hall.jpg',
   } %}
@@ -40,9 +40,7 @@
   {% endembed %}
 
   {# Raid bottom for news and stuff #}
-  {% embed "@organisms/layouts/section.twig" with {
-    name: 'raid-bottom',
-  } %}
+  {% embed "@atoms/layout/section.twig" with { name: 'raid-bottom' } %}
     {% block section_content %}
       <div class="row">
         <div class="col-sm-12">
@@ -52,8 +50,9 @@
     {% endblock %}
   {% endembed %}
 
-{% endblock %}
+{% endblock content %}
 
 {% block sub %}
-  <h2>Sub stuff here.</h2>
+  {% embed '@atoms/layout/section-container.twig' with { 'name': 'raid-activity' } %}
+  {% endembed %}
 {% endblock %}

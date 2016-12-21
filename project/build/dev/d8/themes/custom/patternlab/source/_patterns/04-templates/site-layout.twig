@@ -10,27 +10,31 @@
 
 <div class="subsection">
   {% block sub %}
+    {% embed '@atoms/layout/section-container.twig' with { 'name': 'raid-activity' } %}
+      {% block section_container_content %}
 
-    {% embed '@organisms/layouts/section.twig' with { name: 'raid-activity' } %}
-      {% block section_content %}
         <div class="row">
           <div class="col-sm-12">
             <h2 class="title text-center">Downfall Raid Stuff</h2>
             <br>
           </div>
-          <div class="col-sm-4">
-            {% include "@molecules/cards/card-white.twig" with subsection.left %}
-          </div>
-          <div class="col-sm-4">
-            {% include "@molecules/cards/card-white.twig" with subsection.middle %}
-          </div>
-          <div class="col-sm-4">
-            {% include "@molecules/cards/card-white.twig" with subsection.right %}
-          </div>
         </div>
-      {% endblock %}
+
+        {% embed '@atoms/layout/three-three-three.twig' with { 'name': 'raid-activity'} %}
+          {% block first %}
+            {% include "@molecules/cards/card-white.twig" with subsection.left %}
+          {% endblock %}
+          {% block second %}
+            {% include "@molecules/cards/card-white.twig" with subsection.middle %}
+          {% endblock %}
+          {% block third %}
+            {% include "@molecules/cards/card-white.twig" with subsection.right %}
+          {% endblock %}
+        {% endembed %}
+
+      {% endblock section_container_content %}
     {% endembed %}
-  {% endblock %}
+  {% endblock sub %}
 </div>
 
 {% include "@organisms/site/site-footer/site-footer.twig" %}

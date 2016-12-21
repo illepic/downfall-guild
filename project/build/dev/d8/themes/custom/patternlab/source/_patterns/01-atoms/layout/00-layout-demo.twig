@@ -40,17 +40,17 @@
 
 {% embed '@atoms/layout/container.twig' with { 'name': 'demo' }%}
   {% block container_content %}
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="demo-column">I am in a .container right now, but have been wrapped in .row > .col-sm-4</div>
-      </div>
-      <div class="col-sm-4">
-        <div class="demo-column">I am in a .container right now, but have been wrapped in .row > .col-sm-4</div>
-      </div>
-      <div class="col-sm-4">
-        <div class="demo-column">I am in a .container right now, but have been wrapped in .row > .col-sm-4</div>
-      </div>
+
+    <div class="col-sm-4">
+      <div class="demo-column">I am in a .container right now, but have been wrapped in .row > .col-sm-4</div>
     </div>
+    <div class="col-sm-4">
+      <div class="demo-column">I am in a .container right now, but have been wrapped in .row > .col-sm-4</div>
+    </div>
+    <div class="col-sm-4">
+      <div class="demo-column">I am in a .container right now, but have been wrapped in .row > .col-sm-4</div>
+    </div>
+
   {% endblock %}
 {% endembed %}
 
@@ -83,10 +83,8 @@
     </div>
     {% embed '@atoms/layout/container.twig' with { 'name': 'demo'} %}
       {% block container_content %}
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="demo-column">And I am a .row > .col-sm-12 embedded in a container within a section</div>
-          </div>
+        <div class="col-sm-12">
+          <div class="demo-column">And I am a .row > .col-sm-12 embedded in a container within a section</div>
         </div>
       {% endblock %}
     {% endembed %}
@@ -101,11 +99,17 @@
         <p>full-bg.twig gives us the 100% background image within a container utilizing the two layouts we just defined.</p>
         <pre>
 {% verbatim %}
-  {% embed '@atoms/layout/section.twig' with { 'name': 'demo' %}
-    {% block section_content %}
-      Section content goes here.
-    {% endblock %}
-  {% endembed %}
+
+{% embed '@atoms/layout/full-bg.twig' with {
+    'name': 'demo',
+    'image_path': paths.images ~ '/backgrounds/priest-hall.jpg'
+  }
+%}
+  {% block full_bg_content %}
+    Custom content within a Full BG Background, but not yet in a row+column
+  {% endblock %}
+
+{% endembed %}
 {% endverbatim %}
 </pre>
         <p>Demo below:</p>
@@ -124,4 +128,134 @@
     <h1>Custom content within a Full BG Background, but not yet in a row+column</h1>
   {% endblock %}
 
+{% endembed %}
+
+<div class="container section">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <div class="sg-pattern-desc">
+        <p>Using our simple layouts now, we can start to mix and match. Here is three-three-three.twig</p>
+        <pre>
+{% verbatim %}
+{% embed '@atoms/layout/three-three-three.twig' %}
+  {% block first %}
+    test
+  {% endblock %}
+  {% block second %}
+    test
+  {% endblock %}
+  {% block third %}
+    test
+  {% endblock %}
+{% endembed %}
+{% endverbatim %}
+</pre>
+        <p>Demo below:</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% embed '@atoms/layout/three-three-three.twig' %}
+  {% block first %}
+    <div class="demo-column">First</div>
+  {% endblock %}
+  {% block second %}
+    <div class="demo-column">Second</div>
+  {% endblock %}
+  {% block third %}
+    <div class="demo-column">Third</div>
+  {% endblock %}
+{% endembed %}
+
+<div class="container section">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <div class="sg-pattern-desc">
+        <p>But it only looks correct when placed in a container</p>
+        <pre>
+{% verbatim %}
+{% embed '@atoms/layout/container.twig' with { 'name': 'demo'} %}
+  {% block container_content %}
+    {% embed '@atoms/layout/three-three-three.twig' %}
+      {% block first %}
+        First
+      {% endblock %}
+      {% block second %}
+        Second
+      {% endblock %}
+      {% block third %}
+        Third
+      {% endblock %}
+    {% endembed %}
+  {% endblock container_content %}
+{% endembed %}
+{% endverbatim %}
+</pre>
+        <p>Demo below:</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% embed '@atoms/layout/container.twig' with { 'name': 'demo'} %}
+  {% block container_content %}
+    {% embed '@atoms/layout/three-three-three.twig' %}
+      {% block first %}
+        <div class="demo-column">First</div>
+      {% endblock %}
+      {% block second %}
+        <div class="demo-column">Second</div>
+      {% endblock %}
+      {% block third %}
+        <div class="demo-column">Third</div>
+      {% endblock %}
+    {% endembed %}
+  {% endblock container_content %}
+{% endembed %}
+
+<div class="container section">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <div class="sg-pattern-desc">
+        <p>The eight-four.twig layout. The classic "sidebar". </p>
+        <pre>
+{% verbatim %}
+{% embed '@atoms/layout/container.twig' with { 'name': 'demo'} %}
+  {% block container_content %}
+    {% embed '@atoms/layout/eight-four.twig' %}
+      {% block first %}
+        First
+      {% endblock %}
+      {% block second %}
+        Second
+      {% endblock %}
+    {% endembed %}
+  {% endblock container_content %}
+{% endembed %}
+{% endverbatim %}
+</pre>
+        <p>Demo below:</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% embed '@atoms/layout/container.twig' with { 'name': 'demo'} %}
+  {% block container_content %}
+    {% embed '@atoms/layout/eight-four.twig' with {'name': 'demo' } %}
+      {% block first %}
+        <div class="demo-column">First</div>
+      {% endblock %}
+      {% block second %}
+        <div class="demo-column">Second</div>
+      {% endblock %}
+    {% endembed %}
+  {% endblock container_content %}
 {% endembed %}

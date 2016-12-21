@@ -1,7 +1,4 @@
-{% set bg = image_path ? 'style="background-image: url(' ~ image_path ~ ')"' : false %}
-{% set bg_classes = bg ? 'section-image full-bg full-bg--' ~ name %}
-
-<div class="section section--{{ name }} {{ bg_classes }}" {{ bg }}>
+<div class="section section--{{ name }}">
   {% block section_content %}
     <h1>Section content goes here</h1>
   {% endblock %}
