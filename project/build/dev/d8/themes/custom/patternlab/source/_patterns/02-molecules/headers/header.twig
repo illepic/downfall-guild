@@ -2,7 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <img src="//wow.zamimg.com/images/wow/icons/large/ability_warrior_battleshout.jpg" class="raid-card__icon-img img-circle img-raised"/>
+
+        {% block header_media %}
+          {#<img src="//wow.zamimg.com/images/wow/icons/large/ability_warrior_battleshout.jpg" class="raid-card__icon-img img-circle img-raised"/>#}
+        {% endblock header_media %}
+
         <h1 class="title">{{ title|escape }}</h1>
         <h4>{{  teaser }}</h4>
       </div>

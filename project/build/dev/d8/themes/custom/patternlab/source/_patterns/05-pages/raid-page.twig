@@ -5,19 +5,34 @@
   {# Top stats/actions for a raid page #}
   {% embed "@atoms/layout/section-container.twig" with { name: 'raid-top' } %}
     {% block section_container_content %}
-      <div class="row">
-        <div class="col-sm-12">
-          <h1 class="text-center">Various raid bits up here.</h1>
-        </div>
-      </div>
+
+      {% embed '@atoms/layout/columns-8-4.twig' with { name: 'raid-top' } %}
+        {% block first %}
+
+          <h2 class="title">{{ 'Latest'|t }}</h2>
+
+          {% set pinned_post = nodes[0] %}
+          {# Move the following logic to a single template (do this in tracker #}
+          {% set type = pinned_post.type == 'media' ? 'media' : 'default' %}
+          {% include "@molecules/cards/card-tracker-" ~ type ~ ".twig" with pinned_post %}
+
+        {% endblock first %}
+
+        {% block second %}
+          <h2 class="title">{{ 'Events'|t }}</h2>
+        {% endblock %}
+      {% endembed %}
+
     {% endblock %}
   {% endembed %}
 
   {# Raid member grid #}
-  {% embed "@atoms/layout/full-bg.twig" with {
-    name: 'raid-members',
-    image_path: paths.images ~ '/backgrounds/priest-hall.jpg',
-  } %}
+  {% embed "@atoms/layout/full-bg.twig" with
+    {
+      name: 'raid-members',
+      image_path: paths.images ~ '/backgrounds/priest-hall.jpg',
+    }
+  %}
     {% block full_bg_content %}
       <div class="row">
         <div class="col-sm-12">
