@@ -125,7 +125,22 @@
   }
 %}
   {% block full_bg_content %}
-    <h1>Custom content within a Full BG Background, but not yet in a row+column</h1>
+    <h1 class="title">Custom content within a Full BG Background, but not yet in a row+column</h1>
+  {% endblock %}
+
+{% endembed %}
+
+{% embed '@atoms/layout/full-bg.twig' with {
+'name': 'demo',
+'image_path': paths.images ~ '/backgrounds/priest-hall.jpg'
+}
+%}
+  {% block full_bg_content %}
+    {% embed '@atoms/layout/columns-12.twig' with { name: 'demo'} %}
+      {% block content %}
+        <h1 class="title">Now content within a columns-12 layout. </h1>
+      {% endblock content %}
+    {% endembed %}
   {% endblock %}
 
 {% endembed %}
@@ -259,3 +274,41 @@
     {% endembed %}
   {% endblock container_content %}
 {% endembed %}
+
+
+<div class="container section">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <div class="sg-pattern-desc">
+        <p>The columns-8-offset-2 layout. Centers content with 2 columns left/right. </p>
+        <pre>
+{% verbatim %}
+{% embed '@atoms/layout/container.twig' with { 'name': 'demo'} %}
+  {% block container_content %}
+    {% embed '@atoms/layout/columns-8-offset-2.twig' with { name: 'demo' } %}
+      {% block content %}
+        Content in 8 columns in the center of 12.
+      {% endblock content %}
+    {% endembed %}
+  {% endblock container_content %}
+{% endembed %}
+{% endverbatim %}
+</pre>
+        <p>Demo below:</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% embed '@atoms/layout/container.twig' with { 'name': 'demo'} %}
+  {% block container_content %}
+    {% embed '@atoms/layout/columns-8-offset-2.twig' with { name: 'demo' } %}
+      {% block content %}
+        <div class="demo-column">Content in 8 columns in the center of 12.</div>
+      {% endblock content %}
+    {% endembed %}
+  {% endblock container_content %}
+{% endembed %}
+
