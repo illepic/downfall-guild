@@ -1,58 +1,55 @@
-{% extends "@templates/site-layout.twig" %}
+{% extends "@templates/site-layout-container.twig" %}
 
-{% block content %}
-  {% embed '@atoms/layout/section-container.twig' with { name : 'raid-hub-actions'} %}
+{% block site_layout_container_content %}
 
-    {% block section_container_content %}
-      {% embed '@atoms/layout/columns-8-4.twig' with { name: 'raid-hub-action' } %}
+  {% embed '@atoms/layout/columns-8-4.twig' with { name: 'raid-hub-action' } %}
+
+    {% block first %}
+      {% embed '@atoms/layout/columns-4-4-4.twig' with { name: 'raid-hub-action' } %}
 
         {% block first %}
-          {% embed '@atoms/layout/columns-4-4-4.twig' with { name: 'raid-hub-action' } %}
-
-            {% block first %}
-              {% include '@molecules/asides/info-block.twig' with {
-                icon: 'add_character',
-                title: 'Add Character'|t,
-                byline: 'Add a WoW character to your account that can sign up for <a href="#">Raids Groups</a> and Raid Events.'|t,
-                button: { text: 'Add Toon'|t, color: 'success' }
-              } %}
-            {% endblock first %}
-
-            {% block second %}
-              {% include '@molecules/asides/info-block.twig' with {
-                icon: 'raid_group',
-                title: 'Join Raid Groups'|t,
-                byline: 'Add your WoW character to Downfall raid groups by clicking "Join" on any of the groups below.'|t,
-                button: { text: 'Example Raid'|t, color: 'primary' }
-              } %}
-            {% endblock %}
-            {% block third %}
-              {% include '@molecules/asides/info-block.twig' with {
-                icon: 'event_calendar',
-                title: 'Signup for Events'|t,
-                byline: 'Navigate to any Raid Group to see and sign up for upcoming Raid Events.'|t,
-                button: { text: 'Example Event'|t, color: 'primary' }
-              } %}
-            {% endblock %}
-          {% endembed %}
+          {% include '@molecules/asides/info-block.twig' with {
+            icon: 'add_character',
+            title: 'Add Character'|t,
+            byline: 'Add a WoW character to your account that can sign up for <a href="#">Raids Groups</a> and Raid Events.'|t,
+            button: { text: 'Add Toon'|t, color: 'success' }
+          } %}
         {% endblock first %}
 
         {% block second %}
-          {% include "@molecules/profiles/profile-medium.twig" %}
+          {% include '@molecules/asides/info-block.twig' with {
+            icon: 'raid_group',
+            title: 'Join Raid Groups'|t,
+            byline: 'Add your WoW character to Downfall raid groups by clicking "Join" on any of the groups below.'|t,
+            button: { text: 'Example Raid'|t, color: 'primary' }
+          } %}
         {% endblock second %}
 
-      {% endembed %}
-    {% endblock section_container_content %}
-  {% endembed %}
+        {% block third %}
+          {% include '@molecules/asides/info-block.twig' with {
+            icon: 'event_calendar',
+            title: 'Signup for Events'|t,
+            byline: 'Navigate to any Raid Group to see and sign up for upcoming Raid Events.'|t,
+            button: { text: 'Example Event'|t, color: 'primary' }
+          } %}
+        {% endblock third %}
 
-{% endblock %}
+      {% endembed %}
+    {% endblock first %}
+
+    {% block second %}
+      {% include "@molecules/profiles/profile-medium.twig" %}
+    {% endblock second %}
+
+  {% endembed %}
+{% endblock site_layout_container_content %}
 
 {% block sub %}
-
   {% embed '@atoms/layout/section-container.twig' with { name: 'raids' } %}
+
     {% block section_container_content %}
       {% include "@organisms/sections/raid-grid.twig" with { raids: raids }%}
-    {% endblock %}
-  {% endembed %}
+    {% endblock section_container_content %}
 
+  {% endembed %}
 {% endblock %}

@@ -1,9 +1,5 @@
-{% extends "@templates/site-layout.twig" %}
+{% extends "@templates/site-layout-container.twig" %}
 
-{% block content %}
-  {% embed '@atoms/layout/section-container.twig' with { 'name': 'media-grid-wrapper' } %}
-    {% block section_container_content %}
-      {% include "@organisms/sections/media-grid.twig" %}
-    {% endblock %}
-  {% endembed %}
-{% endblock %}
+{% block site_layout_container_content %}
+  {% include "@organisms/sections/media-grid.twig" %}
+{% endblock site_layout_container_content %}

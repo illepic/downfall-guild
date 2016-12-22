@@ -1,0 +1,17 @@
+{% extends "@templates/site-layout.twig" %}
+
+{# Let's use the original site layout but assume .section > .container #}
+{% set site_layout_content_var %}
+  {% block site_layout_container_content %}
+    Default site_layout_container_content
+  {% endblock %}
+{% endset %}
+
+{# Block from original site-layout.twig #}
+{% block content %}
+  {% embed '@atoms/layout/section-container.twig' with { name: page_class } %}
+    {% block section_container_content %}
+      {{ site_layout_content_var }}
+    {% endblock %}
+  {% endembed %}
+{% endblock content %}

@@ -10,7 +10,7 @@
 
     {% if latest %}
     <p class="card-description">
-      <strong>Latest:</strong><br>
+      <strong>{{ 'Latest'|t }}:</strong><br>
       <i class="material-icons raid-card__latest-icon">{{ attribute(icons, latest.type)|default('post') }}</i> <span>{{ latest.title }}</span>
     </p>
     {% endif %}

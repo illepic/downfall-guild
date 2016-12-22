@@ -1,10 +1,6 @@
-{% extends "@templates/site-layout.twig" %}
+{% extends "@templates/site-layout-container.twig" %}
 
-{% block content %}
-  {% embed '@atoms/layout/section-container.twig' with { name: 'node-page' } %}
-    {% block section_container_content %}
-      {% include "@organisms/node/node-full.twig" with { node: node } %}
-    {% endblock %}
-  {% endembed %}
+{% block site_layout_container_content %}
+  {% include "@organisms/node/node-full.twig" with { node: node } %}
 {% endblock %}
 

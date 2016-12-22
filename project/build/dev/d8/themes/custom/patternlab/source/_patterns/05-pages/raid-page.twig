@@ -3,10 +3,8 @@
 {% block content %}
 
   {# Top stats/actions for a raid page #}
-  {% embed "@atoms/layout/section.twig" with {
-    name: 'raid-top',
-  } %}
-    {% block section_content %}
+  {% embed "@atoms/layout/section-container.twig" with { name: 'raid-top' } %}
+    {% block section_container_content %}
       <div class="row">
         <div class="col-sm-12">
           <h1 class="text-center">Various raid bits up here.</h1>
