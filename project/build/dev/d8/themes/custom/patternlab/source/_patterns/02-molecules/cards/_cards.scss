@@ -104,3 +104,13 @@
 .raid-card__latest-icon {
   font-size: inherit;
 }
+
+.card--vertical {
+  flex-direction: column;
+  .card-tracker__left {
+    margin-right: 0;
+  }
+  .card-title {
+    display: inline;
+  }
+}

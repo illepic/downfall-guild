@@ -103,6 +103,7 @@ icons:
   add: add
   check: check
   raid_group: group
+type: post
 video:
   src: https://www.youtube.com/embed/nnjGw9ZL3QQ
 raids:

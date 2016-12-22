@@ -11,17 +11,31 @@
 
           <h2 class="title">{{ 'Latest'|t }}</h2>
 
-          {% set pinned_post = nodes[0] %}
-          {# Move the following logic to a single template (do this in tracker #}
-          {% set type = pinned_post.type == 'media' ? 'media' : 'default' %}
-          {% include "@molecules/cards/card-tracker-" ~ type ~ ".twig" with pinned_post %}
+          {% for pinned_post in nodes[:1] %}
+            {# Move the following logic to a single template (do this in tracker #}
+            {% set type = pinned_post.type == 'media' ? 'media' : 'default' %}
+            {% include "@molecules/cards/card-tracker-" ~ type ~ ".twig" with pinned_post %}
+          {% endfor %}
 
         {% endblock first %}
 
         {% block second %}
           <h2 class="title">{{ 'Events'|t }}</h2>
+
+          {% include '@molecules/cards/card-tracker-default.twig' with {
+            type: 'event',
+            img: false,
+            card_vertical: true
+          } %}
+
         {% endblock %}
       {% endembed %}
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 class="title text-center">Progress</h2>
+        </div>
+      </div>
 
     {% endblock %}
   {% endembed %}
@@ -53,11 +67,25 @@
   {% endembed %}
 
   {# Raid bottom for news and stuff #}
-  {% embed "@atoms/layout/section.twig" with { name: 'raid-bottom' } %}
-    {% block section_content %}
+  {% embed "@atoms/layout/section-container.twig" with { name: 'raid-bottom' } %}
+    {% block section_container_content %}
       <div class="row">
-        <div class="col-sm-12">
-          <h1 class="text-center">Raid bottom down here.</h1>
+        <div class="col-sm-4">
+          <h2 class="title">All Raid Posts</h2>
+          {# Take 6 posts off and merge with sidebar values #}
+          {% for node in nodes[:6] %}
+            {% include '@molecules/cards/card-list.twig' with node %}
+          {% endfor %}
+
+          <div class="text-center">
+            {% include '@atoms/buttons/button.twig' with {
+              button_text: "Read More",
+              button_color: "primary",
+              button_round: true,
+              button_icon: "post"
+            } %}
+          </div>
+
         </div>
       </div>
     {% endblock %}
