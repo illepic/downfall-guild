@@ -44,13 +44,19 @@
         {% block second %}
           <h2 class="title">{{ 'Events'|t }}</h2>
 
-          {#
-          {% include '@molecules/cards/card-tracker-default.twig' with {
-            type: 'event',
-            img: false,
-            card_vertical: true
-          } %}
-          #}
+          <div class="card card-background card--" style="background-image: url('https://dl.dropboxusercontent.com/s/r5y5rxjcpik7je6/540829-the-emerald-nightmare.jpg')">
+            <div class="content">
+              <i class="material-icons">event</i>
+              <h6 class="category text-info">The Emerald Nightmare</h6>
+              <h3 class="card-title">Saturday, September 14, 2017 @ 9:00 PT</h3>
+              <p class="card-description">
+                Don't forget your gear and achievement goals.
+              </p>
+              <a href="#pablo" class="btn btn-success btn-round">
+                <i class="material-icons">add</i> Sign Up
+              </a>
+            </div>
+          </div>
 
         {% endblock %}
       {% endembed %}
@@ -88,7 +94,7 @@
   {# Raid bottom for news and stuff #}
   {% embed "@atoms/layout/section-container.twig" with { name: 'raid-bottom' } %}
     {% block section_container_content %}
-      
+
     {% endblock %}
   {% endembed %}
 
