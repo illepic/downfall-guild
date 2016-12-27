@@ -4,14 +4,26 @@
   .card-description {
     @include link-muted();
 
-    display: flex;
     a {
-      display: block;
-      margin-left: $padding-base;
+      display: inline-block;
+      margin-left: 5px;
     }
   }
   .author {
     margin-bottom: 0;
+  }
+
+  &__icon {
+    vertical-align: bottom;
+  }
+}
+.card-list--single-line {
+  .card__description,
+  .card__author {
+    display: inline-block;
+  }
+  p {
+    margin: 0;
   }
 }
 

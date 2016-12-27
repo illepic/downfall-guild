@@ -1,9 +1,9 @@
-<div class="card card-plain card-list">
-  <p class="card-description">
+<div class="card card-plain card-list {% if single_line %}card-list--single-line{% endif %}">
+  <p class="card__description card-description">
     <i class="material-icons card-list__icon">{{ attribute(icons, type) }}</i>
     <a href="#">{{ title }}</a>
   </p>
-  <p class="author small">
+  <p class="card__author author small">
     about 2 days ago by <a href="#"><b>{{ user.name }}</b></a> in <span class="text-default">Priest</span>, <span class="text-success">Guild</span>
   </p>
 </div>
