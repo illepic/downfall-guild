@@ -113,14 +113,14 @@ To pull down all files from the D6 site and restore the database locally (this i
 
 1. `ssh` into webfaction and archive-dump the whole site. Run the following from root of repo:
 
-        ssh USERNAME@direct.illepic.com
-        cd webapps/downfall_drupal/sites/www.downfallguild.org
+        ssh USERNAME@direct.downfallguild.org
+        cd webapps/downfall_d6/sites/www.downfallguild.org
         drush -v archive-dump www.downfallguild.org --destination=/home/illepic/dfmigrate/df.tar.gz --overwrite
         exit
 
 2. `rsync` down the dfmigrate folder from webfaction. Run the following from root of repo (see: `start.sh`):
 
-        rsync -zvrP USERNAME@direct.illepic.com:dfmigrate/ project/dfmigrate/
+        rsync -zvrP USERNAME@direct.downfallguild.org:dfmigrate/ project/dfmigrate/
 
     Or simply grab a provided archive from Dropbox and restore it to `project/dfmigrate` so that the path to the archive is `project/dfmigrate/df.tar.gz`
 
