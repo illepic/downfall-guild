@@ -1,0 +1,82 @@
+{
+    "name": "drupal-composer/drupal-project",
+    "description": "Project template for Drupal 8 projects with composer",
+    "type": "project",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "",
+            "role": ""
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
+    "require": {
+        "composer/installers": "^1.2",
+        "cweagans/composer-patches": "^1.6",
+        "drupal-composer/drupal-scaffold": "^2.2",
+        "drupal/console": "^1.0.2",
+        "drupal/core": "~8.4",
+        "drush/drush": "^9.0.0",
+        "webflo/drupal-finder": "^1.0.0",
+        "webmozart/path-util": "^2.3"
+    },
+    "require-dev": {
+        "webflo/drupal-core-require-dev": "~8.4"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "classmap": [
+            "scripts/composer/ScriptHandler.php"
+        ]
+    },
+    "scripts": {
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "post-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "dfmigrate:databases_create": [
+            "drush sql-create --db-su=root --db-su-pw=root --db-url=\"mysql://root:root@127.0.0.1/downfall_d8\" --yes",
+            "drush sql-create --db-su=root --db-su-pw=root --db-url=\"mysql://root:root@127.0.0.1/migrate\" --yes"
+        ],
+        "dfmigrate:install_d8": [
+            "drupal site:install standard --langcode=\"en\" --db-type=\"mysql\" --db-host=\"127.0.0.1\" --db-name=\"downfall_d8\" --db-user=\"root\" --db-pass=\"root\" --db-port=\"3306\" --site-name=\"Drupal 8\" --site-mail=\"admin@example.com\" --account-name=\"admin\" --account-mail=\"admin@example.com\" --account-pass=\"admin\" --force --no-interaction"
+        ],
+        "dfmigrate:local_settings": [
+            "cat ../config/enable_local_settings.txt >> web/sites/default/settings.php"
+        ],
+        "dfmigrate:symlinks": [
+            "cd web/sites/default/ && ln -sf ../../../../config/settings.local.php"
+        ]
+    },
+    "extra": {
+        "installer-paths": {
+            "web/core": ["type:drupal-core"],
+            "web/libraries/{$name}": ["type:drupal-library"],
+            "web/modules/contrib/{$name}": ["type:drupal-module"],
+            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "web/themes/contrib/{$name}": ["type:drupal-theme"],
+            "drush/contrib/{$name}": ["type:drupal-drush"]
+        }
+    }
+}

@@ -4,12 +4,8 @@
 # Packages
 node_modules
 
-# Keep drupal generated folders around for web roots
-#project/web/drupal/d*/*
-#!project/web/drupal/d*/.gitkeep
 project/web/*
 !project/web/.gitkeep
 
-drupal-vm
-project/dfmigrate
 gh-pages
+import

@@ -182,5 +182,75 @@ Install to clean starting point:
 
 In regards to Group permissions:
 
-- Group node (Post): edit/view/create/delete is ONLY about that intermediary relationship entity
-- Post: edit/view/create/delete is full node privvies
+* Group node (Post): edit/view/create/delete is ONLY about that intermediary relationship entity
+* Post: edit/view/create/delete is full node privvies
+
+# 2018 Updates
+
+## From scratch:
+
+**All command run from folder also containing `composer.json`.**
+
+Run dependency installation:
+
+```bash
+composer install
+```
+
+Make two databases, `downfall_d8` and `migrate`:
+
+```bash
+composer dfmigrate:databases_create
+```
+
+Install D8:
+
+```bash
+composer dfmigrate:install_d8
+```
+
+Add `migrate` db to D8 settings:
+
+```bash
+chmod 777 web/sites/default/settings.php && \
+vendor/bin/drupal database:add --database=migrate --username=root --password=root --prefix=demo_ --host=localhost --driver=mysql --port=3306 && \
+chmod 555 web/sites/default/settings.php
+```
+
+## Initialize: D6
+
+Pull down all files from the D6 site and restore the database locally. Ensure the CloudFlare DNS settings have opened the `direct.downfallguild.org` entry.
+
+1. `ssh` into webfaction and archive-dump the whole site. Run the following from root of repo:
+
+    ```bash
+    ssh USERNAME@direct.downfallguild.org
+    cd webapps/downfall_d6/sites/www.downfallguild.org
+    drush -v archive-dump www.downfallguild.org --destination=/home/illepic/dfmigrate/df.tar.gz --overwrite
+    exit
+    ```
+
+2. `rsync` down the dfmigrate folder from webfaction. Run the following from root of repo:
+
+    ```bash
+    rsync -zvrP USERNAME@direct.downfallguild.org:dfmigrate/ import/
+    ```
+
+    Or simply grab a provided archive from Dropbox and restore it to `import/` so that the path to the archive is `import/df.tar.gz`
+
+3. Extract archive. Run from root of project:
+
+    ```bash
+    tar -xvzf import/df.tar.gz -C import/
+    ```
+
+4. Import the d6 database. Run from sibling to composer.json:
+
+    ```bash
+    vendor/bin/drush sql-cli --db-url="mysql://root:root@127.0.0.1/migrate" < ../import/downfall_d6.sql
+    ```
+
+4. Copy over our local d6.local.downfallguild.org site settings file. Run the following from the root of the repo  (see: `start.sh`):
+
+        echo "Are you at the root of the repo right now?"
+        cp -R config/d6/ project/web/d6
