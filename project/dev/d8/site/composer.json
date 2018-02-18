@@ -21,7 +21,13 @@
         "drupal-composer/drupal-scaffold": "^2.2",
         "drupal/console": "^1.0.2",
         "drupal/core": "~8.4",
+        "drupal/devel": "^1.2",
+        "drupal/entity_browser": "2.x-dev",
+        "drupal/field_group": "^1.0",
         "drupal/group": "^1.0@RC",
+        "drupal/migrate_plus": "^2.0",
+        "drupal/migrate_tools": "^2.0",
+        "drupal/migrate_upgrade": "^2.0",
         "drush/drush": "^9.0.0",
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3"
@@ -67,7 +73,7 @@
             "cat ../config/enable_local_settings.txt >> web/sites/default/settings.php"
         ],
         "dfmigrate:symlinks": [
-            "cd web/sites/default/ && ln -sf ../../../../config/settings.local.php",
+            "cd web/sites/default/ && ln -sf ../../../../config/settings.local.php"
         ]
     },
     "extra": {
