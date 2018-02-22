@@ -1,0 +1,17 @@
+uuid: 0089a90a-9dcb-47a8-9958-049ad8eec03b
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.raid_group
+  enforced:
+    config:
+      - user.role.friend
+id: raid_group-ed26a9437
+label: Friend
+weight: 6
+internal: true
+audience: outsider
+group_type: raid_group
+permissions_ui: false
+permissions: {  }

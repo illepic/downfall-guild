@@ -1,0 +1,17 @@
+uuid: 7a29a6be-5d91-46e1-893d-e1088c678280
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.private_group
+  enforced:
+    config:
+      - user.role.webdev
+id: private_group-e1361be63
+label: WebDev
+weight: 4
+internal: true
+audience: outsider
+group_type: private_group
+permissions_ui: false
+permissions: {  }

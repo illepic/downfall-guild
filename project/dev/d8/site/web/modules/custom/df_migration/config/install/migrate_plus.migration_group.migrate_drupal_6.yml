@@ -12,8 +12,8 @@ shared_configuration:
     key: drupal_6
     database:
       driver: mysql
-      username: dfdbuser
-      password: dfdbpass
+      username: root
+      password: root
       host: localhost
       port: ''
       database: downfall_d6

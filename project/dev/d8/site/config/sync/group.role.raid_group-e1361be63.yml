@@ -1,0 +1,17 @@
+uuid: 10a6fe8a-85f3-4575-a705-7a1ebf9d1021
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.raid_group
+  enforced:
+    config:
+      - user.role.webdev
+id: raid_group-e1361be63
+label: WebDev
+weight: 4
+internal: true
+audience: outsider
+group_type: raid_group
+permissions_ui: false
+permissions: {  }

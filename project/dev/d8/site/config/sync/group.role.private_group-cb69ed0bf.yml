@@ -1,0 +1,17 @@
+uuid: 5fa642ec-5569-458f-9278-d358333e914b
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.private_group
+  enforced:
+    config:
+      - user.role.officer
+id: private_group-cb69ed0bf
+label: Officer
+weight: 5
+internal: true
+audience: outsider
+group_type: private_group
+permissions_ui: false
+permissions: {  }

@@ -7,7 +7,7 @@ dependencies:
   module:
     - entity_browser
     - image
-    - media_entity
+    - media
     - user
 _core:
   default_config_hash: fm6wP0Dac5_o48BYQRtC3gF_H_vYm8ztfvE05IcAcyA
@@ -495,7 +495,7 @@ display:
       arguments: {  }
       display_extenders: {  }
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
@@ -511,7 +511,7 @@ display:
     display_options:
       display_extenders: {  }
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'

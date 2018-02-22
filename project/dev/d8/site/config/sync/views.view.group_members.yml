@@ -2,6 +2,8 @@ uuid: 03975962-717e-42e3-9a3e-3c356bacfd48
 langcode: en
 status: true
 dependencies:
+  config:
+    - field.storage.group_content.group_roles
   module:
     - group
     - user
@@ -698,14 +700,15 @@ display:
       display_extenders: {  }
       title: Members
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - group_membership.roles.permissions
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - url.query_args
-      tags: {  }
+      tags:
+        - 'config:field.storage.group_content.group_roles'
   page_1:
     display_plugin: page
     id: page_1
@@ -725,11 +728,12 @@ display:
         menu_name: main
         enabled: true
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - group_membership.roles.permissions
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - url.query_args
-      tags: {  }
+      tags:
+        - 'config:field.storage.group_content.group_roles'

@@ -1,0 +1,17 @@
+uuid: 66c3fd28-b137-40ed-ac93-91dbbbfb9a56
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.raid_group
+  enforced:
+    config:
+      - user.role.guildy
+id: raid_group-2e6bfc8ed
+label: Guildy
+weight: 3
+internal: true
+audience: outsider
+group_type: raid_group
+permissions_ui: false
+permissions: {  }

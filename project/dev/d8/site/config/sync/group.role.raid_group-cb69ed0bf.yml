@@ -1,0 +1,17 @@
+uuid: 79fdfa29-0bb3-49dc-842d-45e82c7ac3e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.raid_group
+  enforced:
+    config:
+      - user.role.officer
+id: raid_group-cb69ed0bf
+label: Officer
+weight: 5
+internal: true
+audience: outsider
+group_type: raid_group
+permissions_ui: false
+permissions: {  }

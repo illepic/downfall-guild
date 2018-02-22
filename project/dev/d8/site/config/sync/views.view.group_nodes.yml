@@ -913,7 +913,7 @@ display:
       display_extenders: {  }
       title: Nodes
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - group_membership.roles.permissions
         - 'languages:language_content'
@@ -941,7 +941,7 @@ display:
         menu_name: main
         enabled: true
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - group_membership.roles.permissions
         - 'languages:language_content'

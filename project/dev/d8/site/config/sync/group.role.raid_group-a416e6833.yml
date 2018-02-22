@@ -1,0 +1,17 @@
+uuid: 3f6a77ec-8f76-4076-b2ee-b47721877a2e
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.raid_group
+  enforced:
+    config:
+      - user.role.administrator
+id: raid_group-a416e6833
+label: Administrator
+weight: 2
+internal: true
+audience: outsider
+group_type: raid_group
+permissions_ui: false
+permissions: {  }
