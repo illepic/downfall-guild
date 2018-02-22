@@ -1,3 +1,4 @@
+
 uuid: 1821af8d-c992-4b30-a5ea-4c1ee8fc4161
 langcode: en
 status: true
@@ -9,11 +10,14 @@ migration_group: migrate_drupal_6
 label: Files
 source:
   plugin: d6_file
+  constants:
+    # Relative paths work!
+    source_base_path: '../../../../../import/downfall_d6'
+    dest_base_uri: 'public://d6_original'
 process:
-  # skip all these fids because we don't care
   fid: fid
-#  filename: filename
   filename:
+    # Set crap files to null so we can reject them later
     -
       plugin: static_map
       source: filename
@@ -24,24 +28,47 @@ process:
         thumbnail: ''
         img_assist_properties: ''
         large: ''
+    # Outright skip anything that mentions these strings
     -
       plugin: skip_contains
       skip:
         - 'furiousraid'
+    # Reject the things we set to empty earlier
     -
       plugin: skip_on_empty
       method: row
+    # Set filename to actual filesystem filename instead of 'original' etc
     -
       plugin: callback
       callable: basename
       source: filepath
+  # Construct the full path of each source file from the provided directory and the individual path,
+  # encoding it according to RFC-3986. Produces:
+  # '../../../../../import/downfall_d6/sites/www.downfallguild.org/files/images/Screenshot_blah.jpg'
+  source_full_path:
+    -
+      plugin: concat
+      delimiter: /
+      source:
+        - constants/source_base_path
+        - filepath
+  # Remove the 'sites/www.downfallguild.org/files/' from the path in prep for public:// uri path
+  dest_path:
+    plugin: substr
+    source: filepath
+    start: 34
+  dest_uri:
+    -
+      plugin: concat
+      delimiter: /
+      source:
+        - constants/dest_base_uri
+        - '@dest_path'
   uri:
-    plugin: file_uri
+    plugin: file_copy
     source:
-      - filepath
-      - file_directory_path
-      - temp_directory_path
-      - is_public
+      - '@source_full_path'
+      - '@dest_uri'
   filemime: filemime
   filesize: filesize
   status: status
@@ -49,8 +76,6 @@ process:
   uid: uid
 destination:
   plugin: 'entity:file'
-  urlencode: true
-  source_base_path: 'http://d6.local.downfallguild.org/'
 migration_dependencies:
   required: {  }
   optional: {  }

@@ -2,18 +2,15 @@ uuid: 1821af8d-c992-4b30-a5ea-4c1ee8fc4161
 langcode: en
 status: true
 dependencies: {  }
-_core:
-  default_config_hash: 3V8ibVMvrAn8_QV7DJ4INjIMKeYwO6ltSbrNJdu7-iw
 id: upgrade_d6_file
-class: null
-field_plugin_method: null
-cck_plugin_method: null
 migration_tags:
   - 'Drupal 6'
 migration_group: migrate_drupal_6
 label: Files
 source:
   plugin: d6_file
+  constants:
+    source_base_path: /mnt/f/dev/downfall-guild/import/downfall_d6
 process:
   fid: fid
   filename:
@@ -34,17 +31,18 @@ process:
     -
       plugin: skip_on_empty
       method: row
+  source_full_path:
     -
-      plugin: callback
-      callable: basename
-      source: filepath
+      plugin: concat
+      delimiter: /
+      source:
+        - constants/source_base_path
+        - filepath
   uri:
-    plugin: file_uri
+    plugin: file_copy
     source:
-      - filepath
-      - file_directory_path
-      - temp_directory_path
-      - is_public
+      - '@source_full_path'
+      - uri
   filemime: filemime
   filesize: filesize
   status: status
@@ -52,8 +50,6 @@ process:
   uid: uid
 destination:
   plugin: 'entity:file'
-  urlencode: true
-  source_base_path: 'http://d6.local.downfallguild.org/'
 migration_dependencies:
   required: {  }
   optional: {  }
