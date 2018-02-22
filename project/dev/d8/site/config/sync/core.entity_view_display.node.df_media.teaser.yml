@@ -1,0 +1,50 @@
+uuid: 6c2d49dc-f091-4861-9692-d9d00354f2ea
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.df_media.body
+    - field.field.node.df_media.comment
+    - field.field.node.df_media.field_image_gallery
+    - field.field.node.df_media.field_media_primary
+    - field.field.node.df_media.field_term_class
+    - field.field.node.df_media.field_term_downfall
+    - field.field.node.df_media.field_term_expansion
+    - field.field.node.df_media.field_term_game
+    - field.field.node.df_media.field_term_gameplay
+    - field.field.node.df_media.field_term_instance
+    - field.field.node.df_media.field_term_pvp
+    - node.type.df_media
+  module:
+    - text
+    - user
+_core:
+  default_config_hash: XLWvIy-5Qh1jpqLcfr-yjxWGLmkh9J0FhLfzQcz5Bi8
+id: node.df_media.teaser
+targetEntityType: node
+bundle: df_media
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden:
+  comment: true
+  field_image_gallery: true
+  field_media_primary: true
+  field_term_class: true
+  field_term_downfall: true
+  field_term_expansion: true
+  field_term_game: true
+  field_term_gameplay: true
+  field_term_instance: true
+  field_term_pvp: true

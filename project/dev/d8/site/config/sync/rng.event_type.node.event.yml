@@ -1,0 +1,13 @@
+uuid: a48539fd-660b-41cb-a05c-859f8302a421
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.event
+id: node.event
+entity_type: node
+bundle: event
+mirror_operation_to_event_manage: update
+custom_rules: true
+default_registrant: null
+people_types: {  }

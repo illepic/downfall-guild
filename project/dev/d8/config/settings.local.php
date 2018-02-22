@@ -11,5 +11,3 @@ $databases['migrate']['default'] = [
   'driver' => 'mysql',
   'prefix' => 'demo_',
 ];
-
-$config_directories[CONFIG_SYNC_DIRECTORY] = 'sites/default/files/sync';

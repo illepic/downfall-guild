@@ -1,0 +1,72 @@
+uuid: 511edaca-9016-4f54-ac8e-3d7586e204cf
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_group_content_og
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 6'
+migration_group: migrate_drupal_6
+label: 'Group Content entities (OG)'
+source:
+  plugin: og_content_og
+  node_types:
+    - blog
+    - event
+    - forum
+    - image
+    - page
+    - poll
+    - raidevent
+    - story
+process:
+  label: title
+  created: created
+  uid: uid
+  type:
+    -
+      plugin: static_map
+      source: type
+      map:
+        blog: raid_group-group_node-post
+        event: raid_group-group_node-event
+        forum: raid_group-group_node-post
+        image: raid_group-group_node-df_media
+        page: raid_group-group_node-post
+        poll: raid_group-group_node-post
+        raidevent: raid_group-group_node-event
+        story: raid_group-group_node-post
+  gid:
+    -
+      plugin: migration
+      migration: upgrade_d6_group_raid
+      source: group_nid
+      no_stub: true
+    -
+      plugin: skip_on_empty
+      method: row
+  entity_id:
+    -
+      plugin: static_map
+      source: nid
+      bypass: true
+      map:
+        5725: ''
+        5460: ''
+        5869: ''
+        10723: ''
+        10719: ''
+        10720: ''
+        10721: ''
+        10722: ''
+    -
+      plugin: skip_on_empty
+      method: row
+destination:
+  plugin: 'entity:group_content'
+migration_dependencies:
+  required:
+    - upgrade_d6_group_raid
+  optional: {  }

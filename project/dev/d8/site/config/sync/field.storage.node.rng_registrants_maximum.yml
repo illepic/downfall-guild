@@ -1,0 +1,20 @@
+uuid: 4374f724-80af-46e6-a38e-48eca9c494e9
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.rng_registrants_maximum
+field_name: rng_registrants_maximum
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

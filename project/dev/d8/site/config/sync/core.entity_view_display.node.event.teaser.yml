@@ -1,0 +1,59 @@
+uuid: 1f80c553-2395-4300-8793-38592fac3bb8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.event.body
+    - field.field.node.event.comment
+    - field.field.node.event.field_event_end
+    - field.field.node.event.field_event_start
+    - field.field.node.event.field_term_class
+    - field.field.node.event.field_term_downfall
+    - field.field.node.event.field_term_expansion
+    - field.field.node.event.field_term_game
+    - field.field.node.event.field_term_gameplay
+    - field.field.node.event.field_term_instance
+    - field.field.node.event.field_term_instance_size
+    - field.field.node.event.field_term_pvp
+    - node.type.event
+  module:
+    - text
+    - user
+_core:
+  default_config_hash: DBFK1P7_RZh9kHCWr6MRTZhO1__idG0mK_IfPXJGMbs
+id: node.event.teaser
+targetEntityType: node
+bundle: event
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden:
+  comment: true
+  field_event_end: true
+  field_event_start: true
+  field_term_class: true
+  field_term_downfall: true
+  field_term_expansion: true
+  field_term_game: true
+  field_term_gameplay: true
+  field_term_instance: true
+  field_term_instance_size: true
+  field_term_pvp: true
+  rng_capacity: true
+  rng_registrants_duplicate: true
+  rng_registrants_maximum: true
+  rng_registrants_minimum: true
+  rng_registration_groups: true
+  rng_reply_to: true
+  rng_status: true

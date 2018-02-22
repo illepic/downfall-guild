@@ -1,0 +1,22 @@
+uuid: 226ffe4a-81fb-415c-8270-065f8e57fef7
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.content_type.raid_group-group_node-post
+_core:
+  default_config_hash: GNQjvFC8H7qUWSFurZNG-uzu6ExtXYiYDrWVNT7cqqM
+id: group_content.raid_group-group_node-post.default
+targetEntityType: group_content
+bundle: raid_group-group_node-post
+mode: default
+content:
+  uid:
+    type: entity_reference_entity_id
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  entity_id: true

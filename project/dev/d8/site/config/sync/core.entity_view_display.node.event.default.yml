@@ -1,0 +1,133 @@
+uuid: 93bf63d0-74cd-4f54-8237-cdaaa17c03f1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.event.body
+    - field.field.node.event.comment
+    - field.field.node.event.field_event_end
+    - field.field.node.event.field_event_start
+    - field.field.node.event.field_term_class
+    - field.field.node.event.field_term_downfall
+    - field.field.node.event.field_term_expansion
+    - field.field.node.event.field_term_game
+    - field.field.node.event.field_term_gameplay
+    - field.field.node.event.field_term_instance
+    - field.field.node.event.field_term_instance_size
+    - field.field.node.event.field_term_pvp
+    - node.type.event
+  module:
+    - comment
+    - datetime
+    - text
+    - user
+_core:
+  default_config_hash: JkVfU2mRbnid22QR_WXM-P-7rgruoM1DC7eBYBNTm-I
+id: node.event.default
+targetEntityType: node
+bundle: event
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  comment:
+    weight: 13
+    label: above
+    settings:
+      pager_id: 0
+    third_party_settings: {  }
+    type: comment_default
+    region: content
+  field_event_end:
+    weight: 3
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_event_start:
+    weight: 2
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_term_downfall:
+    weight: 7
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_term_expansion:
+    weight: 4
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_term_game:
+    weight: 10
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_term_gameplay:
+    weight: 9
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_term_instance:
+    weight: 5
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_term_instance_size:
+    weight: 8
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_term_pvp:
+    weight: 6
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_term_class: true
+  rng_capacity: true
+  rng_registrants_duplicate: true
+  rng_registrants_maximum: true
+  rng_registrants_minimum: true
+  rng_registration_groups: true
+  rng_reply_to: true
+  rng_status: true

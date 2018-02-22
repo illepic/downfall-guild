@@ -1,9 +1,0 @@
-uuid: dbd97c20-5c18-43cb-9083-8968d91971dc
-langcode: en
-status: true
-dependencies: {  }
-_core:
-  default_config_hash: C-h-qYN7p2kcw26BG-CVPnG1YWoSEMIXCkV-4FF9odI
-id: raid_group
-label: 'Raid Group'
-description: 'Collections of people who get together to do stuff.'

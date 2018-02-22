@@ -22,7 +22,7 @@
         "drupal/components": "^1.0",
         "drupal/config_suite": "^1.2",
         "drupal/console": "^1.0.2",
-        "drupal/core": "8.5.0-beta1",
+        "drupal/core": "8.5.0-rc1",
         "drupal/ctools": "^3.0",
         "drupal/devel": "^1.2",
         "drupal/entity_browser": "2.x-dev",
@@ -31,7 +31,7 @@
         "drupal/inline_entity_form": "^1.0@beta",
         "drupal/migrate_plus": "^4.0",
         "drupal/migrate_tools": "^4.0",
-        "drupal/migrate_upgrade": "^2.0",
+        "drupal/migrate_upgrade": "^3.0",
         "drupal/rng": "^1.5",
         "drupal/veoa": "^1.0",
         "drupal/video_embed_field": "^2.0.0",
@@ -41,7 +41,7 @@
         "webmozart/path-util": "^2.3"
     },
     "require-dev": {
-        "webflo/drupal-core-require-dev": "8.5.0-beta1"
+        "webflo/drupal-core-require-dev": "8.5.0-rc1"
     },
     "conflict": {
         "drupal/drupal": "*"

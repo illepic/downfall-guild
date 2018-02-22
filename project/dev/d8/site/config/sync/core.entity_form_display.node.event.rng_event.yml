@@ -1,0 +1,104 @@
+uuid: 53c87745-d372-49c3-94e7-8efbb4a8aade
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.node.rng_event
+    - field.field.node.event.body
+    - field.field.node.event.comment
+    - field.field.node.event.field_event_end
+    - field.field.node.event.field_event_start
+    - field.field.node.event.field_term_class
+    - field.field.node.event.field_term_downfall
+    - field.field.node.event.field_term_expansion
+    - field.field.node.event.field_term_game
+    - field.field.node.event.field_term_gameplay
+    - field.field.node.event.field_term_instance
+    - field.field.node.event.field_term_instance_size
+    - field.field.node.event.field_term_pvp
+    - field.field.node.event.rng_capacity
+    - field.field.node.event.rng_registrants_duplicate
+    - field.field.node.event.rng_registration_groups
+    - field.field.node.event.rng_registration_type
+    - field.field.node.event.rng_reply_to
+    - field.field.node.event.rng_status
+    - node.type.event
+  module:
+    - rng
+    - unlimited_number
+id: node.event.rng_event
+targetEntityType: node
+bundle: event
+mode: rng_event
+content:
+  rng_capacity:
+    type: unlimited_number
+    weight: 2
+    settings:
+      label_unlimited: Unlimited
+      label_number: Limited
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  rng_registrants_duplicate:
+    type: boolean_checkbox
+    weight: 1
+    settings:
+      display_label: false
+    third_party_settings: {  }
+    region: content
+  rng_registration_groups:
+    type: rng_registration_group
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  rng_registration_type:
+    type: rng_registration_type
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  rng_reply_to:
+    type: email_default
+    settings:
+      placeholder: 'Leave empty to use site default.'
+      size: 60
+    weight: 3
+    third_party_settings: {  }
+    region: content
+  rng_status:
+    type: boolean_checkbox
+    weight: 0
+    settings:
+      display_label: false
+    third_party_settings: {  }
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 120
+    region: content
+    third_party_settings: {  }
+hidden:
+  body: true
+  comment: true
+  created: true
+  field_event_end: true
+  field_event_start: true
+  field_term_class: true
+  field_term_downfall: true
+  field_term_expansion: true
+  field_term_game: true
+  field_term_gameplay: true
+  field_term_instance: true
+  field_term_instance_size: true
+  field_term_pvp: true
+  path: true
+  promote: true
+  rng_registrants_maximum: true
+  rng_registrants_minimum: true
+  sticky: true
+  title: true
+  uid: true

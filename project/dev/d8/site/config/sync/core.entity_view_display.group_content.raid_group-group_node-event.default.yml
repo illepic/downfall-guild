@@ -1,0 +1,24 @@
+uuid: c1c2c747-ece2-4bb3-a261-f921869d6c48
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.content_type.raid_group-group_node-event
+_core:
+  default_config_hash: 3PO2dTJHaar9CvquW0S4hpXobS2mh9rwphSFe1QWm04
+id: group_content.raid_group-group_node-event.default
+targetEntityType: group_content
+bundle: raid_group-group_node-event
+mode: default
+content:
+  entity_id:
+    type: entity_reference_entity_view
+    weight: 0
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+hidden:
+  uid: true
