@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "dfecc1abd741b116d91453aeabce350f",
+    "content-hash": "3b05a8aa9bc34e138c61b05619860ed2",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1347,6 +1347,112 @@
             "time": "2017-12-08T22:53:11+00:00"
         },
         {
+            "name": "drupal/components",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/components",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/components-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "adb1872a655466d575c2d3396f7ca2daba0a2918"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1461060840",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "JohnAlbin",
+                    "homepage": "https://www.drupal.org/user/32095"
+                },
+                {
+                    "name": "RobLoach",
+                    "homepage": "https://www.drupal.org/user/61114"
+                }
+            ],
+            "description": "Registers “component libraries” defined in modules and themes with the Twig system",
+            "homepage": "https://www.drupal.org/project/components",
+            "support": {
+                "source": "http://cgit.drupalcode.org/components"
+            }
+        },
+        {
+            "name": "drupal/config_suite",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/config_suite",
+                "reference": "8.x-1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/config_suite-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "3a9024c310bf9ee24050317ceb10db00cd78976b"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.2",
+                    "datestamp": "1508454243",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Greg Boggs",
+                    "homepage": "https://www.drupal.org/user/153069"
+                },
+                {
+                    "name": "loopduplicate",
+                    "homepage": "https://www.drupal.org/user/717290"
+                }
+            ],
+            "description": "Config Suite is a set of improvements to the configuration management sto make it easier to work with.",
+            "homepage": "https://www.drupal.org/project/config_suite",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/config_suite",
+                "issues": "https://www.drupal.org/project/issues/config_suite"
+            }
+        },
+        {
             "name": "drupal/console",
             "version": "1.6.0",
             "source": {
@@ -1864,6 +1970,54 @@
             "time": "2018-02-09T21:09:34+00:00"
         },
         {
+            "name": "drupal/courier",
+            "version": "1.0.0-alpha9",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/courier",
+                "reference": "8.x-1.0-alpha9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/courier-8.x-1.0-alpha9.zip",
+                "reference": "8.x-1.0-alpha9",
+                "shasum": "e6dc9cc3a9b39816c1182a47d9d1a19f71d0fbed"
+            },
+            "require": {
+                "drupal/core": "*",
+                "drupal/dynamic_entity_reference": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha9",
+                    "datestamp": "1469304239",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "dpi",
+                    "homepage": "https://www.drupal.org/user/81431"
+                }
+            ],
+            "description": "Provides storage for various types of messages.",
+            "homepage": "https://www.drupal.org/project/courier",
+            "support": {
+                "source": "http://cgit.drupalcode.org/courier"
+            }
+        },
+        {
             "name": "drupal/ctools",
             "version": "3.0.0",
             "source": {
@@ -2035,6 +2189,65 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/devel",
                 "issues": "http://drupal.org/project/devel",
+                "irc": "irc://irc.freenode.org/drupal-contribute"
+            }
+        },
+        {
+            "name": "drupal/dynamic_entity_reference",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/dynamic_entity_reference",
+                "reference": "8.x-1.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/dynamic_entity_reference-8.x-1.5.zip",
+                "reference": "8.x-1.5",
+                "shasum": "cb41d7b259ee91d030166dab82bebd841df6d390"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.5",
+                    "datestamp": "1516093086",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Lee Rowlands",
+                    "homepage": "https://www.drupal.org/u/larowlan",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Jibran Ijaz",
+                    "homepage": "https://www.drupal.org/u/jibran",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "larowlan",
+                    "homepage": "https://www.drupal.org/user/395439"
+                }
+            ],
+            "description": "Provides a field that allows an entity-reference field to reference more than one entity type.",
+            "homepage": "http://drupal.org/project/dynamic_entity_reference",
+            "support": {
+                "source": "http://cgit.drupalcode.org/dynamic_entity_reference",
+                "issues": "http://drupal.org/project/dynamic_entity_reference",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
             }
         },
@@ -2479,6 +2692,288 @@
             "homepage": "https://www.drupal.org/project/migrate_upgrade",
             "support": {
                 "source": "http://cgit.drupalcode.org/migrate_upgrade"
+            }
+        },
+        {
+            "name": "drupal/rng",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/rng",
+                "reference": "8.x-1.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/rng-8.x-1.5.zip",
+                "reference": "8.x-1.5",
+                "shasum": "e6f0008958294941b057474d883e7ff66f62ba39"
+            },
+            "require": {
+                "drupal/core": "^8.1",
+                "drupal/courier": "^1.0@alpha",
+                "drupal/dynamic_entity_reference": "^1.0",
+                "drupal/unlimited_number": "^1.0@beta"
+            },
+            "require-dev": {
+                "drupal/veoa": "*",
+                "drupal/views_advanced_routing": "*"
+            },
+            "suggest": {
+                "drupal/rng_conflict": "Prevent registrations when a registrant is registered for a similar event.",
+                "drupal/rng_contact": "Provides a simple contact entity type.",
+                "drupal/rng_date_scheduler": "Control whether a user can register based on current time in relation to date fields attached to an event entity.",
+                "drupal/rng_quick": "Provides blocks for event registration.",
+                "drupal/token": " Improves token UI on message template forms."
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.5",
+                    "datestamp": "1488501184",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Phin",
+                    "homepage": "http://danielph.in",
+                    "email": "pro@danielph.in",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Provides ability to create and manage events and registrations.",
+            "homepage": "http://drupal.org/project/rng",
+            "support": {
+                "source": "https://github.com/dpi/rng",
+                "issues": "https://github.com/dpi/rng/issues"
+            }
+        },
+        {
+            "name": "drupal/unlimited_number",
+            "version": "1.0.0-beta2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/unlimited_number",
+                "reference": "8.x-1.0-beta2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/unlimited_number-8.x-1.0-beta2.zip",
+                "reference": "8.x-1.0-beta2",
+                "shasum": "2976624472cfaa55591d3d4b6bbed8e0d1b9dcf9"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta2",
+                    "datestamp": "1483409343",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Phin",
+                    "homepage": "http://danielph.in",
+                    "email": "pro@danielph.in",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Provides a render element and a widget for number fields.",
+            "homepage": "http://drupal.org/project/unlimited_number",
+            "support": {
+                "source": "https://github.com/dpi/unlimited_number",
+                "issues": "https://github.com/dpi/unlimited_number/issues"
+            }
+        },
+        {
+            "name": "drupal/veoa",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/veoa",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/veoa-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "f4d38c3c99cedec06dfcb83731f466c682d46443"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1490679485",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Drupal\\veoa\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Drupal\\Tests\\veoa\\": "tests/src"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Phin",
+                    "homepage": "http://danielph.in",
+                    "email": "pro@danielph.in",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Provides a Views access control plugin checking if the user can perform an operation on an entity in context.",
+            "homepage": "http://drupal.org/project/veoa",
+            "support": {
+                "source": "https://github.com/dpi/veoa",
+                "issues": "https://github.com/dpi/veoa/issues"
+            }
+        },
+        {
+            "name": "drupal/video_embed_field",
+            "version": "2.0.0-alpha2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/video_embed_field",
+                "reference": "8.x-2.0-alpha2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/video_embed_field-8.x-2.0-alpha2.zip",
+                "reference": "8.x-2.0-alpha2",
+                "shasum": "45b67ad5e0092f2ec9c2873ceabc85ff3a5e9620"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "require-dev": {
+                "drupal/colorbox": "*",
+                "drupal/media_entity": "*",
+                "drupal/media_entity_embeddable_video": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x",
+                    "datestamp": "1512694688",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    },
+                    "package": "Field types"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Sam152",
+                    "homepage": "https://www.drupal.org/user/1485048"
+                },
+                {
+                    "name": "jec006",
+                    "homepage": "https://www.drupal.org/user/855980"
+                },
+                {
+                    "name": "plopesc",
+                    "homepage": "https://www.drupal.org/user/282415"
+                }
+            ],
+            "description": "A pluggable field type for storing videos from external video hosts such as Vimeo and YouTube.",
+            "homepage": "https://www.drupal.org/project/video_embed_field",
+            "support": {
+                "source": "http://cgit.drupalcode.org/video_embed_field"
+            }
+        },
+        {
+            "name": "drupal/views_advanced_routing",
+            "version": "1.0.0-rc2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/views_advanced_routing",
+                "reference": "8.x-1.0-rc2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/views_advanced_routing-8.x-1.0-rc2.zip",
+                "reference": "8.x-1.0-rc2",
+                "shasum": "1ad13a750169ad7d246ca7d67a5dc8e7426c6626"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-rc2",
+                    "datestamp": "1463926739",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "dpi",
+                    "homepage": "https://www.drupal.org/user/81431"
+                }
+            ],
+            "description": "Provides advanced route customisation for Views.",
+            "homepage": "https://www.drupal.org/project/views_advanced_routing",
+            "support": {
+                "source": "http://cgit.drupalcode.org/views_advanced_routing"
             }
         },
         {
@@ -8042,7 +8537,8 @@
     "stability-flags": {
         "drupal/entity_browser": 20,
         "drupal/group": 5,
-        "drupal/inline_entity_form": 10
+        "drupal/inline_entity_form": 10,
+        "drupal/views_advanced_routing": 5
     },
     "prefer-stable": true,
     "prefer-lowest": false,

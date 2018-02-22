@@ -10,6 +10,5 @@ dependencies:
   - migrate_drupal
   - devel
   - kint
-  - config_devel
   - df_config
   - df_groups

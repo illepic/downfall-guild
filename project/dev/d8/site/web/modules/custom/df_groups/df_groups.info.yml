@@ -4,7 +4,6 @@ description: 'Downfall group entities and configuration'
 core: 8.x
 package: Downfall
 dependencies:
-  - entity
   - group
   - gnode
   - df_config
