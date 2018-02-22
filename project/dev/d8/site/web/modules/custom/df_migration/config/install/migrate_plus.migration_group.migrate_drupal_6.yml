@@ -16,5 +16,5 @@ shared_configuration:
       password: root
       host: localhost
       port: ''
-      database: downfall_d6
+      database: migrate
       prefix: demo_
