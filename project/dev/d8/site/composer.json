@@ -26,7 +26,7 @@
         "drupal/ctools": "^3.0",
         "drupal/devel": "^1.2",
         "drupal/entity_browser": "2.x-dev",
-        "drupal/field_group": "^1.0",
+        "drupal/field_group": "^3.0",
         "drupal/group": "^1.0@RC",
         "drupal/inline_entity_form": "^1.0@beta",
         "drupal/migrate_plus": "^4.0",
