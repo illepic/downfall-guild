@@ -10,21 +10,37 @@ label: 'User pictures'
 source:
   plugin: d6_user_picture_file
   constants:
+    source_base_path: '../../../../../import/downfall_d6'
+    dest_base_uri: 'public://d6_original'
     is_public: true
 process:
   filename: filename
   uid: uid
+  source_full_path:
+    -
+      plugin: concat
+      delimiter: /
+      source:
+        - constants/source_base_path
+        - picture
+  dest_path:
+    plugin: substr
+    source: picture
+    start: 34
+  dest_uri:
+    -
+      plugin: concat
+      delimiter: /
+      source:
+        - constants/dest_base_uri
+        - '@dest_path'
   uri:
-    plugin: file_uri
+    plugin: file_copy
     source:
-      - picture
-      - file_directory_path
-      - temp_directory_path
-      - constants/is_public
+      - '@source_full_path'
+      - '@dest_uri'
 destination:
   plugin: 'entity:file'
-  source_path_property: picture
-  source_base_path: 'http://d6.local.downfallguild.org/'
 migration_dependencies:
   optional:
     - upgrade_d6_file
