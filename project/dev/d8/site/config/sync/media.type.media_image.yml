@@ -1,0 +1,13 @@
+uuid: 6786b478-f2f4-4f29-8776-c3c2bfff09f5
+langcode: en
+status: true
+dependencies: {  }
+id: media_image
+label: 'Media Image'
+description: 'Image media entity'
+source: image
+queue_thumbnail_downloads: true
+new_revision: false
+source_configuration:
+  source_field: field_media_image
+field_map: {  }

@@ -4,9 +4,9 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.media.media_medium_node
-    - field.field.media.media_video.field_media_video_embed_field
+    - field.field.media.media_video.field_media_video_embed_field_1
     - image.style.medium
-    - media_entity.bundle.media_video
+    - media.type.media_video
   module:
     - image
 _core:
@@ -35,5 +35,5 @@ content:
     region: content
 hidden:
   created: true
-  field_media_video_embed_field: true
+  field_media_video_embed_field_1: true
   uid: true

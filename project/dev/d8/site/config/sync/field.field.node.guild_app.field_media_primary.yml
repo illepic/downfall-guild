@@ -4,8 +4,6 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_media_primary
-    - media_entity.bundle.media_image
-    - media_entity.bundle.media_video
     - node.type.guild_app
 _core:
   default_config_hash: MKgKa86uFrTLcA4XoD0O8Mut5YikPDtjY3pozYAPu7A
@@ -22,9 +20,7 @@ default_value_callback: ''
 settings:
   handler: 'default:media'
   handler_settings:
-    target_bundles:
-      media_image: media_image
-      media_video: media_video
+    target_bundles: {  }
     sort:
       field: _none
     auto_create: false

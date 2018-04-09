@@ -1,0 +1,26 @@
+uuid: f7de02cd-13e6-41f0-8414-a3905502b76b
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - particle
+_core:
+  default_config_hash: 9s3Zh34q0RoM1IHDlyQP4sw6jvEdP2ubs1BvlWk_4r8
+id: particle_useraccountmenu
+theme: particle
+region: secondary_menu
+weight: 11
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 2
+visibility: {  }

@@ -1,0 +1,22 @@
+uuid: c9ed8639-b386-4366-bcc2-23095464deca
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - particle
+_core:
+  default_config_hash: 6zXPun5VZ6ph0qYcUHftclMuIeHppy_FnHGdMGoYa_A
+id: particle_breadcrumbs
+theme: particle
+region: breadcrumb
+weight: -100
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility: {  }

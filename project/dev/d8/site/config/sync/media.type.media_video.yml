@@ -1,0 +1,15 @@
+uuid: 832dad40-2701-4c9f-b744-a2a5ac5430c2
+langcode: en
+status: true
+dependencies:
+  module:
+    - video_embed_media
+id: media_video
+label: 'Media Video'
+description: 'Video entity type from url embed.'
+source: video_embed_field
+queue_thumbnail_downloads: true
+new_revision: false
+source_configuration:
+  source_field: field_media_video_embed_field
+field_map: {  }

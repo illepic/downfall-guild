@@ -5,8 +5,6 @@ dependencies:
   config:
     - comment.type.df_comment
     - field.storage.comment.field_comment_media
-    - media_entity.bundle.media_image
-    - media_entity.bundle.media_video
 _core:
   default_config_hash: TkEV33ATmUdLHrVvYIe0FnMcNeSk8jqQ7JWBOsIvy9A
 id: comment.df_comment.field_comment_media
@@ -22,9 +20,7 @@ default_value_callback: ''
 settings:
   handler: 'default:media'
   handler_settings:
-    target_bundles:
-      media_image: media_image
-      media_video: media_video
+    target_bundles: {  }
     sort:
       field: _none
     auto_create: false

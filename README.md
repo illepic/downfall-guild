@@ -8,7 +8,7 @@ A migration and design overhaul of downfallguild.org. Content and structure from
 
 The goals of this project are as follows:
 
-* Install Drupal 8 locally using Drupal VM (including all composer dependencies)
+* Install Drupal 8 locally
 * Backup the production Drupal 6 site locally (files and database)
 * Migrate files and data from the local Drupal 6 to the local Drupal 8
 * Build out the features/config of the Drupal 8 site
@@ -16,30 +16,16 @@ The goals of this project are as follows:
 
 ## Local Host Environment Requirements
 
-* [VirtualBox 5](https://www.virtualbox.org/wiki/Downloads)
-* [Vagrant 1.8](https://www.vagrantup.com/downloads.html)
-	* Install Vagrant plugin: vagrant-hostsupdater: `vagrant plugin install vagrant-hostsupdater`
-	* Install Vagrant plugin: vagrant-cachier: `vagrant plugin install vagrant-cachier`
+* PHP 7.1
+* MySQL 5.6
 * [Git](https://git-scm.com/downloads)
-* [Node v6](https://nodejs.org/en/download/)
-* [Ansible](https://docs.ansible.com/ansible/intro_installation.html)
-	* OSX: `brew install ansible`
-	* Ubuntu: `sudo apt install ansible`
-	* Windows: LOL
-
-I've given up supporting Windows on this project, maybe Windows 10 Bash can help?
-
-### Ubuntu-specific
-
-NFS filesystem makes syncing changes back and forth to Vagrant much faster:
-
-	sudo apt install nfs-common nfs-kernel-server`
+* [Node v8](https://nodejs.org/en/download/)
 
 ### Recommended Tools
 
 * Database GUI
-	* Mac: [SequelPro](http://www.sequelpro.com/)
-	* Linux: [MySQL Workbench](https://www.mysql.com/products/workbench/)
+  * Mac: [SequelPro](http://www.sequelpro.com/)
+  * Linux/Windows: [MySQL Workbench](https://www.mysql.com/products/workbench/)
 
 ## Getting started
 

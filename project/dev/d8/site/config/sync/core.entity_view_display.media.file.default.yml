@@ -1,4 +1,4 @@
-uuid: 5a59f0ac-0469-4184-90c4-234d6207fdc5
+uuid: 32e43808-91b7-448a-a49f-fd2a78eca531
 langcode: en
 status: true
 dependencies:
@@ -16,8 +16,7 @@ mode: default
 content:
   field_media_file:
     label: visually_hidden
-    settings:
-      use_description_as_link_text: true
+    settings: {  }
     third_party_settings: {  }
     type: file_default
     weight: 1

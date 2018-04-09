@@ -1,0 +1,20 @@
+uuid: 96eeec02-f22e-4407-9481-f64af5f14c1f
+langcode: en
+status: true
+dependencies:
+  theme:
+    - particle
+_core:
+  default_config_hash: lf8ULearB3H4TTPtVt-wNMEalC8ccbsO_syHJ_rKi6Q
+id: particle_local_actions
+theme: particle
+region: content
+weight: -20
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.media.field_media_image_image
-    - media_entity.bundle.media_image
+    - media.type.media_image
   module:
     - image
 _core:
@@ -13,8 +13,8 @@ id: media.media_image.field_media_image_image
 field_name: field_media_image_image
 entity_type: media
 bundle: media_image
-label: 'Media Image Image'
-description: ''
+label: 'Media Image Field'
+description: 'The field to actually hold the image file reference.'
 required: false
 translatable: false
 default_value: {  }

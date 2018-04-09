@@ -1,12 +1,12 @@
-uuid: eb68c23a-57d8-47c6-9d51-194b9fce25c6
+uuid: d2472a41-39c0-4aa9-9ae3-3af934c89ead
 langcode: en
 status: true
 dependencies:
   module:
     - media
     - video_embed_field
-id: media.field_media_video_embed_field
-field_name: field_media_video_embed_field
+id: media.field_media_video_embed_field_1
+field_name: field_media_video_embed_field_1
 entity_type: media
 type: video_embed_field
 settings: {  }

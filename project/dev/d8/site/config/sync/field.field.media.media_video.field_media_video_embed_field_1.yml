@@ -1,14 +1,14 @@
-uuid: 49e61c9d-7191-430a-b9ed-fa3c74e6f436
+uuid: d84ae95f-1696-4165-93dc-d0811980f898
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.media.field_media_video_embed_field
+    - field.storage.media.field_media_video_embed_field_1
     - media.type.media_video
   module:
     - video_embed_field
-id: media.media_video.field_media_video_embed_field
-field_name: field_media_video_embed_field
+id: media.media_video.field_media_video_embed_field_1
+field_name: field_media_video_embed_field_1
 entity_type: media
 bundle: media_video
 label: 'Video Url'
